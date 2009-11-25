@@ -146,6 +146,8 @@ import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import [bindingFilter.oclAsType(mapping::filters::OnlyReferenceTypeFilter).reference.eContainingClass.qualifiedMetamodelPackage(basePackage)/];
 [/for]
 [/for]
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 [additionalImports()/]
 
 // [/protected]
