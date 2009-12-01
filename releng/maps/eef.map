@@ -10,31 +10,31 @@ fragment@org.eclipse.ant.optional.junit=v20070202,:pserver:anonymous@dev.eclipse
 
 !*** plugins, features and fragments
 
-feature@org.eclipse.emf.eef.edt=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-edt-feature
+feature@org.eclipse.emf.eef.edt=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-edt-feature
 
-feature@org.eclipse.emf.eef.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-runtime-feature
-feature@org.eclipse.emf.eef.uml=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-uml-feature
-feature@org.eclipse.emf.eef.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.feature
+feature@org.eclipse.emf.eef.runtime=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-runtime-feature
+feature@org.eclipse.emf.eef.uml=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-uml-feature
+feature@org.eclipse.emf.eef.tests=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.feature
 
-plugin@org.eclipse.emf.eef.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime
+plugin@org.eclipse.emf.eef.runtime=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime
 
-plugin@org.eclipse.emf.eef.components=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components
-plugin@org.eclipse.emf.eef.components.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.edit
-plugin@org.eclipse.emf.eef.components.editor=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.editor
+plugin@org.eclipse.emf.eef.components=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components
+plugin@org.eclipse.emf.eef.components.edit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.edit
+plugin@org.eclipse.emf.eef.components.editor=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.editor
 
-plugin@org.eclipse.emf.eef.eefgen=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen
-plugin@org.eclipse.emf.eef.eefgen.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.edit
-plugin@org.eclipse.emf.eef.eefgen.editor=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.editor
+plugin@org.eclipse.emf.eef.eefgen=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen
+plugin@org.eclipse.emf.eef.eefgen.edit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.edit
+plugin@org.eclipse.emf.eef.eefgen.editor=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.editor
 
-plugin@org.eclipse.emf.eef.mapping=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping
-plugin@org.eclipse.emf.eef.mapping.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping.edit
+plugin@org.eclipse.emf.eef.mapping=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping
+plugin@org.eclipse.emf.eef.mapping.edit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping.edit
 
-plugin@org.eclipse.emf.eef.views=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views
-plugin@org.eclipse.emf.eef.views.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.edit
-plugin@org.eclipse.emf.eef.views.editor=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.editor
+plugin@org.eclipse.emf.eef.views=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views
+plugin@org.eclipse.emf.eef.views.edit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.edit
+plugin@org.eclipse.emf.eef.views.editor=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.editor
 
-plugin@org.eclipse.emf.eef.codegen=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen
-plugin@org.eclipse.emf.eef.codegen.uml=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen.uml
+plugin@org.eclipse.emf.eef.codegen=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen
+plugin@org.eclipse.emf.eef.codegen.uml=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen.uml
 
 
 !*** All-in-one data integrity frameworks features (SDK) 
@@ -43,12 +43,10 @@ plugin@org.eclipse.emf.eef.codegen.uml=HEAD,:pserver:anonymous@dev.eclipse.org:/
 !*** EEF Examples plugins
 
 !*** EEF Tests plugins
-plugin@org.eclipse.emf.eef.tests.codegen=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.codegen
-plugin@org.eclipse.emf.eef.runtime.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime.tests
-plugin@org.eclipse.emf.examples.eef.tests.junit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.tests.junit
-plugin@org.eclipse.emf.examples.eef=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef
-plugin@org.eclipse.emf.examples.eef.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.edit
-plugin@org.eclipse.emf.examples.eef.editor=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.editor
+plugin@org.eclipse.emf.eef.tests.codegen=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.codegen
+plugin@org.eclipse.emf.eef.runtime.tests=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime.tests
+plugin@org.eclipse.emf.examples.eef.tests.junit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.tests.junit
+plugin@org.eclipse.emf.examples.eef=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef
+plugin@org.eclipse.emf.examples.eef.edit=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.edit
+plugin@org.eclipse.emf.examples.eef.editor=v0_7_1_BRANCH,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.editor
 
-plugin@org.eclipse.test=v20080313,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
-fragment@org.eclipse.ant.optional.junit=v20070202,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
