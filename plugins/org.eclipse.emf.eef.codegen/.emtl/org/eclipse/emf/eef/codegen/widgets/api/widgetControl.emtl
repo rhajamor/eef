@@ -245,7 +245,7 @@
         <definition href="../../services/naming.emtl#/0/editorID"/>
         <argument xsi:type="ocl.ecore:OperationCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
             <source xsi:type="ocl.ecore:VariableExp" name="editionElement" referredVariable="/0/liveMessageSetter/editionElement">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
             </source>
@@ -273,7 +273,7 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <source xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
               <source xsi:type="ocl.ecore:VariableExp" name="editionElement" referredVariable="/0/liveMessageSetter/editionElement">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
               </source>
@@ -326,7 +326,7 @@
         <definition href="../../services/naming.emtl#/0/editorID"/>
         <argument xsi:type="ocl.ecore:OperationCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
             <source xsi:type="ocl.ecore:VariableExp" name="editionElement" referredVariable="/0/liveMessageUnsetter/editionElement">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
             </source>
@@ -354,7 +354,7 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <source xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
               <source xsi:type="ocl.ecore:VariableExp" name="editionElement" referredVariable="/0/liveMessageUnsetter/editionElement">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
               </source>
@@ -422,10 +422,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/livemessageUnsetterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -436,7 +436,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/livemessageUnsetterForReferencedViews/@body.1/@body.1/select/collect/select/temp1">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -450,7 +450,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/livemessageUnsetterForReferencedViews/@body.1/@body.1/select/collect/temp2">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -464,7 +464,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/livemessageUnsetterForReferencedViews/@body.1/@body.1/select/temp3">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -524,10 +524,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/liveMessageSetterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -538,7 +538,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/liveMessageSetterForReferencedViews/@body.1/@body.1/select/collect/select/temp4">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -552,7 +552,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/liveMessageSetterForReferencedViews/@body.1/@body.1/select/collect/temp5">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -566,7 +566,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/liveMessageSetterForReferencedViews/@body.1/@body.1/select/temp6">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -626,10 +626,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/liveCommandUpdaterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -640,7 +640,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/liveCommandUpdaterForReferencedViews/@body.1/@body.1/select/collect/select/temp7">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -654,7 +654,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/liveCommandUpdaterForReferencedViews/@body.1/@body.1/select/collect/temp8">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -668,7 +668,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/liveCommandUpdaterForReferencedViews/@body.1/@body.1/select/temp9">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -734,10 +734,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/partUpdaterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -748,7 +748,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/partUpdaterForReferencedViews/@body.1/@body.1/select/collect/select/temp10">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -762,7 +762,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/partUpdaterForReferencedViews/@body.1/@body.1/select/collect/temp11">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -776,7 +776,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/partUpdaterForReferencedViews/@body.1/@body.1/select/temp12">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -842,10 +842,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/commandUpdaterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -856,7 +856,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/commandUpdaterForReferencedViews/@body.1/@body.1/select/collect/select/temp13">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -870,7 +870,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/commandUpdaterForReferencedViews/@body.1/@body.1/select/collect/temp14">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -884,7 +884,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/commandUpdaterForReferencedViews/@body.1/@body.1/select/temp15">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -947,10 +947,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/liveUpdaterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -961,7 +961,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/liveUpdaterForReferencedViews/@body.1/@body.1/select/collect/select/temp16">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -975,7 +975,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/liveUpdaterForReferencedViews/@body.1/@body.1/select/collect/temp17">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -989,7 +989,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/liveUpdaterForReferencedViews/@body.1/@body.1/select/temp18">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -1049,10 +1049,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/updaterForReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -1063,7 +1063,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/updaterForReferencedViews/@body.1/@body.1/select/collect/select/temp19">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -1077,7 +1077,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/updaterForReferencedViews/@body.1/@body.1/select/collect/temp20">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -1091,7 +1091,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/updaterForReferencedViews/@body.1/@body.1/select/temp21">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -1151,10 +1151,10 @@
           <loopVariable name="editionElement">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/Sequence(PropertiesEditionElement)">
-            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/2/Sequence(PropertiesEditionElement)">
-              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/2/OrderedSet(AbstractPropertyBinding)">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(AbstractPropertyBinding)">
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/Sequence(PropertiesEditionElement)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/37/Sequence(PropertiesEditionElement)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/37/OrderedSet(AbstractPropertyBinding)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(AbstractPropertyBinding)">
                   <source xsi:type="ocl.ecore:VariableExp" name="pec" referredVariable="/0/updaterForSubReferencedViews/pec">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
                   </source>
@@ -1165,7 +1165,7 @@
                   <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/updaterForSubReferencedViews/@body.1/@body.1/select/collect/select/temp22">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                     <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </argument>
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
@@ -1179,7 +1179,7 @@
                 <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/updaterForSubReferencedViews/@body.1/@body.1/select/collect/temp23">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//AbstractPropertyBinding"/>
                 </source>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="/51/PropertiesEditionElement">
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/52/PropertiesEditionElement">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                 </argument>
                 <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
@@ -1193,7 +1193,7 @@
               <definition href="../../services/common.emtl#/0/ownedBy"/>
               <argument xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/2/OrderedSet(ElementEditor)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/37/OrderedSet(ElementEditor)">
                   <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/updaterForSubReferencedViews/@body.1/@body.1/select/temp24">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
                   </source>
@@ -3553,7 +3553,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
         </eParameters>
         <eParameters name="basePackage">
-          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
       <eOperations name="eefPackage">
@@ -3568,7 +3568,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
         </eParameters>
         <eParameters name="basePackage">
-          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
       <eOperations name="qualifiedName">
@@ -5171,7 +5171,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="basePackage">
-          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
       <eOperations name="metamodelPrefix">
@@ -5435,7 +5435,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="basePackage">
-          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
       <eOperations name="qualifiedName">
@@ -5665,10 +5665,112 @@
       </eOperations>
     </eClassifiers>
   </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+  </ocl.ecore:Variable>
   <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(OclAny)" instanceClassName="java.util.List">
-      <elementType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(ElementEditor)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
     </eClassifiers>
@@ -5680,111 +5782,6 @@
     </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
@@ -5822,6 +5819,9 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
   </ocl.ecore:Variable>
   <ecore:EPackage name="types">
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="PropertiesEditionElement">
