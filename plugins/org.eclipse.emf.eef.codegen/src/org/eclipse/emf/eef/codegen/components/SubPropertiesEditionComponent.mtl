@@ -325,7 +325,7 @@ public class [pec.subPECClass(view)/] extends StandardPropertiesEditionComponent
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if ([pec.model.name.toJavaIdentifier()/] != null) {
+		if (([pec.model.name.toJavaIdentifier()/] != null) && ([view.viewIdentifier(pec)/] != null)) { 
 [if (view.oclIsTypeOf(views::CustomView))]
 			// [protected ('for getPropertiesEditionCommand body')]
 			
