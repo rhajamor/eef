@@ -54,15 +54,15 @@
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
 [if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
 	[if (editionElement.model.many)]
-			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toMany().toJavaClassifier()/]());
+			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toMany().toUpperFirst()/]());
 	[else]
-			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toJavaClassifier()/]());
+			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toUpperFirst()/]());
 	[/if]
 [elseif (editionElement.model.oclAsType(ecore::EAttribute).isBoolean())]
 	[if (editionElement.model.many)]
-			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toJavaClassifier()/]());
+			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]());
 	[else]
-			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toJavaClassifier()/]());
+			[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
 	[/if]
 [else]
 //FIXME invalid case in updater(), Case : model = Attribute(1) : [editionElement.model.name/] - view = Checkbox
