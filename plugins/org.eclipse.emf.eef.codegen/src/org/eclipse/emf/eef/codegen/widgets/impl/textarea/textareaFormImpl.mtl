@@ -54,21 +54,6 @@ protected Text [editor.name.toJavaIdentifier()/];
 			}
 
 		});
-		[editor.name.toJavaIdentifier()/].addKeyListener(new KeyAdapter() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
-			 */
-			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
-				}
-			}
-
-		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].FORM_KIND), null); //$NON-NLS-1$
 	}
 [/template]
