@@ -38,19 +38,6 @@ protected Text [editor.name.toJavaIdentifier()/];
 		widgetFactory.paintBordersFor(parent);
 		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
 		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
-		[editor.name.toJavaIdentifier()/].addModifyListener(new ModifyListener() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
-			 */
-			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
-			}
-
-		});
 		[editor.name.toJavaIdentifier()/].addFocusListener(new FocusAdapter() {
 
 			/**
@@ -58,6 +45,8 @@ protected Text [editor.name.toJavaIdentifier()/];
 			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
@@ -71,6 +60,8 @@ protected Text [editor.name.toJavaIdentifier()/];
 			 * 
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)

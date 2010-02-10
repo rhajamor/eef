@@ -36,20 +36,30 @@
 		[/if]
 		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
 		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
-		[editor.name.toJavaIdentifier()/].addModifyListener(new ModifyListener() {
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+		[editor.name.toJavaIdentifier()/].addFocusListener(new FocusAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
-			public void modifyText(ModifyEvent e) {
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
 			}
-			
 		});
-
+		[editor.name.toJavaIdentifier()/].addKeyListener(new KeyAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {
+					if (propertiesEditionComponent != null)
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
+				}
+			}
+		});
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null); //$NON-NLS-1$
 	}
 [/template]
