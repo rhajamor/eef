@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  */
 public abstract class AbstractTransformer {
-	
+
 	protected String genConstraint(EModelElement source, String key) {
 		if (source != null) {
 			EAnnotation annotation = source.getEAnnotation("genConstraint");
@@ -46,19 +46,19 @@ public abstract class AbstractTransformer {
 		}
 		if (feature instanceof EReference) {
 			String genConstraint = genConstraint(feature, "significant");
-			if (genConstraint != null && genConstraint.equals("true"))
-				return true;
-			return false;
+			if (genConstraint != null && genConstraint.equals("false"))
+				return false;
+			return true;
 		}
 		return true;
 	}
-	
+
 	protected Object getViewName(EStructuralFeature feature) {
 		if (genConstraint(feature, "component") != null)
 			return genConstraint(feature, "component");
 		return null;
 	}
-	
+
 	protected boolean inheritedMember(EStructuralFeature feature, EClass current) {
 		return !feature.getEContainingClass().equals(current) && getViewName(feature) != null;
 	}
@@ -68,7 +68,7 @@ public abstract class AbstractTransformer {
 		while (allContents.hasNext()) {
 			EObject next = allContents.next();
 			if (next instanceof EStructuralFeature && name.equals(((EStructuralFeature)next).getName()))
-				return (EStructuralFeature) next;
+				return (EStructuralFeature)next;
 		}
 		return null;
 	}
@@ -79,10 +79,23 @@ public abstract class AbstractTransformer {
 		while (allContents.hasNext()) {
 			Notifier next = allContents.next();
 			if (next instanceof EClass && name.equals(((EClass)next).getName()))
-				return (EClass) next;
+				return (EClass)next;
 		}
 		return null;
 	}
 
+	protected boolean isUnmanagedReference(EStructuralFeature feature) {
+		return feature instanceof EReference && ((EReference)feature).isContainment()
+				&& ((EReference)feature).getEType() instanceof EClass
+				&& hasReferenceWithEOpposite(((EClass)((EReference)feature).getEType()));
+	}
+
+	private boolean hasReferenceWithEOpposite(EClass eClass) {
+		for (EReference eRef : eClass.getEAllReferences()) {
+			if (eRef.getEOpposite() != null)
+				return true;
+		}
+		return false;
+	}
 
 }

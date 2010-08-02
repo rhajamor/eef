@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
+<!--
+    Copyright (c) 2008, 2009 Obeo.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Obeo - initial API and implementation
+ -->
+
 <plugin>
+   <extension-point id="PropertiesInitializerStrategy" name="org.eclipse.emf.eef.codegen.PropertiesInitializerStrategy" schema="schema/PropertiesInitializerStrategy.exsd"/>
+   <extension-point id="PropertiesGeneratorLauncher" name="org.eclipse.emf.eef.codegen.PropertiesGeneratorLauncher" schema="schema/PropertiesGeneratorLauncher.exsd"/>
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
@@ -38,12 +51,53 @@
          </menu>
          <action
                class="org.eclipse.emf.eef.codegen.ui.generators.actions.GenerateEEFAction"
-               enablesFor="1"
+               enablesFor="*"
                id="org.eclipse.emf.eef.codegen.action2"
                label="Generate EEF architecture"
                menubarPath="org.eclipse.emf.eef.ui.menu/generation">
          </action>
       </objectContribution>
+      <!--objectContribution
+            adaptable="false"
+            id="org.eclipse.emf.eef.ui.contribution.validation"
+            nameFilter="*.eefgen"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="org.eclipse.emf.eef.ui.menu"
+               label="EEF"
+               path="additions">
+            <separator
+                  name="validation">
+            </separator>
+         </menu>
+	      <action
+               class="org.eclipse.emf.eef.codegen.ui.validators.actions.PurifyEEFModelsAction"
+               enablesFor="1"
+               id="org.eclipse.emf.eef.codegen.PurifyAction"
+               label="Purify EEF models"
+               menubarPath="org.eclipse.emf.eef.ui.menu/validation">
+         </action>
+      </objectContribution-->
    </extension>
-
+   <extension
+         point="org.eclipse.emf.eef.codegen.PropertiesInitializerStrategy">
+      <PropertiesInitializerStrategy
+            description="Perform a simple 1 for 1 EEF model initializing. This initializer isn't incremental !"
+            name="Basic Properties initializer"
+            strategyClass="org.eclipse.emf.eef.codegen.core.initializer.PropertiesInitializer">
+      </PropertiesInitializerStrategy>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.codegen.PropertiesGeneratorLauncher">
+      <PropertiesGeneratorLauncher
+            generatorLauncher="org.eclipse.emf.eef.codegen.core.launcher.gmf.GMF1DescriptorsGeneratorLauncher"
+            name="GMF1 PropertiesSection">
+      </PropertiesGeneratorLauncher>
+   </extension>
+   <extension
+         point="org.eclipse.acceleo.engine.dynamic.templates">
+      <templates
+            path="src/org/eclipse/emf/eef/codegen/widgets/impl/">
+      </templates>
+   </extension>
 </plugin>

@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -12,7 +12,6 @@ package org.eclipse.emf.eef.codegen.core.initializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -40,16 +38,15 @@ import org.eclipse.emf.eef.views.ViewsRepository;
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  */
 public class ViewTransformer extends AbstractTransformer {
-	
+
 	private Map<String, EObject> toolkits;
-	
+
 	private Map<EObject, List<ViewElement>> workingResolvTemp;
-	
+
 	private ViewsRepository repository;
-	private Category common;
 
 	/* ===== Constructor ===== */
-	
+
 	public ViewTransformer(Map<String, EObject> toolkits) {
 		this.toolkits = toolkits;
 		workingResolvTemp = new HashMap<EObject, List<ViewElement>>();
@@ -59,7 +56,7 @@ public class ViewTransformer extends AbstractTransformer {
 	public Map<EObject, List<ViewElement>> getWorkingResolvTemp() {
 		return workingResolvTemp;
 	}
-	
+
 	public void addElementToEObject(EObject source, ViewElement element) {
 		if (workingResolvTemp.get(source) != null)
 			workingResolvTemp.get(source).add(element);
@@ -69,19 +66,17 @@ public class ViewTransformer extends AbstractTransformer {
 			workingResolvTemp.put(source, list);
 		}
 	}
-	
+
 	/* ===== Transformation ===== */
-	
+
 	public ViewsRepository genPackage2ViewsRepository(GenPackage genPackage, String repositoryKind) {
-		
+
 		repository = ViewsFactory.eINSTANCE.createViewsRepository();
-		repository.setRepositoryKind(repositoryKind);
+		repository.getRepositoryKind().add("SWT");
+		repository.getRepositoryKind().add("Form");
 		repository.setName(genPackage.getEcorePackage().getName());
-		repository.setDocumentation("Views repository for " + genPackage.getEcorePackage().getName() + " GenPackage");
-		common = ViewsFactory.eINSTANCE.createCategory();
-		common.setName("common");
-		repository.getCategories().add(common);
-//		initCommonViews(common, genPackage);
+		repository.setDocumentation("Views repository for " + genPackage.getEcorePackage().getName()
+				+ " GenPackage");
 		Category views = ViewsFactory.eINSTANCE.createCategory();
 		views.setName(genPackage.getEcorePackage().getName());
 		repository.getCategories().add(views);
@@ -90,32 +85,9 @@ public class ViewTransformer extends AbstractTransformer {
 				views.getViews().addAll(genClass2Views(genClass));
 			}
 		}
-		
+
 		return repository;
-		
-	}
-	
-	private void initCommonViews(Category common, GenPackage genPackage) {
-		View proprietes = ViewsFactory.eINSTANCE.createView();
-		proprietes.setName("Propriétés");
-		ElementEditor listeProprietes = ViewsFactory.eINSTANCE.createElementEditor();
-		listeProprietes.setName("liste Propriétés");
-		listeProprietes.setRepresentation(getWidget("Table"));
-		proprietes.getElements().add(listeProprietes);
-		common.getViews().add(proprietes);
-		EPackage metamodel = genPackage.getEcorePackage();
-		addElementToEObject(findEClass(metamodel, "Propriete"), proprietes);
-		addElementToEObject(findEStructuralFeature(metamodel, "listeProprietes"), listeProprietes);
-		
-		View stereotypes = ViewsFactory.eINSTANCE.createView();
-		stereotypes.setName("Stéréotypes");
-		ElementEditor listeStereotypes = ViewsFactory.eINSTANCE.createElementEditor();
-		listeStereotypes.setName("liste Stéréotypes");
-		listeStereotypes.setRepresentation(getWidget("Table"));
-		stereotypes.getElements().add(listeStereotypes);
-		common.getViews().add(stereotypes);
-		addElementToEObject(findEClass(metamodel, "Stereotype"), stereotypes);
-		addElementToEObject(findEStructuralFeature(metamodel, "listeStereotypes"), listeStereotypes);
+
 	}
 
 	public List<View> genClass2Views(GenClass genClass) {
@@ -132,9 +104,10 @@ public class ViewTransformer extends AbstractTransformer {
 				container.setRepresentation(getWidget("Group"));
 				List<EStructuralFeature> features = groups.get(name);
 				for (EStructuralFeature structuralFeature : features) {
-					if (!structuralFeature.isDerived()) {
+					if (!structuralFeature.isDerived() && !isUnmanagedReference(structuralFeature)) {
 						ElementEditor editor = eStructuralFeature2ViewElement(structuralFeature);
-						container.getElements().add(editor);
+						if (editor != null)
+							container.getElements().add(editor);
 					}
 				}
 				view.getElements().add(container);
@@ -145,7 +118,8 @@ public class ViewTransformer extends AbstractTransformer {
 			for (EStructuralFeature structuralFeature : features) {
 				if (!structuralFeature.isDerived()) {
 					ElementEditor editor = eStructuralFeature2ViewElement(structuralFeature);
-					view.getElements().add(editor);
+					if (editor != null)
+						view.getElements().add(editor);
 				}
 			}
 		}
@@ -157,7 +131,7 @@ public class ViewTransformer extends AbstractTransformer {
 		}
 		return result;
 	}
-	
+
 	public View genClass2AdditionalView(GenClass genClass) {
 		View newView = null;
 		GenAnnotation genAnnotation = genClass.getGenAnnotation("component");
@@ -169,7 +143,7 @@ public class ViewTransformer extends AbstractTransformer {
 			}
 		}
 		return newView;
-		
+
 	}
 
 	public ElementEditor eStructuralFeature2ViewElement(EStructuralFeature feature) {
@@ -178,35 +152,32 @@ public class ViewTransformer extends AbstractTransformer {
 		if (feature instanceof EAttribute) {
 			if (feature.isMany()) {
 				result.setRepresentation(getWidget("MultiValuedEditor"));
-			}
-			else {
-				if (feature.getEType().getName().equals("EBoolean") || feature.getEType().getName().equals("EBool") || feature.getEType().getName().equals("Boolean")) {
+			} else {
+				if (feature.getEType().getName().equals("EBoolean")
+						|| feature.getEType().getName().equals("EBool")
+						|| feature.getEType().getName().equalsIgnoreCase("Boolean")) {
 					result.setRepresentation(getWidget("Checkbox"));
-				}
-				else if (EcorePackage.eINSTANCE.getEEnum().isInstance(feature.getEType())) {
-					result.setRepresentation(getWidget("EENumViewer"));
+				} else if (EcorePackage.eINSTANCE.getEEnum().isInstance(feature.getEType())) {
+					result.setRepresentation(getWidget("EMFComboViewer"));
 				}
 				// FIXME: HACK
 				else if ("documentation".equals(feature.getName())) {
 					result.setRepresentation(getWidget("Textarea"));
-				}
-				else {
+				} else {
 					result.setRepresentation(getWidget("Text"));
 				}
-				}
-		}
-		else if (feature instanceof EReference) {
-			EReference reference = (EReference) feature;
+			}
+		} else if (feature instanceof EReference) {
+			EReference reference = (EReference)feature;
 			if (reference.isContainment()) {
 				if (reference.isMany())
-					result.setRepresentation(getWidget("Table"));
+					result.setRepresentation(getWidget("AdvancedTableComposition"));
 				else {
-					// I don't now what is it for the moment !
+					return null;
 				}
-			}
-			else {
+			} else {
 				if (reference.isMany())
-					result.setRepresentation(getWidget("ReferencesTable"));
+					result.setRepresentation(getWidget("AdvancedReferencesTable"));
 				else
 					result.setRepresentation(getWidget("EObjectFlatComboViewer"));
 			}
@@ -214,13 +185,12 @@ public class ViewTransformer extends AbstractTransformer {
 		addElementToEObject(feature, result);
 		return result;
 	}
-	
+
 	/* ===== Widgets management ===== */
-	
-	private Widget getWidget(String name) {
+
+	protected Widget getWidget(String name) {
 		if (name != null) {
-			for (Iterator<String> iterator = toolkits.keySet().iterator(); iterator.hasNext();) {
-				String key = (String) iterator.next();
+			for (String key : toolkits.keySet()) {
 				EObject toolkit = toolkits.get(key);
 				TreeIterator<EObject> iter = toolkit.eAllContents();
 				while (iter.hasNext()) {
@@ -232,9 +202,9 @@ public class ViewTransformer extends AbstractTransformer {
 		}
 		return null;
 	}
-	
+
 	/* ===== GenConstraint management ===== */
-	
+
 	private Map<String, List<EStructuralFeature>> genClassGroups(GenClass genClass) {
 		Map<String, List<EStructuralFeature>> result = new HashMap<String, List<EStructuralFeature>>();
 		for (EStructuralFeature feature : genClass.getEcoreClass().getEAllStructuralFeatures()) {
@@ -242,26 +212,24 @@ public class ViewTransformer extends AbstractTransformer {
 				String groupConstraint = genConstraint(feature, "group");
 				if (groupConstraint != null) {
 					addToGroup(result, feature, groupConstraint);
-				}
-				else {
+				} else {
 					// FIXME: HACK
 					String docConstraint = genConstraint(feature, "documentation");
 					if ("true".equals(docConstraint))
-						addToGroup(result, feature,"view");
+						addToGroup(result, feature, "view");
 					else
-						addToGroup(result, feature,"properties");
+						addToGroup(result, feature, "properties");
 				}
 			}
 		}
-		
-		
+
 		return result;
 	}
-	
+
 	/* ===== Misc utilities ===== */
 
-	private void addToGroup(Map<String, List<EStructuralFeature>> result,
-			EStructuralFeature feature, String genConstraint) {
+	private void addToGroup(Map<String, List<EStructuralFeature>> result, EStructuralFeature feature,
+			String genConstraint) {
 		if (result.get(genConstraint) != null)
 			result.get(genConstraint).add(feature);
 		else {
@@ -270,6 +238,5 @@ public class ViewTransformer extends AbstractTransformer {
 			result.put(genConstraint, list);
 		}
 	}
-	
-	
-} 
+
+}

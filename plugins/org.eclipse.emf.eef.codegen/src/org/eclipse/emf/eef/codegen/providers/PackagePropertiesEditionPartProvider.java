@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'PackagePropertiesEditionPolicyProvider' generation module.
+ * Entry point of the 'PackagePropertiesEditionPartProvider' generation module.
  *
  * @generated
  */
-public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGenerator {
+public class PackagePropertiesEditionPartProvider extends AbstractAcceleoGenerator {
 	/**
 	 * The name of the module.
 	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "PackagePropertiesEditionPolicyProvider";
+	public static final String MODULE_FILE_NAME = "PackagePropertiesEditionPartProvider";
 	
 	/**
 	 * The name of the templates that are to be generated.
 	 *
 	 * @generated
 	 */
-	public static final String[] TEMPLATE_NAMES = { "PackagePropertiesEditionPolicyProvider", };
+	public static final String[] TEMPLATE_NAMES = { "PackagePropertiesEditionPartProvider", };
 
 	/**
 	 * Allows the public constructor to be used. Note that a generator created
@@ -58,7 +58,7 @@ public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGener
 	 *
 	 * @generated
 	 */
-	public PackagePropertiesEditionPolicyProvider() {
+	public PackagePropertiesEditionPartProvider() {
     // Empty implementation
   }
 
@@ -78,7 +78,7 @@ public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGener
 	 *             the model cannot be loaded.
 	 * @generated
 	 */
-	public PackagePropertiesEditionPolicyProvider(URI modelURI, File targetFolder,
+	public PackagePropertiesEditionPartProvider(URI modelURI, File targetFolder,
 			List<? extends Object> arguments) throws IOException {
     initialize(modelURI, targetFolder, arguments);
   }
@@ -99,7 +99,7 @@ public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGener
 	 *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
 	 * @generated
 	 */
-	public PackagePropertiesEditionPolicyProvider(EObject model, File targetFolder,
+	public PackagePropertiesEditionPartProvider(EObject model, File targetFolder,
 			List<? extends Object> arguments) throws IOException {
     initialize(model, targetFolder, arguments);
   }
@@ -122,7 +122,7 @@ public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGener
         for (int i = 2; i < args.length; i++) {
           arguments.add(args[i]);
         }
-        PackagePropertiesEditionPolicyProvider generator = new PackagePropertiesEditionPolicyProvider(modelURI, folder, arguments);
+        PackagePropertiesEditionPartProvider generator = new PackagePropertiesEditionPartProvider(modelURI, folder, arguments);
         generator.doGenerate(new BasicMonitor());
       }
     } catch (IOException e) {
@@ -249,6 +249,8 @@ public class PackagePropertiesEditionPolicyProvider extends AbstractAcceleoGener
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
     super.registerPackages(resourceSet);
+    resourceSet.getPackageRegistry().put(org.eclipse.emf.eef.views.ViewsPackage.eINSTANCE.getNsURI(), org.eclipse.emf.eef.views.ViewsPackage.eINSTANCE);
+    resourceSet.getPackageRegistry().put(org.eclipse.emf.eef.toolkits.ToolkitsPackage.eINSTANCE.getNsURI(), org.eclipse.emf.eef.toolkits.ToolkitsPackage.eINSTANCE);
     resourceSet.getPackageRegistry().put(org.eclipse.emf.eef.components.ComponentsPackage.eINSTANCE.getNsURI(), org.eclipse.emf.eef.components.ComponentsPackage.eINSTANCE);
     resourceSet.getPackageRegistry().put(org.eclipse.emf.eef.EEFGen.EEFGenPackage.eINSTANCE.getNsURI(), org.eclipse.emf.eef.EEFGen.EEFGenPackage.eINSTANCE);
     // TODO If you need additional package registrations, do them here. The following line is an example for UML.

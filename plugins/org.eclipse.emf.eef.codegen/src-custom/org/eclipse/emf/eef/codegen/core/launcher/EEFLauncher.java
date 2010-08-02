@@ -32,9 +32,8 @@ import org.eclipse.emf.eef.codegen.providers.PropertiesEditionProvider;
 
 /**
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
- * @deprecated use {@link EEFLauncher}
  */
-public class EMFPropertiesLauncher {
+public class EEFLauncher {
 
 	/**
 	 * @param args
