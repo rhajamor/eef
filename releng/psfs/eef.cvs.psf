@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+
+  <!-- !***************  Project CONTRIBUTION  ********************************************************  -->
+
+  <!-- !*** Special entries from eclipse -->
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,org.eclipse.test,org.eclipse.test,v20080313"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,org.eclipse.ant.optional.junit,org.eclipse.ant.optional.junit,v20070202"/>
+
+  <!-- !*** Default entries -->
+
+  <!-- !*** plugins, features and fragments -->
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-edt-feature,org.eclipse.emf.eef.edt,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-runtime-feature,org.eclipse.emf.eef.runtime,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef-uml-feature,org.eclipse.emf.eef.uml,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.feature,org.eclipse.emf.eef.tests,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime,org.eclipse.emf.eef.runtime,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components,org.eclipse.emf.eef.components,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.edit,org.eclipse.emf.eef.components.edit,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.components.editor,org.eclipse.emf.eef.components.editor,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen,org.eclipse.emf.eef.eefgen,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.edit,org.eclipse.emf.eef.eefgen.edit,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.eefgen.editor,org.eclipse.emf.eef.eefgen.editor,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping,org.eclipse.emf.eef.mapping,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.mapping.edit,org.eclipse.emf.eef.mapping.edit,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views,org.eclipse.emf.eef.views,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.edit,org.eclipse.emf.eef.views.edit,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.views.editor,org.eclipse.emf.eef.views.editor,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen,org.eclipse.emf.eef.codegen,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.codegen.uml,org.eclipse.emf.eef.codegen.uml,v0_8_0_BRANCH"/>
+
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/doc/org.eclipse.emf.eef.doc,org.eclipse.emf.eef.doc,v0_8_0_BRANCH"/>
+
+  <!-- !*** All-in-one data integrity frameworks features (SDK)  -->
+
+  <!-- !*** EEF Examples plugins -->
+
+  <!-- !*** EEF Tests plugins -->
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.tests.codegen,org.eclipse.emf.eef.tests.codegen,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/plugins/org.eclipse.emf.eef.runtime.tests,org.eclipse.emf.eef.runtime.tests,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.tests.junit,org.eclipse.emf.examples.eef.tests.junit,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef,org.eclipse.emf.examples.eef,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.edit,org.eclipse.emf.examples.eef.edit,v0_8_0_BRANCH"/>
+  <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.eef/tests/org.eclipse.emf.examples.eef.editor,org.eclipse.emf.examples.eef.editor,v0_8_0_BRANCH"/>
+
+</provider>
+</psf>
