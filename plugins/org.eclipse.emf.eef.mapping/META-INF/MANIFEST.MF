@@ -2,12 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.eef.mapping;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.eef.mapping,
+ org.eclipse.emf.eef.mapping.filters,
+ org.eclipse.emf.eef.mapping.filters.impl,
+ org.eclipse.emf.eef.mapping.filters.util,
  org.eclipse.emf.eef.mapping.impl,
  org.eclipse.emf.eef.mapping.navigation,
  org.eclipse.emf.eef.mapping.navigation.impl,
