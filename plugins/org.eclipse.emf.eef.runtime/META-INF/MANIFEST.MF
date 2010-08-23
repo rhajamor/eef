@@ -1,23 +1,26 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Properties Runtime Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.eef.runtime;singleton:=true
-Bundle-Version: 0.7.1.qualifier
-Bundle-Activator: org.eclipse.emf.eef.runtime.EMFPropertiesRuntime
-Bundle-Vendor: Obeo.fr
+Bundle-Version: 0.8.1.qualifier
+Bundle-Activator: org.eclipse.emf.eef.runtime.EEFRuntimePlugin
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.ui.ide,
- org.eclipse.jdt.core,
+ org.eclipse.ui.ide;resolution:=optional,
+ org.eclipse.jdt.core;resolution:=optional,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.views.properties.tabbed;visibility:=reexport,
- org.eclipse.emf.validation
+ org.eclipse.emf.validation,
+ org.eclipse.jface.databinding;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.eef.runtime,
+ org.eclipse.emf.eef.runtime.api.adapters,
  org.eclipse.emf.eef.runtime.api.component,
  org.eclipse.emf.eef.runtime.api.context,
  org.eclipse.emf.eef.runtime.api.notify,
@@ -35,11 +38,22 @@ Export-Package: org.eclipse.emf.eef.runtime,
  org.eclipse.emf.eef.runtime.impl.utils,
  org.eclipse.emf.eef.runtime.impl.validation,
  org.eclipse.emf.eef.runtime.ui.comparator,
+ org.eclipse.emf.eef.runtime.ui.editors.pages,
+ org.eclipse.emf.eef.runtime.ui.editors.pages.eefviewer,
+ org.eclipse.emf.eef.runtime.ui.editors.pages.tree,
+ org.eclipse.emf.eef.runtime.ui.layout,
  org.eclipse.emf.eef.runtime.ui.notify,
  org.eclipse.emf.eef.runtime.ui.properties,
  org.eclipse.emf.eef.runtime.ui.properties.sections,
  org.eclipse.emf.eef.runtime.ui.providers,
  org.eclipse.emf.eef.runtime.ui.utils,
+ org.eclipse.emf.eef.runtime.ui.viewers,
+ org.eclipse.emf.eef.runtime.ui.viewers.filters,
+ org.eclipse.emf.eef.runtime.ui.views,
  org.eclipse.emf.eef.runtime.ui.widgets,
+ org.eclipse.emf.eef.runtime.ui.widgets.imageviewer,
+ org.eclipse.emf.eef.runtime.ui.widgets.masterdetails,
+ org.eclipse.emf.eef.runtime.ui.widgets.masterdetails.eefviewer,
+ org.eclipse.emf.eef.runtime.ui.widgets.masterdetails.tree,
  org.eclipse.emf.eef.runtime.ui.wizards
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
