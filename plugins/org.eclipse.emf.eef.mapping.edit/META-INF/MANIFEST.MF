@@ -2,23 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.eef.mapping.edit;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.1.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.eef.mapping.provider.MappingEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.eef.mapping.components,
+ org.eclipse.emf.eef.mapping.filters.provider,
  org.eclipse.emf.eef.mapping.navigation.provider,
  org.eclipse.emf.eef.mapping.parts,
  org.eclipse.emf.eef.mapping.parts.forms,
  org.eclipse.emf.eef.mapping.parts.impl,
  org.eclipse.emf.eef.mapping.provider,
- org.eclipse.emf.eef.mapping.providers,
- org.eclipse.emf.eef.navigation.components,
- org.eclipse.emf.eef.navigation.parts.forms,
- org.eclipse.emf.eef.navigation.parts.impl,
- org.eclipse.emf.eef.navigation.providers
+ org.eclipse.emf.eef.mapping.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.eef.mapping;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
