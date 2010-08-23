@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -37,7 +37,7 @@ public class ModelViewerHelper {
 		return lastSelection;
 	}
 
-	public static final String NAME = "nom"; //$NON-NLS-1$
+	public static final String NAME = EEFRuntimeMessages.ModelViewerHelper_name_feature;
 
 	public static String getName(Object element) {
 		if (element instanceof EObject) {
@@ -68,7 +68,7 @@ public class ModelViewerHelper {
 	 */
 	public static void setSelectedElement(TreeViewer treeViewer, IResource resource) {
 		// expand to and select the specified container
-		List itemsToExpand = new ArrayList();
+		List<IContainer> itemsToExpand = new ArrayList<IContainer>();
 		IContainer parent = resource.getParent();
 		while (parent != null) {
 			itemsToExpand.add(0, parent);
