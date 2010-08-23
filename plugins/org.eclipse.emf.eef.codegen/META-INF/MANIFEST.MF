@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EEF MTL Standard generator
+Bundle-Name: EEF Standard Acceleo generator (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.eef.codegen;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.1.qualifier
 Bundle-Activator: org.eclipse.emf.eef.codegen.EEFCodegenPlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.eef.components,
  org.eclipse.emf.ecore,
@@ -21,14 +21,26 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.ui.ide,
  org.eclipse.emf.codegen.ecore,
- org.eclipse.emf.eef.eefgen
+ org.eclipse.emf.eef.eefgen,
+ org.eclipse.jdt.core;resolution:=optional,
+ org.eclipse.jdt.ui;resolution:=optional,
+ org.eclipse.jface.text;resolution:=optional,
+ org.eclipse.acceleo.ide.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.eef.codegen.components,
+Export-Package: org.eclipse.emf.eef.codegen,
+ org.eclipse.emf.eef.codegen.components,
  org.eclipse.emf.eef.codegen.core.initializer,
+ org.eclipse.emf.eef.codegen.core.launcher,
+ org.eclipse.emf.eef.codegen.core.launcher.gmf,
+ org.eclipse.emf.eef.codegen.core.services,
  org.eclipse.emf.eef.codegen.parts,
  org.eclipse.emf.eef.codegen.plugin,
  org.eclipse.emf.eef.codegen.properties,
  org.eclipse.emf.eef.codegen.providers,
  org.eclipse.emf.eef.codegen.services,
- org.eclipse.emf.eef.codegen.ui.generators.common
+ org.eclipse.emf.eef.codegen.ui.generators.actions,
+ org.eclipse.emf.eef.codegen.ui.generators.common,
+ org.eclipse.emf.eef.codegen.ui.initializer.actions,
+ org.eclipse.emf.eef.codegen.ui.initializer.ui,
+ org.eclipse.emf.eef.codegen.ui.validators.actions
