@@ -21,7 +21,7 @@
 	<target name="post.gather.bin.parts">
 		<acceleoCompiler 
 			sourceFolders="${target.folder}" 
-			dependencies="${target.folder}/../org.eclipse.emf.eef.codegen;${target.folder}/../org.eclipse.emf.eef.runtime;">
+			dependencies="${target.folder}/../org.eclipse.emf.eef.codegen;">
 		</acceleoCompiler>
 	</target>	
 
