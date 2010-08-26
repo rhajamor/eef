@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eef-components="http://www.eclipse.org/emf/eef/components/1.0.0" xmlns:eef-mapping-navigation="http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0" xmlns:eef-views="http://www.eclipse.org/emf/eef/views/1.0.0">
+  <eef-components:PropertiesEditionContext xmi:id="_Fx_LAAwvEd-uP4lw9e0IMw" documentation="Edition Context for eefnr GenPackage">
+    <categories xmi:id="_Fx_LAQwvEd-uP4lw9e0IMw" name="eefnr">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LAgwvEd-uP4lw9e0IMw" name="Root" views="_Fx_LQwwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LAwwvEd-uP4lw9e0IMw" name="samples" views="_Fx_LRQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root/samples"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LBAwvEd-uP4lw9e0IMw" name="TotalSample" views="_Fx_LRgwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LBQwvEd-uP4lw9e0IMw" name="textRequiredProperty" views="_Fx_LSAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/textRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LBgwvEd-uP4lw9e0IMw" name="textOptionalProperty" views="_Fx_LSQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/textOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LBwwvEd-uP4lw9e0IMw" name="checkboxRequiredProperty" views="_Fx_LSgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/checkboxRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LCAwvEd-uP4lw9e0IMw" name="checkboxOptionalProperty" views="_Fx_LSwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/checkboxOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LCQwvEd-uP4lw9e0IMw" name="textareaRequiredProperty" views="_Fx_LTAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/textareaRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LCgwvEd-uP4lw9e0IMw" name="textareaOptionalProperty" views="_Fx_LTQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/textareaOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LCwwvEd-uP4lw9e0IMw" name="radioRequiredProperty" views="_Fx_LTgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/radioRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LDAwvEd-uP4lw9e0IMw" name="radioOptionalProperty" views="_Fx_LTwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/radioOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LDQwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerRequiredProperty" views="_Fx_LUAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/eobjectflatcomboviewerRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LDgwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerOptionalProperty" views="_Fx_LUQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/eobjectflatcomboviewerOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LDwwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty" views="_Fx_LUgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/referencestableRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LEAwvEd-uP4lw9e0IMw" name="referencestableOptionalProperty" views="_Fx_LUwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/referencestableOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LEQwvEd-uP4lw9e0IMw" name="emfcomboviewerRequiredProperty" views="_Fx_LVAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/emfcomboviewerRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LEgwvEd-uP4lw9e0IMw" name="emfcomboviewerOptionalProperty" views="_Fx_LVQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/emfcomboviewerOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LEwwvEd-uP4lw9e0IMw" name="multivaluededitorRequiredProperty" views="_Fx_LVgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/multivaluededitorRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LFAwvEd-uP4lw9e0IMw" name="multivaluededitorOptionalProperty" views="_Fx_LVwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/multivaluededitorOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LFQwvEd-uP4lw9e0IMw" name="tablecompositionRequiredProperty" views="_Fx_LWAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/tablecompositionRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LFgwvEd-uP4lw9e0IMw" name="tablecompositionOptionalProperty" views="_Fx_LWQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/tablecompositionOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LFwwvEd-uP4lw9e0IMw" name="advancedreferencestableRequiredProperty" views="_Fx_LWgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedreferencestableRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LGAwvEd-uP4lw9e0IMw" name="advancedreferencestableOptionalProperty" views="_Fx_LWwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedreferencestableOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LGQwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerRequiredPropery" views="_Fx_LXAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedeobjectflatcomboviewerRequiredPropery"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LGgwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerOptionalPropery" views="_Fx_LXQwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedeobjectflatcomboviewerOptionalPropery"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LGwwvEd-uP4lw9e0IMw" name="advancedtablecompositionRequiredProperty" views="_Fx_LXgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedtablecompositionRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LHAwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty" views="_Fx_LXwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedtablecompositionOptionalProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_ni-uEBAFEd-ehv9sVb76fA" name="name" views="_rfj4YBAFEd-ehv9sVb76fA">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LHQwvEd-uP4lw9e0IMw" name="TextSample" views="_Fx_LYAwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LHgwvEd-uP4lw9e0IMw" name="textRequiredProperty" views="_Fx_LYgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSample/textRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LHwwvEd-uP4lw9e0IMw" name="textOptionalProperty" views="_Fx_LYwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSample/textOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LIAwvEd-uP4lw9e0IMw" name="CheckboxSample" views="_Fx_LZAwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LIQwvEd-uP4lw9e0IMw" name="checkboxRequiredProperty" views="_Fx_LZgwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//CheckboxSample/checkboxRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LIgwvEd-uP4lw9e0IMw" name="checkboxOptionalProperty" views="_Fx_LZwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//CheckboxSample/checkboxOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//CheckboxSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LIwwvEd-uP4lw9e0IMw" name="TextareaSample" views="_Fx_LaAwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LJAwvEd-uP4lw9e0IMw" name="textareaRequiredProperty" views="_Fx_LagwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextareaSample/textareaRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LJQwvEd-uP4lw9e0IMw" name="textareaOptionalProperty" views="_Fx_yEAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextareaSample/textareaOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextareaSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LJgwvEd-uP4lw9e0IMw" name="RadioSample" views="_Fx_yEQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LJwwvEd-uP4lw9e0IMw" name="radioRequiredProperty" views="_Fx_yEwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//RadioSample/radioRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LKAwvEd-uP4lw9e0IMw" name="radioOptionalProperty" views="_Fx_yFAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//RadioSample/radioOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//RadioSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LKQwvEd-uP4lw9e0IMw" name="EObjectFlatComboViewerSample" views="_Fx_yFQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LKgwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerRequiredPropery" views="_Fx_yFwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample/eobjectflatcomboviewerRequiredPropery"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LKwwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerOptionalPropery" views="_Fx_yGAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample/eobjectflatcomboviewerOptionalPropery"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LLAwvEd-uP4lw9e0IMw" name="ReferencesTableSample" views="_Fx_yGQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LLQwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty" views="_Fx_yGwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ReferencesTableSample/referencestableRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LLgwvEd-uP4lw9e0IMw" name="referencestableOptionalProperty" views="_Fx_yHAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ReferencesTableSample/referencestableOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ReferencesTableSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LLwwvEd-uP4lw9e0IMw" name="EMFComboViewerSample" views="_Fx_yHQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LMAwvEd-uP4lw9e0IMw" name="emfcomboviewerRequiredProperty" views="_Fx_yHwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EMFComboViewerSample/emfcomboviewerRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LMQwvEd-uP4lw9e0IMw" name="emfcomboviewerOptionalProperty" views="_Fx_yIAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EMFComboViewerSample/emfcomboviewerOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EMFComboViewerSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LMgwvEd-uP4lw9e0IMw" name="MultiValuedEditorSample" views="_Fx_yIQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LMwwvEd-uP4lw9e0IMw" name="multivaluededitorRequiredProperty" views="_Fx_yIwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//MultiValuedEditorSample/multivaluededitorRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LNAwvEd-uP4lw9e0IMw" name="multivaluededitorOptionalProperty" views="_Fx_yJAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//MultiValuedEditorSample/multivaluededitorOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//MultiValuedEditorSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LNQwvEd-uP4lw9e0IMw" name="TableCompositionEditorSample" views="_Fx_yJQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LNgwvEd-uP4lw9e0IMw" name="tablecompositionRequiredProperty" views="_Fx_yJwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionEditorSample/tablecompositionRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LNwwvEd-uP4lw9e0IMw" name="tablecompositionOptionalProperty" views="_Fx_yKAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionEditorSample/tablecompositionOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionEditorSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LOAwvEd-uP4lw9e0IMw" name="AdvancedReferencesTableSample" views="_Fx_yKQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LOQwvEd-uP4lw9e0IMw" name="advancedreferencestableRequiredProperty" views="_Fx_yKwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedReferencesTableSample/advancedreferencestableRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LOgwvEd-uP4lw9e0IMw" name="advancedreferencestableOptionalProperty" views="_Fx_yLAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedReferencesTableSample/advancedreferencestableOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedReferencesTableSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LOwwvEd-uP4lw9e0IMw" name="AdvancedEObjectFlatComboViewerSample" views="_Fx_yLQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LPAwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerRequiredProperty" views="_Fx_yLwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedEObjectFlatComboViewerSample/advancedeobjectflatcomboviewerRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LPQwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerOptionalProperty" views="_Fx_yMAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedEObjectFlatComboViewerSample/advancedeobjectflatcomboviewerOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedEObjectFlatComboViewerSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LPgwvEd-uP4lw9e0IMw" name="AdvancedTableCompositionEditorSample" views="_Fx_yMQwvEd-uP4lw9e0IMw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LPwwvEd-uP4lw9e0IMw" name="advancedtablecompositionRequiredProperty" views="_Fx_yMwwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedTableCompositionEditorSample/advancedtablecompositionRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LQAwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty" views="_Fx_yNAwvEd-uP4lw9e0IMw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedTableCompositionEditorSample/advancedtablecompositionOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedTableCompositionEditorSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_xkhXcA80Ed-d58aiOCdYlA" name="FlatReferenceTableSample" views="_kBt5wQ80Ed-d58aiOCdYlA">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_xkhXcQ80Ed-d58aiOCdYlA" name="flatreferencetableRequiredProperty" views="_kBt5ww80Ed-d58aiOCdYlA">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//FlatReferencesTableSample/flatreferencestableRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_xkhXcg80Ed-d58aiOCdYlA" name="flatreferencetableOptionalProperty" views="_kBt5xA80Ed-d58aiOCdYlA">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//FlatReferencesTableSample/flatreferencestableOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//FlatReferencesTableSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_CDVckA_gEd-fwJDNg0onkA" name="Sample" views="_FSwl8A_gEd-fwJDNg0onkA">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_CDVckQ_gEd-fwJDNg0onkA" name="textRequiredProperty" views="_FSwl8g_gEd-fwJDNg0onkA">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Sample/textRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_CDVckg_gEd-fwJDNg0onkA" name="textOptionalProperty" views="_FSwl8w_gEd-fwJDNg0onkA">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Sample/textOptionalProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Sample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_H1m_MBcdEd-CRJkSd123Sw" name="TextSampleWithTwoTabs" views="_NremYBcdEd-CRJkSd123Sw _XKQN8BcdEd-CRJkSd123Sw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_H1m_MRcdEd-CRJkSd123Sw" name="textOptionalPropertyInFirstTab" views="_NremYxcdEd-CRJkSd123Sw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSampleWithTwoTabs/textOptionalPropertyInFirstTab"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_H1m_MhcdEd-CRJkSd123Sw" name="textRequiredPropertyInFirstTab" views="_NremYhcdEd-CRJkSd123Sw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSampleWithTwoTabs/textRequiredPropertyInFirstTab"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_3VSyEBcdEd-CRJkSd123Sw" name="textOptionalPropertyInSecondTab" views="_XKQN8xcdEd-CRJkSd123Sw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSampleWithTwoTabs/textOptionalPropertyInSecondTab"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_3VSyERcdEd-CRJkSd123Sw" documentation="" name="textRequiredPropertyInSecondTab" views="_XKQN8hcdEd-CRJkSd123Sw" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSampleWithTwoTabs/textRequiredPropertyInSecondTab"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TextSampleWithTwoTabs"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_5Kl8UD1oEd-LLuOHydFNYw" name="TableCompositionExtensionEditorSample" views="_3tHRsD1oEd-LLuOHydFNYw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_5KmjYD1oEd-LLuOHydFNYw" name="tablecompositionRequiredProperty" views="_3tHRsz1oEd-LLuOHydFNYw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionExtensionEditorSample/tablecompositionRequiredProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_5KmjYT1oEd-LLuOHydFNYw" name="tablecompositionOptionalProperty" views="_3tHRtD1oEd-LLuOHydFNYw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionExtensionEditorSample/tablecompositionRequiredProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TableCompositionExtensionEditorSample"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr"/>
+  </eef-components:PropertiesEditionContext>
+  <eef-components:PropertiesEditionContext xmi:id="_IPrf8j1-Ed-LLuOHydFNYe" documentation="Edition Context for references GenPackage">
+    <categories xmi:id="_IPrf8z1-Ed-LLuOHydFNYw" name="references">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_IPrf9D1-Ed-LLuOHydFNYw" name="ReferenceEnabledSample" views="_IPsHDT1-Ed-LLuOHydFNYw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_IPrf9z1-Ed-LLuOHydFNYw" name="reference" views="_IPsHET1-Ed-LLuOHydFNYw">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//references/ReferenceEnabledSample/reference"/>
+        </properties>
+        <referencedBinding xmi:id="_KdiW4D2BEd-LLuOHydFNYw" binding="_x31zgD2AEd-LLuOHydFNYw"/>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//references/ReferenceEnabledSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_x31zgD2AEd-LLuOHydFNYw" name="AbstractSample" views="_lZD-oD2AEd-LLuOHydFNYw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_3NSOMD2AEd-LLuOHydFNYw" name="name" views="_IPsHDz1-Ed-LLuOHydFNYw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_5rpHAD2AEd-LLuOHydFNYw" name="AbstractEnabledSample" views="_f3RKAD2AEd-LLuOHydFNYw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_BAZHAD2BEd-LLuOHydFNYw" name="enabled" views="_IPsHED1-Ed-LLuOHydFNYw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//references/AbstractEnabledSample/enabled"/>
+        </properties>
+        <referencedBinding xmi:id="_EX2LAD2BEd-LLuOHydFNYw" binding="_x31zgD2AEd-LLuOHydFNYw"/>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//references/AbstractEnabledSample"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/references"/>
+  </eef-components:PropertiesEditionContext>
+  <eef-components:PropertiesEditionContext xmi:id="_IPrf8j1-Ed-LLuOHydFNYw" documentation="Edition Context for navigation GenPackage">
+    <categories xmi:id="_IPrf8z1-Ed-LLuOHydFNYw" name="navigation">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_iz0Y8EksEd-eu-IdSn5J6Q" name="DeferedFlatReferencesTableSampleEditor" views="_TWhkgUksEd-eu-IdSn5J6Q">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_xUHZoEksEd-eu-IdSn5J6Q" name="name" views="_Y_-gUEksEd-eu-IdSn5J6Q">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_zeIaIEksEd-eu-IdSn5J6Q" name="flatReferencesTableSampleEditor" views="_eW2eYEksEd-eu-IdSn5J6Q">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedReference/flatreferenceEditor"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_2zJOIEksEd-eu-IdSn5J6Q">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedFlatReferenceTableEditorSample/references"/>
+          </navigation>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedFlatReferenceTableEditorSample"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/navigation"/>
+  </eef-components:PropertiesEditionContext>
+  <eef-components:PropertiesEditionContext xmi:id="_0Hu75z1nEd-LLuOHydFNYw" documentation="Edition Context for eefnrext GenPackage">
+    <categories xmi:id="_0Hu76D1nEd-LLuOHydFNYw" name="eefnrext">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_0Hu76T1nEd-LLuOHydFNYw" name="TableCompositionTargetExtensionEditorSample" views="_0HxYLT1nEd-LLuOHydFNYw">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_0Hu76j1nEd-LLuOHydFNYw" name="name" views="_0HxYLz1nEd-LLuOHydFNYw">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//TableCompositionTargetExtensionEditorSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_-kj5gD5LEd-N3eCRqn3mIQ" name="CheckBoxExtendedEditorSample" views="_ylHsAD5LEd-N3eCRqn3mIQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_J-ipgD5MEd-N3eCRqn3mIQ" name="checkboxEditorSample" views="_0S1yET5LEd-N3eCRqn3mIQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//CheckBoxExtendedEditorSample/checkboxEditorSample"/>
+        </properties>
+        <referencedBinding xmi:id="_NfYTAD5MEd-N3eCRqn3mIQ" binding="_x31zgD2AEd-LLuOHydFNYw"/>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//CheckBoxExtendedEditorSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_DkFHgD5MEd-N3eCRqn3mIQ" name="FlatReferenceExtendedEditorSample" views="_fIAzED5LEd-N3eCRqn3mIQ _e-CI8D5REd-N3eCRqn3mIQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_cEYNgD5MEd-N3eCRqn3mIQ" name="flatReferenceEditorSample" views="_u5ERAD5LEd-N3eCRqn3mIQ">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//FlatReferenceExtendedEditorSample/flatReferenceEditorSample"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_rGQfAD5REd-N3eCRqn3mIQ" name="demo" views="_lCJAcD5REd-N3eCRqn3mIQ" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//FlatReferenceExtendedEditorSample/demo"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_rqt28D5REd-N3eCRqn3mIQ" name="size" views="_mpR9YD5REd-N3eCRqn3mIQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//FlatReferenceExtendedEditorSample/size"/>
+        </properties>
+        <referencedBinding xmi:id="_fJEGgD5MEd-N3eCRqn3mIQ" binding="_-kj5gD5LEd-N3eCRqn3mIQ"/>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnrext.ecore#//FlatReferenceExtendedEditorSample"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnrext"/>
+  </eef-components:PropertiesEditionContext>
+  <eef-views:ViewsRepository xmi:id="_Fx_LQQwvEd-uP4lw9e0IMw" documentation="Views repository for eefnr GenPackage" name="eefnr">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_Fx_LQgwvEd-uP4lw9e0IMw" name="eefnr">
+      <views xmi:id="_Fx_LQwwvEd-uP4lw9e0IMw" name="Root">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_LRAwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LRQwvEd-uP4lw9e0IMw" name="samples">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_LRgwvEd-uP4lw9e0IMw" name="TotalSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_LRwwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LSAwvEd-uP4lw9e0IMw" name="textRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LSQwvEd-uP4lw9e0IMw" name="textOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LSgwvEd-uP4lw9e0IMw" name="checkboxRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LSwwvEd-uP4lw9e0IMw" name="checkboxOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTAwvEd-uP4lw9e0IMw" name="textareaRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTQwvEd-uP4lw9e0IMw" name="textareaOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTgwvEd-uP4lw9e0IMw" name="radioRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTwwvEd-uP4lw9e0IMw" name="radioOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUAwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUQwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUgwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUwwvEd-uP4lw9e0IMw" name="referencestableOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LVAwvEd-uP4lw9e0IMw" name="emfcomboviewerRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LVQwvEd-uP4lw9e0IMw" name="emfcomboviewerOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LVgwvEd-uP4lw9e0IMw" name="multivaluededitorRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LVwwvEd-uP4lw9e0IMw" name="multivaluededitorOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LWAwvEd-uP4lw9e0IMw" name="tablecompositionRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LWQwvEd-uP4lw9e0IMw" name="tablecompositionOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LWgwvEd-uP4lw9e0IMw" name="advancedreferencestableRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LWwwvEd-uP4lw9e0IMw" name="advancedreferencestableOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXAwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerRequiredPropery">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXQwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerOptionalPropery">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXgwvEd-uP4lw9e0IMw" name="advancedtablecompositionRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXwwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_rfj4YBAFEd-ehv9sVb76fA" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_LYAwvEd-uP4lw9e0IMw" name="TextSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_LYQwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LYgwvEd-uP4lw9e0IMw" name="textRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LYwwvEd-uP4lw9e0IMw" name="textOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_LZAwvEd-uP4lw9e0IMw" name="CheckboxSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_LZQwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LZgwvEd-uP4lw9e0IMw" name="checkboxRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LZwwvEd-uP4lw9e0IMw" name="checkboxOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_LaAwvEd-uP4lw9e0IMw" name="TextareaSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_LaQwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LagwvEd-uP4lw9e0IMw" name="textareaRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yEAwvEd-uP4lw9e0IMw" name="textareaOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yEQwvEd-uP4lw9e0IMw" name="RadioSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yEgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yEwwvEd-uP4lw9e0IMw" name="radioRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.5"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yFAwvEd-uP4lw9e0IMw" name="radioOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.5"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yFQwvEd-uP4lw9e0IMw" name="EObjectFlatComboViewerSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yFgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yFwwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerRequiredPropery">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yGAwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerOptionalPropery">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yGQwvEd-uP4lw9e0IMw" name="ReferencesTableSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yGgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yGwwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.1"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yHAwvEd-uP4lw9e0IMw" name="referencestableOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yHQwvEd-uP4lw9e0IMw" name="EMFComboViewerSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yHgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yHwwvEd-uP4lw9e0IMw" name="emfcomboviewerRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yIAwvEd-uP4lw9e0IMw" name="emfcomboviewerOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yIQwvEd-uP4lw9e0IMw" name="MultiValuedEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yIgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yIwwvEd-uP4lw9e0IMw" name="multivaluededitorRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yJAwvEd-uP4lw9e0IMw" name="multivaluededitorOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yJQwvEd-uP4lw9e0IMw" name="TableCompositionEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yJgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yJwwvEd-uP4lw9e0IMw" name="tablecompositionRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.4"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yKAwvEd-uP4lw9e0IMw" name="tablecompositionOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.4"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yKQwvEd-uP4lw9e0IMw" name="AdvancedReferencesTableSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yKgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yKwwvEd-uP4lw9e0IMw" name="advancedreferencestableRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yLAwvEd-uP4lw9e0IMw" name="advancedreferencestableOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yLQwvEd-uP4lw9e0IMw" name="AdvancedEObjectFlatComboViewerSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yLgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yLwwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.9"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yMAwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.9"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_Fx_yMQwvEd-uP4lw9e0IMw" name="AdvancedTableCompositionEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_Fx_yMgwvEd-uP4lw9e0IMw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yMwwvEd-uP4lw9e0IMw" name="advancedtablecompositionRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yNAwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_kBt5wQ80Ed-d58aiOCdYlA" name="FlatReferenceTableSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_kBt5wg80Ed-d58aiOCdYlA" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_kBt5ww80Ed-d58aiOCdYlA" name="flatreferencetableRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.10"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_kBt5xA80Ed-d58aiOCdYlA" name="flatreferencetableOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.10"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_FSwl8A_gEd-fwJDNg0onkA" name="Sample">
+        <elements xsi:type="eef-views:Container" xmi:id="_FSwl8Q_gEd-fwJDNg0onkA" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_FSwl8g_gEd-fwJDNg0onkA" name="textRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_FSwl8w_gEd-fwJDNg0onkA" name="textOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_NremYBcdEd-CRJkSd123Sw" name="TextSampleFirstTab">
+        <elements xsi:type="eef-views:Container" xmi:id="_NremYRcdEd-CRJkSd123Sw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_NremYhcdEd-CRJkSd123Sw" name="textRequiredPropertyInFirstTab">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_NremYxcdEd-CRJkSd123Sw" name="textOptionalPropertyInFirstTab">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_XKQN8BcdEd-CRJkSd123Sw" name="TextSampleSecondTab">
+        <elements xsi:type="eef-views:Container" xmi:id="_XKQN8RcdEd-CRJkSd123Sw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_XKQN8hcdEd-CRJkSd123Sw" name="textRequiredPropertyInSecondTab">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_XKQN8xcdEd-CRJkSd123Sw" name="textOptionalPropertyInSecondTab">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_3tHRsD1oEd-LLuOHydFNYw" name="TableCompositionExtensionEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_3tHRsT1oEd-LLuOHydFNYw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3tHRsj1oEd-LLuOHydFNYw" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3tHRsz1oEd-LLuOHydFNYw" name="tablecompositionRequiredProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3tHRtD1oEd-LLuOHydFNYw" name="tablecompositionOptionalProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+        </elements>
+      </views>
+    </categories>
+  </eef-views:ViewsRepository>
+  <eef-views:ViewsRepository xmi:id="_IPsHCz1-Ed-LLuOHydFNYe" documentation="Views repository for references GenPackage" name="references">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_IPsHDD1-Ed-LLuOHydFNYw" name="references">
+      <views xmi:id="_IPsHDT1-Ed-LLuOHydFNYw" name="ReferenceEnabledSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_IPsHDj1-Ed-LLuOHydFNYw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_IPsHET1-Ed-LLuOHydFNYw" name="reference">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+          </elements>
+        </elements>
+        <elements xsi:type="eef-views:ViewReference" xmi:id="_tZfY4D2AEd-LLuOHydFNYw" name="abstractEnabledSampleReference" view="_f3RKAD2AEd-LLuOHydFNYw"/>
+      </views>
+      <views xmi:id="_f3RKAD2AEd-LLuOHydFNYw" name="AbstractEnabledSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_iRABgD2AEd-LLuOHydFNYw" name="enabled properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_IPsHED1-Ed-LLuOHydFNYw" name="enabled">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+        <elements xsi:type="eef-views:ViewReference" xmi:id="_p8QdAD2AEd-LLuOHydFNYw" name="abstractReference" view="_lZD-oD2AEd-LLuOHydFNYw"/>
+      </views>
+      <views xmi:id="_lZD-oD2AEd-LLuOHydFNYw" name="AbstractSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_noZkAD2AEd-LLuOHydFNYw" name="name properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_IPsHDz1-Ed-LLuOHydFNYw" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+    </categories>
+  </eef-views:ViewsRepository>
+  <eef-views:ViewsRepository xmi:id="_IPsHCz1-Ed-LLuOHydFNYw" documentation="Views repository for navigation GenPackage" name="navigation">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_IPsHDD1-Ed-LLuOHydFNYw" name="navigation">
+      <views xmi:id="_TWhkgUksEd-eu-IdSn5J6Q" name="DeferedFlatReferencesTableSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_WeT00EksEd-eu-IdSn5J6Q" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Y_-gUEksEd-eu-IdSn5J6Q" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_eW2eYEksEd-eu-IdSn5J6Q" name="flatReferencesTableSampleEditor">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.10"/>
+          </elements>
+        </elements>
+      </views>
+    </categories>
+  </eef-views:ViewsRepository>
+  <eef-views:ViewsRepository xmi:id="_0HxYKz1nEd-LLuOHydFNYw" documentation="Views repository for eefnrext GenPackage" name="eefnrext">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_0HxYLD1nEd-LLuOHydFNYw" name="eefnrext">
+      <views xmi:id="_0HxYLT1nEd-LLuOHydFNYw" name="TableCompositionTargetExtensionEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_0HxYLj1nEd-LLuOHydFNYw" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_0HxYLz1nEd-LLuOHydFNYw" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_fIAzED5LEd-N3eCRqn3mIQ" name="FlatReferenceExtendedEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_jSAHQD5LEd-N3eCRqn3mIQ" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_u5ERAD5LEd-N3eCRqn3mIQ" name="flatReferenceEditorSample">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.10"/>
+          </elements>
+        </elements>
+        <elements xsi:type="eef-views:ViewReference" xmi:id="_WRqoAD5MEd-N3eCRqn3mIQ" name="checkboxSampleReference" view="_ylHsAD5LEd-N3eCRqn3mIQ"/>
+      </views>
+      <views xmi:id="_e-CI8D5REd-N3eCRqn3mIQ" name="SecondFlatReferenceExtendedEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_gyE5cD5REd-N3eCRqn3mIQ" name="extended">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_lCJAcD5REd-N3eCRqn3mIQ" name="demo">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_mpR9YD5REd-N3eCRqn3mIQ" name="size">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_ylHsAD5LEd-N3eCRqn3mIQ" name="CheckBoxExtendedEditorSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_0S1yED5LEd-N3eCRqn3mIQ" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_0S1yET5LEd-N3eCRqn3mIQ" name="checkboxEditorSample">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+        <elements xsi:type="eef-views:ViewReference" xmi:id="_QytsAD5MEd-N3eCRqn3mIQ" name="abstractSampleReference" view="_lZD-oD2AEd-LLuOHydFNYw"/>
+      </views>
+    </categories>
+  </eef-views:ViewsRepository>
+</xmi:XMI>
