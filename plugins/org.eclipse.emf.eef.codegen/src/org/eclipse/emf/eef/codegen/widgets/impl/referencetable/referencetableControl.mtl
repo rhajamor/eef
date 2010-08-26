@@ -1,0 +1,295 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module referencetableControl('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0') extends widgetControl/]
+
+[import naming /]
+[import common /]
+[import typeUtils /]
+[import filters /]
+
+[comment ===== Case : model = Reference(*) - view = ReferencesTable or AdvancedReferencesTable===== /]
+[template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+		if ([editionElement.metamodelGetter()/].equals(msg.getFeature()))
+			[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/]);
+[/template]
+
+[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
+				if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], event.getNewValue()));
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(RemoveCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], event.getNewValue()));
+				if (PropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], event.getNewValue(), event.getNewIndex()));
+			}
+[/template]
+
+[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			List [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd();
+			for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, [modelName/], [editionElement.metamodelGetter()/], iter.next()));
+			List [editionElement.model.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToRemove();
+			for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();)
+				cc.append(RemoveCommand.create(editingDomain, [modelName/], [editionElement.metamodelGetter()/], iter.next()));
+			//List [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToMove();
+			//for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, [modelName/], [editionElement.model.eContainingClass.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), moveElement.getElement(), moveElement.getIndex()));
+			//}
+[/template]
+
+[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides partUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			[modelName/]ToUpdate.get[editionElement.model.name.toMany().toUpperFirst()/]().addAll([view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd());
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+			[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/], null, [editionElement.metamodelGetter()/]);
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and editionElement.representationName('ReferencesTable'))]
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+
+				/**
+				 * {@inheritDoc}
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (![view.viewIdentifier(pec)/].isContainedIn[editionElement.views->first().viewPackageSignature()/]Table((EObject)element));
+					return [if (not editionElement.model.required)]element instanceof String && element.equals("")[else]false[/if];
+				}
+
+			});
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new EObjectStrictFilter([editionElement.editionElementPackage()/].eINSTANCE.get[editionElement.model.eType.name/]()));
+[for (filter : BindingFilter | editionElement.bindingFilters)]
+[filter.filterBody(editionElement,view,pec)/]
+[/for]
+[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+			// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+			
+			// [/protected]
+[/if]
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and editionElement.representationName('AdvancedReferencesTable'))]
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+
+				/**
+				 * {@inheritDoc}
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (![view.viewIdentifier(pec)/].isContainedIn[editionElement.views->first().viewPackageSignature()/]Table((EObject)element));
+					return element instanceof Resource;
+				}
+
+			});
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new EObjectFilter([editionElement.editionElementPackage()/].eINSTANCE.get[editionElement.model.eType.name/]()));
+[for (filter : BindingFilter | editionElement.bindingFilters)]
+[filter.filterBody(editionElement,view,pec)/]
+[/for]
+[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+			// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+			
+			// [/protected]
+[/if]
+[/template]
+
+[comment ===== Case : model = Reference(*) in Simple Navigation - view = ReferencesTable or AdvancedReferencesTable===== /]
+[template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+							if ([editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/].equals(msg.getFeature())) {
+								[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/]);
+							}
+[/template]
+
+[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+		if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
+			if (PropertiesEditionEvent.ADD == event.getKind()) {
+				[editionElement.model.eContainingClass.name.toUpperFirst()/] [editionElement.model.eContainingClass.name.toJavaIdentifier()/] = [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationMetamodelFactory()/]Factory.eINSTANCE.create[editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationType()/]();
+				command.append(SetCommand.create(liveEditingDomain, [editionElement.model.eContainingClass.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/], event.getNewValue()));
+				command.append(AddCommand.create(liveEditingDomain, [modelName/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.model.eContainingClass.name.toJavaIdentifier()/]));
+			}
+			if (PropertiesEditionEvent.REMOVE == event.getKind()){
+				command.append(RemoveCommand.create(liveEditingDomain, event.getNewValue()));
+			}
+		}
+[/template]
+
+[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			List [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd();
+			for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();) {
+				[editionElement.model.eContainingClass.name.toUpperFirst()/] [editionElement.model.eContainingClass.name.toJavaIdentifier()/] = [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationMetamodelFactory()/]Factory.eINSTANCE.create[editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationType()/]();
+				cc.append(SetCommand.create(editingDomain, [editionElement.model.eContainingClass.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/], iter.next()));
+				cc.append(AddCommand.create(editingDomain, [modelName/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.model.eContainingClass.name.toJavaIdentifier()/]));
+			}
+			List [editionElement.model.eContainingClass.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToRemove();
+			for (Iterator iter = [editionElement.model.eContainingClass.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();) {
+				cc.append(RemoveCommand.create(editingDomain, iter.next()));
+			}
+			//List [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToMove();
+			//for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, [modelName/], [editionElement.model.eContainingClass.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), moveElement.getElement(), moveElement.getIndex()));
+			//}
+[/template]
+
+[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides partUpdater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			for (Iterator iter = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]Table().iterator(); iter.hasNext();) {
+				[editionElement.model.eType.name/] [editionElement.model.name.toJavaIdentifier()/] = ([editionElement.model.eType.name/])iter.next();
+				[editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationType()/] [editionElement.model.eContainingClass.name.toJavaIdentifier()/] = [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationMetamodelFactory()/]Factory.eINSTANCE.create[editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationType()/]();
+				[editionElement.model.eContainingClass.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/]([editionElement.model.name.toJavaIdentifier()/]);
+				[modelName/]ToUpdate.get[editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).feature.name.toMany().toUpperFirst()/]().add([editionElement.model.eContainingClass.name.toJavaIdentifier()/]);
+			}
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+			[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.hasModelNavigation() and (editionElement.representationName('ReferencesTable')))]
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+
+				/**
+				 * {@inheritDoc}
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (![view.viewIdentifier(pec)/].isContainedIn[editionElement.views->first().viewPackageSignature()/]Table((EObject)element));
+					return [if (not editionElement.model.required)]element instanceof String && element.equals("")[else]false[/if];
+				}
+
+			});
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new EObjectStrictFilter([editionElement.editionElementPackage()/].eINSTANCE.get[editionElement.model.eType.name/]()));
+[for (filter : BindingFilter | editionElement.bindingFilters)]
+[filter.filterBody(editionElement,view,pec)/]
+[/for]
+[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+			// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+			
+			// [/protected]
+[/if]
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.hasModelNavigation() or editionElement.representationName('AdvancedReferencesTable'))]
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+
+				/**
+				 * {@inheritDoc}
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (![view.viewIdentifier(pec)/].isContainedIn[editionElement.views->first().viewPackageSignature()/]Table((EObject)element));
+					return element instanceof Resource;
+				}
+
+			});
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new EObjectFilter([editionElement.editionElementPackage()/].eINSTANCE.get[editionElement.model.eType.name/]()));
+[for (filter : BindingFilter | editionElement.bindingFilters)]
+[filter.filterBody(editionElement,view,pec)/]
+[/for]
+[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+			// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+			
+			// [/protected]
+[/if]
+[/template]
+
+[comment ===== Case : model = Reference(1) - view = ReferencesTable or AdvancedReferencesTable===== /]
+[template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == [editionElement.metamodelGetter()/]
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == [editionElement.model.eContainingClass.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/]())) {
+						[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/]);
+					}
+[/template]
+
+[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					[editionElement.model.eType.name/] oldValue = ([editionElement.model.eType.name/])event.getOldValue();
+					[editionElement.model.eType.name/] newValue = ([editionElement.model.eType.name/])event.getNewValue();
+					[comment]// [protected (' for '.concat(editionElement.name).concat(' live update command'))][/comment]
+					[comment]// TODO: Complete the [modelName/] update command[/comment]
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					[comment]// [/protected][/comment]
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(SetCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], event.getNewValue()));
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, [modelName/], [editionElement.model.eContainingClass.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), event.getNewValue(), event.getNewIndex()));
+			}
+[/template]
+
+[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			List [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd();
+			if ([editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/] != null
+					&& [editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/].size() == 1) {
+				cc.append(SetCommand.create(editingDomain, [modelName/],
+						[editionElement.metamodelGetter()/],
+						[editionElement.model.name.toJavaIdentifier()/]ToAddFrom[editionElement.views->first().viewPackageSignature()/].get(0)));
+			}
+			List [editionElement.model.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToRemove();
+			for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToRemoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			//List [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/] = [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToMove();
+			//for (Iterator iter = [editionElement.model.name.toJavaIdentifier()/]ToMoveFrom[editionElement.views->first().viewPackageSignature()/].iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, [modelName/], [editionElement.model.eContainingClass.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), moveElement.getElement(), moveElement.getIndex()));
+			//}
+[/template]
+
+[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides partUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')) and not editionElement.model.derived)]
+			if ([view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd() != null && [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd().size() == 1) {
+				[modelName/]ToUpdate.set[editionElement.model.name.toMany().toUpperFirst()/](([editionElement.model.eType.name/]) [view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageGetter()/]ToAdd().get(0));
+			}
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+			[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([pec.model.name.toJavaIdentifier()/], null, [editionElement.metamodelGetter()/]);
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable')))]
+			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$[/if]
+				}
+
+			});
+[for (filter : BindingFilter | editionElement.bindingFilters)]
+[filter.filterBody(editionElement,view,pec)/]
+[/for]
+[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+			// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+			
+			// [/protected]
+[/if]
+[/template]

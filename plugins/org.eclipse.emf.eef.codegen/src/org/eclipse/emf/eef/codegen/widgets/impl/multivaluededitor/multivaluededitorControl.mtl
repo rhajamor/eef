@@ -1,0 +1,74 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module multivaluededitorControl('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0') extends widgetControl/]
+
+[import naming /]
+[import common /]
+[import typeUtils /]
+
+[comment ===== Case : model = Attribute(*) - view = MultiValuedEditor ===== /]
+[template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
+[if (editionElement.model.oclAsType(ecore::EAttribute).many)]
+		if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null) {
+			if (msg.getEventType() == Notification.ADD) 
+				[view.viewIdentifier(pec)/].addTo[editionElement.views->first().name.toJavaClassifier()/](([editionElement.model.eType.instanceClassName/]) msg.getNewValue());
+			else if (msg.getEventType() == Notification.REMOVE) 
+				[view.viewIdentifier(pec)/].removeTo[editionElement.views->first().name.toJavaClassifier()/](([editionElement.model.eType.instanceClassName/]) msg.getNewValue());
+		}
+[else]
+//FIXME invalid case in liveUpdater(), Case : model = Attribute(*) : [editionElement.model.name/] - view = MultiValuedEditor
+[/if]
+[/template]
+
+[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and not editionElement.model.derived)]
+[if (editionElement.model.oclAsType(ecore::EAttribute).isString())]
+					if ([editionElement.views->first().editorID()/] == event.getAffectedEditor())
+						command.append(SetCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], event.getNewValue()));
+[else]
+//FIXME invalid case in liveCommandUpdater(), Case : model = Attribute(*) : [editionElement.model.name/] - view = MultiValuedEditor
+[/if]
+[/template]
+
+[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and not editionElement.model.derived)]
+[if (editionElement.model.oclAsType(ecore::EAttribute).isString())]
+			cc.append(SetCommand.create(editingDomain, [modelName/], [editionElement.metamodelGetter()/], [view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/]));
+[else]
+//FIXME invalid case in commandUpdater(), Case : model = Attribute(*) : [editionElement.model.name/] - view = MultiValuedEditor
+[/if]
+[/template]
+
+[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides partUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and not editionElement.model.derived)]
+[if (editionElement.model.oclAsType(ecore::EAttribute).isString())]
+	[if (editionElement.model.many)]
+			[modelName/]ToUpdate.get[editionElement.model.name.toMany().toUpperFirst()/]().addAll([view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/]);
+	[else]
+			[modelName/]ToUpdate.get[editionElement.model.name.toUpperFirst()/]().addAll([view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/]);
+	[/if]
+[else]
+//FIXME invalid case in partUpdater(), Case : model = Attribute(*) : [editionElement.model.name/] - view = MultiValuedEditor
+[/if]
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
+[if (editionElement.model.many)]
+			if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]() != null)
+				[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](new BasicEList([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]()));
+[else]
+			if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null)
+				[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](new BasicEList([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
+[/if]
+[/template]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
+[comment no filters for multiValuedEditor /]
+[/template]

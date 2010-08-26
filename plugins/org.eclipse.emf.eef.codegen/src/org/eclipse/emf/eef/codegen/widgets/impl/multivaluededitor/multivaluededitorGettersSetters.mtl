@@ -1,0 +1,86 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module multivaluededitorGettersSetters('http://www.eclipse.org/emf/eef/views/1.0.0') extends widgetGettersSetters /]
+
+[import common/]
+[import naming/]
+[import widgetGettersSetters /]
+
+[template public getterSignatureImplementation(elementEditor : ElementEditor) overrides getterSignatureImplementation ? (elementEditor.representationName('MultiValuedEditor'))]
+[elementEditor.getterSignature()/] {
+		return [elementEditor.name.toJavaIdentifier()/]List;
+	}
+[/template]
+
+[template public setterDeclaration(elementEditor : ElementEditor) overrides setterDeclaration ? (elementEditor.representationName('MultiValuedEditor'))]
+[elementEditor.setterSignatureDocumentation()/]
+[elementEditor.setterSignature()/];
+
+[elementEditor.addSignatureDocumentation()/]
+[elementEditor.addSignature()/];
+
+[elementEditor.removeSignatureDocumentation()/]
+[elementEditor.removeSignature()/];
+[/template]
+
+[template public setterSignatureImplementation(elementEditor : ElementEditor) overrides setterSignatureImplementation ? (elementEditor.representationName('MultiValuedEditor'))]
+[elementEditor.setterSignature()/] {
+		[elementEditor.name.toJavaIdentifier()/]List = newValue;
+		if (newValue != null) {
+			[elementEditor.name.toJavaIdentifier()/].setText([elementEditor.name.toJavaIdentifier()/]List.toString());
+		} else {
+			[elementEditor.name.toJavaIdentifier()/].setText(""); //$NON-NLS-1$
+		}
+	}
+	
+[elementEditor.addSignature()/] {
+		[elementEditor.name.toJavaIdentifier()/]List.add(newValue);		
+		if (newValue != null) {
+			[elementEditor.name.toJavaIdentifier()/].setText([elementEditor.name.toJavaIdentifier()/]List.toString());
+		} else {
+			[elementEditor.name.toJavaIdentifier()/].setText(""); //$NON-NLS-1$
+		}
+	}
+	
+[elementEditor.removeSignature()/] {
+		[elementEditor.name.toJavaIdentifier()/]List.remove(newValue);		
+		if (newValue != null) {
+			[elementEditor.name.toJavaIdentifier()/].setText([elementEditor.name.toJavaIdentifier()/]List.toString());
+		} else {
+			[elementEditor.name.toJavaIdentifier()/].setText(""); //$NON-NLS-1$
+		}
+	}
+[/template]
+
+
+[template public addSignatureDocumentation(elementEditor : ElementEditor) ]
+	/**
+	 * Add a value to the [elementEditor.name/] multivalued attribute.
+	 * @param newValue the value to add
+	 */
+[/template]
+
+[template public addSignature(elementEditor : ElementEditor) ]
+	public void addTo[elementEditor.name.toJavaClassifier()/]([elementEditor.involvedPropertiesEditionElement().model.eType.instanceClassName/] newValue)
+[/template]
+
+[template public removeSignatureDocumentation(elementEditor : ElementEditor) ]
+	/**
+	 * Remove a value to the [elementEditor.name/] multivalued attribute.
+	 * @param newValue the value to remove
+	 */
+[/template]
+
+[template public removeSignature(elementEditor : ElementEditor) ]
+	public void removeTo[elementEditor.name.toJavaClassifier()/]([elementEditor.involvedPropertiesEditionElement().model.eType.instanceClassName/] newValue)
+[/template]

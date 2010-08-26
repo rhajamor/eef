@@ -1,0 +1,104 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module multivaluededitorFormImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetFormImpl/]
+
+[import common /]
+[import naming /]
+[import viewCommon /]
+[comment I don't see a better way to get specific form services for the moment /]
+[import widgetFormImpl /]
+
+[template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports ? (widget.name = 'MultiValuedEditor')]
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+[/template]
+
+[template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'MultiValuedEditor')]
+protected Text [editor.name.toJavaIdentifier()/];
+	protected Button edit[editor.name.toJavaClassifier()/];
+	private EList [editor.name.toJavaIdentifier()/]List;
+[/template]
+
+[template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'MultiValuedEditor')]
+		create[editor.name.toJavaClassifier()/]MultiValuedEditor(widgetFactory, [editor.widgetContainer().trim()/]);
+[/template]
+
+[template public additionalImplementation(editor : ElementEditor, pec : PropertiesEditionComponent, inputPEC: PropertiesEditionComponent) overrides additionalImplementation ? (editor.representation.name = 'MultiValuedEditor')]
+	/**
+	 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
+	 */
+	protected void create[editor.name.toJavaClassifier()/]MultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
+		[editor.name.toJavaIdentifier()/] = widgetFactory.createText(parent, "", SWT.READ_ONLY); //$NON-NLS-1$
+		[if (editor.readOnly)]
+		[editor.name.toJavaIdentifier()/].setEnabled(false);
+		[editor.name.toJavaIdentifier()/].setToolTipText([editor.owningViewsRepository().messagesProvider()/].[editor.owningViewString()/]_ReadOnly);
+		[/if]
+		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
+		[editor.name.toJavaIdentifier()/]Data.horizontalSpan = 2;
+		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		edit[editor.name.toJavaClassifier()/] = widgetFactory.createButton(parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], SWT.NONE);
+		GridData edit[editor.name.toJavaClassifier()/]Data = new GridData();
+		edit[editor.name.toJavaClassifier()/].setLayoutData(edit[editor.name.toJavaClassifier()/]Data);
+		edit[editor.name.toJavaClassifier()/].addSelectionListener(new SelectionAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				EObject [pec.model.name.toJavaIdentifier()/] = PropertiesContextService.getInstance().lastElement();
+				FeatureEditorDialog dialog = new FeatureEditorDialog(Display.getDefault().getActiveShell(), new AdapterFactoryLabelProvider(adapterFactory), [pec.model.name.toJavaIdentifier()/], [editor.involvedPropertiesEditionElement().metamodelGetter()/].getEType(), 
+						[editor.name.toJavaIdentifier()/]List, "[pec.model.name/]", null, false, false); //$NON-NLS-1$
+				if (dialog.open() == Window.OK) {
+					[editor.name.toJavaIdentifier()/]List = dialog.getResult();
+					if ([editor.name.toJavaIdentifier()/]List == null) {
+						[editor.name.toJavaIdentifier()/]List = new BasicEList();
+					}
+					[editor.name.toJavaIdentifier()/].setText([editor.name.toJavaIdentifier()/]List.toString());
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/]List));
+					setHasChanged(true);
+				}
+			}
+		});
+	}
+[/template]
