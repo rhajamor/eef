@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.impl.utils.ModelViewerHelper;
+import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
 import org.eclipse.emf.eef.runtime.ui.utils.EcoreTool;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -55,8 +56,9 @@ import org.eclipse.ui.dialogs.PatternFilter;
  * 
  * @author Patrick Tessier
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  */
-public abstract class TabElementTreeSelectionDialog<T extends EObject> extends Dialog {
+public abstract class TabElementTreeSelectionDialog<T extends EObject> extends Dialog implements IPropertiesFilteredWidget {
 
 	/**
 	 * the label
@@ -68,13 +70,18 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 	 */
 	protected Tree tree;
 
-	/** title of the window **/
-	protected String title = "Element Selection";
+	/** title of the window */
+	protected String title = EEFRuntimeUIMessages.TabElementTreeSelectionDialog_title;
 
 	/**
 	 * filters
 	 */
-	protected List<ViewerFilter> viewerFilters;
+	private List<ViewerFilter> viewerFilters;
+
+	/**
+	 * business rules filters
+	 */
+	private List<ViewerFilter> brFilters;
 
 	/**
 	 * The adapter factory.
@@ -82,15 +89,18 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-	Composite parent;
+	private Composite parent;
 
-	Object input;
+	private Object input;
 
-	TreeViewer activeTreeViewer;
-
-	IStructuredSelection selection;
+	private IStructuredSelection selection;
 
 	private EClass restrictToEClass;
+
+	/**
+	 * The main resource. It's optional. The first resource is the main resource by default.
+	 */
+	private Resource mainResource;
 
 	/**
 	 * Constructor with parent shell and Element.
@@ -106,16 +116,48 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 	 * @param abstractElement
 	 *            it used to inform about if the element is abstract in this case the creation button does not
 	 *            appear
+	 * @deprecated 
 	 */
-	public TabElementTreeSelectionDialog(Object input, List<ViewerFilter> filters, String title,
-			EClass restrictToEClass) {
+	public TabElementTreeSelectionDialog(Object input, List<ViewerFilter> filters,
+			List<ViewerFilter> brFilters, String title, EClass restrictToEClass) {
 		super(Display.getDefault().getActiveShell());
 		// add the resize ability to the window
 		setShellStyle(SWT.RESIZE | super.getShellStyle());
 		this.input = input;
 		this.viewerFilters = filters;
+		this.brFilters = brFilters;
 		this.title = title;
 		this.restrictToEClass = restrictToEClass;
+	}
+
+	/**
+	 * Constructor with parent shell and Element.
+	 * 
+	 * @param parentElement
+	 *            the element where we look for a children
+	 * @param filters
+	 *            this is an array of filter see {@link ViewerFilter} or an example {@link OperationFilter}
+	 * @param title
+	 *            title of the window
+	 * @param createElement
+	 *            this is the listener to create an element
+	 * @param abstractElement
+	 *            it used to inform about if the element is abstract in this case the creation button does not
+	 *            appear
+	 * @param mainResource
+	 *            the main resource.
+	 */
+	public TabElementTreeSelectionDialog(Object input, List<ViewerFilter> filters,
+			List<ViewerFilter> brFilters, String title, EClass restrictToEClass, Resource mainResource) {
+		super(Display.getDefault().getActiveShell());
+		// add the resize ability to the window
+		setShellStyle(SWT.RESIZE | super.getShellStyle());
+		this.input = input;
+		this.viewerFilters = filters;
+		this.brFilters = brFilters;
+		this.title = title;
+		this.restrictToEClass = restrictToEClass;
+		this.mainResource = mainResource;
 	}
 
 	/**
@@ -131,14 +173,15 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 		tabFolder.setMaximized(true);
 
 		CTabItem tabItem = new CTabItem(tabFolder, SWT.NULL);
-		tabItem.setText("Model Resource");
+		tabItem.setText(EEFRuntimeUIMessages.TabElementTreeSelectionDialog_model_resource_tab_title);
 		tabItem.setControl(fillModelpage(tabFolder, false, new ViewerFilter() {
 			// Filter elements only in main Resource
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
 				if (input instanceof ResourceSet) {
 					ResourceSet resourceSet = (ResourceSet)input;
-					Resource mainResource = resourceSet.getResources().get(0);
+					Resource mainResource = TabElementTreeSelectionDialog.this.mainResource != null ? TabElementTreeSelectionDialog.this.mainResource
+							: resourceSet.getResources().get(0);
 					if (mainResource != null && mainResource == element) {
 						return true;
 					}
@@ -146,7 +189,8 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 				if (element instanceof EObject) {
 					EObject eObject = (EObject)element;
 					ResourceSet resourceSet = (ResourceSet)input;
-					Resource mainResource = resourceSet.getResources().get(0);
+					Resource mainResource = TabElementTreeSelectionDialog.this.mainResource != null ? TabElementTreeSelectionDialog.this.mainResource
+							: resourceSet.getResources().get(0);
 					if (mainResource != null && mainResource == eObject.eResource()) {
 						return true;
 					}
@@ -156,7 +200,7 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 		}));
 
 		tabItem = new CTabItem(tabFolder, SWT.NULL);
-		tabItem.setText("All Resources ");
+		tabItem.setText(EEFRuntimeUIMessages.TabElementTreeSelectionDialog_all_resources_tab_title);
 		tabItem.setControl(fillModelpage(tabFolder, true, null));
 
 		return tabFolder;
@@ -189,6 +233,7 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 				| SWT.RESIZE, patternFilter);
 		// use of EMF facilities
 		final TreeViewer treeViewer = filteredTree.getViewer();
+		treeViewer.setFilters(new ViewerFilter[0]);
 		treeViewer.setUseHashlookup(true);
 		treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			@Override
@@ -207,6 +252,14 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 				}
 				return super.getElements(inputElement);
 			}
+
+			@Override
+			public Object[] getChildren(Object object) {
+				// TODO Auto-generated method stub
+				Object[] children = super.getChildren(object);
+				return children;
+			}
+			
 		});
 
 		ArrayList<ViewerFilter> filters = new ArrayList<ViewerFilter>();
@@ -215,6 +268,12 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 		}
 		if (viewerFilters != null && !viewerFilters.isEmpty()) {
 			for (ViewerFilter filter : viewerFilters) {
+				filters.add(filter);
+			}
+		}
+		// for now, add the businessRuleFilters to the 'normal' filters
+		if (brFilters != null && !brFilters.isEmpty()) {
+			for (ViewerFilter filter : brFilters) {
 				filters.add(filter);
 			}
 		}
@@ -330,7 +389,7 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText("Select " + this.title + ":");
+		shell.setText(EEFRuntimeUIMessages.TabElementTreeSelectionDialog_shell_title + this.title);
 	}
 
 	/**
@@ -350,5 +409,18 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 	}
 
 	public abstract void process(IStructuredSelection selection);
+	
+	public void addBusinessRuleFilter(ViewerFilter filter) {
+		this.brFilters.add(filter);
+	}
+	public void addFilter(ViewerFilter filter) {
+		this.viewerFilters.add(filter);
+	}
+	public void removeBusinessRuleFilter(ViewerFilter filter) {
+		this.brFilters.remove(filter);
+	}
+	public void removeFilter(ViewerFilter filter) {
+		this.viewerFilters.remove(filter);
+	}
 
 }

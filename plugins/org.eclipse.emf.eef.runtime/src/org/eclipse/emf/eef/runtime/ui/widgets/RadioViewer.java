@@ -1,21 +1,31 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2009 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.eef.runtime.ui.widgets;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -27,7 +37,14 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  */
-public class RadioViewer extends Composite {
+public class RadioViewer extends Composite implements ISelectionProvider {
+	
+	/**
+	 * Listeners for selection changes
+	 */
+	private List<ISelectionChangedListener> listeners;
+	
+	private RadioSelectionChangedListener radioSelectionChangedListener;
 
 	/**
 	 * the map of buttons used.
@@ -38,6 +55,9 @@ public class RadioViewer extends Composite {
 		super(parent, style);
 		buttons = new HashMap<Object, Button>();
 		this.setLayout(new GridLayout());
+		listeners = new ArrayList<ISelectionChangedListener>();
+		
+		radioSelectionChangedListener = new RadioSelectionChangedListener();
 	}
 
 	private void createButton(Object value) {
@@ -47,6 +67,7 @@ public class RadioViewer extends Composite {
 		}
 		GridData data = new GridData(GridData.FILL_BOTH);
 		b.setLayoutData(data);
+		b.addSelectionListener(radioSelectionChangedListener);
 		buttons.put(value, b);
 	}
 
@@ -63,29 +84,39 @@ public class RadioViewer extends Composite {
 		super.setEnabled(enabled);
 	}
 
-	public void setSelection(Object newValue) {
-		for (Object value : buttons.keySet()) {
-			buttons.get(value).setSelection(false);
-			if (value instanceof Enumerator && newValue instanceof Enumerator) {
-				if (((Enumerator)value).getValue() == ((Enumerator)newValue).getValue()) {
-					buttons.get(value).setSelection(true);
+	/**
+	 * @param newValue
+	 */
+	public void setSelection(ISelection selection) {
+		if (selection instanceof StructuredSelection) {
+			StructuredSelection sSelection = (StructuredSelection)selection;
+			Object newValue = sSelection.getFirstElement();
+			for (Object value : buttons.keySet()) {
+				buttons.get(value).setSelection(false);
+				if (value instanceof Enumerator && newValue instanceof Enumerator) {
+					if (((Enumerator)value).getValue() == ((Enumerator)newValue).getValue()) {
+						buttons.get(value).setSelection(true);
+					}
 				}
 			}
 		}
-
 	}
 
-	public Object getSelection() {
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.viewers.ISelectionProvider#getSelection()
+	 */
+	public ISelection getSelection() {
 		for (Object value : buttons.keySet()) {
 			if (buttons.get(value).getSelection())
-				return value;
+				return new StructuredSelection(value);
 		}
 		return null;
 	}
 
 	public void setInput(Object input) {
 		if (input instanceof Collection) {
-			for (Object value : (Collection)input) {
+			for (Object value : (Collection<?>)input) {
 				createButton(value);
 			}
 		}
@@ -96,4 +127,52 @@ public class RadioViewer extends Composite {
 		layout();
 	}
 
+	/**
+	 * Sets the tooltip text for the viewer
+	 * 
+	 * @param tooltip
+	 *            the tooltip text
+	 */
+	public void setToolTipText(String tooltip) {
+		for (Button button : buttons.values()) {
+			button.setToolTipText(tooltip);
+		}
+	}
+	
+	/**
+	 * Add a new SelectionChangedListener
+	 * @param listener the listener to add
+	 */
+	public void addSelectionChangedListener(ISelectionChangedListener listener) {
+		listeners.add(listener);
+	}
+	
+	/**
+	 * remove a SelectionChanged listener
+	 * @param listener the listener to remove
+	 */
+	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+		listeners.remove(listener);
+	}
+	
+	private class RadioSelectionChangedListener extends SelectionAdapter {
+
+		/**
+		 * {@inheritDoc}
+		 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+		 */
+		public void widgetSelected(SelectionEvent e) {
+			Object value = null;
+			for (Object tmp : buttons.keySet()) {
+				if (buttons.get(tmp).getSelection())
+					value = tmp;
+			}
+			if (value != null) {
+				for (ISelectionChangedListener listener : listeners) {
+					listener.selectionChanged(new SelectionChangedEvent(RadioViewer.this, new StructuredSelection(value)));
+				}
+			}
+		}
+		
+	}
 }
