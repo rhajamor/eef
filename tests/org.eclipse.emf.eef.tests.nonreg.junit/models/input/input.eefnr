@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eefnr:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eefnr="http://www.eclipse.org/emf/eef/nonreg/1.0.0">
+  <samples xsi:type="eefnr:TextSample" textRequiredProperty="value1" textOptionalProperty="value1"/>
+  <samples xsi:type="eefnr:CheckboxSample"/>
+  <samples xsi:type="eefnr:TextareaSample" textareaRequiredProperty="value1" textareaOptionalProperty="value1"/>
+  <samples xsi:type="eefnr:RadioSample"/>
+  <samples xsi:type="eefnr:EObjectFlatComboViewerSample" eobjectflatcomboviewerRequiredPropery="//@samples.14" eobjectflatcomboviewerOptionalPropery="//@samples.14"/>
+  <samples xsi:type="eefnr:ReferencesTableSample" referencestableRequiredProperty="//@samples.14" referencestableOptionalProperty="//@samples.14"/>
+  <samples xsi:type="eefnr:EMFComboViewerSample"/>
+  <samples xsi:type="eefnr:MultiValuedEditorSample">
+    <multivaluededitorRequiredProperty>value1</multivaluededitorRequiredProperty>
+  </samples>
+  <samples xsi:type="eefnr:TableCompositionEditorSample">
+    <tablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionRequiredProperty textRequiredProperty="value2" textOptionalProperty=""/>
+    <tablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty=""/>
+  </samples>
+  <samples xsi:type="eefnr:AdvancedReferencesTableSample" advancedreferencestableRequiredProperty="//@samples.14" advancedreferencestableOptionalProperty="//@samples.14"/>
+  <samples xsi:type="eefnr:AdvancedEObjectFlatComboViewerSample" advancedeobjectflatcomboviewerRequiredProperty="//@samples.14" advancedeobjectflatcomboviewerOptionalProperty="//@samples.14"/>
+  <samples xsi:type="eefnr:AdvancedTableCompositionEditorSample">
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value2" textOptionalProperty=""/>
+    <advancedtablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty=""/>
+  </samples>
+  <samples xsi:type="eefnr:FlatReferencesTableSample" flatreferencestableRequiredProperty="//@samples.14 //@samples.15" flatreferencestableOptionalProperty="//@samples.14"/>
+  <samples xsi:type="eefnr:TotalSample" name="accord" textRequiredProperty="value1" textOptionalProperty="" textareaRequiredProperty="value2" textareaOptionalProperty="" eobjectflatcomboviewerRequiredProperty="//@samples.14" referencestableRequiredProperty="//@samples.14 //@samples.15" referencestableOptionalProperty="//@samples.14" advancedreferencestableRequiredProperty="//@samples.14 //@samples.15" advancedreferencestableOptionalProperty="//@samples.14" advancedeobjectflatcomboviewerRequiredPropery="//@samples.14">
+    <multivaluededitorRequiredProperty>value1</multivaluededitorRequiredProperty>
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <advancedtablecompositionOptionalProperty textRequiredProperty="toto" textOptionalProperty="toto"/>
+    <tablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty=""/>
+  </samples>
+  <samples xsi:type="eefnr:TotalSample" name="total sample 1" textRequiredProperty="value1" textOptionalProperty="value1" textareaRequiredProperty="value1" textareaOptionalProperty="value1" eobjectflatcomboviewerRequiredProperty="//@samples.15" eobjectflatcomboviewerOptionalProperty="//@samples.15" referencestableRequiredProperty="//@samples.14 //@samples.15" referencestableOptionalProperty="//@samples.14" advancedreferencestableRequiredProperty="//@samples.14 //@samples.15" advancedreferencestableOptionalProperty="//@samples.14" advancedeobjectflatcomboviewerRequiredPropery="//@samples.15" advancedeobjectflatcomboviewerOptionalPropery="//@samples.15">
+    <multivaluededitorRequiredProperty>value1</multivaluededitorRequiredProperty>
+    <tablecompositionOnSameTypeOptionalProperty name="value5" textRequiredProperty="value5" textOptionalProperty="value5" textareaRequiredProperty="value5" textareaOptionalProperty="value5"/>
+    <advancedtablecompositionOnSametypeOptionalProperty name="value6" textRequiredProperty="value6"/>
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value2" textOptionalProperty=""/>
+    <advancedtablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty="value1"/>
+    <tablecompositionRequiredProperty textRequiredProperty="valule" textOptionalProperty=""/>
+    <tablecompositionRequiredProperty textRequiredProperty="value2" textOptionalProperty=""/>
+    <tablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty="value1"/>
+  </samples>
+  <samples xsi:type="eefnr:TotalSample" name="total sample 2" textRequiredProperty="value1" textOptionalProperty="" textareaRequiredProperty="value2" textareaOptionalProperty="" eobjectflatcomboviewerRequiredProperty="//@samples.14" referencestableRequiredProperty="//@samples.14 //@samples.15" referencestableOptionalProperty="//@samples.14" advancedreferencestableRequiredProperty="//@samples.14 //@samples.15" advancedreferencestableOptionalProperty="//@samples.14" advancedeobjectflatcomboviewerRequiredPropery="//@samples.14">
+    <multivaluededitorRequiredProperty>value1</multivaluededitorRequiredProperty>
+    <advancedtablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionRequiredProperty textRequiredProperty="value1" textOptionalProperty=""/>
+    <tablecompositionOptionalProperty textRequiredProperty="value1" textOptionalProperty=""/>
+  </samples>
+  <samples xsi:type="eefnr:TextSampleWithTwoTabs" textRequiredPropertyInFirstTab="" textOptionalPropertyInFirstTab="" textRequiredPropertyInSecondTab="" textOptionalPropertyInSecondTab=""/>
+  <samples xsi:type="eefnr:Sample" textRequiredProperty="value1" textOptionalProperty=""/>
+</eefnr:Root>
