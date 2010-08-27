@@ -64,37 +64,37 @@ public class TotalSampleTestCase extends SWTBotEEFTestCase {
 	 */
 	private Object enumValueForEmfcomboviewerOptionalProperty;
 	/**
-	 * The reference value for the reference class advancedeobjectflatcomboviewerRequiredPropery
-	 */
-	private Object referenceValueForAdvancedeobjectflatcomboviewerRequiredPropery;
-	/**
 	 * The reference value for the reference class advancedreferencestableRequiredProperty
 	 */
 	private Object referenceValueForAdvancedreferencestableRequiredProperty;
-	/**
-	 * The reference value for the reference class referencestableOptionalProperty
-	 */
-	private Object referenceValueForReferencestableOptionalProperty;
-	/**
-	 * The reference value for the reference class referencestableRequiredProperty
-	 */
-	private Object referenceValueForReferencestableRequiredProperty;
-	/**
-	 * The reference value for the reference class advancedeobjectflatcomboviewerOptionalPropery
-	 */
-	private Object referenceValueForAdvancedeobjectflatcomboviewerOptionalPropery;
 	/**
 	 * The reference value for the reference class eobjectflatcomboviewerRequiredProperty
 	 */
 	private Object referenceValueForEobjectflatcomboviewerRequiredProperty;
 	/**
-	 * The reference value for the reference class advancedreferencestableOptionalProperty
+	 * The reference value for the reference class advancedeobjectflatcomboviewerOptionalPropery
 	 */
-	private Object referenceValueForAdvancedreferencestableOptionalProperty;
+	private Object referenceValueForAdvancedeobjectflatcomboviewerOptionalPropery;
+	/**
+	 * The reference value for the reference class referencestableOptionalProperty
+	 */
+	private Object referenceValueForReferencestableOptionalProperty;
 	/**
 	 * The reference value for the reference class eobjectflatcomboviewerOptionalProperty
 	 */
 	private Object referenceValueForEobjectflatcomboviewerOptionalProperty;
+	/**
+	 * The reference value for the reference class advancedreferencestableOptionalProperty
+	 */
+	private Object referenceValueForAdvancedreferencestableOptionalProperty;
+	/**
+	 * The reference value for the reference class advancedeobjectflatcomboviewerRequiredPropery
+	 */
+	private Object referenceValueForAdvancedeobjectflatcomboviewerRequiredPropery;
+	/**
+	 * The reference value for the reference class referencestableRequiredProperty
+	 */
+	private Object referenceValueForReferencestableRequiredProperty;
 	/**
 	 * The EClass of the reference to edit
 	 */
