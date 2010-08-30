@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EMFComboViewerSampleItemProvider.java,v 1.2.2.2 2010/08/30 08:49:44 sbouchet Exp $
+ * $Id: AbstractSampleItemProvider.java,v 1.2.2.1 2010/08/30 08:49:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,18 +21,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
+import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.EMFComboViewerSample} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.AbstractSample} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFComboViewerSampleItemProvider
-	extends AbstractSampleItemProvider
+public class AbstractSampleItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +46,7 @@ public class EMFComboViewerSampleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFComboViewerSampleItemProvider(AdapterFactory adapterFactory) {
+	public AbstractSampleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,65 +61,31 @@ public class EMFComboViewerSampleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEmfcomboviewerRequiredPropertyPropertyDescriptor(object);
-			addEmfcomboviewerOptionalPropertyPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Required Property feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerRequiredPropertyPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY,
+				 getString("_UI_AbstractSample_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractSample_name_feature", "_UI_AbstractSample_type"),
+				 EefnrPackage.Literals.ABSTRACT_SAMPLE__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Emfcomboviewer Optional Property feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEmfcomboviewerOptionalPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns EMFComboViewerSample.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFComboViewerSample"));
 	}
 
 	/**
@@ -128,10 +96,10 @@ public class EMFComboViewerSampleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFComboViewerSample)object).getName();
+		String label = ((AbstractSample)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EMFComboViewerSample_type") :
-			getString("_UI_EMFComboViewerSample_type") + " " + label;
+			getString("_UI_AbstractSample_type") :
+			getString("_UI_AbstractSample_type") + " " + label;
 	}
 
 	/**
@@ -145,9 +113,8 @@ public class EMFComboViewerSampleItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EMFComboViewerSample.class)) {
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY:
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY:
+		switch (notification.getFeatureID(AbstractSample.class)) {
+			case EefnrPackage.ABSTRACT_SAMPLE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -164,6 +131,17 @@ public class EMFComboViewerSampleItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return EefnrEditPlugin.INSTANCE;
 	}
 
 }

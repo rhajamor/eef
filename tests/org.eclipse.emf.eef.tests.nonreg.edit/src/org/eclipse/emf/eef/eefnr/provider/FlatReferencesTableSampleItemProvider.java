@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EMFComboViewerSampleItemProvider.java,v 1.2.2.2 2010/08/30 08:49:44 sbouchet Exp $
+ * $Id: FlatReferencesTableSampleItemProvider.java,v 1.2.2.1 2010/08/30 08:49:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -19,18 +19,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnr.FlatReferencesTableSample;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.EMFComboViewerSample} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.FlatReferencesTableSample} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFComboViewerSampleItemProvider
+public class FlatReferencesTableSampleItemProvider
 	extends AbstractSampleItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +42,7 @@ public class EMFComboViewerSampleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFComboViewerSampleItemProvider(AdapterFactory adapterFactory) {
+	public FlatReferencesTableSampleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,65 +57,65 @@ public class EMFComboViewerSampleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEmfcomboviewerRequiredPropertyPropertyDescriptor(object);
-			addEmfcomboviewerOptionalPropertyPropertyDescriptor(object);
+			addFlatreferencestableRequiredPropertyPropertyDescriptor(object);
+			addFlatreferencestableOptionalPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Required Property feature.
+	 * This adds a property descriptor for the Flatreferencestable Required Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerRequiredPropertyPropertyDescriptor(Object object) {
+	protected void addFlatreferencestableRequiredPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY,
+				 getString("_UI_FlatReferencesTableSample_flatreferencestableRequiredProperty_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlatReferencesTableSample_flatreferencestableRequiredProperty_feature", "_UI_FlatReferencesTableSample_type"),
+				 EefnrPackage.Literals.FLAT_REFERENCES_TABLE_SAMPLE__FLATREFERENCESTABLE_REQUIRED_PROPERTY,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Optional Property feature.
+	 * This adds a property descriptor for the Flatreferencestable Optional Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerOptionalPropertyPropertyDescriptor(Object object) {
+	protected void addFlatreferencestableOptionalPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY,
+				 getString("_UI_FlatReferencesTableSample_flatreferencestableOptionalProperty_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlatReferencesTableSample_flatreferencestableOptionalProperty_feature", "_UI_FlatReferencesTableSample_type"),
+				 EefnrPackage.Literals.FLAT_REFERENCES_TABLE_SAMPLE__FLATREFERENCESTABLE_OPTIONAL_PROPERTY,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns EMFComboViewerSample.gif.
+	 * This returns FlatReferencesTableSample.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFComboViewerSample"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FlatReferencesTableSample"));
 	}
 
 	/**
@@ -128,10 +126,10 @@ public class EMFComboViewerSampleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFComboViewerSample)object).getName();
+		String label = ((FlatReferencesTableSample)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EMFComboViewerSample_type") :
-			getString("_UI_EMFComboViewerSample_type") + " " + label;
+			getString("_UI_FlatReferencesTableSample_type") :
+			getString("_UI_FlatReferencesTableSample_type") + " " + label;
 	}
 
 	/**
@@ -144,13 +142,6 @@ public class EMFComboViewerSampleItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(EMFComboViewerSample.class)) {
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY:
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

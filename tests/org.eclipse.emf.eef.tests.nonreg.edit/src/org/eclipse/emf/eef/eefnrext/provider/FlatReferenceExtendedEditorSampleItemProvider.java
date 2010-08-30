@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EMFComboViewerSampleItemProvider.java,v 1.2.2.2 2010/08/30 08:49:44 sbouchet Exp $
+ * $Id: FlatReferenceExtendedEditorSampleItemProvider.java,v 1.1.2.1 2010/08/30 08:49:44 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.provider;
+package org.eclipse.emf.eef.eefnrext.provider;
 
 
 import java.util.Collection;
@@ -21,17 +21,17 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
-import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
+import org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.EMFComboViewerSample} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFComboViewerSampleItemProvider
-	extends AbstractSampleItemProvider
+public class FlatReferenceExtendedEditorSampleItemProvider
+	extends CheckBoxExtendedEditorSampleItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +44,7 @@ public class EMFComboViewerSampleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFComboViewerSampleItemProvider(AdapterFactory adapterFactory) {
+	public FlatReferenceExtendedEditorSampleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,26 +59,49 @@ public class EMFComboViewerSampleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEmfcomboviewerRequiredPropertyPropertyDescriptor(object);
-			addEmfcomboviewerOptionalPropertyPropertyDescriptor(object);
+			addFlatReferenceEditorSamplePropertyDescriptor(object);
+			addDemoPropertyDescriptor(object);
+			addSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Required Property feature.
+	 * This adds a property descriptor for the Flat Reference Editor Sample feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerRequiredPropertyPropertyDescriptor(Object object) {
+	protected void addFlatReferenceEditorSamplePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY,
+				 getString("_UI_FlatReferenceExtendedEditorSample_flatReferenceEditorSample_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlatReferenceExtendedEditorSample_flatReferenceEditorSample_feature", "_UI_FlatReferenceExtendedEditorSample_type"),
+				 EefnrextPackage.Literals.FLAT_REFERENCE_EXTENDED_EDITOR_SAMPLE__FLAT_REFERENCE_EDITOR_SAMPLE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Demo feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDemoPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FlatReferenceExtendedEditorSample_demo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlatReferenceExtendedEditorSample_demo_feature", "_UI_FlatReferenceExtendedEditorSample_type"),
+				 EefnrextPackage.Literals.FLAT_REFERENCE_EXTENDED_EDITOR_SAMPLE__DEMO,
 				 true,
 				 false,
 				 false,
@@ -88,36 +111,36 @@ public class EMFComboViewerSampleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Optional Property feature.
+	 * This adds a property descriptor for the Size feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerOptionalPropertyPropertyDescriptor(Object object) {
+	protected void addSizePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY,
+				 getString("_UI_FlatReferenceExtendedEditorSample_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FlatReferenceExtendedEditorSample_size_feature", "_UI_FlatReferenceExtendedEditorSample_type"),
+				 EefnrextPackage.Literals.FLAT_REFERENCE_EXTENDED_EDITOR_SAMPLE__SIZE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns EMFComboViewerSample.gif.
+	 * This returns FlatReferenceExtendedEditorSample.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFComboViewerSample"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FlatReferenceExtendedEditorSample"));
 	}
 
 	/**
@@ -128,10 +151,10 @@ public class EMFComboViewerSampleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFComboViewerSample)object).getName();
+		String label = ((FlatReferenceExtendedEditorSample)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EMFComboViewerSample_type") :
-			getString("_UI_EMFComboViewerSample_type") + " " + label;
+			getString("_UI_FlatReferenceExtendedEditorSample_type") :
+			getString("_UI_FlatReferenceExtendedEditorSample_type") + " " + label;
 	}
 
 	/**
@@ -145,9 +168,9 @@ public class EMFComboViewerSampleItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EMFComboViewerSample.class)) {
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY:
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY:
+		switch (notification.getFeatureID(FlatReferenceExtendedEditorSample.class)) {
+			case EefnrextPackage.FLAT_REFERENCE_EXTENDED_EDITOR_SAMPLE__DEMO:
+			case EefnrextPackage.FLAT_REFERENCE_EXTENDED_EDITOR_SAMPLE__SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

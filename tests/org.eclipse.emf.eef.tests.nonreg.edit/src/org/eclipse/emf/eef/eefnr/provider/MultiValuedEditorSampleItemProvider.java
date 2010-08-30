@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EMFComboViewerSampleItemProvider.java,v 1.2.2.2 2010/08/30 08:49:44 sbouchet Exp $
+ * $Id: MultiValuedEditorSampleItemProvider.java,v 1.2.2.1 2010/08/30 08:49:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -21,16 +21,16 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnr.MultiValuedEditorSample;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.EMFComboViewerSample} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.eef.eefnr.MultiValuedEditorSample} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFComboViewerSampleItemProvider
+public class MultiValuedEditorSampleItemProvider
 	extends AbstractSampleItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +44,7 @@ public class EMFComboViewerSampleItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFComboViewerSampleItemProvider(AdapterFactory adapterFactory) {
+	public MultiValuedEditorSampleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,26 +59,26 @@ public class EMFComboViewerSampleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEmfcomboviewerRequiredPropertyPropertyDescriptor(object);
-			addEmfcomboviewerOptionalPropertyPropertyDescriptor(object);
+			addMultivaluededitorRequiredPropertyPropertyDescriptor(object);
+			addMultivaluededitorOptionalPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Required Property feature.
+	 * This adds a property descriptor for the Multivaluededitor Required Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerRequiredPropertyPropertyDescriptor(Object object) {
+	protected void addMultivaluededitorRequiredPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerRequiredProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY,
+				 getString("_UI_MultiValuedEditorSample_multivaluededitorRequiredProperty_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiValuedEditorSample_multivaluededitorRequiredProperty_feature", "_UI_MultiValuedEditorSample_type"),
+				 EefnrPackage.Literals.MULTI_VALUED_EDITOR_SAMPLE__MULTIVALUEDEDITOR_REQUIRED_PROPERTY,
 				 true,
 				 false,
 				 false,
@@ -88,19 +88,19 @@ public class EMFComboViewerSampleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Emfcomboviewer Optional Property feature.
+	 * This adds a property descriptor for the Multivaluededitor Optional Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmfcomboviewerOptionalPropertyPropertyDescriptor(Object object) {
+	protected void addMultivaluededitorOptionalPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFComboViewerSample_emfcomboviewerOptionalProperty_feature", "_UI_EMFComboViewerSample_type"),
-				 EefnrPackage.Literals.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY,
+				 getString("_UI_MultiValuedEditorSample_multivaluededitorOptionalProperty_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiValuedEditorSample_multivaluededitorOptionalProperty_feature", "_UI_MultiValuedEditorSample_type"),
+				 EefnrPackage.Literals.MULTI_VALUED_EDITOR_SAMPLE__MULTIVALUEDEDITOR_OPTIONAL_PROPERTY,
 				 true,
 				 false,
 				 false,
@@ -110,14 +110,14 @@ public class EMFComboViewerSampleItemProvider
 	}
 
 	/**
-	 * This returns EMFComboViewerSample.gif.
+	 * This returns MultiValuedEditorSample.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFComboViewerSample"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiValuedEditorSample"));
 	}
 
 	/**
@@ -128,10 +128,10 @@ public class EMFComboViewerSampleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFComboViewerSample)object).getName();
+		String label = ((MultiValuedEditorSample)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EMFComboViewerSample_type") :
-			getString("_UI_EMFComboViewerSample_type") + " " + label;
+			getString("_UI_MultiValuedEditorSample_type") :
+			getString("_UI_MultiValuedEditorSample_type") + " " + label;
 	}
 
 	/**
@@ -145,9 +145,9 @@ public class EMFComboViewerSampleItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EMFComboViewerSample.class)) {
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY:
-			case EefnrPackage.EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY:
+		switch (notification.getFeatureID(MultiValuedEditorSample.class)) {
+			case EefnrPackage.MULTI_VALUED_EDITOR_SAMPLE__MULTIVALUEDEDITOR_REQUIRED_PROPERTY:
+			case EefnrPackage.MULTI_VALUED_EDITOR_SAMPLE__MULTIVALUEDEDITOR_OPTIONAL_PROPERTY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
