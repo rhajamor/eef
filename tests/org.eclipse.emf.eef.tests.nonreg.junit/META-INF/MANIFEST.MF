@@ -4,8 +4,10 @@ Bundle-Name: Junit
 Bundle-SymbolicName: org.eclipse.emf.eef.tests.nonreg.junit
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.emf.eef.runtime.tests,
- org.eclipse.emf.eef.runtime,
  org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.emf.eef.tests.nonreg.edit
+ org.eclipse.emf.eef.tests.nonreg.edit,
+ org.junit4,
+ org.apache.log4j
+Eclipse-RegisterBuddy: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
