@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -25,6 +25,16 @@ import org.eclipse.jface.viewers.Viewer;
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  */
 public class EMFListContentProvider implements IStructuredContentProvider {
+
+	private boolean nullable;
+
+	/**
+	 * @param nullable define if there is a null value or not
+	 */
+	public EMFListContentProvider(boolean nullable) {
+		super();
+		this.nullable = nullable;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -64,7 +74,8 @@ public class EMFListContentProvider implements IStructuredContentProvider {
 
 	private List asList(TreeIterator iter) {
 		List result = new ArrayList();
-		result.add(""); //$NON-NLS-1$
+		if (nullable)
+			result.add("");  //$NON-NLS-1$
 		while (iter.hasNext())
 			result.add(iter.next());
 		return result;

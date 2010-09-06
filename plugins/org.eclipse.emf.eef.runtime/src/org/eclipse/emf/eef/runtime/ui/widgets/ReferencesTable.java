@@ -1,33 +1,35 @@
-/*****************************************************************************
- * Copyright (c) 2008-2009 CEA LIST, Obeo.
- *
- *    
+/*******************************************************************************
+ * Copyright (c) 2008, 2010 CEA LIST and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Obeo
- *
- *****************************************************************************/
+ *     Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *     Obeo - Some improvements
+ *******************************************************************************/
 package org.eclipse.emf.eef.runtime.ui.widgets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
+import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -45,42 +47,45 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 
 /**
- * Base class for a complex section composite. This composite has a label, a table that describes a tree
- * structure, and four buttons on the side of the table to add an element into the table, remove selected
- * element(s), move up or down the selected element.
+ * Base class for a complex section composite. This composite has a label, a
+ * table that describes a tree structure, and four buttons on the side of the
+ * table to add an element into the table, remove selected element(s), move up
+ * or down the selected element.
  * 
  * @author Remi SCHNEKENBURGER
  * @author Patrick Tessier
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
+ * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  */
-public class ReferencesTable<T extends EObject> {
+public class ReferencesTable<T extends EObject> implements
+		IPropertiesFilteredWidget {
 
 	/**
 	 * Image for the add element button.
 	 */
-	final protected static Image NEW_ELEMENT_IMG = EMFPropertiesRuntime
-			.getImage(EMFPropertiesRuntime.ICONS_16x16 + "Add_16x16.gif");
+	final protected static Image NEW_ELEMENT_IMG = EEFRuntimePlugin
+			.getImage(EEFRuntimePlugin.ICONS_16x16 + "Add_16x16.gif"); //$NON-NLS-1$
 
 	/**
 	 * Image for the delete element button.
 	 */
-	final protected static Image DELETE_ELEMENT_IMG = EMFPropertiesRuntime
-			.getImage(EMFPropertiesRuntime.ICONS_16x16 + "Delete_16x16.gif");
+	final protected static Image DELETE_ELEMENT_IMG = EEFRuntimePlugin
+			.getImage(EEFRuntimePlugin.ICONS_16x16 + "Delete_16x16.gif"); //$NON-NLS-1$
 
 	/**
 	 * Image for the up button.
 	 */
-	final protected static Image UP_ELEMENT_IMG = EMFPropertiesRuntime
-			.getImage(EMFPropertiesRuntime.ICONS_16x16 + "ArrowUp_16x16.gif");
+	final protected static Image UP_ELEMENT_IMG = EEFRuntimePlugin
+			.getImage(EEFRuntimePlugin.ICONS_16x16 + "ArrowUp_16x16.gif"); //$NON-NLS-1$
 
 	/**
 	 * Image for the down button.
 	 */
-	final protected static Image DOWN_ELEMENT_IMG = EMFPropertiesRuntime
-			.getImage(EMFPropertiesRuntime.ICONS_16x16 + "ArrowDown_16x16.gif");
+	final protected static Image DOWN_ELEMENT_IMG = EEFRuntimePlugin
+			.getImage(EEFRuntimePlugin.ICONS_16x16 + "ArrowDown_16x16.gif"); //$NON-NLS-1$
 
-	/** list of element that we want to display **/
+	/** list of element that we want to display * */
 	private List<T> listElement;
 
 	/**
@@ -93,7 +98,7 @@ public class ReferencesTable<T extends EObject> {
 	 */
 	private Table table;
 
-	/** the table viewer to associate the label provider **/
+	/** the table viewer to associate the label provider * */
 	private TableViewer tableViewer;
 
 	/**
@@ -138,15 +143,19 @@ public class ReferencesTable<T extends EObject> {
 
 	private Listener tableListener;
 
+	private int upperBound = -1;
+	private int lowerBound = 0;
 	/**
-	 * The listener used by the client to handle business events (Add, Remove, Move, NavigateTo)
+	 * The listener used by the client to handle business events (Add, Remove,
+	 * Move, NavigateTo)
 	 */
 	private ReferencesTableListener<T> referencesTableListener;
 
 	private String labelToDisplay;
 
 	/**
-	 * The Form tool kit use to use this widget in an Eclipse Forms compliant mode
+	 * The Form tool kit use to use this widget in an Eclipse Forms compliant
+	 * mode
 	 */
 	private FormToolkit widgetFactory;
 
@@ -166,6 +175,12 @@ public class ReferencesTable<T extends EObject> {
 	 */
 	private String helpText;
 
+	/** The business rules filters. */
+	protected List<ViewerFilter> bpFilters;
+
+	/** The filters. */
+	protected List<ViewerFilter> filters;
+
 	public void setHelpText(String helpText) {
 		this.helpText = helpText;
 	}
@@ -178,17 +193,25 @@ public class ReferencesTable<T extends EObject> {
 	 * @param the
 	 *            listener to handle Add, Remove, Move and NavigateTo events
 	 */
-	public ReferencesTable(String labeltoDisplay, ReferencesTableListener<T> referenceListener) {
+	public ReferencesTable(String labeltoDisplay,
+			ReferencesTableListener<T> referenceListener) {
 		this.labelToDisplay = labeltoDisplay;
 		this.addButtonlistener = new AddButtonlistener();
 		this.removeButtonlistener = new RemoveButtonlistener();
 		this.upButtonlistener = new UpButtonlistener();
 		this.downButtonlistener = new DownButtonlistener();
+		bpFilters = new ArrayList<ViewerFilter>();
+		filters = new ArrayList<ViewerFilter>();
 		addTableReferenceListener(referenceListener);
 	}
 
-	public void addTableReferenceListener(ReferencesTableListener<T> referenceListener) {
+	public void addTableReferenceListener(
+			ReferencesTableListener<T> referenceListener) {
 		this.referencesTableListener = referenceListener;
+	}
+
+	public void addSelectionListener(SelectionListener selectionListener) {
+		this.table.addSelectionListener(selectionListener);
 	}
 
 	public void createControls(Composite parent, FormToolkit widgetFactory) {
@@ -241,7 +264,7 @@ public class ReferencesTable<T extends EObject> {
 	public void createControls(Composite parent) {
 		composite = createComposite(parent);
 		if (parent instanceof ExpandableComposite) {
-			((ExpandableComposite)parent).setClient(composite);
+			((ExpandableComposite) parent).setClient(composite);
 		}
 		FormLayout formLayout = new FormLayout();
 		formLayout.marginTop = 7;
@@ -256,9 +279,11 @@ public class ReferencesTable<T extends EObject> {
 		Control helpButton = null;
 		if (helpText != null) {
 			if (widgetFactory != null) {
-				helpButton = FormUtils.createHelpButton(widgetFactory, composite, helpText, null); //$NON-NLS-1$
+				helpButton = FormUtils.createHelpButton(widgetFactory,
+						composite, helpText, null); 
 			} else {
-				helpButton = SWTUtils.createHelpButton(composite, helpText, null); //$NON-NLS-1$
+				helpButton = SWTUtils.createHelpButton(composite, helpText,
+						null); 
 			}
 			helpButton.setLayoutData(data);
 		}
@@ -267,56 +292,65 @@ public class ReferencesTable<T extends EObject> {
 		// Create and place button vertically on the left side
 		// Button : Add Element
 		// Button Delete Element
-		removeButton = createButton(composite, "", SWT.PUSH);
+		removeButton = createButton(composite, "", SWT.PUSH); //$NON-NLS-1$
 		removeButton.setVisible(true);
 		removeButton.setImage(DELETE_ELEMENT_IMG);
-		removeButton.setToolTipText("Delete selected element(s)");
+		removeButton.setToolTipText(EEFRuntimeUIMessages.ReferencesTable_remove_tooltip);
 		data = new FormData();
-		// data.top = new FormAttachment(addButton, ITabbedPropertyConstants.HSPACE);
+		// data.top = new FormAttachment(addButton,
+		// ITabbedPropertyConstants.HSPACE);
 		data.top = new FormAttachment(-6, 0);
 		if (helpText != null) {
-			data.right = new FormAttachment(helpButton, -ITabbedPropertyConstants.HSPACE);
+			data.right = new FormAttachment(helpButton,
+					-ITabbedPropertyConstants.HSPACE);
 		} else {
-			data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
+			data.right = new FormAttachment(100,
+					-ITabbedPropertyConstants.HSPACE);
 		}
 		removeButton.setLayoutData(data);
 		removeButton.addMouseListener(removeButtonlistener);
 
-		addButton = createButton(composite, "", SWT.PUSH);
+		addButton = createButton(composite, "", SWT.PUSH); //$NON-NLS-1$
 		addButton.setVisible(true);
 		addButton.setImage(NEW_ELEMENT_IMG);
-		addButton.setToolTipText("Add a new element");
+		addButton.setToolTipText(EEFRuntimeUIMessages.ReferencesTable_add_tooltip);
 
 		data = new FormData();
-		// data.top = new FormAttachment(label, ITabbedPropertyConstants.HSPACE);
+		// data.top = new FormAttachment(label,
+		// ITabbedPropertyConstants.HSPACE);
 		data.top = new FormAttachment(-6, 0);
-		data.right = new FormAttachment(removeButton, -ITabbedPropertyConstants.HSPACE);
+		data.right = new FormAttachment(removeButton,
+				-ITabbedPropertyConstants.HSPACE);
 		addButton.setLayoutData(data);
 		addButton.addMouseListener(addButtonlistener);
 
 		// Button Up
-		upButton = createButton(composite, "", SWT.PUSH);
+		upButton = createButton(composite, "", SWT.PUSH); //$NON-NLS-1$
 		upButton.setVisible(true);
 		upButton.setImage(UP_ELEMENT_IMG);
-		upButton.setToolTipText("Up");
+		upButton.setToolTipText(EEFRuntimeUIMessages.ReferencesTable_up_tooltip);
 
 		data = new FormData();
-		// data.top = new FormAttachment(removeButton, ITabbedPropertyConstants.HSPACE);
+		// data.top = new FormAttachment(removeButton,
+		// ITabbedPropertyConstants.HSPACE);
 		data.top = new FormAttachment(-6, 0);
-		data.right = new FormAttachment(addButton, -ITabbedPropertyConstants.HSPACE);
+		data.right = new FormAttachment(addButton,
+				-ITabbedPropertyConstants.HSPACE);
 		upButton.setLayoutData(data);
 		upButton.addMouseListener(upButtonlistener);
 
 		// Button Down
-		downButton = createButton(composite, "", SWT.PUSH);
+		downButton = createButton(composite, "", SWT.PUSH); //$NON-NLS-1$
 		downButton.setVisible(true);
 		downButton.setImage(DOWN_ELEMENT_IMG);
-		downButton.setToolTipText("Down");
+		downButton.setToolTipText(EEFRuntimeUIMessages.ReferencesTable_down_tooltip);
 
 		data = new FormData();
-		// data.top = new FormAttachment(upButton, ITabbedPropertyConstants.HSPACE);
+		// data.top = new FormAttachment(upButton,
+		// ITabbedPropertyConstants.HSPACE);
 		data.top = new FormAttachment(-6, 0);
-		data.right = new FormAttachment(upButton, -ITabbedPropertyConstants.HSPACE);
+		data.right = new FormAttachment(upButton,
+				-ITabbedPropertyConstants.HSPACE);
 		downButton.setLayoutData(data);
 		downButton.addMouseListener(downButtonlistener);
 
@@ -325,7 +359,8 @@ public class ReferencesTable<T extends EObject> {
 		// label.setLayout(new FormLayout());
 		data = new FormData();
 		data.left = new FormAttachment(2, 0);
-		data.right = new FormAttachment(downButton, -ITabbedPropertyConstants.HSPACE - 5/* 50 */);
+		data.right = new FormAttachment(downButton,
+				-ITabbedPropertyConstants.HSPACE - 5/* 50 */);
 		data.top = new FormAttachment(0, 0);
 		label.setLayoutData(data);
 
@@ -334,13 +369,17 @@ public class ReferencesTable<T extends EObject> {
 		table = createTable(composite, SWT.MULTI | SWT.H_SCROLL | SWT.BORDER);
 		table.setLayout(new FormLayout());
 		table.setVisible(true);
-		table.addListener(SWT.MouseDoubleClick, tableListener = new EditItemListener());
+		table.addListener(SWT.MouseDoubleClick,
+				tableListener = new EditItemListener());
 		// createTable
 		tableViewer = new TableViewer(table);
+		
+		// The filters.
 
 		data = new FormData();
 		data.height = 100;
-		data.top = new FormAttachment(label, ITabbedPropertyConstants.VSPACE + 4);
+		data.top = new FormAttachment(label,
+				ITabbedPropertyConstants.VSPACE + 4);
 		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
 		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
 
@@ -349,9 +388,12 @@ public class ReferencesTable<T extends EObject> {
 
 			@SuppressWarnings("unchecked")
 			public void mouseDoubleClick(MouseEvent e) {
-				if (table.getSelection()[0].getData() instanceof EObject) {
+				if (table.getSelection() != null
+						&& table.getSelectionCount() != 0
+						&& table.getSelection()[0].getData() instanceof EObject) {
 					// Navigate
-					referencesTableListener.navigateTo((T)table.getSelection()[0].getData());
+					referencesTableListener
+							.navigateTo((T) table.getSelection()[0].getData());
 				}
 			}
 
@@ -373,8 +415,79 @@ public class ReferencesTable<T extends EObject> {
 		composite.setLayoutData(layoutData);
 	}
 
+	public void setUpperBound(int value) {
+		if (value < 0)
+			this.upperBound = -1;
+		else
+			this.upperBound = value;
+	}
+
+	public int getUpperBound() {
+		return this.upperBound;
+	}
+
+	public void setLowerBound(int value) {
+		if (value <= 0)
+			this.lowerBound = 0;
+		else
+			this.lowerBound = value;
+	}
+
+	public int getLowerBound() {
+		return this.lowerBound;
+	}
+
+	/**
+	 * Sets the given ID to the EMFComboViewer
+	 * @param id the ID to give
+	 */
+	public void setID(Object id) {
+		EditingUtils.setID(table, id);
+		EditingUtils.setID(addButton, id);
+		EditingUtils.setID(removeButton, id);
+		EditingUtils.setID(upButton, id);
+		EditingUtils.setID(downButton, id);
+	}
+
+	/**
+	 * Defines the type of reference table
+	 * @param id the type to give
+	 */
+	public void setEEFType(String type) {
+		EditingUtils.setEEFtype(table, type + "::field");
+		EditingUtils.setEEFtype(addButton, type + "::addbutton");
+		EditingUtils.setEEFtype(removeButton, type + "::removebutton");
+		EditingUtils.setEEFtype(upButton, type + "::upbutton");
+		EditingUtils.setEEFtype(downButton, type + "::downbutton");
+	}
+
+	/**
+	 * @return the ID of the EObjectFlatComboViewer
+	 */
+	public Object getID() {
+		return EditingUtils.getID(table);
+	}
+
+	
 	public void refresh() {
 		tableViewer.refresh();
+		computeAddButtonStatus();
+		computeRemoveButtonStatus();
+	}
+
+	private void computeRemoveButtonStatus() {
+		if (listElement.size() > this.lowerBound)
+			removeButton.setEnabled(true);
+		else
+			removeButton.setEnabled(false);
+
+	}
+
+	private void computeAddButtonStatus() {
+		if (this.upperBound < 0 || listElement.size() < this.upperBound)
+			addButton.setEnabled(true);
+		else
+			addButton.setEnabled(false);
 	}
 
 	/**
@@ -411,7 +524,6 @@ public class ReferencesTable<T extends EObject> {
 	 * @return the label provider or <code>null</code>
 	 */
 	public IContentProvider getContentProvider() {
-
 		return new TableContentProvider();
 
 	}
@@ -487,7 +599,8 @@ public class ReferencesTable<T extends EObject> {
 
 			for (int i = (tableItems.length - 1); i >= 0; i--) {
 				// Remove
-				referencesTableListener.handleRemove((T)tableItems[i].getData());
+				referencesTableListener.handleRemove((T) tableItems[i]
+						.getData());
 			}
 		}
 	}
@@ -528,7 +641,8 @@ public class ReferencesTable<T extends EObject> {
 				int newIndex = listElement.indexOf(tableItems[i].getData()) - 1;
 				if (newIndex >= 0 && newIndex < listElement.size()) {
 					// Move
-					referencesTableListener.handleMove((T)tableItems[i].getData(), newIndex + 1, newIndex);
+					referencesTableListener.handleMove((T) tableItems[i]
+							.getData(), newIndex + 1, newIndex);
 				}
 			}
 
@@ -568,7 +682,8 @@ public class ReferencesTable<T extends EObject> {
 				int newIndex = listElement.indexOf(tableItems[i].getData()) + 1;
 				if (newIndex >= 0 && newIndex < listElement.size()) {
 					// Move
-					referencesTableListener.handleMove((T)tableItems[i].getData(), newIndex - 1, newIndex);
+					referencesTableListener.handleMove((T) tableItems[i]
+							.getData(), newIndex - 1, newIndex);
 				}
 			}
 		}
@@ -585,7 +700,7 @@ public class ReferencesTable<T extends EObject> {
 			if (table.getSelection().length > 0) {
 				TableItem item = table.getSelection()[0];
 				// Edit
-				referencesTableListener.handleEdit((T)item.getData());
+				referencesTableListener.handleEdit((T) item.getData());
 			}
 		}
 	}
@@ -604,6 +719,14 @@ public class ReferencesTable<T extends EObject> {
 			downButton.removeMouseListener(downButtonlistener);
 		if (table != null && !table.isDisposed())
 			table.removeListener(SWT.MouseDoubleClick, tableListener);
+		if (filters != null) {
+			filters.clear();
+			filters = null;
+		}
+		if (bpFilters != null) {
+			bpFilters.clear();
+			bpFilters = null;
+		}
 	}
 
 	/**
@@ -625,6 +748,14 @@ public class ReferencesTable<T extends EObject> {
 		initLabelProvider();
 		tableViewer.setContentProvider(getContentProvider());
 		tableViewer.setInput(listElement);
+		for (ViewerFilter filter : filters) {
+			this.tableViewer.addFilter(filter);
+		}
+		for (ViewerFilter filter : bpFilters) {
+			this.tableViewer.addFilter(filter);
+		}
+		computeAddButtonStatus();
+		computeRemoveButtonStatus();
 	}
 
 	/**
@@ -656,6 +787,88 @@ public class ReferencesTable<T extends EObject> {
 		void handleEdit(T element);
 
 		void navigateTo(T element);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @seeorg.eclipse.emf.eef.runtime.ui.widgets.IPropertiesFilteredWidget#
+	 * addBusinessRuleFilter(org.eclipse. jface.viewers.ViewerFilter)
+	 */
+	public void addBusinessRuleFilter(ViewerFilter filter) {
+		this.bpFilters.add(filter);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.emf.eef.runtime.ui.widgets.IPropertiesFilteredWidget#addFilter
+	 * (org.eclipse.jface.viewers .ViewerFilter)
+	 */
+	public void addFilter(ViewerFilter filter) {
+		this.filters.add(filter);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @seeorg.eclipse.emf.eef.runtime.ui.widgets.IPropertiesFilteredWidget#
+	 * removeBusinessRuleFilter(org.eclipse .jface.viewers.ViewerFilter)
+	 */
+	public void removeBusinessRuleFilter(ViewerFilter filter) {
+		this.bpFilters.remove(filter);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.emf.eef.runtime.ui.widgets.IPropertiesFilteredWidget#removeFilter
+	 * (org.eclipse.jface.viewers .ViewerFilter)
+	 */
+	public void removeFilter(ViewerFilter filter) {
+		this.filters.remove(filter);
+	}
+
+	protected void refreshFilters() {
+	}
+
+	/**
+	 * Sets the tables readonly or not
+	 * 
+	 * @param enabled
+	 *            to set the table readonly or not
+	 */
+	public void setEnabled(boolean enabled) {
+		addButton.setEnabled(enabled);
+		downButton.setEnabled(enabled);
+		removeButton.setEnabled(enabled);
+		table.setEnabled(enabled);
+		upButton.setEnabled(enabled);
+	}
+
+	/**
+	 * Sets the tooltip text for the viewer
+	 * 
+	 * @param tooltip
+	 *            the tooltip text
+	 */
+	public void setToolTipText(String tooltip) {
+		addButton.setToolTipText(tooltip);
+		downButton.setToolTipText(tooltip);
+		removeButton.setToolTipText(tooltip);
+		table.setToolTipText(tooltip);
+		upButton.setToolTipText(tooltip);
+	}
+
+	/**
+	 * Returns the table.
+	 * 
+	 * @return the table.
+	 */
+	public Table getTable() {
+		return table;
 	}
 
 }

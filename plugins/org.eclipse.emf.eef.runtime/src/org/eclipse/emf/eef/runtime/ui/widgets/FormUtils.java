@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+* Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -30,7 +30,7 @@ public class FormUtils {
 	/**
 	 * Image registry key for help image (value <code>"dialog_help_image"</code>).
 	 */
-	public static final String DLG_IMG_HELP = "dialog_help_image"; //$NON-NLS-1$
+	public static final String DLG_IMG_HELP = "dialog_help_image";  //$NON-NLS-1$
 
 	/**
 	 * Create a label describing a properties of the view
@@ -61,18 +61,18 @@ public class FormUtils {
 	public static Control createHelpButton(FormToolkit widgetFactory, Composite parent, String helpMessage,
 			String helpID) {
 		Image image = JFaceResources.getImage(DLG_IMG_HELP);
-		if (helpID != null && !"".equals(helpID)) {
+		if (helpID != null && !"".equals(helpID)) { //$NON-NLS-1$
 			ToolBar result = new ToolBar(parent, SWT.FLAT | SWT.NO_FOCUS);
 			((GridLayout)parent.getLayout()).numColumns++;
 			result.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
 			ToolItem item = new ToolItem(result, SWT.NONE);
 			item.setImage(image);
-			if (helpMessage != null && !"".equals(helpMessage))
+			if (helpMessage != null && !"".equals(helpMessage)) //$NON-NLS-1$
 				item.setToolTipText(helpMessage);
 			return result;
 		} else {
-			Label result = widgetFactory.createLabel(parent, "");
-			if (helpMessage != null && !"".equals(helpMessage)) {
+			Label result = widgetFactory.createLabel(parent, ""); //$NON-NLS-1$
+			if (helpMessage != null && !"".equals(helpMessage)) { //$NON-NLS-1$
 				result.setImage(image);
 				result.setToolTipText(helpMessage);
 			}

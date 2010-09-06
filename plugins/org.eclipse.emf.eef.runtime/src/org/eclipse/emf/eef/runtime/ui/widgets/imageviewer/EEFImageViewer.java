@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -76,6 +77,7 @@ public class EEFImageViewer extends Composite implements ISelectionProvider {
 			}
 			
 		});
+		EditingUtils.setEEFtype(viewerCanvas, "eef::ImageViewer");
 	}
 	
 	/**
@@ -86,6 +88,21 @@ public class EEFImageViewer extends Composite implements ISelectionProvider {
 		updateImage(imagePath);
 	}
 	
+	/**
+	 * Sets the given ID to the EMFComboViewer
+	 * @param id the ID to give
+	 */
+	public void setID(Object id) {
+		EditingUtils.setID(viewerCanvas, id);
+	}
+
+	/**
+	 * @return the ID of the EObjectFlatComboViewer
+	 */
+	public Object getID() {
+		return EditingUtils.getID(viewerCanvas);
+	}
+
 	/**
 	 * 
 	 */

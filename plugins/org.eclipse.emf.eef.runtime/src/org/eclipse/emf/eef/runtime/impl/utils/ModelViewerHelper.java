@@ -37,7 +37,7 @@ public class ModelViewerHelper {
 		return lastSelection;
 	}
 
-	public static final String NAME = EEFRuntimeMessages.ModelViewerHelper_name_feature;
+	public static final String NAME = EEFRuntimeMessages.ModelViewerHelper_name_feature; 
 
 	public static String getName(Object element) {
 		if (element instanceof EObject) {
@@ -52,7 +52,7 @@ public class ModelViewerHelper {
 			}
 			if (eobj instanceof EClass) {
 				String type = ((EClass)eobj).getName();
-				if (type != null && type != "") { //$NON-NLS-1$
+				if (type != null && type != "") {  //$NON-NLS-1$
 					return type;
 				}
 			}
@@ -68,7 +68,7 @@ public class ModelViewerHelper {
 	 */
 	public static void setSelectedElement(TreeViewer treeViewer, IResource resource) {
 		// expand to and select the specified container
-		List<IContainer> itemsToExpand = new ArrayList<IContainer>();
+		List itemsToExpand = new ArrayList();
 		IContainer parent = resource.getParent();
 		while (parent != null) {
 			itemsToExpand.add(0, parent);

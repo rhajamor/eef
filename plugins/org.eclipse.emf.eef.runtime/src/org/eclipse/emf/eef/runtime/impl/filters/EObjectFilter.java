@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2008, 2009 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.eef.runtime.ui.utils.EcoreTool;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
@@ -23,10 +23,11 @@ import org.eclipse.jface.viewers.ViewerFilter;
  * <Eclass> type.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  */
 public class EObjectFilter extends ViewerFilter {
 
-	private EClass eClassToFilter;
+	protected EClass eClassToFilter;
 
 	/**
 	 * @param eClassToFilter
@@ -42,12 +43,13 @@ public class EObjectFilter extends ViewerFilter {
 		if (element instanceof Resource) {
 			TreeIterator<EObject> iter = (((Resource)element)).getAllContents();
 			while (iter.hasNext()) {
-				return EcoreTool.containsInstanceOfEClass(iter.next(), eClassToFilter);
+				if (EEFUtils.containsInstanceOfEClass(iter.next(), eClassToFilter))
+					return true;
 			}
 		}
 		if (element instanceof EObject) {
 			EObject eObject = (EObject)element;
-			return EcoreTool.containsInstanceOfEClass(eObject, eClassToFilter);
+			return EEFUtils.containsInstanceOfEClass(eObject, eClassToFilter);
 		}
 		return false;
 	}

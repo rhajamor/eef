@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.impl.utils.ModelViewerHelper;
 import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
-import org.eclipse.emf.eef.runtime.ui.utils.EcoreTool;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
@@ -295,7 +295,7 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 							// Check type matching
 							EObject eObject = (EObject)o;
 							Button okButton = getButton(IDialogConstants.OK_ID);
-							if (EcoreTool.isInstanceOfEClass(eObject, restrictToEClass)) {
+							if (EEFUtils.isInstanceOfEClass(eObject, restrictToEClass)) {
 								selection = structuredSelection;
 								if (okButton != null) {
 									okButton.setEnabled(true);
@@ -319,7 +319,7 @@ public abstract class TabElementTreeSelectionDialog<T extends EObject> extends D
 				if (selection != null && !selection.isEmpty()) {
 					Object o = selection.getFirstElement();
 					if (o instanceof EObject) {
-						if (EcoreTool.isInstanceOfEClass((EObject)o, restrictToEClass)) {
+						if (EEFUtils.isInstanceOfEClass((EObject)o, restrictToEClass)) {
 							okPressed();
 						}
 					}

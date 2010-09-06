@@ -17,26 +17,21 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 
 /**
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
+ *
  */
 public class ValidationUtils {
-
+	
 	/**
 	 * Append a new validation failure to an existing validation diagnostic
-	 * 
-	 * @param diagnostic
-	 *            the original diagnostic
-	 * @param validatedObject
-	 *            the object in failure
-	 * @param severity
-	 *            the severity of the failure
-	 * @param errorMessage
-	 *            the associated error message
+	 * @param diagnostic the original diagnostic
+	 * @param validatedObject the object in failure
+	 * @param severity the severity of the failure
+	 * @param errorMessage the associated error message
 	 */
-	public static void appendDiagnostic(Diagnostic diagnostic, EObject validatedObject, int severity,
-			String errorMessage) {
-		Diagnostic newD = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, severity, errorMessage,
-				new Object[] {validatedObject});
+	public static void appendDiagnostic(Diagnostic diagnostic, EObject validatedObject, int severity, String errorMessage) {
+		Diagnostic newD = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, severity, errorMessage, new Object [] { validatedObject });
 		((BasicDiagnostic)diagnostic).merge(newD);
 	}
+
 
 }

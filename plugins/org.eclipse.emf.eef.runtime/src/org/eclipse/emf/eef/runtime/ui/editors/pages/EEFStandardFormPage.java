@@ -11,15 +11,15 @@
 package org.eclipse.emf.eef.runtime.ui.editors.pages;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.impl.providers.RegistryPropertiesEditionProvider;
 import org.eclipse.emf.eef.runtime.ui.layout.EEFFormLayoutFactory;
 import org.eclipse.emf.eef.runtime.ui.viewers.PropertiesEditionContentProvider;
 import org.eclipse.emf.eef.runtime.ui.viewers.PropertiesEditionViewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
@@ -40,7 +40,27 @@ public class EEFStandardFormPage extends FormPage {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 */
-	protected EditingDomain editingDomain;
+	protected AdapterFactoryEditingDomain editingDomain;
+
+	/**
+	 * This is the one adapter factory used for providing views of the model.
+	 */
+	protected ComposedAdapterFactory adapterFactory;
+
+	/**
+	 * The edited eObject
+	 */
+	protected EObject eObject;
+
+	/**
+	 * The associated controler
+	 */
+	protected IPropertiesEditionComponent propertiesEditionComponent;
+
+	/**
+	 * The resource set where to edit the eObject
+	 */
+	protected ResourceSet allResources;
 
 	/**
 	 * The form containing this page
@@ -63,9 +83,10 @@ public class EEFStandardFormPage extends FormPage {
 	 *            the form editor in which this page will be included
 	 */
 	public EEFStandardFormPage(FormEditor editor, String pageTitle,
-			EditingDomain editingDomain) {
+			AdapterFactoryEditingDomain editingDomain, ComposedAdapterFactory adapterFactory) {
 		super(editor, PAGE_ID, pageTitle); 
 		this.editingDomain = editingDomain;
+		this.adapterFactory = adapterFactory;
 	}
 
 	/**
@@ -104,23 +125,5 @@ public class EEFStandardFormPage extends FormPage {
 	 */
 	public void setInput(EObject newEObject) {
 		viewer.setInput(newEObject);
-	}
-	
-	/**
-	 * Sets the image to be rendered to the left of the title.
-	 * @param image
-	 *            the title image
-	 */
-	public void setImage(Image image) {
-		if (image != null && form != null)
-			form.setImage(image);
-	}
-	
-	/**
-	 * Add the given filter to the page viewer
-	 * @param filter the page viewer filter
-	 */
-	public void addFilter(ViewerFilter filter) {
-		viewer.addFilter(filter);
 	}
 }

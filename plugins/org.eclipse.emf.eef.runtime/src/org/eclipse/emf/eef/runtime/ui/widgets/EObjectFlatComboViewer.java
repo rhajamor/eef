@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -52,8 +54,10 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 
 	protected Object input;
 
-	public EObjectFlatComboViewer(Composite parent, int style, final boolean nullable) {
-		super(parent, style);
+	private ButtonsModeEnum button_mode = ButtonsModeEnum.BROWSE;
+
+	public EObjectFlatComboViewer(Composite parent, final boolean nullable) {
+		super(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		this.setLayout(layout);
@@ -61,20 +65,20 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 		GridData selectionData = new GridData(GridData.FILL_HORIZONTAL);
 		selection.setLayoutData(selectionData);
 		selection.setEditable(false);
+		EditingUtils.setEEFtype(selection, "eef::EObjectFlatComboViewer::field");
 		editer = new Button(this, SWT.PUSH);
-		editer.setText("..."); //$NON-NLS-1$
+		editer.setText(EEFRuntimeUIMessages.EObjectFlatComboViewer_add_button);  //$NON-NLS-1$
 
 		filters = new ArrayList<ViewerFilter>();
 		bpFilters = new ArrayList<ViewerFilter>();
 		listeners = new ArrayList<ISelectionChangedListener>();
 
-		// ADD EXTENSION: CNO
 		editer.addSelectionListener(getSelectionAdapter(nullable));
+		EditingUtils.setEEFtype(editer, "eef::EObjectFlatComboViewer::editbutton");
 
 	}
 
 	/**
-	 * @author cnotot
 	 * @param nullable
 	 * @return
 	 */
@@ -88,32 +92,36 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				EMFModelViewerDialog dialog = new EMFModelViewerDialog(labelProvider, input, filters
-						.isEmpty() ? null : filters, bpFilters.isEmpty() ? null : bpFilters, nullable, false) {
+				switch (button_mode) {
+					case BROWSE:
+						EMFModelViewerDialog dialog = new EMFModelViewerDialog(labelProvider, input, filters
+								.isEmpty() ? null : filters, bpFilters.isEmpty() ? null : bpFilters,
+								nullable, false) {
 
-					public void process(IStructuredSelection selection) {
-						if (selection == null) {
-							selectedElement = null;
-							initComponent();
-							selectionChanged(new StructuredSelection(Collections.EMPTY_LIST));
-						} else {
-							selectedElement = selection.getFirstElement();
-							initComponent();
-							if (selectedElement != null)
-								selectionChanged(new StructuredSelection(selectedElement));
-							else
-								selectionChanged(new StructuredSelection(Collections.EMPTY_LIST));
-						}
-					}
-				};
-				dialog.open();
+							public void process(IStructuredSelection selection) {
+								if (selection == null) {
+									selectedElement = null;
+									initComponent();
+									selectionChanged(new StructuredSelection(Collections.EMPTY_LIST));
+								} else {
+									selectedElement = selection.getFirstElement();
+									initComponent();
+									if (selectedElement != null)
+										selectionChanged(new StructuredSelection(selectedElement));
+									else
+										selectionChanged(new StructuredSelection(Collections.EMPTY_LIST));
+								}
+							}
+						};
+						dialog.open();
+						break;
+
+					default:
+						break;
+				}
 			}
 		};
 
-	}
-
-	public EObjectFlatComboViewer(Composite parent, boolean nullable) {
-		this(parent, SWT.NONE, nullable);
 	}
 
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
@@ -138,8 +146,24 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 		if (this.input != input) {
 			this.input = input;
 			this.selectedElement = null;
-			this.selection.setText(""); //$NON-NLS-1$
+			this.selection.setText("");  //$NON-NLS-1$
 		}
+	}
+
+	/**
+	 * Sets the given ID to the EObjectFlatComboViewer
+	 * @param id the id of the widget
+	 */
+	public void setID(Object id) {
+		EditingUtils.setID(selection, id);
+		EditingUtils.setID(editer, id);
+	}
+
+	/**
+	 * @return the ID of the EObjectFlatComboViewer
+	 */
+	public Object getID() {
+		return EditingUtils.getID(selection);
 	}
 
 	public void setSelection(ISelection selection) {
@@ -169,7 +193,7 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 			else
 				selection.setText(selectedElement.toString());
 		} else
-			selection.setText(""); //$NON-NLS-1$
+			selection.setText("");  //$NON-NLS-1$
 	}
 
 	protected void selectionChanged(ISelection selection) {
@@ -188,4 +212,7 @@ public class EObjectFlatComboViewer extends Composite implements ISelectionProvi
 		filters.remove(filter);
 	}
 
+	public void setButtonMode(ButtonsModeEnum button_mode) {
+		this.button_mode = button_mode;
+	}
 }

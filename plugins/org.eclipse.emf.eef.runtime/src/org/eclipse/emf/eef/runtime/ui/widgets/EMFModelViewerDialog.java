@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.impl.filters.business.BusinessViewerFilter;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.impl.utils.ModelViewerHelper;
 import org.eclipse.emf.eef.runtime.impl.utils.PatternTool;
 import org.eclipse.emf.eef.runtime.impl.utils.StringTools;
 import org.eclipse.emf.eef.runtime.ui.comparator.EMFModelViewerComparator;
 import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
-import org.eclipse.emf.eef.runtime.ui.utils.MessagesTool;
-import org.eclipse.emf.eef.runtime.ui.utils.ScreenTool;
+import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -70,7 +70,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 
 	private List<ViewerFilter> filters;
 
-	private List<ViewerFilter> bpFilters;
+	private List<ViewerFilter> brFilters;
 
 	private Button filteredContent;
 
@@ -105,36 +105,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 		super(Display.getDefault().getActiveShell());
 		this.labelProviderElement = labelProvider;
 		this.filters = filters;
-		this.bpFilters = bpFilters;
-		this.input = input;
-		this.nullable = nullable;
-		this.isMulti = isMulti;
-		setShellStyle(SWT.CLOSE | SWT.TITLE | SWT.BORDER | SWT.APPLICATION_MODAL | SWT.RESIZE);
-	}
-
-	/**
-	 * Construtctor with unique static ViewerFilter.
-	 * 
-	 * @param labelProvider
-	 *            the label provider
-	 * @param input
-	 *            the contents
-	 * @param filter
-	 *            the content filter
-	 * @param bpFilters
-	 *            the business filters
-	 * @param nullable
-	 *            if the viewer can contains empty (null) value
-	 * @param isMulti
-	 *            if the selection can be unique or not
-	 */
-	public EMFModelViewerDialog(ILabelProvider labelProvider, Object input, ViewerFilter filter,
-			List<ViewerFilter> bpFilters, boolean nullable, boolean isMulti) {
-		super(Display.getDefault().getActiveShell());
-		this.labelProviderElement = labelProvider;
-		this.filters = new ArrayList<ViewerFilter>();
-		this.filters.add(filter);
-		this.bpFilters = bpFilters;
+		this.brFilters = bpFilters;
 		this.input = input;
 		this.nullable = nullable;
 		this.isMulti = isMulti;
@@ -184,7 +155,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 		if (input instanceof Collection) {
 			elements.setContentProvider(new ArrayContentProvider());
 		} else {
-			elements.setContentProvider(new EMFListContentProvider());
+			elements.setContentProvider(new EMFListContentProvider(nullable));
 		}
 		if (labelProvider == null) {
 			this.labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -196,7 +167,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 							String result = ((EObject)object).eClass().getName();
 							if (result == null || result == StringTools.EMPTY_STRING)
 								return StringTools.EMPTY_STRING;
-							if (result.equals("EClass")) { //$NON-NLS-1$
+							if (result.equals("EClass")) {  //$NON-NLS-1$
 								return getColumnText(object, 1);
 							}
 							return result;
@@ -224,28 +195,28 @@ public abstract class EMFModelViewerDialog extends Dialog {
 
 		});
 
-		checkButtons = new ArrayList<Button>();
 		if (filters != null) {
 			for (ViewerFilter filter : filters) {
 				elements.addFilter(filter);
 			}
 		}
 		// business rules
-		if (bpFilters != null && !bpFilters.isEmpty()) {
-			String currentModel = MessagesTool.getString("EMFModelViewerDialog.currentModel");
-			String referencedModels = MessagesTool.getString("EMFModelViewerDialog.referencedModels");
-			String differentContainer = MessagesTool.getString("EMFModelViewerDialog.differentContainer");
-			for (int i = 0; i < bpFilters.size(); i++) {
+		checkButtons = new ArrayList<Button>();
+		if (brFilters != null && !brFilters.isEmpty()) {
+			String currentModel = EEFRuntimeUIMessages.EMFModelViewerDialog_current_model_filter_title;
+			String referencedModels = EEFRuntimeUIMessages.EMFModelViewerDialog_referenced_models_filter_title;
+			String differentContainer = EEFRuntimeUIMessages.EMFModelViewerDialog_different_container_filter_title;
+			for (int i = 0; i < brFilters.size(); i++) {
 				String filterName = null;
-				if (bpFilters.get(i) instanceof BusinessViewerFilter) {
-					final BusinessViewerFilter viewerFilter = (BusinessViewerFilter)bpFilters.get(i);
+				if (brFilters.get(i) instanceof BusinessViewerFilter) {
+					final BusinessViewerFilter viewerFilter = (BusinessViewerFilter)brFilters.get(i);
 
 					filteredContent = new Button(container, SWT.CHECK);
 					filterName = viewerFilter.getName();
 					if (filterName != null) {
 						filteredContent.setText(filterName);
 					} else {
-						filteredContent.setText("Filter name"); //$NON-NLS-1$
+						filteredContent.setText(EEFRuntimeUIMessages.EMFModelViewerDialog_filter_name); 
 					}
 
 					filteredContent.setData(viewerFilter);
@@ -314,8 +285,8 @@ public abstract class EMFModelViewerDialog extends Dialog {
 	 */
 	protected void buildColumns(Table table) {
 
-		addColumn(table, 0, "Type"); //$NON-NLS-1$
-		addColumn(table, 1, "Nom"); //$NON-NLS-1$
+		addColumn(table, 0, EEFRuntimeUIMessages.EMFModelViewerDialog_type_column_title); 
+		addColumn(table, 1, EEFRuntimeUIMessages.EMFModelViewerDialog_name_column_title); 
 
 	}
 
@@ -399,17 +370,17 @@ public abstract class EMFModelViewerDialog extends Dialog {
 	protected Point getInitialSize() {
 		Point point = super.getInitialSize();
 		int width = point.x < 800 ? 800 : point.x;
-		if (width > ScreenTool.getWidth())
-			return new Point(ScreenTool.getWidth(), ScreenTool.getHeight());
-		return new Point(width, ScreenTool.getHeight());
+		if (width > SWTUtils.getWidth())
+			return new Point(SWTUtils.getWidth(), SWTUtils.getHeight());
+		return new Point(width, SWTUtils.getHeight());
 	}
 
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		if (isMulti)
-			shell.setText(MessagesTool.getString("EMFModelViewerDialog.shell.text.multi"));
+			shell.setText(EEFRuntimeUIMessages.EMFModelViewerDialog_multi_selection_title);
 		else
-			shell.setText(MessagesTool.getString("EMFModelViewerDialog.shell.text.multi.not"));
+			shell.setText(EEFRuntimeUIMessages.EMFModelViewerDialog_single_element_title);
 	}
 
 	public abstract void process(IStructuredSelection selection);
@@ -417,13 +388,21 @@ public abstract class EMFModelViewerDialog extends Dialog {
 	protected void patternChanged(final Text text) {
 		elements.addFilter(new ViewerFilter() {
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				String libelle = null;
-				if (labelProviderElement != null) {
-					libelle = formatNomFWithLabelProvider(element);
-				} else {
-					libelle = ModelViewerHelper.getName(element);
+				if (text.getText() == null || text.getText().equals("")) //$NON-NLS-1$
+					return true;
+				else {
+					String libelle = null;
+					if (labelProviderElement != null) {
+						libelle = formatNomFWithLabelProvider(element);
+					} else {
+						libelle = ModelViewerHelper.getName(element);
+					}
+					if (EEFUtils.isBundleLoaded(EEFUtils.JDT_CORE_SYMBOLIC_NAME))
+						return PatternTool.getPattern(libelle, text.getText());
+					else
+						return text.getText() == null || text.getText().equals("") //$NON-NLS-1$
+								|| libelle.startsWith(text.getText());
 				}
-				return PatternTool.getPattern(libelle, text.getText());
 			}
 		});
 		for (int i = 0; i < elements.getTable().getColumns().length; i++) {
@@ -440,12 +419,12 @@ public abstract class EMFModelViewerDialog extends Dialog {
 			return StringTools.EMPTY_STRING;
 		return result;
 		// StringBuffer buf = new StringBuffer();
-		//		int bracket = result.indexOf("("); //$NON-NLS-1$
+		//		int bracket = result.indexOf("("); 
 		// if (bracket != -1) {
 		// buf.append(result.substring(bracket, result.length()));
 		// result = result.substring(0, bracket);
 		// }
-		//		int space = result.lastIndexOf(" "); //$NON-NLS-1$
+		//		int space = result.lastIndexOf(" "); 
 		// if (space != -1)
 		// buf.insert(0, result.substring(space + 1));
 		// if (space == -1 && bracket == -1)

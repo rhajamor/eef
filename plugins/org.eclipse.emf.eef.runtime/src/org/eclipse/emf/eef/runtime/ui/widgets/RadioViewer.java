@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -25,11 +26,11 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * A viewer composed of button to handles EEnum as Radio. It will display a radio for each element of the
@@ -56,7 +57,7 @@ public class RadioViewer extends Composite implements ISelectionProvider {
 		buttons = new HashMap<Object, Button>();
 		this.setLayout(new GridLayout());
 		listeners = new ArrayList<ISelectionChangedListener>();
-		
+		EditingUtils.setEEFtype(this, "eef::RadioViewer");
 		radioSelectionChangedListener = new RadioSelectionChangedListener();
 	}
 
@@ -69,6 +70,9 @@ public class RadioViewer extends Composite implements ISelectionProvider {
 		b.setLayoutData(data);
 		b.addSelectionListener(radioSelectionChangedListener);
 		buttons.put(value, b);
+		EditingUtils.setEEFtype(b, "eef::RadioViewer::radio");
+		if (EditingUtils.getID(this) != null)
+			EditingUtils.setID(b, EditingUtils.getID(this));
 	}
 
 	/**
@@ -127,6 +131,25 @@ public class RadioViewer extends Composite implements ISelectionProvider {
 		layout();
 	}
 
+	/**
+	 * Sets the given ID to the EObjectFlatComboViewer
+	 * @param id the id of the widget
+	 */
+	public void setID(Object id) {
+		EditingUtils.setID(this, id);
+		for (Control control : getChildren()) {
+			EditingUtils.setID(control, id);			
+		}
+	}
+
+	/**
+	 * @return the ID of the EObjectFlatComboViewer
+	 */
+	public Object getID() {
+		return EditingUtils.getID(this);
+	}
+
+	
 	/**
 	 * Sets the tooltip text for the viewer
 	 * 

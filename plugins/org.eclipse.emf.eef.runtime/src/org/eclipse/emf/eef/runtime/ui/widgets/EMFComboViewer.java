@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -13,6 +13,7 @@ package org.eclipse.emf.eef.runtime.ui.widgets;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.jface.viewers.AbstractListViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,6 +24,7 @@ import org.eclipse.swt.widgets.Control;
 
 /**
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
+ * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  */
 public class EMFComboViewer extends AbstractListViewer {
 
@@ -68,6 +70,7 @@ public class EMFComboViewer extends AbstractListViewer {
 	public EMFComboViewer(Combo list) {
 		this.combo = list;
 		hookControl(list);
+		EditingUtils.setEEFtype(combo, "eef::EMFComboViewer");
 	}
 
 	protected void listAdd(String string, int index) {
@@ -123,10 +126,25 @@ public class EMFComboViewer extends AbstractListViewer {
 	public void reveal(Object element) {
 		return;
 	}
+	
+	/**
+	 * Sets the given ID to the EMFComboViewer
+	 * @param id the ID to give
+	 */
+	public void setID(Object id) {
+		EditingUtils.setID(combo, id);
+	}
+
+	/**
+	 * @return the ID of the EObjectFlatComboViewer
+	 */
+	public Object getID() {
+		return EditingUtils.getID(combo);
+	}
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.jface.viewers.AbstractListViewer#listSetSelection(int[])
 	 */
 	protected void listSetSelection(int[] ixs) {
@@ -135,10 +153,9 @@ public class EMFComboViewer extends AbstractListViewer {
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.jface.viewers.AbstractListViewer#listDeselectAll()
 	 */
 	protected void listDeselectAll() {
@@ -148,7 +165,7 @@ public class EMFComboViewer extends AbstractListViewer {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.jface.viewers.AbstractListViewer#listShowSelection()
 	 */
 	protected void listShowSelection() {
@@ -157,7 +174,7 @@ public class EMFComboViewer extends AbstractListViewer {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.jface.viewers.AbstractListViewer#setSelectionToWidget(java.util.List, boolean)
 	 */
 	protected void setSelectionToWidget(List in, boolean reveal) {
@@ -165,15 +182,10 @@ public class EMFComboViewer extends AbstractListViewer {
 			listDeselectAll();
 		} else {
 			Object elem = in.get(0);
-			// For Eclipse 3.2
-			// if (!(elem instanceof AbstractEnumerator)) {
-			// listDeselectAll();
-			// } else {
-			// AbstractEnumerator toSelect = (AbstractEnumerator)elem;
 			int[] ixs = new int[1];
 			ixs[0] = -1;
 			String[] literals = getCombo().getItems();
-			String literalToSelect = "";
+			String literalToSelect = ""; //$NON-NLS-1$
 			// TODO : find a better way to differenciate enum and eObject
 			if (elem instanceof EObject && getLabelProvider() instanceof ILabelProvider) {
 				literalToSelect = ((ILabelProvider)getLabelProvider()).getText(elem);
@@ -192,7 +204,6 @@ public class EMFComboViewer extends AbstractListViewer {
 			if (reveal) {
 				listShowSelection();
 			}
-			// }
 		}
 	}
 
@@ -210,6 +221,26 @@ public class EMFComboViewer extends AbstractListViewer {
 		updating = true;
 		setSelection(selection);
 		updating = false;
+	}
+	
+	/**
+	 * Sets the viewer readonly or not
+	 * 
+	 * @param enabled
+	 *            to set the viewer readonly or not
+	 */
+	public void setEnabled(boolean enabled) {
+		combo.setEnabled(enabled);
+	}
+
+	/**
+	 * Sets the tooltip text for the viewer
+	 * 
+	 * @param tooltip
+	 *            the tooltip text
+	 */
+	public void setToolTipText(String tooltip) {
+		combo.setToolTipText(tooltip);
 	}
 
 }
