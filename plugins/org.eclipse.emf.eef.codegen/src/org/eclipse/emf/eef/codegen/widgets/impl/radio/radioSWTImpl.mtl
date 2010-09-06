@@ -10,13 +10,13 @@
  *     Obeo - initial API and implementation
  *******************************************************************************
  /]
-[module radioFormImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetFormImpl/]
+[module radioSWTImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetSWTImpl/]
 
 [import common /]
 [import naming /]
 [import viewCommon /]
-[comment I don't see a better way to get specific form services for the moment /]
-[import widgetFormImpl /]
+[comment I don't see a better way to get specific swt services for the moment /]
+[import widgetSWTImpl /]
 
 [template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports ? (widget.name = 'Radio')]
 import org.eclipse.emf.common.util.Enumerator;
@@ -26,7 +26,7 @@ import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 [/template]
 
 [template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'Radio')]
-protected RadioViewer [editor.name.toJavaIdentifier()/]RadioViewer;
+	protected RadioViewer [editor.name.toJavaIdentifier()/]RadioViewer;
 [/template]
 
 [template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'Radio')]
@@ -46,15 +46,8 @@ protected RadioViewer [editor.name.toJavaIdentifier()/]RadioViewer;
 		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
 		[editor.name.toJavaIdentifier()/]Data.horizontalSpan = 2;
 		[editor.name.toJavaIdentifier()/]RadioViewer.setLayoutData([editor.name.toJavaIdentifier()/]Data);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].FORM_KIND), null);
-		[editor.name.toJavaIdentifier()/]RadioViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			
-			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, ((EEnumLiteral)((StructuredSelection)event.getSelection()).getFirstElement()).getInstance()));
-			}
-		});
 		[editor.name.toJavaIdentifier()/]RadioViewer.setID([editor.editorID()/]);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null);
 	}
 [/template]
 

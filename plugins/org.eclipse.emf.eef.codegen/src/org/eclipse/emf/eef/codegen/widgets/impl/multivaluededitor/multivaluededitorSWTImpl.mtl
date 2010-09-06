@@ -71,6 +71,8 @@ import org.eclipse.swt.widgets.Text;
 		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
 		[editor.name.toJavaIdentifier()/]Data.horizontalSpan = 2;
 		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		EditingUtils.setID([editor.name.toJavaIdentifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype([editor.name.toJavaIdentifier()/], "eef::[editor.representation.name/]::field"); //$NON-NLS-1$
 		edit[editor.name.toJavaClassifier()/] = new Button(parent, SWT.NONE);
 		edit[editor.name.toJavaClassifier()/].setText([editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/]);
 		GridData edit[editor.name.toJavaClassifier()/]Data = new GridData();
@@ -98,6 +100,8 @@ import org.eclipse.swt.widgets.Text;
 				}
 			}
 		});
+		EditingUtils.setID(edit[editor.name.toJavaClassifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype(edit[editor.name.toJavaClassifier()/], "eef::[editor.representation.name/]::browsebutton"); //$NON-NLS-1$
 	}
 [/template]
 

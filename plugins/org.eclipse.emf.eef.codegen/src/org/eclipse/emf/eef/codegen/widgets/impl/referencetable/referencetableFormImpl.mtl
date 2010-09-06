@@ -71,6 +71,8 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		[editor.name.toJavaIdentifier()/]Data.minimumHeight = 120;
 		[editor.name.toJavaIdentifier()/]Data.heightHint = 120;
 		[editor.name.toJavaIdentifier()/].getTable().setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		EditingUtils.setID([editor.name.toJavaIdentifier()/].getTable(), [editor.editorID()/]);
+		EditingUtils.setEEFtype([editor.name.toJavaIdentifier()/].getTable(), "eef::[editor.representation.name/]::field"); //$NON-NLS-1$		
 		create[editor.name.toJavaClassifier()/]ControlPanel(parent, widgetFactory);
 	}
 
@@ -93,7 +95,7 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		table.setLinesVisible(true);
 		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 		[editor.defaultColumnInitialisation()/]
-		[else]
+		[else]			
 		// [protected ('for table '.concat(editor.name).concat(' s columns definition'))]
 		[editor.defaultColumnInitialisation()/]
 		// [/protected]
@@ -104,10 +106,11 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		result.setLabelProvider(new ITableLabelProvider() {
 	
 		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
-			[editor.defaultLabelProviderInitialisaion()/]
-		[else]
+			[editor.defaultLabelProviderInitialisaion()/]			
+		[else]			
 			// [protected ('for table '.concat(editor.name).concat(' label provider'))]
-			[editor.defaultLabelProviderInitialisaion()/]
+			[editor.defaultLabelProviderInitialisaion()/]			
+			
 			// [/protected]
 		[/if]
 
@@ -161,6 +164,8 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 			}
 
 		});
+		EditingUtils.setID(add[editor.name.toJavaClassifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype(add[editor.name.toJavaClassifier()/], "eef::[editor.representation.name/]::addbutton"); //$NON-NLS-1$
 		remove[editor.name.toJavaClassifier()/] = widgetFactory.createButton(result, [editor.owningViewsRepository().messagesProvider()/].PropertiesEditionPart_RemoveListViewerLabel, SWT.NONE);
 		[if (editor.readOnly)]
 		remove[editor.name.toJavaClassifier()/].setEnabled(false);
@@ -185,6 +190,8 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 			}
 
 		});
+		EditingUtils.setID(remove[editor.name.toJavaClassifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype(remove[editor.name.toJavaClassifier()/], "eef::[editor.representation.name/]::removebutton"); //$NON-NLS-1$
 	}
 	
 	/**
@@ -192,7 +199,7 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 	 */
 	protected void add[editor.name.toJavaClassifier()/]() {
 
-		EMFModelViewerDialog dialog = new EMFModelViewerDialog(new AdapterFactoryLabelProvider(adapterFactory), resourceSet, [editor.name.toJavaIdentifier()/]Filters, [editor.name.toJavaIdentifier()/]BusinessFilters, [if (editor.involvedPropertiesEditionElement().model.required)]false[else]true[/if], true) {
+		EMFModelViewerDialog dialog = new EMFModelViewerDialog(new AdapterFactoryLabelProvider(adapterFactory), resourceSet, [editor.name.toJavaIdentifier()/]Filters, [editor.name.toJavaIdentifier()/]BusinessFilters, false, true) {
 			public void process(IStructuredSelection selection) {
 				for (Iterator iter = selection.iterator(); iter.hasNext();) {
 					EObject elem = (EObject) iter.next();
@@ -238,6 +245,7 @@ protected EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		TableColumn name = new TableColumn(table, SWT.NONE);
 		name.setWidth(80);
 		name.setText("Label"); //$NON-NLS-1$
+
 [/template]
 
 [comment ===== Case Widget = AdvancedReferencesTable ===== /]
@@ -321,6 +329,8 @@ private EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		[editor.name.toJavaIdentifier()/]Data.horizontalSpan = 3;
 		this.[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
 		this.[editor.name.toJavaIdentifier()/].disableMove();
+		[editor.name.toJavaIdentifier()/].setID([editor.editorID()/]);
+		[editor.name.toJavaIdentifier()/].setEEFType("eef::[editor.representation.name/]"); //$NON-NLS-1$
 	}
 
 	/**
@@ -355,7 +365,7 @@ private EMFListEditUtil [editor.name.toJavaIdentifier()/]EditUtil;
 		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 		[editor.defaultEditOperation()/]
 		[else]
-		// [protected('edit'.concat(editor.name.toJavaClassifier()).concat('() method body'))]
+		// [protected('edit'.concat(editor.name.toJavaClassifier()).concat('() method body'))]		
 		[editor.defaultEditOperation()/]
 		// [/protected]
 		[/if]

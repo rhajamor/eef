@@ -1,0 +1,85 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module textSWTImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetSWTImpl/]
+
+[import common /]
+[import naming /]
+[import viewCommon /]
+[comment I don't see a better way to get specific swt services for the moment /]
+[import widgetSWTImpl /]
+
+[template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports ? (widget.name = 'Text')]
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+[/template]
+
+[template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representationName('Text'))]
+	protected Text [editor.name.toJavaIdentifier()/];
+[/template]
+
+[template public implementation(editor : ElementEditor) overrides implementation ? (editor.representationName('Text'))]
+		create[editor.name.toJavaClassifier()/]Text([editor.widgetContainer().trim()/]);
+[/template]
+
+[template public additionalImplementation(editor : ElementEditor, pec : PropertiesEditionComponent, inputPEC: PropertiesEditionComponent) overrides additionalImplementation ? (editor.representationName('Text'))]
+	[editor.owningViewsRepository().associatedGenModel().generationComment()/]
+	protected void create[editor.name.toJavaClassifier()/]Text(Composite parent) {
+		SWTUtils.createPartLabel(parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND));
+		[editor.name.toJavaIdentifier()/] = new Text(parent, SWT.BORDER);
+		[if (editor.readOnly)]
+		[editor.name.toJavaIdentifier()/].setEnabled(false);
+		[editor.name.toJavaIdentifier()/].setToolTipText([editor.owningViewsRepository().messagesProvider()/].[editor.owningViewString()/]_ReadOnly);
+		[/if]
+		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
+		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		[editor.name.toJavaIdentifier()/].addFocusListener(new FocusAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void focusLost(FocusEvent e) {
+				if (propertiesEditionComponent != null)
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
+			}
+
+		});
+		[editor.name.toJavaIdentifier()/].addKeyListener(new KeyAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {
+					if (propertiesEditionComponent != null)
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.name.toJavaIdentifier()/].getText()));
+				}
+			}
+
+		});
+		EditingUtils.setID([editor.name.toJavaIdentifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype([editor.name.toJavaIdentifier()/], "eef::[editor.representation.name/]"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null); //$NON-NLS-1$
+	}
+[/template]

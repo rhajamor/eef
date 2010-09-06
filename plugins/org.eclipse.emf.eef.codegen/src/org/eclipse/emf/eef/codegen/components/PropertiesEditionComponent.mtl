@@ -194,7 +194,7 @@ public class [pec.pecClass()/] extends ComposedPropertiesEditionComponent {
 	[for (refView : View | subPec.views->select(explicit))]
 		if (key == [refView.editorID()/].class) {
 			super.initPart(key, kind, element, allResource);
-[comment what about referenced view resolution in this case ? /]
+		[comment what about referenced view resolution in this case ? /]
 	[/for]
 		}
 [/for]

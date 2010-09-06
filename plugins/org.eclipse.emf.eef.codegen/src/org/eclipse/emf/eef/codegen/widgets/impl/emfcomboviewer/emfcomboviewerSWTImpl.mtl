@@ -1,0 +1,58 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module emfcomboviewerSWTImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetSWTImpl/]
+
+[import common /]
+[import naming /]
+[import viewCommon /]
+[comment I don't see a better way to get specific swt services for the moment /]
+[import widgetSWTImpl /]
+
+[template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports ? (widget.name = 'EMFComboViewer')]
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+[/template]
+
+[template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'EMFComboViewer')]
+	protected EMFComboViewer [editor.name.toJavaIdentifier()/];
+[/template]
+
+[template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'EMFComboViewer')]
+		create[editor.name.toJavaClassifier()/]EMFComboViewer([editor.widgetContainer().trim()/]);
+[/template]
+
+[template public additionalImplementation(editor : ElementEditor, pec : PropertiesEditionComponent, inputPEC: PropertiesEditionComponent) overrides additionalImplementation ? (editor.representation.name = 'EMFComboViewer')]
+	[editor.owningViewsRepository().associatedGenModel().generationComment()/]
+	protected void create[editor.name.toJavaClassifier()/]EMFComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND));
+		[editor.name.toJavaIdentifier()/] = new EMFComboViewer(parent);
+		[editor.name.toJavaIdentifier()/].setContentProvider(new ArrayContentProvider());
+		[editor.name.toJavaIdentifier()/].setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		[if (editor.readOnly)]
+		[editor.name.toJavaIdentifier()/].setEnabled(false);
+		[editor.name.toJavaIdentifier()/].setToolTipText([editor.owningViewsRepository().messagesProvider()/].[editor.owningViewString()/]_ReadOnly);
+		[/if]
+		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
+		[editor.name.toJavaIdentifier()/].getCombo().setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		[editor.name.toJavaIdentifier()/].setID([editor.editorID()/]);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null); //$NON-NLS-1$
+	}
+[/template]
+

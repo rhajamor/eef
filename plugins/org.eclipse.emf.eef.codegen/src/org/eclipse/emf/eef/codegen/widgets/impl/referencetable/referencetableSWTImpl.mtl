@@ -72,6 +72,8 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 		[editor.name.toJavaIdentifier()/]Data.minimumHeight = 120;
 		[editor.name.toJavaIdentifier()/]Data.heightHint = 120;
 		[editor.name.toJavaIdentifier()/].getTable().setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		EditingUtils.setID([editor.name.toJavaIdentifier()/].getTable(), [editor.editorID()/]);
+		EditingUtils.setEEFtype([editor.name.toJavaIdentifier()/].getTable(), "eef::[editor.representation.name/]::field"); //$NON-NLS-1$		
 		create[editor.name.toJavaClassifier()/]ControlPanel(parent);
 	}
 
@@ -95,7 +97,7 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 		[editor.defaultColumnInitialisation()/]
 		[else]
-		// [protected ('for table '.concat(editor.name).concat(' s columns definition'))]
+		// [protected ('for table '.concat(editor.name).concat(' s columns definition'))]		
 		[editor.defaultColumnInitialisation()/]
 		// [/protected]
 		[/if]
@@ -108,7 +110,7 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 		[editor.defaultLabelProviderInitialisation()/]
 		[else]
 			// [protected ('for table '.concat(editor.name).concat(' label provider'))]
-			[editor.defaultLabelProviderInitialisation()/]
+			[editor.defaultLabelProviderInitialisation()/]			
 			// [/protected]
 		[/if]
 
@@ -159,6 +161,8 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 			}
 
 		});
+		EditingUtils.setID(add[editor.name.toJavaClassifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype(add[editor.name.toJavaClassifier()/], "eef::[editor.representation.name/]::addbutton"); //$NON-NLS-1$
 		remove[editor.name.toJavaClassifier()/] = new Button(result, SWT.NONE);
 		remove[editor.name.toJavaClassifier()/].setText([editor.owningViewsRepository().messagesProvider()/].PropertiesEditionPart_RemoveListViewerLabel);
 		[if (editor.readOnly)]
@@ -185,13 +189,15 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 			}
 
 		});
+		EditingUtils.setID(remove[editor.name.toJavaClassifier()/], [editor.editorID()/]);
+		EditingUtils.setEEFtype(remove[editor.name.toJavaClassifier()/], "eef::[editor.representation.name/]::removebutton"); //$NON-NLS-1$
 	}
 
 	/**
 	 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
 	 */
 	protected void add[editor.name.toJavaClassifier()/]() {
-		EMFModelViewerDialog dialog = new EMFModelViewerDialog(new AdapterFactoryLabelProvider(adapterFactory), resourceSet, [editor.name.toJavaIdentifier()/]Filters, [editor.name.toJavaIdentifier()/]BusinessFilters, [if (editor.involvedPropertiesEditionElement().model.required)]false[else]true[/if], true) {
+		EMFModelViewerDialog dialog = new EMFModelViewerDialog(new AdapterFactoryLabelProvider(adapterFactory), resourceSet, [editor.name.toJavaIdentifier()/]Filters, [editor.name.toJavaIdentifier()/]BusinessFilters, false, true) {
 			public void process(IStructuredSelection selection) {
 				for (Iterator iter = selection.iterator(); iter.hasNext();) {
 					EObject elem = (EObject) iter.next();
@@ -239,6 +245,7 @@ import [pee.model.eType.qualifiedName(basePackage)/];
 		TableColumn name = new TableColumn(table, SWT.NONE);
 		name.setWidth(80);
 		name.setText("Label"); //$NON-NLS-1$
+
 [/template]
 
 [comment ===== Case Widget = AdvancedReferencesTable ===== /]
@@ -322,6 +329,8 @@ import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 		[editor.name.toJavaIdentifier()/]Data.horizontalSpan = 3;
 		this.[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
 		this.[editor.name.toJavaIdentifier()/].disableMove();
+		[editor.name.toJavaIdentifier()/].setID([editor.editorID()/]);
+		[editor.name.toJavaIdentifier()/].setEEFType("eef::[editor.representation.name/]"); //$NON-NLS-1$
 	}
 
 	/**
@@ -340,26 +349,30 @@ import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 	 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
 	 */
 	protected void removeFrom[editor.name.toJavaClassifier()/]([editor.involvedPropertiesEditionElement().model.eType.name/] element) {
-		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
-		[editor.defaultRemoveOperation()/]
+
+		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]			
+		[editor.defaultRemoveOperation()/]		
 		[else]
 		// [protected('removeFrom'.concat(editor.name.toJavaClassifier()).concat('() method body'))]
-		[editor.defaultRemoveOperation()/]
+		[editor.defaultRemoveOperation()/]		
 		// [/protected]
 		[/if]
+
 	}
 
 	/**
 	 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
 	 */
 	protected void edit[editor.name.toJavaClassifier()/]([editor.involvedPropertiesEditionElement().model.eType.name/] element) {
-		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
-		[editor.defaultEditOperation()/]
+
+		[if (editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]			
+		[editor.defaultEditOperation()/]		
 		[else]
 		// [protected('edit'.concat(editor.name.toJavaClassifier()).concat('() method body'))]
-		[editor.defaultEditOperation()/]
+		[editor.defaultEditOperation()/]		
 		// [/protected]
 		[/if]
+
 	}
 [/template]
 

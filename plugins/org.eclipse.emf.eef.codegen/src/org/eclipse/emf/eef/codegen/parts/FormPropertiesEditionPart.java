@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 /**
  * Entry point of the 'FormPropertiesEditionPart' generation module.
  *
+ * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  * @generated
  */
 public class FormPropertiesEditionPart extends AbstractAcceleoGenerator {

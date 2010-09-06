@@ -185,7 +185,7 @@
 [/if]
 [/template]
 
-[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.hasModelNavigation() and editionElement.representationName('AdvancedReferencesTable'))]
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.hasModelNavigation() or editionElement.representationName('AdvancedReferencesTable'))]
 			[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
 
 				/**
@@ -280,7 +280,7 @@
 					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 					 */
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$[/if]
+						return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
 				}
 
 			});

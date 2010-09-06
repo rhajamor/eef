@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 /**
  * Entry point of the 'GMF_Plugin_xml' generation module.
  *
+ * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  * @generated
  */
 public class GMF_Plugin_xml extends AbstractAcceleoGenerator {

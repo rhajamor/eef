@@ -1,0 +1,165 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module eobjectflatcomboviewerSWTImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetSWTImpl/]
+
+[import common /]
+[import naming /]
+[import viewCommon /]
+[comment I don't see a better way to get specific swt services for the moment /]
+[import widgetSWTImpl /]
+
+[comment ===== Case Widget = EObjectFlatComboViewer ===== /]
+[template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports? (widget.name = 'EObjectFlatComboViewer')]
+import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+[for (pee : PropertiesEditionElement | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('EObjectFlatComboViewer')).involvedPropertiesEditionElement() )]
+import [pee.model.eType.qualifiedName(basePackage)/];
+[/for]
+[/template]
+
+[template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'EObjectFlatComboViewer')]
+	protected EObjectFlatComboViewer [editor.name.toJavaIdentifier()/];
+[/template]
+
+[template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'EObjectFlatComboViewer')]
+		create[editor.name.toJavaClassifier()/]FlatComboViewer([editor.widgetContainer().trim()/]);
+[/template]
+
+[template public additionalImplementation(editor : ElementEditor, pec : PropertiesEditionComponent, inputPEC: PropertiesEditionComponent) overrides additionalImplementation ? (editor.representation.name = 'EObjectFlatComboViewer')]
+	/**
+	 * @param [editor.widgetContainer().trim()/]
+	 * [editor.owningViewsRepository().associatedGenModel().generationMark()/]
+	 */
+	protected void create[editor.name.toJavaClassifier()/]FlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND));
+		[editor.name.toJavaIdentifier()/] = new EObjectFlatComboViewer(parent, [editor.involvedPropertiesEditionElement(pec).model.lowerBound = 0/]);
+		[editor.name.toJavaIdentifier()/].setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		[if (editor.readOnly)]
+		[editor.name.toJavaIdentifier()/].setEnabled(false);
+		[editor.name.toJavaIdentifier()/].setToolTipText([editor.owningViewsRepository().messagesProvider()/].[editor.owningViewString()/]_ReadOnly);
+		[/if]
+
+		[editor.name.toJavaIdentifier()/].addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, get[editor.name.toJavaClassifier()/]()));
+			}
+
+		});
+		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
+		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		[editor.name.toJavaIdentifier()/].setID([editor.editorID()/]);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null); //$NON-NLS-1$
+	}
+[/template]
+
+[comment ===== Case Widget = AdvancedEObjectFlatComboViewer ===== /]
+[template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) overrides manageImports ? (widget.name = 'AdvancedEObjectFlatComboViewer')]
+import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
+import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer.EObjectFlatComboViewerListener;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+[for (ePackage : EPackage | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedEObjectFlatComboViewer')).involvedPropertiesEditionElement().model.eType.ePackage->asSet() )]
+import [ePackage.qualifiedMetamodelPackage(basePackage)/];
+import [ePackage.qualifiedMetamodelFactory(basePackage)/];
+[/for]
+[for (pee : PropertiesEditionElement | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedEObjectFlatComboViewer')).involvedPropertiesEditionElement() )]
+import [pee.model.eType.qualifiedName(basePackage)/];
+import [pee.model.eContainingClass.qualifiedName(basePackage)/];
+[/for]
+[/template]
+
+[template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'AdvancedEObjectFlatComboViewer')]
+	private AdvancedEObjectFlatComboViewer<[editor.involvedPropertiesEditionElement().model.eType.name/]> [editor.name.toJavaIdentifier()/];
+	protected ViewerFilter [editor.name.toJavaIdentifier()/]Filter;
+[/template]
+
+[template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'AdvancedEObjectFlatComboViewer')]
+		create[editor.name.toJavaClassifier()/]AdvancedFlatComboViewer([editor.widgetContainer().trim()/]);
+[/template]
+
+[template public additionalImplementation(editor : ElementEditor, pec : PropertiesEditionComponent, inputPEC: PropertiesEditionComponent) overrides additionalImplementation ? (editor.representation.name = 'AdvancedEObjectFlatComboViewer')]
+	/**
+	 * @param [editor.widgetContainer().trim()/]
+	 */
+	protected void create[editor.name.toJavaClassifier()/]AdvancedFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND));
+		// create callback listener
+		EObjectFlatComboViewerListener<[editor.involvedPropertiesEditionElement().model.eType.name/]> listener = new EObjectFlatComboViewerListener<[editor.involvedPropertiesEditionElement().model.eType.name/]>(){
+			public void handleSet([editor.involvedPropertiesEditionElement().model.eType.name/] element){
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element)); 
+			}
+			public void navigateTo([editor.involvedPropertiesEditionElement().model.eType.name/] element){ }
+			
+			public [editor.involvedPropertiesEditionElement().model.eType.name/] handleCreate() {
+				[if (editor.involvedPropertiesEditionElement().model.eType.oclIsTypeOf(ecore::EClass) and editor.involvedPropertiesEditionElement().model.eType.oclAsType(ecore::EClass).abstract)]
+				[if (editor.involvedPropertiesEditionElement().hasModelNavigation())]
+				[editor.involvedPropertiesEditionElement().model.eType.name/] eObject = [editor.involvedPropertiesEditionElement().navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationMetamodelFactory()/]Factory.eINSTANCE.create[editor.involvedPropertiesEditionElement().navigation.oclAsType(mapping::navigation::SimpleModelNavigation).simpleModelNavigationType()/]();
+				[else]
+				// TODO
+				[editor.involvedPropertiesEditionElement().model.eType.name/] eObject = null;
+				[/if]
+				[else]
+				[editor.involvedPropertiesEditionElement().model.eType.name/] eObject = [editor.involvedPropertiesEditionElement().metamodelFactory()/].eINSTANCE.create[editor.involvedPropertiesEditionElement().model.eType.name/]();
+				[/if]
+				if (current != null && current instanceof [editor.involvedPropertiesEditionElement().model.eContainingClass.name/] && (([editor.involvedPropertiesEditionElement().model.eContainingClass.name/])current).get[editor.involvedPropertiesEditionElement().model.name.toJavaClassifier()/]() != null) {
+					eObject = ([editor.involvedPropertiesEditionElement().model.eType.name/]) EcoreUtil.copy((([editor.involvedPropertiesEditionElement().model.eContainingClass.name/])current).get[editor.involvedPropertiesEditionElement().model.name.toJavaClassifier()/]());
+				}
+				IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+				IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
+				if (editionPolicy != null) {
+					EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+					if (propertiesEditionObject != null) {
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, propertiesEditionObject));
+						return ([editor.involvedPropertiesEditionElement().model.eType.name/])propertiesEditionObject;
+					}
+					if (current != null && current instanceof [editor.involvedPropertiesEditionElement().model.eContainingClass.name/] && (([editor.involvedPropertiesEditionElement().model.eContainingClass.name/])current).get[editor.involvedPropertiesEditionElement().model.name.toJavaClassifier()/]() != null)
+						return eObject;
+					return null;
+				}
+				return null;
+			}
+		};
+		//create widget
+		[editor.name.toJavaIdentifier()/] = new AdvancedEObjectFlatComboViewer<[editor.involvedPropertiesEditionElement().model.eType.name/]>([editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/],
+			resourceSet, [editor.name.toJavaIdentifier()/]Filter, [editor.involvedPropertiesEditionElement().editionElementPackage()/].eINSTANCE.get[editor.involvedPropertiesEditionElement().model.eType.name/](), listener);
+		[editor.name.toJavaIdentifier()/].createControls(parent);
+		[if (editor.readOnly)]
+		[editor.name.toJavaIdentifier()/].setEnabled(false);
+		[editor.name.toJavaIdentifier()/].setToolTipText([editor.owningViewsRepository().messagesProvider()/].[editor.owningViewString()/]_ReadOnly);
+		[/if]
+		GridData [editor.name.toJavaIdentifier()/]Data = new GridData(GridData.FILL_HORIZONTAL);
+		[editor.name.toJavaIdentifier()/].setLayoutData([editor.name.toJavaIdentifier()/]Data);
+		[editor.name.toJavaIdentifier()/].setID([editor.editorID()/]);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].SWT_KIND), null); //$NON-NLS-1$
+	}
+[/template]
+

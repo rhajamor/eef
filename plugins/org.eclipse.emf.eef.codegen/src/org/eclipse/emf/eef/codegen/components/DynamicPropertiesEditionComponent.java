@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 /**
  * Entry point of the 'DynamicPropertiesEditionComponent' generation module.
  *
+ * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  * @generated
  */
 public class DynamicPropertiesEditionComponent extends AbstractAcceleoGenerator {
