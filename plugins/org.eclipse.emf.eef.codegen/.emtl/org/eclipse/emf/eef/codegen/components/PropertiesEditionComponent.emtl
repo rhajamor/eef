@@ -6913,22 +6913,22 @@
     </eAnnotations>
     <eAnnotations source="positions.136" references="/0/PropertiesEditionComponent">
       <details key="start" value="2595"/>
-      <details key="end" value="9606"/>
+      <details key="end" value="9608"/>
       <details key="line" value="52"/>
     </eAnnotations>
     <eAnnotations source="positions.137" references="/0/PropertiesEditionComponent/@body.0">
       <details key="start" value="2718"/>
-      <details key="end" value="9594"/>
+      <details key="end" value="9596"/>
       <details key="line" value="54"/>
     </eAnnotations>
     <eAnnotations source="positions.138" references="/0/PropertiesEditionComponent/@body.0/@body.0">
       <details key="start" value="2824"/>
-      <details key="end" value="9587"/>
+      <details key="end" value="9589"/>
       <details key="line" value="55"/>
     </eAnnotations>
     <eAnnotations source="positions.139" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0">
       <details key="start" value="2866"/>
-      <details key="end" value="9581"/>
+      <details key="end" value="9583"/>
       <details key="line" value="56"/>
     </eAnnotations>
     <eAnnotations source="positions.140" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.0">
@@ -9308,12 +9308,12 @@
     </eAnnotations>
     <eAnnotations source="positions.615" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.41">
       <details key="start" value="9206"/>
-      <details key="end" value="9568"/>
+      <details key="end" value="9570"/>
       <details key="line" value="193"/>
     </eAnnotations>
     <eAnnotations source="positions.616" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.41/@body.0">
       <details key="start" value="9333"/>
-      <details key="end" value="9557"/>
+      <details key="end" value="9559"/>
       <details key="line" value="194"/>
     </eAnnotations>
     <eAnnotations source="positions.617" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.41/@body.0/@body.0">
@@ -9372,8 +9372,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.628" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.41/@body.1">
-      <details key="start" value="9558"/>
-      <details key="end" value="9562"/>
+      <details key="start" value="9560"/>
+      <details key="end" value="9564"/>
       <details key="line" value="199"/>
     </eAnnotations>
     <eAnnotations source="positions.629" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.41/subPec">
@@ -9437,8 +9437,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.641" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@body.42">
-      <details key="start" value="9569"/>
-      <details key="end" value="9574"/>
+      <details key="start" value="9571"/>
+      <details key="end" value="9576"/>
       <details key="line" value="201"/>
     </eAnnotations>
     <eAnnotations source="positions.642" references="/0/PropertiesEditionComponent/@body.0/@body.0/@body.0/@fileUrl">
@@ -9492,43 +9492,43 @@
       <details key="line" value="52"/>
     </eAnnotations>
     <eAnnotations source="positions.652" references="/0/fullFilePath">
-      <details key="start" value="9608"/>
-      <details key="end" value="9725"/>
+      <details key="start" value="9610"/>
+      <details key="end" value="9727"/>
       <details key="line" value="208"/>
     </eAnnotations>
     <eAnnotations source="positions.653" references="/0/fullFilePath/@body.0">
-      <details key="start" value="9674"/>
-      <details key="end" value="9706"/>
+      <details key="start" value="9676"/>
+      <details key="end" value="9708"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.654" references="/0/fullFilePath/@body.0/@argument.0">
-      <details key="start" value="9674"/>
-      <details key="end" value="9697"/>
+      <details key="start" value="9676"/>
+      <details key="end" value="9699"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.655" references="/0/fullFilePath/@body.0/@argument.0/pec">
-      <details key="start" value="9674"/>
-      <details key="end" value="9677"/>
+      <details key="start" value="9676"/>
+      <details key="end" value="9679"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.656" references="/0/fullFilePath/@body.1">
-      <details key="start" value="9708"/>
-      <details key="end" value="9713"/>
+      <details key="start" value="9710"/>
+      <details key="end" value="9715"/>
       <details key="line" value="209"/>
     </eAnnotations>
     <eAnnotations source="positions.657" references="/0/fullFilePath/pec">
-      <details key="start" value="9638"/>
-      <details key="end" value="9670"/>
+      <details key="start" value="9640"/>
+      <details key="end" value="9672"/>
       <details key="line" value="208"/>
     </eAnnotations>
     <eAnnotations source="positions.658" references="/0/additionalImports">
-      <details key="start" value="9795"/>
-      <details key="end" value="9876"/>
+      <details key="start" value="9797"/>
+      <details key="end" value="9878"/>
       <details key="line" value="213"/>
     </eAnnotations>
     <eAnnotations source="positions.659" references="/0/additionalImports/pec">
-      <details key="start" value="9830"/>
-      <details key="end" value="9862"/>
+      <details key="start" value="9832"/>
+      <details key="end" value="9864"/>
       <details key="line" value="213"/>
     </eAnnotations>
   </ecore:EAnnotation>
