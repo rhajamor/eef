@@ -107,6 +107,13 @@ public class EEFStandardFormPage extends FormPage {
 		viewer.setContentProvider(new PropertiesEditionContentProvider(new RegistryPropertiesEditionProvider(), IPropertiesEditionComponent.LIVE_MODE, editingDomain));
 
 	}
+	
+	/**
+	 * @return the viewer
+	 */
+	public PropertiesEditionViewer getEEFViewer() {
+		return viewer;
+	}
 
 	/**
 	 * Defines the title of the page
