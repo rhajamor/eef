@@ -54,7 +54,6 @@
 
 	<target name="init">
 		<property environment="env"/>
-		<echo>${env.WORKSPACE}</echo>
 		<!-- set properties from hudson parameters, usefull with ant build -->
 		<condition property="WORKSPACE" value="/tmp">
 			<not>
