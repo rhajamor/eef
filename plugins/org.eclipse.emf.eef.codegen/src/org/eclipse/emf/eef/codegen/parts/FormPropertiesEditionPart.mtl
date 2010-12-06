@@ -63,7 +63,7 @@ import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 
 [for (ePackage : EPackage | pec.involvedEditionElements().oclAsType(components::PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(ecore::EClass).ePackage))]
-import [ePackage.qualifiedMetamodelPackage(basePackage)/];
+import [ePackage.qualifiedMetamodelPackage()/];
 [/for]
 [for (viewRepository : ViewsRepository | pec.involvedViews().oclAsType(views::View).owningViewsRepository()->asSet())]
 import [viewRepository.qualifiedMessagesProvider()/];
@@ -80,7 +80,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 [/if]
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
-import [view.owningViewsRepository().vrPackage()/].parts.[view.pepInterface()/];
+import [view.pepQualifiedInterface()/];
 [for (widget : Widget | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor).representation->asSet()) ]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]

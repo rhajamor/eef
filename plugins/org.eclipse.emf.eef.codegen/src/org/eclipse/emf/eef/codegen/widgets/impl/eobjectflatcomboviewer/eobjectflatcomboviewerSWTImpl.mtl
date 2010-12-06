@@ -88,8 +88,8 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 [for (ePackage : EPackage | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedEObjectFlatComboViewer')).involvedPropertiesEditionElement().model.eType.ePackage->asSet() )]
-import [ePackage.qualifiedMetamodelPackage(basePackage)/];
-import [ePackage.qualifiedMetamodelFactory(basePackage)/];
+import [ePackage.qualifiedMetamodelPackage()/];
+import [ePackage.qualifiedMetamodelFactory()/];
 [/for]
 [for (pee : PropertiesEditionElement | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedEObjectFlatComboViewer')).involvedPropertiesEditionElement() )]
 import [pee.model.eType.qualifiedName(basePackage)/];

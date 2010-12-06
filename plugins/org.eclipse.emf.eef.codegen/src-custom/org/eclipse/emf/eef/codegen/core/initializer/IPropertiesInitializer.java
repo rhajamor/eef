@@ -10,14 +10,11 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.codegen.core.initializer;
 
-import java.io.IOException;
-
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 
 public interface IPropertiesInitializer {
 
-	public void initialize(URI modelURI, IContainer targetFolder) throws IOException, CoreException;
+	public void initialize(URI modelURI, IContainer targetFolder) throws Exception;
 
 }

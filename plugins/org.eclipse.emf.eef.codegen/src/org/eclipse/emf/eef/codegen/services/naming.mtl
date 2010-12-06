@@ -10,147 +10,230 @@
  *     Obeo - initial API and implementation
  *******************************************************************************
  /]
-[module naming('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')/]
+[module naming('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/generation/1.0.0')/]
+
 [import common /]
 
-[template public messagesProperties(editionContext : PropertiesEditionContext)]
-[editionContext.model.ecorePackage.name/]Messages
+[comment --------------------------------------------------------------------------
+  Master packages management
+ ---------------------------------------------------------------------------------- /]
+[template public contextPackage(peContext : PropertiesEditionContext)]
+[peContext.associatedGenContext().basePackage/]
 [/template]
 
-[template public messagesProvider(editionContext : PropertiesEditionContext)]
-[editionContext.model.ecorePackage.name.toUpperFirst()/]Messages
-[/template]
-[template public messagesProviderPackage(editionContext : PropertiesEditionContext, basePackage : String)]	
-[editionContext.model.ecorePackage.eefPackage(basePackage).trim()/].providers
+[template public contextCompletePackage(peContext : PropertiesEditionContext)]
+[if ((not peContext.associatedGenContext().basePackage.oclIsUndefined()) and (peContext.associatedGenContext().basePackage.size() > 0))][peContext.associatedGenContext().basePackage/].[/if][peContext.model.ecorePackage.name/]
 [/template]
 
-[template public qualifiedMessagesProvider(editionContext : PropertiesEditionContext, basePackage : String)]	
-[editionContext.messagesProviderPackage(basePackage).trim()/].[editionContext.messagesProvider()/]
+[template public vrPackage(repository : ViewsRepository) post (trim())]
+[if ((not repository.associatedGenRepository().basePackage.oclIsUndefined()) and (repository.associatedGenRepository().basePackage.size() > 0))][repository.associatedGenRepository().basePackage/].[/if]
 [/template]
 
-[template public contributorID(editionContext : PropertiesEditionContext, basePackage : String)]
-[if (not editionContext.associatedGenContext().oclIsUndefined() and not editionContext.associatedGenContext().descriptorsContributorID.oclIsUndefined() and editionContext.associatedGenContext().descriptorsContributorID <> '')]
-[editionContext.associatedGenContext().descriptorsContributorID/]
-[else]
-[editionContext.model.ecorePackage.eefPackage(basePackage).trim()/].properties
-[/if]
+[comment --------------------------------------------------------------------------
+  Components naming
+ ---------------------------------------------------------------------------------- /]
+[template public componentsPackage(pec : PropertiesEditionComponent)]
+[pec.editionContext().contextCompletePackage()/].components
 [/template]
 
 [template public pecClass(pec : PropertiesEditionComponent)]
-[pec.name.toJavaClassifier().toUpperFirst().trim()/]PropertiesEditionComponent
+[pec.name.toUpperFirst()/]PropertiesEditionComponent
+[/template]
+
+[template public pecQualifiedClass(pec : PropertiesEditionComponent)]
+[pec.componentsPackage()/].[pec.pecClass()/]
 [/template]
 
 [template public subPECClass(pec : PropertiesEditionComponent, view : View)]
-[pec.name.toJavaClassifier().toUpperFirst().trim()/][if (pec.involvedViews()->size() > 1)][view.viewKey(pec).toJavaClassifier().trim()/][/if]PropertiesEditionComponent
+[pec.name.toUpperFirst()/][if (pec.involvedViews()->size() > 1)][view.viewKey(pec).toJavaClassifier()/][/if]PropertiesEditionComponent
 [/template]
 
-[template public pepInterface(view : View)]
-[view.name.toJavaClassifier().toUpperFirst().trim() /]PropertiesEditionPart
+[template public subPECQualifiedClass(pec : PropertiesEditionComponent, view : View)]
+[pec.componentsPackage()/].[pec.subPECClass(view)/]
 [/template]
 
-[template public pepClass(view : View)]
-[view.name.toJavaClassifier().toUpperFirst().trim()/]PropertiesEditionPartImpl
-[/template]
-
-[template public pepFormClass(view : View)]
-[view.name.toJavaClassifier().toUpperFirst().trim()/]PropertiesEditionPartForm
+[template public providersPackage(pec : PropertiesEditionComponent)]
+[pec.editionContext().contextCompletePackage()/].providers
 [/template]
 
 [template public pecProviderClass(pec : PropertiesEditionComponent)]
-[pec.name.toJavaClassifier().toUpperFirst().trim()/]PropertiesEditionProvider
+[pec.name.toJavaClassifier()/]PropertiesEditionProvider
+[/template]
+
+[template public pecProviderQualifiedClass(pec : PropertiesEditionComponent)]
+[pec.providersPackage()/].[pec.pecProviderClass()/]
+[/template]
+
+[template public providersPackage(pec : PropertiesEditionContext)]
+[pec.contextCompletePackage()/].providers
+[/template]
+
+[template public pecPolicyProviderClass(pec : PropertiesEditionContext)]
+[pec.model.ecorePackage.name.toJavaClassifier()/]PackagePropertiesEditionPolicyProvider
+[/template]
+
+[template public pecPolicyProviderQualifiedClass(pec : PropertiesEditionContext)]
+[pec.providersPackage()/].[pec.pecPolicyProviderClass()/]
+[/template]
+
+[template public pecPackageProviderClass(pec : PropertiesEditionContext)]
+[pec.model.ecorePackage.name.toJavaClassifier()/]PackagePropertiesEditionProvider
+[/template]
+
+[template public pecPackageProviderQualifiedClass(pec : PropertiesEditionContext)]
+[pec.providersPackage()/].[pec.pecPackageProviderClass()/]
+[/template]
+
+[comment --------------------------------------------------------------------------
+  Parts naming
+ ---------------------------------------------------------------------------------- /]
+[template public partsPackage(repository : ViewsRepository)]
+[repository.vrPackage()/]parts
+[/template]
+
+[template public partsPackage(view : View)]
+[view.owningViewsRepository().vrPackage()/]parts
+[/template]
+
+[template public partsImplPackage(view : View)]
+[view.partsPackage()/].impl
+[/template]
+
+[template public partsFormPackage(view : View)]
+[view.partsPackage()/].forms
+[/template]
+
+[template public pepInterface(view : View)]
+[view.name.toJavaClassifier()/]PropertiesEditionPart
+[/template]
+
+[template public pepQualifiedInterface(view : View)]
+[view.partsPackage()/].[view.pepInterface()/]
+[/template]
+
+[template public pepClass(view : View)]
+[view.name.toJavaClassifier()/]PropertiesEditionPartImpl
+[/template]
+
+[template public pepQualifiedClass(view : View)]
+[view.partsImplPackage()/].[view.pepClass()/]
+[/template]
+
+[template public pepQualifiedFormClass(view : View)]
+[view.partsFormPackage()/].[view.pepFormClass()/]
+[/template]
+
+[template public pepFormClass(view : View)]
+[view.name.toJavaClassifier()/]PropertiesEditionPartForm
+[/template]
+
+[template public pepFormQualifiedClass(view : View)]
+[view.partsFormPackage()/].[view.pepFormClass()/]
 [/template]
 
 [template public vrClass(repository : ViewsRepository)]
 [repository.name.toJavaClassifier()/]ViewsRepository
 [/template]
 
+[template public vrQualifiedClass(repository : ViewsRepository)]
+[repository.partsPackage()/].[repository.vrClass()/]
+[/template]
+
+[template public partsProviderPackage(repository : ViewsRepository)]
+[repository.vrPackage()/].providers
+[/template]
+
+[template public pepProvider(repository : ViewsRepository)]
+[repository.name.toJavaClassifier()/]PropertiesEditionPartProvider
+[/template]
+
+[template public pepQualifiedProvider(repository : ViewsRepository)]
+[repository.partsProviderPackage()/].[repository.pepProvider()/]
+[/template]
+
+[comment --------------------------------------------------------------------------
+  i18n management
+ ---------------------------------------------------------------------------------- /]
+[template public messagesProperties(viewsRepository : ViewsRepository)]
+[viewsRepository.name.toJavaIdentifier()/]Messages
+[/template]
+
+[template public messagesProvider(viewsRepository : ViewsRepository)]
+[viewsRepository.name.toJavaClassifier()/]Messages
+[/template]
+
+[template public messagesProviderPackage(viewsRepository : ViewsRepository)]
+[viewsRepository.associatedGenRepository().basePackage/].providers
+[/template]
+
+[template public qualifiedMessagesProvider(viewsRepository : ViewsRepository)]
+[viewsRepository.messagesProviderPackage()/].[viewsRepository.messagesProvider()/]
+[/template]
+
+[comment containingView must be remove when bug # resolved /]
+[template public groupKey(group : ViewElement, containingView : View) ? (group.oclIsTypeOf(views::Container) and group.representation.name = 'Group')]
+[containingView.name.toJavaClassifier()/]PropertiesEditionPart_[group.name.toJavaClassifier()/]GroupLabel
+[/template]
+
+[template public editorKey(editor : ViewElement, containingView : View)]
+[containingView.name.toJavaClassifier()/]PropertiesEditionPart_[editor.name.toJavaClassifier()/]Label
+[/template]
+
+[comment --------------------------------------------------------------------------
+  Properties management
+ ---------------------------------------------------------------------------------- /]
+[template public propertiesPackage(pec : PropertiesEditionContext)]
+[pec.contextCompletePackage()/].properties
+[/template]
+
+[template public propertySection(pec : PropertiesEditionComponent, view : View)]
+[pec.name.toJavaClassifier()/][view.viewKey(pec).toJavaClassifier()/]PropertySection
+[/template]
+
+[template public qualifiedPropertySection(pec : PropertiesEditionComponent, view : View)]
+[pec.editionContext().propertiesPackage()/].[pec.propertySection(view)/]
+[/template]
+
+[template public contributorID(editionContext : PropertiesEditionContext, basePackage : String)]
+[if (not editionContext.associatedGenContext().oclIsUndefined() and not editionContext.associatedGenContext().descriptorsContributorID.oclIsUndefined() and editionContext.associatedGenContext().descriptorsContributorID <> '')]
+[editionContext.associatedGenContext().descriptorsContributorID/]
+[else]
+[editionContext.model.ecorePackage.eefPackage(basePackage)/].properties
+[/if]
+[/template]
+
+[comment --------------------------------------------------------------------------
+  Misc
+ ---------------------------------------------------------------------------------- /]
 [template public viewClassifier(view : View)]
 [view.name.toJavaClassifier()/]
 [/template]
 
-[template public propertySection(pec : PropertiesEditionComponent, view : View)]
-[pec.name.toJavaClassifier().toUpperFirst().trim()/][view.viewKey(pec).toJavaClassifier().trim()/]PropertySection
+[template public editionElementPackage(pee : PropertiesEditionElement)]
+[if (pee.model.eType.ePackage.name = 'ecore')]EcorePackage[else][pee.model.eType.ePackage.eInverse().oclAsType(EObject)->select(eClass().name = 'GenPackage')->asSequence()->first().oclAsType(genmodel::GenPackage).prefix/]Package[/if]
 [/template]
 
-[template public completePackage(eClassifier : EClassifier)]
-[ePackage.completePackage()/]
-[/template]
-
-[template public completePackage(ePackage : EPackage)]
-[ePackage.associatedGenPackage().basePackage/].[ePackage.name/]
-[/template]
-
-[template public eefPackage(eClassifier : EClassifier, basePackage : EString)]
-[basePackage/].[eClassifier.ePackage.name/]
-[/template]
-
-[template public eefPackage(ePackage : EPackage, basePackage : EString)]
-[basePackage/].[ePackage.name/]
-[/template]
-
-[template public qualifiedName(eClassifier : EClassifier, basePackage : String)]
-[eClassifier.completePackage()/].[eClassifier.name/]	
-[/template]
-
-[template public metamodelPrefix(ePackage : EPackage)]
-[ePackage.eInverse().oclAsType(EObject)->select(eClass().name = 'GenPackage')->asSequence()->first().oclAsType(genmodel::GenPackage).prefix/]
-[/template]
-
-[template public metamodelPackage(ePackage : EPackage)]
-[ePackage.metamodelPrefix()/]Package
-[/template]
-
-[template public viewPackage(element : ElementEditor, pec : PropertiesEditionComponent)]
-[element.propertiesEditionElement(pec).model.eType.ePackage.eInverse().oclAsType(EObject)->select(eClass().name = 'GenPackage')->asSequence()->first().oclAsType(genmodel::GenPackage).prefix/]Package
-[/template]
-
-[comment FIXEME: once template call on a model navigation bug fix /]
+[comment FIXME: once template call on a model navigation bug fix /]
 [template public metamodelFactory(pee : PropertiesEditionElement)]
 [pee.model.eType.ePackage.metamodelPrefix()/]Factory
 [/template]
 
-[template public metamodelFactory(ePackage : EPackage)]
-[ePackage.metamodelPrefix()/]Factory
-[/template]
-
-[template public metamodelPackage(eClassifier : EClassifier)]
-[eClassifier.ePackage.metamodelPackage()/]
-[/template]
-
-[template public qualifiedMetamodelPackage(ePackage : EPackage, basePackage : String)]
-[ePackage.completePackage()/].[ePackage.metamodelPackage()/]
-[/template]
-
-[template public qualifiedMetamodelPackage(eClassifier : EClassifier, basePackage : String)]
-[eClassifier.ePackage.qualifiedMetamodelPackage(basePackage)/]
-[/template]
-
-[template public metamodelGetter(p : PropertiesEditionElement)]
-[p.model.eContainingClass.metamodelPackage().trim()/].eINSTANCE.[p.ecoreCompletePackageGetter()/]
-[/template]
-
-[comment  particular layout for indentation in generation purpose/]
 [template public viewPartConstant(view : View, pec : PropertiesEditionComponent)]
-[view.viewKey(pec).toJavaConstant().trim() /]_PART
+[view.viewKey(pec).toJavaConstant()/]_PART
 [/template]
 
 [template public viewKey(view : View, pec : PropertiesEditionComponent)]
-[if (view.name = pec.name)]Base[else][view.name/][/if]
+[if (view.name = pec.name or view.eInverse()->first().oclIsTypeOf(views::ViewReference))]Base[else][view.name/][/if]
 [/template]
 
 [template public viewIdentifier(view : View, pec : PropertiesEditionComponent)]
-[view.viewKey(pec).toJavaIdentifier().trim()/]Part
+[view.viewKey(pec).toJavaIdentifier()/]Part
 [/template]
 
 [template public editorID(editor : ElementEditor)]
-[editor.owningView().owningViewsRepository().vrClass()/].[editor.owningView().viewClassifier()/].[editor.name.toJavaIdentifier()/]
-[/template]	
-
-[comment containingView must be remove when bug # resolved /]
-[template public groupKey(group : ViewElement, containingView : View)  ? (group.oclIsTypeOf(Container) and group.representation.name = 'Group')]
-[containingView.name.toJavaIdentifier().trim().toUpperFirst()/]PropertiesEditionPart_[group.name.toJavaIdentifier().trim().toUpperFirst()/]GroupLabel	
+[editor.owningView().owningViewsRepository().vrClass()/].[for (s : String | editor.editorIDSequence()->subSequence(2, editor.editorIDSequence()->size() - 1)) separator ('.')][s.toJavaClassifier()/][/for].[editor.name.toJavaIdentifier()/]
 [/template]
 
-[template public editorKey(editor : ViewElement, containingView : View)]
-[containingView.name.toJavaIdentifier().trim().toUpperFirst()/]PropertiesEditionPart_[editor.name.toJavaIdentifier().trim().toUpperFirst()/]Label
+[template public editorID(view : View)]
+[view.owningViewsRepository().vrClass()/].[for (s : String | view.qualifiedIdentifier.substring(view.qualifiedIdentifier.tokenize('::')->first().oclAsType(String).size()+3, view.qualifiedIdentifier.size()).tokenize('::')) separator ('.')][s.toJavaClassifier()/][/for]
 [/template]

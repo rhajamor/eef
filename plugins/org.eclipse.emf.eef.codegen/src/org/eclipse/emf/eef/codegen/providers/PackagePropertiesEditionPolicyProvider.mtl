@@ -10,39 +10,41 @@
  *     Obeo - initial API and implementation
  *******************************************************************************
  /]
-[module PackagePropertiesEditionPolicyProvider('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/GenModel')/]
+[module PackagePropertiesEditionPolicyProvider('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/generation/1.0.0')/]
 
 [import common /]
 [import naming /]
 
 [template public PackagePropertiesEditionPolicyProvider(peContext : PropertiesEditionContext, basePackage : String)]
 [comment @main /]
-	[file (peContext.fullFilePath(basePackage).trim(), false)]
-[peContext.licenceText().trim()/]
-package [peContext.model.ecorePackage.eefPackage(basePackage).trim()/].providers;
+	[file (peContext.fullFilePath(), false)]
+[peContext.associatedGenModel().licenceText().trim()/]
+package [peContext.providersPackage()/];
 
 import org.eclipse.emf.ecore.EObject;
-import [peContext.model.ecorePackage.qualifiedMetamodelPackage(basePackage)/];
+import [peContext.model.ecorePackage.qualifiedMetamodelPackage()/];
 import org.eclipse.emf.eef.runtime.impl.providers.StandardPropertiesEditionPolicyProvider;
 
 /**
- * [peContext.authorText().trim()/]
+ * [peContext.associatedGenModel().authorText().trim()/]
+ * [peContext.associatedGenModel().generationMark()/]
  */
-public class [peContext.model.ecorePackage.name.toUpperFirst().trim()/]PackagePropertiesEditionPolicyProvider extends StandardPropertiesEditionPolicyProvider {
+public class [peContext.model.ecorePackage.name.toJavaClassifier()/]PackagePropertiesEditionPolicyProvider extends StandardPropertiesEditionPolicyProvider {
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider#provides(org.eclipse.emf.ecore.EObject)
+	 * [peContext.associatedGenModel().generationMark()/]
 	 */
 	public boolean provides(EObject eObject) {
-		return [peContext.model.ecorePackage.metamodelPackage()/].eINSTANCE.equals(eObject.eClass().getEPackage());
+		return [peContext.model.ecorePackage.metamodelPackage()/].eINSTANCE.equals(eObject.eClass().getEPackage()) || [peContext.model.ecorePackage.metamodelPackage()/].eINSTANCE.getESubpackages().contains(eObject.eClass().getEPackage());
 	}
 
 }
-	[/file]
+[/file]
 [/template]
 
-[template public fullFilePath(pec : PropertiesEditionContext, basePackage : String)]
-[pec.model.ecorePackage.eefPackage(basePackage).toPath().trim()/]/providers/[pec.model.ecorePackage.name.toUpperFirst().trim()/]PackagePropertiesEditionPolicyProvider.java
+[template public fullFilePath(pec : PropertiesEditionContext)]
+[pec.pecPolicyProviderQualifiedClass().toPath()/].java
 [/template]

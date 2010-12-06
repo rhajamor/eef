@@ -269,7 +269,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
 import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
 [for (ePackage : EPackage | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedReferencesTable')).involvedPropertiesEditionElement().model.eType.ePackage->asSet() )]
-import [ePackage.qualifiedMetamodelPackage(basePackage)/];
+import [ePackage.qualifiedMetamodelPackage()/];
 [/for]
 [for (pee : PropertiesEditionElement | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name->includes('AdvancedReferencesTable')).involvedPropertiesEditionElement() )]
 import [pee.model.eType.qualifiedName(basePackage)/];

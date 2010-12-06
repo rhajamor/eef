@@ -1,3 +1,4 @@
+[comment encoding=UTF-8 /]
 [comment 
  *******************************************************************************
  * Copyright (c) 2008-2009 Obeo.
@@ -15,25 +16,13 @@
 [comment --------------- Common queries --------------- /]
 
 [comment Check if at least one views of the propertyBinding is contained by the given view /]
-[query public primitiveTypeConverter(editionElement : PropertiesEditionElement, stringPart : String) : String = 
-	if ( editionElement.model.upperBound=1 and (editionElement.model.eType.name = 'EInt' or editionElement.model.eType.name = 'Integer' or editionElement.model.eType.name = 'UnlimitedNatural')) then 'new Integer('.concat(stringPart.concat('.').concat(editionElement.views->first().viewCompletePackageGetter())).concat(').intValue()')
-	else
-		if (editionElement.model.upperBound=1 and (editionElement.model.eType.name = 'EBoolean' or editionElement.model.eType.name = 'Boolean')) then 'new Boolean('.concat(stringPart.concat('.').concat(editionElement.views->first().viewCompletePackageGetter())).concat(').booleanValue()')
-		else 
-			if (editionElement.model.eType.oclIsTypeOf(EEnum)) then '('.concat(editionElement.model.eType.name).concat(')').concat(stringPart.concat('.').concat(editionElement.views->first().viewCompletePackageGetter()))
-			else
-				stringPart.concat('.').concat(editionElement.views->first().viewCompletePackageGetter())
-			endif
-		endif
-	endif/] 
 
 [query public involvedViews(pec : PropertiesEditionComponent) : Sequence(T) = 
-	pec.views->asSequence()->union(pec.referencedBinding.binding.views)/]
+	pec.views->asSequence()->union(pec.referencedBinding.binding.views->select(ancestors()->select(oclIsKindOf(views::View)).oclAsType(views::View)->excludesAll(pec.views->asSequence())))/]
 
 [query public involvedEditionElements(pec : PropertiesEditionComponent) : Sequence(T) = 
-	pec.properties->asSequence()->union(pec.referencedBinding.binding.properties)
-	/]
-	
+	pec.properties->asSequence()->union(pec.referencedBinding.binding.properties)/]
+
 [query public editionContext(pec : PropertiesEditionComponent) : PropertiesEditionContext = 
 	if (pec.ancestors()->select(oclIsTypeOf(PropertiesEditionContext))->notEmpty()) then 
 	pec.ancestors()->select(oclIsTypeOf(PropertiesEditionContext))->first().oclAsType(PropertiesEditionContext)
@@ -46,64 +35,135 @@
 	else element.container.owningView()
 	endif/]
 
+[query public owningViewString(element : ViewElement) : String = 
+	if (element.oclIsKindOf(View))
+	then element.oclAsType(View).name.toJavaClassifier()
+	else element.container.owningViewString()
+	endif/]
+
+[query public hasOwningViewsRepository(view : View) : Boolean = view.ancestors()->select(oclIsTypeOf(views::ViewsRepository))->notEmpty()/]
+
 [query public owningViewsRepository(view : View) : ViewsRepository = 
-if (view.ancestors()->select(oclIsTypeOf(ViewsRepository))->notEmpty()) then 
-view.ancestors()->select(oclIsTypeOf(ViewsRepository))->first().oclAsType(ViewsRepository)
-else null
-endif/]
+        if (view.hasOwningViewsRepository()) then 
+        view.ancestors()->select(oclIsTypeOf(ViewsRepository))->first().oclAsType(views::ViewsRepository)
+        else null
+        endif/]
+
+[query public owningViewsRepository(element : ViewElement) : ViewsRepository = 
+	element.owningView().owningViewsRepository()/]
 
 [query public referencedViews(view : View) : Sequence(T) = 
-view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->select(oclIsTypeOf(views::View)).oclAsType(views::View)/]
+	view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->select(oclIsTypeOf(views::View)).oclAsType(views::View)/]
 
-[query public ownedBy(element : ViewElement, view : View) : Boolean = element.owningView() = view/]
+[query public ownedBy(element : ViewElement, view : View) : Boolean = 
+	element.owningView() = view/]
 
 [query public involvedEditionElementsInView(pec : PropertiesEditionComponent, v : View) : Sequence(T) = 
-	pec.involvedEditionElements().oclAsType(PropertiesEditionElement)->select( views->first().ownedBy(v))
-	/]
+	pec.involvedEditionElements().oclAsType(PropertiesEditionElement)->select(views->first().ownedBy(v))/]
 
 [query public propertiesEditionElement(element : ElementEditor, pec : PropertiesEditionComponent) : PropertiesEditionElement =
-	 pec.properties->select(views->includes(element))->first() /]
+	 pec.properties->select(views->includes(element))->first()/]
 
 [query public involvedPropertiesEditionElement(element : ElementEditor, pec : PropertiesEditionComponent) : PropertiesEditionElement =
-	 element.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first() /]
+	 element.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first()/]
+
+[query public involvedPropertiesEditionElement(element : ElementEditor) : PropertiesEditionElement =
+	 element.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first()/]
 
 [query public involvedPropertiesEditionElement(view : ViewElement, pec : PropertiesEditionComponent) : PropertiesEditionElement =
 	 pec.involvedEditionElements().oclAsType(components::PropertiesEditionElement)->select(views.oclAsType(ViewElement)->includes(view))->first()/]
+
+[comment] 
+@param PropertiesEditionElement the  PEE of the composition
+@param EStructuralFeature : the feature of the composition 
+[/comment]
+[query public involvedPropertiesEditionElement(peElement : PropertiesEditionElement, f : EStructuralFeature) : PropertiesEditionElement =
+	 peElement.element.category.eContainer(components::PropertiesEditionContext).categories.bindings->select(oclIsTypeOf(components::PropertiesEditionComponent)).oclAsType(components::PropertiesEditionComponent).properties->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(pee : components::PropertiesEditionElement | pee.model=f)->first()/]
 
 [query public relatedComponent(view : View, pec : PropertiesEditionComponent) : PropertiesEditionComponent =
 	if (pec.views->includes(view))
 	then pec.oclAsType(components::PropertiesEditionComponent)
 	else pec.referencedBinding.binding->select(views->includes(view))->first().oclAsType(components::PropertiesEditionComponent)
 	endif/]
-	
-[query public fullPartInterfacePath(pepCompletePackage : String, pepInterface : String) : String = pepCompletePackage.concat('.parts.').concat(pepInterface)/]
+
+[query public fullPartInterfacePath(pepCompletePackage : String, pepInterface : String) : String = 
+	pepCompletePackage.concat('.parts.').concat(pepInterface)/]
 
 [query public associatedGenFeature(pee : PropertiesEditionElement) : GenFeature =
-	pee.model.eInverse()->select( oclIsKindOf(genmodel::GenFeature))->first().oclAsType(genmodel::GenFeature)/]
+	pee.model.eInverse()->select(oclIsKindOf(genmodel::GenFeature))->first().oclAsType(genmodel::GenFeature)/]
 
-[query public associatedGenPackage(p : EPackage) : GenPackage = p.eInverse()->select( oclIsKindOf(genmodel::GenPackage))->first().oclAsType(genmodel::GenPackage)/]
-	
+[query public associatedGenPackage(p : EPackage) : GenPackage = 
+	p.eInverse()->select(oclIsKindOf(genmodel::GenPackage))->first().oclAsType(genmodel::GenPackage)/]
+
 [query public associatedGenPackage(pec : PropertiesEditionComponent) : GenPackage = 
-	pec.model.ePackage.eInverse()->select( oclIsKindOf(genmodel::GenPackage))->first()/]
+	pec.model.ePackage.associatedGenPackage()/]
 
-[query public associatedGenContext(pec : PropertiesEditionContext) : GenEditionContext = 
-	pec.eInverse()->select(oclIsKindOf(EEFGen::GenEditionContext))->first().oclAsType(EEFGen::GenEditionContext)/]
+[query public associatedGenContext(peco : PropertiesEditionContext) : GenEditionContext = 
+	peco.eInverse()->select(oclIsKindOf(EEFGen::GenEditionContext))->first().oclAsType(EEFGen::GenEditionContext)/]
 
+[query public associatedGenContext(peco : PropertiesEditionComponent) : GenEditionContext =  
+		peco.editionContext().associatedGenContext() /]
 
-[query public associatedGenContext(pec : PropertiesEditionContext) : GenEditionContext = 
-	pec.eInverse()->select(oclIsKindOf(EEFGen::GenEditionContext))->first().oclAsType(EEFGen::GenEditionContext)/]
+[query public associatedGenModel(pec : PropertiesEditionContext) : EEFGenModel = 
+	pec.associatedGenContext().eefGenModel/]
+
+[query public associatedGenRepository(viewsRepository : ViewsRepository) : GenViewsRepository = 
+	if (viewsRepository.eInverse()->select(oclIsKindOf(EEFGen::GenViewsRepository))->notEmpty())
+	then viewsRepository.eInverse()->select(oclIsKindOf(EEFGen::GenViewsRepository))->first().oclAsType(EEFGen::GenViewsRepository)
+	else null
+	endif/]
+
+[query public associatedGenModel(viewsRepository : ViewsRepository) : EEFGenModel = 
+	if not viewsRepository.associatedGenRepository().oclIsUndefined()
+	then viewsRepository.associatedGenRepository().eefGenModel
+	else null
+	endif/]
 
 [comment Defines if a SubPropertiesEditionComponent must be generated. A SubPropertiesEdtionComponent must be generated if :
 	- its 'explicit' property is set to true 
-	- A ElementBindingReference reference it/]
+	- A ElementBindingReference reference it and it contains at least 1 PEE/]
 [query public mustBeGenerated(pec : PropertiesEditionComponent) : Boolean = 
-	pec.explicit or pec.eInverse()->select(oclIsTypeOf(mapping::ElementBindingReference))->size() > 0/]
+	(pec.explicit and (pec.eAllContents(components::PropertiesEditionElement)->notEmpty() or pec.referencedBinding->notEmpty())) or pec.eInverse()->select(oclIsTypeOf(mapping::ElementBindingReference))->notEmpty()/]
 
 [comment Defines if a ComposedPropertiesEditionComponent must be generated. A ComposedPropertiesEditionComponent must be generated if :
 	- its 'explicit' property is set to true and it has more than 1 view to manage 
 	- the component has to manage only reference binding /]
 [query public needComposedEditionComponent(pec : PropertiesEditionComponent) : Boolean = 
-	(pec.explicit and pec.involvedViews()->size() > 1) or (pec.views->size() = 0 and pec.involvedViews()->size() > 0)/]
+	(pec.explicit and pec.involvedViews()->size() > 1) or (pec.views->isEmpty() and pec.involvedViews()->notEmpty())/]
+
+[comment Defines if a DynamicPropertiesEditionComponent must be generated. A DynamicPropertiesEdtionComponent must be generated if :
+	- its 'explicit' property is set to true 
+	- the given view is a dynamic view /]
+[query public mustDynamicPecBeGenerated(pec : PropertiesEditionComponent, view : View) : Boolean = 
+	pec.explicit and view.isDynamicView()/]
+
+[comment A view is Dynamic if it have subViews ... /]
+[query public isDynamicView(view : View) : Boolean = 
+	view.elements->select(oclIsKindOf(views::View))->notEmpty()/]
+
+[query public dynamicViews(pec : PropertiesEditionComponent, topLevelView : View) : Sequence(T) = 
+	pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent) and oclAsType(components::PropertiesEditionComponent).mustBeGenerated()).views->select(ancestors()->includes(topLevelView))/]
+
+[comment TODOGLF: List of parts that a component have to manage/]
+[query public partToManage(pec : PropertiesEditionComponent) : Set(T) = pec.involvedViews()/]
+
+[query public involvedPropertiesEditionComponent(view : View) : PropertiesEditionComponent = 
+	if (view.eInverse()->select(oclIsTypeOf(components::PropertiesEditionComponent))->notEmpty())
+	then view.eInverse()->select(oclIsTypeOf(components::PropertiesEditionComponent))->first()
+	else null
+	endif/]
+
+[query public mustBeGenerated(view : View, pec : PropertiesEditionComponent) : Boolean =
+	view.oclAsType(ecore::EObject).eResource() = pec.oclAsType(ecore::EObject).eResource()/]
+
+[query public needBeGenerated(ref : ViewReference) : Boolean = 
+	if (ref.view.oclIsTypeOf(views::View))
+	then not ref.view.oclAsType(views::View).involvedPropertiesEditionComponent().oclIsUndefined()
+	else false
+	endif/]
+	
+[query public isA1stLevelReferencedView(toCheck : View, pec : PropertiesEditionComponent) : Boolean = 
+	pec.views.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->select(oclIsKindOf(views::View)).oclAsType(views::View)->includes(toCheck)/]
 
 [comment ----- StructuralFeatures classification ----- /]
 [query public isReferenceMany(feature : EStructuralFeature) : Boolean = 
@@ -115,6 +175,10 @@ view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->se
 	feature.oclIsTypeOf(ecore::EReference)
 	and not (feature.oclAsType(ecore::EReference).containment)
 	and not (feature.many)/]
+
+[query public isContainment(feature : EStructuralFeature) : Boolean = 
+	feature.oclIsTypeOf(ecore::EReference)
+	and feature.oclAsType(ecore::EReference).containment/]
 
 [query public isContainmentMany(feature : EStructuralFeature) : Boolean = 
 	feature.oclIsTypeOf(ecore::EReference)
@@ -135,7 +199,19 @@ view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->se
 	and not (feature.many)/]
 
 [comment ---- Views related queries ----- /]
-[query public representationName(editionElement : PropertiesEditionElement, nameToCheck : String) : Boolean = editionElement.views->first().representation.name = nameToCheck/]
+[query public representationName(editionElement : PropertiesEditionElement, nameToCheck : String) : Boolean = 
+	editionElement.views->first().representation.name = nameToCheck/]
+
+[query public representationName(view : ViewElement, nameToCheck : String) : Boolean = 
+	view.representation.name = nameToCheck/]
+
+[comment ----- Editor ID queries ---------/]
+[query public editorIDSequence(editorElement : ElementEditor) : Sequence(T) = 
+	editorElement.qualifiedIdentifier.tokenize('::')/]
+
+[comment ----- Model Navigation ---------/]
+[query public hasModelNavigation(pee : PropertiesEditionElement) : Boolean = 
+	not pee.navigation.oclIsUndefined()/]
 
 [comment --------------- Common templates --------------- /]
 [template public ecorePackageSignature(e : EStructuralFeature)]
@@ -146,33 +222,16 @@ view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view->se
 get[editor.model.ecorePackageSignature()/]()
 [/template]
 
+[template public ecoreCompletePackageGetter(s : SimpleModelNavigation)]
+get[s.feature.ecorePackageSignature()/]()
+[/template]
+
 [template public ecoreCompletePackageSetter(editor : PropertiesEditionElement)]
 set[editor.model.ecorePackageSignature()/]()
 [/template]
 
-[template public toJavaType(editor : PropertiesEditionElement)]
-[if (editor.model.eType.name = 'EInt')]
-Integer
-[elseif (editor.model.eType.name = 'EBool' or editor.model.eType.name = 'EBoolean')]
-Boolean
-[elseif (editor.model.eType.name = 'EDouble')]
-Double
-[elseif (editor.views->first().representation.name = 'EENumViewer')]
-Enumerator
-[elseif (editor.views->first().representation.name = 'MultiValuedEditor')]
-EList
-[elseif (editor.model.eType.name = 'EString' and (editor.model.upperBound = 0 or editor.model.upperBound = 1))]
-String
-[elseif (editor.views->first().representation.name = 'EObjectFlatComboViewer' or editor.views->first().representation.name = 'AdvancedEObjectFlatComboViewer')]
-[editor.model.eType.name/]
-[elseif (editor.views->first().representation.name = 'ReferencesTable')]
-List
-[else]
-[editor.model.eType.instanceClassName/]
-[/if]
-[/template]
-
-[query public ecoreGenModelAnnotation(modelElement : EModelElement) : Sequence(T) = modelElement.eAnnotations->select(annot : EAnnotation | annot.source = 'http://www.eclipse.org/emf/2002/GenModel')/]
+[query public ecoreGenModelAnnotation(modelElement : EModelElement) : Sequence(T) = 
+	modelElement.eAnnotations->select(annot : EAnnotation | annot.source = 'http://www.eclipse.org/emf/2002/GenModel')/]
 
 [query public ecoreDocumentationAnnotation(modelElement : EModelElement) : Sequence(T) = 
 	modelElement.ecoreGenModelAnnotation()->first().oclAsType(ecore::EAnnotation).details.oclAsType(ecore::EStringToStringMapEntry)
@@ -183,36 +242,55 @@ List
 	then if (modelElement.ecoreDocumentationAnnotation()->size() = 1)
 		 then modelElement.ecoreDocumentationAnnotation()->first().oclAsType(ecore::EStringToStringMapEntry).value.replaceAll('"','\\"').replaceAll('\n','').replaceAll('\r','')
 		 else null
- 		 endif
+		 endif
 	else null
 	endif/]
 
-
-[template public helpText(editor : ElementEditor, pec : PropertiesEditionComponent)]
-[if (pec.editionContext().associatedGenContext().helpStrategy = EEFGen::HELP_STRATEGY::GENMODEL)]
-[if ((not editor.involvedPropertiesEditionElement(pec).associatedGenFeature().oclIsUndefined()) and (not editor.involvedPropertiesEditionElement(pec).associatedGenFeature().propertyDescription.oclIsUndefined()))]"[editor.involvedPropertiesEditionElement(pec).associatedGenFeature().propertyDescription/]"[else]null[/if]
-[elseif (pec.editionContext().associatedGenContext().helpStrategy = EEFGen::HELP_STRATEGY::ECOREMODEL)]
-[if (not editor.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first().model.ecoreHelp().oclIsUndefined())]"[editor.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first().model.ecoreHelp().trim()/]"[else]null[/if]
+[template public helpText(pee : PropertiesEditionElement)]
+[if (not pee.views->first().owningViewsRepository().associatedGenRepository().oclIsUndefined())]
+[if (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::GENMODEL)]
+[if ((not pee.associatedGenFeature().oclIsUndefined()) and (not pee.associatedGenFeature().propertyDescription.oclIsUndefined()))]"[pee.associatedGenFeature().propertyDescription.replaceAll('"','\\\\"')/]"[else]null[/if]
+[elseif (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::ECOREMODEL)]
+[if (pee.model.ecoreHelp().oclIsUndefined())]"[pee.model.ecoreHelp().trim()/]"[else]null[/if]
+[/if]
 [/if]
 [/template]
 
-[template public licenceText(peContext : PropertiesEditionContext)]
-[if (not peContext.associatedGenContext().oclIsUndefined())]
-	[if (not peContext.associatedGenContext().license.oclIsUndefined())]
-[peContext.associatedGenContext().license/]
-	[else]
+[template public licenceText(eefGenModel : EEFGenModel)]
+[if (not eefGenModel.license.oclIsUndefined())]
+[eefGenModel.license/]
+[else]
 /**
- * generated with Acceleo
- */	
-	[/if]	
+ * Generated with Acceleo
+ */
 [/if]
 [/template]
 
-[template public authorText(peContext : PropertiesEditionContext)]
-[if (not peContext.associatedGenContext().oclIsUndefined())]
-	[if (not peContext.associatedGenContext().author.oclIsUndefined())]
-@author [peContext.associatedGenContext().author/]
-	[/if]	
+[template public propertiesLicenceText(eefGenModel : EEFGenModel)]
+[if (not eefGenModel.license.oclIsUndefined())]
+[eefGenModel.license.replaceAll('/\\*\\*', '#').replaceAll(' \\*/', '#').replaceAll(' \\*', '#')/]
+[else]
+#
+# Generated with Acceleo
+#
+[/if]
+[/template]
+
+[template public generationMark(eefGenModel : EEFGenModel) ]
+[if (eefGenModel.useJMergeForUserCode)]@generated[/if]
+[/template]
+
+[template public generationComment(eefGenModel : EEFGenModel) ]
+[if (eefGenModel.useJMergeForUserCode)]
+/**
+ * [eefGenModel.generationMark()/]
+ */
+[/if]
+[/template]
+
+[template public authorText(eefGenModel : EEFGenModel)]
+[if (not eefGenModel.author.oclIsUndefined())]
+@author [eefGenModel.author/]
 [/if]
 [/template]
 
@@ -226,7 +304,7 @@ get[view.viewPackageSignature()/]
 [/template]
 
 [template public viewPackageSignature(view : ViewElement)]
-[view.name.toASCII().substituteAll(' ','').toUpperFirst()/]
+[view.name.toJavaClassifier()/]
 [/template]
 
 [template public viewPackageSetter(view : ViewElement)]
@@ -238,40 +316,75 @@ set[view.viewPackageSignature()/]
 [/template]
 
 [template public toJavaType(view : ViewElement)]
-[if (view.representation.name = 'Text' or view.representation.name = 'Textarea')]
+[if (view.representationName('Text') or view.representationName('Textarea') or view.representationName('ImageViewer'))]
 String
-[elseif (view.representation.name = 'EENumViewer')]
+[elseif (view.representationName('EMFComboViewer'))]
 Enumerator
-[elseif (view.representation.name = 'MultiValuedEditor')]
+[elseif (view.representationName('MultiValuedEditor'))]
 EList
-[elseif (view.representation.name = 'EObjectFlatComboViewer' or view.representation.name = 'AdvancedEObjectFlatComboViewer')]
+[elseif (view.representationName('EObjectFlatComboViewer') or view.representationName('AdvancedEObjectFlatComboViewer'))]
 EObject
-[elseif (view.representation.name = 'ReferencesTable' or view.representation.name = 'AdvancedReferencesTable' or view.representation.name = 'TableComposition' or view.representation.name = 'AdvancedTableComposition')]
+[elseif (view.representationName('ReferencesTable') or view.representationName('AdvancedReferencesTable') or view.representationName('TableComposition') or view.representationName('AdvancedTableComposition'))]
 List
-[elseif (view.representation.name = 'Checkbox')]
+[elseif (view.representationName('Checkbox'))]
 Boolean
+[elseif (view.representationName('Radio'))]
+[comment can be used for Enums or Boolean/]
+Object
+[elseif (view.representationName('Combo'))]
+[comment can be used for References, Enums or Boolean/]
+Object
 [else]
-ERROR [view.representation.name/]
+//FIXME ERROR INVALID CASE INTO template public toJavaType(view : ViewElement) in common.mtl module for representation [view.representation.name/]
 [/if]
 [/template]
 
-[template public toPath(s : String)]
-[s.substituteAll('.', '/')/]
-[/template]
+[template public toPath(s : String)][s.substituteAll('.', '/')/][/template]
 
 [comment][esc/][if (esc = 'class' or esc = 'package' or esc = 'default' or esc = 'case' or esc = 'if' or esc = 'else' or esc = 'while' or esc = 'for' or esc = 'do' or esc = 'until' or esc = 'transient' or esc = 'interface')]_[/if][/let][/comment]
 [template public toASCII(s : String)]
 [s.substituteAll('à', 'a')
-	.substituteAll('è', 'e')
-	.substituteAll('ë', 'e')
-	.substituteAll('ê', 'e')
 	.substituteAll('é', 'e')
+	.substituteAll('è', 'e')
+	.substituteAll('ê', 'e')
+	.substituteAll('ë', 'e')
 	.substituteAll('ï', 'i')
 	.substituteAll('î', 'i')
 	.substituteAll('ö', 'o')
 	.substituteAll('ô', 'o')
+	.substituteAll('ù', 'u')
+	.substituteAll('ü', 'u')
 	.substituteAll('û', 'u')
-	.substituteAll('ù', 'u').trim()/]
+	.substituteAll('-', '')/]
+[/template]
+
+[comment template used for the properties files to handle accents /]
+[template public toUnicode(s : String)]
+[s.substituteAll('à', '\\u00E0').substituteAll('À', '\\u00C0')
+	.substituteAll('á', '\\u00E1').substituteAll('Á', '\\u00C1')
+	.substituteAll('â', '\\u00E2').substituteAll('Â', '\\u00C2')
+	.substituteAll('ä', '\\u00E4').substituteAll('Ä', '\\u00C4')
+	.substituteAll('æ', '\\u00E6').substituteAll('Æ', '\\u00C6')
+	.substituteAll('ç', '\\u00E7').substituteAll('Ç', '\\u00C8')
+	.substituteAll('é', '\\u00E9').substituteAll('É', '\\u00C9')
+	.substituteAll('ê', '\\u00EA').substituteAll('Ê', '\\u00CA')
+	.substituteAll('ë', '\\u00EB').substituteAll('Ë', '\\u00CC')
+	.substituteAll('í', '\\u00EC').substituteAll('Í', '\\u00CC')
+	.substituteAll('î', '\\u00EE').substituteAll('Î', '\\u00CE')
+	.substituteAll('ï', '\\u00EF').substituteAll('Ï', '\\u00CF')
+	.substituteAll('ñ', '\\u00F1').substituteAll('Ñ', '\\u00D1')
+	.substituteAll('ò', '\\u00F2').substituteAll('Ò', '\\u00D2')
+	.substituteAll('ó', '\\u00F3').substituteAll('Ó', '\\u00D3')
+	.substituteAll('ô', '\\u00F4').substituteAll('Ô', '\\u00D4')
+	.substituteAll('ö', '\\u00F6').substituteAll('Ö', '\\u00D6')
+	.substituteAll('ù', '\\u00F9').substituteAll('Ù', '\\u00D9')
+	.substituteAll('ú', '\\u00FA').substituteAll('Ú', '\\u00DA')
+	.substituteAll('û', '\\u00FB').substituteAll('Û', '\\u00DB')
+	.substituteAll('ü', '\\u00FC').substituteAll('Ü', '\\u00DC')
+	.substituteAll('œ', '\\u0153').substituteAll('Œ', '\\u0152')
+	.substituteAll('«', '\\u00AB').substituteAll('»', '\\u00BB')
+	.substituteAll('$', '\\u0024').substituteAll('€', '\\u20AC')
+	.substituteAll('\'', '\\u0027')/]
 [/template]
 
 [comment Sequence{1..s.size()}->
@@ -281,16 +394,36 @@ ERROR [view.representation.name/]
     else result.concat(s.substring(i,i))
    endif
    ) /]
-[template private toJavaIdentifierDelegate(s : String)]
-[for (str : String | s.toASCII().tokenize(' '))][str.toUpperFirst()/][/for]
+
+[comment TODO: fixed in Acceleo 3.0.0M7/]
+[comment][query public startsWithADigit(s : String) : Boolean = not s.first(1).isAlpha()/][/comment]
+[query public startsWithADigit(s : String) : Boolean =
+	s.firstChar() = '0' 
+	or s.firstChar() = '1' 
+	or s.firstChar() = '2' 
+	or s.firstChar() = '3' 
+	or s.firstChar() = '4' 
+	or s.firstChar() = '5' 
+	or s.firstChar() = '6' 
+	or s.firstChar() = '7' 
+	or s.firstChar() = '8' 
+	or s.firstChar() = '9'/]
+
+[template public firstChar(s : String)]
+[if (s.oclIsUndefined())][''/][elseif (s = '')][''/][else][s.substring(1,1)/][/if]
 [/template]
 
+[template private toJavaIdentifierDelegate(s : String)]
+[if (s.startsWithADigit())]_[/if][for (str : String | s.toASCII().tokenize(' '))][str.toUpperFirst()/][/for]
+[/template]
+
+[comment === escape some special keywords (java and EEF) /]
 [template public toJavaIdentifier(s : String)]
-[s.toJavaIdentifierDelegate().toLowerFirst().replaceAll('(?i)^((class)|(package)|(default)|(case)|(if)|(else)|(while)|(for)|(do)|(until)|(transient)|(interface)|(super))$','$1_')/]
+[s.toJavaIdentifierDelegate().toLowerFirst().replaceAll('(?i)^((title)|(parent)|(abstract)|(continue)|(for)|(new)|(switch)|(assert)|(default)|(goto)|(package)|(synchronized)|(boolean)|(do)|(if)|(private)|(this)|(break)|(double)|(implements)|(protected)|(throw)|(byte)|(else)|(import)|(public)|(throws)|(case)|(enum)|(instanceof)|(return)|(transient)|(catch)|(extends)|(int)|(short)|(try)|(char)|(final)|(interface)|(static)|(void)|(class)|(finally)|(long)|(strictfp)|(volatile)|(const)|(float)|(native)|(super)|(while))$','$1_')/]
 [/template]
 
 [template public toJavaClassifier(s : String)]
-[s.toJavaIdentifierDelegate().replaceAll('^((class)|(package)|(default)|(case)|(if)|(else)|(while)|(for)|(do)|(until)|(transient)|(interface)|(super))$','$1_')/]
+[s.toJavaIdentifier().toUpperFirst()/]
 [/template]
 
 [template public toJavaMetamodelIdentifier(s : String)]
@@ -298,10 +431,99 @@ ERROR [view.representation.name/]
 [/template]
 
 [template public toJavaConstant(s: String)]
-[s.toASCII().trim().substituteAll(' ', '_').toUpper()/]
+[s.toJavaIdentifier().toUpper()/]
 [/template]
 
-[comment ==== For multiples model features getters (thanks to EMF !) ==== /]
+[comment ==== For multiples model features getters (thanks to UML !) ==== /]
 [template public toMany(s: String)]
 [s/]
 [/template]
+
+[template public completePackage(eClassifier : EClassifier)]
+[ePackage.completePackage()/]
+[/template]
+
+[template public completePackage(ePackage : EPackage)]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][ePackage.associatedGenPackage().basePackage/].[/if][ePackage.name/]
+[/template]
+
+[template public eefPackage(eClassifier : EClassifier, basePackage : String)]
+[basePackage/].[eClassifier.ePackage.name/]
+[/template]
+
+[template public eefPackage(ePackage : EPackage, basePackage : String)]
+[basePackage/].[ePackage.name/]
+[/template]
+
+[template public qualifiedName(eClassifier : EClassifier)]
+[eClassifier.completePackage()/].[eClassifier.name/]
+[/template]
+
+[comment @deprecated/]
+[template public qualifiedName(eClassifier : EClassifier, basePackage : String)]
+[eClassifier.completePackage()/].[eClassifier.name/]
+[/template]
+
+[query public metamodelPrefix(ePackage : EPackage) : String =
+	if ePackage.nsURI= 'http://www.eclipse.org/emf/2002/Ecore'
+	then 'Ecore'
+	else if ePackage.nsURI = 'http://www.eclipse.org/emf/2003/XMLType'
+			then 'XMLType'
+			else ePackage.eInverse(genmodel::GenPackage)->first().prefix
+			endif
+	endif/]
+
+[template public metamodelPackage(ePackage : EPackage)]
+[ePackage.metamodelPrefix()/]Package
+[/template]
+
+[template public metamodelFactory(ePackage : EPackage)]
+[ePackage.metamodelPrefix()/]Factory
+[/template]
+
+[template public metamodelPackage(eClassifier : EClassifier)]
+[eClassifier.ePackage.metamodelPackage()/]
+[/template]
+
+[comment @deprecated /]
+[comment][template public qualifiedMetamodelPackage(ePackage : EPackage, basePackage : String)]
+[ePackage.completePackage()/].[ePackage.metamodelPackage()/]
+[/template][/comment]
+
+[comment @deprecated /]
+[comment][template public qualifiedMetamodelPackage(eClassifier : EClassifier, basePackage : String)]
+[eClassifier.ePackage.qualifiedMetamodelPackage(basePackage)/]
+[/template][/comment]
+
+[template public qualifiedMetamodelPackage(ePackage : EPackage)]
+[ePackage.completePackage()/].[ePackage.metamodelPackage()/]
+[/template]
+
+[template public qualifiedMetamodelPackage(eClassifier : EClassifier)]
+[eClassifier.ePackage.qualifiedMetamodelPackage()/]
+[/template]
+
+[template public qualifiedMetamodelFactory(ePackage : EPackage)]
+[ePackage.completePackage()/].[ePackage.metamodelFactory()/]
+[/template]
+
+[template public metamodelGetter(s : SimpleModelNavigation)]
+[s.feature.eContainingClass.metamodelPackage()/].eINSTANCE.[s.ecoreCompletePackageGetter()/]
+[/template]
+
+[template public metamodelGetter(p : PropertiesEditionElement)]
+[p.model.eContainingClass.metamodelPackage()/].eINSTANCE.[p.ecoreCompletePackageGetter()/]
+[/template]
+
+[comment queries for model navigation /]
+[query public simpleModelNavigationType(modelNavigation : SimpleModelNavigation) : String = 
+	if (modelNavigation.discriminatorType.oclIsUndefined())
+	then modelNavigation.feature.eType.name
+	else modelNavigation.discriminatorType.name
+	endif/]
+
+[query public simpleModelNavigationMetamodelFactory(modelNavigation : SimpleModelNavigation) : String = 
+	if (modelNavigation.discriminatorType.oclIsUndefined())
+	then modelNavigation.feature.eType.ePackage.metamodelPrefix()
+	else modelNavigation.discriminatorType.ePackage.metamodelPrefix()
+	endif/]

@@ -49,7 +49,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 [for (ePackage : EPackage | pec.involvedEditionElements().oclAsType(components::PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(ecore::EClass).ePackage))]
-import [ePackage.qualifiedMetamodelPackage(basePackage)/];
+import [ePackage.qualifiedMetamodelPackage()/];
 [/for]
 [for (viewRepository : ViewsRepository | pec.involvedViews().oclAsType(views::View).owningViewsRepository()->asSet())]
 import [viewRepository.qualifiedMessagesProvider()/];
@@ -66,7 +66,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import [view.owningViewsRepository().vrPackage()/].parts.[view.pepInterface()/];
+import [view.pepQualifiedInterface()/];
 [for (widget : Widget | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor).representation->asSet()) ? (not widget.oclIsUndefined())]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
