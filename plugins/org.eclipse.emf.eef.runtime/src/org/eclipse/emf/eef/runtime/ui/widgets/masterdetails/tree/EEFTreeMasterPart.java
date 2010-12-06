@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Christophe Bouhier - #183994 - EEF and a transactional editing domain.
  *******************************************************************************/
 package org.eclipse.emf.eef.runtime.ui.widgets.masterdetails.tree;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -281,8 +283,13 @@ private List<EEFCommandParameter> commandParameters;
 					public void widgetSelected(SelectionEvent e) {
 								
 						EList<EObject> list = (EList<EObject>) modelRoot.eGet(commandParameter.getReference());
-
-						list.add(EcoreUtil.create(commandParameter.geteClass()));
+						EObject value = EcoreUtil.create(commandParameter.geteClass());
+						
+						if(editingDomain != null) {
+							Command command = AddCommand.create(editingDomain, modelRoot,null,value);
+							editingDomain.getCommandStack().execute(command);
+						}
+//						list.add(EcoreUtil.create(commandParameter.geteClass()));
 						try {
 							modelRoot.eResource().save(Collections.EMPTY_MAP);
 							
@@ -291,7 +298,6 @@ private List<EEFCommandParameter> commandParameters;
 						}
 					}
 				});
-				
 			}
 		};
 		
