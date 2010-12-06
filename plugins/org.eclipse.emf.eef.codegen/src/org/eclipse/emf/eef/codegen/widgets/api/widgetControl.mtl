@@ -1,0 +1,161 @@
+[comment 
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ 
+ This module define the widget generation. It is composed of templates that need to be 
+ override by the templates that implements wigdets for EEF. 
+ /]
+[module widgetControl('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0')/]
+
+[import naming /]
+[import common /]
+[import filters /]
+
+[comment ===== Widget generation API ===== /]
+
+[comment liveupdater : templates that override this one must define the behaviour of the generated widget when the associated
+		 feature of the edited element has changed /]
+[template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
+// FIXME INVALID CASE INTO template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+[/template]
+
+[comment liveCommandUpdater : templates that override this one must define the command to execute on the edited object when the
+		 value of the widget is modified /]
+[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String)]
+// FIXME INVALID CASE INTO template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [modelName/].
+[/template]
+
+[comment commandUpdater : templates that override this one must define the command to execute to set the value of the widget to
+		 the associated feature /]
+[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String)]
+// FIXME INVALID CASE INTO template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/], [modelName/].
+[/template]
+
+[comment partUpdater : templates that override this one must define the setter to apply to set the value of the widget to
+		 the associated feature /]
+[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String)]
+// FIXME INVALID CASE INTO template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/], [modelName/].
+[/template]
+
+[comment partUpdater : templates that override this one must define the operation to execute at the initialization of the 
+		 component for the given widget /]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
+// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+[/template]
+
+[comment filterUpdater : templates that override this one must define the operation to execute at the initialization of the 
+		 component for the filters of the given widget /]
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
+// FIXME NO VALID CASE INTO template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+[/template]
+
+[comment ========= message setter and unsetter /]
+[template public liveMessageSetter(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) ? (editionElement.representationName('Text') or editionElement.representationName('Textarea'))]
+				if ([editionElement.views->first().editorID()/] == event.getAffectedEditor())
+					[view.viewIdentifier(pec)/].setMessageFor[editionElement.views->first().name.toJavaClassifier()/](diag.getMessage(), IMessageProvider.ERROR);
+[/template]
+
+[template public liveMessageUnsetter(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) ? (editionElement.representationName('Text') or editionElement.representationName('Textarea'))]
+				if ([editionElement.views->first().editorID()/] == event.getAffectedEditor())
+					[view.viewIdentifier(pec)/].unsetMessageFor[editionElement.views->first().name.toJavaClassifier()/]();
+[/template]
+
+[comment ========== ReferencedViews support ========== /]
+[template public livemessageUnsetterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+				[editionElement.liveMessageUnsetter(v, pec)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.livemessageUnsetterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent))/][/if][/comment]
+[/for]
+[/template]
+
+[template public liveMessageSetterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+				[editionElement.liveMessageSetter(v, pec)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.liveMessageSetterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent))/][/if][/comment]
+[/for]
+[/template]
+
+[template public liveCommandUpdaterForReferencedViews(view : View, pec : PropertiesEditionComponent, modelName : String)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.liveCommandUpdater(v, modelName)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.liveCommandUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent), modelName)/][/if][/comment]
+[/for]
+[/template]
+
+[template public partUpdaterForReferencedViews(view : View, pec : PropertiesEditionComponent, modelName : String)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.partUpdater(v, pec, modelName)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.partUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent), modelName)/][/if][/comment]
+[/for]
+[/template]
+
+[template public commandUpdaterForReferencedViews(view : View, pec : PropertiesEditionComponent, modelName : String)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.commandUpdater(v, pec, modelName)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.commandUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent), modelName)/][/if][/comment]
+[/for]
+[/template]
+
+[template public liveUpdaterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.liveUpdater(v, pec)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.liveUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent))/][/if][/comment]
+[/for]
+[/template]
+
+[template public updaterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+		[view.viewIdentifier(pec)/].get[v.name.toJavaClassifier()/]ReferencedView().setContext(elt, allResource);
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.updater(v, pec)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.updaterForSubReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent), pec)/][/if][/comment]
+[/for]
+[/template]
+
+[template public updaterForSubReferencedViews(view : View, pec : PropertiesEditionComponent, inputPEC : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.properties->select(oclIsKindOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(views->first().ownedBy(v)))]
+[editionElement.updater(v, inputPEC)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.updaterForSubReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent), inputPEC)/][/if][/comment]
+[/for]
+[/template]
+
+[template public filterUpdaterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(v))]
+[editionElement.filterUpdater(view, pec)/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.filterUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent))/][/if][/comment]
+[/for]
+[/template]
+
+[template public javaDeclarationFilterForReferencedViews(view : View, pec : PropertiesEditionComponent)]
+[for (v : View | view.referencedViews())]
+[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(v))]
+[editionElement.javaDeclarationFilter()/]
+[/for]
+[comment][if (v.referencedViews()->notEmpty())][v.filterUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))->first().oclAsType(components::PropertiesEditionComponent))/][/if][/comment]
+[/for]
+[/template]
