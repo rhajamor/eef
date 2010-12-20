@@ -4082,20 +4082,18 @@
       </parameter>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="eefPackage" visibility="Public">
-      <body xsi:type="ocl.ecore:VariableExp" name="basePackage" referredVariable="/0/eefPackage/basePackage.1">
+      <body xsi:type="mtl:TemplateInvocation" definition="/0/eefPackage.1">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="."/>
-      <body xsi:type="ocl.ecore:PropertyCallExp">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <source xsi:type="ocl.ecore:PropertyCallExp">
+        <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
           <source xsi:type="ocl.ecore:VariableExp" name="eClassifier" referredVariable="/0/eefPackage/eClassifier">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
           </source>
           <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier/ePackage"/>
-        </source>
-        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:VariableExp" name="basePackage" referredVariable="/0/eefPackage/basePackage">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
       </body>
       <parameter name="eClassifier">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
@@ -4105,10 +4103,55 @@
       </parameter>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="eefPackage" visibility="Public">
-      <body xsi:type="ocl.ecore:VariableExp" name="basePackage" referredVariable="/0/eefPackage.1/basePackage.1">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:VariableExp" name="basePackage" referredVariable="/0/eefPackage.1/basePackage">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="."/>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="mtl:QueryInvocation" definition="/0/associatedGenPackage">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+                  <argument xsi:type="ocl.ecore:VariableExp" name="ePackage" referredVariable="/0/eefPackage.1/ePackage">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+                  </argument>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/basePackage"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/oclIsUndefined"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="mtl:QueryInvocation" definition="/0/associatedGenPackage">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+                  <argument xsi:type="ocl.ecore:VariableExp" name="ePackage" referredVariable="/0/eefPackage.1/ePackage">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+                  </argument>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/basePackage"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/size"/>
+            </source>
+            <argument xsi:type="ocl.ecore:IntegerLiteralExp" integerSymbol="0">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+        </ifExpr>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="."/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="ocl.ecore:VariableExp" name="ePackage" referredVariable="/0/eefPackage.1/ePackage">
@@ -7780,9 +7823,6 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
@@ -7790,6 +7830,9 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
@@ -14666,647 +14709,707 @@
     </eAnnotations>
     <eAnnotations source="positions.1333" references="/0/eefPackage">
       <details key="start" value="21516"/>
-      <details key="end" value="21649"/>
+      <details key="end" value="21653"/>
       <details key="line" value="449"/>
     </eAnnotations>
-    <eAnnotations source="positions.1334" references="/0/eefPackage/basePackage">
+    <eAnnotations source="positions.1334" references="/0/eefPackage/@body.0">
+      <details key="start" value="21595"/>
+      <details key="end" value="21639"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1335" references="/0/eefPackage/@body.0/@argument.0">
+      <details key="start" value="21595"/>
+      <details key="end" value="21615"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1336" references="/0/eefPackage/@body.0/@argument.0/eClassifier">
       <details key="start" value="21595"/>
       <details key="end" value="21606"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1335" references="/0/eefPackage/@body.1">
-      <details key="start" value="21608"/>
-      <details key="end" value="21609"/>
-      <details key="line" value="450"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1336" references="/0/eefPackage/@body.2">
-      <details key="start" value="21610"/>
-      <details key="end" value="21635"/>
+    <eAnnotations source="positions.1337" references="/0/eefPackage/@body.0/basePackage">
+      <details key="start" value="21627"/>
+      <details key="end" value="21638"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1337" references="/0/eefPackage/@body.2/@source">
-      <details key="start" value="21610"/>
-      <details key="end" value="21630"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1338" references="/0/eefPackage/@body.2/@source/eClassifier">
-      <details key="start" value="21610"/>
-      <details key="end" value="21621"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1339" references="/0/eefPackage/eClassifier">
+    <eAnnotations source="positions.1338" references="/0/eefPackage/eClassifier">
       <details key="start" value="21544"/>
       <details key="end" value="21569"/>
       <details key="line" value="449"/>
     </eAnnotations>
-    <eAnnotations source="positions.1340" references="/0/eefPackage/basePackage.1">
+    <eAnnotations source="positions.1339" references="/0/eefPackage/basePackage">
       <details key="start" value="21571"/>
       <details key="end" value="21591"/>
       <details key="line" value="449"/>
     </eAnnotations>
-    <eAnnotations source="positions.1341" references="/0/eefPackage.1">
-      <details key="start" value="21651"/>
-      <details key="end" value="21766"/>
+    <eAnnotations source="positions.1340" references="/0/eefPackage.1">
+      <details key="start" value="21655"/>
+      <details key="end" value="21909"/>
       <details key="line" value="453"/>
     </eAnnotations>
-    <eAnnotations source="positions.1342" references="/0/eefPackage.1/basePackage">
-      <details key="start" value="21724"/>
-      <details key="end" value="21735"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1343" references="/0/eefPackage.1/@body.1">
-      <details key="start" value="21737"/>
-      <details key="end" value="21738"/>
+    <eAnnotations source="positions.1341" references="/0/eefPackage.1/@body.0">
+      <details key="start" value="21727"/>
+      <details key="end" value="21881"/>
       <details key="line" value="454"/>
     </eAnnotations>
-    <eAnnotations source="positions.1344" references="/0/eefPackage.1/@body.2">
-      <details key="start" value="21739"/>
-      <details key="end" value="21752"/>
+    <eAnnotations source="positions.1342" references="/0/eefPackage.1/@body.0/basePackage">
+      <details key="start" value="21862"/>
+      <details key="end" value="21873"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1345" references="/0/eefPackage.1/@body.2/ePackage">
-      <details key="start" value="21739"/>
-      <details key="end" value="21747"/>
+    <eAnnotations source="positions.1343" references="/0/eefPackage.1/@body.0/@body.1">
+      <details key="start" value="21875"/>
+      <details key="end" value="21876"/>
+      <details key="line" value="454"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1344" references="/0/eefPackage.1/@body.0/@ifExpr">
+      <details key="start" value="21731"/>
+      <details key="end" value="21860"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1346" references="/0/eefPackage.1/ePackage">
-      <details key="start" value="21679"/>
-      <details key="end" value="21698"/>
+    <eAnnotations source="positions.1345" references="/0/eefPackage.1/@body.0/@ifExpr/@source">
+      <details key="start" value="21732"/>
+      <details key="end" value="21798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1346" references="/0/eefPackage.1/@body.0/@ifExpr/@source/@source">
+      <details key="start" value="21737"/>
+      <details key="end" value="21797"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1347" references="/0/eefPackage.1/@body.0/@ifExpr/@source/@source/@source">
+      <details key="start" value="21737"/>
+      <details key="end" value="21780"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1348" references="/0/eefPackage.1/@body.0/@ifExpr/@source/@source/@source/@source">
+      <details key="start" value="21737"/>
+      <details key="end" value="21768"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1349" references="/0/eefPackage.1/@body.0/@ifExpr/@source/@source/@source/@source/ePackage">
+      <details key="start" value="21737"/>
+      <details key="end" value="21745"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1350" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0">
+      <details key="start" value="21803"/>
+      <details key="end" value="21859"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1351" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0/@source">
+      <details key="start" value="21804"/>
+      <details key="end" value="21854"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1352" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0/@source/@source">
+      <details key="start" value="21804"/>
+      <details key="end" value="21847"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1353" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0/@source/@source/@source">
+      <details key="start" value="21804"/>
+      <details key="end" value="21835"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1354" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0/@source/@source/@source/ePackage">
+      <details key="start" value="21804"/>
+      <details key="end" value="21812"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1355" references="/0/eefPackage.1/@body.0/@ifExpr/@argument.0/@argument.0">
+      <details key="start" value="21857"/>
+      <details key="end" value="21858"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1356" references="/0/eefPackage.1/@body.1">
+      <details key="start" value="21882"/>
+      <details key="end" value="21895"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1357" references="/0/eefPackage.1/@body.1/ePackage">
+      <details key="start" value="21882"/>
+      <details key="end" value="21890"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1358" references="/0/eefPackage.1/ePackage">
+      <details key="start" value="21683"/>
+      <details key="end" value="21702"/>
       <details key="line" value="453"/>
     </eAnnotations>
-    <eAnnotations source="positions.1347" references="/0/eefPackage.1/basePackage.1">
-      <details key="start" value="21700"/>
-      <details key="end" value="21720"/>
+    <eAnnotations source="positions.1359" references="/0/eefPackage.1/basePackage">
+      <details key="start" value="21704"/>
+      <details key="end" value="21724"/>
       <details key="line" value="453"/>
     </eAnnotations>
-    <eAnnotations source="positions.1348" references="/0/qualifiedName">
-      <details key="start" value="21768"/>
-      <details key="end" value="21891"/>
+    <eAnnotations source="positions.1360" references="/0/qualifiedName">
+      <details key="start" value="21911"/>
+      <details key="end" value="22034"/>
       <details key="line" value="457"/>
     </eAnnotations>
-    <eAnnotations source="positions.1349" references="/0/qualifiedName/@body.0">
-      <details key="start" value="21828"/>
-      <details key="end" value="21857"/>
+    <eAnnotations source="positions.1361" references="/0/qualifiedName/@body.0">
+      <details key="start" value="21971"/>
+      <details key="end" value="22000"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1350" references="/0/qualifiedName/@body.0/eClassifier">
-      <details key="start" value="21828"/>
-      <details key="end" value="21839"/>
+    <eAnnotations source="positions.1362" references="/0/qualifiedName/@body.0/eClassifier">
+      <details key="start" value="21971"/>
+      <details key="end" value="21982"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1351" references="/0/qualifiedName/@body.1">
-      <details key="start" value="21859"/>
-      <details key="end" value="21860"/>
+    <eAnnotations source="positions.1363" references="/0/qualifiedName/@body.1">
+      <details key="start" value="22002"/>
+      <details key="end" value="22003"/>
       <details key="line" value="458"/>
     </eAnnotations>
-    <eAnnotations source="positions.1352" references="/0/qualifiedName/@body.2">
-      <details key="start" value="21861"/>
-      <details key="end" value="21877"/>
+    <eAnnotations source="positions.1364" references="/0/qualifiedName/@body.2">
+      <details key="start" value="22004"/>
+      <details key="end" value="22020"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1353" references="/0/qualifiedName/@body.2/eClassifier">
-      <details key="start" value="21861"/>
-      <details key="end" value="21872"/>
+    <eAnnotations source="positions.1365" references="/0/qualifiedName/@body.2/eClassifier">
+      <details key="start" value="22004"/>
+      <details key="end" value="22015"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1354" references="/0/qualifiedName/eClassifier">
-      <details key="start" value="21799"/>
-      <details key="end" value="21824"/>
+    <eAnnotations source="positions.1366" references="/0/qualifiedName/eClassifier">
+      <details key="start" value="21942"/>
+      <details key="end" value="21967"/>
       <details key="line" value="457"/>
     </eAnnotations>
-    <eAnnotations source="positions.1355" references="/0/qualifiedName.1">
-      <details key="start" value="21916"/>
-      <details key="end" value="22061"/>
+    <eAnnotations source="positions.1367" references="/0/qualifiedName.1">
+      <details key="start" value="22059"/>
+      <details key="end" value="22204"/>
       <details key="line" value="462"/>
     </eAnnotations>
-    <eAnnotations source="positions.1356" references="/0/qualifiedName.1/@body.0">
-      <details key="start" value="21998"/>
-      <details key="end" value="22027"/>
+    <eAnnotations source="positions.1368" references="/0/qualifiedName.1/@body.0">
+      <details key="start" value="22141"/>
+      <details key="end" value="22170"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1357" references="/0/qualifiedName.1/@body.0/eClassifier">
-      <details key="start" value="21998"/>
-      <details key="end" value="22009"/>
+    <eAnnotations source="positions.1369" references="/0/qualifiedName.1/@body.0/eClassifier">
+      <details key="start" value="22141"/>
+      <details key="end" value="22152"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1358" references="/0/qualifiedName.1/@body.1">
-      <details key="start" value="22029"/>
-      <details key="end" value="22030"/>
+    <eAnnotations source="positions.1370" references="/0/qualifiedName.1/@body.1">
+      <details key="start" value="22172"/>
+      <details key="end" value="22173"/>
       <details key="line" value="463"/>
     </eAnnotations>
-    <eAnnotations source="positions.1359" references="/0/qualifiedName.1/@body.2">
-      <details key="start" value="22031"/>
-      <details key="end" value="22047"/>
+    <eAnnotations source="positions.1371" references="/0/qualifiedName.1/@body.2">
+      <details key="start" value="22174"/>
+      <details key="end" value="22190"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1360" references="/0/qualifiedName.1/@body.2/eClassifier">
-      <details key="start" value="22031"/>
-      <details key="end" value="22042"/>
+    <eAnnotations source="positions.1372" references="/0/qualifiedName.1/@body.2/eClassifier">
+      <details key="start" value="22174"/>
+      <details key="end" value="22185"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1361" references="/0/qualifiedName.1/eClassifier">
-      <details key="start" value="21947"/>
-      <details key="end" value="21972"/>
+    <eAnnotations source="positions.1373" references="/0/qualifiedName.1/eClassifier">
+      <details key="start" value="22090"/>
+      <details key="end" value="22115"/>
       <details key="line" value="462"/>
     </eAnnotations>
-    <eAnnotations source="positions.1362" references="/0/qualifiedName.1/basePackage">
-      <details key="start" value="21974"/>
-      <details key="end" value="21994"/>
-      <details key="line" value="462"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1363" references="/0/metamodelPrefix">
-      <details key="start" value="22063"/>
-      <details key="end" value="22366"/>
-      <details key="line" value="466"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1364" references="/0/metamodelPrefix/ePackage">
-      <details key="start" value="22093"/>
-      <details key="end" value="22112"/>
-      <details key="line" value="466"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1365" references="/0/metamodelPrefix/@expression">
-      <details key="start" value="22126"/>
-      <details key="end" value="22364"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1366" references="/0/metamodelPrefix/@expression/@condition">
-      <details key="start" value="22129"/>
-      <details key="end" value="22184"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1367" references="/0/metamodelPrefix/@expression/@condition/@source">
-      <details key="start" value="22129"/>
-      <details key="end" value="22143"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1368" references="/0/metamodelPrefix/@expression/@condition/@source/ePackage">
-      <details key="start" value="22129"/>
+    <eAnnotations source="positions.1374" references="/0/qualifiedName.1/basePackage">
+      <details key="start" value="22117"/>
       <details key="end" value="22137"/>
+      <details key="line" value="462"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1375" references="/0/metamodelPrefix">
+      <details key="start" value="22206"/>
+      <details key="end" value="22509"/>
+      <details key="line" value="466"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1376" references="/0/metamodelPrefix/ePackage">
+      <details key="start" value="22236"/>
+      <details key="end" value="22255"/>
+      <details key="line" value="466"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1377" references="/0/metamodelPrefix/@expression">
+      <details key="start" value="22269"/>
+      <details key="end" value="22507"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1369" references="/0/metamodelPrefix/@expression/@condition/@argument.0">
-      <details key="start" value="22145"/>
-      <details key="end" value="22184"/>
+    <eAnnotations source="positions.1378" references="/0/metamodelPrefix/@expression/@condition">
+      <details key="start" value="22272"/>
+      <details key="end" value="22327"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1370" references="/0/metamodelPrefix/@expression/@thenExpression">
-      <details key="start" value="22191"/>
-      <details key="end" value="22198"/>
+    <eAnnotations source="positions.1379" references="/0/metamodelPrefix/@expression/@condition/@source">
+      <details key="start" value="22272"/>
+      <details key="end" value="22286"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1371" references="/0/metamodelPrefix/@expression/@elseExpression">
-      <details key="start" value="22205"/>
-      <details key="end" value="22357"/>
+    <eAnnotations source="positions.1380" references="/0/metamodelPrefix/@expression/@condition/@source/ePackage">
+      <details key="start" value="22272"/>
+      <details key="end" value="22280"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1372" references="/0/metamodelPrefix/@expression/@elseExpression/@condition">
-      <details key="start" value="22208"/>
-      <details key="end" value="22266"/>
+    <eAnnotations source="positions.1381" references="/0/metamodelPrefix/@expression/@condition/@argument.0">
+      <details key="start" value="22288"/>
+      <details key="end" value="22327"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1373" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@source">
-      <details key="start" value="22208"/>
-      <details key="end" value="22222"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1374" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@source/ePackage">
-      <details key="start" value="22208"/>
-      <details key="end" value="22216"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1375" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@argument.0">
-      <details key="start" value="22225"/>
-      <details key="end" value="22266"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1376" references="/0/metamodelPrefix/@expression/@elseExpression/@thenExpression">
-      <details key="start" value="22275"/>
-      <details key="end" value="22284"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1377" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression">
-      <details key="start" value="22293"/>
-      <details key="end" value="22348"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1378" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source">
-      <details key="start" value="22293"/>
+    <eAnnotations source="positions.1382" references="/0/metamodelPrefix/@expression/@thenExpression">
+      <details key="start" value="22334"/>
       <details key="end" value="22341"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1379" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source">
-      <details key="start" value="22293"/>
-      <details key="end" value="22332"/>
+    <eAnnotations source="positions.1383" references="/0/metamodelPrefix/@expression/@elseExpression">
+      <details key="start" value="22348"/>
+      <details key="end" value="22500"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1380" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source/ePackage">
-      <details key="start" value="22293"/>
-      <details key="end" value="22301"/>
+    <eAnnotations source="positions.1384" references="/0/metamodelPrefix/@expression/@elseExpression/@condition">
+      <details key="start" value="22351"/>
+      <details key="end" value="22409"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1381" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source/@argument.0">
-      <details key="start" value="22311"/>
-      <details key="end" value="22331"/>
+    <eAnnotations source="positions.1385" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@source">
+      <details key="start" value="22351"/>
+      <details key="end" value="22365"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1382" references="/0/metamodelPackage">
+    <eAnnotations source="positions.1386" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@source/ePackage">
+      <details key="start" value="22351"/>
+      <details key="end" value="22359"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1387" references="/0/metamodelPrefix/@expression/@elseExpression/@condition/@argument.0">
       <details key="start" value="22368"/>
-      <details key="end" value="22472"/>
+      <details key="end" value="22409"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1388" references="/0/metamodelPrefix/@expression/@elseExpression/@thenExpression">
+      <details key="start" value="22418"/>
+      <details key="end" value="22427"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1389" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression">
+      <details key="start" value="22436"/>
+      <details key="end" value="22491"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1390" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source">
+      <details key="start" value="22436"/>
+      <details key="end" value="22484"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1391" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source">
+      <details key="start" value="22436"/>
+      <details key="end" value="22475"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1392" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source/ePackage">
+      <details key="start" value="22436"/>
+      <details key="end" value="22444"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1393" references="/0/metamodelPrefix/@expression/@elseExpression/@elseExpression/@source/@source/@argument.0">
+      <details key="start" value="22454"/>
+      <details key="end" value="22474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1394" references="/0/metamodelPackage">
+      <details key="start" value="22511"/>
+      <details key="end" value="22615"/>
       <details key="line" value="475"/>
     </eAnnotations>
-    <eAnnotations source="positions.1383" references="/0/metamodelPackage/@body.0">
-      <details key="start" value="22425"/>
-      <details key="end" value="22451"/>
+    <eAnnotations source="positions.1395" references="/0/metamodelPackage/@body.0">
+      <details key="start" value="22568"/>
+      <details key="end" value="22594"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1384" references="/0/metamodelPackage/@body.0/ePackage">
-      <details key="start" value="22425"/>
-      <details key="end" value="22433"/>
+    <eAnnotations source="positions.1396" references="/0/metamodelPackage/@body.0/ePackage">
+      <details key="start" value="22568"/>
+      <details key="end" value="22576"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1385" references="/0/metamodelPackage/@body.1">
-      <details key="start" value="22453"/>
-      <details key="end" value="22460"/>
+    <eAnnotations source="positions.1397" references="/0/metamodelPackage/@body.1">
+      <details key="start" value="22596"/>
+      <details key="end" value="22603"/>
       <details key="line" value="476"/>
     </eAnnotations>
-    <eAnnotations source="positions.1386" references="/0/metamodelPackage/ePackage">
-      <details key="start" value="22402"/>
-      <details key="end" value="22421"/>
+    <eAnnotations source="positions.1398" references="/0/metamodelPackage/ePackage">
+      <details key="start" value="22545"/>
+      <details key="end" value="22564"/>
       <details key="line" value="475"/>
     </eAnnotations>
-    <eAnnotations source="positions.1387" references="/0/metamodelFactory">
-      <details key="start" value="22474"/>
-      <details key="end" value="22578"/>
+    <eAnnotations source="positions.1399" references="/0/metamodelFactory">
+      <details key="start" value="22617"/>
+      <details key="end" value="22721"/>
       <details key="line" value="479"/>
     </eAnnotations>
-    <eAnnotations source="positions.1388" references="/0/metamodelFactory/@body.0">
-      <details key="start" value="22531"/>
-      <details key="end" value="22557"/>
+    <eAnnotations source="positions.1400" references="/0/metamodelFactory/@body.0">
+      <details key="start" value="22674"/>
+      <details key="end" value="22700"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1389" references="/0/metamodelFactory/@body.0/ePackage">
-      <details key="start" value="22531"/>
-      <details key="end" value="22539"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1390" references="/0/metamodelFactory/@body.1">
-      <details key="start" value="22559"/>
-      <details key="end" value="22566"/>
-      <details key="line" value="480"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1391" references="/0/metamodelFactory/ePackage">
-      <details key="start" value="22508"/>
-      <details key="end" value="22527"/>
-      <details key="line" value="479"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1392" references="/0/metamodelPackage.1">
-      <details key="start" value="22580"/>
-      <details key="end" value="22696"/>
-      <details key="line" value="483"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1393" references="/0/metamodelPackage.1/@body.0">
-      <details key="start" value="22643"/>
+    <eAnnotations source="positions.1401" references="/0/metamodelFactory/@body.0/ePackage">
+      <details key="start" value="22674"/>
       <details key="end" value="22682"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1394" references="/0/metamodelPackage.1/@body.0/@argument.0">
-      <details key="start" value="22643"/>
-      <details key="end" value="22663"/>
-      <details key="line" value="0"/>
+    <eAnnotations source="positions.1402" references="/0/metamodelFactory/@body.1">
+      <details key="start" value="22702"/>
+      <details key="end" value="22709"/>
+      <details key="line" value="480"/>
     </eAnnotations>
-    <eAnnotations source="positions.1395" references="/0/metamodelPackage.1/@body.0/@argument.0/eClassifier">
-      <details key="start" value="22643"/>
-      <details key="end" value="22654"/>
-      <details key="line" value="0"/>
+    <eAnnotations source="positions.1403" references="/0/metamodelFactory/ePackage">
+      <details key="start" value="22651"/>
+      <details key="end" value="22670"/>
+      <details key="line" value="479"/>
     </eAnnotations>
-    <eAnnotations source="positions.1396" references="/0/metamodelPackage.1/eClassifier">
-      <details key="start" value="22614"/>
-      <details key="end" value="22639"/>
+    <eAnnotations source="positions.1404" references="/0/metamodelPackage.1">
+      <details key="start" value="22723"/>
+      <details key="end" value="22839"/>
       <details key="line" value="483"/>
     </eAnnotations>
-    <eAnnotations source="positions.1397" references="/0/qualifiedMetamodelPackage">
-      <details key="start" value="23114"/>
-      <details key="end" value="23251"/>
+    <eAnnotations source="positions.1405" references="/0/metamodelPackage.1/@body.0">
+      <details key="start" value="22786"/>
+      <details key="end" value="22825"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1406" references="/0/metamodelPackage.1/@body.0/@argument.0">
+      <details key="start" value="22786"/>
+      <details key="end" value="22806"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1407" references="/0/metamodelPackage.1/@body.0/@argument.0/eClassifier">
+      <details key="start" value="22786"/>
+      <details key="end" value="22797"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1408" references="/0/metamodelPackage.1/eClassifier">
+      <details key="start" value="22757"/>
+      <details key="end" value="22782"/>
+      <details key="line" value="483"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1409" references="/0/qualifiedMetamodelPackage">
+      <details key="start" value="23257"/>
+      <details key="end" value="23394"/>
       <details key="line" value="497"/>
     </eAnnotations>
-    <eAnnotations source="positions.1398" references="/0/qualifiedMetamodelPackage/@body.0">
-      <details key="start" value="23180"/>
-      <details key="end" value="23206"/>
+    <eAnnotations source="positions.1410" references="/0/qualifiedMetamodelPackage/@body.0">
+      <details key="start" value="23323"/>
+      <details key="end" value="23349"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1399" references="/0/qualifiedMetamodelPackage/@body.0/ePackage">
-      <details key="start" value="23180"/>
-      <details key="end" value="23188"/>
+    <eAnnotations source="positions.1411" references="/0/qualifiedMetamodelPackage/@body.0/ePackage">
+      <details key="start" value="23323"/>
+      <details key="end" value="23331"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1400" references="/0/qualifiedMetamodelPackage/@body.1">
-      <details key="start" value="23208"/>
-      <details key="end" value="23209"/>
+    <eAnnotations source="positions.1412" references="/0/qualifiedMetamodelPackage/@body.1">
+      <details key="start" value="23351"/>
+      <details key="end" value="23352"/>
       <details key="line" value="498"/>
     </eAnnotations>
-    <eAnnotations source="positions.1401" references="/0/qualifiedMetamodelPackage/@body.2">
-      <details key="start" value="23210"/>
-      <details key="end" value="23237"/>
+    <eAnnotations source="positions.1413" references="/0/qualifiedMetamodelPackage/@body.2">
+      <details key="start" value="23353"/>
+      <details key="end" value="23380"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1402" references="/0/qualifiedMetamodelPackage/@body.2/ePackage">
-      <details key="start" value="23210"/>
-      <details key="end" value="23218"/>
+    <eAnnotations source="positions.1414" references="/0/qualifiedMetamodelPackage/@body.2/ePackage">
+      <details key="start" value="23353"/>
+      <details key="end" value="23361"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1403" references="/0/qualifiedMetamodelPackage/ePackage">
-      <details key="start" value="23157"/>
-      <details key="end" value="23176"/>
+    <eAnnotations source="positions.1415" references="/0/qualifiedMetamodelPackage/ePackage">
+      <details key="start" value="23300"/>
+      <details key="end" value="23319"/>
       <details key="line" value="497"/>
     </eAnnotations>
-    <eAnnotations source="positions.1404" references="/0/qualifiedMetamodelPackage.1">
-      <details key="start" value="23253"/>
-      <details key="end" value="23387"/>
+    <eAnnotations source="positions.1416" references="/0/qualifiedMetamodelPackage.1">
+      <details key="start" value="23396"/>
+      <details key="end" value="23530"/>
       <details key="line" value="501"/>
     </eAnnotations>
-    <eAnnotations source="positions.1405" references="/0/qualifiedMetamodelPackage.1/@body.0">
-      <details key="start" value="23325"/>
-      <details key="end" value="23373"/>
+    <eAnnotations source="positions.1417" references="/0/qualifiedMetamodelPackage.1/@body.0">
+      <details key="start" value="23468"/>
+      <details key="end" value="23516"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1406" references="/0/qualifiedMetamodelPackage.1/@body.0/@argument.0">
-      <details key="start" value="23325"/>
-      <details key="end" value="23345"/>
+    <eAnnotations source="positions.1418" references="/0/qualifiedMetamodelPackage.1/@body.0/@argument.0">
+      <details key="start" value="23468"/>
+      <details key="end" value="23488"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1407" references="/0/qualifiedMetamodelPackage.1/@body.0/@argument.0/eClassifier">
-      <details key="start" value="23325"/>
-      <details key="end" value="23336"/>
+    <eAnnotations source="positions.1419" references="/0/qualifiedMetamodelPackage.1/@body.0/@argument.0/eClassifier">
+      <details key="start" value="23468"/>
+      <details key="end" value="23479"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1408" references="/0/qualifiedMetamodelPackage.1/eClassifier">
-      <details key="start" value="23296"/>
-      <details key="end" value="23321"/>
+    <eAnnotations source="positions.1420" references="/0/qualifiedMetamodelPackage.1/eClassifier">
+      <details key="start" value="23439"/>
+      <details key="end" value="23464"/>
       <details key="line" value="501"/>
     </eAnnotations>
-    <eAnnotations source="positions.1409" references="/0/qualifiedMetamodelFactory">
-      <details key="start" value="23389"/>
-      <details key="end" value="23526"/>
+    <eAnnotations source="positions.1421" references="/0/qualifiedMetamodelFactory">
+      <details key="start" value="23532"/>
+      <details key="end" value="23669"/>
       <details key="line" value="505"/>
     </eAnnotations>
-    <eAnnotations source="positions.1410" references="/0/qualifiedMetamodelFactory/@body.0">
-      <details key="start" value="23455"/>
-      <details key="end" value="23481"/>
+    <eAnnotations source="positions.1422" references="/0/qualifiedMetamodelFactory/@body.0">
+      <details key="start" value="23598"/>
+      <details key="end" value="23624"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1411" references="/0/qualifiedMetamodelFactory/@body.0/ePackage">
-      <details key="start" value="23455"/>
-      <details key="end" value="23463"/>
+    <eAnnotations source="positions.1423" references="/0/qualifiedMetamodelFactory/@body.0/ePackage">
+      <details key="start" value="23598"/>
+      <details key="end" value="23606"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1412" references="/0/qualifiedMetamodelFactory/@body.1">
-      <details key="start" value="23483"/>
-      <details key="end" value="23484"/>
+    <eAnnotations source="positions.1424" references="/0/qualifiedMetamodelFactory/@body.1">
+      <details key="start" value="23626"/>
+      <details key="end" value="23627"/>
       <details key="line" value="506"/>
     </eAnnotations>
-    <eAnnotations source="positions.1413" references="/0/qualifiedMetamodelFactory/@body.2">
-      <details key="start" value="23485"/>
-      <details key="end" value="23512"/>
+    <eAnnotations source="positions.1425" references="/0/qualifiedMetamodelFactory/@body.2">
+      <details key="start" value="23628"/>
+      <details key="end" value="23655"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1414" references="/0/qualifiedMetamodelFactory/@body.2/ePackage">
-      <details key="start" value="23485"/>
-      <details key="end" value="23493"/>
+    <eAnnotations source="positions.1426" references="/0/qualifiedMetamodelFactory/@body.2/ePackage">
+      <details key="start" value="23628"/>
+      <details key="end" value="23636"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1415" references="/0/qualifiedMetamodelFactory/ePackage">
-      <details key="start" value="23432"/>
-      <details key="end" value="23451"/>
+    <eAnnotations source="positions.1427" references="/0/qualifiedMetamodelFactory/ePackage">
+      <details key="start" value="23575"/>
+      <details key="end" value="23594"/>
       <details key="line" value="505"/>
     </eAnnotations>
-    <eAnnotations source="positions.1416" references="/0/metamodelGetter">
-      <details key="start" value="23528"/>
-      <details key="end" value="23693"/>
+    <eAnnotations source="positions.1428" references="/0/metamodelGetter">
+      <details key="start" value="23671"/>
+      <details key="end" value="23836"/>
       <details key="line" value="509"/>
     </eAnnotations>
-    <eAnnotations source="positions.1417" references="/0/metamodelGetter/@body.0">
-      <details key="start" value="23590"/>
-      <details key="end" value="23635"/>
+    <eAnnotations source="positions.1429" references="/0/metamodelGetter/@body.0">
+      <details key="start" value="23733"/>
+      <details key="end" value="23778"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1418" references="/0/metamodelGetter/@body.0/@argument.0">
-      <details key="start" value="23590"/>
-      <details key="end" value="23616"/>
+    <eAnnotations source="positions.1430" references="/0/metamodelGetter/@body.0/@argument.0">
+      <details key="start" value="23733"/>
+      <details key="end" value="23759"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1419" references="/0/metamodelGetter/@body.0/@argument.0/@source">
-      <details key="start" value="23590"/>
-      <details key="end" value="23599"/>
+    <eAnnotations source="positions.1431" references="/0/metamodelGetter/@body.0/@argument.0/@source">
+      <details key="start" value="23733"/>
+      <details key="end" value="23742"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1420" references="/0/metamodelGetter/@body.0/@argument.0/@source/s">
-      <details key="start" value="23590"/>
-      <details key="end" value="23591"/>
+    <eAnnotations source="positions.1432" references="/0/metamodelGetter/@body.0/@argument.0/@source/s">
+      <details key="start" value="23733"/>
+      <details key="end" value="23734"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1421" references="/0/metamodelGetter/@body.1">
-      <details key="start" value="23637"/>
-      <details key="end" value="23648"/>
+    <eAnnotations source="positions.1433" references="/0/metamodelGetter/@body.1">
+      <details key="start" value="23780"/>
+      <details key="end" value="23791"/>
       <details key="line" value="510"/>
     </eAnnotations>
-    <eAnnotations source="positions.1422" references="/0/metamodelGetter/@body.2">
-      <details key="start" value="23649"/>
-      <details key="end" value="23679"/>
+    <eAnnotations source="positions.1434" references="/0/metamodelGetter/@body.2">
+      <details key="start" value="23792"/>
+      <details key="end" value="23822"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1423" references="/0/metamodelGetter/@body.2/s">
-      <details key="start" value="23649"/>
-      <details key="end" value="23650"/>
+    <eAnnotations source="positions.1435" references="/0/metamodelGetter/@body.2/s">
+      <details key="start" value="23792"/>
+      <details key="end" value="23793"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1424" references="/0/metamodelGetter/s">
-      <details key="start" value="23561"/>
-      <details key="end" value="23586"/>
+    <eAnnotations source="positions.1436" references="/0/metamodelGetter/s">
+      <details key="start" value="23704"/>
+      <details key="end" value="23729"/>
       <details key="line" value="509"/>
     </eAnnotations>
-    <eAnnotations source="positions.1425" references="/0/metamodelGetter.1">
-      <details key="start" value="23695"/>
-      <details key="end" value="23861"/>
+    <eAnnotations source="positions.1437" references="/0/metamodelGetter.1">
+      <details key="start" value="23838"/>
+      <details key="end" value="24004"/>
       <details key="line" value="513"/>
     </eAnnotations>
-    <eAnnotations source="positions.1426" references="/0/metamodelGetter.1/@body.0">
-      <details key="start" value="23760"/>
-      <details key="end" value="23803"/>
+    <eAnnotations source="positions.1438" references="/0/metamodelGetter.1/@body.0">
+      <details key="start" value="23903"/>
+      <details key="end" value="23946"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1427" references="/0/metamodelGetter.1/@body.0/@argument.0">
-      <details key="start" value="23760"/>
-      <details key="end" value="23784"/>
+    <eAnnotations source="positions.1439" references="/0/metamodelGetter.1/@body.0/@argument.0">
+      <details key="start" value="23903"/>
+      <details key="end" value="23927"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1428" references="/0/metamodelGetter.1/@body.0/@argument.0/@source">
-      <details key="start" value="23760"/>
-      <details key="end" value="23767"/>
+    <eAnnotations source="positions.1440" references="/0/metamodelGetter.1/@body.0/@argument.0/@source">
+      <details key="start" value="23903"/>
+      <details key="end" value="23910"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1429" references="/0/metamodelGetter.1/@body.0/@argument.0/@source/p">
-      <details key="start" value="23760"/>
-      <details key="end" value="23761"/>
+    <eAnnotations source="positions.1441" references="/0/metamodelGetter.1/@body.0/@argument.0/@source/p">
+      <details key="start" value="23903"/>
+      <details key="end" value="23904"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1430" references="/0/metamodelGetter.1/@body.1">
-      <details key="start" value="23805"/>
-      <details key="end" value="23816"/>
+    <eAnnotations source="positions.1442" references="/0/metamodelGetter.1/@body.1">
+      <details key="start" value="23948"/>
+      <details key="end" value="23959"/>
       <details key="line" value="514"/>
     </eAnnotations>
-    <eAnnotations source="positions.1431" references="/0/metamodelGetter.1/@body.2">
-      <details key="start" value="23817"/>
-      <details key="end" value="23847"/>
+    <eAnnotations source="positions.1443" references="/0/metamodelGetter.1/@body.2">
+      <details key="start" value="23960"/>
+      <details key="end" value="23990"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1432" references="/0/metamodelGetter.1/@body.2/p">
-      <details key="start" value="23817"/>
-      <details key="end" value="23818"/>
+    <eAnnotations source="positions.1444" references="/0/metamodelGetter.1/@body.2/p">
+      <details key="start" value="23960"/>
+      <details key="end" value="23961"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1433" references="/0/metamodelGetter.1/p">
-      <details key="start" value="23728"/>
-      <details key="end" value="23756"/>
+    <eAnnotations source="positions.1445" references="/0/metamodelGetter.1/p">
+      <details key="start" value="23871"/>
+      <details key="end" value="23899"/>
       <details key="line" value="513"/>
     </eAnnotations>
-    <eAnnotations source="positions.1434" references="/0/simpleModelNavigationType">
-      <details key="start" value="23904"/>
-      <details key="end" value="24148"/>
+    <eAnnotations source="positions.1446" references="/0/simpleModelNavigationType">
+      <details key="start" value="24047"/>
+      <details key="end" value="24291"/>
       <details key="line" value="518"/>
     </eAnnotations>
-    <eAnnotations source="positions.1435" references="/0/simpleModelNavigationType/modelNavigation">
-      <details key="start" value="23944"/>
-      <details key="end" value="23983"/>
+    <eAnnotations source="positions.1447" references="/0/simpleModelNavigationType/modelNavigation">
+      <details key="start" value="24087"/>
+      <details key="end" value="24126"/>
       <details key="line" value="518"/>
     </eAnnotations>
-    <eAnnotations source="positions.1436" references="/0/simpleModelNavigationType/@expression">
-      <details key="start" value="23998"/>
-      <details key="end" value="24146"/>
+    <eAnnotations source="positions.1448" references="/0/simpleModelNavigationType/@expression">
+      <details key="start" value="24141"/>
+      <details key="end" value="24289"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1437" references="/0/simpleModelNavigationType/@expression/@condition">
-      <details key="start" value="24001"/>
-      <details key="end" value="24053"/>
+    <eAnnotations source="positions.1449" references="/0/simpleModelNavigationType/@expression/@condition">
+      <details key="start" value="24144"/>
+      <details key="end" value="24196"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1438" references="/0/simpleModelNavigationType/@expression/@condition/@source">
-      <details key="start" value="24002"/>
-      <details key="end" value="24035"/>
+    <eAnnotations source="positions.1450" references="/0/simpleModelNavigationType/@expression/@condition/@source">
+      <details key="start" value="24145"/>
+      <details key="end" value="24178"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1439" references="/0/simpleModelNavigationType/@expression/@condition/@source/modelNavigation">
-      <details key="start" value="24002"/>
-      <details key="end" value="24017"/>
+    <eAnnotations source="positions.1451" references="/0/simpleModelNavigationType/@expression/@condition/@source/modelNavigation">
+      <details key="start" value="24145"/>
+      <details key="end" value="24160"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1440" references="/0/simpleModelNavigationType/@expression/@thenExpression">
-      <details key="start" value="24060"/>
-      <details key="end" value="24094"/>
+    <eAnnotations source="positions.1452" references="/0/simpleModelNavigationType/@expression/@thenExpression">
+      <details key="start" value="24203"/>
+      <details key="end" value="24237"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1441" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source">
-      <details key="start" value="24060"/>
-      <details key="end" value="24089"/>
+    <eAnnotations source="positions.1453" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source">
+      <details key="start" value="24203"/>
+      <details key="end" value="24232"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1442" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source/@source">
-      <details key="start" value="24060"/>
-      <details key="end" value="24083"/>
+    <eAnnotations source="positions.1454" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source/@source">
+      <details key="start" value="24203"/>
+      <details key="end" value="24226"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1443" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source/@source/modelNavigation">
-      <details key="start" value="24060"/>
-      <details key="end" value="24075"/>
+    <eAnnotations source="positions.1455" references="/0/simpleModelNavigationType/@expression/@thenExpression/@source/@source/modelNavigation">
+      <details key="start" value="24203"/>
+      <details key="end" value="24218"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1444" references="/0/simpleModelNavigationType/@expression/@elseExpression">
-      <details key="start" value="24101"/>
-      <details key="end" value="24139"/>
+    <eAnnotations source="positions.1456" references="/0/simpleModelNavigationType/@expression/@elseExpression">
+      <details key="start" value="24244"/>
+      <details key="end" value="24282"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1445" references="/0/simpleModelNavigationType/@expression/@elseExpression/@source">
-      <details key="start" value="24101"/>
-      <details key="end" value="24134"/>
+    <eAnnotations source="positions.1457" references="/0/simpleModelNavigationType/@expression/@elseExpression/@source">
+      <details key="start" value="24244"/>
+      <details key="end" value="24277"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1446" references="/0/simpleModelNavigationType/@expression/@elseExpression/@source/modelNavigation">
-      <details key="start" value="24101"/>
-      <details key="end" value="24116"/>
+    <eAnnotations source="positions.1458" references="/0/simpleModelNavigationType/@expression/@elseExpression/@source/modelNavigation">
+      <details key="start" value="24244"/>
+      <details key="end" value="24259"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1447" references="/0/simpleModelNavigationMetamodelFactory">
-      <details key="start" value="24150"/>
-      <details key="end" value="24450"/>
+    <eAnnotations source="positions.1459" references="/0/simpleModelNavigationMetamodelFactory">
+      <details key="start" value="24293"/>
+      <details key="end" value="24593"/>
       <details key="line" value="524"/>
     </eAnnotations>
-    <eAnnotations source="positions.1448" references="/0/simpleModelNavigationMetamodelFactory/modelNavigation">
-      <details key="start" value="24202"/>
-      <details key="end" value="24241"/>
+    <eAnnotations source="positions.1460" references="/0/simpleModelNavigationMetamodelFactory/modelNavigation">
+      <details key="start" value="24345"/>
+      <details key="end" value="24384"/>
       <details key="line" value="524"/>
     </eAnnotations>
-    <eAnnotations source="positions.1449" references="/0/simpleModelNavigationMetamodelFactory/@expression">
-      <details key="start" value="24256"/>
-      <details key="end" value="24448"/>
+    <eAnnotations source="positions.1461" references="/0/simpleModelNavigationMetamodelFactory/@expression">
+      <details key="start" value="24399"/>
+      <details key="end" value="24591"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1450" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition">
-      <details key="start" value="24259"/>
-      <details key="end" value="24311"/>
+    <eAnnotations source="positions.1462" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition">
+      <details key="start" value="24402"/>
+      <details key="end" value="24454"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1451" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition/@source">
-      <details key="start" value="24260"/>
-      <details key="end" value="24293"/>
+    <eAnnotations source="positions.1463" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition/@source">
+      <details key="start" value="24403"/>
+      <details key="end" value="24436"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1452" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition/@source/modelNavigation">
-      <details key="start" value="24260"/>
-      <details key="end" value="24275"/>
+    <eAnnotations source="positions.1464" references="/0/simpleModelNavigationMetamodelFactory/@expression/@condition/@source/modelNavigation">
+      <details key="start" value="24403"/>
+      <details key="end" value="24418"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1453" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression">
-      <details key="start" value="24318"/>
-      <details key="end" value="24374"/>
+    <eAnnotations source="positions.1465" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression">
+      <details key="start" value="24461"/>
+      <details key="end" value="24517"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1454" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0">
-      <details key="start" value="24318"/>
-      <details key="end" value="24356"/>
+    <eAnnotations source="positions.1466" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0">
+      <details key="start" value="24461"/>
+      <details key="end" value="24499"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1455" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source">
-      <details key="start" value="24318"/>
-      <details key="end" value="24347"/>
+    <eAnnotations source="positions.1467" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source">
+      <details key="start" value="24461"/>
+      <details key="end" value="24490"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1456" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source/@source">
-      <details key="start" value="24318"/>
-      <details key="end" value="24341"/>
+    <eAnnotations source="positions.1468" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source/@source">
+      <details key="start" value="24461"/>
+      <details key="end" value="24484"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1457" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source/@source/modelNavigation">
-      <details key="start" value="24318"/>
-      <details key="end" value="24333"/>
+    <eAnnotations source="positions.1469" references="/0/simpleModelNavigationMetamodelFactory/@expression/@thenExpression/@argument.0/@source/@source/modelNavigation">
+      <details key="start" value="24461"/>
+      <details key="end" value="24476"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1458" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression">
-      <details key="start" value="24381"/>
-      <details key="end" value="24441"/>
+    <eAnnotations source="positions.1470" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression">
+      <details key="start" value="24524"/>
+      <details key="end" value="24584"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1459" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0">
-      <details key="start" value="24381"/>
-      <details key="end" value="24423"/>
+    <eAnnotations source="positions.1471" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0">
+      <details key="start" value="24524"/>
+      <details key="end" value="24566"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1460" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0/@source">
-      <details key="start" value="24381"/>
-      <details key="end" value="24414"/>
+    <eAnnotations source="positions.1472" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0/@source">
+      <details key="start" value="24524"/>
+      <details key="end" value="24557"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.1461" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0/@source/modelNavigation">
-      <details key="start" value="24381"/>
-      <details key="end" value="24396"/>
+    <eAnnotations source="positions.1473" references="/0/simpleModelNavigationMetamodelFactory/@expression/@elseExpression/@argument.0/@source/modelNavigation">
+      <details key="start" value="24524"/>
+      <details key="end" value="24539"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

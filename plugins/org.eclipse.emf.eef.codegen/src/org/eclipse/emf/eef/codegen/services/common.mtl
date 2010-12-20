@@ -16,7 +16,6 @@
 [comment --------------- Common queries --------------- /]
 
 [comment Check if at least one views of the propertyBinding is contained by the given view /]
-
 [query public involvedViews(pec : PropertiesEditionComponent) : Sequence(T) = 
 	pec.views->asSequence()->union(pec.referencedBinding.binding.views->select(ancestors()->select(oclIsKindOf(views::View)).oclAsType(views::View)->excludesAll(pec.views->asSequence())))/]
 
@@ -448,11 +447,11 @@ Object
 [/template]
 
 [template public eefPackage(eClassifier : EClassifier, basePackage : String)]
-[basePackage/].[eClassifier.ePackage.name/]
+[eClassifier.ePackage.eefPackage(basePackage)/]
 [/template]
 
 [template public eefPackage(ePackage : EPackage, basePackage : String)]
-[basePackage/].[ePackage.name/]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][basePackage/].[/if][ePackage.name/]
 [/template]
 
 [template public qualifiedName(eClassifier : EClassifier)]

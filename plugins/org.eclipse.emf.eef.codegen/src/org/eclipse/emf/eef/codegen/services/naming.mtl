@@ -140,7 +140,7 @@
 [/template]
 
 [template public partsProviderPackage(repository : ViewsRepository)]
-[repository.vrPackage()/].providers
+[repository.vrPackage()/]providers
 [/template]
 
 [template public pepProvider(repository : ViewsRepository)]
