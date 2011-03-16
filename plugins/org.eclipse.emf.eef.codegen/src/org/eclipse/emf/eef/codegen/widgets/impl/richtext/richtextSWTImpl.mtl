@@ -50,7 +50,7 @@ import org.eclipse.epf.richtext.actions.UnderlineAction;
 [/template]
 
 [template public widgetDeclaration(editor : ElementEditor) overrides widgetDeclaration ? (editor.representation.name = 'RichText')]
-	protected EEFRichText [editor.name.toJavaIdentifier()/];
+	protected RichText [editor.name.toJavaIdentifier()/];
 [/template]
 
 [template public implementation(editor : ElementEditor) overrides implementation ? (editor.representation.name = 'RichText')]
@@ -71,7 +71,7 @@ create[editor.name.toJavaClassifier()/]RichText(parent);
 		toolbarData.horizontalSpan = 3;
 		toolbarContainer.setLayoutData(toolbarData);
 		RichTextToolBar toolBar = new RichTextToolBar(toolbarContainer, SWT.NONE, [editor.name.toJavaIdentifier()/]);
-		[editor.name.toJavaIdentifier()/] = new EEFRichText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL); //$NON-NLS-1$
+		[editor.name.toJavaIdentifier()/] = new RichText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL); //$NON-NLS-1$
 		[editor.name.toJavaIdentifier()/].setEditable(true);
 		[if (editor.readOnly)]
 		[editor.name.toJavaIdentifier()/].setEnabled(false);
