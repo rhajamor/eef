@@ -73,7 +73,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="epf">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="url.zipped" source="false" resolutionFilter="">
+    <rm:provider componentTypes="unknown" readerType="url" resolutionFilter="">
       <rm:uri format="{0}/technology/epf/composer/release/epfc-richtext-1.5.1.1-linux.zip">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
