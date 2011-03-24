@@ -74,7 +74,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="epf">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="cvs" source="false" resolutionFilter="">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="cvs" source="false" mutable="false" resolutionFilter="">
       <rm:uri format="{0},org.eclipse.epf/composer/1.5/features/{1}">
         <bc:propertyRef key="technology.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
