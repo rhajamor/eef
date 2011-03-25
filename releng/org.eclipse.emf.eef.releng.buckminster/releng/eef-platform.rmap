@@ -13,6 +13,7 @@
   <rm:locator pattern="^lpg\.runtime\.java?$" searchPathRef="ocl"/>
   <rm:locator pattern="^org\.eclipse\.swtbot(?:\..+)?$" searchPathRef="swtbot"/>
   <rm:locator pattern="^org\.apache\.log4j(?:\..+)?$" searchPathRef="swtbot"/>
+  <rm:locator pattern="^org\.eclipse\.epf(?:\..+)?$" searchPathRef="epf"/>
   <rm:locator searchPathRef="platform"/>
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
@@ -69,6 +70,11 @@
       <rm:uri format="{0}/technology/swtbot/helios/dev-build/update-site">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="epf">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" resolutionFilter="">
+      <rm:uri format="file:///shared/modeling/emft/eef/epf/"/>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform">
