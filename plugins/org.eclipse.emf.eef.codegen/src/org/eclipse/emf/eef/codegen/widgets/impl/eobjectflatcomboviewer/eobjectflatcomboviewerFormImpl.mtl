@@ -47,6 +47,7 @@ create[editor.name.toJavaClassifier()/]FlatComboViewer(parent, widgetFactory);
 	protected Composite create[editor.name.toJavaClassifier()/]FlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, [editor.owningViewsRepository().messagesProvider()/].[editor.editorKey(editor.owningView())/], propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].FORM_KIND));
 		[editor.name.toJavaIdentifier()/] = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired([editor.editorID()/], [editor.owningViewsRepository().vrClass()/].FORM_KIND));
+		widgetFactory.adapt([editor.name.toJavaIdentifier()/]);
 		[editor.name.toJavaIdentifier()/].setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		[if (editor.readOnly)]
 		[editor.name.toJavaIdentifier()/].setEnabled(false);

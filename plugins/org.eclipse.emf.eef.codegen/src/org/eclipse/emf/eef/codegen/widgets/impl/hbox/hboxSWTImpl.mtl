@@ -34,8 +34,8 @@ create[container.name.toJavaClassifier()/]HBox(parent);
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
-		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		GridData gridData = new GridData(SWT.FILL_HORIZONTAL);
+		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox [container.name.toJavaIdentifier()/]HBox = new HorizontalBox(container);
 		[if (container.elements->select(representation.name='Checkbox')->notEmpty())]
