@@ -270,14 +270,6 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#mustBeComposed(java.lang.Object, int)
 	 */
 	public boolean mustBeComposed(Object key, int kind) {
-	/*
-	[view.eAllContents(ElementEditor)/]
-	[pec.properties.views/]
-	[view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e))/]
-	[view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()/]
-	[view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()->select(e | e.oclIsTypeOf(views::Container))/]
-	[view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()->select(e | e.oclIsTypeOf(views::Container))->asOrderedSet()/]
-	*/
 	[let containers : Set(views::Container) = view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()->select(e | e.oclIsTypeOf(views::Container))->asOrderedSet()]		
 		return [for (pee : PropertiesEditionElement | pec.properties.oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | view.eAllContents(ElementEditor)->includes(pee.views->first()))) separator (' || ')]key == [pee.views->first().editorID()/][/for][if (containers->notEmpty())] || [for (cont : views::Container | containers) separator (' || ')]key == [cont.editorID()/].class[/for][/if];
 	[/let]

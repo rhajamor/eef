@@ -63,16 +63,18 @@ if (event.getKind() == PropertiesEditionEvent.SET)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForSingleReference())]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForSingleReference())]
-// init part
-[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
-// set the button mode
-[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.BROWSE);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	// init part
+	[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+	// set the button mode
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.BROWSE);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (not editionElement.hasModelNavigation() and editionElement.model.isReferenceSingle() and (editionElement.representationName('EObjectFlatComboViewer')))]
@@ -147,16 +149,18 @@ if (event.getKind() == PropertiesEditionEvent.SET)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForContainmentNavigation())]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForContainmentNavigation())]
-// init part
-[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
-// set the button mode
-[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.BROWSE);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	// init part
+	[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+	// set the button mode
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.BROWSE);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.hasModelNavigation() and editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).feature.isContainmentSingle() and editionElement.model.isReferenceSingle() and (editionElement.representationName('EObjectFlatComboViewer')))]
@@ -231,17 +235,19 @@ if (event.getKind() == PropertiesEditionEvent.SET)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForContainment())]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForContainment())]
-// init part
-[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
-// set the button mode
-[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.CREATE);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	// init part
+	[editionElement.name.toJavaIdentifier()/]Settings = new EObjectFlatComboSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+	// set the button mode
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]ButtonMode(ButtonsModeEnum.CREATE);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForContainment())]

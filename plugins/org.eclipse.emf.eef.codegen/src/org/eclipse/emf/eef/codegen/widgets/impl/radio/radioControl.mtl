@@ -19,7 +19,7 @@
 [comment ===== Case : model = Attribute(1) - view = Radio ===== /]
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Radio'))]
 [if (editionElement.model.oclAsType(ecore::EAttribute).isEnum())]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null  && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [else]
 //FIXME invalid case in liveUpdater(), Case : model = Attribute(1) : [editionElement.model.name/] - view = Radio
@@ -27,7 +27,9 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.representationName('Radio'))]
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]((EEnum) [editionElement.metamodelGetter()/].getEType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]((EEnum) [editionElement.metamodelGetter()/].getEType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Radio'))]

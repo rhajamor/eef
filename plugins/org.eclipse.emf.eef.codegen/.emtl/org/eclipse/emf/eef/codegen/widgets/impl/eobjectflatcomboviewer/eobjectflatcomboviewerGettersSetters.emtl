@@ -1806,7 +1806,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/significantClass"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../imageviewer/imageViewerControl.emtl#/3/Set(EClass)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="../../../services/common.emtl#/3/Set(EClass)"/>
         <eParameters name="ePackage">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
         </eParameters>
@@ -5566,7 +5566,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/significantClass"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../imageviewer/imageViewerControl.emtl#/3/Set(EClass)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="../../../services/common.emtl#/3/Set(EClass)"/>
       </eOperations>
       <eOperations name="completePackage">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">

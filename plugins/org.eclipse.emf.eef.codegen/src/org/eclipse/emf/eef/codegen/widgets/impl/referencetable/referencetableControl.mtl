@@ -43,13 +43,15 @@ if (event.getKind() == PropertiesEditionEvent.ADD)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForSimpleReference())]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()))
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature())  && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]();
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForSimpleReference())]
-[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? ((not editionElement.hasModelNavigation()) and editionElement.model.isReferenceMany() and editionElement.representationName('ReferencesTable'))]
@@ -130,13 +132,15 @@ if (event.getKind() == PropertiesEditionEvent.ADD)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForMultipleModelReference())]
-if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]();
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForMultipleModelReference())]
-[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForMultipleModelReference())]
@@ -191,13 +195,16 @@ if (event.getKind() == PropertiesEditionEvent.ADD)  {
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.validCaseForSingleModelReference())]
-if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].update[editionElement.views->first().viewPackageSignature()/]();
+}
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForSingleModelReference())]
-[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForSingleModelReference())]

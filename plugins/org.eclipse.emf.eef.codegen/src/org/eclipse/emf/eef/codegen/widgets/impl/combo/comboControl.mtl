@@ -23,12 +23,14 @@
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](allResource, [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](allResource, [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+}
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
@@ -61,19 +63,21 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null)
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
-[if (pec.eContainer(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[defaultInitialization()/]
-[else]	
-// [protected ('for '.concat(editionElement.name).concat(' editor initialization'))]
-[defaultInitialization()/]
-// [/protected]
-[/if]
-[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](input[editionElement.name.toJavaClassifier()/], [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[if (pec.eContainer(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+	[defaultInitialization()/]
+	[else]	
+	// [protected ('for '.concat(editionElement.name).concat(' editor initialization'))]
+	[defaultInitialization()/]
+	// [/protected]
+	[/if]
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](input[editionElement.name.toJavaClassifier()/], [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+}
 [/template]
 
 [template private defaultInitialization(editionElement : PropertiesEditionElement) ]

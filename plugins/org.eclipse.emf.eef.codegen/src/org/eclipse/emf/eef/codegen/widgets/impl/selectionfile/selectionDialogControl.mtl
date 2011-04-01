@@ -21,7 +21,7 @@
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog'))]
-if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null){
+if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/])) {
 	if (msg.getNewValue() != null) {
 		[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EcoreUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), msg.getNewValue()));
 	} else {
@@ -32,9 +32,11 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog'))]
 [if (editionElement.model.isPrimitiveType())]
+if (isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
+}
 [else]
-	if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null) {
+	if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null && isAccessible([editionElement.views->first().editorID()/])) {
 		[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
 	}
 [/if]
