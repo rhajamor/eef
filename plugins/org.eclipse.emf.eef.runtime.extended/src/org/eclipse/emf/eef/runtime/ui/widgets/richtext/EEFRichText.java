@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.epf.common.html.HTMLFormatter;
+import org.eclipse.epf.common.html.DefaultHTMLFormatter;
 import org.eclipse.epf.common.serviceability.Logger;
 import org.eclipse.epf.common.utils.FileUtil;
 import org.eclipse.epf.common.utils.XMLUtil;
@@ -165,7 +165,7 @@ public class EEFRichText implements IRichText {
 	protected int status = 0;
 
 	// The HTML source formatter.
-	protected HTMLFormatter htmlFormatter;
+	protected DefaultHTMLFormatter htmlFormatter;
 
 	// The SWT event listeners.
 	protected Map<Listener, RichTextListener> listeners;
@@ -296,7 +296,7 @@ public class EEFRichText implements IRichText {
 				printDebugMessage("init", "added listeners"); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			htmlFormatter = new HTMLFormatter();
+			htmlFormatter = new DefaultHTMLFormatter();
 			if (debug) {
 				printDebugMessage("init", "instantiated HTMLFormatter"); //$NON-NLS-1$ //$NON-NLS-2$
 			}

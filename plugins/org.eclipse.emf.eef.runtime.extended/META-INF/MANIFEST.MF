@@ -6,9 +6,9 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.epf.common;bundle-version="1.2.0";resolution:=optional,
- org.eclipse.epf.richtext;bundle-version="1.2.0";resolution:=optional;visibility:=reexport,
- org.eclipse.epf.ui;bundle-version="1.2.0";resolution:=optional;visibility:=reexport,
+Require-Bundle: org.eclipse.epf.common;bundle-version="1.5.0";resolution:=optional,
+ org.eclipse.epf.richtext;bundle-version="1.5.0";resolution:=optional;visibility:=reexport,
+ org.eclipse.epf.common.html;bundle-version="1.5.0";resolution:=optional,
  org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.emf.ecore;bundle-version="2.3.0";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.3.0,4.0.0)",
