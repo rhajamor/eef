@@ -11,7 +11,8 @@
         <cs:dependency name="org.eclipse.emf.transaction" componentType="eclipse.feature" versionDesignator="1.1.0"/>
         <cs:dependency name="org.eclipse.emf.validation" componentType="eclipse.feature" versionDesignator="1.1.0"/>
         <cs:dependency name="org.eclipse.emf.workspace" componentType="eclipse.feature" versionDesignator="1.1.0"/>
-        <cs:dependency name="org.eclipse.epf.ui" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.epf.common.html" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.epf.richtext.feature" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt.junit4.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle" versionDesignator="3.3.0"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
