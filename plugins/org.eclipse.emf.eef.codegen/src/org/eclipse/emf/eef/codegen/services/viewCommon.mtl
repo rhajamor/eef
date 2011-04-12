@@ -101,7 +101,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 [/template]
 
 [template public compositionSequence(view : View)]
-CompositionSequence [view.compositionStepName()/] = new CompositionSequence();
+CompositionSequence [view.compositionStepName()/] = new BindingCompositionSequence(propertiesEditionComponent);
 [for (elem : ViewElement | view.elements)]
 [elem.compositionSequence()/]
 [/for]
