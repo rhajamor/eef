@@ -34,7 +34,7 @@ create[container.name.toJavaClassifier()/]HBox(widgetFactory, parent);
 		Composite container = widgetFactory.createComposite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
-		GridData gridData = new GridData(SWT.FILL_HORIZONTAL);
+		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
 		HorizontalBox [container.name.toJavaIdentifier()/]HBox = new HorizontalBox(container);

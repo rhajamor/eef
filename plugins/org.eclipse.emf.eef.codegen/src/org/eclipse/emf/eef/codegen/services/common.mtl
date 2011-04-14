@@ -248,7 +248,7 @@ set[editor.model.ecorePackageSignature()/]()
 [template public helpText(pee : PropertiesEditionElement)]
 [if (not pee.views->first().owningViewsRepository().associatedGenRepository().oclIsUndefined())]
 [if (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::GENMODEL)]
-[if ((not pee.associatedGenFeature().oclIsUndefined()) and (not pee.associatedGenFeature().propertyDescription.oclIsUndefined()))]"[pee.associatedGenFeature().propertyDescription.replaceAll('"','\\\\"')/]"[else]null[/if]
+[if ((not pee.associatedGenFeature().oclIsUndefined()) and (not pee.associatedGenFeature().propertyDescription.oclIsUndefined()))]"[pee.associatedGenFeature().propertyDescription.replaceAll('"','\\"')/]"[else]null[/if]
 [elseif (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::ECOREMODEL)]
 [if (pee.model.ecoreHelp().oclIsUndefined())]"[pee.model.ecoreHelp().trim()/]"[else]null[/if]
 [/if]
