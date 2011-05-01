@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2010/02/11 17:25:31 nlepine Exp $
+ $Id: plugin.xml,v 1.5.4.1 2011/05/01 09:31:40 glefur Exp $
 -->
 
 <plugin>
@@ -73,6 +73,36 @@
                id="TextSampleSecondTab"
                afterTab="Base">
          </propertyTab>
+         <propertyTab
+               label="AbstractSample"
+               category="extended"
+               id="AbstractSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="CheckBoxExtendedEditorSample"
+               category="extended"
+               id="CheckBoxExtendedEditorSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="AbstractEnabledSample"
+               category="extended"
+               id="AbstractEnabledSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="AbstractSample"
+               category="extended"
+               id="AbstractSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="SecondFlatReferenceExtendedEditorSample"
+               category="extended"
+               id="SecondFlatReferenceExtendedEditorSample"
+               afterTab="Base">
+         </propertyTab>
       </propertyTabs>
    </extension>
    <extension
@@ -80,7 +110,7 @@
       <propertySections
             contributorId="org.eclipse.emf.eef.eefnr.properties">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.Root"
                tab="Base">
              <input
@@ -88,7 +118,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TotalSample"
                tab="Base">
              <input
@@ -96,7 +126,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TextSample"
                tab="Base">
              <input
@@ -104,7 +134,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.CheckboxSample"
                tab="Base">
              <input
@@ -112,7 +142,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TextareaSample"
                tab="Base">
              <input
@@ -120,7 +150,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.RadioSample"
                tab="Base">
              <input
@@ -128,7 +158,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.EObjectFlatComboViewerSample"
                tab="Base">
              <input
@@ -136,7 +166,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.ReferencesTableSample"
                tab="Base">
              <input
@@ -144,7 +174,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.EMFComboViewerSample"
                tab="Base">
              <input
@@ -152,7 +182,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.MultiValuedEditorSample"
                tab="Base">
              <input
@@ -160,7 +190,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TableCompositionEditorSample"
                tab="Base">
              <input
@@ -168,7 +198,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.AdvancedReferencesTableSample"
                tab="Base">
              <input
@@ -176,7 +206,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.AdvancedEObjectFlatComboViewerSample"
                tab="Base">
              <input
@@ -184,7 +214,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.AdvancedTableCompositionEditorSample"
                tab="Base">
              <input
@@ -192,7 +222,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.FlatReferencesTableSample"
                tab="Base">
              <input
@@ -200,7 +230,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.Sample"
                tab="Base">
              <input
@@ -208,7 +238,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TextSampleWithTwoTabs"
                tab="TextSampleFirstTab">
              <input
@@ -216,14 +246,191 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.eefnr.section.TextSampleWithTwoTabs"
                tab="TextSampleSecondTab">
              <input
                     type="org.eclipse.emf.eef.eefnr.TextSampleWithTwoTabs">
              </input>
          </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnr.section.TableCompositionExtensionEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.TableCompositionExtensionEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnrext.section.TableCompositionTargetExtensionEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.TableCompositionTargetExtensionEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnrext.section.CheckBoxExtendedEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnrext.section.FlatReferenceExtendedEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnr.references.section.ReferenceEnabledSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnr.eefnr.section.AbstractSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.AbstractSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnr.references.section.AbstractEnabledSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnrext.section.FlatReferenceExtendedEditorSample"
+               tab="SecondFlatReferenceExtendedEditorSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample">
+             </input>
+         </propertySection>
       </propertySections>
    </extension>
+   <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.eclipse.emf.eef.eefnr.properties">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="org.eclipse.emf.eef.eefnr.properties">
+         <propertyTab
+               label="Base"
+               category="default"
+               id="Base">
+         </propertyTab>
+         <propertyTab
+               label="AbstractSample"
+               category="extended"
+               id="AbstractSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="AbstractSample"
+               category="extended"
+               id="AbstractSample"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="DeferedFlatReferencesTableSample"
+               category="extended"
+               id="DeferedFlatReferencesTableSample"
+               afterTab="DeferedFlatReferencesTableSample">
+         </propertyTab>
+         <propertyTab
+               label="DeferedReferencesTableSample"
+               category="extended"
+               id="DeferedReferencesTableSample"
+               afterTab="DeferedReferencesTableSample">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.eclipse.emf.eef.eefnr.properties">
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.references.section.ReferenceEnabledSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.references.section.ReferenceEnabledSample"
+               tab="AbstractSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.eefnr.section.AbstractSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.AbstractSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.references.section.AbstractEnabledSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.references.section.AbstractEnabledSample"
+               tab="AbstractSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.navigation.section.DeferedFlatReferenceTableEditorSample"
+               tab="DeferedFlatReferencesTableSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
+               id="org.eclipse.emf.eef.navigation.section.DeferedReferenceTableEditorSample"
+               tab="DeferedReferencesTableSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.navigation.DeferedReferenceTableEditorSample">
+             </input>
+         </propertySection>
+      </propertySections>
+   </extension>
+ </plugin>
 
-</plugin>
