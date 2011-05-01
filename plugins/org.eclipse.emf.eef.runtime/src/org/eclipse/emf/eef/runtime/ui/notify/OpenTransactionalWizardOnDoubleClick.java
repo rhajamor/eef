@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.runtime.ui.notify;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.eef.runtime.command.WizardEditingCommand;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.context.impl.DomainPropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.workspace.WizardEditingOperation;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -24,16 +27,18 @@ import org.eclipse.jface.viewers.StructuredSelection;
 /**
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  */
-public class OpenWizardOnDoubleClick implements IDoubleClickListener {
+public class OpenTransactionalWizardOnDoubleClick implements IDoubleClickListener {
 
 	protected EditingDomain editingDomain;
 
 	protected AdapterFactory adapterFactory;
 
+	private IProgressMonitor progressMonitor;
+
 	/**
 	 * @param editingDomain
 	 */
-	public OpenWizardOnDoubleClick(EditingDomain editingDomain, AdapterFactory adapterFactory) {
+	public OpenTransactionalWizardOnDoubleClick(EditingDomain editingDomain, AdapterFactory adapterFactory) {
 		this.editingDomain = editingDomain;
 		this.adapterFactory = adapterFactory;
 	}
@@ -57,11 +62,28 @@ public class OpenWizardOnDoubleClick implements IDoubleClickListener {
 			if (eObject != null) {
 				DomainPropertiesEditingContext propertiesEditingContext = new DomainPropertiesEditingContext(
 						null, null, editingDomain, adapterFactory, eObject);
-				WizardEditingCommand wizardEditingCommand = new WizardEditingCommand(propertiesEditingContext);
-				editingDomain.getCommandStack().execute(wizardEditingCommand);
-				propertiesEditingContext.dispose();
+				WizardEditingOperation operation = new WizardEditingOperation(propertiesEditingContext);
+				try {
+					operation.execute(getProgressMonitor(), null);
+				} catch (ExecutionException e) {
+					EEFRuntimePlugin.getDefault().logError("An error occured during wizard editing.", e);
+				}
 			}
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	public IProgressMonitor getProgressMonitor() {
+		return progressMonitor;
+	}
+
+	/**
+	 * @param progressMonitor
+	 */
+	public void setProgressMonitor(IProgressMonitor progressMonitor) {
+		this.progressMonitor = progressMonitor;
 	}
 
 }

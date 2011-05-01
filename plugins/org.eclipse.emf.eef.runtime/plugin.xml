@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
+<!--
+    Copyright (c) 2008, 2009 Obeo.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Obeo - initial API and implementation
+ -->
 <plugin>
-   <extension-point id="PropertiesEditionProvider" name="org.eclipse.emf.eef.runtime.PropertiesEditionProvider" schema="schema/PropertiesEditionProvider.exsd"/>
-   <extension-point id="PropertiesEditionPolicyProvider" name="org.eclipse.emf.eef.runtime.PropertiesEditionPolicyProvider" schema="schema/PropertiesEditionPolicyProvider.exsd"/>
    <extension-point id="PropertiesEditionPartProvider" name="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider" schema="schema/PropertiesEditionPartProvider.exsd"/>
    
      <extension
@@ -10,7 +18,7 @@
       <clientContext
             default="false"
             id="org.eclipse.emf.eef.validation.context">
-         <selector class="org.eclipse.emf.eef.runtime.impl.validation.EEFValidationClientSelector"/>
+         <selector class="org.eclipse.emf.eef.runtime.validation.EEFValidationClientSelector"/>
       </clientContext>
       <binding
             context="org.eclipse.emf.eef.validation.context"

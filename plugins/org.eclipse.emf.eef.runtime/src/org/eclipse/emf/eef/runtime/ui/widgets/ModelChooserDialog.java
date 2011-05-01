@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2011 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
-import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
+import org.eclipse.emf.eef.runtime.util.EEFUtils;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -84,16 +84,17 @@ public class ModelChooserDialog extends Dialog {
 		label.setText(EEFRuntimeUIMessages.ModelChooserDialog_choose_model);
 		workspaceViewer = new TreeViewer(container);
 		workspaceViewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
-		if (EEFUtils.isBundleLoaded("org.eclipse.ui.ide"))  //$NON-NLS-1$
+		if (EEFUtils.isBundleLoaded("org.eclipse.ui.ide")) //$NON-NLS-1$
 			workspaceViewer.setContentProvider(new WorkbenchContentProvider());
 		else
-			workspaceViewer.setContentProvider(new AdapterFactoryContentProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
-			
+			workspaceViewer.setContentProvider(new AdapterFactoryContentProvider(EEFRuntimePlugin
+					.getDefault().getAdapterFactory()));
+
 		workspaceViewer.setLabelProvider(new WorkbenchLabelProvider());
 		workspaceViewer.addFilter(new ViewerFilter() {
 			/*
 			 * (non-Javadoc)
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface .viewers.Viewer,
 			 * java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -159,7 +160,7 @@ public class ModelChooserDialog extends Dialog {
 			if (childType == IResource.FILE && child.getFileExtension() != null
 					&& child.getFileExtension().equalsIgnoreCase(modelExtension)) {
 				files.add(child);
-			} else if (childType == IResource.FOLDER && !child.getName().startsWith(".")) {  //$NON-NLS-1$
+			} else if (childType == IResource.FOLDER && !child.getName().startsWith(".")) { //$NON-NLS-1$
 				folders.add((IContainer)child);
 			}
 		}

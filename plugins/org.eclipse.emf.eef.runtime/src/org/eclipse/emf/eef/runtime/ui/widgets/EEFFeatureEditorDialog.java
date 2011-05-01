@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2011 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -22,14 +22,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ItemProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.business.BusinessViewerFilter;
+import org.eclipse.emf.eef.runtime.ui.filters.business.BusinessViewerFilter;
 import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -62,13 +60,21 @@ import org.eclipse.swt.widgets.Text;
 public class EEFFeatureEditorDialog extends Dialog {
 
 	protected ILabelProvider labelProvider;
+
 	protected IContentProvider contentProvider;
+
 	protected Object object;
+
 	protected EClassifier eClassifier;
+
 	protected String displayName;
+
 	protected ItemProvider values;
+
 	protected List<?> choiceOfValues;
+
 	protected EList<?> result;
+
 	protected boolean multiLine;
 
 	/**
@@ -81,65 +87,53 @@ public class EEFFeatureEditorDialog extends Dialog {
 	 */
 	private List<ViewerFilter> brFilters;
 
-	public EEFFeatureEditorDialog(Shell parent, ILabelProvider labelProvider,
-			Object object, EClassifier eClassifier, List<?> currentValues,
-			String displayName, List<?> choiceOfValues, boolean multiLine,
-			boolean sortChoices, List<ViewerFilter> filters, List<ViewerFilter> brFilters) {
+	public EEFFeatureEditorDialog(Shell parent, String displayName, ILabelProvider labelProvider,
+			List<?> currentValues, List<?> choiceOfValues, boolean multiLine, boolean sortChoices,
+			List<ViewerFilter> filters, List<ViewerFilter> brFilters) {
 		super(parent);
 		setShellStyle(getShellStyle() | SWT.RESIZE | SWT.MAX);
 		this.labelProvider = labelProvider;
-		this.object = object;
-		this.eClassifier = eClassifier;
 		this.displayName = displayName;
 		this.choiceOfValues = choiceOfValues;
 		this.multiLine = multiLine;
 		this.filters = filters;
 		this.brFilters = brFilters;
 
-		AdapterFactory adapterFactory = new ComposedAdapterFactory(Collections
-				.<AdapterFactory> emptyList());
+		AdapterFactory adapterFactory = new ComposedAdapterFactory(Collections.<AdapterFactory> emptyList());
 		values = new ItemProvider(adapterFactory, currentValues);
 		contentProvider = new AdapterFactoryContentProvider(adapterFactory);
 		if (sortChoices && choiceOfValues != null) {
 			this.choiceOfValues = new ArrayList<Object>(choiceOfValues);
-			ExtendedComboBoxCellEditor.createItems(this.choiceOfValues,
-					labelProvider, true);
+			ExtendedComboBoxCellEditor.createItems(this.choiceOfValues, labelProvider, true);
 		}
 	}
 
-	public EEFFeatureEditorDialog(Shell parent, ILabelProvider labelProvider,
-			Object object, EClassifier eClassifier, List<?> currentValues,
-			String displayName, List<?> choiceOfValues, List<ViewerFilter> filters, List<ViewerFilter> brFilters) {
-		this(parent, labelProvider, object, eClassifier, currentValues,
-				displayName, choiceOfValues, false, false, filters, brFilters);
-	}
-
-	public EEFFeatureEditorDialog(Shell parent, ILabelProvider labelProvider,
-			EObject eObject, EStructuralFeature eStructuralFeature,
-			String displayName, List<?> choiceOfValues, List<ViewerFilter> filters, List<ViewerFilter> brFilters) {
-		this(parent, labelProvider, eObject, eStructuralFeature.getEType(),
-				(List<?>) eObject.eGet(eStructuralFeature), displayName,
-				choiceOfValues, filters, brFilters);
+	public EEFFeatureEditorDialog(Shell parent, String displayName, ILabelProvider labelProvider,
+			List<?> currentValues, EClassifier eClassifier, List<?> choiceOfValues, boolean multiLine,
+			boolean sortChoices, List<ViewerFilter> filters, List<ViewerFilter> brFilters) {
+		this(parent, displayName, labelProvider, currentValues, choiceOfValues, multiLine, sortChoices,
+				filters, brFilters);
+		this.eClassifier = eClassifier;
 	}
 
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setText(EMFEditUIPlugin.INSTANCE.getString(
-				"_UI_FeatureEditorDialog_title", new Object[] { displayName, //$NON-NLS-1$
-						labelProvider.getText(object) }));
+				"_UI_FeatureEditorDialog_title", new Object[] {displayName, //$NON-NLS-1$
+						labelProvider.getText(object)}));
 		shell.setImage(labelProvider.getImage(object));
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
-		Composite contents = (Composite) super.createDialogArea(parent);
+		Composite contents = (Composite)super.createDialogArea(parent);
 
-		GridLayout contentsGridLayout = (GridLayout) contents.getLayout();
+		GridLayout contentsGridLayout = (GridLayout)contents.getLayout();
 		contentsGridLayout.numColumns = 3;
 
-		GridData contentsGridData = (GridData) contents.getLayoutData();
+		GridData contentsGridData = (GridData)contents.getLayoutData();
 		contentsGridData.horizontalAlignment = SWT.FILL;
 		contentsGridData.verticalAlignment = SWT.FILL;
 
@@ -158,16 +152,16 @@ public class EEFFeatureEditorDialog extends Dialog {
 		}
 
 		Label choiceLabel = new Label(choiceComposite, SWT.NONE);
-		choiceLabel.setText(choiceOfValues == null ? EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Value_label") : EMFEditUIPlugin.INSTANCE //$NON-NLS-1$
-				.getString("_UI_Choices_label")); //$NON-NLS-1$
+		choiceLabel
+				.setText(choiceOfValues == null ? EMFEditUIPlugin.INSTANCE.getString("_UI_Value_label") : EMFEditUIPlugin.INSTANCE //$NON-NLS-1$
+								.getString("_UI_Choices_label")); //$NON-NLS-1$
 		GridData choiceLabelGridData = new GridData();
 		choiceLabelGridData.verticalAlignment = SWT.FILL;
 		choiceLabelGridData.horizontalAlignment = SWT.FILL;
 		choiceLabel.setLayoutData(choiceLabelGridData);
 
-		final Table choiceTable = choiceOfValues == null ? null : new Table(
-				choiceComposite, SWT.MULTI | SWT.BORDER);
+		final Table choiceTable = choiceOfValues == null ? null : new Table(choiceComposite, SWT.MULTI
+				| SWT.BORDER);
 		if (choiceTable != null) {
 			GridData choiceTableGridData = new GridData();
 			choiceTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
@@ -179,12 +173,9 @@ public class EEFFeatureEditorDialog extends Dialog {
 			choiceTable.setLayoutData(choiceTableGridData);
 		}
 
-		final TableViewer choiceTableViewer = choiceOfValues == null ? null
-				: new TableViewer(choiceTable);
+		final TableViewer choiceTableViewer = choiceOfValues == null ? null : new TableViewer(choiceTable);
 		if (choiceTableViewer != null) {
-			choiceTableViewer
-					.setContentProvider(new AdapterFactoryContentProvider(
-							new AdapterFactoryImpl()));
+			choiceTableViewer.setContentProvider(new AdapterFactoryContentProvider(new AdapterFactoryImpl()));
 			choiceTableViewer.setLabelProvider(labelProvider);
 			choiceTableViewer.setInput(new ItemProvider(choiceOfValues));
 			if (filters != null) {
@@ -201,11 +192,9 @@ public class EEFFeatureEditorDialog extends Dialog {
 				for (int i = 0; i < brFilters.size(); i++) {
 					String filterName = null;
 					if (brFilters.get(i) instanceof BusinessViewerFilter) {
-						final BusinessViewerFilter viewerFilter = (BusinessViewerFilter) brFilters
-								.get(i);
+						final BusinessViewerFilter viewerFilter = (BusinessViewerFilter)brFilters.get(i);
 
-						Button filteredContent = new Button(choiceComposite,
-								SWT.CHECK);
+						Button filteredContent = new Button(choiceComposite, SWT.CHECK);
 						filterName = viewerFilter.getName();
 						if (filterName != null) {
 							filteredContent.setText(filterName);
@@ -220,11 +209,9 @@ public class EEFFeatureEditorDialog extends Dialog {
 					// selection "contenu filtre"
 
 					if (filterName != null && !filterName.equals(currentModel)
-							&& !filterName.equals(referencedModels)
-							&& !filterName.equals(differentContainer)) {
+							&& !filterName.equals(referencedModels) && !filterName.equals(differentContainer)) {
 						checkButtons.get(i).setSelection(true);
-						choiceTableViewer.addFilter((ViewerFilter) checkButtons
-								.get(i).getData());
+						choiceTableViewer.addFilter((ViewerFilter)checkButtons.get(i).getData());
 						for (int j = 0; j < choiceTable.getColumns().length; j++) {
 							choiceTable.getColumn(j).pack();
 						}
@@ -236,11 +223,9 @@ public class EEFFeatureEditorDialog extends Dialog {
 					b.addSelectionListener(new SelectionAdapter() {
 						public void widgetSelected(SelectionEvent e) {
 							if (b.getSelection() == false) {
-								choiceTableViewer.removeFilter((ViewerFilter) b
-										.getData());
+								choiceTableViewer.removeFilter((ViewerFilter)b.getData());
 							} else {
-								choiceTableViewer.addFilter((ViewerFilter) b
-										.getData());
+								choiceTableViewer.addFilter((ViewerFilter)b.getData());
 							}
 							for (int i = 0; i < choiceTable.getColumns().length; i++) {
 								choiceTable.getColumn(i).pack();
@@ -256,10 +241,8 @@ public class EEFFeatureEditorDialog extends Dialog {
 		// We use multi even for a single line because we want to respond to the
 		// enter key.
 		//
-		int style = multiLine ? SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
-				| SWT.BORDER : SWT.MULTI | SWT.BORDER;
-		final Text choiceText = choiceOfValues == null ? new Text(
-				choiceComposite, style) : null;
+		int style = multiLine ? SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER : SWT.MULTI | SWT.BORDER;
+		final Text choiceText = choiceOfValues == null ? new Text(choiceComposite, style) : null;
 		if (choiceText != null) {
 			GridData choiceTextGridData = new GridData();
 			choiceTextGridData.widthHint = Display.getCurrent().getBounds().width / 5;
@@ -292,8 +275,7 @@ public class EEFFeatureEditorDialog extends Dialog {
 		addButton.setLayoutData(addButtonGridData);
 
 		final Button removeButton = new Button(controlButtons, SWT.PUSH);
-		removeButton.setText(EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Remove_label")); //$NON-NLS-1$
+		removeButton.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Remove_label")); //$NON-NLS-1$
 		GridData removeButtonGridData = new GridData();
 		removeButtonGridData.verticalAlignment = SWT.FILL;
 		removeButtonGridData.horizontalAlignment = SWT.FILL;
@@ -312,8 +294,7 @@ public class EEFFeatureEditorDialog extends Dialog {
 		upButton.setLayoutData(upButtonGridData);
 
 		final Button downButton = new Button(controlButtons, SWT.PUSH);
-		downButton
-				.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Down_label")); //$NON-NLS-1$
+		downButton.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Down_label")); //$NON-NLS-1$
 		GridData downButtonGridData = new GridData();
 		downButtonGridData.verticalAlignment = SWT.FILL;
 		downButtonGridData.horizontalAlignment = SWT.FILL;
@@ -334,16 +315,14 @@ public class EEFFeatureEditorDialog extends Dialog {
 		}
 
 		Label featureLabel = new Label(featureComposite, SWT.NONE);
-		featureLabel.setText(EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Feature_label")); //$NON-NLS-1$
+		featureLabel.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Feature_label")); //$NON-NLS-1$
 		GridData featureLabelGridData = new GridData();
 		featureLabelGridData.horizontalSpan = 2;
 		featureLabelGridData.horizontalAlignment = SWT.FILL;
 		featureLabelGridData.verticalAlignment = SWT.FILL;
 		featureLabel.setLayoutData(featureLabelGridData);
 
-		final Table featureTable = new Table(featureComposite, SWT.MULTI
-				| SWT.BORDER);
+		final Table featureTable = new Table(featureComposite, SWT.MULTI | SWT.BORDER);
 		GridData featureTableGridData = new GridData();
 		featureTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
 		featureTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
@@ -358,45 +337,38 @@ public class EEFFeatureEditorDialog extends Dialog {
 		featureTableViewer.setLabelProvider(labelProvider);
 		featureTableViewer.setInput(values);
 		if (!values.getChildren().isEmpty()) {
-			featureTableViewer.setSelection(new StructuredSelection(values
-					.getChildren().get(0)));
+			featureTableViewer.setSelection(new StructuredSelection(values.getChildren().get(0)));
 		}
 
 		if (choiceTableViewer != null) {
-			choiceTableViewer
-					.addDoubleClickListener(new IDoubleClickListener() {
-						public void doubleClick(DoubleClickEvent event) {
-							if (addButton.isEnabled()) {
-								addButton.notifyListeners(SWT.Selection, null);
-							}
-						}
-					});
+			choiceTableViewer.addDoubleClickListener(new IDoubleClickListener() {
+				public void doubleClick(DoubleClickEvent event) {
+					if (addButton.isEnabled()) {
+						addButton.notifyListeners(SWT.Selection, null);
+					}
+				}
+			});
 
-			featureTableViewer
-					.addDoubleClickListener(new IDoubleClickListener() {
-						public void doubleClick(DoubleClickEvent event) {
-							if (removeButton.isEnabled()) {
-								removeButton.notifyListeners(SWT.Selection,
-										null);
-							}
-						}
-					});
+			featureTableViewer.addDoubleClickListener(new IDoubleClickListener() {
+				public void doubleClick(DoubleClickEvent event) {
+					if (removeButton.isEnabled()) {
+						removeButton.notifyListeners(SWT.Selection, null);
+					}
+				}
+			});
 		}
 
 		if (choiceText != null) {
 			choiceText.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent event) {
-					if (!multiLine
-							&& (event.character == '\r' || event.character == '\n')) {
+					if (!multiLine && (event.character == '\r' || event.character == '\n')) {
 						try {
-							Object value = EcoreUtil.createFromString(
-									(EDataType) eClassifier, choiceText
-											.getText());
+							Object value = EcoreUtil.createFromString((EDataType)eClassifier,
+									choiceText.getText());
 							values.getChildren().add(value);
 							choiceText.setText(""); //$NON-NLS-1$
-							featureTableViewer
-									.setSelection(new StructuredSelection(value));
+							featureTableViewer.setSelection(new StructuredSelection(value));
 							event.doit = false;
 						} catch (RuntimeException exception) {
 							// Ignore
@@ -412,14 +384,12 @@ public class EEFFeatureEditorDialog extends Dialog {
 		upButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) featureTableViewer
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection)featureTableViewer.getSelection();
 				int minIndex = 0;
 				for (Iterator<?> i = selection.iterator(); i.hasNext();) {
 					Object value = i.next();
 					int index = values.getChildren().indexOf(value);
-					values.getChildren().move(Math.max(index - 1, minIndex++),
-							value);
+					values.getChildren().move(Math.max(index - 1, minIndex++), value);
 				}
 			}
 		});
@@ -427,14 +397,12 @@ public class EEFFeatureEditorDialog extends Dialog {
 		downButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) featureTableViewer
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection)featureTableViewer.getSelection();
 				int maxIndex = values.getChildren().size() - selection.size();
 				for (Iterator<?> i = selection.iterator(); i.hasNext();) {
 					Object value = i.next();
 					int index = values.getChildren().indexOf(value);
-					values.getChildren().move(Math.min(index + 1, maxIndex++),
-							value);
+					values.getChildren().move(Math.min(index + 1, maxIndex++), value);
 				}
 			}
 		});
@@ -444,8 +412,7 @@ public class EEFFeatureEditorDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
 				if (choiceTableViewer != null) {
-					IStructuredSelection selection = (IStructuredSelection) choiceTableViewer
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection)choiceTableViewer.getSelection();
 					for (Iterator<?> i = selection.iterator(); i.hasNext();) {
 						Object value = i.next();
 						if (!values.getChildren().contains(value)) {
@@ -455,12 +422,11 @@ public class EEFFeatureEditorDialog extends Dialog {
 					featureTableViewer.setSelection(selection);
 				} else if (choiceText != null) {
 					try {
-						Object value = EcoreUtil.createFromString(
-								(EDataType) eClassifier, choiceText.getText());
+						Object value = EcoreUtil.createFromString((EDataType)eClassifier,
+								choiceText.getText());
 						values.getChildren().add(value);
 						choiceText.setText(""); //$NON-NLS-1$
-						featureTableViewer
-								.setSelection(new StructuredSelection(value));
+						featureTableViewer.setSelection(new StructuredSelection(value));
 					} catch (RuntimeException exception) {
 						// Ignore
 					}
@@ -472,8 +438,7 @@ public class EEFFeatureEditorDialog extends Dialog {
 			// event is null when featureTableViewer is double clicked
 			@Override
 			public void widgetSelected(SelectionEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) featureTableViewer
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection)featureTableViewer.getSelection();
 				Object firstValue = null;
 				for (Iterator<?> i = selection.iterator(); i.hasNext();) {
 					Object value = i.next();
@@ -484,16 +449,14 @@ public class EEFFeatureEditorDialog extends Dialog {
 				}
 
 				if (!values.getChildren().isEmpty()) {
-					featureTableViewer.setSelection(new StructuredSelection(
-							values.getChildren().get(0)));
+					featureTableViewer.setSelection(new StructuredSelection(values.getChildren().get(0)));
 				}
 
 				if (choiceTableViewer != null) {
 					choiceTableViewer.setSelection(selection);
 				} else if (choiceText != null) {
 					if (firstValue != null) {
-						String value = EcoreUtil.convertToString(
-								(EDataType) eClassifier, firstValue);
+						String value = EcoreUtil.convertToString((EDataType)eClassifier, firstValue);
 						choiceText.setText(value);
 					}
 				}

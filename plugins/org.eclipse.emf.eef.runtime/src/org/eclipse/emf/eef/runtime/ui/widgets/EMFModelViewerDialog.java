@@ -1,32 +1,31 @@
 /*******************************************************************************
- * Copyright (c) 2008-2009 Obeo.
+ * Copyright (c) 2008, 2011 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.eef.runtime.ui.widgets;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.business.BusinessViewerFilter;
-import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
-import org.eclipse.emf.eef.runtime.impl.utils.ModelViewerHelper;
-import org.eclipse.emf.eef.runtime.impl.utils.PatternTool;
-import org.eclipse.emf.eef.runtime.impl.utils.StringTools;
 import org.eclipse.emf.eef.runtime.ui.comparator.EMFModelViewerComparator;
-import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
+import org.eclipse.emf.eef.runtime.ui.filters.business.BusinessViewerFilter;
 import org.eclipse.emf.eef.runtime.ui.utils.EEFRuntimeUIMessages;
+import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorContentProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettings;
+import org.eclipse.emf.eef.runtime.util.EEFUtils;
+import org.eclipse.emf.eef.runtime.util.ModelViewerHelper;
+import org.eclipse.emf.eef.runtime.util.PatternTool;
+import org.eclipse.emf.eef.runtime.util.StringTools;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -114,7 +113,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets .Composite)
 	 */
 	protected Control createDialogArea(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
@@ -152,10 +151,10 @@ public abstract class EMFModelViewerDialog extends Dialog {
 		// ADD EXTENSION: CNO
 		final Table table = buildTable();
 
-		if (input instanceof Collection) {
-			elements.setContentProvider(new ArrayContentProvider());
-		} else {
-			elements.setContentProvider(new EMFListContentProvider());
+		if (input instanceof EEFEditorSettings) {
+			EEFEditorContentProvider provider = new EEFEditorContentProvider();
+			provider.kind = EEFEditorContentProvider.MATCHING_VALUES_KIND;
+			elements.setContentProvider(provider);
 		}
 		if (labelProvider == null) {
 			this.labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -167,7 +166,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 							String result = ((EObject)object).eClass().getName();
 							if (result == null || result == StringTools.EMPTY_STRING)
 								return StringTools.EMPTY_STRING;
-							if (result.equals("EClass")) {  //$NON-NLS-1$
+							if (result.equals("EClass")) { //$NON-NLS-1$
 								return getColumnText(object, 1);
 							}
 							return result;
@@ -216,7 +215,7 @@ public abstract class EMFModelViewerDialog extends Dialog {
 					if (filterName != null) {
 						filteredContent.setText(filterName);
 					} else {
-						filteredContent.setText(EEFRuntimeUIMessages.EMFModelViewerDialog_filter_name); 
+						filteredContent.setText(EEFRuntimeUIMessages.EMFModelViewerDialog_filter_name);
 					}
 
 					filteredContent.setData(viewerFilter);
@@ -285,8 +284,8 @@ public abstract class EMFModelViewerDialog extends Dialog {
 	 */
 	protected void buildColumns(Table table) {
 
-		addColumn(table, 0, EEFRuntimeUIMessages.EMFModelViewerDialog_type_column_title); 
-		addColumn(table, 1, EEFRuntimeUIMessages.EMFModelViewerDialog_name_column_title); 
+		addColumn(table, 0, EEFRuntimeUIMessages.EMFModelViewerDialog_type_column_title);
+		addColumn(table, 1, EEFRuntimeUIMessages.EMFModelViewerDialog_name_column_title);
 
 	}
 
@@ -418,17 +417,5 @@ public abstract class EMFModelViewerDialog extends Dialog {
 		if (result == null)
 			return StringTools.EMPTY_STRING;
 		return result;
-		// StringBuffer buf = new StringBuffer();
-		//		int bracket = result.indexOf("("); 
-		// if (bracket != -1) {
-		// buf.append(result.substring(bracket, result.length()));
-		// result = result.substring(0, bracket);
-		// }
-		//		int space = result.lastIndexOf(" "); 
-		// if (space != -1)
-		// buf.insert(0, result.substring(space + 1));
-		// if (space == -1 && bracket == -1)
-		// return result;
-		// return buf.toString();
 	}
 }
