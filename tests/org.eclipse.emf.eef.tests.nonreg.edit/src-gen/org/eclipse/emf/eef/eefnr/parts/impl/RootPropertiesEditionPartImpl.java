@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2009 - 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,30 +13,27 @@ package org.eclipse.emf.eef.eefnr.parts.impl;
 // Start of user code for imports
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.eef.eefnr.AbstractSample;
-import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.parts.EefnrViewsRepository;
 import org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart;
 import org.eclipse.emf.eef.eefnr.providers.EefnrMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.policies.EReferencePropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -44,35 +41,33 @@ import org.eclipse.swt.widgets.Group;
 
 
 
-// End of user code	
+// End of user code
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, RootPropertiesEditionPart {
+public class RootPropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, RootPropertiesEditionPart {
 
-	protected EMFListEditUtil samplesEditUtil;
-	protected ReferencesTable<? extends EObject> samples;
-	protected List<ViewerFilter> samplesBusinessFilters = new ArrayList<ViewerFilter>();
-	protected List<ViewerFilter> samplesFilters = new ArrayList<ViewerFilter>();
-
+protected ReferencesTable samples;
+protected List<ViewerFilter> samplesBusinessFilters = new ArrayList<ViewerFilter>();
+protected List<ViewerFilter> samplesFilters = new ArrayList<ViewerFilter>();
 
 
 
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public RootPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
+	public RootPropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
@@ -88,23 +83,37 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		createPropertiesGroup(view);
-
-
-		// Start of user code for additional ui definition
+		CompositionSequence rootStep = new CompositionSequence();
+		rootStep
+			.addStep(EefnrViewsRepository.Root.Properties.class)
+			.addStep(EefnrViewsRepository.Root.Properties.samples);
 		
-		// End of user code
+		
+		composer = new PartComposer(rootStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == EefnrViewsRepository.Root.Properties.class) {
+					return createPropertiesGroup(parent);
+				}
+				if (key == EefnrViewsRepository.Root.Properties.samples) {
+					return createSamplesAdvancedTableComposition(parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 
 	/**
 	 * 
 	 */
-	protected void createPropertiesGroup(Composite parent) {
+	protected Composite createPropertiesGroup(Composite parent) {
 		Group propertiesGroup = new Group(parent, SWT.NONE);
 		propertiesGroup.setText(EefnrMessages.RootPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
@@ -113,87 +122,55 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createSamplesAdvancedTableComposition(propertiesGroup);
+		return propertiesGroup;
 	}
 
 	/**
 	 * @param container
 	 * 
 	 */
-	protected void createSamplesAdvancedTableComposition(Composite parent) {
-		this.samples = new ReferencesTable<AbstractSample>(EefnrMessages.RootPropertiesEditionPart_SamplesLabel, new ReferencesTableListener<AbstractSample>() {			
-			public void handleAdd() { addToSamples();}
-			public void handleEdit(AbstractSample element) { editSamples(element); }
-			public void handleMove(AbstractSample element, int oldIndex, int newIndex) { moveSamples(element, oldIndex, newIndex); }
-			public void handleRemove(AbstractSample element) { removeFromSamples(element); }
-			public void navigateTo(AbstractSample element) { }
+	protected Composite createSamplesAdvancedTableComposition(Composite parent) {
+		this.samples = new ReferencesTable(EefnrMessages.RootPropertiesEditionPart_SamplesLabel, new ReferencesTableListener() {
+			public void handleAdd() { 
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.Properties.samples, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.ADD, null, null));
+				samples.refresh();
+			}
+			public void handleEdit(EObject element) {
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.Properties.samples, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.EDIT, null, element));
+				samples.refresh();
+			}
+			public void handleMove(EObject element, int oldIndex, int newIndex) { 
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.Properties.samples, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.MOVE, element, newIndex));
+				samples.refresh();
+			}
+			public void handleRemove(EObject element) { 
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.Properties.samples, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.REMOVE, null, element));
+				samples.refresh();
+			}
+			public void navigateTo(EObject element) { }
 		});
-		this.samples.setHelpText(propertiesEditionComponent.getHelpContent(EefnrViewsRepository.Root.samples, EefnrViewsRepository.SWT_KIND));
+		for (ViewerFilter filter : this.samplesFilters) {
+			this.samples.addFilter(filter);
+		}
+		this.samples.setHelpText(propertiesEditingComponent.getHelpContent(EefnrViewsRepository.Root.Properties.samples, EefnrViewsRepository.SWT_KIND));
 		this.samples.createControls(parent);
+		this.samples.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				if (e.item != null && e.item.getData() instanceof EObject) {
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.Properties.samples, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SELECTION_CHANGED, null, e.item.getData()));
+				}
+			}
+			
+		});
 		GridData samplesData = new GridData(GridData.FILL_HORIZONTAL);
 		samplesData.horizontalSpan = 3;
 		this.samples.setLayoutData(samplesData);
 		this.samples.setLowerBound(0);
 		this.samples.setUpperBound(-1);
-	}
-
-	/**
-	 *  
-	 */
-	protected void moveSamples(AbstractSample element, int oldIndex, int newIndex) {
-	}
-
-	/**
-	 *  
-	 */
-	protected void addToSamples() {
-		// Start of user code addToSamples() method body
-				IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(current);
-				IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(current);
-				if (editionPolicy != null) {
-					EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EReferencePropertiesEditionContext(propertiesEditionComponent, EefnrPackage.eINSTANCE.getRoot_Samples(), resourceSet));
-					if (propertiesEditionObject != null) {
-						samplesEditUtil.addElement(propertiesEditionObject);
-						samples.refresh();
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.samples, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
-					}
-				}
-				
-		// End of user code
-
-	}
-
-	/**
-	 *  
-	 */
-	protected void removeFromSamples(AbstractSample element) {
-		// Start of user code removeFromSamples() method body
-				EObject editedElement = samplesEditUtil.foundCorrespondingEObject(element);
-				samplesEditUtil.removeElement(element);
-				samples.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.samples, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));		
-		// End of user code
-
-	}
-
-	/**
-	 *  
-	 */
-	protected void editSamples(AbstractSample element) {
-		// Start of user code editSamples() method body
-				EObject editedElement = samplesEditUtil.foundCorrespondingEObject(element);
-				IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-				IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
-				if (editionPolicy != null) {
-					EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
-					if (propertiesEditionObject != null) {
-						samplesEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
-						samples.refresh();
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RootPropertiesEditionPartImpl.this, EefnrViewsRepository.Root.samples, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
-					}
-				}		
-		// End of user code
-
+		samples.setID(EefnrViewsRepository.Root.Properties.samples);
+		samples.setEEFType("eef::AdvancedTableComposition"); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -201,92 +178,39 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
+
+// End of user code
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#getSamplesToAdd()
-	 * 
-	 */
-	public List getSamplesToAdd() {
-		return samplesEditUtil.getElementsToAdd();
-	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#getSamplesToRemove()
-	 * 
-	 */
-	public List getSamplesToRemove() {
-		return samplesEditUtil.getElementsToRemove();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#getSamplesToEdit()
-	 * 
-	 */
-	public Map getSamplesToEdit() {
-		return samplesEditUtil.getElementsToRefresh();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#getSamplesToMove()
-	 * 
-	 */
-	public List getSamplesToMove() {
-		return samplesEditUtil.getElementsToMove();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#getSamplesTable()
-	 * 
-	 */
-	public List getSamplesTable() {
-		return samplesEditUtil.getVirtualList();
-	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#initSamples(EObject current, EReference containingFeature, EReference feature)
 	 */
-	public void initSamples(EObject current, EReference containingFeature, EReference feature) {
+	public void initSamples(ReferencesTableSettings settings) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
-			samplesEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else
-			samplesEditUtil = new EMFListEditUtil(current, feature);
-		this.samples.setInput(samplesEditUtil.getVirtualList());
+		ReferencesTableContentProvider contentProvider = new ReferencesTableContentProvider();
+		samples.setContentProvider(contentProvider);
+		samples.setInput(settings);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#updateSamples(EObject newValue)
+	 * @see org.eclipse.emf.eef.eefnr.parts.RootPropertiesEditionPart#updateSamples()
 	 * 
 	 */
-	public void updateSamples(EObject newValue) {
-		if(samplesEditUtil != null){
-			samplesEditUtil.reinit(newValue);
-			samples.refresh();
-		}
-	}
+	public void updateSamples() {
+	samples.refresh();
+}
 
 	/**
 	 * {@inheritDoc}
@@ -296,6 +220,9 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public void addFilterToSamples(ViewerFilter filter) {
 		samplesFilters.add(filter);
+		if (this.samples != null) {
+			this.samples.addFilter(filter);
+		}
 	}
 
 	/**
@@ -315,15 +242,7 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 * 
 	 */
 	public boolean isContainedInSamplesTable(EObject element) {
-		return samplesEditUtil.contains(element);
-	}
-
-	public void setMessageForSamples(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForSamples() {
-
+		return ((ReferencesTableSettings)samples.getInput()).contains(element);
 	}
 
 
@@ -335,7 +254,7 @@ public class RootPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
 	 * 
 	 */
 	public String getTitle() {

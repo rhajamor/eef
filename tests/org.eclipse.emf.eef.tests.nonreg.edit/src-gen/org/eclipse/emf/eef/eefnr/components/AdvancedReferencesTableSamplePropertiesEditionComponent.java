@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2009 - 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,44 +11,26 @@
 package org.eclipse.emf.eef.eefnr.components;
 
 // Start of user code for imports
-import java.util.Iterator;
-import java.util.List;
-
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.eefnr.AdvancedReferencesTableSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnr.TotalSample;
 import org.eclipse.emf.eef.eefnr.parts.AdvancedReferencesTableSamplePropertiesEditionPart;
 import org.eclipse.emf.eef.eefnr.parts.EefnrViewsRepository;
-import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
-import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
-import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesValidationEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
+import org.eclipse.emf.eef.runtime.components.impl.SinglePartPropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.ui.filters.EObjectFilter;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 	
 
 // End of user code
@@ -57,163 +39,56 @@ import org.eclipse.ui.PlatformUI;
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class AdvancedReferencesTableSamplePropertiesEditionComponent extends StandardPropertiesEditionComponent {
+public class AdvancedReferencesTableSamplePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
-	private String[] parts = {BASE_PART};
-
 	/**
-	 * The EObject to edit
-	 * 
+	 * Settings for advancedreferencestableRequiredProperty ReferencesTable
 	 */
-	private AdvancedReferencesTableSample advancedReferencesTableSample;
-
+	private	ReferencesTableSettings advancedreferencestableRequiredPropertySettings;
+	
 	/**
-	 * The Base part
-	 * 
+	 * Settings for advancedreferencestableOptionalProperty ReferencesTable
 	 */
-	protected AdvancedReferencesTableSamplePropertiesEditionPart basePart;
-
+	private	ReferencesTableSettings advancedreferencestableOptionalPropertySettings;
+	
 	/**
 	 * Default constructor
 	 * 
 	 */
-	public AdvancedReferencesTableSamplePropertiesEditionComponent(EObject advancedReferencesTableSample, String editing_mode) {
-		if (advancedReferencesTableSample instanceof AdvancedReferencesTableSample) {
-			this.advancedReferencesTableSample = (AdvancedReferencesTableSample)advancedReferencesTableSample;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
-				semanticAdapter = initializeSemanticAdapter();
-				this.advancedReferencesTableSample.eAdapters().add(semanticAdapter);
-			}
-		}
-		this.editing_mode = editing_mode;
-	}
-
-	/**
-	 * Initialize the semantic model listener for live editing mode
-	 * 
-	 * @return the semantic model listener
-	 * 
-	 */
-	private AdapterImpl initializeSemanticAdapter() {
-		return new EContentAdapter() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
-			 * 
-			 */
-			public void notifyChanged(final Notification msg) {
-				if (basePart == null)
-					AdvancedReferencesTableSamplePropertiesEditionComponent.this.dispose();
-				else {
-					Runnable updateRunnable = new Runnable() {
-						public void run() {
-							runUpdateRunnable(msg);
-						}
-					};
-					if (null == Display.getCurrent()) {
-						PlatformUI.getWorkbench().getDisplay().syncExec(updateRunnable);
-					} else {
-						updateRunnable.run();
-					}
-				}
-			}
-
-		};
-	}
-
-	/**
-	 * Used to update the views
-	 * 
-	 */
-	protected void runUpdateRunnable(final Notification msg) {
-		if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty().equals(msg.getFeature()))
-			basePart.updateAdvancedreferencestableRequiredProperty(advancedReferencesTableSample);
-		if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty().equals(msg.getFeature()))
-			basePart.updateAdvancedreferencestableOptionalProperty(advancedReferencesTableSample);
-
+	public AdvancedReferencesTableSamplePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject advancedReferencesTableSample, String editing_mode) {
+		super(editingContext, advancedReferencesTableSample, editing_mode);
+		parts = new String[] { BASE_PART };
+		repositoryKey = EefnrViewsRepository.class;
+		partKey = EefnrViewsRepository.AdvancedReferencesTableSample.class;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
-	 * 
-	 */
-	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
-			return EefnrViewsRepository.AdvancedReferencesTableSample.class;
-		return super.translatePart(key);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
-	 * 
-	 */
-	public String[] partsList() {
-		return parts;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *  (java.lang.String, java.lang.String)
-	 * 
-	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (advancedReferencesTableSample != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(EefnrViewsRepository.class);
-				if (provider != null) {
-					basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)provider.getPropertiesEditionPart(EefnrViewsRepository.AdvancedReferencesTableSample.class, kind, this);
-					addListener((IPropertiesEditionListener)basePart);
-				}
-			}
-			return (IPropertiesEditionPart)basePart;
-		}
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
-	 * 
-	 */
-	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == EefnrViewsRepository.AdvancedReferencesTableSample.class)
-			this.basePart = (AdvancedReferencesTableSamplePropertiesEditionPart) propertiesEditionPart;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent#initPart(java.lang.Object, int, org.eclipse.emf.ecore.EObject, 
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 * 
 	 */
-	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
+	public void initPart(Object key, int kind, EObject elt, ResourceSet allResource) {
 		setInitializing(true);
-		if (basePart != null && key == EefnrViewsRepository.AdvancedReferencesTableSample.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+		if (editingPart != null && key == partKey) {
+			editingPart.setContext(elt, allResource);
 			final AdvancedReferencesTableSample advancedReferencesTableSample = (AdvancedReferencesTableSample)elt;
+			final AdvancedReferencesTableSamplePropertiesEditionPart basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)editingPart;
 			// init values
-			basePart.initAdvancedreferencestableRequiredProperty(advancedReferencesTableSample, null, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty());
-			basePart.initAdvancedreferencestableOptionalProperty(advancedReferencesTableSample, null, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty());
+			advancedreferencestableRequiredPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty());
+			basePart.initAdvancedreferencestableRequiredProperty(advancedreferencestableRequiredPropertySettings);
+			advancedreferencestableOptionalPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty());
+			basePart.initAdvancedreferencestableOptionalProperty(advancedreferencestableOptionalPropertySettings);
 			// init filters
 			basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
-
-				/*
-				 * (non-Javadoc)
+			
+				/**
+				 * {@inheritDoc}
 				 * 
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
@@ -222,14 +97,17 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sta
 						return (!basePart.isContainedInAdvancedreferencestableRequiredPropertyTable((EObject)element));
 					return element instanceof Resource;
 				}
-
+			
 			});
 			basePart.addFilterToAdvancedreferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-
+			// Start of user code for additional businessfilters for advancedreferencestableRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
+																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			
 			basePart.addFilterToAdvancedreferencestableOptionalProperty(new ViewerFilter() {
-
-				/*
-				 * (non-Javadoc)
+			
+				/**
+				 * {@inheritDoc}
 				 * 
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
@@ -238,15 +116,18 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sta
 						return (!basePart.isContainedInAdvancedreferencestableOptionalPropertyTable((EObject)element));
 					return element instanceof Resource;
 				}
-
+			
 			});
 			basePart.addFilterToAdvancedreferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-
+			// Start of user code for additional businessfilters for advancedreferencestableOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
+																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			
+			// init values for referenced views
+			
+			// init filters for referenced views
+			
 		}
-		// init values for referenced views
-
-		// init filters for referenced views
-
 		setInitializing(false);
 	}
 
@@ -254,129 +135,68 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sta
 
 
 
-
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
-		CompoundCommand cc = new CompoundCommand();
-		if ((advancedReferencesTableSample != null) && (basePart != null)) { 
-			List advancedreferencestableRequiredPropertyToAddFromAdvancedreferencestableRequiredProperty = basePart.getAdvancedreferencestableRequiredPropertyToAdd();
-			for (Iterator iter = advancedreferencestableRequiredPropertyToAddFromAdvancedreferencestableRequiredProperty.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty(), iter.next()));
-			List advancedreferencestableRequiredPropertyToRemoveFromAdvancedreferencestableRequiredProperty = basePart.getAdvancedreferencestableRequiredPropertyToRemove();
-			for (Iterator iter = advancedreferencestableRequiredPropertyToRemoveFromAdvancedreferencestableRequiredProperty.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty(), iter.next()));
-			//List advancedreferencestableRequiredPropertyToMoveFromAdvancedreferencestableRequiredProperty = basePart.getAdvancedreferencestableRequiredPropertyToMove();
-			//for (Iterator iter = advancedreferencestableRequiredPropertyToMoveFromAdvancedreferencestableRequiredProperty.iterator(); iter.hasNext();){
-			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getTotalSample(), moveElement.getElement(), moveElement.getIndex()));
-			//}
-			List advancedreferencestableOptionalPropertyToAddFromAdvancedreferencestableOptionalProperty = basePart.getAdvancedreferencestableOptionalPropertyToAdd();
-			for (Iterator iter = advancedreferencestableOptionalPropertyToAddFromAdvancedreferencestableOptionalProperty.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty(), iter.next()));
-			List advancedreferencestableOptionalPropertyToRemoveFromAdvancedreferencestableOptionalProperty = basePart.getAdvancedreferencestableOptionalPropertyToRemove();
-			for (Iterator iter = advancedreferencestableOptionalPropertyToRemoveFromAdvancedreferencestableOptionalProperty.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty(), iter.next()));
-			//List advancedreferencestableOptionalPropertyToMoveFromAdvancedreferencestableOptionalProperty = basePart.getAdvancedreferencestableOptionalPropertyToMove();
-			//for (Iterator iter = advancedreferencestableOptionalPropertyToMoveFromAdvancedreferencestableOptionalProperty.iterator(); iter.hasNext();){
-			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getTotalSample(), moveElement.getElement(), moveElement.getIndex()));
-			//}
-
-		}
-		if (!cc.isEmpty())
-			return cc;
-		cc.append(IdentityCommand.INSTANCE);
-		return cc;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
-	 * 
-	 */
-	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof AdvancedReferencesTableSample) {
-			AdvancedReferencesTableSample advancedReferencesTableSampleToUpdate = (AdvancedReferencesTableSample)source;
-			advancedReferencesTableSampleToUpdate.getAdvancedreferencestableRequiredProperty().addAll(basePart.getAdvancedreferencestableRequiredPropertyToAdd());
-			advancedReferencesTableSampleToUpdate.getAdvancedreferencestableOptionalProperty().addAll(basePart.getAdvancedreferencestableOptionalPropertyToAdd());
-
-			return advancedReferencesTableSampleToUpdate;
-		}
-		else
-			return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
-	 * 
-	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
-		if (!isInitializing()) {
-			Diagnostic valueDiagnostic = validateValue(event);
-			if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode) && valueDiagnostic.getSeverity() == Diagnostic.OK) {
-				CompoundCommand command = new CompoundCommand();
-			if (EefnrViewsRepository.AdvancedReferencesTableSample.advancedreferencestableRequiredProperty == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty(), event.getNewValue(), event.getNewIndex()));
-			}
-			if (EefnrViewsRepository.AdvancedReferencesTableSample.advancedreferencestableOptionalProperty == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty(), event.getNewValue(), event.getNewIndex()));
-			}
-
-				if (!command.isEmpty() && !command.canExecute()) {
-					EEFRuntimePlugin.getDefault().logError("Cannot perform model change command.", null);
-				} else {
-					liveEditingDomain.getCommandStack().execute(command);
+	public void updateSemanticModel(final PropertiesEditingEvent event) {
+		AdvancedReferencesTableSample advancedReferencesTableSample = (AdvancedReferencesTableSample)semanticObject;
+		if (EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty == event.getAffectedEditor()) {
+			if (event.getKind() == PropertiesEditingEventImpl.ADD)  {
+				if (event.getNewValue() instanceof TotalSample) {
+					advancedreferencestableRequiredPropertySettings.addToReference((EObject) event.getNewValue());
 				}
+			} else if (event.getKind() == PropertiesEditingEventImpl.REMOVE) {
+					advancedreferencestableRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
 			}
-			if (valueDiagnostic.getSeverity() != Diagnostic.OK && valueDiagnostic instanceof BasicDiagnostic)
-				super.firePropertiesChanged(new PropertiesValidationEditionEvent(event, valueDiagnostic));
-			else {
-				Diagnostic validate = validate();
-				super.firePropertiesChanged(new PropertiesValidationEditionEvent(event, validate));
+		}
+		if (EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty == event.getAffectedEditor()) {
+			if (event.getKind() == PropertiesEditingEventImpl.ADD)  {
+				if (event.getNewValue() instanceof TotalSample) {
+					advancedreferencestableOptionalPropertySettings.addToReference((EObject) event.getNewValue());
+				}
+			} else if (event.getKind() == PropertiesEditingEventImpl.REMOVE) {
+					advancedreferencestableOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
 			}
-			super.firePropertiesChanged(event);
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#updatePart(org.eclipse.emf.common.notify.Notification)
+	 */
+	public void updatePart(Notification msg) {
+		if (editingPart.isVisible()) {	
+			AdvancedReferencesTableSamplePropertiesEditionPart basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)editingPart;
+			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty().equals(msg.getFeature()))
+				basePart.updateAdvancedreferencestableRequiredProperty();
+			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty().equals(msg.getFeature()))
+				basePart.updateAdvancedreferencestableOptionalProperty();
+			
+		}
+	}
+
+
+	/**
+	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#isRequired(java.lang.Object, int)
 	 * 
 	 */
-	public boolean isRequired(String key, int kind) {
-		return key == EefnrViewsRepository.AdvancedReferencesTableSample.advancedreferencestableRequiredProperty;
+	public boolean isRequired(Object key, int kind) {
+		return key == EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent#validateValue(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public Diagnostic validateValue(IPropertiesEditionEvent event) {
+	public Diagnostic validateValue(PropertiesEditingEvent event) {
 		Diagnostic ret = Diagnostic.OK_INSTANCE;
 		if (event.getNewValue() != null) {
-			String newStringValue = event.getNewValue().toString();
 			try {
 			} catch (IllegalArgumentException iae) {
 				ret = BasicDiagnostic.toDiagnostic(iae);
@@ -387,45 +207,4 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sta
 		return ret;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
-	 * 
-	 */
-	public Diagnostic validate() {
-		Diagnostic validate = Diagnostic.OK_INSTANCE;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
-			EObject copy = EcoreUtil.copy(advancedReferencesTableSample);
-			copy = getPropertiesEditionObject(copy);
-			validate =  EEFRuntimePlugin.getEEFValidator().validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			validate = EEFRuntimePlugin.getEEFValidator().validate(advancedReferencesTableSample);
-		// Start of user code for custom validation check
-		
-		// End of user code
-		return validate;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
-	 * 
-	 */
-	public void dispose() {
-		if (semanticAdapter != null)
-			advancedReferencesTableSample.eAdapters().remove(semanticAdapter);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getTabText(java.lang.String)
-	 * 
-	 */
-	public String getTabText(String p_key) {
-		return basePart.getTitle();
-	}
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2009 - 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,12 +18,16 @@ import org.eclipse.emf.eef.eefnr.parts.forms.CheckboxSamplePropertiesEditionPart
 import org.eclipse.emf.eef.eefnr.parts.forms.EMFComboViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.EObjectFlatComboViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.FlatReferenceTableSamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.parts.forms.ImageViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.MultiValuedEditorSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.RadioSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.ReferencesTableSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.RootPropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.SamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.parts.forms.SelectionDialogSamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.parts.forms.SingleCompositionViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.TableCompositionEditorSamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.parts.forms.TableCompositionExtensionEditorSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.TextSampleFirstTabPropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.TextSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.TextSampleSecondTabPropertiesEditionPartForm;
@@ -36,43 +40,49 @@ import org.eclipse.emf.eef.eefnr.parts.impl.CheckboxSamplePropertiesEditionPartI
 import org.eclipse.emf.eef.eefnr.parts.impl.EMFComboViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.EObjectFlatComboViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.FlatReferenceTableSamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.parts.impl.ImageViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.MultiValuedEditorSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.RadioSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.ReferencesTableSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.RootPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.SamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.parts.impl.SelectionDialogSamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.parts.impl.SingleCompositionViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TableCompositionEditorSamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.parts.impl.TableCompositionExtensionEditorSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TextSampleFirstTabPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TextSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TextSampleSecondTabPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TextareaSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.TotalSamplePropertiesEditionPartImpl;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider;
+
+
+
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class EefnrPropertiesEditionPartProvider implements IPropertiesEditionPartProvider {
+public class EefnrPropertiesEditionPartProvider implements PropertiesEditingPartProvider {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#provides(java.lang.Class)
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider.IPropertiesEditionPartProvider#provides(java.lang.Object)
 	 * 
 	 */
-	public boolean provides(java.lang.Class key) {
+	public boolean provides(Object key) {
 		return key == EefnrViewsRepository.class;
 	}
 
-	
 	/** 
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#getPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent)
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider.IPropertiesEditionPartProvider#getPropertiesEditingPart(java.lang.Object, int, org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent)
 	 * 
 	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionComponent component) {
+	public PropertiesEditingPart getPropertiesEditingPart(Object key, int kind, PropertiesEditingComponent component) {
 		if (key == EefnrViewsRepository.Root.class) {
 			if (kind == EefnrViewsRepository.SWT_KIND)
 				return new RootPropertiesEditionPartImpl(component);
@@ -180,6 +190,30 @@ public class EefnrPropertiesEditionPartProvider implements IPropertiesEditionPar
 				return new TextSampleSecondTabPropertiesEditionPartImpl(component);
 			if (kind == EefnrViewsRepository.FORM_KIND)
 				return new TextSampleSecondTabPropertiesEditionPartForm(component);
+		}
+		if (key == EefnrViewsRepository.TableCompositionExtensionEditorSample.class) {
+			if (kind == EefnrViewsRepository.SWT_KIND)
+				return new TableCompositionExtensionEditorSamplePropertiesEditionPartImpl(component);
+			if (kind == EefnrViewsRepository.FORM_KIND)
+				return new TableCompositionExtensionEditorSamplePropertiesEditionPartForm(component);
+		}
+		if (key == EefnrViewsRepository.ImageViewerSample.class) {
+			if (kind == EefnrViewsRepository.SWT_KIND)
+				return new ImageViewerSamplePropertiesEditionPartImpl(component);
+			if (kind == EefnrViewsRepository.FORM_KIND)
+				return new ImageViewerSamplePropertiesEditionPartForm(component);
+		}
+		if (key == EefnrViewsRepository.SelectionDialogSample.class) {
+			if (kind == EefnrViewsRepository.SWT_KIND)
+				return new SelectionDialogSamplePropertiesEditionPartImpl(component);
+			if (kind == EefnrViewsRepository.FORM_KIND)
+				return new SelectionDialogSamplePropertiesEditionPartForm(component);
+		}
+		if (key == EefnrViewsRepository.SingleCompositionViewerSample.class) {
+			if (kind == EefnrViewsRepository.SWT_KIND)
+				return new SingleCompositionViewerSamplePropertiesEditionPartImpl(component);
+			if (kind == EefnrViewsRepository.FORM_KIND)
+				return new SingleCompositionViewerSamplePropertiesEditionPartForm(component);
 		}
 		return null;
 	}

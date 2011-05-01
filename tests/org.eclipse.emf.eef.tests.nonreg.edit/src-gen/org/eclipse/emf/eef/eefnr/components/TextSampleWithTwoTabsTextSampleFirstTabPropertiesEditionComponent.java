@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2009 - 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,7 @@
 package org.eclipse.emf.eef.eefnr.components;
 
 // Start of user code for imports
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
@@ -22,27 +19,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.TextSampleWithTwoTabs;
 import org.eclipse.emf.eef.eefnr.parts.EefnrViewsRepository;
 import org.eclipse.emf.eef.eefnr.parts.TextSampleFirstTabPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
-import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
-import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesValidationEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
+import org.eclipse.emf.eef.runtime.components.impl.SinglePartPropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
 import org.eclipse.emf.eef.runtime.util.EEFConverterUtil;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 	
 
 // End of user code
@@ -51,180 +36,51 @@ import org.eclipse.ui.PlatformUI;
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent extends StandardPropertiesEditionComponent {
+public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
 	public static String TEXTSAMPLEFIRSTTAB_PART = "TextSampleFirstTab"; //$NON-NLS-1$
 
 	
-	private String[] parts = {TEXTSAMPLEFIRSTTAB_PART};
-
-	/**
-	 * The EObject to edit
-	 * 
-	 */
-	private TextSampleWithTwoTabs textSampleWithTwoTabs;
-
-	/**
-	 * The TextSampleFirstTab part
-	 * 
-	 */
-	protected TextSampleFirstTabPropertiesEditionPart textSampleFirstTabPart;
-
 	/**
 	 * Default constructor
 	 * 
 	 */
-	public TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent(EObject textSampleWithTwoTabs, String editing_mode) {
-		if (textSampleWithTwoTabs instanceof TextSampleWithTwoTabs) {
-			this.textSampleWithTwoTabs = (TextSampleWithTwoTabs)textSampleWithTwoTabs;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
-				semanticAdapter = initializeSemanticAdapter();
-				this.textSampleWithTwoTabs.eAdapters().add(semanticAdapter);
-			}
-		}
-		this.editing_mode = editing_mode;
-	}
-
-	/**
-	 * Initialize the semantic model listener for live editing mode
-	 * 
-	 * @return the semantic model listener
-	 * 
-	 */
-	private AdapterImpl initializeSemanticAdapter() {
-		return new EContentAdapter() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
-			 * 
-			 */
-			public void notifyChanged(final Notification msg) {
-				if (textSampleFirstTabPart == null)
-					TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent.this.dispose();
-				else {
-					Runnable updateRunnable = new Runnable() {
-						public void run() {
-							runUpdateRunnable(msg);
-						}
-					};
-					if (null == Display.getCurrent()) {
-						PlatformUI.getWorkbench().getDisplay().syncExec(updateRunnable);
-					} else {
-						updateRunnable.run();
-					}
-				}
-			}
-
-		};
-	}
-
-	/**
-	 * Used to update the views
-	 * 
-	 */
-	protected void runUpdateRunnable(final Notification msg) {
-		if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
-			if (msg.getNewValue() != null) {
-				textSampleFirstTabPart.setTextOptionalPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-			} else {
-				textSampleFirstTabPart.setTextOptionalPropertyInFirstTab("");
-			}
-		}
-		if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
-			if (msg.getNewValue() != null) {
-				textSampleFirstTabPart.setTextRequiredPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-			} else {
-				textSampleFirstTabPart.setTextRequiredPropertyInFirstTab("");
-			}
-		}
-
+	public TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject textSampleWithTwoTabs, String editing_mode) {
+		super(editingContext, textSampleWithTwoTabs, editing_mode);
+		parts = new String[] { TEXTSAMPLEFIRSTTAB_PART };
+		repositoryKey = EefnrViewsRepository.class;
+		partKey = EefnrViewsRepository.TextSampleFirstTab.class;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
-	 * 
-	 */
-	public java.lang.Class translatePart(String key) {
-		if (TEXTSAMPLEFIRSTTAB_PART.equals(key))
-			return EefnrViewsRepository.TextSampleFirstTab.class;
-		return super.translatePart(key);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
-	 * 
-	 */
-	public String[] partsList() {
-		return parts;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *  (java.lang.String, java.lang.String)
-	 * 
-	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (textSampleWithTwoTabs != null && TEXTSAMPLEFIRSTTAB_PART.equals(key)) {
-			if (textSampleFirstTabPart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(EefnrViewsRepository.class);
-				if (provider != null) {
-					textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart)provider.getPropertiesEditionPart(EefnrViewsRepository.TextSampleFirstTab.class, kind, this);
-					addListener((IPropertiesEditionListener)textSampleFirstTabPart);
-				}
-			}
-			return (IPropertiesEditionPart)textSampleFirstTabPart;
-		}
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
-	 * 
-	 */
-	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == EefnrViewsRepository.TextSampleFirstTab.class)
-			this.textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart) propertiesEditionPart;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent#initPart(java.lang.Object, int, org.eclipse.emf.ecore.EObject, 
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 * 
 	 */
-	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
+	public void initPart(Object key, int kind, EObject elt, ResourceSet allResource) {
 		setInitializing(true);
-		if (textSampleFirstTabPart != null && key == EefnrViewsRepository.TextSampleFirstTab.class) {
-			((IPropertiesEditionPart)textSampleFirstTabPart).setContext(elt, allResource);
+		if (editingPart != null && key == partKey) {
+			editingPart.setContext(elt, allResource);
 			final TextSampleWithTwoTabs textSampleWithTwoTabs = (TextSampleWithTwoTabs)elt;
+			final TextSampleFirstTabPropertiesEditionPart textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart)editingPart;
 			// init values
 			if (textSampleWithTwoTabs.getTextOptionalPropertyInFirstTab() != null)
 				textSampleFirstTabPart.setTextOptionalPropertyInFirstTab(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textSampleWithTwoTabs.getTextOptionalPropertyInFirstTab()));
-
+			
 			if (textSampleWithTwoTabs.getTextRequiredPropertyInFirstTab() != null)
 				textSampleFirstTabPart.setTextRequiredPropertyInFirstTab(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textSampleWithTwoTabs.getTextRequiredPropertyInFirstTab()));
-
+			
 			// init filters
-
-
+			
+			
+			// init values for referenced views
+			
+			// init filters for referenced views
+			
 		}
-		// init values for referenced views
-
-		// init filters for referenced views
-
 		setInitializing(false);
 	}
 
@@ -232,108 +88,79 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 
 
 
-
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
-		CompoundCommand cc = new CompoundCommand();
-		if ((textSampleWithTwoTabs != null) && (textSampleFirstTabPart != null)) { 
-			cc.append(SetCommand.create(editingDomain, textSampleWithTwoTabs, EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab(), EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), textSampleFirstTabPart.getTextOptionalPropertyInFirstTab())));
-			cc.append(SetCommand.create(editingDomain, textSampleWithTwoTabs, EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab(), EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), textSampleFirstTabPart.getTextRequiredPropertyInFirstTab())));
-
+	public void updateSemanticModel(final PropertiesEditingEvent event) {
+		TextSampleWithTwoTabs textSampleWithTwoTabs = (TextSampleWithTwoTabs)semanticObject;
+		if (EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab == event.getAffectedEditor()) {
+			textSampleWithTwoTabs.setTextOptionalPropertyInFirstTab((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
-		if (!cc.isEmpty())
-			return cc;
-		cc.append(IdentityCommand.INSTANCE);
-		return cc;
+		if (EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab == event.getAffectedEditor()) {
+			textSampleWithTwoTabs.setTextRequiredPropertyInFirstTab((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
-	 * 
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
-	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof TextSampleWithTwoTabs) {
-			TextSampleWithTwoTabs textSampleWithTwoTabsToUpdate = (TextSampleWithTwoTabs)source;
-			textSampleWithTwoTabsToUpdate.setTextOptionalPropertyInFirstTab((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), textSampleFirstTabPart.getTextOptionalPropertyInFirstTab()));
-
-			textSampleWithTwoTabsToUpdate.setTextRequiredPropertyInFirstTab((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), textSampleFirstTabPart.getTextRequiredPropertyInFirstTab()));
-
-
-			return textSampleWithTwoTabsToUpdate;
-		}
-		else
-			return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
-	 * 
-	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
-		if (!isInitializing()) {
-			Diagnostic valueDiagnostic = validateValue(event);
-			if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode) && valueDiagnostic.getSeverity() == Diagnostic.OK) {
-				CompoundCommand command = new CompoundCommand();
-			if (EefnrViewsRepository.TextSampleFirstTab.textOptionalPropertyInFirstTab == event.getAffectedEditor()) {
-				command.append(SetCommand.create(liveEditingDomain, textSampleWithTwoTabs, EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab(), EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue())));
-			}
-			if (EefnrViewsRepository.TextSampleFirstTab.textRequiredPropertyInFirstTab == event.getAffectedEditor()) {
-				command.append(SetCommand.create(liveEditingDomain, textSampleWithTwoTabs, EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab(), EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue())));
-			}
-
-				if (!command.isEmpty() && !command.canExecute()) {
-					EEFRuntimePlugin.getDefault().logError("Cannot perform model change command.", null);
+	public void updatePart(Notification msg) {
+		if (editingPart.isVisible()) {	
+			TextSampleFirstTabPropertiesEditionPart textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart)editingPart;
+			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
+				if (msg.getNewValue() != null) {
+					textSampleFirstTabPart.setTextOptionalPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					liveEditingDomain.getCommandStack().execute(command);
+					textSampleFirstTabPart.setTextOptionalPropertyInFirstTab("");
 				}
 			}
-			if (valueDiagnostic.getSeverity() != Diagnostic.OK && valueDiagnostic instanceof BasicDiagnostic)
-				super.firePropertiesChanged(new PropertiesValidationEditionEvent(event, valueDiagnostic));
-			else {
-				Diagnostic validate = validate();
-				super.firePropertiesChanged(new PropertiesValidationEditionEvent(event, validate));
+			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
+				if (msg.getNewValue() != null) {
+					textSampleFirstTabPart.setTextRequiredPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+				} else {
+					textSampleFirstTabPart.setTextRequiredPropertyInFirstTab("");
+				}
 			}
-			super.firePropertiesChanged(event);
+			
 		}
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#isRequired(java.lang.Object, int)
 	 * 
 	 */
-	public boolean isRequired(String key, int kind) {
-		return key == EefnrViewsRepository.TextSampleFirstTab.textRequiredPropertyInFirstTab || key == EefnrViewsRepository.TextSampleSecondTab.textRequiredPropertyInSecondTab;
+	public boolean isRequired(Object key, int kind) {
+		return key == EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab || key == EefnrViewsRepository.TextSampleSecondTab.Properties.textRequiredPropertyInSecondTab;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent#validateValue(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public Diagnostic validateValue(IPropertiesEditionEvent event) {
+	public Diagnostic validateValue(PropertiesEditingEvent event) {
 		Diagnostic ret = Diagnostic.OK_INSTANCE;
 		if (event.getNewValue() != null) {
-			String newStringValue = event.getNewValue().toString();
 			try {
-				if (EefnrViewsRepository.TextSampleFirstTab.textOptionalPropertyInFirstTab == event.getAffectedEditor()) {
-					Object newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().getEAttributeType(), newStringValue);
+				if (EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab == event.getAffectedEditor()) {
+					Object newValue = event.getNewValue();
+					if (newValue instanceof String) {
+						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().getEAttributeType(), (String)newValue);
+					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().getEAttributeType(), newValue);
 				}
-				if (EefnrViewsRepository.TextSampleFirstTab.textRequiredPropertyInFirstTab == event.getAffectedEditor()) {
-					Object newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().getEAttributeType(), newStringValue);
+				if (EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab == event.getAffectedEditor()) {
+					Object newValue = event.getNewValue();
+					if (newValue instanceof String) {
+						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().getEAttributeType(), (String)newValue);
+					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().getEAttributeType(), newValue);
 				}
 			} catch (IllegalArgumentException iae) {
@@ -345,45 +172,4 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 		return ret;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
-	 * 
-	 */
-	public Diagnostic validate() {
-		Diagnostic validate = Diagnostic.OK_INSTANCE;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
-			EObject copy = EcoreUtil.copy(textSampleWithTwoTabs);
-			copy = getPropertiesEditionObject(copy);
-			validate =  EEFRuntimePlugin.getEEFValidator().validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			validate = EEFRuntimePlugin.getEEFValidator().validate(textSampleWithTwoTabs);
-		// Start of user code for custom validation check
-		
-		// End of user code
-		return validate;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
-	 * 
-	 */
-	public void dispose() {
-		if (semanticAdapter != null)
-			textSampleWithTwoTabs.eAdapters().remove(semanticAdapter);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getTabText(java.lang.String)
-	 * 
-	 */
-	public String getTabText(String p_key) {
-		return textSampleFirstTabPart.getTitle();
-	}
 }

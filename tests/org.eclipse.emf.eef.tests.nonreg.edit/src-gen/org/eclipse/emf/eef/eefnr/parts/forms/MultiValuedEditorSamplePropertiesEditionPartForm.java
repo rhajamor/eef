@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Obeo.
+ * Copyright (c) 2009 - 2010 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,19 +10,24 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.eefnr.parts.forms;
 
+// Start of user code for imports
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnr.parts.EefnrViewsRepository;
 import org.eclipse.emf.eef.eefnr.parts.MultiValuedEditorSamplePropertiesEditionPart;
 import org.eclipse.emf.eef.eefnr.providers.EefnrMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.EEFFeatureEditorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -31,7 +36,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -39,11 +43,13 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
 
+// End of user code
+
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, MultiValuedEditorSamplePropertiesEditionPart {
+public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, MultiValuedEditorSamplePropertiesEditionPart {
 
 	protected Text multivaluededitorRequiredProperty;
 		protected Button editMultivaluededitorRequiredProperty;
@@ -54,20 +60,19 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 
 
 
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public MultiValuedEditorSamplePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public MultiValuedEditorSamplePropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
 	 * 
 	 */
@@ -85,23 +90,40 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createPropertiesGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence multiValuedEditorSampleStep = new CompositionSequence();
+		CompositionStep propertiesStep = multiValuedEditorSampleStep.addStep(EefnrViewsRepository.MultiValuedEditorSample.Properties.class);
+		propertiesStep.addStep(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty);
+		propertiesStep.addStep(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty);
 		
-		// End of user code
+		
+		composer = new PartComposer(multiValuedEditorSampleStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == EefnrViewsRepository.MultiValuedEditorSample.Properties.class) {
+					return createPropertiesGroup(widgetFactory, parent);
+				}
+				if (key == EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty) {
+					return createMultivaluededitorRequiredPropertyMultiValuedEditor(widgetFactory, parent);
+				}
+				if (key == EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty) {
+					return createMultivaluededitorOptionalPropertyMultiValuedEditor(widgetFactory, parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 	/**
 	 * 
 	 */
-	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
-		Section propertiesSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	protected Composite createPropertiesGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section propertiesSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		propertiesSection.setText(EefnrMessages.MultiValuedEditorSamplePropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		propertiesSectionData.horizontalSpan = 3;
@@ -110,79 +132,94 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createMultivaluededitorRequiredPropertyMultiValuedEditor(widgetFactory, propertiesGroup);
-		createMultivaluededitorOptionalPropertyMultiValuedEditor(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
+		return propertiesGroup;
 	}
 
 	/**
 	 * 
 	 */
-	protected void createMultivaluededitorRequiredPropertyMultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
+	protected Composite createMultivaluededitorRequiredPropertyMultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
 		multivaluededitorRequiredProperty = widgetFactory.createText(parent, "", SWT.READ_ONLY); //$NON-NLS-1$
 		GridData multivaluededitorRequiredPropertyData = new GridData(GridData.FILL_HORIZONTAL);
 		multivaluededitorRequiredPropertyData.horizontalSpan = 2;
 		multivaluededitorRequiredProperty.setLayoutData(multivaluededitorRequiredPropertyData);
+		EditingUtils.setID(multivaluededitorRequiredProperty, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty);
+		EditingUtils.setEEFtype(multivaluededitorRequiredProperty, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
 		editMultivaluededitorRequiredProperty = widgetFactory.createButton(parent, EefnrMessages.MultiValuedEditorSamplePropertiesEditionPart_MultivaluededitorRequiredPropertyLabel, SWT.NONE);
 		GridData editMultivaluededitorRequiredPropertyData = new GridData();
 		editMultivaluededitorRequiredProperty.setLayoutData(editMultivaluededitorRequiredPropertyData);
 		editMultivaluededitorRequiredProperty.addSelectionListener(new SelectionAdapter() {
 
-			/*
-			 * (non-Javadoc)
+			/**
+			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 * 
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				EObject multiValuedEditorSample = PropertiesContextService.getInstance().lastElement();
-				FeatureEditorDialog dialog = new FeatureEditorDialog(Display.getDefault().getActiveShell(), new AdapterFactoryLabelProvider(adapterFactory), multiValuedEditorSample, EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().getEType(), 
-						multivaluededitorRequiredPropertyList, "MultiValuedEditorSample", null, false, false); //$NON-NLS-1$
+				EEFFeatureEditorDialog dialog = new EEFFeatureEditorDialog(
+						multivaluededitorRequiredProperty.getShell(), "MultiValuedEditorSample", new AdapterFactoryLabelProvider(adapterFactory), //$NON-NLS-1$
+						multivaluededitorRequiredPropertyList, EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().getEType(), null,
+						false, true, 
+						null, null);
 				if (dialog.open() == Window.OK) {
 					multivaluededitorRequiredPropertyList = dialog.getResult();
 					if (multivaluededitorRequiredPropertyList == null) {
 						multivaluededitorRequiredPropertyList = new BasicEList();
 					}
 					multivaluededitorRequiredProperty.setText(multivaluededitorRequiredPropertyList.toString());
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(MultiValuedEditorSamplePropertiesEditionPartForm.this, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, new BasicEList(multivaluededitorRequiredPropertyList)));
 					setHasChanged(true);
 				}
 			}
 		});
+		EditingUtils.setID(editMultivaluededitorRequiredProperty, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty);
+		EditingUtils.setEEFtype(editMultivaluededitorRequiredProperty, "eef::MultiValuedEditor::browsebutton"); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
 	 * 
 	 */
-	protected void createMultivaluededitorOptionalPropertyMultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
+	protected Composite createMultivaluededitorOptionalPropertyMultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
 		multivaluededitorOptionalProperty = widgetFactory.createText(parent, "", SWT.READ_ONLY); //$NON-NLS-1$
 		GridData multivaluededitorOptionalPropertyData = new GridData(GridData.FILL_HORIZONTAL);
 		multivaluededitorOptionalPropertyData.horizontalSpan = 2;
 		multivaluededitorOptionalProperty.setLayoutData(multivaluededitorOptionalPropertyData);
+		EditingUtils.setID(multivaluededitorOptionalProperty, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty);
+		EditingUtils.setEEFtype(multivaluededitorOptionalProperty, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
 		editMultivaluededitorOptionalProperty = widgetFactory.createButton(parent, EefnrMessages.MultiValuedEditorSamplePropertiesEditionPart_MultivaluededitorOptionalPropertyLabel, SWT.NONE);
 		GridData editMultivaluededitorOptionalPropertyData = new GridData();
 		editMultivaluededitorOptionalProperty.setLayoutData(editMultivaluededitorOptionalPropertyData);
 		editMultivaluededitorOptionalProperty.addSelectionListener(new SelectionAdapter() {
 
-			/*
-			 * (non-Javadoc)
+			/**
+			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 * 
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				EObject multiValuedEditorSample = PropertiesContextService.getInstance().lastElement();
-				FeatureEditorDialog dialog = new FeatureEditorDialog(Display.getDefault().getActiveShell(), new AdapterFactoryLabelProvider(adapterFactory), multiValuedEditorSample, EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().getEType(), 
-						multivaluededitorOptionalPropertyList, "MultiValuedEditorSample", null, false, false); //$NON-NLS-1$
+				EEFFeatureEditorDialog dialog = new EEFFeatureEditorDialog(
+						multivaluededitorOptionalProperty.getShell(), "MultiValuedEditorSample", new AdapterFactoryLabelProvider(adapterFactory), //$NON-NLS-1$
+						multivaluededitorOptionalPropertyList, EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().getEType(), null,
+						false, true, 
+						null, null);
 				if (dialog.open() == Window.OK) {
 					multivaluededitorOptionalPropertyList = dialog.getResult();
 					if (multivaluededitorOptionalPropertyList == null) {
 						multivaluededitorOptionalPropertyList = new BasicEList();
 					}
 					multivaluededitorOptionalProperty.setText(multivaluededitorOptionalPropertyList.toString());
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(MultiValuedEditorSamplePropertiesEditionPartForm.this, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, new BasicEList(multivaluededitorOptionalPropertyList)));
 					setHasChanged(true);
 				}
 			}
 		});
+		EditingUtils.setID(editMultivaluededitorOptionalProperty, EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty);
+		EditingUtils.setEEFtype(editMultivaluededitorOptionalProperty, "eef::MultiValuedEditor::browsebutton"); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -190,13 +227,13 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
+
+// End of user code
 	}
 
 	/**
@@ -224,8 +261,23 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 		}
 	}
 
+	public void addToMultivaluededitorRequiredProperty(Object newValue) {
+		multivaluededitorRequiredPropertyList.add(newValue);
+		if (newValue != null) {
+			multivaluededitorRequiredProperty.setText(multivaluededitorRequiredPropertyList.toString());
+		} else {
+			multivaluededitorRequiredProperty.setText(""); //$NON-NLS-1$
+		}
+	}
 
-
+	public void removeToMultivaluededitorRequiredProperty(Object newValue) {
+		multivaluededitorRequiredPropertyList.remove(newValue);
+		if (newValue != null) {
+			multivaluededitorRequiredProperty.setText(multivaluededitorRequiredPropertyList.toString());
+		} else {
+			multivaluededitorRequiredProperty.setText(""); //$NON-NLS-1$
+		}
+	}
 
 
 	/**
@@ -253,9 +305,23 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 		}
 	}
 
+	public void addToMultivaluededitorOptionalProperty(Object newValue) {
+		multivaluededitorOptionalPropertyList.add(newValue);
+		if (newValue != null) {
+			multivaluededitorOptionalProperty.setText(multivaluededitorOptionalPropertyList.toString());
+		} else {
+			multivaluededitorOptionalProperty.setText(""); //$NON-NLS-1$
+		}
+	}
 
-
-
+	public void removeToMultivaluededitorOptionalProperty(Object newValue) {
+		multivaluededitorOptionalPropertyList.remove(newValue);
+		if (newValue != null) {
+			multivaluededitorOptionalProperty.setText(multivaluededitorOptionalPropertyList.toString());
+		} else {
+			multivaluededitorOptionalProperty.setText(""); //$NON-NLS-1$
+		}
+	}
 
 
 
@@ -263,7 +329,7 @@ public class MultiValuedEditorSamplePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
 	 * 
 	 */
 	public String getTitle() {
