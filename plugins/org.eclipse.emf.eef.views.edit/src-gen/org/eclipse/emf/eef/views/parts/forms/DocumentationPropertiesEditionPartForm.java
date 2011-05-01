@@ -1,23 +1,24 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.views.parts.forms;
 
 // Start of user code for imports
-
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.views.parts.DocumentationPropertiesEditionPart;
 import org.eclipse.emf.eef.views.parts.ViewsViewsRepository;
@@ -35,32 +36,34 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+
 // End of user code
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class DocumentationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, DocumentationPropertiesEditionPart {
+public class DocumentationPropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, DocumentationPropertiesEditionPart {
 
 	protected Text documentation;
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public DocumentationPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public DocumentationPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -76,19 +79,37 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createDocumentationGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence documentationStep = new CompositionSequence();
+		documentationStep
+			.addStep(ViewsViewsRepository.Documentation.Documentation_.class)
+			.addStep(ViewsViewsRepository.Documentation.Documentation_.documentation__);
 		
-		// End of user code
+		
+		composer = new PartComposer(documentationStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == ViewsViewsRepository.Documentation.Documentation_.class) {
+					return createDocumentationGroup(widgetFactory, parent);
+				}
+				if (key == ViewsViewsRepository.Documentation.Documentation_.documentation__) {
+					return createDocumentationTextarea(widgetFactory, parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
-	protected void createDocumentationGroup(FormToolkit widgetFactory, final Composite view) {
-		Section documentationSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	/**
+	 * 
+	 */
+	protected Composite createDocumentationGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section documentationSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		documentationSection.setText(ViewsMessages.DocumentationPropertiesEditionPart_DocumentationGroupLabel);
 		GridData documentationSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		documentationSectionData.horizontalSpan = 3;
@@ -97,12 +118,13 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 		GridLayout documentationGroupLayout = new GridLayout();
 		documentationGroupLayout.numColumns = 3;
 		documentationGroup.setLayout(documentationGroupLayout);
-		createDocumentationTextarea(widgetFactory, documentationGroup);
 		documentationSection.setClient(documentationGroup);
+		return documentationGroup;
 	}
 
-	protected void createDocumentationTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label documentationLabel = FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.DocumentationPropertiesEditionPart_DocumentationLabel, propertiesEditionComponent.isRequired(ViewsViewsRepository.Documentation.documentation, ViewsViewsRepository.FORM_KIND));
+	
+	protected Composite createDocumentationTextarea(FormToolkit widgetFactory, Composite parent) {
+		Label documentationLabel = FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.DocumentationPropertiesEditionPart_DocumentationLabel, propertiesEditingComponent.isRequired(ViewsViewsRepository.Documentation.Documentation_.documentation__, ViewsViewsRepository.FORM_KIND));
 		GridData documentationLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		documentationLabelData.horizontalSpan = 3;
 		documentationLabel.setLayoutData(documentationLabelData);
@@ -118,14 +140,18 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DocumentationPropertiesEditionPartForm.this, ViewsViewsRepository.Documentation.documentation, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, documentation.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(DocumentationPropertiesEditionPartForm.this, ViewsViewsRepository.Documentation.Documentation_.documentation__, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, documentation.getText()));
 			}
 
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ViewsViewsRepository.Documentation.documentation, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(documentation, ViewsViewsRepository.Documentation.Documentation_.documentation__);
+		EditingUtils.setEEFtype(documentation, "eef::Textarea"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ViewsViewsRepository.Documentation.Documentation_.documentation__, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -133,19 +159,21 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// Nothing to do
-		// End of user code
+
+// Nothing to do
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.DocumentationPropertiesEditionPart#getDocumentation()
+	 * 
 	 */
 	public String getDocumentation() {
 		return documentation.getText();
@@ -155,6 +183,7 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.DocumentationPropertiesEditionPart#setDocumentation(String newValue)
+	 * 
 	 */
 	public void setDocumentation(String newValue) {
 		if (newValue != null) {
@@ -164,23 +193,14 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 		}
 	}
 
-	public void setMessageForDocumentation(String msg, int msgLevel) {
-		messageManager.addMessage("Documentation_key", msg, null, msgLevel, documentation);
-	}
-
-	public void unsetMessageForDocumentation() {
-		messageManager.removeMessage("Documentation_key", documentation);
-	}
-
-
-
 
 
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return ViewsMessages.Documentation_Part_Title;
@@ -189,5 +209,6 @@ public class DocumentationPropertiesEditionPartForm extends CompositePropertiesE
 	// Start of user code additional methods
  	
 	// End of user code
+
 
 }

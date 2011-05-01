@@ -1,23 +1,25 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.views.parts.forms;
 
 // Start of user code for imports
-
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.views.parts.ViewsRepositoryPropertiesEditionPart;
 import org.eclipse.emf.eef.views.parts.ViewsViewsRepository;
@@ -36,33 +38,35 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+
 // End of user code
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ViewsRepositoryPropertiesEditionPart {
+public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, ViewsRepositoryPropertiesEditionPart {
 
 	protected Text name;
 	protected Text repositoryKind;
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public ViewsRepositoryPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public ViewsRepositoryPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -78,19 +82,40 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createPropertiesGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence viewsRepositoryStep = new CompositionSequence();
+		CompositionStep propertiesStep = viewsRepositoryStep.addStep(ViewsViewsRepository.ViewsRepository.Properties.class);
+		propertiesStep.addStep(ViewsViewsRepository.ViewsRepository.Properties.name);
+		propertiesStep.addStep(ViewsViewsRepository.ViewsRepository.Properties.repositoryKind);
 		
-		// End of user code
+		
+		composer = new PartComposer(viewsRepositoryStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == ViewsViewsRepository.ViewsRepository.Properties.class) {
+					return createPropertiesGroup(widgetFactory, parent);
+				}
+				if (key == ViewsViewsRepository.ViewsRepository.Properties.name) {
+					return 		createNameText(widgetFactory, parent);
+				}
+				if (key == ViewsViewsRepository.ViewsRepository.Properties.repositoryKind) {
+					return 		createRepositoryKindText(widgetFactory, parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
-	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
-		Section propertiesSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	/**
+	 * 
+	 */
+	protected Composite createPropertiesGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section propertiesSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		propertiesSection.setText(ViewsMessages.ViewsRepositoryPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		propertiesSectionData.horizontalSpan = 3;
@@ -99,13 +124,13 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createNameText(widgetFactory, propertiesGroup);
-		createRepositoryKindText(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
+		return propertiesGroup;
 	}
 
-	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.ViewsRepositoryPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(ViewsViewsRepository.ViewsRepository.name, ViewsViewsRepository.FORM_KIND));
+	
+	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.ViewsRepositoryPropertiesEditionPart_NameLabel, propertiesEditingComponent.isRequired(ViewsViewsRepository.ViewsRepository.Properties.name, ViewsViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -114,32 +139,38 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 		name.addFocusListener(new FocusAdapter() {
 			/**
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
 			/**
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 				}
 			}
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ViewsViewsRepository.ViewsRepository.name, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(name, ViewsViewsRepository.ViewsRepository.Properties.name);
+		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ViewsViewsRepository.ViewsRepository.Properties.name, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
-	protected void createRepositoryKindText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.ViewsRepositoryPropertiesEditionPart_RepositoryKindLabel, propertiesEditionComponent.isRequired(ViewsViewsRepository.ViewsRepository.repositoryKind, ViewsViewsRepository.FORM_KIND));
+	
+	protected Composite createRepositoryKindText(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, ViewsMessages.ViewsRepositoryPropertiesEditionPart_RepositoryKindLabel, propertiesEditingComponent.isRequired(ViewsViewsRepository.ViewsRepository.Properties.repositoryKind, ViewsViewsRepository.FORM_KIND));
 		repositoryKind = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		repositoryKind.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -148,28 +179,33 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 		repositoryKind.addFocusListener(new FocusAdapter() {
 			/**
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.repositoryKind, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, repositoryKind.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.Properties.repositoryKind, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, repositoryKind.getText()));
 			}
 		});
 		repositoryKind.addKeyListener(new KeyAdapter() {
 			/**
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.repositoryKind, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, repositoryKind.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ViewsRepositoryPropertiesEditionPartForm.this, ViewsViewsRepository.ViewsRepository.Properties.repositoryKind, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, repositoryKind.getText()));
 				}
 			}
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ViewsViewsRepository.ViewsRepository.repositoryKind, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(repositoryKind, ViewsViewsRepository.ViewsRepository.Properties.repositoryKind);
+		EditingUtils.setEEFtype(repositoryKind, "eef::Text"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ViewsViewsRepository.ViewsRepository.Properties.repositoryKind, ViewsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -177,19 +213,21 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// Nothing to do
-		// End of user code
+
+// Nothing to do
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.ViewsRepositoryPropertiesEditionPart#getName()
+	 * 
 	 */
 	public String getName() {
 		return name.getText();
@@ -199,6 +237,7 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.ViewsRepositoryPropertiesEditionPart#setName(String newValue)
+	 * 
 	 */
 	public void setName(String newValue) {
 		if (newValue != null) {
@@ -208,18 +247,12 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 		}
 	}
 
-	public void setMessageForName(String msg, int msgLevel) {
-		messageManager.addMessage("Name_key", msg, null, msgLevel, name);
-	}
-
-	public void unsetMessageForName() {
-		messageManager.removeMessage("Name_key", name);
-	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.ViewsRepositoryPropertiesEditionPart#getRepositoryKind()
+	 * 
 	 */
 	public String getRepositoryKind() {
 		return repositoryKind.getText();
@@ -229,6 +262,7 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.views.parts.ViewsRepositoryPropertiesEditionPart#setRepositoryKind(String newValue)
+	 * 
 	 */
 	public void setRepositoryKind(String newValue) {
 		if (newValue != null) {
@@ -238,23 +272,14 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 		}
 	}
 
-	public void setMessageForRepositoryKind(String msg, int msgLevel) {
-		messageManager.addMessage("RepositoryKind_key", msg, null, msgLevel, repositoryKind);
-	}
-
-	public void unsetMessageForRepositoryKind() {
-		messageManager.removeMessage("RepositoryKind_key", repositoryKind);
-	}
-
-
-
 
 
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return ViewsMessages.ViewsRepository_Part_Title;
@@ -263,5 +288,6 @@ public class ViewsRepositoryPropertiesEditionPartForm extends CompositePropertie
 	// Start of user code additional methods
  	
 	// End of user code
+
 
 }
