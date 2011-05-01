@@ -11,23 +11,27 @@
 package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
-
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
@@ -48,13 +52,14 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+
 // End of user code
 
 /**
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TalkPropertiesEditionPart {
+public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, TalkPropertiesEditionPart {
 
 	protected Text title_;
 	protected EObjectFlatComboViewer topic;
@@ -65,21 +70,19 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public TalkPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
+	public TalkPropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
@@ -88,7 +91,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
 		createControls(view);
 		return view;
 	}
@@ -96,24 +98,56 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		createPropertiesGroup(view);
-
-
-		// Start of user code for additional ui definition
+		CompositionSequence talkStep = new BindingCompositionSequence(propertiesEditingComponent);
+		CompositionStep propertiesStep = talkStep.addStep(ConferenceViewsRepository.Talk.Properties.class);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.title_);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.topic);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.type);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.presenter);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.creator);
+		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.documentation);
 		
-		// End of user code
+		
+		composer = new PartComposer(talkStep) {
 
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == ConferenceViewsRepository.Talk.Properties.class) {
+					return createPropertiesGroup(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.title_) {
+					return createTitle_Text(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.topic) {
+					return createTopicFlatComboViewer(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.type) {
+					return createTypeEMFComboViewer(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.presenter) {
+					return createPresenterFlatComboViewer(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.creator) {
+					return createCreatorFlatComboViewer(parent);
+				}
+				if (key == ConferenceViewsRepository.Talk.Properties.documentation) {
+					return createDocumentationTextarea(parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 
 	/**
 	 * 
 	 */
-	protected void createPropertiesGroup(Composite parent) {
+	protected Composite createPropertiesGroup(Composite parent) {
 		Group propertiesGroup = new Group(parent, SWT.NONE);
 		propertiesGroup.setText(ConferenceMessages.TalkPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
@@ -122,17 +156,12 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createTitle_Text(propertiesGroup);
-		createTopicFlatComboViewer(propertiesGroup);
-		createTypeEMFComboViewer(propertiesGroup);
-		createPresenterFlatComboViewer(propertiesGroup);
-		createCreatorFlatComboViewer(propertiesGroup);
-		createDocumentationTextarea(propertiesGroup);
+		return propertiesGroup;
 	}
 
 	
-	protected void createTitle_Text(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_Title_Label, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.title_, ConferenceViewsRepository.SWT_KIND));
+	protected Composite createTitle_Text(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_Title_Label, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.title_, ConferenceViewsRepository.SWT_KIND));
 		title_ = new Text(parent, SWT.BORDER);
 		GridData title_Data = new GridData(GridData.FILL_HORIZONTAL);
 		title_.setLayoutData(title_Data);
@@ -147,8 +176,8 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.title_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, title_.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.title_, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, title_.getText()));
 			}
 
 		});
@@ -164,92 +193,117 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.title_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, title_.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.title_, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, title_.getText()));
 				}
 			}
 
 		});
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.title_, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(title_, ConferenceViewsRepository.Talk.Properties.title_);
+		EditingUtils.setEEFtype(title_, "eef::Text"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.title_, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
-	 * @param propertiesGroup
+	 * @param parent the parent composite
 	 * 
 	 */
-	protected void createTopicFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_TopicLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.topic, ConferenceViewsRepository.SWT_KIND));
-		topic = new EObjectFlatComboViewer(parent, false);
+	protected Composite createTopicFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_TopicLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.topic, ConferenceViewsRepository.SWT_KIND));
+		topic = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.topic, ConferenceViewsRepository.SWT_KIND));
 		topic.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		topic.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.topic, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, getTopic()));
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.topic, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SET, null, getTopic()));
 			}
 
 		});
 		GridData topicData = new GridData(GridData.FILL_HORIZONTAL);
 		topic.setLayoutData(topicData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.topic, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		topic.setID(ConferenceViewsRepository.Talk.Properties.topic);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.topic, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	
-	protected void createTypeEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.type, ConferenceViewsRepository.SWT_KIND));
+	protected Composite createTypeEMFComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_TypeLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.type, ConferenceViewsRepository.SWT_KIND));
 		type = new EMFComboViewer(parent);
 		type.setContentProvider(new ArrayContentProvider());
 		type.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.type, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		type.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+			 * 	
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.type, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getType()));
+			}
+
+		});
+		type.setID(ConferenceViewsRepository.Talk.Properties.type);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.type, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
-	 * @param propertiesGroup
+	 * @param parent the parent composite
 	 * 
 	 */
-	protected void createPresenterFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_PresenterLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.presenter, ConferenceViewsRepository.SWT_KIND));
-		presenter = new EObjectFlatComboViewer(parent, false);
+	protected Composite createPresenterFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_PresenterLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.presenter, ConferenceViewsRepository.SWT_KIND));
+		presenter = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.presenter, ConferenceViewsRepository.SWT_KIND));
 		presenter.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		presenter.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.presenter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, getPresenter()));
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.presenter, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SET, null, getPresenter()));
 			}
 
 		});
 		GridData presenterData = new GridData(GridData.FILL_HORIZONTAL);
 		presenter.setLayoutData(presenterData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.presenter, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		presenter.setID(ConferenceViewsRepository.Talk.Properties.presenter);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.presenter, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
-	 * @param propertiesGroup
+	 * @param parent the parent composite
 	 * 
 	 */
-	protected void createCreatorFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_CreatorLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.creator, ConferenceViewsRepository.SWT_KIND));
-		creator = new EObjectFlatComboViewer(parent, true);
+	protected Composite createCreatorFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_CreatorLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.creator, ConferenceViewsRepository.SWT_KIND));
+		creator = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.creator, ConferenceViewsRepository.SWT_KIND));
 		creator.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		creator.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.creator, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, getCreator()));
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.creator, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SET, null, getCreator()));
 			}
 
 		});
 		GridData creatorData = new GridData(GridData.FILL_HORIZONTAL);
 		creator.setLayoutData(creatorData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.creator, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		creator.setID(ConferenceViewsRepository.Talk.Properties.creator);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.creator, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	
-	protected void createDocumentationTextarea(Composite parent) {
-		Label documentationLabel = SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_DocumentationLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.documentation, ConferenceViewsRepository.SWT_KIND));
+	protected Composite createDocumentationTextarea(Composite parent) {
+		Label documentationLabel = SWTUtils.createPartLabel(parent, ConferenceMessages.TalkPropertiesEditionPart_DocumentationLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Talk.Properties.documentation, ConferenceViewsRepository.SWT_KIND));
 		GridData documentationLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		documentationLabelData.horizontalSpan = 3;
 		documentationLabel.setLayoutData(documentationLabelData);
@@ -259,7 +313,24 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		documentationData.heightHint = 80;
 		documentationData.widthHint = 200;
 		documentation.setLayoutData(documentationData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Talk.documentation, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		documentation.addFocusListener(new FocusAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
+			 */
+			public void focusLost(FocusEvent e) {
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(TalkPropertiesEditionPartImpl.this, ConferenceViewsRepository.Talk.Properties.documentation, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, documentation.getText()));
+			}
+
+		});
+		EditingUtils.setID(documentation, ConferenceViewsRepository.Talk.Properties.documentation);
+		EditingUtils.setEEFtype(documentation, "eef::Textarea"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Talk.Properties.documentation, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -267,14 +338,13 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
 
+// End of user code
 	}
 
 	/**
@@ -301,13 +371,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		}
 	}
 
-	public void setMessageForTitle_(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForTitle_() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -327,12 +390,12 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initTopic(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initTopic(EObjectFlatComboSettings)
 	 */
-	public void initTopic(ResourceSet allResources, EObject current) {
-		topic.setInput(allResources);
+	public void initTopic(EObjectFlatComboSettings settings) {
+		topic.setInput(settings);
 		if (current != null) {
-			topic.setSelection(new StructuredSelection(current));
+			topic.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -379,13 +442,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		topic.addBusinessRuleFilter(filter);
 	}
 
-	public void setMessageForTopic(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForTopic() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -418,13 +474,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		type.modelUpdating(new StructuredSelection(newValue));
 	}
 
-	public void setMessageForType(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForType() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -444,12 +493,12 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initPresenter(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initPresenter(EObjectFlatComboSettings)
 	 */
-	public void initPresenter(ResourceSet allResources, EObject current) {
-		presenter.setInput(allResources);
+	public void initPresenter(EObjectFlatComboSettings settings) {
+		presenter.setInput(settings);
 		if (current != null) {
-			presenter.setSelection(new StructuredSelection(current));
+			presenter.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -496,13 +545,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		presenter.addBusinessRuleFilter(filter);
 	}
 
-	public void setMessageForPresenter(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForPresenter() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -522,12 +564,12 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initCreator(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initCreator(EObjectFlatComboSettings)
 	 */
-	public void initCreator(ResourceSet allResources, EObject current) {
-		creator.setInput(allResources);
+	public void initCreator(EObjectFlatComboSettings settings) {
+		creator.setInput(settings);
 		if (current != null) {
-			creator.setSelection(new StructuredSelection(current));
+			creator.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -574,13 +616,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		creator.addBusinessRuleFilter(filter);
 	}
 
-	public void setMessageForCreator(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForCreator() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -602,18 +637,9 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		if (newValue != null) {
 			documentation.setText(newValue);
 		} else {
-			documentation.setText("");  //$NON-NLS-1$
+			documentation.setText(""); //$NON-NLS-1$
 		}
 	}
-
-	public void setMessageForDocumentation(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForDocumentation() {
-
-	}
-
 
 
 
@@ -624,7 +650,7 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
 	 * 
 	 */
 	public String getTitle() {
@@ -634,5 +660,6 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	// Start of user code additional methods
 	
 	// End of user code
+
 
 }

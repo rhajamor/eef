@@ -16,10 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.eef.runtime.components.impl.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditingContext;
@@ -30,12 +27,11 @@ import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.emf.eef.runtime.util.EEFConverterUtil;
+import org.eclipse.emf.samples.conference.Conference;
 import org.eclipse.emf.samples.conference.ConferencePackage;
-import org.eclipse.emf.samples.conference.Room;
-import org.eclipse.emf.samples.conference.Site;
+import org.eclipse.emf.samples.conference.Person;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
-import org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart;
+import org.eclipse.emf.samples.conference.parts.ParticipantsPropertiesEditionPart;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
@@ -46,26 +42,26 @@ import org.eclipse.jface.viewers.ViewerFilter;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
+public class ConferenceParticipantsPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String PARTICIPANTS_PART = "Participants"; //$NON-NLS-1$
 
 	
 	/**
-	 * Settings for rooms ReferencesTable
+	 * Settings for participants ReferencesTable
 	 */
-	protected ReferencesTableSettings roomsSettings;
+	protected ReferencesTableSettings participantsSettings;
 	
 	/**
 	 * Default constructor
 	 * 
 	 */
-	public SitePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject site, String editing_mode) {
-		super(editingContext, site, editing_mode);
-		parts = new String[] { BASE_PART };
+	public ConferenceParticipantsPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject conference, String editing_mode) {
+		super(editingContext, conference, editing_mode);
+		parts = new String[] { PARTICIPANTS_PART };
 		repositoryKey = ConferenceViewsRepository.class;
-		partKey = ConferenceViewsRepository.Site.class;
+		partKey = ConferenceViewsRepository.Participants.class;
 	}
 
 	/**
@@ -79,22 +75,15 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 		setInitializing(true);
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
-			final Site site = (Site)elt;
-			final SitePropertiesEditionPart basePart = (SitePropertiesEditionPart)editingPart;
+			final Conference conference = (Conference)elt;
+			final ParticipantsPropertiesEditionPart participantsPart = (ParticipantsPropertiesEditionPart)editingPart;
 			// init values
-			if (site.getName() != null && isAccessible(ConferenceViewsRepository.Site.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), site.getName()));
-			
-			if (site.getDocumentation() != null && isAccessible(ConferenceViewsRepository.Site.Properties.documentation))
-				basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), site.getDocumentation()));
-			if (isAccessible(ConferenceViewsRepository.Site.Properties.rooms)) {
-				roomsSettings = new ReferencesTableSettings(site, ConferencePackage.eINSTANCE.getSite_Rooms());
-				basePart.initRooms(roomsSettings);
+			if (isAccessible(ConferenceViewsRepository.Participants.participants_)) {
+				participantsSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Participants());
+				participantsPart.initParticipants(participantsSettings);
 			}
 			// init filters
-			
-			
-			basePart.addFilterToRooms(new ViewerFilter() {
+			participantsPart.addFilterToParticipants(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -102,13 +91,13 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 					 */
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Room); //$NON-NLS-1$ 
+						return (element instanceof String && element.equals("")) || (element instanceof Person); //$NON-NLS-1$ 
 					}
 			
 			});
-			// Start of user code for additional businessfilters for rooms
-			
-			// End of user code
+			// Start of user code for additional businessfilters for participants
+																					
+																					// End of user code
 			
 			// init values for referenced views
 			
@@ -121,24 +110,16 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 
 
-
-
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final PropertiesEditingEvent event) {
-		Site site = (Site)semanticObject;
-		if (ConferenceViewsRepository.Site.Properties.name == event.getAffectedEditor()) {
-			site.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
-		}
-		if (ConferenceViewsRepository.Site.Properties.documentation == event.getAffectedEditor()) {
-			site.setDocumentation((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
-		}
-		if (ConferenceViewsRepository.Site.Properties.rooms == event.getAffectedEditor()) {
+		Conference conference = (Conference)semanticObject;
+		if (ConferenceViewsRepository.Participants.participants_ == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditingEventImpl.ADD) {
-				EReferencePropertiesEditingContext context = new EReferencePropertiesEditingContext(editingContext, this, roomsSettings, editingContext.getAdapterFactory());
+				EReferencePropertiesEditingContext context = new EReferencePropertiesEditingContext(editingContext, this, participantsSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
 					PropertiesEditingPolicy policy = provider.getPolicy(context);
@@ -156,7 +137,7 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 					}
 				}
 			} else if (event.getKind() == PropertiesEditingEventImpl.REMOVE) {
-					roomsSettings.removeFromReference((EObject) event.getNewValue());
+					participantsSettings.removeFromReference((EObject) event.getNewValue());
 			}
 		}
 	}
@@ -167,23 +148,9 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			SitePropertiesEditionPart basePart = (SitePropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getSite_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Site.Properties.name)) {
-				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-				} else {
-					basePart.setName("");
-				}
-			}
-			if (ConferencePackage.eINSTANCE.getSite_Documentation().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Site.Properties.documentation)){
-				if (msg.getNewValue() != null) {
-					basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-				} else {
-					basePart.setDocumentation("");
-				}
-			}
-			if (ConferencePackage.eINSTANCE.getSite_Rooms().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Site.Properties.rooms))
-				basePart.updateRooms();
+			ParticipantsPropertiesEditionPart participantsPart = (ParticipantsPropertiesEditionPart)editingPart;
+			if (ConferencePackage.eINSTANCE.getConference_Participants().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Participants.participants_))
+				participantsPart.updateParticipants();
 			
 		}
 	}
@@ -196,7 +163,7 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * 
 	 */
 	public boolean isRequired(Object key, int kind) {
-		return key == ConferenceViewsRepository.Site.Properties.name || key == ConferenceViewsRepository.Site.Properties.documentation;
+		return key == ConferenceViewsRepository.Localisation.place || key == ConferenceViewsRepository.Conference_.Properties.name;
 	}
 
 	/**
@@ -206,10 +173,16 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * 
 	 */
 	public String getHelpContent(Object key, int kind) {
-		if (key == ConferenceViewsRepository.Site.Properties.name)
-			return "Name of the place"; //$NON-NLS-1$
-		if (key == ConferenceViewsRepository.Site.Properties.documentation)
-			return "Information about this site"; //$NON-NLS-1$
+		if (key == ConferenceViewsRepository.Localisation.place)
+			return "The conference's place"; //$NON-NLS-1$
+		if (key == ConferenceViewsRepository.Localisation.sites)
+			return "Where the conference take place"; //$NON-NLS-1$
+		if (key == ConferenceViewsRepository.Participants.participants_)
+			return "Person attending to the conference"; //$NON-NLS-1$
+		if (key == ConferenceViewsRepository.TalksAndTopics.talks)
+			return "Talks of the conference"; //$NON-NLS-1$
+		if (key == ConferenceViewsRepository.TalksAndTopics.topics)
+			return "Topics discussed during the conference"; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -223,20 +196,6 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 		Diagnostic ret = Diagnostic.OK_INSTANCE;
 		if (event.getNewValue() != null) {
 			try {
-				if (ConferenceViewsRepository.Site.Properties.name == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ConferencePackage.eINSTANCE.getSite_Name().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(ConferencePackage.eINSTANCE.getSite_Name().getEAttributeType(), newValue);
-				}
-				if (ConferenceViewsRepository.Site.Properties.documentation == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ConferencePackage.eINSTANCE.getSite_Documentation().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(ConferencePackage.eINSTANCE.getSite_Documentation().getEAttributeType(), newValue);
-				}
 			} catch (IllegalArgumentException iae) {
 				ret = BasicDiagnostic.toDiagnostic(iae);
 			} catch (WrappedException we) {

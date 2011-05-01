@@ -22,8 +22,8 @@ import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
+import org.eclipse.emf.samples.conference.parts.RoomPropertiesEditionPart;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
@@ -34,7 +34,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 
@@ -44,10 +43,10 @@ import org.eclipse.swt.widgets.Text;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, ConferencePropertiesEditionPart {
+public class RoomPropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, RoomPropertiesEditionPart {
 
 	protected Text name;
-	protected Text overview;
+	protected Text capacity;
 
 
 
@@ -56,7 +55,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public ConferencePropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
+	public RoomPropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
@@ -84,24 +83,24 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence conference_Step = new BindingCompositionSequence(propertiesEditingComponent);
-		CompositionStep propertiesStep = conference_Step.addStep(ConferenceViewsRepository.Conference_.Properties.class);
-		propertiesStep.addStep(ConferenceViewsRepository.Conference_.Properties.name);
-		propertiesStep.addStep(ConferenceViewsRepository.Conference_.Properties.overview);
+		CompositionSequence roomStep = new BindingCompositionSequence(propertiesEditingComponent);
+		CompositionStep propertiesStep = roomStep.addStep(ConferenceViewsRepository.Room.Properties.class);
+		propertiesStep.addStep(ConferenceViewsRepository.Room.Properties.name);
+		propertiesStep.addStep(ConferenceViewsRepository.Room.Properties.capacity);
 		
 		
-		composer = new PartComposer(conference_Step) {
+		composer = new PartComposer(roomStep) {
 
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
-				if (key == ConferenceViewsRepository.Conference_.Properties.class) {
+				if (key == ConferenceViewsRepository.Room.Properties.class) {
 					return createPropertiesGroup(parent);
 				}
-				if (key == ConferenceViewsRepository.Conference_.Properties.name) {
+				if (key == ConferenceViewsRepository.Room.Properties.name) {
 					return createNameText(parent);
 				}
-				if (key == ConferenceViewsRepository.Conference_.Properties.overview) {
-					return createOverviewTextarea(parent);
+				if (key == ConferenceViewsRepository.Room.Properties.capacity) {
+					return createCapacityText(parent);
 				}
 				return parent;
 			}
@@ -114,7 +113,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	protected Composite createPropertiesGroup(Composite parent) {
 		Group propertiesGroup = new Group(parent, SWT.NONE);
-		propertiesGroup.setText(ConferenceMessages.ConferencePropertiesEditionPart_PropertiesGroupLabel);
+		propertiesGroup.setText(ConferenceMessages.RoomPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
 		propertiesGroupData.horizontalSpan = 3;
 		propertiesGroup.setLayoutData(propertiesGroupData);
@@ -126,7 +125,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, ConferenceMessages.ConferencePropertiesEditionPart_NameLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, ConferenceMessages.RoomPropertiesEditionPart_NameLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Room.Properties.name, ConferenceViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -142,7 +141,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditingComponent != null)
-					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RoomPropertiesEditionPartImpl.this, ConferenceViewsRepository.Room.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 			}
 
 		});
@@ -159,30 +158,24 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditingComponent != null)
-						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RoomPropertiesEditionPartImpl.this, ConferenceViewsRepository.Room.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 				}
 			}
 
 		});
-		EditingUtils.setID(name, ConferenceViewsRepository.Conference_.Properties.name);
+		EditingUtils.setID(name, ConferenceViewsRepository.Room.Properties.name);
 		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
-		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Room.Properties.name, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
 	
-	protected Composite createOverviewTextarea(Composite parent) {
-		Label overviewLabel = SWTUtils.createPartLabel(parent, ConferenceMessages.ConferencePropertiesEditionPart_OverviewLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.SWT_KIND));
-		GridData overviewLabelData = new GridData(GridData.FILL_HORIZONTAL);
-		overviewLabelData.horizontalSpan = 3;
-		overviewLabel.setLayoutData(overviewLabelData);
-		overview = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
-		GridData overviewData = new GridData(GridData.FILL_HORIZONTAL);
-		overviewData.horizontalSpan = 2;
-		overviewData.heightHint = 80;
-		overviewData.widthHint = 200;
-		overview.setLayoutData(overviewData);
-		overview.addFocusListener(new FocusAdapter() {
+	protected Composite createCapacityText(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.RoomPropertiesEditionPart_CapacityLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Room.Properties.capacity, ConferenceViewsRepository.SWT_KIND));
+		capacity = new Text(parent, SWT.BORDER);
+		GridData capacityData = new GridData(GridData.FILL_HORIZONTAL);
+		capacity.setLayoutData(capacityData);
+		capacity.addFocusListener(new FocusAdapter() {
 
 			/**
 			 * {@inheritDoc}
@@ -190,15 +183,35 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 * 
 			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditingComponent != null)
-					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.overview, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, overview.getText()));
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RoomPropertiesEditionPartImpl.this, ConferenceViewsRepository.Room.Properties.capacity, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, capacity.getText()));
 			}
 
 		});
-		EditingUtils.setID(overview, ConferenceViewsRepository.Conference_.Properties.overview);
-		EditingUtils.setEEFtype(overview, "eef::Textarea"); //$NON-NLS-1$
-		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		capacity.addKeyListener(new KeyAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(RoomPropertiesEditionPartImpl.this, ConferenceViewsRepository.Room.Properties.capacity, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, capacity.getText()));
+				}
+			}
+
+		});
+		EditingUtils.setID(capacity, ConferenceViewsRepository.Room.Properties.capacity);
+		EditingUtils.setEEFtype(capacity, "eef::Text"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Room.Properties.capacity, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -219,7 +232,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart#getName()
+	 * @see org.eclipse.emf.samples.conference.parts.RoomPropertiesEditionPart#getName()
 	 * 
 	 */
 	public String getName() {
@@ -229,7 +242,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.emf.samples.conference.parts.RoomPropertiesEditionPart#setName(String newValue)
 	 * 
 	 */
 	public void setName(String newValue) {
@@ -244,24 +257,24 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart#getOverview()
+	 * @see org.eclipse.emf.samples.conference.parts.RoomPropertiesEditionPart#getCapacity()
 	 * 
 	 */
-	public String getOverview() {
-		return overview.getText();
+	public String getCapacity() {
+		return capacity.getText();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart#setOverview(String newValue)
+	 * @see org.eclipse.emf.samples.conference.parts.RoomPropertiesEditionPart#setCapacity(String newValue)
 	 * 
 	 */
-	public void setOverview(String newValue) {
+	public void setCapacity(String newValue) {
 		if (newValue != null) {
-			overview.setText(newValue);
+			capacity.setText(newValue);
 		} else {
-			overview.setText(""); //$NON-NLS-1$
+			capacity.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -278,7 +291,7 @@ public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * 
 	 */
 	public String getTitle() {
-		return ConferenceMessages.Conference_Part_Title;
+		return ConferenceMessages.Room_Part_Title;
 	}
 
 	// Start of user code additional methods

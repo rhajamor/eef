@@ -11,21 +11,37 @@
 package org.eclipse.emf.samples.conference.parts.forms;
 
 // Start of user code for imports
+import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -36,34 +52,36 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+
 // End of user code
 
 /**
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, SitePropertiesEditionPart {
+public class SitePropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, SitePropertiesEditionPart {
 
 	protected Text name;
 	protected Text documentation;
-
-
+	protected ReferencesTable rooms;
+	protected List<ViewerFilter> roomsBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> roomsFilters = new ArrayList<ViewerFilter>();
 
 
 
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public SitePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public SitePropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
 	 * 
 	 */
@@ -81,23 +99,44 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createPropertiesGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence siteStep = new BindingCompositionSequence(propertiesEditingComponent);
+		CompositionStep propertiesStep = siteStep.addStep(ConferenceViewsRepository.Site.Properties.class);
+		propertiesStep.addStep(ConferenceViewsRepository.Site.Properties.name);
+		propertiesStep.addStep(ConferenceViewsRepository.Site.Properties.documentation);
+		propertiesStep.addStep(ConferenceViewsRepository.Site.Properties.rooms);
 		
-		// End of user code
+		
+		composer = new PartComposer(siteStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == ConferenceViewsRepository.Site.Properties.class) {
+					return createPropertiesGroup(widgetFactory, parent);
+				}
+				if (key == ConferenceViewsRepository.Site.Properties.name) {
+					return 		createNameText(widgetFactory, parent);
+				}
+				if (key == ConferenceViewsRepository.Site.Properties.documentation) {
+					return createDocumentationTextarea(widgetFactory, parent);
+				}
+				if (key == ConferenceViewsRepository.Site.Properties.rooms) {
+					return createRoomsTableComposition(widgetFactory, parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 	/**
 	 * 
 	 */
-	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
-		Section propertiesSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	protected Composite createPropertiesGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section propertiesSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		propertiesSection.setText(ConferenceMessages.SitePropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		propertiesSectionData.horizontalSpan = 3;
@@ -106,14 +145,13 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createNameText(widgetFactory, propertiesGroup);
-		createDocumentationTextarea(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
+		return propertiesGroup;
 	}
 
 	
-	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.SitePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Site.name, ConferenceViewsRepository.FORM_KIND));
+	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.SitePropertiesEditionPart_NameLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Site.Properties.name, ConferenceViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -127,8 +165,8 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -140,17 +178,20 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 				}
 			}
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Site.name, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(name, ConferenceViewsRepository.Site.Properties.name);
+		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Site.Properties.name, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	
-	protected void createDocumentationTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label documentationLabel = FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.SitePropertiesEditionPart_DocumentationLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Site.documentation, ConferenceViewsRepository.FORM_KIND));
+	protected Composite createDocumentationTextarea(FormToolkit widgetFactory, Composite parent) {
+		Label documentationLabel = FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.SitePropertiesEditionPart_DocumentationLabel, propertiesEditingComponent.isRequired(ConferenceViewsRepository.Site.Properties.documentation, ConferenceViewsRepository.FORM_KIND));
 		GridData documentationLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		documentationLabelData.horizontalSpan = 3;
 		documentationLabel.setLayoutData(documentationLabelData);
@@ -169,12 +210,63 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.documentation, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, documentation.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.documentation, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, documentation.getText()));
 			}
 
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Site.documentation, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(documentation, ConferenceViewsRepository.Site.Properties.documentation);
+		EditingUtils.setEEFtype(documentation, "eef::Textarea"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Site.Properties.documentation, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	/**
+	 * @param container
+	 * 
+	 */
+	protected Composite createRoomsTableComposition(FormToolkit widgetFactory, Composite parent) {
+		this.rooms = new ReferencesTable(ConferenceMessages.SitePropertiesEditionPart_RoomsLabel, new ReferencesTableListener() {
+			public void handleAdd() {
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.rooms, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.ADD, null, null));
+				rooms.refresh();
+			}
+			public void handleEdit(EObject element) {
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.rooms, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.EDIT, null, element));
+				rooms.refresh();
+			}
+			public void handleMove(EObject element, int oldIndex, int newIndex) {
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.rooms, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.MOVE, element, newIndex));
+				rooms.refresh();
+			}
+			public void handleRemove(EObject element) {
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.rooms, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.REMOVE, null, element));
+				rooms.refresh();
+			}
+			public void navigateTo(EObject element) { }
+		});
+		for (ViewerFilter filter : this.roomsFilters) {
+			this.rooms.addFilter(filter);
+		}
+		this.rooms.setHelpText(propertiesEditingComponent.getHelpContent(ConferenceViewsRepository.Site.Properties.rooms, ConferenceViewsRepository.FORM_KIND));
+		this.rooms.createControls(parent, widgetFactory);
+		this.rooms.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				if (e.item != null && e.item.getData() instanceof EObject) {
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SitePropertiesEditionPartForm.this, ConferenceViewsRepository.Site.Properties.rooms, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SELECTION_CHANGED, null, e.item.getData()));
+				}
+			}
+			
+		});
+		GridData roomsData = new GridData(GridData.FILL_HORIZONTAL);
+		roomsData.horizontalSpan = 3;
+		this.rooms.setLayoutData(roomsData);
+		this.rooms.setLowerBound(0);
+		this.rooms.setUpperBound(-1);
+		rooms.setID(ConferenceViewsRepository.Site.Properties.rooms);
+		rooms.setEEFType("eef::AdvancedTableComposition"); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -182,13 +274,13 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
 	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
+
+// End of user code
 	}
 
 	/**
@@ -215,13 +307,6 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 		}
 	}
 
-	public void setMessageForName(String msg, int msgLevel) {
-		messageManager.addMessage("Name_key", msg, null, msgLevel, name);
-	}
-
-	public void unsetMessageForName() {
-		messageManager.removeMessage("Name_key", name);
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -243,19 +328,68 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 		if (newValue != null) {
 			documentation.setText(newValue);
 		} else {
-			documentation.setText("");  //$NON-NLS-1$
+			documentation.setText(""); //$NON-NLS-1$
 		}
 	}
 
-	public void setMessageForDocumentation(String msg, int msgLevel) {
-		messageManager.addMessage("Documentation_key", msg, null, msgLevel, documentation);
+
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart#initRooms(EObject current, EReference containingFeature, EReference feature)
+	 */
+	public void initRooms(ReferencesTableSettings settings) {
+		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+			this.resourceSet = current.eResource().getResourceSet();
+		ReferencesTableContentProvider contentProvider = new ReferencesTableContentProvider();
+		rooms.setContentProvider(contentProvider);
+		rooms.setInput(settings);
 	}
 
-	public void unsetMessageForDocumentation() {
-		messageManager.removeMessage("Documentation_key", documentation);
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart#updateRooms()
+	 * 
+	 */
+	public void updateRooms() {
+	rooms.refresh();
+}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart#addFilterRooms(ViewerFilter filter)
+	 * 
+	 */
+	public void addFilterToRooms(ViewerFilter filter) {
+		roomsFilters.add(filter);
+		if (this.rooms != null) {
+			this.rooms.addFilter(filter);
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart#addBusinessFilterRooms(ViewerFilter filter)
+	 * 
+	 */
+	public void addBusinessFilterToRooms(ViewerFilter filter) {
+		roomsBusinessFilters.add(filter);
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart#isContainedInRoomsTable(EObject element)
+	 * 
+	 */
+	public boolean isContainedInRoomsTable(EObject element) {
+		return ((ReferencesTableSettings)rooms.getInput()).contains(element);
+	}
 
 
 
@@ -263,7 +397,7 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
 	 * 
 	 */
 	public String getTitle() {
@@ -273,5 +407,6 @@ public class SitePropertiesEditionPartForm extends CompositePropertiesEditionPar
 	// Start of user code additional methods
 	
 	// End of user code
+
 
 }

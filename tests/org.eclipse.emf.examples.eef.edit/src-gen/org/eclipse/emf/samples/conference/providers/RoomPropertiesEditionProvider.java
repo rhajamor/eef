@@ -17,21 +17,19 @@ import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.providers.impl.PropertiesEditingProviderImpl;
 import org.eclipse.emf.samples.conference.ConferencePackage;
-import org.eclipse.emf.samples.conference.Person;
-import org.eclipse.emf.samples.conference.components.PersonBasePropertiesEditionComponent;
-import org.eclipse.emf.samples.conference.components.PersonPresencePropertiesEditionComponent;
-import org.eclipse.emf.samples.conference.components.PersonPropertiesEditionComponent;
+import org.eclipse.emf.samples.conference.Room;
+import org.eclipse.emf.samples.conference.components.RoomPropertiesEditionComponent;
 
 /**
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class PersonPropertiesEditionProvider extends PropertiesEditingProviderImpl {
+public class RoomPropertiesEditionProvider extends PropertiesEditingProviderImpl {
 
 	/**
 	 * Constructor without provider for super types.
 	 */
-	public PersonPropertiesEditionProvider() {
+	public RoomPropertiesEditionProvider() {
 		super();
 	}
 
@@ -39,7 +37,7 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * Constructor with providers for super types.
 	 * @param superProviders providers to use for super types.
 	 */
-	public PersonPropertiesEditionProvider(List<PropertiesEditingProvider> superProviders) {
+	public RoomPropertiesEditionProvider(List<PropertiesEditingProvider> superProviders) {
 		super(superProviders);
 	}
 
@@ -49,8 +47,8 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext) {
-		return (editingContext.getEObject() instanceof Person) 
-					&& (ConferencePackage.eINSTANCE.getPerson() == editingContext.getEObject().eClass());
+		return (editingContext.getEObject() instanceof Room) 
+					&& (ConferencePackage.eINSTANCE.getRoom() == editingContext.getEObject().eClass());
 	}
 
 	/**
@@ -59,7 +57,7 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof Person) && (PersonBasePropertiesEditionComponent.BASE_PART.equals(part) || PersonPresencePropertiesEditionComponent.PRESENCE_PART.equals(part));
+		return (editingContext.getEObject() instanceof Room) && (RoomPropertiesEditionComponent.BASE_PART.equals(part));
 	}
 
 	/**
@@ -69,7 +67,7 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof Person) && (refinement == PersonBasePropertiesEditionComponent.class || refinement == PersonPresencePropertiesEditionComponent.class);
+		return (editingContext.getEObject() instanceof Room) && (refinement == RoomPropertiesEditionComponent.class);
 	}
 
 	/**
@@ -79,7 +77,7 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof Person) && ((PersonBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == PersonBasePropertiesEditionComponent.class) || (PersonPresencePropertiesEditionComponent.PRESENCE_PART.equals(part) && refinement == PersonPresencePropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof Room) && ((RoomPropertiesEditionComponent.BASE_PART.equals(part) && refinement == RoomPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -88,8 +86,8 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode) {
-		if (editingContext.getEObject() instanceof Person) {
-			return new PersonPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
+		if (editingContext.getEObject() instanceof Room) {
+			return new RoomPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode);
 	}
@@ -100,11 +98,9 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
-		if (editingContext.getEObject() instanceof Person) {
-			if (PersonBasePropertiesEditionComponent.BASE_PART.equals(part))
-				return new PersonBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
-			if (PersonPresencePropertiesEditionComponent.PRESENCE_PART.equals(part))
-				return new PersonPresencePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
+		if (editingContext.getEObject() instanceof Room) {
+			if (RoomPropertiesEditionComponent.BASE_PART.equals(part))
+				return new RoomPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
 	}
@@ -115,13 +111,10 @@ public class PersonPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	@SuppressWarnings("unchecked")
 	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
-		if (editingContext.getEObject() instanceof Person) {
-			if (PersonBasePropertiesEditionComponent.BASE_PART.equals(part)
-				&& refinement == PersonBasePropertiesEditionComponent.class)
-				return new PersonBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
-			if (PersonPresencePropertiesEditionComponent.PRESENCE_PART.equals(part)
-				&& refinement == PersonPresencePropertiesEditionComponent.class)
-				return new PersonPresencePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
+		if (editingContext.getEObject() instanceof Room) {
+			if (RoomPropertiesEditionComponent.BASE_PART.equals(part)
+				&& refinement == RoomPropertiesEditionComponent.class)
+				return new RoomPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part, refinement);
 	}
