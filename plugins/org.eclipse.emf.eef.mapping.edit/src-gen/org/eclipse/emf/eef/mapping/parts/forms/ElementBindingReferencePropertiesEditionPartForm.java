@@ -1,32 +1,33 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.mapping.parts.forms;
 
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
 import org.eclipse.emf.eef.mapping.providers.MappingMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -39,32 +40,34 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+
 // End of user code
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class ElementBindingReferencePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ElementBindingReferencePropertiesEditionPart {
+public class ElementBindingReferencePropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, ElementBindingReferencePropertiesEditionPart {
 
 	protected EObjectFlatComboViewer binding;
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public ElementBindingReferencePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public ElementBindingReferencePropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -80,19 +83,37 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createReferenceGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence elementBindingReferenceStep = new CompositionSequence();
+		elementBindingReferenceStep
+			.addStep(MappingViewsRepository.ElementBindingReference.Reference.class)
+			.addStep(MappingViewsRepository.ElementBindingReference.Reference.binding);
 		
-		// End of user code
+		
+		composer = new PartComposer(elementBindingReferenceStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == MappingViewsRepository.ElementBindingReference.Reference.class) {
+					return createReferenceGroup(widgetFactory, parent);
+				}
+				if (key == MappingViewsRepository.ElementBindingReference.Reference.binding) {
+					return createBindingFlatComboViewer(parent, widgetFactory);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
-	protected void createReferenceGroup(FormToolkit widgetFactory, final Composite view) {
-		Section referenceSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	/**
+	 * 
+	 */
+	protected Composite createReferenceGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section referenceSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		referenceSection.setText(MappingMessages.ElementBindingReferencePropertiesEditionPart_ReferenceGroupLabel);
 		GridData referenceSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		referenceSectionData.horizontalSpan = 3;
@@ -101,16 +122,18 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 		GridLayout referenceGroupLayout = new GridLayout();
 		referenceGroupLayout.numColumns = 3;
 		referenceGroup.setLayout(referenceGroupLayout);
-		createBindingFlatComboViewer(referenceGroup, widgetFactory);
 		referenceSection.setClient(referenceGroup);
+		return referenceGroup;
 	}
 
 	/**
-	 * @param referenceGroup
+	 * @param parent the parent composite
+	 * @param widgetFactory factory to use to instanciante widget of the form
+	 * 
 	 */
-	protected void createBindingFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, MappingMessages.ElementBindingReferencePropertiesEditionPart_BindingLabel, propertiesEditionComponent.isRequired(MappingViewsRepository.ElementBindingReference.binding, MappingViewsRepository.FORM_KIND));
-		binding = new EObjectFlatComboViewer(parent, false);
+	protected Composite createBindingFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
+		FormUtils.createPartLabel(widgetFactory, parent, MappingMessages.ElementBindingReferencePropertiesEditionPart_BindingLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.ElementBindingReference.Reference.binding, MappingViewsRepository.FORM_KIND));
+		binding = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(MappingViewsRepository.ElementBindingReference.Reference.binding, MappingViewsRepository.FORM_KIND));
 		binding.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData bindingData = new GridData(GridData.FILL_HORIZONTAL);
 		binding.setLayoutData(bindingData);
@@ -122,12 +145,14 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementBindingReferencePropertiesEditionPartForm.this, MappingViewsRepository.ElementBindingReference.binding, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getBinding()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(ElementBindingReferencePropertiesEditionPartForm.this, MappingViewsRepository.ElementBindingReference.Reference.binding, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getBinding()));
 			}
 
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(MappingViewsRepository.ElementBindingReference.binding, MappingViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		binding.setID(MappingViewsRepository.ElementBindingReference.Reference.binding);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.ElementBindingReference.Reference.binding, MappingViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -135,19 +160,21 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// Nothing to do
-		// End of user code
+
+// Nothing to do
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#getBinding()
+	 * 
 	 */
 	public EObject getBinding() {
 		if (binding.getSelection() instanceof StructuredSelection) {
@@ -161,12 +188,12 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#initBinding(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#initBinding(EObjectFlatComboSettings)
 	 */
-	public void initBinding(ResourceSet allResources, EObject current) {
-		binding.setInput(allResources);
+	public void initBinding(EObjectFlatComboSettings settings) {
+		binding.setInput(settings);
 		if (current != null) {
-			binding.setSelection(new StructuredSelection(current));
+			binding.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -174,6 +201,7 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#setBinding(EObject newValue)
+	 * 
 	 */
 	public void setBinding(EObject newValue) {
 		if (newValue != null) {
@@ -196,6 +224,7 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#addFilterBinding(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToBinding(ViewerFilter filter) {
 		binding.addFilter(filter);
@@ -205,6 +234,7 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.ElementBindingReferencePropertiesEditionPart#addBusinessFilterBinding(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToBinding(ViewerFilter filter) {
 		binding.addBusinessRuleFilter(filter);
@@ -213,16 +243,11 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 
 
 
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return MappingMessages.ElementBindingReference_Part_Title;
@@ -231,5 +256,6 @@ public class ElementBindingReferencePropertiesEditionPartForm extends CompositeP
 	// Start of user code additional methods
  	
 	// End of user code
+
 
 }

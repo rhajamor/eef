@@ -1,23 +1,20 @@
-/**
- *  Copyright (c) 2008 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
- * 
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id: MappingEditPlugin.java,v 1.8 2009/12/04 16:04:43 sbouchet Exp $
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.mapping.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.eef.mapping.MappingPackage;
-import org.eclipse.emf.eef.runtime.impl.validation.EEFValidator;
+import org.eclipse.emf.eef.runtime.validation.EEFValidator;
 import org.eclipse.emf.eef.views.provider.ViewsEditPlugin;
 
 /**

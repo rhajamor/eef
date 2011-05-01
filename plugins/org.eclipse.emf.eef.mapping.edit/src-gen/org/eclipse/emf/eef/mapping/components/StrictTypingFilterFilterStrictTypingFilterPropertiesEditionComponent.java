@@ -11,24 +11,32 @@
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
-import org.eclipse.emf.eef.mapping.filters.JavaDeclarationFilter;
-import org.eclipse.emf.eef.mapping.parts.JavaDeclarationFilterPropertiesEditionPart;
+import org.eclipse.emf.eef.mapping.filters.StrictTypingFilter;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
+import org.eclipse.emf.eef.mapping.parts.StrictTypingFilterPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.components.impl.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
-import org.eclipse.emf.eef.runtime.util.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
+import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+
 
 // End of user code
 
@@ -36,21 +44,26 @@ import org.eclipse.emf.eef.runtime.util.EEFConverterUtil;
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class JavaDeclarationFilterBasePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
+public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String STRICTTYPINGFILTER_PART = "StrictTypingFilter"; //$NON-NLS-1$
 
+	
+	/**
+	 * Settings for type EObjectFlatComboViewer
+	 */
+	private	EObjectFlatComboSettings typeSettings;
 	
 	/**
 	 * Default constructor
 	 * 
 	 */
-	public JavaDeclarationFilterBasePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject javaDeclarationFilter, String editing_mode) {
-		super(editingContext, javaDeclarationFilter, editing_mode);
-		parts = new String[] { BASE_PART };
+	public StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject strictTypingFilter, String editing_mode) {
+		super(editingContext, strictTypingFilter, editing_mode);
+		parts = new String[] { STRICTTYPINGFILTER_PART };
 		repositoryKey = MappingViewsRepository.class;
-		partKey = MappingViewsRepository.JavaDeclarationFilter.class;
+		partKey = MappingViewsRepository.StrictTypingFilter.class;
 	}
 
 	/**
@@ -64,16 +77,33 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 		setInitializing(true);
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
-			final JavaDeclarationFilter javaDeclarationFilter = (JavaDeclarationFilter)elt;
-			final JavaDeclarationFilterPropertiesEditionPart basePart = (JavaDeclarationFilterPropertiesEditionPart)editingPart;
+			final StrictTypingFilter strictTypingFilter = (StrictTypingFilter)elt;
+			final StrictTypingFilterPropertiesEditionPart strictTypingFilterPart = (StrictTypingFilterPropertiesEditionPart)editingPart;
 			// init values
-			if (javaDeclarationFilter.getMethodName() != null)
-				basePart.setMethodName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), javaDeclarationFilter.getMethodName()));
-			
+			// init part
+			typeSettings = new EObjectFlatComboSettings(strictTypingFilter, FiltersPackage.eINSTANCE.getStrictTypingFilter_Type());
+			strictTypingFilterPart.initRestriction(typeSettings);
+			// set the button mode
+			strictTypingFilterPart.setRestrictionButtonMode(ButtonsModeEnum.BROWSE);
 			// init filters
+			strictTypingFilterPart.addFilterToRestriction(new ViewerFilter() {
+			
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+			 */
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return (element instanceof EClassifier);
+				}
+			
+			});
+			// Start of user code for additional businessfilters for type
+			
+			// End of user code
 			
 			// init values for referenced views
-					basePart.getFilterPropertiesReferencedView().setContext(elt, allResource);
+					strictTypingFilterPart.getFilterPropertiesReferencedView().setContext(elt, allResource);
 			
 			// init filters for referenced views
 			
@@ -94,9 +124,20 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 	 * 
 	 */
 	public void updateSemanticModel(final PropertiesEditingEvent event) {
-		JavaDeclarationFilter javaDeclarationFilter = (JavaDeclarationFilter)semanticObject;
-		if (MappingViewsRepository.JavaDeclarationFilter.FilterExpression.methodName == event.getAffectedEditor()) {
-			javaDeclarationFilter.setMethodName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+		StrictTypingFilter strictTypingFilter = (StrictTypingFilter)semanticObject;
+		if (MappingViewsRepository.StrictTypingFilter.Type.restriction == event.getAffectedEditor()) {
+			if (event.getKind() == PropertiesEditingEventImpl.SET)  {
+				typeSettings.setToReference((EClassifier)event.getNewValue());
+			} else if (event.getKind() == PropertiesEditingEventImpl.ADD)  {
+				EReferencePropertiesEditingContext context = new EReferencePropertiesEditingContext(editingContext, this, typeSettings, editingContext.getAdapterFactory());
+				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
+				if (provider != null) {
+					PropertiesEditingPolicy policy = provider.getPolicy(context);
+					if (policy instanceof CreateEditingPolicy) {
+						policy.execute();
+					}
+				}
+			}
 		}
 	}
 
@@ -106,18 +147,23 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			JavaDeclarationFilterPropertiesEditionPart basePart = (JavaDeclarationFilterPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getJavaDeclarationFilter_MethodName().equals(msg.getFeature()) && basePart != null){
-				if (msg.getNewValue() != null) {
-					basePart.setMethodName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-				} else {
-					basePart.setMethodName("");
-				}
-			}
+			StrictTypingFilterPropertiesEditionPart strictTypingFilterPart = (StrictTypingFilterPropertiesEditionPart)editingPart;
+			if (FiltersPackage.eINSTANCE.getStrictTypingFilter_Type().equals(msg.getFeature()) && strictTypingFilterPart != null)
+				strictTypingFilterPart.setRestriction((EObject)msg.getNewValue());
 			
 		}
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.components.impl.StandardPropertiesEditingComponent#isRequired(java.lang.Object, int)
+	 * 
+	 */
+	public boolean isRequired(Object key, int kind) {
+		return key == MappingViewsRepository.StrictTypingFilter.Type.restriction;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -129,13 +175,6 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 		Diagnostic ret = Diagnostic.OK_INSTANCE;
 		if (event.getNewValue() != null) {
 			try {
-				if (MappingViewsRepository.JavaDeclarationFilter.FilterExpression.methodName == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(FiltersPackage.eINSTANCE.getJavaDeclarationFilter_MethodName().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(FiltersPackage.eINSTANCE.getJavaDeclarationFilter_MethodName().getEAttributeType(), newValue);
-				}
 				if (MappingViewsRepository.FilterProperties.FilterProperties_.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {

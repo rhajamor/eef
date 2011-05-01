@@ -11,12 +11,11 @@
 package org.eclipse.emf.eef.mapping.parts.forms;
 
 // Start of user code for imports
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.mapping.parts.FilterPropertiesPropertiesEditionPart;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
-import org.eclipse.emf.eef.mapping.parts.OnlyReferenceTypeFilterPropertiesEditionPart;
+import org.eclipse.emf.eef.mapping.parts.StrictTypingFilterPropertiesEditionPart;
 import org.eclipse.emf.eef.mapping.providers.MappingMessages;
 import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
@@ -53,9 +52,9 @@ import org.eclipse.ui.forms.widgets.Section;
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, OnlyReferenceTypeFilterPropertiesEditionPart {
+public class StrictTypingFilterPropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, StrictTypingFilterPropertiesEditionPart {
 
-	protected EObjectFlatComboViewer referencedFeature;
+	protected EObjectFlatComboViewer restriction;
 	private FilterPropertiesPropertiesEditionPart filterPropertiesPropertiesEditionPart;
 
 
@@ -65,7 +64,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
 	 * 
 	 */
-	public OnlyReferenceTypeFilterPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
+	public StrictTypingFilterPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
@@ -95,24 +94,24 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence onlyReferenceTypeFilterStep = new CompositionSequence();
-		onlyReferenceTypeFilterStep
-			.addStep(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.class)
-			.addStep(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_);
+		CompositionSequence strictTypingFilterStep = new CompositionSequence();
+		strictTypingFilterStep
+			.addStep(MappingViewsRepository.StrictTypingFilter.Type.class)
+			.addStep(MappingViewsRepository.StrictTypingFilter.Type.restriction);
 		
-		onlyReferenceTypeFilterStep.addStep(MappingViewsRepository.OnlyReferenceTypeFilter.filterProperties);
+		strictTypingFilterStep.addStep(MappingViewsRepository.StrictTypingFilter.filterProperties);
 		
-		composer = new PartComposer(onlyReferenceTypeFilterStep) {
+		composer = new PartComposer(strictTypingFilterStep) {
 
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
-				if (key == MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.class) {
-					return createReferencedFeatureGroup(widgetFactory, parent);
+				if (key == MappingViewsRepository.StrictTypingFilter.Type.class) {
+					return createTypeGroup(widgetFactory, parent);
 				}
-				if (key == MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_) {
-					return createReferencedFeatureFlatComboViewer(parent, widgetFactory);
+				if (key == MappingViewsRepository.StrictTypingFilter.Type.restriction) {
+					return createRestrictionFlatComboViewer(parent, widgetFactory);
 				}
-				if (key == MappingViewsRepository.OnlyReferenceTypeFilter.filterProperties) {
+				if (key == MappingViewsRepository.StrictTypingFilter.filterProperties) {
 					return createFilterProperties(widgetFactory, parent);
 				}
 				return parent;
@@ -123,18 +122,18 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * 
 	 */
-	protected Composite createReferencedFeatureGroup(FormToolkit widgetFactory, final Composite parent) {
-		Section referencedFeatureSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		referencedFeatureSection.setText(MappingMessages.OnlyReferenceTypeFilterPropertiesEditionPart_ReferencedFeatureGroupLabel);
-		GridData referencedFeatureSectionData = new GridData(GridData.FILL_HORIZONTAL);
-		referencedFeatureSectionData.horizontalSpan = 3;
-		referencedFeatureSection.setLayoutData(referencedFeatureSectionData);
-		Composite referencedFeatureGroup = widgetFactory.createComposite(referencedFeatureSection);
-		GridLayout referencedFeatureGroupLayout = new GridLayout();
-		referencedFeatureGroupLayout.numColumns = 3;
-		referencedFeatureGroup.setLayout(referencedFeatureGroupLayout);
-		referencedFeatureSection.setClient(referencedFeatureGroup);
-		return referencedFeatureGroup;
+	protected Composite createTypeGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section typeSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		typeSection.setText(MappingMessages.StrictTypingFilterPropertiesEditionPart_TypeGroupLabel);
+		GridData typeSectionData = new GridData(GridData.FILL_HORIZONTAL);
+		typeSectionData.horizontalSpan = 3;
+		typeSection.setLayoutData(typeSectionData);
+		Composite typeGroup = widgetFactory.createComposite(typeSection);
+		GridLayout typeGroupLayout = new GridLayout();
+		typeGroupLayout.numColumns = 3;
+		typeGroup.setLayout(typeGroupLayout);
+		typeSection.setClient(typeGroup);
+		return typeGroup;
 	}
 
 	/**
@@ -142,13 +141,13 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	 * @param widgetFactory factory to use to instanciante widget of the form
 	 * 
 	 */
-	protected Composite createReferencedFeatureFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, MappingMessages.OnlyReferenceTypeFilterPropertiesEditionPart_ReferencedFeatureLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_, MappingViewsRepository.FORM_KIND));
-		referencedFeature = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_, MappingViewsRepository.FORM_KIND));
-		referencedFeature.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		GridData referencedFeatureData = new GridData(GridData.FILL_HORIZONTAL);
-		referencedFeature.setLayoutData(referencedFeatureData);
-		referencedFeature.addSelectionChangedListener(new ISelectionChangedListener() {
+	protected Composite createRestrictionFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
+		FormUtils.createPartLabel(widgetFactory, parent, MappingMessages.StrictTypingFilterPropertiesEditionPart_RestrictionLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.StrictTypingFilter.Type.restriction, MappingViewsRepository.FORM_KIND));
+		restriction = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(MappingViewsRepository.StrictTypingFilter.Type.restriction, MappingViewsRepository.FORM_KIND));
+		restriction.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		GridData restrictionData = new GridData(GridData.FILL_HORIZONTAL);
+		restriction.setLayoutData(restrictionData);
+		restriction.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -157,12 +156,12 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditingComponent != null)
-					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(OnlyReferenceTypeFilterPropertiesEditionPartForm.this, MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getReferencedFeature()));
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(StrictTypingFilterPropertiesEditionPartForm.this, MappingViewsRepository.StrictTypingFilter.Type.restriction, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getRestriction()));
 			}
 
 		});
-		referencedFeature.setID(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_);
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_, MappingViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		restriction.setID(MappingViewsRepository.StrictTypingFilter.Type.restriction);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.StrictTypingFilter.Type.restriction, MappingViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -191,12 +190,12 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#getReferencedFeature()
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#getRestriction()
 	 * 
 	 */
-	public EObject getReferencedFeature() {
-		if (referencedFeature.getSelection() instanceof StructuredSelection) {
-			Object firstElement = ((StructuredSelection) referencedFeature.getSelection()).getFirstElement();
+	public EObject getRestriction() {
+		if (restriction.getSelection() instanceof StructuredSelection) {
+			Object firstElement = ((StructuredSelection) restriction.getSelection()).getFirstElement();
 			if (firstElement instanceof EObject)
 				return (EObject) firstElement;
 		}
@@ -206,62 +205,62 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#initReferencedFeature(EObjectFlatComboSettings)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#initRestriction(EObjectFlatComboSettings)
 	 */
-	public void initReferencedFeature(EObjectFlatComboSettings settings) {
-		referencedFeature.setInput(settings);
+	public void initRestriction(EObjectFlatComboSettings settings) {
+		restriction.setInput(settings);
 		if (current != null) {
-			referencedFeature.setSelection(new StructuredSelection(settings.getValue()));
+			restriction.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#setReferencedFeature(EObject newValue)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#setRestriction(EObject newValue)
 	 * 
 	 */
-	public void setReferencedFeature(EObject newValue) {
+	public void setRestriction(EObject newValue) {
 		if (newValue != null) {
-			referencedFeature.setSelection(new StructuredSelection(newValue));
+			restriction.setSelection(new StructuredSelection(newValue));
 		} else {
-			referencedFeature.setSelection(new StructuredSelection()); //$NON-NLS-1$
+			restriction.setSelection(new StructuredSelection()); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#setReferencedFeatureButtonMode(ButtonsModeEnum newValue)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#setRestrictionButtonMode(ButtonsModeEnum newValue)
 	 */
-	public void setReferencedFeatureButtonMode(ButtonsModeEnum newValue) {
-		referencedFeature.setButtonMode(newValue);
+	public void setRestrictionButtonMode(ButtonsModeEnum newValue) {
+		restriction.setButtonMode(newValue);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#addFilterReferencedFeature(ViewerFilter filter)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#addFilterRestriction(ViewerFilter filter)
 	 * 
 	 */
-	public void addFilterToReferencedFeature(ViewerFilter filter) {
-		referencedFeature.addFilter(filter);
+	public void addFilterToRestriction(ViewerFilter filter) {
+		restriction.addFilter(filter);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#addBusinessFilterReferencedFeature(ViewerFilter filter)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#addBusinessFilterRestriction(ViewerFilter filter)
 	 * 
 	 */
-	public void addBusinessFilterToReferencedFeature(ViewerFilter filter) {
-		referencedFeature.addBusinessRuleFilter(filter);
+	public void addBusinessFilterToRestriction(ViewerFilter filter) {
+		restriction.addBusinessRuleFilter(filter);
 	}
 
 /**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#getFilterPropertiesReferencedView()
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#getFilterPropertiesReferencedView()
 	 * 
 	 */
 		public PropertiesEditingPart getFilterPropertiesReferencedView() {
@@ -270,7 +269,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#getName()
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#getName()
 	 * 
 	 */
 	public String getName() {
@@ -280,7 +279,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#setName(String newValue)
 	 * 
 	 */
 	public void setName(String newValue) {
@@ -290,7 +289,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#getMandatory()
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#getMandatory()
 	 * 
 	 */
 	public Boolean getMandatory() {
@@ -300,7 +299,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.filters.parts.OnlyReferenceTypeFilterPropertiesEditionPart#setMandatory(Boolean newValue)
+	 * @see org.eclipse.emf.eef.filters.parts.StrictTypingFilterPropertiesEditionPart#setMandatory(Boolean newValue)
 	 * 
 	 */
 	public void setMandatory(Boolean newValue) {
@@ -318,7 +317,7 @@ public class OnlyReferenceTypeFilterPropertiesEditionPartForm extends CompositeP
 	 * 
 	 */
 	public String getTitle() {
-		return MappingMessages.OnlyReferenceTypeFilter_Part_Title;
+		return MappingMessages.StrictTypingFilter_Part_Title;
 	}
 
 	// Start of user code additional methods

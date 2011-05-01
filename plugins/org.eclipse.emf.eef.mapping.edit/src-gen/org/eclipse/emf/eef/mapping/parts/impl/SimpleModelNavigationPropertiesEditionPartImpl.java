@@ -1,14 +1,13 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.mapping.parts.impl;
 
 // Start of user code for imports
@@ -21,15 +20,20 @@ import org.eclipse.emf.eef.mapping.navigation.SimpleModelNavigation;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
 import org.eclipse.emf.eef.mapping.parts.SimpleModelNavigationPropertiesEditionPart;
 import org.eclipse.emf.eef.mapping.providers.MappingMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+import org.eclipse.emf.eef.runtime.util.EEFUtils;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -49,8 +53,9 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, SimpleModelNavigationPropertiesEditionPart {
+public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, SimpleModelNavigationPropertiesEditionPart {
 
 	protected Text index;
 	protected EObjectFlatComboViewer feature;
@@ -58,28 +63,27 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public SimpleModelNavigationPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
+	public SimpleModelNavigationPropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
 		createControls(view);
 		return view;
 	}
@@ -87,20 +91,44 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(Composite view) { 
-		createPropertiesGroup(view);
-
-
-		// Start of user code for additional ui definition
+		CompositionSequence simpleModelNavigationStep = new CompositionSequence();
+		CompositionStep propertiesStep = simpleModelNavigationStep.addStep(MappingViewsRepository.SimpleModelNavigation.Properties.class);
+		propertiesStep.addStep(MappingViewsRepository.SimpleModelNavigation.Properties.index);
+		propertiesStep.addStep(MappingViewsRepository.SimpleModelNavigation.Properties.feature);
+		propertiesStep.addStep(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType);
 		
-		// End of user code
+		
+		composer = new PartComposer(simpleModelNavigationStep) {
 
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == MappingViewsRepository.SimpleModelNavigation.Properties.class) {
+					return createPropertiesGroup(parent);
+				}
+				if (key == MappingViewsRepository.SimpleModelNavigation.Properties.index) {
+					return createIndexText(parent);
+				}
+				if (key == MappingViewsRepository.SimpleModelNavigation.Properties.feature) {
+					return createFeatureFlatComboViewer(parent);
+				}
+				if (key == MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType) {
+					return createDiscriminatorTypeFlatComboViewer(parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 
-	protected void createPropertiesGroup(Composite parent) {
+	/**
+	 * 
+	 */
+	protected Composite createPropertiesGroup(Composite parent) {
 		Group propertiesGroup = new Group(parent, SWT.NONE);
 		propertiesGroup.setText(MappingMessages.SimpleModelNavigationPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
@@ -109,13 +137,12 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createIndexText(propertiesGroup);
-		createFeatureFlatComboViewer(propertiesGroup);
-		createDiscriminatorTypeFlatComboViewer(propertiesGroup);
+		return propertiesGroup;
 	}
 
-	protected void createIndexText(Composite parent) {
-		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_IndexLabel, propertiesEditionComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.index, MappingViewsRepository.SWT_KIND));
+	
+	protected Composite createIndexText(Composite parent) {
+		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_IndexLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.Properties.index, MappingViewsRepository.SWT_KIND));
 		index = new Text(parent, SWT.BORDER);
 		GridData indexData = new GridData(GridData.FILL_HORIZONTAL);
 		index.setLayoutData(indexData);
@@ -125,12 +152,13 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.index, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, index.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.Properties.index, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, index.getText()));
 			}
 
 		});
@@ -140,58 +168,68 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.index, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, index.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.Properties.index, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, index.getText()));
 				}
 			}
 
 		});
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.index, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(index, MappingViewsRepository.SimpleModelNavigation.Properties.index);
+		EditingUtils.setEEFtype(index, "eef::Text"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.Properties.index, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
-	 * @param propertiesGroup
+	 * @param parent the parent composite
+	 * 
 	 */
-	protected void createFeatureFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_FeatureLabel, propertiesEditionComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.feature, MappingViewsRepository.SWT_KIND));
-		feature = new EObjectFlatComboViewer(parent, false);
+	protected Composite createFeatureFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_FeatureLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.Properties.feature, MappingViewsRepository.SWT_KIND));
+		feature = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.Properties.feature, MappingViewsRepository.SWT_KIND));
 		feature.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		feature.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.feature, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, getFeature()));
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.Properties.feature, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SET, null, getFeature()));
 			}
 
 		});
 		GridData featureData = new GridData(GridData.FILL_HORIZONTAL);
 		feature.setLayoutData(featureData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.feature, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		feature.setID(MappingViewsRepository.SimpleModelNavigation.Properties.feature);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.Properties.feature, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
-	 * @param propertiesGroup
+	 * @param parent the parent composite
+	 * 
 	 */
-	protected void createDiscriminatorTypeFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_DiscriminatorTypeLabel, propertiesEditionComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.discriminatorType, MappingViewsRepository.SWT_KIND));
-		discriminatorType = new EObjectFlatComboViewer(parent, true);
+	protected Composite createDiscriminatorTypeFlatComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_DiscriminatorTypeLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType, MappingViewsRepository.SWT_KIND));
+		discriminatorType = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType, MappingViewsRepository.SWT_KIND));
 		discriminatorType.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		discriminatorType.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.discriminatorType, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, getDiscriminatorType()));
+				propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(SimpleModelNavigationPropertiesEditionPartImpl.this, MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SET, null, getDiscriminatorType()));
 			}
 
 		});
 		GridData discriminatorTypeData = new GridData(GridData.FILL_HORIZONTAL);
 		discriminatorType.setLayoutData(discriminatorTypeData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.discriminatorType, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		discriminatorType.setID(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType);
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -199,19 +237,20 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
 
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#getIndex()
+	 * 
 	 */
 	public String getIndex() {
 		return index.getText();
@@ -221,6 +260,7 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#setIndex(String newValue)
+	 * 
 	 */
 	public void setIndex(String newValue) {
 		if (newValue != null) {
@@ -230,18 +270,12 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 		}
 	}
 
-	public void setMessageForIndex(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForIndex() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#getFeature()
+	 * 
 	 */
 	public EObject getFeature() {
 		if (feature.getSelection() instanceof StructuredSelection) {
@@ -255,12 +289,12 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#initFeature(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#initFeature(EObjectFlatComboSettings)
 	 */
-	public void initFeature(ResourceSet allResources, EObject current) {
-		feature.setInput(allResources);
+	public void initFeature(EObjectFlatComboSettings settings) {
+		feature.setInput(settings);
 		if (current != null) {
-			feature.setSelection(new StructuredSelection(current));
+			feature.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -268,6 +302,7 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#setFeature(EObject newValue)
+	 * 
 	 */
 	public void setFeature(EObject newValue) {
 		if (newValue != null) {
@@ -290,6 +325,7 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#addFilterFeature(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToFeature(ViewerFilter filter) {
 		feature.addFilter(filter);
@@ -299,23 +335,18 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#addBusinessFilterFeature(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToFeature(ViewerFilter filter) {
 		feature.addBusinessRuleFilter(filter);
 	}
 
-	public void setMessageForFeature(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForFeature() {
-
-	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#getDiscriminatorType()
+	 * 
 	 */
 	public EObject getDiscriminatorType() {
 		if (discriminatorType.getSelection() instanceof StructuredSelection) {
@@ -329,12 +360,12 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#initDiscriminatorType(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#initDiscriminatorType(EObjectFlatComboSettings)
 	 */
-	public void initDiscriminatorType(ResourceSet allResources, EObject current) {
-		discriminatorType.setInput(allResources);
+	public void initDiscriminatorType(EObjectFlatComboSettings settings) {
+		discriminatorType.setInput(settings);
 		if (current != null) {
-			discriminatorType.setSelection(new StructuredSelection(current));
+			discriminatorType.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -342,6 +373,7 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#setDiscriminatorType(EObject newValue)
+	 * 
 	 */
 	public void setDiscriminatorType(EObject newValue) {
 		if (newValue != null) {
@@ -364,6 +396,7 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#addFilterDiscriminatorType(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToDiscriminatorType(ViewerFilter filter) {
 		discriminatorType.addFilter(filter);
@@ -373,19 +406,11 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.navigation.parts.SimpleModelNavigationPropertiesEditionPart#addBusinessFilterDiscriminatorType(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToDiscriminatorType(ViewerFilter filter) {
 		discriminatorType.addBusinessRuleFilter(filter);
 	}
-
-	public void setMessageForDiscriminatorType(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForDiscriminatorType() {
-
-	}
-
 
 
 
@@ -396,7 +421,8 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return MappingMessages.SimpleModelNavigation_Part_Title;
@@ -410,5 +436,6 @@ public class SimpleModelNavigationPropertiesEditionPartImpl extends CompositePro
 		}
  	}
 	// End of user code
+
 
 }

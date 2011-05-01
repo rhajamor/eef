@@ -1,19 +1,14 @@
-/**
- *  Copyright (c) 2008-2009 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
- * 
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id: SimpleModelNavigationCustomPropertiesEditionPartForm.java,v 1.1 2009/04/30 17:48:59 nlepine Exp $
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.navigation.parts.forms;
-
-// Start of user code for imports
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -21,8 +16,8 @@ import org.eclipse.emf.eef.mapping.navigation.SimpleModelNavigation;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
 import org.eclipse.emf.eef.mapping.parts.forms.SimpleModelNavigationPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.providers.MappingMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -33,38 +28,34 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
-
-
-
-// End of user code
-
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  */
 public class SimpleModelNavigationCustomPropertiesEditionPartForm extends SimpleModelNavigationPropertiesEditionPartForm {
 
-		
-	public SimpleModelNavigationCustomPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public SimpleModelNavigationCustomPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * @param propertiesGroup
 	 */
-	protected void createFeatureFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-	
-		FormUtils.createPartLabel(widgetFactory, parent, MappingMessages.SimpleModelNavigationPropertiesEditionPart_FeatureLabel, true);
+	protected Composite createFeatureFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
+
+		FormUtils.createPartLabel(widgetFactory, parent,
+				MappingMessages.SimpleModelNavigationPropertiesEditionPart_FeatureLabel, true);
 		feature = new EObjectFlatComboViewer(parent, false);
 		feature.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		feature.addFilter(new ViewerFilter() {
 
-			/*
-			 * (non-Javadoc)
+			/**
+			 * {@inheritDoc}
 			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+			 *      java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EReference); 				
+				return (element instanceof EReference);
 			}
 
 		});
@@ -79,12 +70,16 @@ public class SimpleModelNavigationCustomPropertiesEditionPartForm extends Simple
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SimpleModelNavigationCustomPropertiesEditionPartForm.this, MappingViewsRepository.SimpleModelNavigation.feature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getFeature()));
-				setDiscriminatorInput( (SimpleModelNavigation) current, resourceSet);
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(
+							SimpleModelNavigationCustomPropertiesEditionPartForm.this,
+							MappingViewsRepository.SimpleModelNavigation.Properties.feature,
+							PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getFeature()));
+				setDiscriminatorInput((SimpleModelNavigation)current, resourceSet);
 			}
-			
+
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, null, null); //$NON-NLS-1$
+		return parent;
 	}
-}	
+}

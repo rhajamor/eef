@@ -1,14 +1,13 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.mapping.parts.impl;
 
 // Start of user code for imports
@@ -18,28 +17,27 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
 import org.eclipse.emf.eef.mapping.providers.MappingMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.emf.eef.views.ElementEditor;
-import org.eclipse.emf.eef.views.ViewsPackage;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
@@ -47,6 +45,8 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -57,43 +57,41 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, EMFMultiPropertiesBindingPropertiesEditionPart {
+public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends CompositePropertiesEditingPart implements SWTPropertiesEditingPart, EMFMultiPropertiesBindingPropertiesEditionPart {
 
 	protected Text name;
-	protected EMFListEditUtil modelEditUtil;
-	protected ReferencesTable<? extends EObject> model;
+	protected ReferencesTable model;
 	protected List<ViewerFilter> modelBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> modelFilters = new ArrayList<ViewerFilter>();
-	protected EMFListEditUtil viewsEditUtil;
-	protected ReferencesTable<? extends EObject> views;
+	protected ReferencesTable views;
 	protected List<ViewerFilter> viewsBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> viewsFilters = new ArrayList<ViewerFilter>();
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public EMFMultiPropertiesBindingPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
+	public EMFMultiPropertiesBindingPropertiesEditionPartImpl(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
 		createControls(view);
 		return view;
 	}
@@ -101,22 +99,50 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.SWTPropertiesEditingPart#
 	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(Composite view) { 
-		createPropertiesGroup(view);
-
-		createBindingGroup(view);
-
-
-		// Start of user code for additional ui definition
+		CompositionSequence eMFMultiPropertiesBindingStep = new CompositionSequence();
+		eMFMultiPropertiesBindingStep
+			.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.class)
+			.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name);
 		
-		// End of user code
+		CompositionStep bindingStep = eMFMultiPropertiesBindingStep.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.class);
+		bindingStep.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model);
+		bindingStep.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views);
+		
+		
+		composer = new PartComposer(eMFMultiPropertiesBindingStep) {
 
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == MappingViewsRepository.EMFMultiPropertiesBinding.Properties.class) {
+					return createPropertiesGroup(parent);
+				}
+				if (key == MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name) {
+					return createNameText(parent);
+				}
+				if (key == MappingViewsRepository.EMFMultiPropertiesBinding.Binding.class) {
+					return createBindingGroup(parent);
+				}
+				if (key == MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model) {
+					return createModelAdvancedReferencesTable(parent);
+				}
+				if (key == MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views) {
+					return createViewsAdvancedReferencesTable(parent);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
 
-	protected void createPropertiesGroup(Composite parent) {
+	/**
+	 * 
+	 */
+	protected Composite createPropertiesGroup(Composite parent) {
 		Group propertiesGroup = new Group(parent, SWT.NONE);
 		propertiesGroup.setText(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
@@ -125,11 +151,12 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createNameText(propertiesGroup);
+		return propertiesGroup;
 	}
 
-	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(MappingViewsRepository.EMFMultiPropertiesBinding.name, MappingViewsRepository.SWT_KIND));
+	
+	protected Composite createNameText(Composite parent) {
+		SWTUtils.createPartLabel(parent, MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_NameLabel, propertiesEditingComponent.isRequired(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name, MappingViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -139,12 +166,13 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 			}
 
 		});
@@ -154,21 +182,28 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
 			 */
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					if (propertiesEditingComponent != null)
+						propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, name.getText()));
 				}
 			}
 
 		});
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.name, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		EditingUtils.setID(name, MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name);
+		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditingComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name, MappingViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
-	protected void createBindingGroup(Composite parent) {
+	/**
+	 * 
+	 */
+	protected Composite createBindingGroup(Composite parent) {
 		Group bindingGroup = new Group(parent, SWT.NONE);
 		bindingGroup.setText(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_BindingGroupLabel);
 		GridData bindingGroupData = new GridData(GridData.FILL_HORIZONTAL);
@@ -177,160 +212,169 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 		GridLayout bindingGroupLayout = new GridLayout();
 		bindingGroupLayout.numColumns = 3;
 		bindingGroup.setLayout(bindingGroupLayout);
-		createModelAdvancedReferencesTable(bindingGroup);
-		createViewsAdvancedReferencesTable(bindingGroup);
+		return bindingGroup;
 	}
 
-	protected void createModelAdvancedReferencesTable(Composite parent) {
-		this.model = new ReferencesTable<EStructuralFeature>(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_ModelLabel, new ReferencesTableListener<EStructuralFeature>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<EStructuralFeature> dialog = new TabElementTreeSelectionDialog<EStructuralFeature>(resourceSet, modelFilters, modelBusinessFilters,
-				"EStructuralFeature", EcorePackage.eINSTANCE.getEStructuralFeature(), current.eResource()) {
-
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!modelEditUtil.getVirtualList().contains(elem))
-								modelEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.model,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						model.refresh();
-					}
-
-				};
-				dialog.open();
-			}
-			public void handleEdit(EStructuralFeature element) { editModel(element); }
-			public void handleMove(EStructuralFeature element, int oldIndex, int newIndex) { moveModel(element, oldIndex, newIndex); }
-			public void handleRemove(EStructuralFeature element) { removeFromModel(element); }
-			public void navigateTo(EStructuralFeature element) { }
+	/**
+	 * 
+	 */
+	protected Composite createModelAdvancedReferencesTable(Composite parent) {
+		this.model = new ReferencesTable(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_ModelLabel, new ReferencesTableListener() {
+			public void handleAdd() { addModel(); }
+			public void handleEdit(EObject element) { editModel(element); }
+			public void handleMove(EObject element, int oldIndex, int newIndex) { moveModel(element, oldIndex, newIndex); }
+			public void handleRemove(EObject element) { removeFromModel(element); }
+			public void navigateTo(EObject element) { }
 		});
-		this.model.setHelpText(propertiesEditionComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.model, MappingViewsRepository.SWT_KIND));
+		this.model.setHelpText(propertiesEditingComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model, MappingViewsRepository.SWT_KIND));
 		this.model.createControls(parent);
+		this.model.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				if (e.item != null && e.item.getData() instanceof EObject) {
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SELECTION_CHANGED, null, e.item.getData()));
+				}
+			}
+			
+		});
 		GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
 		modelData.horizontalSpan = 3;
 		this.model.setLayoutData(modelData);
 		this.model.disableMove();
+		model.setID(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model);
+		model.setEEFType("eef::AdvancedReferencesTable"); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
 	 * 
 	 */
-	protected void moveModel(EStructuralFeature element, int oldIndex, int newIndex) {
-	}
-
-	/**
-	 * 
-	 */
-	protected void removeFromModel(EStructuralFeature element) {
-
-		// Start of user code removeFromModel() method body
-		EObject editedElement = modelEditUtil.foundCorrespondingEObject(element);
-		modelEditUtil.removeElement(element);
-		model.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.model, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-		// End of user code
-
-	}
-
-	/**
-	 * 
-	 */
-	protected void editModel(EStructuralFeature element) {
-
-		// Start of user code editModel() method body
-		EObject editedElement = modelEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
-			if (propertiesEditionObject != null) {
-				modelEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
+	protected void addModel() {
+		TabElementTreeSelectionDialog dialog = new TabElementTreeSelectionDialog(model.getInput(), modelFilters, modelBusinessFilters,
+		"model", propertiesEditingComponent.getEditingContext().getAdapterFactory(), current.eResource()) {
+			@Override
+			public void process(IStructuredSelection selection) {
+				for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+					EObject elem = (EObject) iter.next();
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model,
+						PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.ADD, null, elem));
+				}
 				model.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.model, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+			}
+		};
+		dialog.open();
+	}
+
+	/**
+	 * 
+	 */
+	protected void moveModel(EObject element, int oldIndex, int newIndex) {
+		propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.MOVE, element, newIndex));
+		model.refresh();
+	}
+
+	/**
+	 * 
+	 */
+	protected void removeFromModel(EObject element) {
+		propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.REMOVE, null, element));
+		model.refresh();
+	}
+
+	/**
+	 * 
+	 */
+	protected void editModel(EObject element) {
+		EObjectPropertiesEditingContext context = new EObjectPropertiesEditingContext(propertiesEditingComponent.getEditingContext(), propertiesEditingComponent, element, adapterFactory);
+		PropertiesEditingProvider provider = (PropertiesEditingProvider)adapterFactory.adapt(element, PropertiesEditingProvider.class);
+		if (provider != null) {
+			PropertiesEditingPolicy policy = provider.getPolicy(context);
+			if (policy != null) {
+				policy.execute();
+				model.refresh();
 			}
 		}
-		// End of user code
-
 	}
 
-	protected void createViewsAdvancedReferencesTable(Composite parent) {
-		this.views = new ReferencesTable<ElementEditor>(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_ViewsLabel, new ReferencesTableListener<ElementEditor>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ElementEditor> dialog = new TabElementTreeSelectionDialog<ElementEditor>(resourceSet, viewsFilters, viewsBusinessFilters,
-				"ElementEditor", ViewsPackage.eINSTANCE.getElementEditor(), current.eResource()) {
-
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!viewsEditUtil.getVirtualList().contains(elem))
-								viewsEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.views,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						views.refresh();
-					}
-
-				};
-				dialog.open();
-			}
-			public void handleEdit(ElementEditor element) { editViews(element); }
-			public void handleMove(ElementEditor element, int oldIndex, int newIndex) { moveViews(element, oldIndex, newIndex); }
-			public void handleRemove(ElementEditor element) { removeFromViews(element); }
-			public void navigateTo(ElementEditor element) { }
+	/**
+	 * 
+	 */
+	protected Composite createViewsAdvancedReferencesTable(Composite parent) {
+		this.views = new ReferencesTable(MappingMessages.EMFMultiPropertiesBindingPropertiesEditionPart_ViewsLabel, new ReferencesTableListener() {
+			public void handleAdd() { addViews(); }
+			public void handleEdit(EObject element) { editViews(element); }
+			public void handleMove(EObject element, int oldIndex, int newIndex) { moveViews(element, oldIndex, newIndex); }
+			public void handleRemove(EObject element) { removeFromViews(element); }
+			public void navigateTo(EObject element) { }
 		});
-		this.views.setHelpText(propertiesEditionComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.views, MappingViewsRepository.SWT_KIND));
+		this.views.setHelpText(propertiesEditingComponent.getHelpContent(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views, MappingViewsRepository.SWT_KIND));
 		this.views.createControls(parent);
+		this.views.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				if (e.item != null && e.item.getData() instanceof EObject) {
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views, PropertiesEditingEventImpl.CHANGE, PropertiesEditingEventImpl.SELECTION_CHANGED, null, e.item.getData()));
+				}
+			}
+			
+		});
 		GridData viewsData = new GridData(GridData.FILL_HORIZONTAL);
 		viewsData.horizontalSpan = 3;
 		this.views.setLayoutData(viewsData);
 		this.views.disableMove();
+		views.setID(MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views);
+		views.setEEFType("eef::AdvancedReferencesTable"); //$NON-NLS-1$
+		return parent;
 	}
 
 	/**
 	 * 
 	 */
-	protected void moveViews(ElementEditor element, int oldIndex, int newIndex) {
-		EObject editedElement = viewsEditUtil.foundCorrespondingEObject(element);
-		viewsEditUtil.moveElement(element, oldIndex, newIndex);
-		views.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.views, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-	}
-
-	/**
-	 * 
-	 */
-	protected void removeFromViews(ElementEditor element) {
-
-		// Start of user code removeFromViews() method body
-		EObject editedElement = viewsEditUtil.foundCorrespondingEObject(element);
-		viewsEditUtil.removeElement(element);
-		views.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.views, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-		// End of user code
-
-	}
-
-	/**
-	 * 
-	 */
-	protected void editViews(ElementEditor element) {
-
-		// Start of user code editViews() method body
-		EObject editedElement = viewsEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
-			if (propertiesEditionObject != null) {
-				viewsEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
+	protected void addViews() {
+		TabElementTreeSelectionDialog dialog = new TabElementTreeSelectionDialog(views.getInput(), viewsFilters, viewsBusinessFilters,
+		"views", propertiesEditingComponent.getEditingContext().getAdapterFactory(), current.eResource()) {
+			@Override
+			public void process(IStructuredSelection selection) {
+				for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+					EObject elem = (EObject) iter.next();
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views,
+						PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.ADD, null, elem));
+				}
 				views.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.views, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+			}
+		};
+		dialog.open();
+	}
+
+	/**
+	 * 
+	 */
+	protected void moveViews(EObject element, int oldIndex, int newIndex) {
+		propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.MOVE, element, newIndex));
+		views.refresh();
+	}
+
+	/**
+	 * 
+	 */
+	protected void removeFromViews(EObject element) {
+		propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(EMFMultiPropertiesBindingPropertiesEditionPartImpl.this, MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.REMOVE, null, element));
+		views.refresh();
+	}
+
+	/**
+	 * 
+	 */
+	protected void editViews(EObject element) {
+		EObjectPropertiesEditingContext context = new EObjectPropertiesEditingContext(propertiesEditingComponent.getEditingContext(), propertiesEditingComponent, element, adapterFactory);
+		PropertiesEditingProvider provider = (PropertiesEditingProvider)adapterFactory.adapt(element, PropertiesEditingProvider.class);
+		if (provider != null) {
+			PropertiesEditingPolicy policy = provider.getPolicy(context);
+			if (policy != null) {
+				policy.execute();
+				views.refresh();
 			}
 		}
-		// End of user code
-
 	}
 
 
@@ -338,19 +382,20 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
 
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getName()
+	 * 
 	 */
 	public String getName() {
 		return name.getText();
@@ -360,6 +405,7 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#setName(String newValue)
+	 * 
 	 */
 	public void setName(String newValue) {
 		if (newValue != null) {
@@ -369,73 +415,37 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 		}
 	}
 
-	public void setMessageForName(String msg, int msgLevel) {
 
-	}
-
-	public void unsetMessageForName() {
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getModelToAdd()
-	 */
-	public List getModelToAdd() {
-		return modelEditUtil.getElementsToAdd();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getModelToRemove()
-	 */
-	public List getModelToRemove() {
-		return modelEditUtil.getElementsToRemove();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getModelTable()
-	 */
-	public List getModelTable() {
-		return modelEditUtil.getVirtualList();
-	}
 
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#initModel(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#initModel(org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings)
 	 */
-	public void initModel(EObject current, EReference containingFeature, EReference feature) {
+	public void initModel(ReferencesTableSettings settings) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
-			modelEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else
-			modelEditUtil = new EMFListEditUtil(current, feature);
-		this.model.setInput(modelEditUtil.getVirtualList());
+		ReferencesTableContentProvider contentProvider = new ReferencesTableContentProvider();
+		model.setContentProvider(contentProvider);
+		model.setInput(settings);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#updateModel(EObject newValue)
+	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#updateModel()
+	 * 
 	 */
-	public void updateModel(EObject newValue) {
-		if(modelEditUtil != null){
-			modelEditUtil.reinit(newValue);
-			model.refresh();
-		}
-	}
+	public void updateModel() {
+	model.refresh();
+}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#addFilterModel(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToModel(ViewerFilter filter) {
 		modelFilters.add(filter);
@@ -445,6 +455,7 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#addBusinessFilterModel(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToModel(ViewerFilter filter) {
 		modelBusinessFilters.add(filter);
@@ -454,78 +465,43 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#isContainedInModelTable(EObject element)
+	 * 
 	 */
 	public boolean isContainedInModelTable(EObject element) {
-		return modelEditUtil.contains(element);
+		return ((ReferencesTableSettings)model.getInput()).contains(element);
 	}
 
-	public void setMessageForModel(String msg, int msgLevel) {
 
-	}
-
-	public void unsetMessageForModel() {
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getViewsToAdd()
-	 */
-	public List getViewsToAdd() {
-		return viewsEditUtil.getElementsToAdd();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getViewsToRemove()
-	 */
-	public List getViewsToRemove() {
-		return viewsEditUtil.getElementsToRemove();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#getViewsTable()
-	 */
-	public List getViewsTable() {
-		return viewsEditUtil.getVirtualList();
-	}
 
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#initViews(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#initViews(org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings)
 	 */
-	public void initViews(EObject current, EReference containingFeature, EReference feature) {
+	public void initViews(ReferencesTableSettings settings) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
-			viewsEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else
-			viewsEditUtil = new EMFListEditUtil(current, feature);
-		this.views.setInput(viewsEditUtil.getVirtualList());
+		ReferencesTableContentProvider contentProvider = new ReferencesTableContentProvider();
+		views.setContentProvider(contentProvider);
+		views.setInput(settings);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#updateViews(EObject newValue)
+	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#updateViews()
+	 * 
 	 */
-	public void updateViews(EObject newValue) {
-		if(viewsEditUtil != null){
-			viewsEditUtil.reinit(newValue);
-			views.refresh();
-		}
-	}
+	public void updateViews() {
+	views.refresh();
+}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#addFilterViews(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToViews(ViewerFilter filter) {
 		viewsFilters.add(filter);
@@ -535,6 +511,7 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#addBusinessFilterViews(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToViews(ViewerFilter filter) {
 		viewsBusinessFilters.add(filter);
@@ -544,19 +521,11 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.mapping.parts.EMFMultiPropertiesBindingPropertiesEditionPart#isContainedInViewsTable(EObject element)
+	 * 
 	 */
 	public boolean isContainedInViewsTable(EObject element) {
-		return viewsEditUtil.contains(element);
+		return ((ReferencesTableSettings)views.getInput()).contains(element);
 	}
-
-	public void setMessageForViews(String msg, int msgLevel) {
-
-	}
-
-	public void unsetMessageForViews() {
-
-	}
-
 
 
 
@@ -567,7 +536,8 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return MappingMessages.EMFMultiPropertiesBinding_Part_Title;
@@ -576,5 +546,6 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	// Start of user code additional methods
  	
 	// End of user code
+
 
 }

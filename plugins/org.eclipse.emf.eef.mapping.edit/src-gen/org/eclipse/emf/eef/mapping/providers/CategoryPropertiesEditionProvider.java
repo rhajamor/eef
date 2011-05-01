@@ -1,75 +1,129 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.mapping.providers;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
+
 import org.eclipse.emf.eef.mapping.Category;
 import org.eclipse.emf.eef.mapping.MappingPackage;
 import org.eclipse.emf.eef.mapping.components.CategoryBasePropertiesEditionComponent;
 import org.eclipse.emf.eef.mapping.components.CategoryPropertiesEditionComponent;
 import org.eclipse.emf.eef.mapping.components.DocumentedElementPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+import org.eclipse.emf.eef.runtime.providers.impl.PropertiesEditingProviderImpl;
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class CategoryPropertiesEditionProvider implements IPropertiesEditionProvider {
+public class CategoryPropertiesEditionProvider extends PropertiesEditingProviderImpl {
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
+	 * Constructor without provider for super types.
 	 */
-	public boolean provides(EObject eObject) {
-		return (eObject instanceof Category) && (MappingPackage.eINSTANCE.getCategory() == eObject.eClass());
+	public CategoryPropertiesEditionProvider() {
+		super();
 	}
-	
+
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject, java.lang.String)
+	 * Constructor with providers for super types.
+	 * @param superProviders providers to use for super types.
 	 */
-	public boolean provides(EObject eObject, String part) {
-		return provides(eObject)&& (CategoryBasePropertiesEditionComponent.BASE_PART.equals(part) || DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part));
+	public CategoryPropertiesEditionProvider(List<PropertiesEditingProvider> superProviders) {
+		super(superProviders);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext)
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *  java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Category) {
-			return new CategoryPropertiesEditionComponent(eObject, editing_mode);
+	public boolean provides(PropertiesEditingContext editingContext) {
+		return (editingContext.getEObject() instanceof Category) 
+					&& (MappingPackage.eINSTANCE.getCategory() == editingContext.getEObject().eClass());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String)
+	 * 
+	 */
+	public boolean provides(PropertiesEditingContext editingContext, String part) {
+		return (editingContext.getEObject() instanceof Category) && (CategoryBasePropertiesEditionComponent.BASE_PART.equals(part) || DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
+		return (editingContext.getEObject() instanceof Category) && (refinement == CategoryBasePropertiesEditionComponent.class || refinement == DocumentedElementPropertiesEditionComponent.class);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
+		return (editingContext.getEObject() instanceof Category) && ((CategoryBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == CategoryBasePropertiesEditionComponent.class) || (DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part) && refinement == DocumentedElementPropertiesEditionComponent.class));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String)
+	 * 
+	 */
+	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode) {
+		if (editingContext.getEObject() instanceof Category) {
+			return new CategoryPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
-		return null;
+		return super.getPropertiesEditingComponent(editingContext, mode);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String)
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *  java.lang.String, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Category) {
+	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
+		if (editingContext.getEObject() instanceof Category) {
 			if (CategoryBasePropertiesEditionComponent.BASE_PART.equals(part))
-				return new CategoryBasePropertiesEditionComponent(eObject, editing_mode);
+				return new CategoryBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 			if (DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part))
-				return new DocumentedElementPropertiesEditionComponent(eObject, editing_mode);
+				return new DocumentedElementPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
-		return null;
+		return super.getPropertiesEditingComponent(editingContext, mode, part);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
+	 */
+	@SuppressWarnings("unchecked")
+	public PropertiesEditingComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
+		if (editingContext.getEObject() instanceof Category) {
+			if (CategoryBasePropertiesEditionComponent.BASE_PART.equals(part)
+				&& refinement == CategoryBasePropertiesEditionComponent.class)
+				return new CategoryBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
+			if (DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part)
+				&& refinement == DocumentedElementPropertiesEditionComponent.class)
+				return new DocumentedElementPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
+		}
+		return super.getPropertiesEditingComponent(editingContext, mode, part, refinement);
 	}
 
 }
