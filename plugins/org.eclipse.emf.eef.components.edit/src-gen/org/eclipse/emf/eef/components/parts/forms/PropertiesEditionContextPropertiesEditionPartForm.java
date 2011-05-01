@@ -1,32 +1,33 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.components.parts.forms;
 
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.components.parts.ComponentsViewsRepository;
 import org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart;
 import org.eclipse.emf.eef.components.providers.ComponentsMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent;
+import org.eclipse.emf.eef.runtime.notify.impl.PropertiesEditingEventImpl;
+import org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.parts.impl.CompositePropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -47,28 +48,29 @@ import org.eclipse.ui.forms.widgets.Section;
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
+ * 
  */
-public class PropertiesEditionContextPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, PropertiesEditionContextPropertiesEditionPart {
+public class PropertiesEditionContextPropertiesEditionPartForm extends CompositePropertiesEditingPart implements FormPropertiesEditingPart, PropertiesEditionContextPropertiesEditionPart {
 
 	protected EObjectFlatComboViewer model;
 
 
 
-
-
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * @param editionComponent the {@link PropertiesEditingComponent} that manage this part
+	 * 
 	 */
-	public PropertiesEditionContextPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public PropertiesEditionContextPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -84,19 +86,37 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
+	 * @see org.eclipse.emf.eef.runtime.parts.FormPropertiesEditingPart#
 	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		this.messageManager = messageManager;
-		createBindingGroup(widgetFactory, view);
-
-		// Start of user code for additional ui definition
+		CompositionSequence propertiesEditionContextStep = new CompositionSequence();
+		propertiesEditionContextStep
+			.addStep(ComponentsViewsRepository.PropertiesEditionContext.Binding.class)
+			.addStep(ComponentsViewsRepository.PropertiesEditionContext.Binding.model);
 		
-		// End of user code
+		
+		composer = new PartComposer(propertiesEditionContextStep) {
+
+			@Override
+			public Composite addToPart(Composite parent, Object key) {
+				if (key == ComponentsViewsRepository.PropertiesEditionContext.Binding.class) {
+					return createBindingGroup(widgetFactory, parent);
+				}
+				if (key == ComponentsViewsRepository.PropertiesEditionContext.Binding.model) {
+					return createModelFlatComboViewer(parent, widgetFactory);
+				}
+				return parent;
+			}
+		};
+		composer.compose(view);
 	}
-	protected void createBindingGroup(FormToolkit widgetFactory, final Composite view) {
-		Section bindingSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+	/**
+	 * 
+	 */
+	protected Composite createBindingGroup(FormToolkit widgetFactory, final Composite parent) {
+		Section bindingSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		bindingSection.setText(ComponentsMessages.PropertiesEditionContextPropertiesEditionPart_BindingGroupLabel);
 		GridData bindingSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		bindingSectionData.horizontalSpan = 3;
@@ -105,16 +125,18 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 		GridLayout bindingGroupLayout = new GridLayout();
 		bindingGroupLayout.numColumns = 3;
 		bindingGroup.setLayout(bindingGroupLayout);
-		createModelFlatComboViewer(bindingGroup, widgetFactory);
 		bindingSection.setClient(bindingGroup);
+		return bindingGroup;
 	}
 
 	/**
-	 * @param bindingGroup
+	 * @param parent the parent composite
+	 * @param widgetFactory factory to use to instanciante widget of the form
+	 * 
 	 */
-	protected void createModelFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, ComponentsMessages.PropertiesEditionContextPropertiesEditionPart_ModelLabel, propertiesEditionComponent.isRequired(ComponentsViewsRepository.PropertiesEditionContext.model, ComponentsViewsRepository.FORM_KIND));
-		model = new EObjectFlatComboViewer(parent, false);
+	protected Composite createModelFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
+		FormUtils.createPartLabel(widgetFactory, parent, ComponentsMessages.PropertiesEditionContextPropertiesEditionPart_ModelLabel, propertiesEditingComponent.isRequired(ComponentsViewsRepository.PropertiesEditionContext.Binding.model, ComponentsViewsRepository.FORM_KIND));
+		model = new EObjectFlatComboViewer(parent, !propertiesEditingComponent.isRequired(ComponentsViewsRepository.PropertiesEditionContext.Binding.model, ComponentsViewsRepository.FORM_KIND));
 		model.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
 		model.setLayoutData(modelData);
@@ -126,12 +148,14 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PropertiesEditionContextPropertiesEditionPartForm.this, ComponentsViewsRepository.PropertiesEditionContext.model, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getModel()));
+				if (propertiesEditingComponent != null)
+					propertiesEditingComponent.firePropertiesChanged(new PropertiesEditingEventImpl(PropertiesEditionContextPropertiesEditionPartForm.this, ComponentsViewsRepository.PropertiesEditionContext.Binding.model, PropertiesEditingEventImpl.COMMIT, PropertiesEditingEventImpl.SET, null, getModel()));
 			}
 
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ComponentsViewsRepository.PropertiesEditionContext.model, ComponentsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		model.setID(ComponentsViewsRepository.PropertiesEditionContext.Binding.model);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditingComponent.getHelpContent(ComponentsViewsRepository.PropertiesEditionContext.Binding.model, ComponentsViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
 	}
 
 
@@ -139,19 +163,21 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 * @see org.eclipse.emf.eef.runtime.notify.PropertiesEditingListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.notify.PropertiesEditingEvent)
+	 * 
 	 */
-	public void firePropertiesChanged(IPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditingEvent event) {
 		// Start of user code for tab synchronization
-		
-		// Nothing to do
-		// End of user code
+
+// Nothing to do
+// End of user code
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#getModel()
+	 * 
 	 */
 	public EObject getModel() {
 		if (model.getSelection() instanceof StructuredSelection) {
@@ -165,12 +191,12 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#initModel(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#initModel(EObjectFlatComboSettings)
 	 */
-	public void initModel(ResourceSet allResources, EObject current) {
-		model.setInput(allResources);
+	public void initModel(EObjectFlatComboSettings settings) {
+		model.setInput(settings);
 		if (current != null) {
-			model.setSelection(new StructuredSelection(current));
+			model.setSelection(new StructuredSelection(settings.getValue()));
 		}
 	}
 
@@ -178,6 +204,7 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#setModel(EObject newValue)
+	 * 
 	 */
 	public void setModel(EObject newValue) {
 		if (newValue != null) {
@@ -200,6 +227,7 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#addFilterModel(ViewerFilter filter)
+	 * 
 	 */
 	public void addFilterToModel(ViewerFilter filter) {
 		model.addFilter(filter);
@@ -209,6 +237,7 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.components.parts.PropertiesEditionContextPropertiesEditionPart#addBusinessFilterModel(ViewerFilter filter)
+	 * 
 	 */
 	public void addBusinessFilterToModel(ViewerFilter filter) {
 		model.addBusinessRuleFilter(filter);
@@ -217,16 +246,11 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 
 
 
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart#getTitle()
+	 * @see org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart#getTitle()
+	 * 
 	 */
 	public String getTitle() {
 		return ComponentsMessages.PropertiesEditionContext_Part_Title;
@@ -235,5 +259,6 @@ public class PropertiesEditionContextPropertiesEditionPartForm extends Composite
 	// Start of user code additional methods
  	
 	// End of user code
+
 
 }

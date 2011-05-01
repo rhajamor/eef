@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2011 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
@@ -13,8 +13,8 @@ package org.eclipse.emf.eef.components.parts.forms;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.mapping.MappingPackage;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.util.EEFUtil;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.util.EEFUtils;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 /**
@@ -22,8 +22,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
  */
 public class PropertiesEditionElementCustomPropertiesEditionPartForm extends PropertiesEditionElementPropertiesEditionPartForm {
 
-	public PropertiesEditionElementCustomPropertiesEditionPartForm(
-			IPropertiesEditionComponent editionComponent) {
+	public PropertiesEditionElementCustomPropertiesEditionPartForm(PropertiesEditingComponent editionComponent) {
 		super(editionComponent);
 	}
 
@@ -34,8 +33,7 @@ public class PropertiesEditionElementCustomPropertiesEditionPartForm extends Pro
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	public void initModel(ResourceSet allResources, EObject current) {
-		model.setInput(EEFUtil.choiceOfValues(this.current, MappingPackage.eINSTANCE
-				.getEMFPropertyBinding_Model()));
+		model.setInput(EEFUtils.choiceOfValues(this.current, MappingPackage.eINSTANCE.getEMFPropertyBinding_Model()));
 		if (current != null) {
 			model.setSelection(new StructuredSelection(current));
 		}

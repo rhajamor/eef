@@ -1,16 +1,13 @@
-/**
- *  Copyright (c) 2008 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
- * 
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id: ComponentsEditPlugin.java,v 1.4 2009/12/04 15:49:08 sbouchet Exp $
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.components.provider;
 
 import org.eclipse.emf.codegen.ecore.genmodel.provider.GenModelEditPlugin;
@@ -20,7 +17,7 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.eef.components.ComponentsPackage;
 import org.eclipse.emf.eef.mapping.provider.MappingEditPlugin;
-import org.eclipse.emf.eef.runtime.impl.validation.EEFValidator;
+import org.eclipse.emf.eef.runtime.validation.EEFValidator;
 import org.eclipse.emf.eef.views.provider.ViewsEditPlugin;
 
 /**
@@ -53,9 +50,7 @@ public final class ComponentsEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ComponentsEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				GenModelEditPlugin.INSTANCE, MappingEditPlugin.INSTANCE,
-				ViewsEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, GenModelEditPlugin.INSTANCE, MappingEditPlugin.INSTANCE, ViewsEditPlugin.INSTANCE, });
 	}
 
 	/**
@@ -100,8 +95,7 @@ public final class ComponentsEditPlugin extends EMFPlugin {
 			// Remember the static instance.
 			//
 			plugin = this;
-			EValidator.Registry.INSTANCE.put(ComponentsPackage.eINSTANCE,
-					new EEFValidator());
+			EValidator.Registry.INSTANCE.put(ComponentsPackage.eINSTANCE, new EEFValidator());
 		}
 	}
 
