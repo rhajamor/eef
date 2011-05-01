@@ -1,14 +1,13 @@
-/**
- *  Copyright (c) 2008-2010 Obeo.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *  
- *  Contributors:
- *      Obeo - initial API and implementation
+/*******************************************************************************
+ * Copyright (c) 2008, 2011 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.eef.EEFGen.providers;
 
 import org.eclipse.emf.eef.EEFGen.parts.EEFGenViewsRepository;
@@ -20,30 +19,34 @@ import org.eclipse.emf.eef.EEFGen.parts.impl.EEFGenModelPropertiesEditionPartImp
 import org.eclipse.emf.eef.EEFGen.parts.impl.EEFGenModelReferencePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.EEFGen.parts.impl.GenEditionContextPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.EEFGen.parts.impl.GenViewsRepositoryPropertiesEditionPartImpl;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
+import org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.parts.PropertiesEditingPart;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider;
+
+
+
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
- *
+ * 
  */
-public class EEFGenPropertiesEditionPartProvider implements IPropertiesEditionPartProvider {
+public class EEFGenPropertiesEditionPartProvider implements PropertiesEditingPartProvider {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#provides(java.lang.Class)
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider.IPropertiesEditionPartProvider#provides(java.lang.Object)
+	 * 
 	 */
-	public boolean provides(java.lang.Class key) {
+	public boolean provides(Object key) {
 		return key == EEFGenViewsRepository.class;
 	}
 
-	
 	/** 
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#getPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent)
+	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingPartProvider.IPropertiesEditionPartProvider#getPropertiesEditingPart(java.lang.Object, int, org.eclipse.emf.eef.runtime.components.PropertiesEditingComponent)
+	 * 
 	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionComponent component) {
+	public PropertiesEditingPart getPropertiesEditingPart(Object key, int kind, PropertiesEditingComponent component) {
 		if (key == EEFGenViewsRepository.GenEditionContext.class) {
 			if (kind == EEFGenViewsRepository.SWT_KIND)
 				return new GenEditionContextPropertiesEditionPartImpl(component);

@@ -2,18 +2,15 @@
 <?eclipse version="3.0"?>
 
 <!--
-  Copyright (c) 2008-2009 Obeo.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the Eclipse Public License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/legal/epl-v10.html
-  
-  Contributors:
-      Obeo - initial API and implementation
- 
-
- $Id: plugin.xml,v 1.5 2009/12/11 11:05:41 sbouchet Exp $
--->
+    Copyright (c) 2008, 2009 Obeo.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Obeo - initial API and implementation
+ -->
 
 <plugin>
 
@@ -31,17 +28,11 @@
    
    <!-- EEF extensions -->
    
-   <extension
-         point="org.eclipse.emf.eef.runtime.PropertiesEditionProvider">
-      <PropertiesEditionComponentProvider
-            providerClass="org.eclipse.emf.eef.EEFGen.providers.EEFGenPackagePropertiesEditionProvider">
-      </PropertiesEditionComponentProvider>
-   </extension>
-   <extension
-         point="org.eclipse.emf.eef.runtime.PropertiesEditionPolicyProvider">
-      <PropertiesEditionPolicyProvider
-            providerClass="org.eclipse.emf.eef.EEFGen.providers.EEFGenPackagePropertiesEditionPolicyProvider">
-      </PropertiesEditionPolicyProvider>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/generation/1.0.0"
+            class="org.eclipse.emf.eef.EEFGen.providers.EEFGenEEFAdapterFactory"
+            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension
          point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
@@ -82,7 +73,7 @@
       <propertySections
             contributorId="org.eclipse.emf.eef.properties">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.EEFGen.section.GenEditionContext"
                tab="Base">
              <input
@@ -90,7 +81,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.EEFGen.section.EEFGenModelReference"
                tab="Base">
              <input
@@ -98,7 +89,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.EEFGen.section.EEFGenModel"
                tab="Base">
              <input
@@ -106,7 +97,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditingSection"
                id="org.eclipse.emf.eef.EEFGen.section.GenViewsRepository"
                tab="Base">
              <input
