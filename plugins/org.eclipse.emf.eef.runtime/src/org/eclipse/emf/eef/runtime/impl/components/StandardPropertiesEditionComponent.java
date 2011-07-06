@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
@@ -173,7 +174,7 @@ public abstract class StandardPropertiesEditionComponent implements IPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 */
 	public void firePropertiesChanged(final IPropertiesEditionEvent event) {
-		if (!isInitializing()) {
+		if (!isInitializing() && shouldProcess(event)) {
 			Diagnostic valueDiagnostic = validateValue(event);
 			if (valueDiagnostic.getSeverity() != Diagnostic.OK && valueDiagnostic instanceof BasicDiagnostic)
 				propagateEvent(new PropertiesValidationEditionEvent(event, valueDiagnostic));
@@ -272,6 +273,22 @@ public abstract class StandardPropertiesEditionComponent implements IPropertiesE
 		}
 	}
 
+	/**
+	 * @param event event to process
+	 * @return <code>true</code> if the event should really launch a command.
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+		return true;
+	}
+	
+	/**
+	 * @param editorKey key of the editor we searching associated feature.
+	 * @return the associated feature.
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		return null;
+	}
+	
 	/**
 	 * Update the model in response to a view event
 	 * 
