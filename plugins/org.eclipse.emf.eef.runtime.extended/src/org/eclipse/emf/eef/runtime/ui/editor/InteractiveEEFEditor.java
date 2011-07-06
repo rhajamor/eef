@@ -25,6 +25,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -40,6 +47,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -269,9 +277,96 @@ public class InteractiveEEFEditor extends FormEditor
 				basicUnsetTarget(target);
 			}
 		};
+		
+		private IResourceChangeListener resourceChangeListener = null;
+
+		/**
+		 * This listens for workspace changes.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		private IResourceChangeListener initResourceChangeListener() {
+			IResourceChangeListener resourceChangeListner = 
+			new IResourceChangeListener() {
+				public void resourceChanged(IResourceChangeEvent event) {
+					IResourceDelta delta = event.getDelta();
+					try {
+						class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+							protected ResourceSet resourceSet = editingDomain.getResourceSet();
+							protected Collection<Resource> changedResources = new ArrayList<Resource>();
+							protected Collection<Resource> removedResources = new ArrayList<Resource>();
+
+							public boolean visit(IResourceDelta delta) {
+								if (delta.getResource().getType() == IResource.FILE) {
+									if (delta.getKind() == IResourceDelta.REMOVED ||
+									    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+										Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+										if (resource != null) {
+											if (delta.getKind() == IResourceDelta.REMOVED) {
+												removedResources.add(resource);
+											}
+											else if (!savedResources.remove(resource)) {
+												changedResources.add(resource);
+											}
+										}
+									}
+								}
+
+								return true;
+							}
+
+							public Collection<Resource> getChangedResources() {
+								return changedResources;
+							}
+
+							public Collection<Resource> getRemovedResources() {
+								return removedResources;
+							}
+						}
+
+						final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+						delta.accept(visitor);
+
+						if (!visitor.getRemovedResources().isEmpty()) {
+							getSite().getShell().getDisplay().asyncExec
+								(new Runnable() {
+									 public void run() {
+										 removedResources.addAll(visitor.getRemovedResources());
+										 if (!isDirty()) {
+											 getSite().getPage().closeEditor(InteractiveEEFEditor.this, false);
+										 }
+									 }
+								 });
+						}
+
+						if (!visitor.getChangedResources().isEmpty()) {
+							getSite().getShell().getDisplay().asyncExec
+								(new Runnable() {
+									 public void run() {
+										 changedResources.addAll(visitor.getChangedResources());
+										 if (getSite().getPage().getActiveEditor() == InteractiveEEFEditor.this) {
+											 handleActivate();
+										 }
+									 }
+								 });
+						}
+					}
+					catch (CoreException exception) {
+						EEFExtendedRuntime.INSTANCE.log(exception);
+					}
+				}
+			};
+			return resourceChangeListner;
+		}
+
 
 	protected MessageProcessor messageProcessor;
 
+	/**
+	 * Determines if the current edited resource is saving. 
+	 */
+	private boolean isSaving = false;
 	
 	/**
 	 * Handles activation of the editor or it's associated views.
@@ -309,7 +404,7 @@ public class InteractiveEEFEditor extends FormEditor
 	 * Handles what to do with changed resources on activation.
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+		if (!changedResources.isEmpty() && (!isDirty() || (!isSaving && handleDirtyConflict()))) {
 			if (isDirty()) {
 				changedResources.addAll(editingDomain.getResourceSet().getResources());
 			}
@@ -409,6 +504,8 @@ public class InteractiveEEFEditor extends FormEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		resourceChangeListener = initResourceChangeListener();
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 
 	}
 
@@ -882,7 +979,9 @@ public class InteractiveEEFEditor extends FormEditor
 		try {
 			// This runs the options, and shows progress.
 			//
+			isSaving = true;
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+			isSaving = false;
 
 			// Refresh the necessary state.
 			//
@@ -1171,6 +1270,9 @@ public class InteractiveEEFEditor extends FormEditor
 			contentOutlinePage.dispose();
 		}
 
+		if (resourceChangeListener != null) {
+			ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+		}
 		super.dispose();
 	}
 
