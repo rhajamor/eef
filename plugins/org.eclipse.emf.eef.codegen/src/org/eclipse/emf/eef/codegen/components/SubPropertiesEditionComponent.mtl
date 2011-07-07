@@ -224,6 +224,19 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view))]
+		if (editorKey == [pee.views->first().editorID()/]) {
+			return [pee.metamodelGetter()/];
+		}
+		[/for]
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
