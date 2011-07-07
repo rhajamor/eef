@@ -16,3 +16,8 @@
 [template public toMany(s: String) overrides toMany]
 [if (s.endsWith('y') and not s.endsWith('By'))][s.substring(1, s.size()-1).concat('ies')/][elseif (s.endsWith('ex'))][s.substring(1, s.size()-2).concat('ices')/][elseif (s.endsWith('Data') or s.endsWith('ctual') or s = 'type')][s/][elseif not (s.endsWith('s'))][s.concat('s')/][else][s/][/if]
 [/template]
+
+[comment ==== For boolean model features getters (thanks to UML !) ==== /]
+[template public booleanGetter(feature : EStructuralFeature) overrides booleanGetter]
+[if feature.name.startsWith('Is')][feature.name.toLowerFirst()/][/if]
+[/template]

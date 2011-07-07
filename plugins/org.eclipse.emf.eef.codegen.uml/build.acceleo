@@ -12,16 +12,13 @@
 	</target>
 
 	<!-- ================================================================= -->
-	<!-- Steps to do after the target gather.bin.parts                     -->
-	<!-- Available parameters :                                            -->
-	<!--   build.result.folder - folder containing the build results       -->
-	<!--   target.folder - destination folder                              -->
+	<!-- This will be called automatically after the compilation of each   -->
+	<!-- Bundle... in dependency order.                                    -->
 	<!-- ================================================================= -->
-
-	<target name="post.gather.bin.parts">
+	<target name="post.compile.@dot">
 		<acceleoCompiler 
 			sourceFolders="${target.folder}" 
-			dependencies="${target.folder}/../org.eclipse.emf.eef.codegen;${target.folder}/../org.eclipse.emf.eef.components;${target.folder}/../org.eclipse.emf.eef.mapping;${target.folder}/../org.eclipse.emf.eef.views;${target.folder}/../org.eclipse.emf.eef.components.edit;${target.folder}/../org.eclipse.emf.eef.mapping.edit;${target.folder}/../org.eclipse.emf.eef.views.edit;${target.folder}/../org.eclipse.emf.eef.runtime;${target.folder}/../org.eclipse.emf.eef.eefgen;">
+			dependencies="${target.folder}/../../org.eclipse.emf.eef.codegen;">
 		</acceleoCompiler>
 	</target>	
 
