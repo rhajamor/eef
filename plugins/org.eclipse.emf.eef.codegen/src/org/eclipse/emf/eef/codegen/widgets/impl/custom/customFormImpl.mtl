@@ -26,7 +26,7 @@
 	[/if]
 [/template]
 
-[template public implementation(editor : CustomElementEditor) overrides  implementation]
+[template public implementation(editor : CustomElementEditor) overrides implementation]
 [if (not editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 		// [protected ('for '.concat(editor.name).concat(' widgets implementation'))]
 		

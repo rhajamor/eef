@@ -557,7 +557,7 @@
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/addImport">
       <details key="start" value="583"/>
-      <details key="end" value="805"/>
+      <details key="end" value="798"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/addImport/arg0">
@@ -571,8 +571,8 @@
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/addImport/@expression">
-      <details key="start" value="658"/>
-      <details key="end" value="802"/>
+      <details key="start" value="651"/>
+      <details key="end" value="795"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/addImport/@expression/self">
@@ -581,43 +581,43 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/addImport/@expression/@argument.0">
-      <details key="start" value="665"/>
-      <details key="end" value="717"/>
+      <details key="start" value="658"/>
+      <details key="end" value="710"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/addImport/@expression/@argument.1">
-      <details key="start" value="719"/>
-      <details key="end" value="779"/>
+      <details key="start" value="712"/>
+      <details key="end" value="772"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/addImport/@expression/@argument.2">
-      <details key="start" value="781"/>
-      <details key="end" value="801"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/addImport/@expression/@argument.2/@part.0/arg0">
-      <details key="start" value="790"/>
+      <details key="start" value="774"/>
       <details key="end" value="794"/>
       <details key="line" value="0"/>
     </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/addImport/@expression/@argument.2/@part.0/arg0">
+      <details key="start" value="783"/>
+      <details key="end" value="787"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
     <eAnnotations source="positions.9" references="/0/addImport/@expression/@argument.2/@part.1/arg1">
-      <details key="start" value="796"/>
-      <details key="end" value="800"/>
+      <details key="start" value="789"/>
+      <details key="end" value="793"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/getImports">
-      <details key="start" value="807"/>
-      <details key="end" value="991"/>
+      <details key="start" value="800"/>
+      <details key="end" value="977"/>
       <details key="line" value="18"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/getImports/arg0">
-      <details key="start" value="832"/>
-      <details key="end" value="846"/>
+      <details key="start" value="825"/>
+      <details key="end" value="839"/>
       <details key="line" value="18"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/getImports/@expression">
-      <details key="start" value="867"/>
-      <details key="end" value="988"/>
+      <details key="start" value="853"/>
+      <details key="end" value="974"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/getImports/@expression/self">
@@ -626,23 +626,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/getImports/@expression/@argument.0">
-      <details key="start" value="874"/>
-      <details key="end" value="926"/>
+      <details key="start" value="860"/>
+      <details key="end" value="912"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/getImports/@expression/@argument.1">
-      <details key="start" value="928"/>
-      <details key="end" value="971"/>
+      <details key="start" value="914"/>
+      <details key="end" value="957"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/getImports/@expression/@argument.2">
-      <details key="start" value="973"/>
-      <details key="end" value="987"/>
+      <details key="start" value="959"/>
+      <details key="end" value="973"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/getImports/@expression/@argument.2/@part.0/arg0">
-      <details key="start" value="982"/>
-      <details key="end" value="986"/>
+      <details key="start" value="968"/>
+      <details key="end" value="972"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

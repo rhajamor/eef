@@ -10,7 +10,7 @@
  *     Obeo - initial API and implementation
  *******************************************************************************
  /]
-[module naming('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/generation/1.0.0')/]
+[module naming('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/generation/1.0.0', 'http://www.eclipse.org/emf/2002/GenModel')/]
 
 [import common /]
 
@@ -258,7 +258,7 @@ CompositePropertiesEditionPart
 [/template]
 
 [template public editionElementPackage(pee : PropertiesEditionElement)]
-[if (pee.model.eType.ePackage.name = 'ecore')]EcorePackage[else][pee.model.eType.ePackage.eInverse().oclAsType(EObject)->select(eClass().name = 'GenPackage')->asSequence()->first().oclAsType(genmodel::GenPackage).prefix/]Package[/if]
+[if (pee.model.eType.ePackage.name = 'ecore')]EcorePackage[else][pee.model.eType.ePackage.eInverse().oclAsType(EObject)->select(eClass().name = 'GenPackage')->asSequence()->first().oclAsType(GenPackage).prefix/]Package[/if]
 [/template]
 
 [comment FIXME: once template call on a model navigation bug fix /]

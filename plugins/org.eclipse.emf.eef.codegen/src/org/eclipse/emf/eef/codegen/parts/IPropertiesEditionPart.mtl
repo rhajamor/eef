@@ -22,15 +22,14 @@ import java.util.List;
 import java.util.Map;
 
 [view.genImports()/]
-[for (viewReference : ViewReference | view.eAllContents(views::ViewReference))]
+[for (viewReference : ViewReference | view.eAllContents(ViewReference))]
 [viewReference.view.genImports()/]
 [/for]
 [view.additionalImports()/]
 [/template]
 
 [template public IPropertiesEditionPart(viewRepository : ViewsRepository)]
-[comment @main /]
-[for (view : View | viewRepository.eAllContents(views::View).oclAsType(views::View))]
+[for (view : View | viewRepository.eAllContents(View).oclAsType(View))]
 [file (fullFilePath(view), false)]
 [viewRepository.associatedGenModel().licenceText().trim()/]
 package [view.partsPackage()/];
@@ -50,18 +49,18 @@ package [view.partsPackage()/];
  */
 public interface [view.pepInterface()/] {
 
-[for (elementEditor : ElementEditor | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(not oclIsKindOf(views::CustomElementEditor) and owningView() = view))]
+[for (elementEditor : ElementEditor | view.eAllContents(ElementEditor).oclAsType(ElementEditor)->select(not oclIsKindOf(CustomElementEditor) and owningView() = view))]
 [elementEditor.genDeclaration()/]
 
 [/for]
-[for (subView : View | view.eAllContents(views::View))]
+[for (subView : View | view.eAllContents(View))]
 [subView.genDeclarationForSubViews()/]
 [/for]
 [comment viewReference Support/]
 [view.genDeclarationForViewReference()/]
 
 [if (not viewRepository.associatedGenModel().useJMergeForUserCode)]
-[for (viewElement : ViewElement | view.eAllContents(views::ElementEditor)->select(oclIsTypeOf(views::CustomElementEditor)))]
+[for (viewElement : ViewElement | view.eAllContents(ElementEditor)->select(oclIsTypeOf(CustomElementEditor)))]
 	// [protected ('for '.concat(viewElement.name).concat(' specific getters and setters declaration'))]
 	
 	// [/protected]
@@ -85,7 +84,7 @@ public interface [view.pepInterface()/] {
 }
 [/file]
 [/for]
-[for (view : View | viewRepository.eAllContents(views::CustomView).oclAsType(views::CustomView))]
+[for (view : View | viewRepository.eAllContents(CustomView).oclAsType(CustomView))]
 	[file (fullFilePath(view), false)]
 [viewRepository.associatedGenModel().licenceText().trim()/]
 package [view.partsPackage()/];

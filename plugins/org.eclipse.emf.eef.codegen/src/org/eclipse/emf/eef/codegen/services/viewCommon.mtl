@@ -184,19 +184,19 @@ public void update[editor.model.eContainingClass.name.toUpperFirst()/]_[editor.m
 	}
 [/template]
 
-[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(ecore::EAttribute).isString() and (editor.model.upperBound = 0 or editor.model.upperBound = 1))]
+[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(EAttribute).isString() and (editor.model.upperBound = 0 or editor.model.upperBound = 1))]
 [editor.partSetterSignature()/] {
 		[editor.views->first().name.toJavaIdentifier()/].setText(newValue);
 	}
 [/template]
 
-[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(ecore::EAttribute).isBoolean())]
+[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(EAttribute).isBoolean())]
 [editor.partSetterSignature()/] {
 		[editor.views->first().name.toJavaIdentifier()/].setSelection(newValue.booleanValue());
 	}
 [/template]
 
-[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(ecore::EAttribute).isInteger() or editor.model.oclAsType(ecore::EAttribute).isShort()or editor.model.oclAsType(ecore::EAttribute).isLong())]
+[template public partSetter(editor : PropertiesEditionElement) ? (editor.model.oclAsType(EAttribute).isInteger() or editor.model.oclAsType(EAttribute).isShort()or editor.model.oclAsType(EAttribute).isLong())]
 [editor.partSetterSignature()/] {
 		[editor.views->first().name.toJavaIdentifier()/].setText(newValue.toString());
 	}

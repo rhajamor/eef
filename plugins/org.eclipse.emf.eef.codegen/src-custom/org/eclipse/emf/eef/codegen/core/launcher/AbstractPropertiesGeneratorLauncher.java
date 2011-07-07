@@ -70,7 +70,6 @@ public abstract class AbstractPropertiesGeneratorLauncher implements IProperties
 	 * @return the template URI
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
 	protected URI getTemplateURI(String bundleID, IPath relativePath) throws IOException {
 		Bundle bundle = Platform.getBundle(bundleID);
 		if (bundle == null) {

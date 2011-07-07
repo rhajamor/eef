@@ -61,7 +61,7 @@
 		if (newValue != null) {
 			[elementEditor.name.toJavaIdentifier()/].setSelection(new StructuredSelection(newValue));
 		} else {
-			[elementEditor.name.toJavaIdentifier()/].setSelection(new StructuredSelection(""));  //$NON-NLS-1$
+			[elementEditor.name.toJavaIdentifier()/].setSelection(new StructuredSelection("")); //$NON-NLS-1$
 		}
 	}
 [/template]
@@ -79,7 +79,7 @@
 		if (newValue != null) {
 			[elementEditor.name.toJavaIdentifier()/].initViewer(key, newValue);
 		} else {
-			[elementEditor.name.toJavaIdentifier()/].initViewer(key, "");  //$NON-NLS-1$
+			[elementEditor.name.toJavaIdentifier()/].initViewer(key, ""); //$NON-NLS-1$
 		}
 	}
 [/template]

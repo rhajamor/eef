@@ -70,4 +70,3 @@ create[editor.name.toJavaClassifier()/]EMFComboViewer(parent);
 		return parent;
 	}
 [/template]
-

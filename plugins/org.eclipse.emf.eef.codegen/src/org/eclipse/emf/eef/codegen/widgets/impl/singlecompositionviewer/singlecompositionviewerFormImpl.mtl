@@ -63,7 +63,7 @@ create[editor.name.toJavaClassifier()/]SingleCompositionViewer(widgetFactory, pa
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this,  [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.viewPackageGetter()/]()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.viewPackageGetter()/]()));
 					}
 				}
 			});
@@ -73,7 +73,7 @@ create[editor.name.toJavaClassifier()/]SingleCompositionViewer(widgetFactory, pa
 				public void widgetSelected(SelectionEvent e) {
 					if(![editor.name.toJavaIdentifier()/].getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this,  [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 						}
 					}
 				}

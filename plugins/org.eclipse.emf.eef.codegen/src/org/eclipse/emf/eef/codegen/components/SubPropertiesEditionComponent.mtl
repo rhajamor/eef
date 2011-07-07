@@ -46,26 +46,26 @@ import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 [view.manageImportForViewReferences(pec, basePackage)/]
 [comment add import for ViewReference/]
 import org.eclipse.emf.ecore.EStructuralFeature;
-[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)) ? ((not model.eType.oclIsKindOf(ecore::EDataType)) or model.eType.oclIsKindOf(ecore::EEnum))]
+[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)) ? ((not model.eType.oclIsKindOf(EDataType)) or model.eType.oclIsKindOf(EEnum))]
 import [pee.model.eType.qualifiedName(basePackage)/];
-[if (not pee.navigation.oclIsUndefined() and pee.navigation.oclIsKindOf(mapping::navigation::SimpleModelNavigation) and not pee.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).discriminatorType.oclIsUndefined())]
-import [pee.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).discriminatorType.qualifiedName(basePackage)/];
+[if (not pee.navigation.oclIsUndefined() and pee.navigation.oclIsKindOf(SimpleModelNavigation) and not pee.navigation.oclAsType(SimpleModelNavigation).discriminatorType.oclIsUndefined())]
+import [pee.navigation.oclAsType(SimpleModelNavigation).discriminatorType.qualifiedName(basePackage)/];
 [/if]
 [/for]
-[for (ePackage : EPackage | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select((not model.eType.oclIsKindOf(ecore::EDataType)) or model.eType.oclIsKindOf(ecore::EEnum)).model.eType.ePackage->asSet())]
+[for (ePackage : EPackage | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select((not model.eType.oclIsKindOf(EDataType)) or model.eType.oclIsKindOf(EEnum)).model.eType.ePackage->asSet())]
 import [ePackage.qualifiedMetamodelPackage()/];
 import [ePackage.qualifiedMetamodelFactory()/];
 [/for]
-[for (v : View | view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view)]
-[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(v).oclAsType(components::PropertiesEditionElement)) ? ((not model.eType.oclIsKindOf(ecore::EDataType)) or model.eType.oclIsKindOf(ecore::EEnum))]
+[for (v : View | view.eAllContents(ViewReference).oclAsType(ViewReference).view)]
+[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(v).oclAsType(PropertiesEditionElement)) ? ((not model.eType.oclIsKindOf(EDataType)) or model.eType.oclIsKindOf(EEnum))]
 import [pee.model.eType.qualifiedName(basePackage)/];
-[if (model.eType.oclIsTypeOf(ecore::EEnum))]
+[if (model.eType.oclIsTypeOf(EEnum))]
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 [/if]
 [/for]
 [/for]
-[if (pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(model.eType.oclIsKindOf(EEnum))->notEmpty())]
+[if (pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select(model.eType.oclIsKindOf(EEnum))->notEmpty())]
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -77,29 +77,29 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.WrappedException;
-[if (pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement).views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty())]
+[if (pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement).views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty())]
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 [/if]
-[if (pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement).views->select(representation.name = 'ReferencesTable' or representation.name = 'AdvancedReferencesTable')->notEmpty())]
+[if (pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement).views->select(representation.name = 'ReferencesTable' or representation.name = 'AdvancedReferencesTable')->notEmpty())]
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.ecore.resource.Resource;
 [/if]
-[if (pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement).views->select(representation.name = 'MultiValuedEditor')->notEmpty())]
+[if (pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement).views->select(representation.name = 'MultiValuedEditor')->notEmpty())]
 import org.eclipse.emf.common.util.EList;
 [/if]
 import org.eclipse.emf.edit.domain.EditingDomain;
-[for (ePackage : EPackage | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(ecore::EClass).ePackage))]
+[for (ePackage : EPackage | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(EClass).ePackage))]
 import [ePackage.qualifiedMetamodelPackage()/];
 [/for]
 [comment]
 [let deferredPec : PropertiesEditionComponent = if (pec.views->includes(view))
 	then pec
-	else pec.referencedBinding.binding->select(views->includes(view))->first().oclAsType(components::PropertiesEditionComponent)
+	else pec.referencedBinding.binding->select(views->includes(view))->first().oclAsType(PropertiesEditionComponent)
 	endif]
 import [view.owningViewsRepository().vrPackage()/].parts.[view.pepInterface()/];
 [/let]
@@ -119,7 +119,7 @@ import [element.model.eType.qualifiedName(basePackage)/];
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 [/for]
-[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty()))]
+[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select(views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty()))]
 import [pee.model.eType.qualifiedName(basePackage)/];
 [/for]
 [for (vr : ViewsRepository | pec.involvedViews().oclAsType(views::View).owningViewsRepository()->asSet())]
@@ -135,8 +135,8 @@ import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectStrictFilter;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
-[for (bindingFilter : BindingFilter | element.bindingFilters) ? (bindingFilter.oclIsTypeOf(mapping::filters::OnlyReferenceTypeFilter))]
-import [bindingFilter.oclAsType(mapping::filters::OnlyReferenceTypeFilter).reference.eContainingClass.qualifiedMetamodelPackage()/];
+[for (bindingFilter : BindingFilter | element.bindingFilters) ? (bindingFilter.oclIsTypeOf(OnlyReferenceTypeFilter))]
+import [bindingFilter.oclAsType(OnlyReferenceTypeFilter).reference.eContainingClass.qualifiedMetamodelPackage()/];
 [/for]
 [/for]
 import org.eclipse.swt.widgets.Display;
@@ -145,8 +145,7 @@ import org.eclipse.ui.PlatformUI;
 [/template]
 
 [template public SubPropertiesEditionComponent(peContext : PropertiesEditionContext, basePackage : String)]
-[comment @main /]
-[for (pec : PropertiesEditionComponent | peContext.eAllContents(components::PropertiesEditionComponent))]
+[for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 [if (pec.mustBeGenerated())]
 	[for (view : View | pec.views) ? (not view.isDynamicView())]
 [file (pec.fullFilePath(view, basePackage), false)]
@@ -277,17 +276,17 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 		}
 	}
 
-[if (not pec.properties.oclAsType(components::PropertiesEditionElement).views->includesAll(view.eAllContents(views::ElementEditor)))]
+[if (not pec.properties.oclAsType(PropertiesEditionElement).views->includesAll(view.eAllContents(views::ElementEditor)))]
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#mustBeComposed(java.lang.Object, int)
 	 */
 	public boolean mustBeComposed(Object key, int kind) {
-	[let containers : Set(views::Container) = view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()->select(e | e.oclIsTypeOf(views::Container))->asOrderedSet()]		
-		return [for (pee : PropertiesEditionElement | pec.properties.oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | view.eAllContents(ElementEditor)->includes(pee.views->first()))) separator (' || ')]key == [pee.views->first().editorID()/][/for][if (containers->notEmpty())] || [for (cont : views::Container | containers) separator (' || ')]key == [cont.editorID()/].class[/for][/if];
+	[let containers : Set(views::Container) = view.eAllContents(ElementEditor)->reject(e : ElementEditor | not pec.properties.views->includes(e)).ancestors()->select(e | e.oclIsTypeOf(views::Container))->asOrderedSet()]
+		return [for (pee : PropertiesEditionElement | pec.properties.oclAsType(PropertiesEditionElement)->select(pee : PropertiesEditionElement | view.eAllContents(ElementEditor)->includes(pee.views->first()))) separator (' || ')]key == [pee.views->first().editorID()/][/for][if (containers->notEmpty())] || [for (cont : views::Container | containers) separator (' || ')]key == [cont.editorID()/].class[/for][/if];
 	[/let]
 	}
-[/if][if (pec.properties.oclAsType(components::PropertiesEditionElement)->select(localPee : components::PropertiesEditionElement | localPee.model.required)->notEmpty())]
+[/if][if (pec.properties.oclAsType(PropertiesEditionElement)->select(localPee : PropertiesEditionElement | localPee.model.required)->notEmpty())]
 
 	/**
 	 * {@inheritDoc}
@@ -296,10 +295,10 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
 	public boolean isRequired(Object key, int kind) {
-		return [for (pee : PropertiesEditionElement | pec.properties.oclAsType(components::PropertiesEditionElement)->select(f : components::PropertiesEditionElement | f.model.required)) separator (' || ')]key == [pee.views->first().editorID()/][/for];
+		return [for (pee : PropertiesEditionElement | pec.properties.oclAsType(PropertiesEditionElement)->select(f : PropertiesEditionElement | f.model.required)) separator (' || ')]key == [pee.views->first().editorID()/][/for];
 	}
 [/if]
-[if (pec.properties.oclAsType(components::PropertiesEditionElement)->select(localPee : components::PropertiesEditionElement | not localPee.helpText().oclIsUndefined() and not (localPee.helpText().trim() = 'null'))->notEmpty())]
+[if (pec.properties.oclAsType(PropertiesEditionElement)->select(localPee : PropertiesEditionElement | not localPee.helpText().oclIsUndefined() and not (localPee.helpText().trim() = 'null'))->notEmpty())]
 
 	/**
 	 * {@inheritDoc}
@@ -308,7 +307,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
 	public String getHelpContent(Object key, int kind) {
-		[for (pee : PropertiesEditionElement | pec.properties.oclAsType(components::PropertiesEditionElement)->select(f : components::PropertiesEditionElement | not f.helpText().oclIsUndefined() and not (f.helpText().trim() = 'null')))]
+		[for (pee : PropertiesEditionElement | pec.properties.oclAsType(PropertiesEditionElement)->select(f : PropertiesEditionElement | not f.helpText().oclIsUndefined() and not (f.helpText().trim() = 'null')))]
 		if (key == [pee.views->first().editorID()/])
 			return [pee.helpText().trim()/]; //$NON-NLS-1$
 		[/for]
@@ -335,7 +334,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 		Diagnostic ret = Diagnostic.OK_INSTANCE;
 		if (event.getNewValue() != null) {
 			try {
-[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view)) ? (editionElement.model.oclIsTypeOf(ecore::EAttribute))]
+[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view)) ? (editionElement.model.oclIsTypeOf(EAttribute))]
 				if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
 				[if (editionElement.model.many)]
 					BasicDiagnostic chain = new BasicDiagnostic();
@@ -356,7 +355,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 [/for]
 [comment add ViewReference support/]
 [for ( v : View | view.referencedViews())]
-	[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(v)) ? (editionElement.model.oclIsTypeOf(ecore::EAttribute))]
+	[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(v)) ? (editionElement.model.oclIsTypeOf(EAttribute))]
 				if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
 				[if (editionElement.model.many)]
 					BasicDiagnostic chain = new BasicDiagnostic();

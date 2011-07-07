@@ -25,7 +25,7 @@
 [comment @Override widgetControl.liveUpdater /]
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
 if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && isAccessible([editionElement.views->first().editorID()/])){
-[if (editionElement.model.oclAsType(ecore::EAttribute).isString())]
+[if (editionElement.model.oclAsType(EAttribute).isString())]
 	if (msg.getNewValue() != null) {
 		[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]((String)msg.getNewValue());
 	}
@@ -40,7 +40,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && isAccessible
 
 [comment @Override widgetControl.updater /]
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
-[if (editionElement.model.oclAsType(ecore::EAttribute).isString())]
+[if (editionElement.model.oclAsType(EAttribute).isString())]
 if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null && isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EcoreUtil.getIdentification([pec.model.name.toJavaIdentifier()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toJavaClassifier()/]());
 }
@@ -52,5 +52,4 @@ if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFi
 [comment @Override widgetControl.filterUpdater /]
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
 [/template]
-
 

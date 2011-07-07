@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-[if (view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->notEmpty())]
+[if (view.eAllContents(ElementEditor).oclAsType(ElementEditor)->notEmpty())]
 import org.eclipse.osgi.util.NLS;
 [/if]
 import org.eclipse.swt.SWT;
@@ -62,41 +62,41 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 
-[for (ePackage : EPackage | pec.involvedEditionElements().oclAsType(components::PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(ecore::EClass).ePackage))]
+[for (ePackage : EPackage | pec.involvedEditionElements().oclAsType(PropertiesEditionElement).model.eContainingClass.ePackage->asSet()->including(pec.model.oclAsType(EClass).ePackage))]
 import [ePackage.qualifiedMetamodelPackage()/];
 [/for]
-[for (viewRepository : ViewsRepository | pec.involvedViews().oclAsType(views::View).owningViewsRepository()->asSet())]
+[for (viewRepository : ViewsRepository | pec.involvedViews().oclAsType(View).owningViewsRepository()->asSet())]
 import [viewRepository.qualifiedMessagesProvider()/];
 [/for]
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import [view.partQualifiedSuperclass()/];
-[if (view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(representation.name = 'ReferencesTable' or representation.name = 'AdvancedReferencesTable' or representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty())]
+[if (view.eAllContents(ElementEditor).oclAsType(ElementEditor)->select(representation.name = 'ReferencesTable' or representation.name = 'AdvancedReferencesTable' or representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty())]
 import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
 [/if]
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import [view.pepQualifiedInterface()/];
-[for (widget : Widget | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor).representation->asSet()) ]
+[for (widget : Widget | view.eAllContents(ElementEditor).oclAsType(ElementEditor).representation->asSet()) ]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
-[for (widget : Widget | view.eAllContents(views::Container).oclAsType(views::Container).representation->asSet()) ? (not widget.oclIsUndefined())]
+[for (widget : Widget | view.eAllContents(Container).oclAsType(Container).representation->asSet()) ? (not widget.oclIsUndefined())]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
-[for (viewsRepository : ViewsRepository | view.eAllContents(views::ViewReference).oclAsType(views::ViewReference).view.oclAsType(views::View).owningViewsRepository()->append(view.owningViewsRepository()))]
+[for (viewsRepository : ViewsRepository | view.eAllContents(ViewReference).oclAsType(ViewReference).view.oclAsType(View).owningViewsRepository()->append(view.owningViewsRepository()))]
 import [viewsRepository.vrQualifiedClass()/];
 [/for]
-[if (view.eAllContents(views::ViewReference)->notEmpty() or view.eAllContents(views::View)->notEmpty())]
+[if (view.eAllContents(ViewReference)->notEmpty() or view.eAllContents(View)->notEmpty())]
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-[for (viewRef : ViewReference | view.eAllContents(views::ViewReference).oclAsType(views::ViewReference)) ]
-import [viewRef.view.oclAsType(views::View).pepQualifiedInterface()/];
-[for (widget : Widget | viewRef.view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor).representation->asSet())]
+[for (viewRef : ViewReference | view.eAllContents(ViewReference).oclAsType(ViewReference)) ]
+import [viewRef.view.oclAsType(View).pepQualifiedInterface()/];
+[for (widget : Widget | viewRef.view.eAllContents(ElementEditor).oclAsType(ElementEditor).representation->asSet())]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
 [/for]
-[for (subView : View | view.elements->select(oclIsKindOf(views::View))) ]
+[for (subView : View | view.elements->select(oclIsKindOf(View))) ]
 import [subView.pepQualifiedInterface()/];
 [/for]
 [/if]
@@ -128,11 +128,10 @@ import [pec.model.eefPackage(basePackage)/].parts.[view.pepInterface()/];
 [/template]
 
 [template public FormPropertiesEdionPart(peContext : PropertiesEditionContext, basePackage : String)]
-[comment @main /]
-[for (inputPEC : PropertiesEditionComponent | peContext.eAllContents(components::PropertiesEditionComponent))]
-[for (view : View | inputPEC.involvedViews()) ? (view.oclIsTypeOf(views::View))][let pec : PropertiesEditionComponent = if (inputPEC.views->includes(view))
+[for (inputPEC : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
+[for (view : View | inputPEC.involvedViews()) ? (view.oclIsTypeOf(View))][let pec : PropertiesEditionComponent = if (inputPEC.views->includes(view))
 	then inputPEC
-	else inputPEC.referencedBinding.binding->select(views->includes(view))->first().oclAsType(components::PropertiesEditionComponent)
+	else inputPEC.referencedBinding.binding->select(views->includes(view))->first().oclAsType(PropertiesEditionComponent)
 	endif]
 [if (view.mustBeGenerated(inputPEC))]
 	[file (fullFilePath(view), false)]
@@ -202,7 +201,7 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
-				[for (aView : ViewElement | view.eAllContents(views::ViewElement).oclAsType(views::ViewElement)->select(not oclIsKindOf(views::CustomElementEditor) and owningView() = view))]
+				[for (aView : ViewElement | view.eAllContents(ViewElement).oclAsType(ViewElement)->select(not oclIsKindOf(CustomElementEditor) and owningView() = view))]
 				if (key == [aView.editorID()/][if (aView.oclIsKindOf(Container))].class[/if]) {
 					return [aView.implementation()/]
 				}
@@ -222,12 +221,12 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 [/if]
 [/comment]
 	}
-[for (aView : ViewElement | view.eAllContents(views::ViewElement).oclAsType(views::ViewElement)->select(not oclIsKindOf(views::CustomElementEditor) and owningView() = view))]
+[for (aView : ViewElement | view.eAllContents(ViewElement).oclAsType(ViewElement)->select(not oclIsKindOf(CustomElementEditor) and owningView() = view))]
 [aView.additionalImplementation(pec, inputPEC)/]
 
 [/for]
 
-[for (subView : View | view.elements->select(oclIsKindOf(views::View)))]
+[for (subView : View | view.elements->select(oclIsKindOf(View)))]
 [subView.additionalImplementation(pec, inputPEC)/]
 
 [/for]
@@ -245,7 +244,7 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 		// [/protected]
 [/if]
 	}
-[for (elementEditor : ElementEditor | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(not oclIsKindOf(views::CustomElementEditor) and owningView() = view))]
+[for (elementEditor : ElementEditor | view.eAllContents(ElementEditor).oclAsType(ElementEditor)->select(not oclIsKindOf(CustomElementEditor) and owningView() = view))]
 
 [elementEditor.getterImplementation(fullPartInterfacePath(pec.model.eefPackage(basePackage),view.pepInterface()))/]
 
@@ -258,7 +257,7 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 [view.elementEditorGetterSettersForSubViews(pec, basePackage)/]
 
 [if (not peContext.associatedGenModel().useJMergeForUserCode)]
-[for (viewElement : ViewElement | view.eAllContents(views::CustomElementEditor).oclAsType(views::CustomElementEditor)->select(owningView() = view))]
+[for (viewElement : ViewElement | view.eAllContents(CustomElementEditor).oclAsType(CustomElementEditor)->select(owningView() = view))]
 	// [protected ('for '.concat(viewElement.name).concat(' specific getters and setters implementation'))]
 	
 	// [/protected]
@@ -280,9 +279,9 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 [/file]
 [/if]
 [/let][/for]
-[for (view : View | inputPEC.involvedViews()) ? (inputPEC.explicit and view.oclIsTypeOf(views::CustomView))][let pec : PropertiesEditionComponent = if (inputPEC.views->includes(view))
+[for (view : View | inputPEC.involvedViews()) ? (inputPEC.explicit and view.oclIsTypeOf(CustomView))][let pec : PropertiesEditionComponent = if (inputPEC.views->includes(view))
 	then inputPEC
-	else inputPEC.referencedBinding.binding->select(views->includes(view))->first().oclAsType(components::PropertiesEditionComponent)
+	else inputPEC.referencedBinding.binding->select(views->includes(view))->first().oclAsType(PropertiesEditionComponent)
 	endif]
 	[file (fullFilePath(view), false)]
 [peContext.associatedGenModel().licenceText().trim()/]

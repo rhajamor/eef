@@ -16,7 +16,6 @@
 [import naming /]
 
 [template public ContextMessagesProperties(viewsRepository : ViewsRepository)]
-[comment @main /]
 	[file (viewsRepository.fullFilePath(), false)]
 [viewsRepository.associatedGenModel().propertiesLicenceText().trim()/]
 
@@ -25,7 +24,7 @@
 # [/protected]
 
 # default values ...
-[for (group : ViewElement | viewsRepository.eAllContents(views::Container)) ? (group.representation.name = 'Group')]
+[for (group : ViewElement | viewsRepository.eAllContents(views::Container)->select(e | e.oclIsTypeOf(views::Container))) ? (group.representation.name = 'Group')]
 [group.groupKey(group.owningView())/]=[group.name.toUpperFirst().toUnicode()/]
 [/for]
 [for (view : View | viewsRepository.eAllContents(views::View))]

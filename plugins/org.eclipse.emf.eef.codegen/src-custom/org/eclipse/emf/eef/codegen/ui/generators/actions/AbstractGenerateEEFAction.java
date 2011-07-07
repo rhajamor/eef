@@ -94,7 +94,7 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 					public void run(IProgressMonitor monitor) throws InvocationTargetException,
 							InterruptedException {
 						try {
-							if (eefGenModels != null) {
+							if (eefGenModels != null && !monitor.isCanceled()) {
 								for (final EEFGenModel eefGenModel : eefGenModels) {
 									final IContainer target = getGenContainer(eefGenModel);
 									if (target != null) {
@@ -144,6 +144,9 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 			EEFCodegenPlugin.getDefault().logWarning(e);
 		} catch (IOException e) {
 			EEFCodegenPlugin.getDefault().logError(e);
+		} finally {
+			selectedFiles.clear();
+			eefGenModels.clear();
 		}
 	}
 
@@ -151,6 +154,7 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 	 * @see IActionDelegate#selectionChanged(IAction, ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		this.selectedFiles.clear();
 		if (selection instanceof StructuredSelection) {
 			StructuredSelection sSelection = (StructuredSelection)selection;
 			for (Object selectedElement : sSelection.toList()) {

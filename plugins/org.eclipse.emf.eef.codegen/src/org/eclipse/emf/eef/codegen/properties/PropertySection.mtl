@@ -17,8 +17,7 @@
 [import viewCommon /]
 
 [template public PropertySection(peContext : PropertiesEditionContext, basePackage : String)]
-[comment @main /]
-[for (pec : PropertiesEditionComponent | peContext.eAllContents(components::PropertiesEditionComponent))]
+[for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 [if (pec.explicit and pec.involvedViews()->size() > 0)]
 	[for (view : View | pec.views) ? (view.explicit)]
 [file (pec.fullFilePath(view), false)]

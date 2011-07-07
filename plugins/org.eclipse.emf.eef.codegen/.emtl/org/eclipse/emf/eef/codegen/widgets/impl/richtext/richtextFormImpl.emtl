@@ -494,7 +494,7 @@
           <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement/name"/>
         </argument>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=");&#xA;&#x9;&#x9;return parent;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;     * Populate actions in the Toolbar to link with the RichText&#xA;     * &#xA;     * @param toolBar The IRichTextToolBar&#xA;     * @param richText The IRichText&#xA;     */&#xA;    private void fillToolBar(IRichTextToolBar toolBar, IRichText richText)&#xA;    {&#xA;&#x9;&#x9;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=");&#xA;&#x9;&#x9;return parent;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * Populate actions in the Toolbar to link with the RichText&#xA;&#x9; * &#xA;&#x9; * @param toolBar The IRichTextToolBar&#xA;&#x9; * @param richText The IRichText&#xA;&#x9; */&#xA;&#x9;private void fillToolBar(IRichTextToolBar toolBar, IRichText richText) {&#xA;&#x9;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation" definition="/0/fillToolbar">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="editor" referredVariable="/0/additionalImplementation/editor">
@@ -532,7 +532,7 @@
       </guard>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="fillToolbar" visibility="Public">
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="        toolBar.addAction(new EEFFontStyleAction(richText));&#xA;        toolBar.addAction(new EEFFontNameAction(richText));&#xA;        toolBar.addAction(new EEFFontSizeAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new CutAction(richText));&#xA;        toolBar.addAction(new CopyAction(richText));&#xA;        toolBar.addAction(new PasteAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new ClearContentAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new BoldAction(richText));&#xA;        toolBar.addAction(new ItalicAction(richText));&#xA;        toolBar.addAction(new UnderlineAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new SubscriptAction(richText));&#xA;        toolBar.addAction(new SuperscriptAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new TidyActionGroup(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new AddOrderedListAction(richText));&#xA;        toolBar.addAction(new AddUnorderedListAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new OutdentAction(richText));&#xA;        toolBar.addAction(new IndentAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new JustifyLeftAction(richText));&#xA;        toolBar.addAction(new JustifyCenterAction(richText));&#xA;        toolBar.addAction(new JustifyRightAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new FindReplaceAction(richText)&#xA;        {&#xA;            /**&#xA;             * @see org.eclipse.epf.richtext.actions.FindReplaceAction#execute(org.eclipse.epf.richtext.IRichText)&#xA;             */&#xA;            public void execute(IRichText rText)&#xA;            {&#xA;                rText.getFindReplaceAction().execute(rText);&#xA;            }&#xA;        });&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new AddLinkAction(richText));&#xA;        toolBar.addAction(new AddImageAction(richText));&#xA;        toolBar.addSeparator();&#xA;        toolBar.addAction(new AddTableAction(richText));&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;toolBar.addAction(new EEFFontStyleAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new EEFFontNameAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new EEFFontSizeAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new CutAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new CopyAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new PasteAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new ClearContentAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new BoldAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new ItalicAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new UnderlineAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new SubscriptAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new SuperscriptAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new TidyActionGroup(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new AddOrderedListAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new AddUnorderedListAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new OutdentAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new IndentAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new JustifyLeftAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new JustifyCenterAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new JustifyRightAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new FindReplaceAction(richText) {&#xA;&#x9;&#x9;&#x9;/**&#xA;&#x9;&#x9;&#x9; * @see org.eclipse.epf.richtext.actions.FindReplaceAction#execute(org.eclipse.epf.richtext.IRichText)&#xA;&#x9;&#x9;&#x9; */&#xA;&#x9;&#x9;&#x9;public void execute(IRichText rText) {&#xA;&#x9;&#x9;&#x9;&#x9;rText.getFindReplaceAction().execute(rText);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;});&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new AddLinkAction(richText));&#xA;&#x9;&#x9;toolBar.addAction(new AddImageAction(richText));&#xA;&#x9;&#x9;toolBar.addSeparator();&#xA;&#x9;&#x9;toolBar.addAction(new AddTableAction(richText));&#xA;"/>
       <parameter name="editor">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
       </parameter>
@@ -1004,7 +1004,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/involvedViews"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(View)"/>
         <eParameters name="pec">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
         </eParameters>
@@ -1403,7 +1403,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/partToManage"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(View)"/>
         <eParameters name="pec">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
         </eParameters>
@@ -1655,7 +1655,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/ecoreGenModelAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="../../../services/common.emtl#/3/OrderedSet(EAnnotation)"/>
         <eParameters name="modelElement">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
         </eParameters>
@@ -1667,7 +1667,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/ecoreDocumentationAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(EStringToStringMapEntry)"/>
         <eParameters name="modelElement">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
         </eParameters>
@@ -1958,6 +1958,18 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="s">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="booleanGetter">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/common.emtl#/0/booleanGetter"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="feature">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
         </eParameters>
       </eOperations>
       <eOperations name="completePackage">
@@ -3741,7 +3753,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/involvedViews"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(View)"/>
       </eOperations>
       <eOperations name="involvedEditionElements">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -3840,7 +3852,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/partToManage"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(View)"/>
       </eOperations>
       <eOperations name="componentsPackage">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5279,6 +5291,15 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
+      <eOperations name="booleanGetter">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/common.emtl#/0/booleanGetter"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IdentifiedElement_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5364,7 +5385,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/ecoreGenModelAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="../../../services/common.emtl#/3/OrderedSet(EAnnotation)"/>
       </eOperations>
       <eOperations name="ecoreDocumentationAnnotation">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5373,7 +5394,7 @@
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/ecoreDocumentationAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(EStringToStringMapEntry)"/>
       </eOperations>
       <eOperations name="ecoreHelp">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5886,7 +5907,7 @@
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/additionalImplementation">
       <details key="start" value="3146"/>
-      <details key="end" value="6221"/>
+      <details key="end" value="6199"/>
       <details key="line" value="60"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/additionalImplementation/@body.0">
@@ -6521,23 +6542,23 @@
     </eAnnotations>
     <eAnnotations source="positions.161" references="/0/additionalImplementation/@body.56">
       <details key="start" value="5910"/>
-      <details key="end" value="6183"/>
+      <details key="end" value="6161"/>
       <details key="line" value="92"/>
     </eAnnotations>
     <eAnnotations source="positions.162" references="/0/additionalImplementation/@body.57">
-      <details key="start" value="6184"/>
-      <details key="end" value="6204"/>
+      <details key="start" value="6162"/>
+      <details key="end" value="6182"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.163" references="/0/additionalImplementation/@body.57/editor">
-      <details key="start" value="6184"/>
-      <details key="end" value="6190"/>
+      <details key="start" value="6162"/>
+      <details key="end" value="6168"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.164" references="/0/additionalImplementation/@body.58">
-      <details key="start" value="6206"/>
-      <details key="end" value="6209"/>
-      <details key="line" value="105"/>
+      <details key="start" value="6184"/>
+      <details key="end" value="6187"/>
+      <details key="line" value="104"/>
     </eAnnotations>
     <eAnnotations source="positions.165" references="/0/additionalImplementation/editor">
       <details key="start" value="3188"/>
@@ -6580,19 +6601,19 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.173" references="/0/fillToolbar">
-      <details key="start" value="6223"/>
-      <details key="end" value="8343"/>
-      <details key="line" value="108"/>
+      <details key="start" value="6201"/>
+      <details key="end" value="8028"/>
+      <details key="line" value="107"/>
     </eAnnotations>
     <eAnnotations source="positions.174" references="/0/fillToolbar/@body.0">
-      <details key="start" value="6279"/>
-      <details key="end" value="8331"/>
-      <details key="line" value="109"/>
+      <details key="start" value="6257"/>
+      <details key="end" value="8016"/>
+      <details key="line" value="108"/>
     </eAnnotations>
     <eAnnotations source="positions.175" references="/0/fillToolbar/editor">
-      <details key="start" value="6253"/>
-      <details key="end" value="6275"/>
-      <details key="line" value="108"/>
+      <details key="start" value="6231"/>
+      <details key="end" value="6253"/>
+      <details key="line" value="107"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

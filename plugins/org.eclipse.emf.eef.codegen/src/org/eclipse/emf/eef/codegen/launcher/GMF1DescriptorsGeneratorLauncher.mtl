@@ -1,0 +1,31 @@
+[comment encoding = UTF-8
+ *******************************************************************************
+ * Copyright (c) 2008-2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************
+ /]
+[module GMF1DescriptorsGeneratorLauncher('http://www.eclipse.org/emf/eef/components/1.0.0','http://www.eclipse.org/emf/eef/mapping/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/generation/1.0.0')/]
+
+[import org::eclipse::emf::eef::codegen::plugin::GMF_Plugin_xml /]
+[import org::eclipse::emf::eef::codegen::properties::PropertySection /]
+
+[template public GMF1DescriptorsGeneratorLauncher(genModel : EEFGenModel)]
+[comment @main /]
+[for (editionContext : GenEditionContext | genModel.editionContexts)]
+	[let basePackage : String = editionContext.basePackage]
+		[let peContext : PropertiesEditionContext = editionContext.PropertiesEditionContext]
+			[if (editionContext.gmfPropertiesViews)]
+				[GMF_Plugin_xml(peContext, basePackage)/]
+				[PropertySection(peContext, basePackage)/]
+			[/if]
+		[/let]
+	[/let]
+[/for]
+[/template]
+

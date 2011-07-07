@@ -22,7 +22,7 @@
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
-[if (editionElement.model.oclAsType(ecore::EAttribute).isBoolean())]
+[if (editionElement.model.oclAsType(EAttribute).isBoolean())]
 if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [else]
@@ -34,11 +34,11 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
 		[if (editionElement.model.many)]
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toMany().toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].[editionElement.model.booleanGetter()/][editionElement.model.name.toMany().toUpperFirst()/]());
 		[else]
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].[editionElement.model.booleanGetter()/][editionElement.model.name.toUpperFirst()/]());
 		[/if]
-	[elseif (editionElement.model.oclAsType(ecore::EAttribute).isBoolean())]
+	[elseif (editionElement.model.oclAsType(EAttribute).isBoolean())]
 		[if (editionElement.model.many)]
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]());
 		[else]

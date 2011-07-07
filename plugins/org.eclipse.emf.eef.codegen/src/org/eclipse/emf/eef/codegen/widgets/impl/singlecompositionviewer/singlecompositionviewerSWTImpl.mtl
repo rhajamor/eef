@@ -66,7 +66,7 @@ create[editor.name.toJavaClassifier()/]SingleCompositionViewer(parent);
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this,  [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.viewPackageGetter()/]()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, [editor.viewPackageGetter()/]()));
 						[editor.name.toJavaIdentifier()/].update([editor.viewPackageGetter()/]());
 						ScrolledComposite scrolledComposite = (ScrolledComposite)view.getParent().getParent();
 						Composite c = (Composite) view.getParent();
@@ -85,7 +85,7 @@ create[editor.name.toJavaClassifier()/]SingleCompositionViewer(parent);
 				public void widgetSelected(SelectionEvent e) {
 					if(![editor.name.toJavaIdentifier()/].getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this,  [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent([editor.editionPart()/].this, [editor.editorID()/], PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 							[editor.name.toJavaIdentifier()/].update(null);
 						}
 					}

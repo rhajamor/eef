@@ -16,8 +16,8 @@
 [comment --------------- Common queries --------------- /]
 
 [comment Check if at least one views of the propertyBinding is contained by the given view /]
-[query public involvedViews(pec : PropertiesEditionComponent) : Sequence(T) = 
-	pec.views->asSequence()->union(pec.referencedBinding.binding.views->select(ancestors()->select(oclIsKindOf(views::View)).oclAsType(views::View)->excludesAll(pec.views->asSequence())))/]
+[query public involvedViews(pec : PropertiesEditionComponent) : Sequence(View) = 
+	pec.views->asSequence()->union(pec.referencedBinding.binding.views->select(ancestors(View)->excludesAll(pec.views->asSequence())))/]
 
 [query public involvedEditionElements(pec : PropertiesEditionComponent) : Sequence(T) = 
 	pec.properties->asSequence()->union(pec.referencedBinding.binding.properties)/]
@@ -40,13 +40,13 @@
 	else element.container.owningViewString()
 	endif/]
 
-[query public hasOwningViewsRepository(view : View) : Boolean = view.ancestors()->select(oclIsTypeOf(views::ViewsRepository))->notEmpty()/]
+[query public hasOwningViewsRepository(view : View) : Boolean = view.ancestors()->select(oclIsTypeOf(ViewsRepository))->notEmpty()/]
 
 [query public owningViewsRepository(view : View) : ViewsRepository = 
-        if (view.hasOwningViewsRepository()) then 
-        view.ancestors()->select(oclIsTypeOf(ViewsRepository))->first().oclAsType(views::ViewsRepository)
-        else null
-        endif/]
+	if (view.hasOwningViewsRepository()) then 
+	view.ancestors()->select(oclIsTypeOf(ViewsRepository))->first().oclAsType(ViewsRepository)
+	else null
+	endif/]
 
 [query public owningViewsRepository(element : ViewElement) : ViewsRepository = 
 	element.owningView().owningViewsRepository()/]
@@ -61,31 +61,31 @@
 	pec.involvedEditionElements().oclAsType(PropertiesEditionElement)->select(views->first().ownedBy(v))/]
 
 [query public propertiesEditionElement(element : ElementEditor, pec : PropertiesEditionComponent) : PropertiesEditionElement =
-	 pec.properties->select(views->includes(element))->first()/]
+	pec.properties->select(views->includes(element))->first()/]
 
 [query public relatedComponent(view : View, pec : PropertiesEditionComponent) : PropertiesEditionComponent =
 	if (pec.views->includes(view))
-	then pec.oclAsType(components::PropertiesEditionComponent)
-	else pec.referencedBinding.binding->select(views->includes(view))->first().oclAsType(components::PropertiesEditionComponent)
+	then pec.oclAsType(PropertiesEditionComponent)
+	else pec.referencedBinding.binding->select(views->includes(view))->first().oclAsType(PropertiesEditionComponent)
 	endif/]
 
 [query public fullPartInterfacePath(pepCompletePackage : String, pepInterface : String) : String = 
 	pepCompletePackage.concat('.parts.').concat(pepInterface)/]
 
 [query public associatedGenFeature(pee : PropertiesEditionElement) : GenFeature =
-	pee.model.eInverse()->select(oclIsKindOf(genmodel::GenFeature))->first().oclAsType(genmodel::GenFeature)/]
+	pee.model.eInverse()->select(oclIsKindOf(GenFeature))->first().oclAsType(GenFeature)/]
 
 [query public associatedGenPackage(p : EPackage) : GenPackage = 
-	p.eInverse(genmodel::GenPackage)->first()/]
+	p.eInverse(GenPackage)->first()/]
 
 [query public associatedGenPackage(pec : PropertiesEditionComponent) : GenPackage = 
 	pec.model.ePackage.associatedGenPackage()/]
 
 [query public associatedGenContext(peco : PropertiesEditionContext) : GenEditionContext = 
-	peco.eInverse()->select(oclIsKindOf(EEFGen::GenEditionContext))->first().oclAsType(EEFGen::GenEditionContext)/]
+	peco.eInverse()->select(oclIsKindOf(GenEditionContext))->first().oclAsType(GenEditionContext)/]
 
-[query public associatedGenContext(peco : PropertiesEditionComponent) : GenEditionContext =  
-		peco.editionContext().associatedGenContext() /]
+[query public associatedGenContext(peco : PropertiesEditionComponent) : GenEditionContext = 
+	peco.editionContext().associatedGenContext() /]
 
 [query public associatedGenModel(pec : PropertiesEditionContext) : EEFGenModel = 
 	pec.associatedGenContext().eefGenModel/]
@@ -103,8 +103,8 @@
 	view.owningViewsRepository().associatedGenRepository()/]
 
 [query public associatedGenRepository(viewsRepository : ViewsRepository) : GenViewsRepository = 
-	if (viewsRepository.eInverse()->select(oclIsKindOf(EEFGen::GenViewsRepository))->notEmpty())
-	then viewsRepository.eInverse()->select(oclIsKindOf(EEFGen::GenViewsRepository))->first().oclAsType(EEFGen::GenViewsRepository)
+	if (viewsRepository.eInverse()->select(oclIsKindOf(GenViewsRepository))->notEmpty())
+	then viewsRepository.eInverse()->select(oclIsKindOf(GenViewsRepository))->first().oclAsType(GenViewsRepository)
 	else null
 	endif/]
 
@@ -114,18 +114,18 @@
 	else null
 	endif/]
 
-[query public associatedPEC(eclass : EClass, peContext : PropertiesEditionContext) : PropertiesEditionComponent = eclass.eInverse(PropertiesEditionComponent)->first() /]
+[query public associatedPEC(eclass : EClass, peContext : PropertiesEditionContext) : PropertiesEditionComponent = if eclass.eInverse(PropertiesEditionComponent)->isEmpty() then null else eclass.eInverse(PropertiesEditionComponent)->first() endif/]
 
 [query public significantClass(ePackage : EPackage) : Set(EClass) = ePackage.eClassifiers->select(oclIsKindOf(EClass)).oclAsType(EClass).classAndHierarchy()->asOrderedSet() /]
 
-[query private classAndHierarchy(eclass : EClass) : Set(EClass) = eclass.eSuperTypes.classAndHierarchy()->including(eclass) /]
+[query private classAndHierarchy(eclass : EClass) : Set(EClass) = eclass.eSuperTypes.classAndHierarchy()->including(eclass)->asOrderedSet() /]
 
 
 [comment Defines if a SubPropertiesEditionComponent must be generated. A SubPropertiesEdtionComponent must be generated if :
 	- its 'explicit' property is set to true 
 	- A ElementBindingReference reference it and it contains at least 1 PEE/]
 [query public mustBeGenerated(pec : PropertiesEditionComponent) : Boolean = 
-	(pec.explicit and (pec.eAllContents(components::PropertiesEditionElement)->notEmpty() or pec.referencedBinding->notEmpty())) or pec.eInverse()->select(oclIsTypeOf(mapping::ElementBindingReference))->notEmpty()/]
+	(pec.explicit and (pec.eAllContents(PropertiesEditionElement)->notEmpty() or pec.referencedBinding->notEmpty())) or pec.eInverse()->select(oclIsTypeOf(ElementBindingReference))->notEmpty()/]
 
 [comment Defines if a ComposedPropertiesEditionComponent must be generated. A ComposedPropertiesEditionComponent must be generated if :
 	- its 'explicit' property is set to true and it has more than 1 view to manage 
@@ -144,13 +144,13 @@
 	view.elements->select(oclIsKindOf(views::View))->notEmpty()/]
 
 [query public dynamicViews(pec : PropertiesEditionComponent, topLevelView : View) : Sequence(T) = 
-	pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent) and oclAsType(components::PropertiesEditionComponent).mustBeGenerated()).views->select(ancestors()->includes(topLevelView))/]
+	pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent) and oclAsType(PropertiesEditionComponent).mustBeGenerated()).views->select(ancestors()->includes(topLevelView))/]
 
 [comment TODOGLF: List of parts that a component have to manage/]
-[query public partToManage(pec : PropertiesEditionComponent) : Set(T) = pec.involvedViews()/]
+[query public partToManage(pec : PropertiesEditionComponent) : Sequence(View) = pec.involvedViews()/]
 
 [query public mustBeGenerated(view : View, pec : PropertiesEditionComponent) : Boolean =
-	view.oclAsType(ecore::EObject).eResource() = pec.oclAsType(ecore::EObject).eResource()/]
+	view.oclAsType(EObject).eResource() = pec.oclAsType(EObject).eResource()/]
 
 [query public needBeGenerated(ref : ViewReference) : Boolean = 
 	if (ref.view.oclIsTypeOf(views::View))
@@ -163,35 +163,35 @@
 
 [comment ----- StructuralFeatures classification ----- /]
 [query public isReferenceMany(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EReference)
-	and not (feature.oclAsType(ecore::EReference).containment)
+	feature.oclIsTypeOf(EReference)
+	and not (feature.oclAsType(EReference).containment)
 	and feature.many/]
 
 [query public isReferenceSingle(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EReference)
-	and not (feature.oclAsType(ecore::EReference).containment)
+	feature.oclIsTypeOf(EReference)
+	and not (feature.oclAsType(EReference).containment)
 	and not (feature.many)/]
 
 [query public isContainment(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EReference)
-	and feature.oclAsType(ecore::EReference).containment/]
+	feature.oclIsTypeOf(EReference)
+	and feature.oclAsType(EReference).containment/]
 
 [query public isContainmentMany(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EReference)
-	and feature.oclAsType(ecore::EReference).containment
+	feature.oclIsTypeOf(EReference)
+	and feature.oclAsType(EReference).containment
 	and feature.many/]
 
 [query public isContainmentSingle(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EReference)
-	and feature.oclAsType(ecore::EReference).containment
+	feature.oclIsTypeOf(EReference)
+	and feature.oclAsType(EReference).containment
 	and not (feature.many)/]
 
 [query public isAttributeMany(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EAttribute)
+	feature.oclIsTypeOf(EAttribute)
 	and feature.many/]
 
 [query public isAttributeSingle(feature : EStructuralFeature) : Boolean = 
-	feature.oclIsTypeOf(ecore::EAttribute)
+	feature.oclIsTypeOf(EAttribute)
 	and not (feature.many)/]
 
 [comment ---- Views related queries ----- /]
@@ -229,17 +229,17 @@ get[s.feature.ecorePackageSignature()/]()
 set[editor.model.ecorePackageSignature()/]()
 [/template]
 
-[query public ecoreGenModelAnnotation(modelElement : EModelElement) : Sequence(T) = 
+[query public ecoreGenModelAnnotation(modelElement : EModelElement) : OrderedSet(EAnnotation) = 
 	modelElement.eAnnotations->select(annot : EAnnotation | annot.source = 'http://www.eclipse.org/emf/2002/GenModel')/]
 
-[query public ecoreDocumentationAnnotation(modelElement : EModelElement) : Sequence(T) = 
-	modelElement.ecoreGenModelAnnotation()->first().oclAsType(ecore::EAnnotation).details.oclAsType(ecore::EStringToStringMapEntry)
+[query public ecoreDocumentationAnnotation(modelElement : EModelElement) : Sequence(EStringToStringMapEntry) = 
+	modelElement.ecoreGenModelAnnotation()->first().details.oclAsType(EStringToStringMapEntry)
 				->select(entry : EStringToStringMapEntry | entry.key = 'documentation')/]
 
 [query public ecoreHelp(modelElement : EModelElement) : String = 
 	if (modelElement.ecoreGenModelAnnotation()->size() = 1)
 	then if (modelElement.ecoreDocumentationAnnotation()->size() = 1)
-		 then modelElement.ecoreDocumentationAnnotation()->first().oclAsType(ecore::EStringToStringMapEntry).value.replaceAll('"','\\"').replaceAll('\n','').replaceAll('\r','')
+		 then modelElement.ecoreDocumentationAnnotation()->first().value.replaceAll('"','\\"').replaceAll('\n','').replaceAll('\r','')
 		 else null
 		 endif
 	else null
@@ -247,9 +247,9 @@ set[editor.model.ecorePackageSignature()/]()
 
 [template public helpText(pee : PropertiesEditionElement)]
 [if (not pee.views->first().owningViewsRepository().associatedGenRepository().oclIsUndefined())]
-[if (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::GENMODEL)]
+[if (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = HELP_STRATEGY::GENMODEL)]
 [if ((not pee.associatedGenFeature().oclIsUndefined()) and (not pee.associatedGenFeature().propertyDescription.oclIsUndefined()))]"[pee.associatedGenFeature().propertyDescription.replaceAll('"','\\"')/]"[else]null[/if]
-[elseif (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = EEFGen::HELP_STRATEGY::ECOREMODEL)]
+[elseif (pee.views->first().owningViewsRepository().associatedGenRepository().helpStrategy = HELP_STRATEGY::ECOREMODEL)]
 [if (pee.model.ecoreHelp().oclIsUndefined())]"[pee.model.ecoreHelp().trim()/]"[else]null[/if]
 [/if]
 [/if]
@@ -438,6 +438,11 @@ Object
 [s/]
 [/template]
 
+[comment ==== For boolean model features getters (thanks to UML !) ==== /]
+[template public booleanGetter(feature : EStructuralFeature)]
+is
+[/template]
+
 [template public completePackage(eClassifier : EClassifier)]
 [ePackage.completePackage()/]
 [/template]
@@ -468,7 +473,7 @@ Object
 	then 'Ecore'
 	else if ePackage.nsURI = 'http://www.eclipse.org/emf/2003/XMLType'
 			then 'XMLType'
-			else ePackage.eInverse(genmodel::GenPackage)->first().prefix
+			else ePackage.eInverse(GenPackage)->first().prefix
 			endif
 	endif/]
 
@@ -532,23 +537,23 @@ Object
 	endif/]
 
 [comment] 
-@param PropertiesEditionElement the  PEE of the composition
+@param PropertiesEditionElement the PEE of the composition
 @param EStructuralFeature : the feature of the composition 
 [/comment]
 [query public involvedPropertiesEditionElement(peElement : PropertiesEditionElement, f : EStructuralFeature) : PropertiesEditionElement =
-	 peElement.element.category.eContainer(components::PropertiesEditionContext).categories.bindings->select(oclIsTypeOf(components::PropertiesEditionComponent)).oclAsType(components::PropertiesEditionComponent).properties->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->select(pee : components::PropertiesEditionElement | pee.model=f)->first()/]
+	 peElement.element.category.eContainer(PropertiesEditionContext).categories.bindings->select(oclIsTypeOf(PropertiesEditionComponent)).oclAsType(PropertiesEditionComponent).properties->select(oclIsTypeOf(PropertiesEditionElement)).oclAsType(PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.model=f)->first()/]
 
 [query public involvedPropertiesEditionElement(element : ElementEditor, pec : PropertiesEditionComponent) : PropertiesEditionElement =
-	 element.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first()/]
+	 element.eInverse()->select(oclIsTypeOf(PropertiesEditionElement)).oclAsType(PropertiesEditionElement)->first()/]
 
 [query public involvedPropertiesEditionElement(element : ElementEditor) : PropertiesEditionElement =
-	 element.eInverse()->select(oclIsTypeOf(components::PropertiesEditionElement)).oclAsType(components::PropertiesEditionElement)->first()/]
+	 element.eInverse()->select(oclIsTypeOf(PropertiesEditionElement)).oclAsType(PropertiesEditionElement)->first()/]
 
 [query public involvedPropertiesEditionElement(view : ViewElement, pec : PropertiesEditionComponent) : PropertiesEditionElement =
-	 pec.involvedEditionElements().oclAsType(components::PropertiesEditionElement)->select(views.oclAsType(ViewElement)->includes(view))->first()/]
+	 pec.involvedEditionElements().oclAsType(PropertiesEditionElement)->select(views.oclAsType(ViewElement)->includes(view))->first()/]
 
 [query public involvedPropertiesEditionComponent(view : View) : PropertiesEditionComponent = 
-	if (view.eInverse()->select(oclIsTypeOf(components::PropertiesEditionComponent))->notEmpty())
-	then view.eInverse()->select(oclIsTypeOf(components::PropertiesEditionComponent))->first()
+	if (view.eInverse()->select(oclIsTypeOf(PropertiesEditionComponent))->notEmpty())
+	then view.eInverse()->select(oclIsTypeOf(PropertiesEditionComponent))->first()
 	else null
 	endif/]

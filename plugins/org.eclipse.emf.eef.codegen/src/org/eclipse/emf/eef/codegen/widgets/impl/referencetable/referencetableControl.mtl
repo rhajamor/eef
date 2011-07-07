@@ -33,7 +33,7 @@ private	ReferencesTableSettings [editionElement.name.toJavaIdentifier()/]Setting
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForSimpleReference())]
-if (event.getKind() == PropertiesEditionEvent.ADD)  {
+if (event.getKind() == PropertiesEditionEvent.ADD) {
 	if (event.getNewValue() instanceof [editionElement.model.eType.name/]) {
 		[editionElement.name.toJavaIdentifier()/]Settings.addToReference((EObject) event.getNewValue());
 	}
@@ -73,10 +73,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [for (filter : BindingFilter | editionElement.bindingFilters)]
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
-[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-// [protected ('for additional businessfilters for '.concat(editionElement.name))]
-
-// [/protected]
+[if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
 [/template]
 
@@ -99,17 +97,15 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [for (filter : BindingFilter | editionElement.bindingFilters)]
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
-[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-// [protected ('for additional businessfilters for '.concat(editionElement.name))]
-
-// [/protected]
+[if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
 [/template]
 
 [comment ===== Case : model = Reference(*) in Simple Navigation - view = ReferencesTable or AdvancedReferencesTable===== /]
 [query public validCaseForMultipleModelReference(editionElement : PropertiesEditionElement) : Boolean = 
 	editionElement.hasModelNavigation() 
-	and editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).feature.isContainmentSingle() and editionElement.model.isReferenceMany() 
+	and editionElement.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentSingle() and editionElement.model.isReferenceMany() 
 	and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable'))/]
 
 [template public additionalComponentField(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides additionalComponentField ? (editionElement.validCaseForMultipleModelReference())]
@@ -122,7 +118,7 @@ private	ReferencesTableSettings [editionElement.name.toJavaIdentifier()/]Setting
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForMultipleModelReference())]
-if (event.getKind() == PropertiesEditionEvent.ADD)  {
+if (event.getKind() == PropertiesEditionEvent.ADD) {
 	if (event.getNewValue() instanceof [editionElement.model.eType.name/]) {
 		[editionElement.name.toJavaIdentifier()/]Settings.addToReference((EObject) event.getNewValue());
 	}
@@ -138,7 +134,7 @@ if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStruc
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForMultipleModelReference())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
-	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
 	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
 }
 [/template]
@@ -162,17 +158,15 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [for (filter : BindingFilter | editionElement.bindingFilters)]
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
-[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-// [protected ('for additional businessfilters for '.concat(editionElement.name))]
-
-// [/protected]
+[if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
 [/template]
 
 [comment ===== Case : model = Reference(1) - view = ReferencesTable or AdvancedReferencesTable===== /]
 [query public validCaseForSingleModelReference(editionElement : PropertiesEditionElement) : Boolean = 
 	editionElement.hasModelNavigation() 
-	and editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).feature.isContainmentMany() and editionElement.model.isReferenceSingle() 
+	and editionElement.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentMany() and editionElement.model.isReferenceSingle() 
 	and (editionElement.representationName('ReferencesTable') or editionElement.representationName('AdvancedReferencesTable'))/]
 
 [template public additionalComponentField(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides additionalComponentField ? (editionElement.validCaseForSingleModelReference())]
@@ -185,7 +179,7 @@ private	ReferencesTableSettings [editionElement.name.toJavaIdentifier()/]Setting
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForSingleModelReference())]
-if (event.getKind() == PropertiesEditionEvent.ADD)  {
+if (event.getKind() == PropertiesEditionEvent.ADD) {
 	if (event.getNewValue() instanceof [editionElement.model.eType.name/]) {
 		[editionElement.name.toJavaIdentifier()/]Settings.addToReference((EObject) event.getNewValue());
 	}
@@ -202,7 +196,7 @@ if ([editionElement.name.toJavaIdentifier()/]Settings.isAffectingFeature((EStruc
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.validCaseForSingleModelReference())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
-	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(mapping::navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
+	[editionElement.name.toJavaIdentifier()/]Settings = new ReferencesTableSettings([pec.model.name.toJavaIdentifier()/], [editionElement.navigation.oclAsType(navigation::SimpleModelNavigation).metamodelGetter()/], [editionElement.metamodelGetter()/]);
 	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([editionElement.name.toJavaIdentifier()/]Settings);
 }
 [/template]
@@ -223,9 +217,7 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [for (filter : BindingFilter | editionElement.bindingFilters)]
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
-[if (not editionElement.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-// [protected ('for additional businessfilters for '.concat(editionElement.name))]
-
-// [/protected]
+[if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
 [/template]

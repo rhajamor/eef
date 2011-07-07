@@ -25,7 +25,7 @@
 	not oclIsUndefined() and eType.name = 'EShort' or eType.name = 'Short' or eType.instanceClassName = 'java.lang.Short' or eType.instanceClassName = 'short'/]
 
 [query public isEnum(a : EAttribute) : Boolean = 
-	not oclIsUndefined() and eType.oclIsKindOf(ecore::EEnum)/]
+	not oclIsUndefined() and eType.oclIsKindOf(EEnum)/]
 
 [query public isLong(a : EAttribute) : Boolean = 
 	not oclIsUndefined() and eType.name = 'ELong' or eType.name = 'Long'/]

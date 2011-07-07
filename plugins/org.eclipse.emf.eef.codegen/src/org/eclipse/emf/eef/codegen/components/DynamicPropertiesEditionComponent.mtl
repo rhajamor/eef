@@ -18,8 +18,7 @@
 [import typeUtils /]
 
 [template public DynamicPropertiesEditionComponent(peContext : PropertiesEditionContext, basePackage : String)]
-[comment @main /]
-[for (pec : PropertiesEditionComponent | peContext.eAllContents(components::PropertiesEditionComponent))]
+[for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 	[for (topLevelView : View | pec.views) ? (topLevelView.explicit)]
 [if (pec.mustDynamicPecBeGenerated(topLevelView))]
 [file (pec.fullFilePath(topLevelView), false)]
@@ -38,7 +37,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderSe
 
 import [topLevelView.pepQualifiedInterface()/];
 import [topLevelView.owningViewsRepository().vrQualifiedClass()/];
-[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent)))]
+[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent)))]
 [if (pec.model.eefPackage(basePackage) <> subPec.model.eefPackage(basePackage))]
 	[for (subView : View | subPec.views) ? (subView.ancestors()->includes(topLevelView))]
 import [subPec.subPECQualifiedClass(subView)/];
@@ -85,7 +84,7 @@ Implemented later ...
 			private [pec.subPECClass(view)/] [pec.subPECClass(view).toLowerFirst()/];
 [/for]
 [/comment]
-[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
+[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
 	[for (view : View | subPec.views) ? (view.ancestors()->includes(topLevelView))]
 	/**
 	 * The [subPec.subPECClass(view)/] sub component
@@ -111,7 +110,7 @@ Implemented later ...
 			addSubComponent([pec.subPECClass(view).toLowerFirst()/]);
 [/for]
 [/comment]
-[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
+[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
 	[for (view : View | subPec.views) ? (view.ancestors()->includes(topLevelView))]
 			[subPec.subPECClass(view).toLowerFirst()/] = new [subPec.subPECClass(view)/]([pec.model.name.toJavaIdentifier()/], editing_mode);
 			addSubComponent([subPec.subPECClass(view).toLowerFirst()/]);
@@ -170,7 +169,7 @@ Implemented later ...
 	public void initPart(Object key, int kind, EObject element, ResourceSet allResource) {
 		if (key == [topLevelView.editorID()/].class) {
 			((IPropertiesEditionPart)[topLevelView.viewIdentifier(pec)/]).setContext(element, allResource);
-[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(components::PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
+[for (subPec : PropertiesEditionComponent | pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent))) ? (subPec.mustBeGenerated())]
 	[for (view : View | subPec.views) ? (view.ancestors()->includes(topLevelView))]
 			[subPec.subPECClass(view).toLowerFirst()/].setPropertiesEditionPart([view.editorID()/].class, kind, [topLevelView.viewIdentifier(pec)/].get[view.name.toJavaClassifier()/]SubView());
 			[subPec.subPECClass(view).toLowerFirst()/].initPart([view.editorID()/].class, kind, element);

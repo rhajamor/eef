@@ -123,5 +123,3 @@
 		[elementEditor.name.toJavaIdentifier()/].addBusinessRuleFilter(filter);
 	}
 [/template]
-
-

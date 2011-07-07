@@ -13,9 +13,12 @@
                id="org.eclipse.emf.eef.ui.menu"
                label="EEF"
                path="additions">
-            <separator
+            <groupMarker
                   name="initializer">
-            </separator>
+            </groupMarker>
+            <groupMarker
+                  name="editor-initializer">
+            </groupMarker>
          </menu>
          <action
                class="org.eclipse.emf.eef.codegen.ui.initializer.actions.InitializeEEFModelsAction"

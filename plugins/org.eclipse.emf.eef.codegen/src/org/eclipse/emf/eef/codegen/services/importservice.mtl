@@ -13,7 +13,7 @@
  [module importservice('http://www.eclipse.org/emf/2002/Ecore')/]
 
 [query public addImport(arg0 : EObject, arg1 : String) : OclVoid
-        = invoke('org.eclipse.emf.eef.codegen.services.ImportService', 'addImport(org.eclipse.emf.ecore.EObject, java.lang.String)', Sequence{arg0, arg1}) /]
+	= invoke('org.eclipse.emf.eef.codegen.services.ImportService', 'addImport(org.eclipse.emf.ecore.EObject, java.lang.String)', Sequence{arg0, arg1}) /]
 
 [query public getImports(arg0 : EObject) : String
-        = invoke('org.eclipse.emf.eef.codegen.services.ImportService', 'getImports(org.eclipse.emf.ecore.EObject)', Sequence{arg0}) /]
+	= invoke('org.eclipse.emf.eef.codegen.services.ImportService', 'getImports(org.eclipse.emf.ecore.EObject)', Sequence{arg0}) /]

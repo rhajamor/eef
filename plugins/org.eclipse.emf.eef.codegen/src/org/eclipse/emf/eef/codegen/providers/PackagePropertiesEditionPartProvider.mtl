@@ -16,7 +16,6 @@
 [import naming /]
 
 [template public PackagePropertiesEditionPartProvider(v : ViewsRepository)]
-	[comment @main /]
 	[file (v.fullFilePath(), false)]
 [v.associatedGenModel().licenceText().trim()/]
 package [v.vrPackage()/]providers;

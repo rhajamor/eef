@@ -27,7 +27,7 @@
 		if (newValue != null) {
 			[elementEditor.name.toJavaIdentifier()/].setText(newValue);
 		} else {
-			[elementEditor.name.toJavaIdentifier()/].setText("");  //$NON-NLS-1$
+			[elementEditor.name.toJavaIdentifier()/].setText(""); //$NON-NLS-1$
 		}
 	}
 [/template]

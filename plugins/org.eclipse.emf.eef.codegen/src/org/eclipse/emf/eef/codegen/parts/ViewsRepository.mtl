@@ -19,7 +19,6 @@
  This template will generate a file for each ViewRepository in the EEF model.
  /]
 [template public ViewsRepository(viewRepository : ViewsRepository)]
-[comment @main /]
 [file (viewRepository.fullFilePath(), false)]
 [viewRepository.associatedGenModel().licenceText().trim()/]
 package [viewRepository.partsPackage()/];
@@ -53,7 +52,7 @@ public class [viewRepository.vrClass()/] {
 [/for]
 [/template]
 
-[comment  Template used to generate code for each views /]
+[comment Template used to generate code for each views /]
 [template public viewDescriptor(view : View)]
 
 	/**
@@ -63,7 +62,7 @@ public class [viewRepository.vrClass()/] {
 	public static class [view.identifiedElementKey().toJavaClassifier()/] {
 [if (view.oclIsTypeOf(views::CustomView) and not view.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 		// [protected ('for '.concat(view.name).concat(' keys'))]
-
+		
 		// [/protected]
 [else]
 [for (viewElement : ViewElement | view.elements)]

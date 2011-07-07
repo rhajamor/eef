@@ -1589,7 +1589,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/involvedViews"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(View)"/>
         <eParameters name="pec">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
         </eParameters>
@@ -1988,7 +1988,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/partToManage"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(View)"/>
         <eParameters name="pec">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
         </eParameters>
@@ -2240,7 +2240,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/ecoreGenModelAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="common.emtl#/3/OrderedSet(EAnnotation)"/>
         <eParameters name="modelElement">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
         </eParameters>
@@ -2252,7 +2252,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/ecoreDocumentationAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(EStringToStringMapEntry)"/>
         <eParameters name="modelElement">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
         </eParameters>
@@ -2543,6 +2543,18 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="s">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="booleanGetter">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="common.emtl#/0/booleanGetter"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="feature">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
         </eParameters>
       </eOperations>
       <eOperations name="completePackage">
@@ -3562,7 +3574,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/involvedViews"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(View)"/>
       </eOperations>
       <eOperations name="involvedEditionElements">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -3661,7 +3673,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/partToManage"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(View)"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EPackage_Class">
@@ -4351,6 +4363,15 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
+      <eOperations name="booleanGetter">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="common.emtl#/0/booleanGetter"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IdentifiedElement_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4427,7 +4448,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/ecoreGenModelAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="common.emtl#/3/OrderedSet(EAnnotation)"/>
       </eOperations>
       <eOperations name="ecoreDocumentationAnnotation">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4436,7 +4457,7 @@
         <eAnnotations source="MTL">
           <references href="common.emtl#/0/ecoreDocumentationAnnotation"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="common.emtl#/3/Sequence(EStringToStringMapEntry)"/>
       </eOperations>
       <eOperations name="ecoreHelp">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5158,147 +5179,147 @@
     </eAnnotations>
     <eAnnotations source="positions.85" references="/0/javaDeclarationFilter">
       <details key="start" value="3548"/>
-      <details key="end" value="4227"/>
+      <details key="end" value="4194"/>
       <details key="line" value="76"/>
     </eAnnotations>
     <eAnnotations source="positions.86" references="/0/javaDeclarationFilter/@body.0">
       <details key="start" value="3620"/>
-      <details key="end" value="4215"/>
+      <details key="end" value="4182"/>
       <details key="line" value="77"/>
     </eAnnotations>
     <eAnnotations source="positions.87" references="/0/javaDeclarationFilter/@body.0/@body.0">
-      <details key="start" value="3766"/>
-      <details key="end" value="3775"/>
+      <details key="start" value="3757"/>
+      <details key="end" value="3766"/>
       <details key="line" value="78"/>
     </eAnnotations>
     <eAnnotations source="positions.88" references="/0/javaDeclarationFilter/@body.0/@body.1">
-      <details key="start" value="3776"/>
-      <details key="end" value="3803"/>
+      <details key="start" value="3767"/>
+      <details key="end" value="3794"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.89" references="/0/javaDeclarationFilter/@body.0/@body.1/bindingFilter">
-      <details key="start" value="3776"/>
-      <details key="end" value="3789"/>
+      <details key="start" value="3767"/>
+      <details key="end" value="3780"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.90" references="/0/javaDeclarationFilter/@body.0/@body.2">
-      <details key="start" value="3805"/>
-      <details key="end" value="3828"/>
+      <details key="start" value="3796"/>
+      <details key="end" value="3819"/>
       <details key="line" value="80"/>
     </eAnnotations>
     <eAnnotations source="positions.91" references="/0/javaDeclarationFilter/@body.0/@body.3">
-      <details key="start" value="3829"/>
-      <details key="end" value="3853"/>
+      <details key="start" value="3820"/>
+      <details key="end" value="3844"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.92" references="/0/javaDeclarationFilter/@body.0/@body.3/bindingFilter">
-      <details key="start" value="3829"/>
-      <details key="end" value="3842"/>
+      <details key="start" value="3820"/>
+      <details key="end" value="3833"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.93" references="/0/javaDeclarationFilter/@body.0/@body.4">
-      <details key="start" value="3855"/>
-      <details key="end" value="3910"/>
+      <details key="start" value="3846"/>
+      <details key="end" value="3901"/>
       <details key="line" value="81"/>
     </eAnnotations>
     <eAnnotations source="positions.94" references="/0/javaDeclarationFilter/@body.0/@body.5">
-      <details key="start" value="3912"/>
-      <details key="end" value="4205"/>
+      <details key="start" value="3903"/>
+      <details key="end" value="4172"/>
       <details key="line" value="82"/>
     </eAnnotations>
     <eAnnotations source="positions.95" references="/0/javaDeclarationFilter/@body.0/@body.5/@body.0">
-      <details key="start" value="4070"/>
-      <details key="end" value="4085"/>
+      <details key="start" value="4037"/>
+      <details key="end" value="4052"/>
       <details key="line" value="83"/>
     </eAnnotations>
     <eAnnotations source="positions.96" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr">
-      <details key="start" value="3916"/>
-      <details key="end" value="4068"/>
+      <details key="start" value="3907"/>
+      <details key="end" value="4035"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.97" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source">
-      <details key="start" value="3917"/>
-      <details key="end" value="4046"/>
+      <details key="start" value="3908"/>
+      <details key="end" value="4013"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.98" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0">
-      <details key="start" value="3917"/>
-      <details key="end" value="4025"/>
+      <details key="start" value="3908"/>
+      <details key="end" value="3992"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.99" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0/@source">
-      <details key="start" value="3917"/>
-      <details key="end" value="3977"/>
+      <details key="start" value="3908"/>
+      <details key="end" value="3956"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.100" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0/@source/@source">
-      <details key="start" value="3917"/>
-      <details key="end" value="3928"/>
+      <details key="start" value="3908"/>
+      <details key="end" value="3919"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.101" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0/@source/@source/pee">
-      <details key="start" value="3917"/>
-      <details key="end" value="3920"/>
+      <details key="start" value="3908"/>
+      <details key="end" value="3911"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.102" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0/@source/@argument.0">
-      <details key="start" value="3940"/>
-      <details key="end" value="3976"/>
+      <details key="start" value="3931"/>
+      <details key="end" value="3955"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.103" references="/0/javaDeclarationFilter/@body.0/@body.5/@ifExpr/@source/@argument.0/@argument.0">
-      <details key="start" value="3988"/>
-      <details key="end" value="4024"/>
+      <details key="start" value="3967"/>
+      <details key="end" value="3991"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.104" references="/0/javaDeclarationFilter/@body.0/@body.5/@else">
-      <details key="start" value="4087"/>
-      <details key="end" value="4200"/>
+      <details key="start" value="4054"/>
+      <details key="end" value="4167"/>
       <details key="line" value="84"/>
     </eAnnotations>
     <eAnnotations source="positions.105" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.0">
-      <details key="start" value="4094"/>
-      <details key="end" value="4099"/>
+      <details key="start" value="4061"/>
+      <details key="end" value="4066"/>
       <details key="line" value="85"/>
     </eAnnotations>
     <eAnnotations source="positions.106" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1">
-      <details key="start" value="4099"/>
-      <details key="end" value="4197"/>
+      <details key="start" value="4066"/>
+      <details key="end" value="4164"/>
       <details key="line" value="85"/>
     </eAnnotations>
     <eAnnotations source="positions.107" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@body.0">
-      <details key="start" value="4164"/>
-      <details key="end" value="4185"/>
+      <details key="start" value="4131"/>
+      <details key="end" value="4152"/>
       <details key="line" value="86"/>
     </eAnnotations>
     <eAnnotations source="positions.108" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@marker">
-      <details key="start" value="4111"/>
-      <details key="end" value="4162"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.109" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@marker/@source">
-      <details key="start" value="4111"/>
+      <details key="start" value="4078"/>
       <details key="end" value="4129"/>
       <details key="line" value="0"/>
     </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@marker/@source">
+      <details key="start" value="4078"/>
+      <details key="end" value="4096"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
     <eAnnotations source="positions.110" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@marker/@argument.0">
-      <details key="start" value="4137"/>
-      <details key="end" value="4161"/>
+      <details key="start" value="4104"/>
+      <details key="end" value="4128"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.111" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.1/@marker/@argument.0/bindingFilter">
-      <details key="start" value="4137"/>
-      <details key="end" value="4150"/>
+      <details key="start" value="4104"/>
+      <details key="end" value="4117"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.112" references="/0/javaDeclarationFilter/@body.0/@body.5/@else/@body.2">
-      <details key="start" value="4197"/>
-      <details key="end" value="4198"/>
+      <details key="start" value="4164"/>
+      <details key="end" value="4165"/>
       <details key="line" value="88"/>
     </eAnnotations>
     <eAnnotations source="positions.113" references="/0/javaDeclarationFilter/@body.0/@body.6">
-      <details key="start" value="4206"/>
-      <details key="end" value="4209"/>
+      <details key="start" value="4173"/>
+      <details key="end" value="4176"/>
       <details key="line" value="89"/>
     </eAnnotations>
     <eAnnotations source="positions.114" references="/0/javaDeclarationFilter/@body.0/bindingFilter">
@@ -5308,7 +5329,7 @@
     </eAnnotations>
     <eAnnotations source="positions.115" references="/0/javaDeclarationFilter/@body.0/select">
       <details key="start" value="3666"/>
-      <details key="end" value="3746"/>
+      <details key="end" value="3737"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.116" references="/0/javaDeclarationFilter/@body.0/select/@source">
@@ -5323,7 +5344,7 @@
     </eAnnotations>
     <eAnnotations source="positions.118" references="/0/javaDeclarationFilter/@body.0/select/@body">
       <details key="start" value="3693"/>
-      <details key="end" value="3745"/>
+      <details key="end" value="3736"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.119" references="/0/javaDeclarationFilter/@body.0/select/@body/temp1">
@@ -5333,7 +5354,7 @@
     </eAnnotations>
     <eAnnotations source="positions.120" references="/0/javaDeclarationFilter/@body.0/select/@body/@argument.0">
       <details key="start" value="3705"/>
-      <details key="end" value="3744"/>
+      <details key="end" value="3735"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.121" references="/0/javaDeclarationFilter/@body.0/select/temp1">
@@ -5342,8 +5363,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.122" references="/0/javaDeclarationFilter/@body.0/@each">
-      <details key="start" value="3759"/>
-      <details key="end" value="3763"/>
+      <details key="start" value="3750"/>
+      <details key="end" value="3754"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.123" references="/0/javaDeclarationFilter/pee">

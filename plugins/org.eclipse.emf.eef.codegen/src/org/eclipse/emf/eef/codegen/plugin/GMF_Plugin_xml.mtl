@@ -16,7 +16,6 @@
 [import naming /]
 
 [template public GMF_Plugin_xml(editionContext : PropertiesEditionContext, basePackage : String)]
-[comment @main /]
 	[file (editionContext.model.ecorePackage.name.concat('_properties.plugin.xml'), false)]
 
 	<extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
@@ -110,5 +109,5 @@ org.eclipse.gmf.runtime.common.ui.services.util.CommonLabelProvider
 [/template]
 
 [query public previousView(pec : PropertiesEditionComponent, view : View) : View = 
-	pec.involvedViews()->at(pec.involvedViews()->indexOf(view) - 1).oclAsType(views::View)/]
+	pec.involvedViews()->at(pec.involvedViews()->indexOf(view) - 1).oclAsType(View)/]
 

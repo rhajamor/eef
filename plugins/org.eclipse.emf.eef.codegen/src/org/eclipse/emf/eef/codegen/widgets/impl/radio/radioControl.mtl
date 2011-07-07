@@ -18,7 +18,7 @@
 
 [comment ===== Case : model = Attribute(1) - view = Radio ===== /]
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Radio'))]
-[if (editionElement.model.oclAsType(ecore::EAttribute).isEnum())]
+[if (editionElement.model.oclAsType(EAttribute).isEnum())]
 if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null  && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [else]

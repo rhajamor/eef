@@ -74,12 +74,12 @@
 [/template]
 
 [template public javaDeclarationFilter(pee : PropertiesEditionElement)]
-[for (bindingFilter : JavaDeclarationFilter | pee.bindingFilters->select(oclIsTypeOf(mapping::filters::JavaDeclarationFilter))) separator ('\n')]
+[for (bindingFilter : JavaDeclarationFilter | pee.bindingFilters->select(oclIsTypeOf(filters::JavaDeclarationFilter))) separator ('\n')]
 	/**
 	 * [bindingFilter.documentation/]
 	 */
 	private boolean [bindingFilter.methodName/](Viewer viewer, Object parentElement, Object element){
-		[if (pee.element.eContainer(components::PropertiesEditionContext).oclAsType(components::PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+		[if (pee.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
 		return true;
 		[else]
 		// [protected ('for user filter '.concat(bindingFilter.methodName))]

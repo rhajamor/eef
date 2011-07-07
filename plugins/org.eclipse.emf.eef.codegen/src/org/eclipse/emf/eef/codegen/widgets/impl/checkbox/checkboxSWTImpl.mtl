@@ -58,4 +58,3 @@ create[editor.name.toJavaClassifier()/]Checkbox(parent);
 		return parent;
 	}
 [/template]
-
