@@ -116,8 +116,8 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 											monitor.beginTask("Organize imports", 1);
 											Display.getDefault().asyncExec(new Runnable() {
 												public void run() {
-													ImportOrganizer.organizeImports(site, generator
-															.getGenerationTargets());
+													ImportOrganizer.organizeImports(site,
+															generator.getGenerationTargets());
 												}
 											});
 										}
@@ -141,7 +141,7 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 		} catch (InvocationTargetException e) {
 			EEFCodegenPlugin.getDefault().logError(e);
 		} catch (InterruptedException e) {
-			EEFCodegenPlugin.getDefault().logWarning(e);
+			// silently catch interrupted exceptions
 		} catch (IOException e) {
 			EEFCodegenPlugin.getDefault().logError(e);
 		} finally {
@@ -180,8 +180,8 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 	public IContainer getGenContainer(EEFGenModel eefGenModel) throws IOException {
 		if (eefGenModel != null) {
 			if (eefGenModel.getGenDirectory() != null) {
-				final IContainer target = (IContainer)ResourcesPlugin.getWorkspace().getRoot().getFolder(
-						new Path(eefGenModel.getGenDirectory()));
+				final IContainer target = (IContainer)ResourcesPlugin.getWorkspace().getRoot()
+						.getFolder(new Path(eefGenModel.getGenDirectory()));
 				return target;
 			}
 		}

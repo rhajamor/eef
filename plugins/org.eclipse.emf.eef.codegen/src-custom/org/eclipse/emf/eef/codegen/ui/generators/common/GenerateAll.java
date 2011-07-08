@@ -89,8 +89,7 @@ public class GenerateAll {
 		org.eclipse.emf.eef.codegen.launcher.EEFLauncher launcher = new org.eclipse.emf.eef.codegen.launcher.EEFLauncher(
 				eefGenModel, targetFolder, arguments);
 		monitor.worked(1);
-		monitor.subTask("Generating EEF code using "
-				+ eefGenModel.eResource().getURI().lastSegment() + "...");
+		monitor.subTask("Generating EEF code using " + eefGenModel.eResource().getURI().lastSegment() + "...");
 		launcher.doGenerate(BasicMonitor.toMonitor(new SubProgressMonitor(monitor, IProgressMonitor.UNKNOWN)));
 		monitor.worked(1);
 		for (AbstractPropertiesGeneratorLauncher abstractPropertiesGeneratorLauncher : PropertiesGeneratorLaunchersServices
