@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FlatReferenceExtendedEditorSampleImpl.java,v 1.1 2010/04/15 12:48:57 glefur Exp $
+ * $Id: FlatReferenceExtendedEditorSampleImpl.java,v 1.1.4.1 2011/07/08 13:46:03 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnrext.impl;
 
@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;

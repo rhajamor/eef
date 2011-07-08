@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableCompositionEditorSampleImpl.java,v 1.2 2010/06/03 13:49:36 glefur Exp $
+ * $Id: TableCompositionEditorSampleImpl.java,v 1.2.4.1 2011/07/08 13:46:03 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.impl;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.Sample;
 import org.eclipse.emf.eef.eefnr.TableCompositionEditorSample;
-import org.eclipse.emf.eef.eefnr.TotalSample;
 
 /**
  * <!-- begin-user-doc -->
