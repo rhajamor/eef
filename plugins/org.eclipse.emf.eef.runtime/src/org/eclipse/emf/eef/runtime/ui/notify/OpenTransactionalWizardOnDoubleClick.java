@@ -67,6 +67,8 @@ public class OpenTransactionalWizardOnDoubleClick implements IDoubleClickListene
 					operation.execute(getProgressMonitor(), null);
 				} catch (ExecutionException e) {
 					EEFRuntimePlugin.getDefault().logError("An error occured during wizard editing.", e);
+				} finally {
+					propertiesEditionContext.dispose();
 				}
 			}
 		}
