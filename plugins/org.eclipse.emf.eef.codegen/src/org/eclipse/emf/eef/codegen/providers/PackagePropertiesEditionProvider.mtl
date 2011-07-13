@@ -30,6 +30,11 @@ import [if ((not peContext.associatedEMFGenModel(ePackage).basePackage.oclIsUnde
 /**
  * [peContext.associatedGenModel().authorText().trim()/]
  * [peContext.associatedGenModel().generationMark()/]
+ *
+ * [peContext/]
+ * [peContext.associatedEMFGenModel(ePackage)/]
+ * [peContext.associatedEMFGenModel(ePackage).prefix/]
+ * [peContext.associatedEMFGenModel(ePackage).prefix/]AdapterFactory
  */
 public class [ePackage.pecPackageProviderClass()/] extends [peContext.associatedEMFGenModel(ePackage).prefix/]AdapterFactory {
 

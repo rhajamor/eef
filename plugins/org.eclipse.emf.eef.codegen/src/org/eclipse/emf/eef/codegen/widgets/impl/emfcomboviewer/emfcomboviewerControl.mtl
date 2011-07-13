@@ -18,7 +18,7 @@
 
 [comment ===== Case : model = Attribute(1) - view = EMFComboViewer ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('EMFComboViewer'))]
-[pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.name/])event.getNewValue());
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.name/])event.getNewValue());
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('EMFComboViewer'))]

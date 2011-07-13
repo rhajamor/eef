@@ -246,7 +246,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 		
 		// [/protected]
 		[else]
-		[pec.model.name/] [pec.model.name.toJavaIdentifier()/] = ([pec.model.name/])semanticObject;
+		[pec.model.name/] [pec.model.name.toJavaIdentifier().disambiguation('event')/] = ([pec.model.name/])semanticObject;
 		[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.model.changeable and not pee.views->first().readOnly))]
 		if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
 			[editionElement.declareEObjectUpdater(view, pec)/]

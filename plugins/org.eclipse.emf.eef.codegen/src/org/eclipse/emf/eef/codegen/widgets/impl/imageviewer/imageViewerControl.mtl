@@ -19,7 +19,7 @@
 [comment ===== Case : model = Attribute(1) - view = Text ===== /]
 [comment @Override widgetControl.declareEObjectUpdater /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
-[pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/]((String)event.getNewValue());
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((String)event.getNewValue());
 [/template]
 
 [comment @Override widgetControl.liveUpdater /]

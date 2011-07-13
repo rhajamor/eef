@@ -297,3 +297,5 @@ CompositePropertiesEditionPart
 [template public editorID(reference : ViewReference)]
 [reference.owningView().owningViewsRepository().vrClass()/].[for (s : String | reference.editorIDSequence()->subSequence(2, reference.editorIDSequence()->size() - 1)) separator ('.')][s.toJavaClassifier()/][/for].[reference.identifiedElementKey().toJavaIdentifier()/]
 [/template]
+
+[query public disambiguation(input : String, exclude : String) : String = if (input = exclude) then input.concat('_') else input endif /]

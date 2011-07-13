@@ -18,7 +18,7 @@
 
 [comment ===== Case : model = Attribute(1) - view = Checkbox ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
-[pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/]((Boolean)event.getNewValue());
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((Boolean)event.getNewValue());
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]

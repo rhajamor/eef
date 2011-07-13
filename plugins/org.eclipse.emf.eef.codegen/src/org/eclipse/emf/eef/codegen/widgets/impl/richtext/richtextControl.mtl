@@ -19,8 +19,8 @@
 [comment ===== Case : model = Attribute(1) - view = RichText ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('RichText'))]
 [if (editionElement.model.isPrimitiveType())]
-[pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/]((EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));[else]
-[pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue()));[/if]
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));[else]
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue()));[/if]
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('RichText'))]
