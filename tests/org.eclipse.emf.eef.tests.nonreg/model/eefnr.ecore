@@ -292,4 +292,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteReferenceTargetSample1" eSuperTypes="#//filters/AbstractReferenceTargetSample"/>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteReferenceTargetSample2" eSuperTypes="#//filters/AbstractReferenceTargetSample"/>
   </eSubpackages>
+  <eSubpackages name="naming" nsURI="http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"
+      nsPrefix="eefnr-name">
+    <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//AbstractSample"/>
+  </eSubpackages>
 </ecore:EPackage>
