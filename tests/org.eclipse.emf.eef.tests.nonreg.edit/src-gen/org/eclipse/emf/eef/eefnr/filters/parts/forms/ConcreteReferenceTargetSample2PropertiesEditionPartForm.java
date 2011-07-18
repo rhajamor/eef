@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
@@ -85,7 +86,7 @@ public class ConcreteReferenceTargetSample2PropertiesEditionPartForm extends Com
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence concreteReferenceTargetSample2Step = new CompositionSequence();
+		CompositionSequence concreteReferenceTargetSample2Step = new BindingCompositionSequence(propertiesEditionComponent);
 		concreteReferenceTargetSample2Step
 			.addStep(FiltersViewsRepository.ConcreteReferenceTargetSample2.Properties.class)
 			.addStep(FiltersViewsRepository.ConcreteReferenceTargetSample2.Properties.name);

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -78,8 +79,10 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			final Root root = (Root)elt;
 			final RootPropertiesEditionPart basePart = (RootPropertiesEditionPart)editingPart;
 			// init values
-			samplesSettings = new ReferencesTableSettings(root, EefnrPackage.eINSTANCE.getRoot_Samples());
-			basePart.initSamples(samplesSettings);
+			if (isAccessible(EefnrViewsRepository.Root.Properties.samples)) {
+				samplesSettings = new ReferencesTableSettings(root, EefnrPackage.eINSTANCE.getRoot_Samples());
+				basePart.initSamples(samplesSettings);
+			}
 			// init filters
 			basePart.addFilterToSamples(new ViewerFilter() {
 			
@@ -110,13 +113,24 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.Root.Properties.samples) {
+			return EefnrPackage.eINSTANCE.getRoot_Samples();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Root root = (Root)semanticObject;
 		if (EefnrViewsRepository.Root.Properties.samples == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, samplesSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -147,7 +161,7 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			RootPropertiesEditionPart basePart = (RootPropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getRoot_Samples().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getRoot_Samples().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.Root.Properties.samples))
 				basePart.updateSamples();
 			
 		}

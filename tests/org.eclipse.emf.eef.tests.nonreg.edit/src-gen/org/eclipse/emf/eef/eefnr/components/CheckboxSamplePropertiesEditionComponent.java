@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -65,10 +66,12 @@ public class CheckboxSamplePropertiesEditionComponent extends SinglePartProperti
 			final CheckboxSample checkboxSample = (CheckboxSample)elt;
 			final CheckboxSamplePropertiesEditionPart basePart = (CheckboxSamplePropertiesEditionPart)editingPart;
 			// init values
-			basePart.setCheckboxRequiredProperty(checkboxSample.isCheckboxRequiredProperty());
-			
-			basePart.setCheckboxOptionalProperty(checkboxSample.isCheckboxOptionalProperty());
-			
+			if (isAccessible(EefnrViewsRepository.CheckboxSample.Properties.checkboxRequiredProperty)) {
+				basePart.setCheckboxRequiredProperty(checkboxSample.isCheckboxRequiredProperty());
+			}
+			if (isAccessible(EefnrViewsRepository.CheckboxSample.Properties.checkboxOptionalProperty)) {
+				basePart.setCheckboxOptionalProperty(checkboxSample.isCheckboxOptionalProperty());
+			}
 			// init filters
 			
 			
@@ -83,6 +86,20 @@ public class CheckboxSamplePropertiesEditionComponent extends SinglePartProperti
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.CheckboxSample.Properties.checkboxRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.CheckboxSample.Properties.checkboxOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -106,10 +123,10 @@ public class CheckboxSamplePropertiesEditionComponent extends SinglePartProperti
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			CheckboxSamplePropertiesEditionPart basePart = (CheckboxSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxRequiredProperty().equals(msg.getFeature()) && basePart != null)
+			if (EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.CheckboxSample.Properties.checkboxRequiredProperty))
 				basePart.setCheckboxRequiredProperty((Boolean)msg.getNewValue());
 			
-			if (EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxOptionalProperty().equals(msg.getFeature()) && basePart != null)
+			if (EefnrPackage.eINSTANCE.getCheckboxSample_CheckboxOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.CheckboxSample.Properties.checkboxOptionalProperty))
 				basePart.setCheckboxOptionalProperty((Boolean)msg.getNewValue());
 			
 			

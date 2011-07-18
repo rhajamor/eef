@@ -19,6 +19,11 @@ import org.eclipse.emf.eef.references.providers.AbstractSamplePropertiesEditionP
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
+ *
+ * org.eclipse.emf.eef.components.impl.PropertiesEditionContextImpl@1154c85 (documentation: Edition Context for eefnr GenPackage)
+ * org.eclipse.emf.codegen.ecore.genmodel.impl.GenPackageImpl@1433612 (prefix: Eefnr, basePackage: org.eclipse.emf.eef, resource: None, disposableProviderFactory: true, adapterFactory: true, loadInitialization: false, interfacePackageSuffix: , metaDataPackageSuffix: , classPackageSuffix: impl, utilityPackageSuffix: util, providerPackageSuffix: provider, presentationPackageSuffix: presentation, testsPackageSuffix: tests, generateExampleClass: true, literalsInterface: true, dataTypeConverters: false, multipleEditorPages: false, generateModelWizard: true, extensibleProviderFactory: false, childCreationExtenders: false, contentTypeIdentifier: null, fileExtensions: null)
+ * Eefnr
+ * EefnrAdapterFactory
  */
 public class EefnrEEFAdapterFactory extends EefnrAdapterFactory {
 

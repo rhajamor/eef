@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -78,8 +79,10 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 			final FlatReferenceExtendedEditorSample flatReferenceExtendedEditorSample = (FlatReferenceExtendedEditorSample)elt;
 			final FlatReferenceExtendedEditorSamplePropertiesEditionPart basePart = (FlatReferenceExtendedEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			flatReferenceEditorSampleSettings = new ReferencesTableSettings(flatReferenceExtendedEditorSample, EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample());
-			basePart.initFlatReferenceEditorSample(flatReferenceEditorSampleSettings);
+			if (isAccessible(EefnrextViewsRepository.FlatReferenceExtendedEditorSample.Properties.flatReferenceEditorSample)) {
+				flatReferenceEditorSampleSettings = new ReferencesTableSettings(flatReferenceExtendedEditorSample, EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample());
+				basePart.initFlatReferenceEditorSample(flatReferenceEditorSampleSettings);
+			}
 			// init filters
 			basePart.addFilterToFlatReferenceEditorSample(new ViewerFilter() {
 			
@@ -116,6 +119,17 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrextViewsRepository.FlatReferenceExtendedEditorSample.Properties.flatReferenceEditorSample) {
+			return EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -134,7 +148,7 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			FlatReferenceExtendedEditorSamplePropertiesEditionPart basePart = (FlatReferenceExtendedEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample().equals(msg.getFeature()))
+			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample().equals(msg.getFeature()) && isAccessible(EefnrextViewsRepository.FlatReferenceExtendedEditorSample.Properties.flatReferenceEditorSample))
 				basePart.updateFlatReferenceEditorSample();
 			
 		}

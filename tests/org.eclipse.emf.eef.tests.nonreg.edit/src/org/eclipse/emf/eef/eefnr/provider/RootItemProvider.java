@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RootItemProvider.java,v 1.11 2011/02/22 08:54:51 glefur Exp $
+ * $Id: RootItemProvider.java,v 1.11.2.1 2011/07/18 08:58:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.eef.eefnr.EefnrFactory;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.Root;
 import org.eclipse.emf.eef.eefnr.filters.FiltersFactory;
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory;
 import org.eclipse.emf.eef.eefnr.navigation.NavigationFactory;
 import org.eclipse.emf.eef.eefnr.references.ReferencesFactory;
 import org.eclipse.emf.eef.eefnrext.EefnrextFactory;
@@ -309,6 +310,11 @@ public class RootItemProvider
 			(createChildParameter
 				(EefnrPackage.Literals.ROOT__SAMPLES,
 				 FiltersFactory.eINSTANCE.createConcreteReferenceTargetSample2()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EefnrPackage.Literals.ROOT__SAMPLES,
+				 CustomNamingFactory.eINSTANCE.createEvent()));
 
 		newChildDescriptors.add
 			(createChildParameter

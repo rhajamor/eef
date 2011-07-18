@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -67,9 +68,9 @@ public class TextareaSamplePropertiesEditionComponent extends SinglePartProperti
 			final TextareaSample textareaSample = (TextareaSample)elt;
 			final TextareaSamplePropertiesEditionPart basePart = (TextareaSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (textareaSample.getTextareaRequiredProperty() != null)
+			if (textareaSample.getTextareaRequiredProperty() != null && isAccessible(EefnrViewsRepository.TextareaSample.Properties.textareaRequiredProperty))
 				basePart.setTextareaRequiredProperty(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textareaSample.getTextareaRequiredProperty()));
-			if (textareaSample.getTextareaOptionalProperty() != null)
+			if (textareaSample.getTextareaOptionalProperty() != null && isAccessible(EefnrViewsRepository.TextareaSample.Properties.textareaOptionalProperty))
 				basePart.setTextareaOptionalProperty(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textareaSample.getTextareaOptionalProperty()));
 			// init filters
 			
@@ -85,6 +86,20 @@ public class TextareaSamplePropertiesEditionComponent extends SinglePartProperti
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.TextareaSample.Properties.textareaRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getTextareaSample_TextareaRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.TextareaSample.Properties.textareaOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getTextareaSample_TextareaOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -108,14 +123,14 @@ public class TextareaSamplePropertiesEditionComponent extends SinglePartProperti
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			TextareaSamplePropertiesEditionPart basePart = (TextareaSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getTextareaSample_TextareaRequiredProperty().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getTextareaSample_TextareaRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TextareaSample.Properties.textareaRequiredProperty)){
 				if (msg.getNewValue() != null) {
 					basePart.setTextareaRequiredProperty(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setTextareaRequiredProperty("");
 				}
 			}
-			if (EefnrPackage.eINSTANCE.getTextareaSample_TextareaOptionalProperty().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getTextareaSample_TextareaOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TextareaSample.Properties.textareaOptionalProperty)){
 				if (msg.getNewValue() != null) {
 					basePart.setTextareaOptionalProperty(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

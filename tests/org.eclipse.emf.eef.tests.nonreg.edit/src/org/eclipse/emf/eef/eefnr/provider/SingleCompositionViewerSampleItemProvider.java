@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SingleCompositionViewerSampleItemProvider.java,v 1.1 2011/02/22 08:54:51 glefur Exp $
+ * $Id: SingleCompositionViewerSampleItemProvider.java,v 1.1.2.1 2011/07/18 08:58:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.eef.eefnr.SingleCompositionViewerSample;
 
 import org.eclipse.emf.eef.eefnr.filters.FiltersFactory;
 
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory;
 import org.eclipse.emf.eef.eefnr.navigation.NavigationFactory;
 
 import org.eclipse.emf.eef.eefnr.references.ReferencesFactory;
@@ -333,6 +334,11 @@ public class SingleCompositionViewerSampleItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_REQUIRED_PROPERTY,
+				 CustomNamingFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_REQUIRED_PROPERTY,
 				 EefnrextFactory.eINSTANCE.createTableCompositionTargetExtensionEditorSample()));
 
 		newChildDescriptors.add
@@ -499,6 +505,11 @@ public class SingleCompositionViewerSampleItemProvider
 			(createChildParameter
 				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_OPTIONAL_PROPERTY,
 				 FiltersFactory.eINSTANCE.createConcreteReferenceTargetSample2()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_OPTIONAL_PROPERTY,
+				 CustomNamingFactory.eINSTANCE.createEvent()));
 
 		newChildDescriptors.add
 			(createChildParameter

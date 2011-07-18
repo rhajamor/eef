@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -85,7 +86,7 @@ public class CheckboxSamplePropertiesEditionPartForm extends CompositeProperties
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence checkboxSampleStep = new CompositionSequence();
+		CompositionSequence checkboxSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = checkboxSampleStep.addStep(EefnrViewsRepository.CheckboxSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.CheckboxSample.Properties.checkboxRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.CheckboxSample.Properties.checkboxOptionalProperty);

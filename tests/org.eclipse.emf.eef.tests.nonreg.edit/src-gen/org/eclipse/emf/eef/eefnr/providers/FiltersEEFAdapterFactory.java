@@ -21,6 +21,11 @@ import org.eclipse.emf.eef.references.providers.AbstractSamplePropertiesEditionP
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
+ *
+ * org.eclipse.emf.eef.components.impl.PropertiesEditionContextImpl@1154c85 (documentation: Edition Context for eefnr GenPackage)
+ * org.eclipse.emf.codegen.ecore.genmodel.impl.GenPackageImpl@e52f3e (prefix: Filters, basePackage: org.eclipse.emf.eef.eefnr, resource: None, disposableProviderFactory: true, adapterFactory: true, loadInitialization: false, interfacePackageSuffix: , metaDataPackageSuffix: , classPackageSuffix: impl, utilityPackageSuffix: util, providerPackageSuffix: provider, presentationPackageSuffix: presentation, testsPackageSuffix: tests, generateExampleClass: true, literalsInterface: true, dataTypeConverters: false, multipleEditorPages: true, generateModelWizard: true, extensibleProviderFactory: false, childCreationExtenders: false, contentTypeIdentifier: null, fileExtensions: null)
+ * Filters
+ * FiltersAdapterFactory
  */
 public class FiltersEEFAdapterFactory extends FiltersAdapterFactory {
 

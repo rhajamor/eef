@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -65,8 +66,9 @@ public class AnotherSubtypeBasePropertiesEditionComponent extends SinglePartProp
 			final AnotherSubType anotherSubType = (AnotherSubType)elt;
 			final AnotherSubtypePropertiesEditionPart basePart = (AnotherSubtypePropertiesEditionPart)editingPart;
 			// init values
-			basePart.setAnotherSpecialisationElement(anotherSubType.isAnotherSpecialisation());
-			
+			if (isAccessible(NavigationViewsRepository.AnotherSubtype.AnotherSpecialisation.anotherSpecialisationElement)) {
+				basePart.setAnotherSpecialisationElement(anotherSubType.isAnotherSpecialisation());
+			}
 			// init filters
 			
 			// init values for referenced views
@@ -82,6 +84,17 @@ public class AnotherSubtypeBasePropertiesEditionComponent extends SinglePartProp
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == NavigationViewsRepository.AnotherSubtype.AnotherSpecialisation.anotherSpecialisationElement) {
+			return NavigationPackage.eINSTANCE.getAnotherSubType_AnotherSpecialisation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -102,7 +115,7 @@ public class AnotherSubtypeBasePropertiesEditionComponent extends SinglePartProp
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			AnotherSubtypePropertiesEditionPart basePart = (AnotherSubtypePropertiesEditionPart)editingPart;
-			if (NavigationPackage.eINSTANCE.getAnotherSubType_AnotherSpecialisation().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getAnotherSubType_AnotherSpecialisation().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.AnotherSubtype.AnotherSpecialisation.anotherSpecialisationElement))
 				basePart.setAnotherSpecialisationElement((Boolean)msg.getNewValue());
 			
 			

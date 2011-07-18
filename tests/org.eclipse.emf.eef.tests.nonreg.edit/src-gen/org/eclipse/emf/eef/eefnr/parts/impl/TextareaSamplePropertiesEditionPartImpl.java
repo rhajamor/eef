@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -82,7 +83,7 @@ public class TextareaSamplePropertiesEditionPartImpl extends CompositeProperties
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence textareaSampleStep = new CompositionSequence();
+		CompositionSequence textareaSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = textareaSampleStep.addStep(EefnrViewsRepository.TextareaSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.TextareaSample.Properties.textareaRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TextareaSample.Properties.textareaOptionalProperty);
@@ -220,7 +221,7 @@ public class TextareaSamplePropertiesEditionPartImpl extends CompositeProperties
 		if (newValue != null) {
 			textareaRequiredProperty.setText(newValue);
 		} else {
-			textareaRequiredProperty.setText("");  //$NON-NLS-1$
+			textareaRequiredProperty.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -245,7 +246,7 @@ public class TextareaSamplePropertiesEditionPartImpl extends CompositeProperties
 		if (newValue != null) {
 			textareaOptionalProperty.setText(newValue);
 		} else {
-			textareaOptionalProperty.setText("");  //$NON-NLS-1$
+			textareaOptionalProperty.setText(""); //$NON-NLS-1$
 		}
 	}
 

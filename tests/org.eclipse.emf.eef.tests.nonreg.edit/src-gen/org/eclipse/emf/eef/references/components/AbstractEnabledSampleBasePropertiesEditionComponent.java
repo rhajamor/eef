@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -66,8 +67,9 @@ public class AbstractEnabledSampleBasePropertiesEditionComponent extends SingleP
 			final AbstractEnabledSample abstractEnabledSample = (AbstractEnabledSample)elt;
 			final AbstractEnabledSamplePropertiesEditionPart basePart = (AbstractEnabledSamplePropertiesEditionPart)editingPart;
 			// init values
-			basePart.setEnabled(abstractEnabledSample.isEnabled());
-			
+			if (isAccessible(ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.enabled)) {
+				basePart.setEnabled(abstractEnabledSample.isEnabled());
+			}
 			// init filters
 			
 			// init values for referenced views
@@ -83,6 +85,17 @@ public class AbstractEnabledSampleBasePropertiesEditionComponent extends SingleP
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.enabled) {
+			return ReferencesPackage.eINSTANCE.getAbstractEnabledSample_Enabled();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -103,7 +116,7 @@ public class AbstractEnabledSampleBasePropertiesEditionComponent extends SingleP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			AbstractEnabledSamplePropertiesEditionPart basePart = (AbstractEnabledSamplePropertiesEditionPart)editingPart;
-			if (ReferencesPackage.eINSTANCE.getAbstractEnabledSample_Enabled().equals(msg.getFeature()) && basePart != null)
+			if (ReferencesPackage.eINSTANCE.getAbstractEnabledSample_Enabled().equals(msg.getFeature()) && basePart != null && isAccessible(ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.enabled))
 				basePart.setEnabled((Boolean)msg.getNewValue());
 			
 			

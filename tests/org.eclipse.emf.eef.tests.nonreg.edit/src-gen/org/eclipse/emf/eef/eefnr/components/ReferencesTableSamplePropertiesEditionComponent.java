@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.ReferencesTableSample;
@@ -79,10 +80,14 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 			final ReferencesTableSample referencesTableSample = (ReferencesTableSample)elt;
 			final ReferencesTableSamplePropertiesEditionPart basePart = (ReferencesTableSamplePropertiesEditionPart)editingPart;
 			// init values
-			referencestableRequiredPropertySettings = new ReferencesTableSettings(referencesTableSample, EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableRequiredProperty());
-			basePart.initReferencestableRequiredProperty(referencestableRequiredPropertySettings);
-			referencestableOptionalPropertySettings = new ReferencesTableSettings(referencesTableSample, EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableOptionalProperty());
-			basePart.initReferencestableOptionalProperty(referencestableOptionalPropertySettings);
+			if (isAccessible(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableRequiredProperty)) {
+				referencestableRequiredPropertySettings = new ReferencesTableSettings(referencesTableSample, EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableRequiredProperty());
+				basePart.initReferencestableRequiredProperty(referencestableRequiredPropertySettings);
+			}
+			if (isAccessible(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty)) {
+				referencestableOptionalPropertySettings = new ReferencesTableSettings(referencesTableSample, EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableOptionalProperty());
+				basePart.initReferencestableOptionalProperty(referencestableOptionalPropertySettings);
+			}
 			// init filters
 			basePart.addFilterToReferencestableRequiredProperty(new ViewerFilter() {
 			
@@ -136,13 +141,27 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.ReferencesTableSample.Properties.referencestableRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ReferencesTableSample referencesTableSample = (ReferencesTableSample)semanticObject;
 		if (EefnrViewsRepository.ReferencesTableSample.Properties.referencestableRequiredProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof TotalSample) {
 					referencestableRequiredPropertySettings.addToReference((EObject) event.getNewValue());
 				}
@@ -151,7 +170,7 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 			}
 		}
 		if (EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof TotalSample) {
 					referencestableOptionalPropertySettings.addToReference((EObject) event.getNewValue());
 				}
@@ -168,9 +187,9 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ReferencesTableSamplePropertiesEditionPart basePart = (ReferencesTableSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableRequiredProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableRequiredProperty().equals(msg.getFeature())  && isAccessible(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableRequiredProperty))
 				basePart.updateReferencestableRequiredProperty();
-			if (EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableOptionalProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getReferencesTableSample_ReferencestableOptionalProperty().equals(msg.getFeature())  && isAccessible(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty))
 				basePart.updateReferencestableOptionalProperty();
 			
 		}

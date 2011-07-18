@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
@@ -81,7 +82,7 @@ public class TableCompositionTargetExtensionEditorSamplePropertiesEditionPartImp
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence tableCompositionTargetExtensionEditorSampleStep = new CompositionSequence();
+		CompositionSequence tableCompositionTargetExtensionEditorSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		tableCompositionTargetExtensionEditorSampleStep
 			.addStep(EefnrextViewsRepository.TableCompositionTargetExtensionEditorSample.Properties.class)
 			.addStep(EefnrextViewsRepository.TableCompositionTargetExtensionEditorSample.Properties.name);

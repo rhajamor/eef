@@ -31,6 +31,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -160,7 +161,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence ownerStep = new CompositionSequence();
+		CompositionSequence ownerStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = ownerStep.addStep(NavigationViewsRepository.Owner.Properties.class);
 		propertiesStep.addStep(NavigationViewsRepository.Owner.Properties.name);
 		propertiesStep.addStep(NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition);

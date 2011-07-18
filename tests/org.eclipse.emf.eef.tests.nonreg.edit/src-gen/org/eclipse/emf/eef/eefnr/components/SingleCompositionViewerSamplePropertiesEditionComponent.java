@@ -11,33 +11,20 @@
 package org.eclipse.emf.eef.eefnr.components;
 
 // Start of user code for imports
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
-import org.eclipse.emf.eef.eefnr.Sample;
 import org.eclipse.emf.eef.eefnr.SingleCompositionViewerSample;
 import org.eclipse.emf.eef.eefnr.parts.EefnrViewsRepository;
 import org.eclipse.emf.eef.eefnr.parts.SingleCompositionViewerSamplePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.SingleCompositionViewer;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 
 
 // End of user code
@@ -77,123 +64,15 @@ public class SingleCompositionViewerSamplePropertiesEditionComponent extends Sin
 			final SingleCompositionViewerSample singleCompositionViewerSample = (SingleCompositionViewerSample)elt;
 			final SingleCompositionViewerSamplePropertiesEditionPart basePart = (SingleCompositionViewerSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty)) {
-				if(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty().getLowerBound() == 1 && elt.eGet(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty()) == null) {
-					final List<EClass> instanciableTypesInHierarchy = EEFUtils.instanciableTypesInHierarchy(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty().getEType(), allResource);
-					if(instanciableTypesInHierarchy.size() == 1) {
-						ControlListener listener = new ControlListener() {
-			
-							public void controlResized(ControlEvent e) {
-								if(e.getSource() instanceof SingleCompositionViewer<?>) {
-									((SingleCompositionViewer<?>)e.getSource()).removeControlListener(this);
-								}
-								EObject element = EcoreUtil.create(instanciableTypesInHierarchy.get(0));
-								if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-									setInitializing(false);
-								firePropertiesChanged(new PropertiesEditionEvent((IPropertiesEditionListener) basePart, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
-								setInitializing(true);
-								if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode))
-									basePart.setSinglecompositionviewerSingleRequiredProperty(element);
-							}
-			
-							public void controlMoved(ControlEvent e) {
-							}
-						};
-					basePart.addSinglecompositionviewerSingleRequiredPropertyControlListener(listener);
-					}
-				}
-			
-				basePart.initSinglecompositionviewerSingleRequiredProperty(singleCompositionViewerSample, null, EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty(), liveEditingDomain);
-			}
-			if (isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty)) {
-				if(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty().getLowerBound() == 1 && elt.eGet(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty()) == null) {
-					final List<EClass> instanciableTypesInHierarchy = EEFUtils.instanciableTypesInHierarchy(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty().getEType(), allResource);
-					if(instanciableTypesInHierarchy.size() == 1) {
-						ControlListener listener = new ControlListener() {
-			
-							public void controlResized(ControlEvent e) {
-								if(e.getSource() instanceof SingleCompositionViewer<?>) {
-									((SingleCompositionViewer<?>)e.getSource()).removeControlListener(this);
-								}
-								EObject element = EcoreUtil.create(instanciableTypesInHierarchy.get(0));
-								if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-									setInitializing(false);
-								firePropertiesChanged(new PropertiesEditionEvent((IPropertiesEditionListener) basePart, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
-								setInitializing(true);
-								if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode))
-									basePart.setSinglecompositionviewerSingleOptionalProperty(element);
-							}
-			
-							public void controlMoved(ControlEvent e) {
-							}
-						};
-					basePart.addSinglecompositionviewerSingleOptionalPropertyControlListener(listener);
-					}
-				}
-			
-				basePart.initSinglecompositionviewerSingleOptionalProperty(singleCompositionViewerSample, null, EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty(), liveEditingDomain);
-			}
-			if (isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty)) {
-				if(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty().getLowerBound() == 1 && elt.eGet(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty()) == null) {
-					final List<EClass> instanciableTypesInHierarchy = EEFUtils.instanciableTypesInHierarchy(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty().getEType(), allResource);
-					if(instanciableTypesInHierarchy.size() == 1) {
-						ControlListener listener = new ControlListener() {
-			
-							public void controlResized(ControlEvent e) {
-								if(e.getSource() instanceof SingleCompositionViewer<?>) {
-									((SingleCompositionViewer<?>)e.getSource()).removeControlListener(this);
-								}
-								EObject element = EcoreUtil.create(instanciableTypesInHierarchy.get(0));
-								if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-									setInitializing(false);
-								firePropertiesChanged(new PropertiesEditionEvent((IPropertiesEditionListener) basePart, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
-								setInitializing(true);
-								if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode))
-									basePart.setSinglecompositionviewerMultiRequiredProperty(element);
-							}
-			
-							public void controlMoved(ControlEvent e) {
-							}
-						};
-					basePart.addSinglecompositionviewerMultiRequiredPropertyControlListener(listener);
-					}
-				}
-			
-				basePart.initSinglecompositionviewerMultiRequiredProperty(singleCompositionViewerSample, null, EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty(), liveEditingDomain);
-			}
-			if (isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty)) {
-				if(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty().getLowerBound() == 1 && elt.eGet(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty()) == null) {
-					final List<EClass> instanciableTypesInHierarchy = EEFUtils.instanciableTypesInHierarchy(EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty().getEType(), allResource);
-					if(instanciableTypesInHierarchy.size() == 1) {
-						ControlListener listener = new ControlListener() {
-			
-							public void controlResized(ControlEvent e) {
-								if(e.getSource() instanceof SingleCompositionViewer<?>) {
-									((SingleCompositionViewer<?>)e.getSource()).removeControlListener(this);
-								}
-								EObject element = EcoreUtil.create(instanciableTypesInHierarchy.get(0));
-								if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-									setInitializing(false);
-								firePropertiesChanged(new PropertiesEditionEvent((IPropertiesEditionListener) basePart, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
-								setInitializing(true);
-								if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode))
-									basePart.setSinglecompositionviewerMultiOptionalProperty(element);
-							}
-			
-							public void controlMoved(ControlEvent e) {
-							}
-						};
-					basePart.addSinglecompositionviewerMultiOptionalPropertyControlListener(listener);
-					}
-				}
-			
-				basePart.initSinglecompositionviewerMultiOptionalProperty(singleCompositionViewerSample, null, EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty(), liveEditingDomain);
-			}
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
 			// init filters
-			
-			
-			
-			
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -210,22 +89,42 @@ public class SingleCompositionViewerSamplePropertiesEditionComponent extends Sin
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty();
+		}
+		if (editorKey == EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		SingleCompositionViewerSample singleCompositionViewerSample = (SingleCompositionViewerSample)semanticObject;
 		if (EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty == event.getAffectedEditor()) {
-			// FIXME INVALID CASE you must override the template 'declareEObjectUpdater' for the case : singlecompositionviewSingleRequiredProperty, SingleCompositionViewerSample, SingleCompositionViewerSample.
+			//FIXME: Sorry this widget is deprecated for this version.
 		}
 		if (EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty == event.getAffectedEditor()) {
-			// FIXME INVALID CASE you must override the template 'declareEObjectUpdater' for the case : singlecompositionviewSingleOptionalProperty, SingleCompositionViewerSample, SingleCompositionViewerSample.
+			//FIXME: Sorry this widget is deprecated for this version.
 		}
 		if (EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty == event.getAffectedEditor()) {
-			// FIXME INVALID CASE you must override the template 'declareEObjectUpdater' for the case : singlecompositionviewMultiRequiredProperty, SingleCompositionViewerSample, SingleCompositionViewerSample.
+			//FIXME: Sorry this widget is deprecated for this version.
 		}
 		if (EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty == event.getAffectedEditor()) {
-			// FIXME INVALID CASE you must override the template 'declareEObjectUpdater' for the case : singlecompositionviewMultiOptionalProperty, SingleCompositionViewerSample, SingleCompositionViewerSample.
+			//FIXME: Sorry this widget is deprecated for this version.
 		}
 	}
 
@@ -236,14 +135,10 @@ public class SingleCompositionViewerSamplePropertiesEditionComponent extends Sin
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			SingleCompositionViewerSamplePropertiesEditionPart basePart = (SingleCompositionViewerSamplePropertiesEditionPart)editingPart;
-					if (msg.getFeature() != null && (((EStructuralFeature)msg.getFeature()) == EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleRequiredProperty()) && isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty))
-						basePart.setSinglecompositionviewerSingleRequiredProperty((Sample)msg.getNewValue());
-					if (msg.getFeature() != null && (((EStructuralFeature)msg.getFeature()) == EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewSingleOptionalProperty()) && isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty))
-						basePart.setSinglecompositionviewerSingleOptionalProperty((Sample)msg.getNewValue());
-					if (msg.getFeature() != null && (((EStructuralFeature)msg.getFeature()) == EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiRequiredProperty()) && isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty))
-						basePart.setSinglecompositionviewerMultiRequiredProperty((AbstractSample)msg.getNewValue());
-					if (msg.getFeature() != null && (((EStructuralFeature)msg.getFeature()) == EefnrPackage.eINSTANCE.getSingleCompositionViewerSample_SinglecompositionviewMultiOptionalProperty()) && isAccessible(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty))
-						basePart.setSinglecompositionviewerMultiOptionalProperty((AbstractSample)msg.getNewValue());
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
+			//FIXME: Sorry this widget is deprecated for this version.
 			
 		}
 	}

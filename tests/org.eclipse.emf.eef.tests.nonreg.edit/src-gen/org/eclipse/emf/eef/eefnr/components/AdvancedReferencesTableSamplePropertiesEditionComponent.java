@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.AdvancedReferencesTableSample;
@@ -80,10 +81,14 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 			final AdvancedReferencesTableSample advancedReferencesTableSample = (AdvancedReferencesTableSample)elt;
 			final AdvancedReferencesTableSamplePropertiesEditionPart basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)editingPart;
 			// init values
-			advancedreferencestableRequiredPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty());
-			basePart.initAdvancedreferencestableRequiredProperty(advancedreferencestableRequiredPropertySettings);
-			advancedreferencestableOptionalPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty());
-			basePart.initAdvancedreferencestableOptionalProperty(advancedreferencestableOptionalPropertySettings);
+			if (isAccessible(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty)) {
+				advancedreferencestableRequiredPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty());
+				basePart.initAdvancedreferencestableRequiredProperty(advancedreferencestableRequiredPropertySettings);
+			}
+			if (isAccessible(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty)) {
+				advancedreferencestableOptionalPropertySettings = new ReferencesTableSettings(advancedReferencesTableSample, EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty());
+				basePart.initAdvancedreferencestableOptionalProperty(advancedreferencestableOptionalPropertySettings);
+			}
 			// init filters
 			basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
 			
@@ -137,13 +142,27 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		AdvancedReferencesTableSample advancedReferencesTableSample = (AdvancedReferencesTableSample)semanticObject;
 		if (EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof TotalSample) {
 					advancedreferencestableRequiredPropertySettings.addToReference((EObject) event.getNewValue());
 				}
@@ -152,7 +171,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 			}
 		}
 		if (EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof TotalSample) {
 					advancedreferencestableOptionalPropertySettings.addToReference((EObject) event.getNewValue());
 				}
@@ -169,9 +188,9 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			AdvancedReferencesTableSamplePropertiesEditionPart basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty().equals(msg.getFeature())  && isAccessible(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty))
 				basePart.updateAdvancedreferencestableRequiredProperty();
-			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableOptionalProperty().equals(msg.getFeature())  && isAccessible(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty))
 				basePart.updateAdvancedreferencestableOptionalProperty();
 			
 		}

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -83,10 +84,14 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 			final TableCompositionExtensionEditorSample tableCompositionExtensionEditorSample = (TableCompositionExtensionEditorSample)elt;
 			final TableCompositionExtensionEditorSamplePropertiesEditionPart basePart = (TableCompositionExtensionEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			tablecompositionRequiredPropertySettings = new ReferencesTableSettings(tableCompositionExtensionEditorSample, EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty());
-			basePart.initTablecompositionRequiredProperty(tablecompositionRequiredPropertySettings);
-			tablecompositionOptionalPropertySettings = new ReferencesTableSettings(tableCompositionExtensionEditorSample, EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionOptionalProperty());
-			basePart.initTablecompositionOptionalProperty(tablecompositionOptionalPropertySettings);
+			if (isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty)) {
+				tablecompositionRequiredPropertySettings = new ReferencesTableSettings(tableCompositionExtensionEditorSample, EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty());
+				basePart.initTablecompositionRequiredProperty(tablecompositionRequiredPropertySettings);
+			}
+			if (isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty)) {
+				tablecompositionOptionalPropertySettings = new ReferencesTableSettings(tableCompositionExtensionEditorSample, EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionOptionalProperty());
+				basePart.initTablecompositionOptionalProperty(tablecompositionOptionalPropertySettings);
+			}
 			// init filters
 			basePart.addFilterToTablecompositionRequiredProperty(new ViewerFilter() {
 			
@@ -134,13 +139,27 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		TableCompositionExtensionEditorSample tableCompositionExtensionEditorSample = (TableCompositionExtensionEditorSample)semanticObject;
 		if (EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, tablecompositionRequiredPropertySettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -163,7 +182,7 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 			}
 		}
 		if (EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, tablecompositionOptionalPropertySettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -194,14 +213,21 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			TableCompositionExtensionEditorSamplePropertiesEditionPart basePart = (TableCompositionExtensionEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty))
 				basePart.updateTablecompositionRequiredProperty();
-			if (EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionOptionalProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty))
 				basePart.updateTablecompositionOptionalProperty();
 			
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#mustBeComposed(java.lang.Object, int)
+	 */
+	public boolean mustBeComposed(Object key, int kind) {
+		return key == EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty || key == EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty || key == EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.class;
+	}
 
 	/**
 	 * {@inheritDoc}

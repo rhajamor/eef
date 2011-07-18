@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -67,7 +68,7 @@ public class TableCompositionTargetExtensionEditorSamplePropertiesEditionCompone
 			final TableCompositionTargetExtensionEditorSample tableCompositionTargetExtensionEditorSample = (TableCompositionTargetExtensionEditorSample)elt;
 			final TableCompositionTargetExtensionEditorSamplePropertiesEditionPart basePart = (TableCompositionTargetExtensionEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (tableCompositionTargetExtensionEditorSample.getName() != null)
+			if (tableCompositionTargetExtensionEditorSample.getName() != null && isAccessible(EefnrextViewsRepository.TableCompositionTargetExtensionEditorSample.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), tableCompositionTargetExtensionEditorSample.getName()));
 			
 			// init filters
@@ -82,6 +83,17 @@ public class TableCompositionTargetExtensionEditorSamplePropertiesEditionCompone
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrextViewsRepository.TableCompositionTargetExtensionEditorSample.Properties.name) {
+			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -102,7 +114,7 @@ public class TableCompositionTargetExtensionEditorSamplePropertiesEditionCompone
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			TableCompositionTargetExtensionEditorSamplePropertiesEditionPart basePart = (TableCompositionTargetExtensionEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrextViewsRepository.TableCompositionTargetExtensionEditorSample.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

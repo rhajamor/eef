@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -87,7 +88,7 @@ public class SecondFlatReferenceExtendedEditorSamplePropertiesEditionPartForm ex
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence secondFlatReferenceExtendedEditorSampleStep = new CompositionSequence();
+		CompositionSequence secondFlatReferenceExtendedEditorSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep extendedStep = secondFlatReferenceExtendedEditorSampleStep.addStep(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.class);
 		extendedStep.addStep(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.demo);
 		extendedStep.addStep(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.size);
