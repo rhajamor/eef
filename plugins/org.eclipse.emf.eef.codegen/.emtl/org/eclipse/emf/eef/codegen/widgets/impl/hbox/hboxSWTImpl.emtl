@@ -1258,6 +1258,18 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
         </eParameters>
       </eOperations>
+      <eOperations name="canGeneratemodelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/common.emtl#/0/canGeneratemodelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="pee">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="ecorePackageSignature">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -2824,6 +2836,72 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
         </eParameters>
       </eOperations>
+      <eOperations name="additionalComponentFieldForModelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/additionalComponentFieldForModelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="editionElement">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+        </eParameters>
+        <eParameters name="view">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
+        </eParameters>
+        <eParameters name="pec">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="navigation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ModelNavigation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.1"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="navigation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/CustomModelNavigation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.2"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="navigation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/SimpleModelNavigation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.3"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="navigation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ChainedModelNavigation"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="partGetterAddSignature">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4364,6 +4442,15 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
       </eOperations>
+      <eOperations name="canGeneratemodelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/common.emtl#/0/canGeneratemodelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+      </eOperations>
       <eOperations name="ecoreCompletePackageGetter">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4429,6 +4516,21 @@
           <references href="../../../services/naming.emtl#/0/metamodelFactory"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+      <eOperations name="additionalComponentFieldForModelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/additionalComponentFieldForModelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="view">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
+        </eParameters>
+        <eParameters name="pec">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
+        </eParameters>
       </eOperations>
       <eOperations name="partGetterAddSignature">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5076,6 +5178,15 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.2"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EModelElement_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5229,6 +5340,48 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/metamodelGetter.2"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelNavigation_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ModelNavigation"/>
+      </eAnnotations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CustomModelNavigation_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/CustomModelNavigation"/>
+      </eAnnotations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.1"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ChainedModelNavigation_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ChainedModelNavigation"/>
+      </eAnnotations>
+      <eOperations name="generateNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.3"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
