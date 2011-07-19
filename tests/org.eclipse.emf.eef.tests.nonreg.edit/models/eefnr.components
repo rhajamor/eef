@@ -509,6 +509,17 @@
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnrext"/>
   </eef-components:PropertiesEditionContext>
+  <eef-components:PropertiesEditionContext xmi:id="_JOdW6axlEeCs-utY77w9Yg" documentation="Edition Context for naming GenPackage">
+    <categories xmi:id="_JOdW6qxlEeCs-utY77w9Yg" name="naming">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_JOdW66xlEeCs-utY77w9Yg" name="Event" views="_JOdXDKxlEeCs-utY77w9Yg">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_JOdW7KxlEeCs-utY77w9Yg" name="name" views="_JOdXDqxlEeCs-utY77w9Yg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//naming/Event"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/naming"/>
+  </eef-components:PropertiesEditionContext>
   <eef-views:ViewsRepository xmi:id="_Fx_LQQwvEd-uP4lw9e0IMw" documentation="Views repository for eefnr GenPackage" name="eefnr">
     <RepositoryKind>SWT</RepositoryKind>
     <RepositoryKind>Form</RepositoryKind>
@@ -1050,6 +1061,20 @@
         <elements xsi:type="eef-views:Container" xmi:id="_Z3TwkC1SEeCoYry1ltbGrg" name="properties">
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Z3TwkS1SEeCoYry1ltbGrg" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+    </categories>
+  </eef-views:ViewsRepository>
+  <eef-views:ViewsRepository xmi:id="_JOdXCqxlEeCs-utY77w9Yg" documentation="Views repository for naming GenPackage" name="naming">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_JOdXC6xlEeCs-utY77w9Yg" name="naming">
+      <views xmi:id="_JOdXDKxlEeCs-utY77w9Yg" name="Event">
+        <elements xsi:type="eef-views:Container" xmi:id="_JOdXDaxlEeCs-utY77w9Yg" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_JOdXDqxlEeCs-utY77w9Yg" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
           </elements>
         </elements>

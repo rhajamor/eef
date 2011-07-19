@@ -15,6 +15,9 @@
   <editionContexts basePackage="org.eclipse.emf.eef" descriptorsContributorID="" descriptorsGenericPropertiesViews="true">
     <PropertiesEditionContext href="eefnr.components#_IPrf8j1-Ed-LLuOHydFNYe"/>
   </editionContexts>
+  <editionContexts basePackage="org.eclipse.emf.eef" descriptorsGenericPropertiesViews="true">
+    <PropertiesEditionContext href="eefnr.components#_JOdW6axlEeCs-utY77w9Yg"/>
+  </editionContexts>
   <viewsRepositories basePackage="org.eclipse.emf.eef.eefnr" swtViews="true" formViews="true">
     <viewsRepository href="eefnr.components#_Fx_LQQwvEd-uP4lw9e0IMw"/>
   </viewsRepositories>
@@ -29,5 +32,8 @@
   </viewsRepositories>
   <viewsRepositories basePackage="org.eclipse.emf.eef.eefnr.filters" swtViews="true" formViews="true">
     <viewsRepository href="eefnr.components#_Z3Twfy1SEeCoYry1ltbGrg"/>
+  </viewsRepositories>
+  <viewsRepositories basePackage="org.eclipse.emf.eef.eefnr.navigation" swtViews="true" formViews="true">
+    <viewsRepository href="eefnr.components#_JOdXCqxlEeCs-utY77w9Yg"/>
   </viewsRepositories>
 </eef-gen:EEFGenModel>
