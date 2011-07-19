@@ -27,7 +27,8 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderSe
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  * @author <a href="mailto:mikael.barbero@obeo.fr">Mikaël Barbero</a>
  */
-public abstract class SinglePartPropertiesEditingComponent extends StandardPropertiesEditionComponent {
+public abstract class SinglePartPropertiesEditingComponent extends
+		StandardPropertiesEditionComponent {
 
 	/**
 	 * EObject to edit
@@ -52,8 +53,9 @@ public abstract class SinglePartPropertiesEditingComponent extends StandardPrope
 	/**
 	 * Default constructor
 	 */
-	public SinglePartPropertiesEditingComponent(PropertiesEditingContext editingContext,
-			EObject semanticObject, String editing_mode) {
+	public SinglePartPropertiesEditingComponent(
+			PropertiesEditingContext editingContext, EObject semanticObject,
+			String editing_mode) {
 		this.semanticObject = semanticObject;
 		this.editingContext = editingContext;
 		if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
@@ -118,15 +120,17 @@ public abstract class SinglePartPropertiesEditingComponent extends StandardPrope
 				semanticAdapter.setPart(editingPart);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 */
 	protected boolean shouldProcess(IPropertiesEditionEvent event) {
 		if (event instanceof PropertiesEditionEvent && associatedFeature(event.getAffectedEditor()) != null) {
 			Object currentValue = semanticObject.eGet(associatedFeature(event.getAffectedEditor()));
-			return ((currentValue == null && event.getNewValue() != null) || (!currentValue.equals(event.getNewValue())));
+			return (currentValue == null && event.getNewValue() != null) 
+					|| (currentValue != null && !currentValue.equals(event.getNewValue()));
 		}
 		return super.shouldProcess(event);
 	}
@@ -169,16 +173,17 @@ public abstract class SinglePartPropertiesEditingComponent extends StandardPrope
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (semanticObject != null && partID().equals(key)) {
 			if (editingPart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(repositoryKey);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService
+						.getInstance().getProvider(repositoryKey);
 				if (provider != null) {
-					editingPart = provider.getPropertiesEditionPart(partKey, kind, this);
-					addListener((IPropertiesEditionListener)editingPart);
+					editingPart = provider.getPropertiesEditionPart(partKey,
+							kind, this);
+					addListener((IPropertiesEditionListener) editingPart);
 					if (semanticAdapter != null)
 						semanticAdapter.setPart(editingPart);
 				}
 			}
-			return (IPropertiesEditionPart)editingPart;
+			return (IPropertiesEditionPart) editingPart;
 		}
 		return null;
 	}
@@ -193,12 +198,15 @@ public abstract class SinglePartPropertiesEditingComponent extends StandardPrope
 	}
 
 	/**
-	 * @param key of the editor to ckeck
+	 * @param key
+	 *            of the editor to ckeck
 	 * @return <code>true</code> is the editor is visible.
 	 */
 	public boolean isAccessible(Object key) {
-		if (editingPart != null && ((CompositePropertiesEditionPart)editingPart).getComposer() != null) {
-			return ((CompositePropertiesEditionPart)editingPart).getComposer().isVisible(key);
+		if (editingPart != null
+				&& ((CompositePropertiesEditionPart) editingPart).getComposer() != null) {
+			return ((CompositePropertiesEditionPart) editingPart).getComposer()
+					.isVisible(key);
 		}
 		return false;
 	}
