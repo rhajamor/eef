@@ -201,6 +201,10 @@
       <genClasses ecoreClass="eefnr.ecore#//filters/ConcreteReferenceTargetSample1"/>
       <genClasses ecoreClass="eefnr.ecore#//filters/ConcreteReferenceTargetSample2"/>
     </nestedGenPackages>
+    <nestedGenPackages prefix="CustomNaming" basePackage="org.eclipse.emf.eef.eefnr"
+        disposableProviderFactory="true" ecorePackage="eefnr.ecore#//naming">
+      <genClasses ecoreClass="eefnr.ecore#//naming/Event"/>
+    </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Eefnrext" basePackage="org.eclipse.emf.eef" disposableProviderFactory="true"
       ecorePackage="eefnrext.ecore#/">
