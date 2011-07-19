@@ -16,7 +16,7 @@
 [import common /]
 [import typeUtils /]
 
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived)]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived and not editionElement.canGeneratemodelNavigation())]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((String)event.getNewValue());
 [/template]
 
@@ -30,7 +30,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 }
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog'))]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.isPrimitiveType())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
@@ -42,34 +42,22 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/if]
 [/template]
 
-[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog'))]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue((String)event.getNewValue());
 [/template]
 
-[comment]
-[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived)]
-			if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
-				command.append(SetCommand.create(liveEditingDomain, [modelName/], [editionElement.metamodelGetter()/], EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));
-			}
-[/template]
-
-[template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) overrides liveCommandUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and editionElement.model.derived)]
-			// do not generates command for derived attribute [editionElement.model.name/]
-[/template]
-
-[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived)]
-			cc.append(SetCommand.create(editingDomain, [modelName/], [editionElement.metamodelGetter()/], EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/])));
-[/template]
-
-[template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides commandUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and editionElement.model.derived)]
-			// do not generates command for derived attribute [editionElement.model.name/]
-[/template]
-
-[template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) overrides partUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and not editionElement.model.derived)]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog') and editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.isPrimitiveType())]
-			[modelName/]ToUpdate.set[editionElement.model.name.toUpperFirst()/](EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/]));
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
+}
 [else]
-			[modelName/]ToUpdate.set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [view.viewIdentifier(pec)/].[editionElement.views->first().viewCompletePackageGetter()/]));
+	if ([editionElement.name.toJavaIdentifier()/]Settings.getValue() != null && isAccessible([editionElement.views->first().editorID()/])) {
+		[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.metamodelGetter()/].getEAttributeType(), [editionElement.name.toJavaIdentifier()/]Settings.getValue()));
+	}
 [/if]
 [/template]
-[/comment]
+
+[template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('SelectionDialog'))]
+[/template]
 

@@ -65,7 +65,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[if (pec.eContainer(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
 	[defaultInitialization()/]
@@ -87,4 +87,23 @@ input[editionElement.name.toJavaClassifier()/].add("three");
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
 [/template]
+
+[comment ===== Case : model = Reference - view = Combo - ModelNavigation ===== /]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue(([editionElement.model.eType.instanceClassName/])event.getNewValue());
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[if (pec.eContainer(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
+	[defaultInitialization()/]
+	[else]	
+	// [protected ('for '.concat(editionElement.name).concat(' editor initialization'))]
+	[defaultInitialization()/]
+	// [/protected]
+	[/if]
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](input[editionElement.name.toJavaClassifier()/], [editionElement.name.toJavaIdentifier()/]Settings.getValue());
+}
+[/template]
+
 

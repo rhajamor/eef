@@ -17,7 +17,9 @@
 [import typeUtils /]
 
 [comment ===== Case : model = Attribute(1) - view = Text ===== /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text'))]
+[query public validCaseForDirectAttribute(editionElement : PropertiesEditionElement) : Boolean = editionElement.model.isAttributeSingle() and editionElement.representationName('Text') /]
+
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForDirectAttribute() and not editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.isPrimitiveType())]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));[else]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue()));[/if]
@@ -33,7 +35,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 }
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text'))]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text') and not editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.isPrimitiveType())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]()));
@@ -44,6 +46,27 @@ if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFi
 [/if]
 [/template]
 
+
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text'))]
 [comment no filters for text /]
 [/template]
+
+[comment ===== Case : model = Attribute(1) - view = Text - ModelNavigation ===== /]
+
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text') and editionElement.canGeneratemodelNavigation())]
+[if (editionElement.model.isPrimitiveType())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue((EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));[else]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue(([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue()));[/if]
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Text') and editionElement.canGeneratemodelNavigation())]
+[if (editionElement.model.isPrimitiveType())]
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [editionElement.name.toJavaIdentifier()/]Settings.getValue()));
+}
+[else]
+if ([editionElement.name.toJavaIdentifier()/]Settings.getValue() != null && isAccessible([editionElement.views->first().editorID()/]))
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](EEFConverterUtil.convertToString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), [editionElement.name.toJavaIdentifier()/]Settings.getValue()));
+[/if]
+[/template]
+

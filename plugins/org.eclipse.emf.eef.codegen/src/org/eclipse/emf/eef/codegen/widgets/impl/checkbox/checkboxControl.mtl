@@ -17,7 +17,7 @@
 [import typeUtils /]
 
 [comment ===== Case : model = Attribute(1) - view = Checkbox ===== /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox') and not editionElement.canGeneratemodelNavigation())]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((Boolean)event.getNewValue());
 [/template]
 
@@ -30,7 +30,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 [/if]
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox') and not editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
 		[if (editionElement.model.many)]
@@ -53,3 +53,19 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox'))]
 [comment no filters for checkbox /]
 [/template]
+
+[comment ===== Case : model = Attribute(1) - view = Checkbox - ModelNavigation ===== /]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox') and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue((Boolean)event.getNewValue());
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox') and editionElement.canGeneratemodelNavigation())]
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([editionElement.name.toJavaIdentifier()/]Settings.getValue());
+	[else]
+	//FIXME invalid case in updater(), Case : model = Attribute(1) : [editionElement.model.name/] - view = Checkbox
+	[/if]
+}
+[/template]
+

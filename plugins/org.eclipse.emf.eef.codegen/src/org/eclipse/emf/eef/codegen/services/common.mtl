@@ -211,6 +211,10 @@
 [query public hasModelNavigation(pee : PropertiesEditionElement) : Boolean = 
 	not pee.navigation.oclIsUndefined()/]
 
+[query public canGeneratemodelNavigation(pee : PropertiesEditionElement) : Boolean = 
+	pee.hasModelNavigation() and pee.model.oclIsTypeOf(ecore::EAttribute) /]
+
+
 [comment --------------- Common templates --------------- /]
 [template public ecorePackageSignature(e : EStructuralFeature)]
 [e.eContainingClass.name.toUpperFirst()/]_[e.name.toUpperFirst()/]

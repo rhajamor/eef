@@ -134,6 +134,38 @@ CompositionStep [containerElement.compositionStepName()/] = [containerElement.eC
 [editor.eContainer().oclAsType(IdentifiedElement).compositionStepName()/].addStep([editor.editorID()/]);
 [/template]
 
+[template public additionalComponentFieldForModelNavigation(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
+
+/**
+ * Settings for [editionElement.name/] editor
+ */
+protected EEFEditorSettingsImpl [editionElement.name.toJavaIdentifier()/]Settings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, [editionElement.metamodelGetter()/])
+																													[editionElement.navigation.generateNavigation()/]
+																													.build();
+
+[/template]
+
+[template public generateNavigation(navigation : ModelNavigation)/]
+
+[template public generateNavigation(navigation : CustomModelNavigation)]
+// [protected ('for '.concat(navigation.eContainer(PropertiesEditionElement).name).concat(' model navigation implementation'))]
+	
+// [/protected]
+[/template]
+
+[template public generateNavigation(navigation : SimpleModelNavigation)]
+.nextStep(NavigationStepBuilder.create([navigation.metamodelGetter()/])[if (not navigation.index.oclIsUndefined())]
+			
+			.index([navigation.index/])[/if][if (not navigation.discriminatorType.oclIsUndefined())]
+			
+			.discriminator([navigation.discriminatorType.metamodelGetter()/])[/if].build())
+[/template]
+
+[template public generateNavigation(navigation : ChainedModelNavigation)]
+[navigation.current.generateNavigation()/]
+[navigation.next.generateNavigation()/]
+[/template]
+
 [comment ====== Widgets getters signature ====== /]
 [template public partGetterAddSignature(editor : PropertiesEditionElement) ? (editor.views->first().representation.name = 'ReferencesTable' or editor.views->first().representation.name = 'AdvancedReferencesTable')]
 public List get[editor.model.eContainingClass.name.toUpperFirst()/]_[editor.model.name.toUpperFirst()/]ToAdd()

@@ -18,7 +18,7 @@
 
 [comment ===== Case : model = Attribute(1) - view = Text ===== /]
 [comment @Override widgetControl.declareEObjectUpdater /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived and not editionElement.canGeneratemodelNavigation())]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((String)event.getNewValue());
 [/template]
 
@@ -39,7 +39,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && isAccessible
 [/template]
 
 [comment @Override widgetControl.updater /]
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived and not editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.oclAsType(EAttribute).isString())]
 if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null && isAccessible([editionElement.views->first().editorID()/])) {
 	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EcoreUtil.getIdentification([pec.model.name.toJavaIdentifier()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toJavaClassifier()/]());
@@ -52,4 +52,22 @@ if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFi
 [comment @Override widgetControl.filterUpdater /]
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived)]
 [/template]
+
+[comment ===== Case : model = Attribute(1) - view = Text - ModelNavigation ===== /]
+
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue((String)event.getNewValue());
+[/template]
+
+[comment @Override widgetControl.updater /]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('ImageViewer') and not editionElement.model.derived and editionElement.canGeneratemodelNavigation())]
+[if (editionElement.model.oclAsType(EAttribute).isString())]
+if ([editionElement.name.toJavaIdentifier()/]Settings.getValue() && isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EcoreUtil.getIdentification([pec.model.name.toJavaIdentifier()/]), [editionElement.name.toJavaIdentifier()/]Settings.getValue());
+}
+[else]
+//FIXME invalid case in updater(), Case : model = Attribute(1) : [editionElement.model.name/] - view = ImageViewer
+[/if]
+[/template]
+
 
