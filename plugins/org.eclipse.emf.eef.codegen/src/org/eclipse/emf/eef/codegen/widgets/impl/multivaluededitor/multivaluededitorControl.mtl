@@ -19,8 +19,8 @@
 [comment ===== Case : model = Attribute(*) - view = MultiValuedEditor ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
 if (event.getKind() == PropertiesEditionEvent.SET) {
-	[pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]().clear();
-	[pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]().addAll(((List) event.getNewValue()));
+	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toUpperFirst()/]().clear();
+	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toUpperFirst()/]().addAll(((List) event.getNewValue()));
 }
 [/template]
 

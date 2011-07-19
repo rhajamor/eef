@@ -122,7 +122,7 @@ import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 [for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select(views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty()))]
 import [pee.model.eType.qualifiedName(basePackage)/];
 [/for]
-[for (vr : ViewsRepository | pec.involvedViews().oclAsType(views::View).owningViewsRepository()->asSet())]
+[for (vr : ViewsRepository | pec.involvedViews().owningViewsRepository()->asSet())]
 import [vr.vrQualifiedClass()/];
 [/for]
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -171,6 +171,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 	public static String [view.viewPartConstant(pec)/] = "[view.viewKey(pec).toASCII()/]"; //$NON-NLS-1$
 
 	[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view))][editionElement.additionalComponentField(view, pec)/][/for]
+	[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.canGeneratemodelNavigation()))][editionElement.additionalComponentFieldForModelNavigation(view, pec)/][/for]
 	/**
 	 * Default constructor
 	 * [peContext.associatedGenModel().generationMark()/]
@@ -221,13 +222,28 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 [pee.javaDeclarationFilter()/]
 [/for]
 [view.javaDeclarationFilterForReferencedViews(pec)/]
+[if (pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.hasModelNavigation())->notEmpty())]
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+			[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.canGeneratemodelNavigation()))]
+		if (event.getAffectedEditor() == [pee.views->first().editorID()/]) {
+			return ([pee.name.toJavaIdentifier()/]Settings.getValue() == null) ? (event.getNewValue() != null) : (![pee.name.toJavaIdentifier()/]Settings.getValue().equals(event.getNewValue()));
+		}
+			[/for]		
+		return super.shouldProcess(event);
+	}	
+[/if]
 
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
 	protected EStructuralFeature associatedFeature(Object editorKey) {
-		[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view))]
+		[for (pee : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(components::PropertiesEditionElement)->select(pee : PropertiesEditionElement | not pee.hasModelNavigation()))]
 		if (editorKey == [pee.views->first().editorID()/]) {
 			return [pee.metamodelGetter()/];
 		}
@@ -246,7 +262,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 		
 		// [/protected]
 		[else]
-		[pec.model.name/] [pec.model.name.toJavaIdentifier()/] = ([pec.model.name/])semanticObject;
+		[pec.model.name/] [pec.model.name.toJavaIdentifier().disambiguation('event')/] = ([pec.model.name/])semanticObject;
 		[for (editionElement : PropertiesEditionElement | pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement)->select(pee : PropertiesEditionElement | pee.model.changeable and not pee.views->first().readOnly))]
 		if ([editionElement.views->first().editorID()/] == event.getAffectedEditor()) {
 			[editionElement.declareEObjectUpdater(view, pec)/]
@@ -405,3 +421,4 @@ import [viewsRepository.vrQualifiedClass()/];
 [comment overrides this template if additional imports are needed/]
 [template public additionalImports(v : View)]
 [/template]
+
