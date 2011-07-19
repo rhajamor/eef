@@ -125,7 +125,8 @@ public abstract class SinglePartPropertiesEditingComponent extends StandardPrope
 	 */
 	protected boolean shouldProcess(IPropertiesEditionEvent event) {
 		if (event instanceof PropertiesEditionEvent && associatedFeature(event.getAffectedEditor()) != null) {
-			return !semanticObject.eGet(associatedFeature(event.getAffectedEditor())).equals(event.getNewValue()); 
+			Object currentValue = semanticObject.eGet(associatedFeature(event.getAffectedEditor()));
+			return ((currentValue == null && event.getNewValue() != null) || (!currentValue.equals(event.getNewValue())));
 		}
 		return super.shouldProcess(event);
 	}
