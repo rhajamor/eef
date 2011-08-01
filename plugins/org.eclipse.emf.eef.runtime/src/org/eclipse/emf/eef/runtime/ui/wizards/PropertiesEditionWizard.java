@@ -43,6 +43,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -277,8 +278,12 @@ public class PropertiesEditionWizard extends Wizard {
 		 */
 		public void createControl(Composite parent) {
 			try {
-				ScrolledComposite scrolledContainer = new ScrolledComposite(parent, SWT.H_SCROLL
-						| SWT.V_SCROLL);
+				Composite parentComposite = new Composite(parent, SWT.NONE);
+				FillLayout layout = new FillLayout();
+				layout.marginHeight = -5;
+				layout.marginWidth = -5;
+				parentComposite.setLayout(layout);
+				ScrolledComposite scrolledContainer = new ScrolledComposite(parentComposite, SWT.H_SCROLL | SWT.V_SCROLL);
 				scrolledContainer.setExpandHorizontal(true);
 				scrolledContainer.setExpandVertical(true);
 				Composite container = new Composite(scrolledContainer, SWT.FLAT);
@@ -293,7 +298,7 @@ public class PropertiesEditionWizard extends Wizard {
 				viewer.setDynamicTabHeader(true);
 				viewer.setContentProvider(new PropertiesEditionContentProvider(adapterFactory, IPropertiesEditionComponent.BATCH_MODE));
 				scrolledContainer.setContent(container);
-				setControl(viewer.getControl());
+				setControl(parentComposite);
 			} catch (InstantiationException e) {
 				EEFRuntimePlugin.getDefault().logError(
 						EEFRuntimeUIMessages.PropertiesEditionWizard_error_wizard_live_mode, e);
