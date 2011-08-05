@@ -50,6 +50,7 @@ public class EEFWizardDialog extends WizardDialog {
 
 	@Override
 	public void updateButtons() {
+		super.updateButtons();
 		boolean canFinish = getWizard().canFinish();
 		_finishButton.setEnabled(canFinish);
 	}	
