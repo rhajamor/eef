@@ -212,7 +212,7 @@
               </letVariable>
             </body>
             <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#x9;&#xA;"/>
-            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#x9;&#xA;"/>
             <letVariable name="basePackage">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
               <initExpression xsi:type="ocl.ecore:PropertyCallExp">
@@ -2041,22 +2041,22 @@
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/EEFLauncher">
       <details key="start" value="2045"/>
-      <details key="end" value="3772"/>
+      <details key="end" value="3775"/>
       <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/EEFLauncher/@body.0">
       <details key="start" value="2117"/>
-      <details key="end" value="3311"/>
+      <details key="end" value="3314"/>
       <details key="line" value="34"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/EEFLauncher/@body.0/@body.0">
       <details key="start" value="2188"/>
-      <details key="end" value="3304"/>
+      <details key="end" value="3307"/>
       <details key="line" value="35"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/EEFLauncher/@body.0/@body.0/@body.0">
       <details key="start" value="2275"/>
-      <details key="end" value="3296"/>
+      <details key="end" value="3299"/>
       <details key="line" value="36"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/EEFLauncher/@body.0/@body.0/@body.0/@body.0">
@@ -2381,7 +2381,7 @@
     </eAnnotations>
     <eAnnotations source="positions.68" references="/0/EEFLauncher/@body.0/@body.0/@body.0/@body.17">
       <details key="start" value="3287"/>
-      <details key="end" value="3288"/>
+      <details key="end" value="3291"/>
       <details key="line" value="61"/>
     </eAnnotations>
     <eAnnotations source="positions.69" references="/0/EEFLauncher/@body.0/@body.0/@body.0/basePackage">
@@ -2430,143 +2430,143 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.78" references="/0/EEFLauncher/@body.1">
-      <details key="start" value="3312"/>
-      <details key="end" value="3313"/>
+      <details key="start" value="3315"/>
+      <details key="end" value="3316"/>
       <details key="line" value="65"/>
     </eAnnotations>
     <eAnnotations source="positions.79" references="/0/EEFLauncher/@body.2">
-      <details key="start" value="3313"/>
-      <details key="end" value="3760"/>
+      <details key="start" value="3316"/>
+      <details key="end" value="3763"/>
       <details key="line" value="66"/>
     </eAnnotations>
     <eAnnotations source="positions.80" references="/0/EEFLauncher/@body.2/@body.0">
-      <details key="start" value="3391"/>
-      <details key="end" value="3753"/>
+      <details key="start" value="3394"/>
+      <details key="end" value="3756"/>
       <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.81" references="/0/EEFLauncher/@body.2/@body.0/@body.0">
-      <details key="start" value="3468"/>
-      <details key="end" value="3470"/>
+      <details key="start" value="3471"/>
+      <details key="end" value="3473"/>
       <details key="line" value="68"/>
     </eAnnotations>
     <eAnnotations source="positions.82" references="/0/EEFLauncher/@body.2/@body.0/@body.1">
-      <details key="start" value="3471"/>
-      <details key="end" value="3510"/>
+      <details key="start" value="3474"/>
+      <details key="end" value="3513"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.83" references="/0/EEFLauncher/@body.2/@body.0/@body.1/viewsRepository">
-      <details key="start" value="3494"/>
-      <details key="end" value="3509"/>
+      <details key="start" value="3497"/>
+      <details key="end" value="3512"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.84" references="/0/EEFLauncher/@body.2/@body.0/@body.2">
-      <details key="start" value="3512"/>
-      <details key="end" value="3515"/>
+      <details key="start" value="3515"/>
+      <details key="end" value="3518"/>
       <details key="line" value="69"/>
     </eAnnotations>
     <eAnnotations source="positions.85" references="/0/EEFLauncher/@body.2/@body.0/@body.3">
-      <details key="start" value="3516"/>
-      <details key="end" value="3548"/>
+      <details key="start" value="3519"/>
+      <details key="end" value="3551"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.86" references="/0/EEFLauncher/@body.2/@body.0/@body.3/viewsRepository">
-      <details key="start" value="3532"/>
-      <details key="end" value="3547"/>
+      <details key="start" value="3535"/>
+      <details key="end" value="3550"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.87" references="/0/EEFLauncher/@body.2/@body.0/@body.4">
-      <details key="start" value="3550"/>
-      <details key="end" value="3553"/>
+      <details key="start" value="3553"/>
+      <details key="end" value="3556"/>
       <details key="line" value="70"/>
     </eAnnotations>
     <eAnnotations source="positions.88" references="/0/EEFLauncher/@body.2/@body.0/@body.5">
-      <details key="start" value="3554"/>
-      <details key="end" value="3586"/>
+      <details key="start" value="3557"/>
+      <details key="end" value="3589"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.89" references="/0/EEFLauncher/@body.2/@body.0/@body.5/viewsRepository">
-      <details key="start" value="3570"/>
-      <details key="end" value="3585"/>
+      <details key="start" value="3573"/>
+      <details key="end" value="3588"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.90" references="/0/EEFLauncher/@body.2/@body.0/@body.6">
-      <details key="start" value="3588"/>
-      <details key="end" value="3591"/>
+      <details key="start" value="3591"/>
+      <details key="end" value="3594"/>
       <details key="line" value="71"/>
     </eAnnotations>
     <eAnnotations source="positions.91" references="/0/EEFLauncher/@body.2/@body.0/@body.7">
-      <details key="start" value="3592"/>
-      <details key="end" value="3634"/>
+      <details key="start" value="3595"/>
+      <details key="end" value="3637"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.92" references="/0/EEFLauncher/@body.2/@body.0/@body.7/viewsRepository">
-      <details key="start" value="3618"/>
-      <details key="end" value="3633"/>
+      <details key="start" value="3621"/>
+      <details key="end" value="3636"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.93" references="/0/EEFLauncher/@body.2/@body.0/@body.8">
-      <details key="start" value="3636"/>
-      <details key="end" value="3639"/>
+      <details key="start" value="3639"/>
+      <details key="end" value="3642"/>
       <details key="line" value="72"/>
     </eAnnotations>
     <eAnnotations source="positions.94" references="/0/EEFLauncher/@body.2/@body.0/@body.9">
-      <details key="start" value="3640"/>
-      <details key="end" value="3684"/>
+      <details key="start" value="3643"/>
+      <details key="end" value="3687"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.95" references="/0/EEFLauncher/@body.2/@body.0/@body.9/viewsRepository">
-      <details key="start" value="3668"/>
-      <details key="end" value="3683"/>
+      <details key="start" value="3671"/>
+      <details key="end" value="3686"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.96" references="/0/EEFLauncher/@body.2/@body.0/@body.10">
-      <details key="start" value="3686"/>
-      <details key="end" value="3689"/>
+      <details key="start" value="3689"/>
+      <details key="end" value="3692"/>
       <details key="line" value="73"/>
     </eAnnotations>
     <eAnnotations source="positions.97" references="/0/EEFLauncher/@body.2/@body.0/@body.11">
-      <details key="start" value="3690"/>
-      <details key="end" value="3743"/>
+      <details key="start" value="3693"/>
+      <details key="end" value="3746"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.98" references="/0/EEFLauncher/@body.2/@body.0/@body.11/viewsRepository">
-      <details key="start" value="3727"/>
-      <details key="end" value="3742"/>
+      <details key="start" value="3730"/>
+      <details key="end" value="3745"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.99" references="/0/EEFLauncher/@body.2/@body.0/@body.12">
-      <details key="start" value="3745"/>
-      <details key="end" value="3746"/>
+      <details key="start" value="3748"/>
+      <details key="end" value="3749"/>
       <details key="line" value="74"/>
     </eAnnotations>
     <eAnnotations source="positions.100" references="/0/EEFLauncher/@body.2/@body.0/viewsRepository">
-      <details key="start" value="3396"/>
-      <details key="end" value="3466"/>
+      <details key="start" value="3399"/>
+      <details key="end" value="3469"/>
       <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.101" references="/0/EEFLauncher/@body.2/@body.0/viewsRepository/@initExpression">
-      <details key="start" value="3432"/>
-      <details key="end" value="3466"/>
+      <details key="start" value="3435"/>
+      <details key="end" value="3469"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.102" references="/0/EEFLauncher/@body.2/@body.0/viewsRepository/@initExpression/genViewsRepository">
-      <details key="start" value="3432"/>
-      <details key="end" value="3450"/>
+      <details key="start" value="3435"/>
+      <details key="end" value="3453"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.103" references="/0/EEFLauncher/@body.2/genViewsRepository">
-      <details key="start" value="3319"/>
-      <details key="end" value="3358"/>
+      <details key="start" value="3322"/>
+      <details key="end" value="3361"/>
       <details key="line" value="66"/>
     </eAnnotations>
     <eAnnotations source="positions.104" references="/0/EEFLauncher/@body.2/@iterSet">
-      <details key="start" value="3361"/>
-      <details key="end" value="3387"/>
+      <details key="start" value="3364"/>
+      <details key="end" value="3390"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.105" references="/0/EEFLauncher/@body.2/@iterSet/genModel">
-      <details key="start" value="3361"/>
-      <details key="end" value="3369"/>
+      <details key="start" value="3364"/>
+      <details key="end" value="3372"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.106" references="/0/EEFLauncher/genModel">
