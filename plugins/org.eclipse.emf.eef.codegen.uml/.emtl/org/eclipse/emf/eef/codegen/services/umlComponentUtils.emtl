@@ -281,6 +281,7 @@
         </elseIf>
       </body>
       <overrides href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/widgets/impl/checkbox/checkboxControl.emtl#/0/updater"/>
+      <overrides href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/widgets/impl/checkbox/checkboxControl.emtl#/0/updater.1"/>
       <overrides href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/widgets/api/widgetControl.emtl#/0/updater"/>
       <parameter name="editionElement">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
@@ -601,6 +602,18 @@
           <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/common.emtl#/0/toMany"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+      <eOperations name="disambiguation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/naming.emtl#/0/disambiguation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="exclude">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
@@ -1325,6 +1338,18 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/common.emtl#/0/hasModelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="pee">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="canGeneratemodelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/common.emtl#/0/canGeneratemodelNavigation"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
         <eParameters name="pee">
@@ -2726,6 +2751,21 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewReference"/>
         </eParameters>
       </eOperations>
+      <eOperations name="disambiguation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/naming.emtl#/0/disambiguation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="input">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+        <eParameters name="exclude">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="isBoolean">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -3163,6 +3203,15 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/common.emtl#/0/hasModelNavigation"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+      </eOperations>
+      <eOperations name="canGeneratemodelNavigation">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../org.eclipse.emf.eef.codegen/bin/org/eclipse/emf/eef/codegen/services/common.emtl#/0/canGeneratemodelNavigation"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
       </eOperations>
