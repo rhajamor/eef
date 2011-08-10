@@ -421,4 +421,3 @@ import [viewsRepository.vrQualifiedClass()/];
 [comment overrides this template if additional imports are needed/]
 [template public additionalImports(v : View)]
 [/template]
-

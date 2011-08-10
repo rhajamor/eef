@@ -58,7 +58,7 @@
 			
 			[comment][GMF_Plugin_xml(peContext, basePackage)/][/comment]
 			[comment][PropertySection(peContext, basePackage)/][/comment]
-
+			
 		[/let]
 	[/let]
 [/for]
@@ -74,6 +74,3 @@
 	[/let]
 [/for]
 [/template]
-
-
-
