@@ -77,7 +77,7 @@ public class [pec.testCase()/] extends SWTBotEEFTestCase {
 [/template]
 
 [comment overrides this template if additional imports is needed/]
-[template public additionalImports(peContext : PropertiesEditionContext) overrides additionalImports]
+[template public additionalImports(peContext : PropertiesEditionContext) overrides  additionalImports]
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 [/template]
 
