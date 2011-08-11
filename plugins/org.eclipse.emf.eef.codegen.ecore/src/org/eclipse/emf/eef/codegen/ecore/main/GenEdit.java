@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
@@ -46,13 +47,13 @@ public class GenEdit extends AbstractAcceleoGenerator {
 	public static final String[] TEMPLATE_NAMES = { "GenAllGenClass" };
 
 	/**
-     * The list of properties files from the launch parameters (Launch configuration).
-     *
-     * @generated
-     */
-    private List<String> propertiesFiles = new ArrayList<String>();
+	 * The list of properties files from the launch parameters (Launch configuration).
+	 * 
+	 * @generated
+	 */
+	private List<String> propertiesFiles = new ArrayList<String>();
 
-  /**
+	/**
 	 * Allows the public constructor to be used. Note that a generator created this way cannot be used to
 	 * launch generations before one of {@link #initialize(EObject, File, List)} or
 	 * {@link #initialize(URI, File, List)} is called.
@@ -163,31 +164,32 @@ public class GenEdit extends AbstractAcceleoGenerator {
 	 *            This will be used to display progress information to the user.
 	 * @throws IOException
 	 *             This will be thrown if any of the output files cannot be saved to disk.
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doGenerate(Monitor monitor) throws IOException {
-        /*
-         * TODO if you wish to change the generation as a whole, override this. The default behavior should
-         * be sufficient in most cases. If you want to change the content of this method, do NOT forget to
-         * change the "@generated" tag in the Javadoc of this method to "@generated NOT". Without this new tag,
-         * any compilation of the Acceleo module with the main template that has caused the creation of this
-         * class will revert your modifications. If you encounter a problem with an unresolved proxy during the
-         * generation, you can remove the comments in the following instructions to check for problems. Please
-         * note that those instructions may have a significant impact on the performances.
-         */
+		/*
+		 * TODO if you wish to change the generation as a whole, override this. The default behavior should be
+		 * sufficient in most cases. If you want to change the content of this method, do NOT forget to change
+		 * the "@generated" tag in the Javadoc of this method to "@generated NOT". Without this new tag, any
+		 * compilation of the Acceleo module with the main template that has caused the creation of this class
+		 * will revert your modifications. If you encounter a problem with an unresolved proxy during the
+		 * generation, you can remove the comments in the following instructions to check for problems. Please
+		 * note that those instructions may have a significant impact on the performances.
+		 */
 
-        //org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(model);
+		// org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(model);
 
-        //if (model != null && model.eResource() != null) {
-        //    List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = model.eResource().getErrors();
-        //    for (org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic : errors) {
-        //        System.err.println(diagnostic.toString());
-        //    }
-        //}
-
-        super.doGenerate(monitor);
-    }
+		// if (model != null && model.eResource() != null) {
+		// List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = model.eResource().getErrors();
+		// for (org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic : errors) {
+		// System.err.println(diagnostic.toString());
+		// }
+		// }
+		AcceleoPreferences.switchQueryCache(false);
+		super.doGenerate(monitor);
+		AcceleoPreferences.switchQueryCache(true);
+	}
 
 	/**
 	 * If this generator needs to listen to text generation events, listeners can be returned from here.
@@ -274,19 +276,19 @@ public class GenEdit extends AbstractAcceleoGenerator {
     }
 
 	/**
-     * Adds a properties file in the list of properties files.
-     * 
-     * @param propertiesFile
-     *            The properties file to add.
-     * @generated
-     * @since 3.1
-     */
-    @Override
-    public void addPropertiesFile(String propertiesFile) {
+	 * Adds a properties file in the list of properties files.
+	 * 
+	 * @param propertiesFile
+	 *            The properties file to add.
+	 * @generated
+	 * @since 3.1
+	 */
+	@Override
+	public void addPropertiesFile(String propertiesFile) {
         this.propertiesFiles.add(propertiesFile);
     }
 
-  /**
+	/**
 	 * This will be used to get the list of templates that are to be launched by this launcher.
 	 * 
 	 * @return The list of templates to call on the module {@link #getModuleName()}.
@@ -328,7 +330,7 @@ public class GenEdit extends AbstractAcceleoGenerator {
          *     resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
          * } else {
          *     // The package registration that will be used if the metamodel is not deployed in a plugin.
-         *     // This should be used if your metamodel is in your workspace.
+         *     // This should be used if your metamodel is in your workspace and if you are using binary resource serialization.
          *     resourceSet.getPackageRegistry().put("/myproject/myfolder/mysubfolder/MyUMLMetamodel.ecore", UMLPackage.eINSTANCE);
          * }
          */

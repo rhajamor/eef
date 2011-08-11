@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
@@ -46,13 +47,13 @@ public class GenEditor extends AbstractAcceleoGenerator {
 	public static final String[] TEMPLATE_NAMES = { "GenAllGenClass" };
 
 	/**
-     * The list of properties files from the launch parameters (Launch configuration).
-     *
-     * @generated
-     */
-    private List<String> propertiesFiles = new ArrayList<String>();
+	 * The list of properties files from the launch parameters (Launch configuration).
+	 * 
+	 * @generated
+	 */
+	private List<String> propertiesFiles = new ArrayList<String>();
 
-  /**
+	/**
 	 * Allows the public constructor to be used. Note that a generator created this way cannot be used to
 	 * launch generations before one of {@link #initialize(EObject, File, List)} or
 	 * {@link #initialize(URI, File, List)} is called.
@@ -163,7 +164,7 @@ public class GenEditor extends AbstractAcceleoGenerator {
 	 *            This will be used to display progress information to the user.
 	 * @throws IOException
 	 *             This will be thrown if any of the output files cannot be saved to disk.
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doGenerate(Monitor monitor) throws IOException {
@@ -186,7 +187,9 @@ public class GenEditor extends AbstractAcceleoGenerator {
         //    }
         //}
 
-        super.doGenerate(monitor);
+		AcceleoPreferences.switchQueryCache(false);
+		super.doGenerate(monitor);
+		AcceleoPreferences.switchQueryCache(true);
     }
 
 	/**
@@ -274,19 +277,19 @@ public class GenEditor extends AbstractAcceleoGenerator {
     }
 
 	/**
-     * Adds a properties file in the list of properties files.
-     * 
-     * @param propertiesFile
-     *            The properties file to add.
-     * @generated
-     * @since 3.1
-     */
-    @Override
-    public void addPropertiesFile(String propertiesFile) {
+	 * Adds a properties file in the list of properties files.
+	 * 
+	 * @param propertiesFile
+	 *            The properties file to add.
+	 * @generated
+	 * @since 3.1
+	 */
+	@Override
+	public void addPropertiesFile(String propertiesFile) {
         this.propertiesFiles.add(propertiesFile);
     }
 
-  /**
+	/**
 	 * This will be used to get the list of templates that are to be launched by this launcher.
 	 * 
 	 * @return The list of templates to call on the module {@link #getModuleName()}.
@@ -328,7 +331,7 @@ public class GenEditor extends AbstractAcceleoGenerator {
          *     resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
          * } else {
          *     // The package registration that will be used if the metamodel is not deployed in a plugin.
-         *     // This should be used if your metamodel is in your workspace.
+         *     // This should be used if your metamodel is in your workspace and if you are using binary resource serialization.
          *     resourceSet.getPackageRegistry().put("/myproject/myfolder/mysubfolder/MyUMLMetamodel.ecore", UMLPackage.eINSTANCE);
          * }
          */
