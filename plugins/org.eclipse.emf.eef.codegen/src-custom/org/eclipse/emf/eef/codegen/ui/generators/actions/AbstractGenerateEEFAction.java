@@ -94,7 +94,7 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 					public void run(IProgressMonitor monitor) throws InvocationTargetException,
 							InterruptedException {
 						try {
-							if (eefGenModels != null) {
+							if (eefGenModels != null && !monitor.isCanceled()) {
 								for (final EEFGenModel eefGenModel : eefGenModels) {
 									final IContainer target = getGenContainer(eefGenModel);
 									if (target != null) {
@@ -116,8 +116,8 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 											monitor.beginTask("Organize imports", 1);
 											Display.getDefault().asyncExec(new Runnable() {
 												public void run() {
-													ImportOrganizer.organizeImports(site, generator
-															.getGenerationTargets());
+													ImportOrganizer.organizeImports(site,
+															generator.getGenerationTargets());
 												}
 											});
 										}
@@ -141,9 +141,12 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 		} catch (InvocationTargetException e) {
 			EEFCodegenPlugin.getDefault().logError(e);
 		} catch (InterruptedException e) {
-			EEFCodegenPlugin.getDefault().logWarning(e);
+			// silently catch interrupted exceptions
 		} catch (IOException e) {
 			EEFCodegenPlugin.getDefault().logError(e);
+		} finally {
+			selectedFiles.clear();
+			eefGenModels.clear();
 		}
 	}
 
@@ -151,6 +154,7 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 	 * @see IActionDelegate#selectionChanged(IAction, ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		this.selectedFiles.clear();
 		if (selection instanceof StructuredSelection) {
 			StructuredSelection sSelection = (StructuredSelection)selection;
 			for (Object selectedElement : sSelection.toList()) {
@@ -176,8 +180,8 @@ public abstract class AbstractGenerateEEFAction extends Action implements IObjec
 	public IContainer getGenContainer(EEFGenModel eefGenModel) throws IOException {
 		if (eefGenModel != null) {
 			if (eefGenModel.getGenDirectory() != null) {
-				final IContainer target = (IContainer)ResourcesPlugin.getWorkspace().getRoot().getFolder(
-						new Path(eefGenModel.getGenDirectory()));
+				final IContainer target = (IContainer)ResourcesPlugin.getWorkspace().getRoot()
+						.getFolder(new Path(eefGenModel.getGenDirectory()));
 				return target;
 			}
 		}

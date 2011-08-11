@@ -81,15 +81,17 @@ public class GenerateAll {
 		if (!targetFolder.exists()) {
 			monitor.subTask("Creating target folder");
 			targetFolder.mkdirs();
+			monitor.worked(1);
 		}
-		monitor.worked(1);
 
 		List<Object> arguments = new ArrayList<Object>();
-		monitor.subTask("Loading...");
+		monitor.subTask("Loading templates...");
 		org.eclipse.emf.eef.codegen.launcher.EEFLauncher launcher = new org.eclipse.emf.eef.codegen.launcher.EEFLauncher(
 				eefGenModel, targetFolder, arguments);
-		monitor.worked(2);
+		monitor.worked(1);
+		monitor.subTask("Generating EEF code using " + eefGenModel.eResource().getURI().lastSegment() + "...");
 		launcher.doGenerate(BasicMonitor.toMonitor(new SubProgressMonitor(monitor, IProgressMonitor.UNKNOWN)));
+		monitor.worked(1);
 		for (AbstractPropertiesGeneratorLauncher abstractPropertiesGeneratorLauncher : PropertiesGeneratorLaunchersServices
 				.getInstance().getlaunchers()) {
 			abstractPropertiesGeneratorLauncher.doGenerate(eefGenModel, targetFolder, monitor);

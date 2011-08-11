@@ -72,6 +72,12 @@
 [/for]
       </propertyTabs>
    </extension>
+[propertySections(editionContext, basePackage)/]
+ </plugin>
+[/file]
+[/template]
+
+[template public propertySections(editionContext : PropertiesEditionContext, basePackage : String) ]
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
@@ -90,9 +96,8 @@
 [/for]
       </propertySections>
    </extension>
- </plugin>
-[/file]
 [/template]
+
 [template public propertyTab(editionContext : PropertiesEditionContext, basePackage : String, view : View, pec : PropertiesEditionComponent)]
          <propertyTab
                label="[view.viewKey(pec)/]"

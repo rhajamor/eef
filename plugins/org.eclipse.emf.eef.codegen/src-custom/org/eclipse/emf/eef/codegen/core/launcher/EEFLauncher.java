@@ -38,11 +38,13 @@ public class EEFLauncher {
 				List<Object> arguments = new ArrayList<Object>();
 				arguments.add(args[2]);
 				
-				monitor.subTask("Loading...");
+				monitor.subTask("Loading templates...");
 				org.eclipse.emf.eef.codegen.launcher.EEFLauncher launcher = new org.eclipse.emf.eef.codegen.launcher.EEFLauncher(modelURI, folder, arguments);
 				monitor.worked(1);
-				
+				monitor.subTask("Generating using "
+						+ modelURI.lastSegment() + "...");
 				launcher.doGenerate(monitor);
+				monitor.worked(1);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

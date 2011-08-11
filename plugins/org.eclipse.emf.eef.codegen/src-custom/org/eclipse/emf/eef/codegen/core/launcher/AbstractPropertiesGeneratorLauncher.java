@@ -69,6 +69,7 @@ public abstract class AbstractPropertiesGeneratorLauncher implements IProperties
 	 *            is the relative path of the template in the plug-in
 	 * @return the template URI
 	 * @throws IOException
+	 * @deprecated
 	 */
 	protected URI getTemplateURI(String bundleID, IPath relativePath) throws IOException {
 		Bundle bundle = Platform.getBundle(bundleID);

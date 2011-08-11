@@ -19,15 +19,15 @@
 [comment ===== Case : model = Attribute(*) - view = MultiValuedEditor ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
 if (event.getKind() == PropertiesEditionEvent.SET) {
-	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toUpperFirst()/]().clear();
-	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toUpperFirst()/]().addAll(((List) event.getNewValue()));
+	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toMany().toUpperFirst()/]().clear();
+	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toMany().toUpperFirst()/]().addAll(((List) event.getNewValue()));
 }
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
 [if (editionElement.model.oclAsType(EAttribute).many)]
 if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewIdentifier(pec)/] != null && isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].set[editionElement.views->first().name.toJavaClassifier()/]((([pec.model.name.toJavaClassifier()/])semanticObject).get[editionElement.views->first().name.toJavaClassifier()/]());
+	[view.viewIdentifier(pec)/].set[editionElement.views->first().name.toJavaClassifier()/]((([pec.model.name.toJavaClassifier()/])semanticObject).get[editionElement.views->first().name.toMany().toJavaClassifier()/]());
 }
 [else]
 //FIXME invalid case in liveUpdater(), Case : model = Attribute(*) : [editionElement.model.name/] - view = MultiValuedEditor

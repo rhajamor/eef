@@ -74,6 +74,8 @@ if (event.getKind() == PropertiesEditionEvent.ADD) {
 	}
 } else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 		[editionElement.name.toJavaIdentifier()/]Settings.removeFromReference((EObject) event.getNewValue());
+} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+	[pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]().move(event.getNewIndex(), ([editionElement.model.eType.name/]) event.getNewValue());
 }
 [/template]
 
@@ -170,6 +172,8 @@ if (event.getKind() == PropertiesEditionEvent.ADD) {
 	}
 } else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 		[editionElement.name.toJavaIdentifier()/]Settings.removeFromReference((EObject) event.getNewValue());
+} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+	[pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]().move(event.getNewIndex(), ([editionElement.model.eType.name/]) event.getNewValue());
 }
 [/template]
 

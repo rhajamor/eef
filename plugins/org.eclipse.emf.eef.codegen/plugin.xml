@@ -13,9 +13,12 @@
                id="org.eclipse.emf.eef.ui.menu"
                label="EEF"
                path="additions">
-            <separator
+            <groupMarker
                   name="initializer">
-            </separator>
+            </groupMarker>
+            <groupMarker
+                  name="editor-initializer">
+            </groupMarker>
          </menu>
          <action
                class="org.eclipse.emf.eef.codegen.ui.initializer.actions.InitializeEEFModelsAction"
@@ -76,6 +79,7 @@
             strategyClass="org.eclipse.emf.eef.codegen.core.initializer.PropertiesInitializer">
       </PropertiesInitializerStrategy>
    </extension>
+<!-- removed in EEF 0.9 use generic eef propertysection
    <extension
          point="org.eclipse.emf.eef.codegen.PropertiesGeneratorLauncher">
       <PropertiesGeneratorLauncher
@@ -83,6 +87,7 @@
             name="GMF1 PropertiesSection">
       </PropertiesGeneratorLauncher>
    </extension>
+-->
    <extension
          point="org.eclipse.acceleo.engine.dynamic.templates">
       <templates

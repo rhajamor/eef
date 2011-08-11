@@ -34,9 +34,9 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
 		[if (editionElement.model.many)]
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toMany().toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].[editionElement.model.booleanGetter()/][editionElement.model.name.toMany().toUpperFirst()/]());
 		[else]
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].is[editionElement.model.name.toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].[editionElement.model.booleanGetter()/][editionElement.model.name.toUpperFirst()/]());
 		[/if]
 	[elseif (editionElement.model.oclAsType(EAttribute).isBoolean())]
 		[if (editionElement.model.many)]

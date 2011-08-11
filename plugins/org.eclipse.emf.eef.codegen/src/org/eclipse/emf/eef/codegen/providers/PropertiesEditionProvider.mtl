@@ -88,7 +88,7 @@ public class [pec.pecProviderClass()/] extends [pec.pecRootProviderClass()/] {
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof [pec.model.name/]) [pec.provideForClass().trim()/];
 	}
@@ -98,7 +98,7 @@ public class [pec.pecProviderClass()/] extends [pec.pecRootProviderClass()/] {
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof [pec.model.name/]) [pec.provideForPartAndClass().trim()/];
 	}
@@ -140,7 +140,7 @@ public class [pec.pecProviderClass()/] extends [pec.pecRootProviderClass()/] {
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof [pec.model.name/]) {
 [for (view : View | pec.views) ? (view.explicit)]

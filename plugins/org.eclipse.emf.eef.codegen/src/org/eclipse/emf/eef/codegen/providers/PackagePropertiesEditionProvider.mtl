@@ -31,14 +31,14 @@ import [if ((not peContext.associatedEMFGenModel(ePackage).basePackage.oclIsUnde
  * [peContext.associatedGenModel().authorText().trim()/]
  * [peContext.associatedGenModel().generationMark()/]
  */
-public class [ePackage.pecPackageProviderClass()/] extends [ePackage.name.toJavaClassifier()/]AdapterFactory {
+public class [ePackage.pecPackageProviderClass()/] extends [peContext.associatedEMFGenModel(ePackage).prefix/]AdapterFactory {
 
 [for (eclass : EClass | ePackage.significantClass())]
 	[let pec : PropertiesEditionComponent = eclass.associatedPEC(peContext)]
 		[if (not pec.oclIsUndefined() and pec.mustBeGenerated())]
 	/**
 	 * {@inheritDoc}
-	 * @see [peContext.associatedEMFGenModel(ePackage).basePackage/].[ePackage.name/].util.[ePackage.name.toJavaClassifier()/]AdapterFactory#create[eclass.name.toJavaIdentifierDelegate().toUpperFirst()/]Adapter()
+	 * @see [peContext.associatedEMFGenModel(ePackage).basePackage/].[ePackage.name/].util.[peContext.associatedEMFGenModel(ePackage).prefix/]AdapterFactory#create[eclass.name.toJavaIdentifierDelegate().toUpperFirst()/]Adapter()
 	 * [peContext.associatedGenModel().generationMark()/]
 	 */
 	public Adapter create[eclass.name.toJavaIdentifierDelegate().toUpperFirst()/]Adapter() {

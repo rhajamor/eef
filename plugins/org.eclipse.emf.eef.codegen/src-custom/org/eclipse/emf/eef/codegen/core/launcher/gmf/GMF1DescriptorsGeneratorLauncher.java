@@ -25,6 +25,7 @@ import org.eclipse.emf.eef.codegen.core.launcher.AbstractPropertiesGeneratorLaun
  * Extension for generating PropertiesSection set up for GMF1 modelers
  * 
  * @author <a href="mailto:goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
+ * @deprecated
  */
 public class GMF1DescriptorsGeneratorLauncher extends AbstractPropertiesGeneratorLauncher {
 
@@ -35,15 +36,20 @@ public class GMF1DescriptorsGeneratorLauncher extends AbstractPropertiesGenerato
 	 *      java.io.File, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	public void doGenerate(EEFGenModel eefGenModel, File targetFolder, IProgressMonitor monitor) {
-		List<Object> arguments = new ArrayList<Object>();
-		monitor.subTask("Loading...");
-		try {
-			org.eclipse.emf.eef.codegen.launcher.GMF1DescriptorsGeneratorLauncher launcher = new org.eclipse.emf.eef.codegen.launcher.GMF1DescriptorsGeneratorLauncher(
-					eefGenModel, targetFolder, arguments);
-			monitor.worked(1);
-			launcher.doGenerate(BasicMonitor.toMonitor(monitor));
-		} catch (IOException e) {
-			EEFCodegenPlugin.getDefault().logError(e);
+		if (!monitor.isCanceled()) {
+			List<Object> arguments = new ArrayList<Object>();
+			monitor.subTask("Loading templates...");
+			try {
+				org.eclipse.emf.eef.codegen.launcher.GMF1DescriptorsGeneratorLauncher launcher = new org.eclipse.emf.eef.codegen.launcher.GMF1DescriptorsGeneratorLauncher(
+						eefGenModel, targetFolder, arguments);
+				monitor.worked(1);
+				monitor.subTask("Generating GMF descriptors using "
+						+ eefGenModel.eResource().getURI().lastSegment() + "...");
+				launcher.doGenerate(BasicMonitor.toMonitor(monitor));
+				monitor.worked(1);
+			} catch (IOException e) {
+				EEFCodegenPlugin.getDefault().logError(e);
+			}
 		}
 	}
 }
