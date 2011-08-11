@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -512,4 +513,105 @@ public class ReferencesTableSettings implements EEFEditorSettings {
 		return null;
 	}
 
+	/************************************************************************************************
+	 * * Move via ModelNavigation * *
+	 ************************************************************************************************/
+
+	/**
+	 * Move an element to the new index
+	 * 
+	 * @param newValue
+	 *            the value to add
+	 */
+	public void move(int newIndex, EObject element) {
+		Object value1 = source.eGet(features[0]);
+		if (features[0].isMany()) {
+			moveFirstMany((EList<EObject>)value1, newIndex, element);
+		} else /* ref is Single */{
+			moveFirstSingle((EObject)value1, newIndex, element);
+		}
+	}
+
+	/**
+	 * This method move an element to the managed reference(s) if the first reference in the path is a multiple
+	 * reference
+	 * 
+	 * @param ref1Values
+	 * @param newValue
+	 */
+	protected void moveFirstMany(EList<EObject> ref1Values, int newIndex, EObject element) {
+		if (features.length > 1) {
+			if (features[1].isMany()) {
+				moveFirstManySecondMany(ref1Values, newIndex, element);
+			} else {
+				moveFirstManySecondSingle(ref1Values, newIndex, element);
+			}
+		} else {
+			// There is only one multiple reference in the path, we simply add
+			// the new value to
+			// the existing values
+			((EList<EObject>)ref1Values).move(newIndex, element);
+		}
+	}
+
+	/**
+	 * @param ref1Values
+	 * @param newValue
+	 */
+	protected void moveFirstManySecondMany(EList<EObject> ref1Values, int newIndex, EObject element) {
+		throw new IllegalStateException(
+				"Ambigous case - Cannot process ModelNavigation with more than one multiple reference");
+	}
+
+	/**
+	 * @param newValue
+	 * @param ref2
+	 */
+	protected void moveFirstManySecondSingle(EList<EObject> ref1Values, int newIndex, EObject element) {
+		for (EObject eObject : ref1Values) {
+			if (eObject.eGet(features[1]).equals(element)) {
+				ref1Values.move(newIndex, eObject);
+				return;
+			}
+		}
+	}
+
+	/**
+	 * This method add newValue to the managed reference(s) if the first reference in the path is a single
+	 * reference
+	 * 
+	 * @param ref1Value
+	 * @param newValue
+	 */
+	protected void moveFirstSingle(EObject ref1Value, int newIndex, EObject element) {
+		if (features.length > 1) {
+			if (features[1].isMany()) {
+				moveFirstSingleSecondMany(ref1Value, newIndex, element);
+			} else {
+				moveFirstSingleSecondSingle(ref1Value, newIndex, element);
+			}
+		} else {
+			// There is only one single reference in the path, we simply add the
+			// new value to
+			// the existing values. Must be an error ?
+			throw new IllegalStateException("Ambigous case - Cannot process move for ModelNavigation with one single reference");
+		}
+	}
+
+	/**
+	 * @param ref1Value
+	 * @param newValue
+	 */
+	protected void moveFirstSingleSecondMany(EObject ref1Value, int newIndex, EObject element) {
+		((EList<EObject>)ref1Value.eGet(features[1])).move(newIndex, element);
+	}
+
+	/**
+	 * @param ref1Value
+	 * @param newValue
+	 */
+	protected void moveFirstSingleSecondSingle(EObject ref1Value, int newIndex, EObject element) {
+		throw new IllegalStateException(
+				"Ambigous case - Cannot process ModelNavigation without multiple reference");
+	}
 }
