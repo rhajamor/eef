@@ -1,10 +1,9 @@
 [comment encoding = UTF-8 /]
-[module EditorContribution('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore')/]
+[module EditorContribution('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel', 'http://www.eclipse.org/emf/eef/extended/query/1.0.0')/]
 
 [import org::eclipse::emf::eef::codegen::services::common /]
 [import org::eclipse::emf::eef::codegen::services::naming/]
 [import org::eclipse::emf::eef::codegen::extended::query::oclquery /]
-
 
 [comment =================== API ===================== /]
 
@@ -25,7 +24,7 @@
 	[if (input.query.oclIsUndefined())]
 Object input = getEditingDomain().getResourceSet();
 	[else]
-//FIXME: input not processed
+//FIXME: input not processed		
 	[/if]
 [/template]
 
@@ -133,7 +132,7 @@ import org.eclipse.emf.eef.runtime.ui.editors.pages.eefviewer.EEFPropertiesViewe
 final EEFPropertiesViewerMDFormPage page = new EEFPropertiesViewerMDFormPage([editorName/].this, "[page.name/]", true, true);
 page.setAdapterFactory(adapterFactory);
 page.setEditingDomain(editingDomain);
-[if ((not page.title.oclIsUndefined()) and (page.title.size() > 0))]
+[if ((not page.title.oclIsUndefined()) and (page.title.size() > 0))]	
 page.setPageTitle("[page.title/]");
 [/if]
 [/template]
