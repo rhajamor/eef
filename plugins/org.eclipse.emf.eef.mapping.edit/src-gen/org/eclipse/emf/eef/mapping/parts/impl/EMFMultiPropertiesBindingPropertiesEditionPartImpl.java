@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -30,6 +30,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -105,7 +106,7 @@ public class EMFMultiPropertiesBindingPropertiesEditionPartImpl extends Composit
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence eMFMultiPropertiesBindingStep = new CompositionSequence();
+		CompositionSequence eMFMultiPropertiesBindingStep = new BindingCompositionSequence(propertiesEditionComponent);
 		eMFMultiPropertiesBindingStep
 			.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.class)
 			.addStep(MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name);

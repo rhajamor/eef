@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -68,6 +69,7 @@ public class EMFElementBindingBasePropertiesEditionComponent extends SinglePartP
 	 */
 	private	EObjectFlatComboSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -93,16 +95,20 @@ public class EMFElementBindingBasePropertiesEditionComponent extends SinglePartP
 			final EMFElementBinding eMFElementBinding = (EMFElementBinding)elt;
 			final EMFElementBindingPropertiesEditionPart basePart = (EMFElementBindingPropertiesEditionPart)editingPart;
 			// init values
-			if (eMFElementBinding.getName() != null)
+			if (eMFElementBinding.getName() != null && isAccessible(MappingViewsRepository.EMFElementBinding.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), eMFElementBinding.getName()));
 			
-			viewsSettings = new ReferencesTableSettings(eMFElementBinding, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
-			basePart.initViews(viewsSettings);
-			// init part
-			modelSettings = new EObjectFlatComboSettings(eMFElementBinding, MappingPackage.eINSTANCE.getEMFElementBinding_Model());
-			basePart.initModel(modelSettings);
-			// set the button mode
-			basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.EMFElementBinding.Binding.views)) {
+				viewsSettings = new ReferencesTableSettings(eMFElementBinding, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
+				basePart.initViews(viewsSettings);
+			}
+			if (isAccessible(MappingViewsRepository.EMFElementBinding.Binding.model)) {
+				// init part
+				modelSettings = new EObjectFlatComboSettings(eMFElementBinding, MappingPackage.eINSTANCE.getEMFElementBinding_Model());
+				basePart.initModel(modelSettings);
+				// set the button mode
+				basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToViews(new ViewerFilter() {
@@ -155,6 +161,23 @@ public class EMFElementBindingBasePropertiesEditionComponent extends SinglePartP
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.EMFElementBinding.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractElementBinding_Name();
+		}
+		if (editorKey == MappingViewsRepository.EMFElementBinding.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractElementBinding_Views();
+		}
+		if (editorKey == MappingViewsRepository.EMFElementBinding.Binding.model) {
+			return MappingPackage.eINSTANCE.getEMFElementBinding_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -164,18 +187,20 @@ public class EMFElementBindingBasePropertiesEditionComponent extends SinglePartP
 			eMFElementBinding.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (MappingViewsRepository.EMFElementBinding.Binding.views == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof View) {
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (View) event.getNewValue());
 			}
 		}
 		if (MappingViewsRepository.EMFElementBinding.Binding.model == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				modelSettings.setToReference((EClassifier)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, modelSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -195,16 +220,16 @@ public class EMFElementBindingBasePropertiesEditionComponent extends SinglePartP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			EMFElementBindingPropertiesEditionPart basePart = (EMFElementBindingPropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null){
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.EMFElementBinding.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature())  && isAccessible(MappingViewsRepository.EMFElementBinding.Binding.views))
 				basePart.updateViews();
-			if (MappingPackage.eINSTANCE.getEMFElementBinding_Model().equals(msg.getFeature()) && basePart != null)
+			if (MappingPackage.eINSTANCE.getEMFElementBinding_Model().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.EMFElementBinding.Binding.model))
 				basePart.setModel((EObject)msg.getNewValue());
 			
 		}

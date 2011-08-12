@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -68,6 +68,7 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 	 */
 	private	EObjectFlatComboSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -93,16 +94,20 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 			final EMFPropertyBinding eMFPropertyBinding = (EMFPropertyBinding)elt;
 			final EMFPropertyBindingPropertiesEditionPart basePart = (EMFPropertyBindingPropertiesEditionPart)editingPart;
 			// init values
-			if (eMFPropertyBinding.getName() != null)
+			if (eMFPropertyBinding.getName() != null && isAccessible(MappingViewsRepository.EMFPropertyBinding.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), eMFPropertyBinding.getName()));
 			
-			viewsSettings = new ReferencesTableSettings(eMFPropertyBinding, MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views());
-			basePart.initViews(viewsSettings);
-			// init part
-			modelSettings = new EObjectFlatComboSettings(eMFPropertyBinding, MappingPackage.eINSTANCE.getEMFPropertyBinding_Model());
-			basePart.initModel(modelSettings);
-			// set the button mode
-			basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.views)) {
+				viewsSettings = new ReferencesTableSettings(eMFPropertyBinding, MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views());
+				basePart.initViews(viewsSettings);
+			}
+			if (isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.model)) {
+				// init part
+				modelSettings = new EObjectFlatComboSettings(eMFPropertyBinding, MappingPackage.eINSTANCE.getEMFPropertyBinding_Model());
+				basePart.initModel(modelSettings);
+				// set the button mode
+				basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToViews(new ViewerFilter() {
@@ -155,6 +160,23 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name();
+		}
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views();
+		}
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Binding.model) {
+			return MappingPackage.eINSTANCE.getEMFPropertyBinding_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -164,18 +186,20 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 			eMFPropertyBinding.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (MappingViewsRepository.EMFPropertyBinding.Binding.views == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof ElementEditor) {
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (ElementEditor) event.getNewValue());
 			}
 		}
 		if (MappingViewsRepository.EMFPropertyBinding.Binding.model == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				modelSettings.setToReference((EStructuralFeature)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, modelSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -195,16 +219,16 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			EMFPropertyBindingPropertiesEditionPart basePart = (EMFPropertyBindingPropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null){
+			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.EMFPropertyBinding.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views().equals(msg.getFeature())  && isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.views))
 				basePart.updateViews();
-			if (MappingPackage.eINSTANCE.getEMFPropertyBinding_Model().equals(msg.getFeature()) && basePart != null)
+			if (MappingPackage.eINSTANCE.getEMFPropertyBinding_Model().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.model))
 				basePart.setModel((EObject)msg.getNewValue());
 			
 		}

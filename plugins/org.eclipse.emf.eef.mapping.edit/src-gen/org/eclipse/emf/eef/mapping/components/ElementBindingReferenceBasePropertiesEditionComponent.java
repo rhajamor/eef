@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.mapping.AbstractElementBinding;
 import org.eclipse.emf.eef.mapping.ElementBindingReference;
@@ -54,6 +55,7 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 	 */
 	private	EObjectFlatComboSettings bindingSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -79,11 +81,13 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 			final ElementBindingReference elementBindingReference = (ElementBindingReference)elt;
 			final ElementBindingReferencePropertiesEditionPart basePart = (ElementBindingReferencePropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			bindingSettings = new EObjectFlatComboSettings(elementBindingReference, MappingPackage.eINSTANCE.getElementBindingReference_Binding());
-			basePart.initBinding(bindingSettings);
-			// set the button mode
-			basePart.setBindingButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.ElementBindingReference.Reference.binding)) {
+				// init part
+				bindingSettings = new EObjectFlatComboSettings(elementBindingReference, MappingPackage.eINSTANCE.getElementBindingReference_Binding());
+				basePart.initBinding(bindingSettings);
+				// set the button mode
+				basePart.setBindingButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			basePart.addFilterToBinding(new ViewerFilter() {
 			
@@ -114,15 +118,26 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.ElementBindingReference.Reference.binding) {
+			return MappingPackage.eINSTANCE.getElementBindingReference_Binding();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ElementBindingReference elementBindingReference = (ElementBindingReference)semanticObject;
 		if (MappingViewsRepository.ElementBindingReference.Reference.binding == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				bindingSettings.setToReference((AbstractElementBinding)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, bindingSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -142,7 +157,7 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ElementBindingReferencePropertiesEditionPart basePart = (ElementBindingReferencePropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getElementBindingReference_Binding().equals(msg.getFeature()) && basePart != null)
+			if (MappingPackage.eINSTANCE.getElementBindingReference_Binding().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.ElementBindingReference.Reference.binding))
 				basePart.setBinding((EObject)msg.getNewValue());
 			
 		}
