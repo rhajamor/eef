@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelingBotItemProvider.java,v 1.2 2011/04/13 13:50:07 nlepine Exp $
+ * $Id: ModelingBotItemProvider.java,v 1.2.2.1 2011/08/12 09:26:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.provider;
 
@@ -27,8 +27,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsFactory;
-import org.eclipse.emf.eef.modelingBot.EclipseActions.EclipseActionsFactory;
 import org.eclipse.emf.eef.modelingBot.ModelingBot;
 import org.eclipse.emf.eef.modelingBot.ModelingBotFactory;
 import org.eclipse.emf.eef.modelingBot.ModelingBotPackage;

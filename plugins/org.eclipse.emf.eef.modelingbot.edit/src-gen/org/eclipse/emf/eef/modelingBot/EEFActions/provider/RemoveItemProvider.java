@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RemoveItemProvider.java,v 1.2 2011/04/13 13:50:07 nlepine Exp $
+ * $Id: RemoveItemProvider.java,v 1.2.2.1 2011/08/12 09:26:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EEFActions.provider;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.emf.eef.modelingBot.EEFActions.Remove;
-import org.eclipse.emf.eef.modelingBot.ModelingBotPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.eef.modelingBot.EEFActions.Remove} object.

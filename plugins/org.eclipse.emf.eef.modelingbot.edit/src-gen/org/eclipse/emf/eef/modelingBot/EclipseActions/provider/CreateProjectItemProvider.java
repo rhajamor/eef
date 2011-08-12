@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CreateProjectItemProvider.java,v 1.2 2011/04/13 13:50:06 nlepine Exp $
+ * $Id: CreateProjectItemProvider.java,v 1.2.2.1 2011/08/12 09:26:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EclipseActions.provider;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CreateProject;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.EclipseActionsPackage;
-import org.eclipse.emf.eef.modelingBot.ModelingBotPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.eef.modelingBot.EclipseActions.CreateProject} object.
