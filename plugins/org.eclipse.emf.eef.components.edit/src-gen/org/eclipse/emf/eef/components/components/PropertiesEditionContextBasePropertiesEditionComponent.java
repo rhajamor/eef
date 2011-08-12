@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.components.ComponentsPackage;
 import org.eclipse.emf.eef.components.PropertiesEditionContext;
@@ -54,6 +55,7 @@ public class PropertiesEditionContextBasePropertiesEditionComponent extends Sing
 	 */
 	private	EObjectFlatComboSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -79,11 +81,13 @@ public class PropertiesEditionContextBasePropertiesEditionComponent extends Sing
 			final PropertiesEditionContext propertiesEditionContext = (PropertiesEditionContext)elt;
 			final PropertiesEditionContextPropertiesEditionPart basePart = (PropertiesEditionContextPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			modelSettings = new EObjectFlatComboSettings(propertiesEditionContext, ComponentsPackage.eINSTANCE.getPropertiesEditionContext_Model());
-			basePart.initModel(modelSettings);
-			// set the button mode
-			basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(ComponentsViewsRepository.PropertiesEditionContext.Binding.model)) {
+				// init part
+				modelSettings = new EObjectFlatComboSettings(propertiesEditionContext, ComponentsPackage.eINSTANCE.getPropertiesEditionContext_Model());
+				basePart.initModel(modelSettings);
+				// set the button mode
+				basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			basePart.addFilterToModel(new ViewerFilter() {
 			
@@ -114,15 +118,26 @@ public class PropertiesEditionContextBasePropertiesEditionComponent extends Sing
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ComponentsViewsRepository.PropertiesEditionContext.Binding.model) {
+			return ComponentsPackage.eINSTANCE.getPropertiesEditionContext_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		PropertiesEditionContext propertiesEditionContext = (PropertiesEditionContext)semanticObject;
 		if (ComponentsViewsRepository.PropertiesEditionContext.Binding.model == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				modelSettings.setToReference((GenPackage)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				GenPackage eObject = GenModelFactory.eINSTANCE.createGenPackage();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -144,7 +159,7 @@ public class PropertiesEditionContextBasePropertiesEditionComponent extends Sing
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			PropertiesEditionContextPropertiesEditionPart basePart = (PropertiesEditionContextPropertiesEditionPart)editingPart;
-			if (ComponentsPackage.eINSTANCE.getPropertiesEditionContext_Model().equals(msg.getFeature()) && basePart != null)
+			if (ComponentsPackage.eINSTANCE.getPropertiesEditionContext_Model().equals(msg.getFeature()) && basePart != null && isAccessible(ComponentsViewsRepository.PropertiesEditionContext.Binding.model))
 				basePart.setModel((EObject)msg.getNewValue());
 			
 		}

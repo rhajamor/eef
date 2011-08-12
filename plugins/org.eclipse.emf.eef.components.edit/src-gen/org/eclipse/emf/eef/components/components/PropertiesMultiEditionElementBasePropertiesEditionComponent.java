@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -64,6 +64,7 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 	 */
 	private	ReferencesTableSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -89,14 +90,18 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 			final PropertiesMultiEditionElement propertiesMultiEditionElement = (PropertiesMultiEditionElement)elt;
 			final PropertiesMultiEditionElementPropertiesEditionPart basePart = (PropertiesMultiEditionElementPropertiesEditionPart)editingPart;
 			// init values
-			if (propertiesMultiEditionElement.getName() != null)
+			if (propertiesMultiEditionElement.getName() != null && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), propertiesMultiEditionElement.getName()));
 			
-			viewsSettings = new ReferencesTableSettings(propertiesMultiEditionElement, MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views());
-			basePart.initViews(viewsSettings);
-			modelSettings = new ReferencesTableSettings(propertiesMultiEditionElement, MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model());
-			basePart.initModel(modelSettings);
-			if (propertiesMultiEditionElement.getHelpID() != null)
+			if (isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.views)) {
+				viewsSettings = new ReferencesTableSettings(propertiesMultiEditionElement, MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views());
+				basePart.initViews(viewsSettings);
+			}
+			if (isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.model)) {
+				modelSettings = new ReferencesTableSettings(propertiesMultiEditionElement, MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model());
+				basePart.initModel(modelSettings);
+			}
+			if (propertiesMultiEditionElement.getHelpID() != null && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.helpID))
 				basePart.setHelpID(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), propertiesMultiEditionElement.getHelpID()));
 			
 			// init filters
@@ -156,6 +161,26 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name();
+		}
+		if (editorKey == ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views();
+		}
+		if (editorKey == ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.model) {
+			return MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model();
+		}
+		if (editorKey == ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.helpID) {
+			return ComponentsPackage.eINSTANCE.getEEFElement_HelpID();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -165,21 +190,25 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 			propertiesMultiEditionElement.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.views == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof ElementEditor) {
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (ElementEditor) event.getNewValue());
 			}
 		}
 		if (ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.model == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof EStructuralFeature) {
 					modelSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					modelSettings.removeFromReference((EObject) event.getNewValue());
+				modelSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				modelSettings.move(event.getNewIndex(), (EStructuralFeature) event.getNewValue());
 			}
 		}
 		if (ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.helpID == event.getAffectedEditor()) {
@@ -194,18 +223,18 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			PropertiesMultiEditionElementPropertiesEditionPart basePart = (PropertiesMultiEditionElementPropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null){
+			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views().equals(msg.getFeature())  && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.views))
 				basePart.updateViews();
-			if (MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model().equals(msg.getFeature())  && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Binding.model))
 				basePart.updateModel();
-			if (ComponentsPackage.eINSTANCE.getEEFElement_HelpID().equals(msg.getFeature()) && basePart != null){
+			if (ComponentsPackage.eINSTANCE.getEEFElement_HelpID().equals(msg.getFeature()) && basePart != null && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.helpID)) {
 				if (msg.getNewValue() != null) {
 					basePart.setHelpID(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
