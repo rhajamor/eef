@@ -54,6 +54,7 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 	 */
 	private	ReferencesTableSettings flatReferenceEditorSampleSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 

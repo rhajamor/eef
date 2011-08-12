@@ -41,6 +41,7 @@ public class ImageViewerSamplePropertiesEditionComponent extends SinglePartPrope
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

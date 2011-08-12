@@ -22,11 +22,6 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
- *
- * org.eclipse.emf.eef.components.impl.PropertiesEditionContextImpl@10070c0 (documentation: Edition Context for eefnrext GenPackage)
- * org.eclipse.emf.codegen.ecore.genmodel.impl.GenPackageImpl@168598b (prefix: Eefnrext, basePackage: org.eclipse.emf.eef, resource: None, disposableProviderFactory: true, adapterFactory: true, loadInitialization: false, interfacePackageSuffix: , metaDataPackageSuffix: , classPackageSuffix: impl, utilityPackageSuffix: util, providerPackageSuffix: provider, presentationPackageSuffix: presentation, testsPackageSuffix: tests, generateExampleClass: true, literalsInterface: true, dataTypeConverters: false, multipleEditorPages: true, generateModelWizard: true, extensibleProviderFactory: false, childCreationExtenders: false, contentTypeIdentifier: null, fileExtensions: null)
- * Eefnrext
- * EefnrextAdapterFactory
  */
 public class EefnrextEEFAdapterFactory extends EefnrextAdapterFactory {
 

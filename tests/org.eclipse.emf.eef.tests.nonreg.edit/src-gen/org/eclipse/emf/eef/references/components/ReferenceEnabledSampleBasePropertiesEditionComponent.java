@@ -52,6 +52,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 	 */
 	private	ReferencesTableSettings referenceSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -137,7 +138,9 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 					referenceSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					referenceSettings.removeFromReference((EObject) event.getNewValue());
+				referenceSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				referenceSettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 	}

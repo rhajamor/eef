@@ -56,6 +56,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 	 */
 	private	ReferencesTableSettings advancedreferencestableOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -167,7 +168,9 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 					advancedreferencestableRequiredPropertySettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					advancedreferencestableRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+				advancedreferencestableRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				advancedreferencestableRequiredPropertySettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 		if (EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty == event.getAffectedEditor()) {
@@ -176,7 +179,9 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 					advancedreferencestableOptionalPropertySettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					advancedreferencestableOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+				advancedreferencestableOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				advancedreferencestableOptionalPropertySettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 	}

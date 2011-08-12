@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationItemProviderAdapterFactory.java,v 1.4 2010/11/30 08:24:13 glefur Exp $
+ * $Id: NavigationItemProviderAdapterFactory.java,v 1.4.2.1 2011/08/12 07:51:15 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.provider;
 
@@ -283,6 +283,52 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeNavigationSampleItemProvider attributeNavigationSampleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeNavigationSampleAdapter() {
+		if (attributeNavigationSampleItemProvider == null) {
+			attributeNavigationSampleItemProvider = new AttributeNavigationSampleItemProvider(this);
+		}
+
+		return attributeNavigationSampleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeDelegateItemProvider attributeDelegateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeDelegateAdapter() {
+		if (attributeDelegateItemProvider == null) {
+			attributeDelegateItemProvider = new AttributeDelegateItemProvider(this);
+		}
+
+		return attributeDelegateItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +436,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 		if (singleReferencerItemProvider != null) singleReferencerItemProvider.dispose();
 		if (anotherSubTypeItemProvider != null) anotherSubTypeItemProvider.dispose();
 		if (elementItemProvider != null) elementItemProvider.dispose();
+		if (attributeNavigationSampleItemProvider != null) attributeNavigationSampleItemProvider.dispose();
+		if (attributeDelegateItemProvider != null) attributeDelegateItemProvider.dispose();
 	}
 
 }

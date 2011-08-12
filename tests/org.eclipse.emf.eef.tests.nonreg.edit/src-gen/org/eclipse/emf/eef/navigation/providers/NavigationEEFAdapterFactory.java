@@ -22,11 +22,6 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
- *
- * org.eclipse.emf.eef.components.impl.PropertiesEditionContextImpl@6bbbd4 (documentation: Edition Context for navigation GenPackage)
- * org.eclipse.emf.codegen.ecore.genmodel.impl.GenPackageImpl@8c9d4a (prefix: Navigation, basePackage: org.eclipse.emf.eef.eefnr, resource: None, disposableProviderFactory: true, adapterFactory: true, loadInitialization: false, interfacePackageSuffix: , metaDataPackageSuffix: , classPackageSuffix: impl, utilityPackageSuffix: util, providerPackageSuffix: provider, presentationPackageSuffix: presentation, testsPackageSuffix: tests, generateExampleClass: true, literalsInterface: true, dataTypeConverters: false, multipleEditorPages: true, generateModelWizard: true, extensibleProviderFactory: false, childCreationExtenders: false, contentTypeIdentifier: null, fileExtensions: null)
- * Navigation
- * NavigationAdapterFactory
  */
 public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 
@@ -99,6 +94,14 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 		List<PropertiesEditingProvider> providers = new ArrayList<PropertiesEditingProvider>(1);
 		providers.add((PropertiesEditingProvider)createNamedElementAdapter());
 		return new ElementPropertiesEditionProvider(providers);
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory#createAttributeNavigationSampleAdapter()
+	 * 
+	 */
+	public Adapter createAttributeNavigationSampleAdapter() {
+		return new AttributeNavigationSamplePropertiesEditionProvider();
 	}
 
 }

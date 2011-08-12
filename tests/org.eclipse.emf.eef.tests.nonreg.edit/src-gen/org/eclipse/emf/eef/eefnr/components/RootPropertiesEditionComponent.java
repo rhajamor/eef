@@ -54,6 +54,7 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 */
 	protected ReferencesTableSettings samplesSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -149,7 +150,9 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					samplesSettings.removeFromReference((EObject) event.getNewValue());
+				samplesSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				samplesSettings.move(event.getNewIndex(), (AbstractSample) event.getNewValue());
 			}
 		}
 	}

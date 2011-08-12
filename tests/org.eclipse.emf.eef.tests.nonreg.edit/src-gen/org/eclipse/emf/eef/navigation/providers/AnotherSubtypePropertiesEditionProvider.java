@@ -68,7 +68,7 @@ public class AnotherSubtypePropertiesEditionProvider extends PropertiesEditingPr
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof AnotherSubType) && (refinement == AnotherSubtypeBasePropertiesEditionComponent.class || refinement == SubtypePropertiesEditionComponent.class);
 	}
@@ -78,7 +78,7 @@ public class AnotherSubtypePropertiesEditionProvider extends PropertiesEditingPr
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof AnotherSubType) && ((AnotherSubtypeBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == AnotherSubtypeBasePropertiesEditionComponent.class) || (SubtypeBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == SubtypePropertiesEditionComponent.class));
 	}
@@ -114,7 +114,7 @@ public class AnotherSubtypePropertiesEditionProvider extends PropertiesEditingPr
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof AnotherSubType) {
 			if (AnotherSubtypeBasePropertiesEditionComponent.BASE_PART.equals(part)

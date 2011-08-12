@@ -59,6 +59,7 @@ public class TableCompositionEditorSamplePropertiesEditionComponent extends Sing
 	 */
 	protected ReferencesTableSettings tablecompositionOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -178,7 +179,9 @@ public class TableCompositionEditorSamplePropertiesEditionComponent extends Sing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					tablecompositionRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+				tablecompositionRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				tablecompositionRequiredPropertySettings.move(event.getNewIndex(), (Sample) event.getNewValue());
 			}
 		}
 		if (EefnrViewsRepository.TableCompositionEditorSample.Properties.tablecompositionOptionalProperty == event.getAffectedEditor()) {
@@ -201,7 +204,9 @@ public class TableCompositionEditorSamplePropertiesEditionComponent extends Sing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					tablecompositionOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+				tablecompositionOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				tablecompositionOptionalPropertySettings.move(event.getNewIndex(), (Sample) event.getNewValue());
 			}
 		}
 	}

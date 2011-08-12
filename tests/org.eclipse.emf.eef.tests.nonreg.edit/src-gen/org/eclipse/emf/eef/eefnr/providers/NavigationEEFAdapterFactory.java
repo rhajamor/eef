@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory;
 import org.eclipse.emf.eef.navigation.providers.AnotherSubtypePropertiesEditionProvider;
+import org.eclipse.emf.eef.navigation.providers.AttributeNavigationSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.DeferedFlatReferencesTableSampleEditorPropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.DeferedReferencesTableSampleEditorPropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.ElementPropertiesEditionProvider;
@@ -29,11 +30,6 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
- *
- * org.eclipse.emf.eef.components.impl.PropertiesEditionContextImpl@1154c85 (documentation: Edition Context for eefnr GenPackage)
- * org.eclipse.emf.codegen.ecore.genmodel.impl.GenPackageImpl@8c9d4a (prefix: Navigation, basePackage: org.eclipse.emf.eef.eefnr, resource: None, disposableProviderFactory: true, adapterFactory: true, loadInitialization: false, interfacePackageSuffix: , metaDataPackageSuffix: , classPackageSuffix: impl, utilityPackageSuffix: util, providerPackageSuffix: provider, presentationPackageSuffix: presentation, testsPackageSuffix: tests, generateExampleClass: true, literalsInterface: true, dataTypeConverters: false, multipleEditorPages: true, generateModelWizard: true, extensibleProviderFactory: false, childCreationExtenders: false, contentTypeIdentifier: null, fileExtensions: null)
- * Navigation
- * NavigationAdapterFactory
  */
 public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 
@@ -106,6 +102,14 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 		List<PropertiesEditingProvider> providers = new ArrayList<PropertiesEditingProvider>(1);
 		providers.add((PropertiesEditingProvider)createNamedElementAdapter());
 		return new ElementPropertiesEditionProvider(providers);
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory#createAttributeNavigationSampleAdapter()
+	 * 
+	 */
+	public Adapter createAttributeNavigationSampleAdapter() {
+		return new AttributeNavigationSamplePropertiesEditionProvider();
 	}
 
 }

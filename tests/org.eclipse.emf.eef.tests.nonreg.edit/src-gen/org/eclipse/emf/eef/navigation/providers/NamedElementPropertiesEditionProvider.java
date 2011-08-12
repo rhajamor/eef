@@ -65,7 +65,7 @@ public class NamedElementPropertiesEditionProvider extends PropertiesEditingProv
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof NamedElement) && (refinement == NamedElementPropertiesEditionComponent.class);
 	}
@@ -75,7 +75,7 @@ public class NamedElementPropertiesEditionProvider extends PropertiesEditingProv
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof NamedElement) && ((NamedElementPropertiesEditionComponent.BASE_PART.equals(part) && refinement == NamedElementPropertiesEditionComponent.class));
 	}
@@ -109,7 +109,7 @@ public class NamedElementPropertiesEditionProvider extends PropertiesEditingProv
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof NamedElement) {
 			if (NamedElementPropertiesEditionComponent.BASE_PART.equals(part)

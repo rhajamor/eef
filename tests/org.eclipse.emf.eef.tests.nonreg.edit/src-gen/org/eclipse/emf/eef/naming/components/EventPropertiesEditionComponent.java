@@ -43,6 +43,7 @@ public class EventPropertiesEditionComponent extends SinglePartPropertiesEditing
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

@@ -42,6 +42,7 @@ public class ElementBasePropertiesEditionComponent extends SinglePartPropertiesE
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

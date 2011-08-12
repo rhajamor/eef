@@ -43,6 +43,7 @@ public class TextSampleWithTwoTabsTextSampleSecondTabPropertiesEditionComponent 
 	public static String TEXTSAMPLESECONDTAB_PART = "TextSampleSecondTab"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

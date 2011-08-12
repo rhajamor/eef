@@ -54,6 +54,7 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 	 */
 	private	ReferencesTableSettings flatReferencesTableSampleEditorSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -115,6 +116,17 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 
 
 
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+		if (event.getAffectedEditor() == NavigationViewsRepository.DeferedReferencesTableSample.Properties.referencesTableSampleEditor) {
+			return (flatReferencesTableSampleEditorSettings.getValue() == null) ? (event.getNewValue() != null) : (!flatReferencesTableSampleEditorSettings.getValue().equals(event.getNewValue()));
+		}
+		return super.shouldProcess(event);
+	}	
 
 	/**
 	 * {@inheritDoc}
@@ -123,9 +135,6 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 	protected EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == NavigationViewsRepository.DeferedReferencesTableSample.Properties.name) {
 			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
-		}
-		if (editorKey == NavigationViewsRepository.DeferedReferencesTableSample.Properties.referencesTableSampleEditor) {
-			return NavigationPackage.eINSTANCE.getDeferedReference_FlatreferenceEditor();
 		}
 		return super.associatedFeature(editorKey);
 	}
@@ -147,6 +156,8 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 					flatReferencesTableSampleEditorSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				flatReferencesTableSampleEditorSettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 	}

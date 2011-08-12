@@ -59,6 +59,7 @@ public class EObjectFlatComboViewerSamplePropertiesEditionComponent extends Sing
 	 */
 	private	EObjectFlatComboSettings eobjectflatcomboviewerOptionalProperySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 

@@ -188,6 +188,14 @@
                     type="org.eclipse.emf.eef.eefnr.navigation.Element">
              </input>
          </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.navigation.section.AttributeNavigationSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample">
+             </input>
+         </propertySection>
       </propertySections>
    </extension>
  </plugin>

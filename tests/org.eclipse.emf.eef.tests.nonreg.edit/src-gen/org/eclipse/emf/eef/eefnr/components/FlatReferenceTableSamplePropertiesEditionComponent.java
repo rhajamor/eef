@@ -56,6 +56,7 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	 */
 	private	ReferencesTableSettings flatreferencetableOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 

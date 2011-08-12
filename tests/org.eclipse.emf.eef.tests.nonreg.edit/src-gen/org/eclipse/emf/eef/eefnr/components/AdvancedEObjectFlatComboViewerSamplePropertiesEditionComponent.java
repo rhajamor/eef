@@ -57,6 +57,7 @@ public class AdvancedEObjectFlatComboViewerSamplePropertiesEditionComponent exte
 	 */
 	private	EObjectFlatComboSettings advancedeobjectflatcomboviewerOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 

@@ -183,4 +183,31 @@ public class NavigationViewsRepository {
 	
 	}
 
+	/**
+	 * AttributeNavigationSample view descriptor
+	 * 
+	 */
+	public static class AttributeNavigationSample {
+		public static class Properties {
+	
+			
+			public static String name = "navigation::AttributeNavigationSample::properties::name";
+			
+			
+			public static String delegate1ForSingleValued = "navigation::AttributeNavigationSample::properties::delegate1ForSingleValued";
+			
+			
+			public static String delegate2ForSingleValued = "navigation::AttributeNavigationSample::properties::delegate2ForSingleValued";
+			
+			
+			public static String delegate1ForMultiValued = "navigation::AttributeNavigationSample::properties::delegate1ForMultiValued";
+			
+			
+			public static String delegate2ForMultiValued = "navigation::AttributeNavigationSample::properties::delegate2ForMultiValued";
+			
+	
+		}
+	
+	}
+
 }

@@ -440,6 +440,36 @@
         <referencedBinding xmi:id="_2o9-EPiqEd-OEO-fmkgPzw" binding="_SfgckfiqEd-OEO-fmkgPzw"/>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/Element"/>
       </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_H5jVwLEeEeCT1Zh48D5qPg" name="AttributeNavigationSample" views="_sB9j0LEdEeCT1Zh48D5qPg">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_PwHpYLEeEeCT1Zh48D5qPg" name="name" views="_yyMhgLEdEeCT1Zh48D5qPg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_YL0qYLEeEeCT1Zh48D5qPg" name="delegate1ForSingleValued" views="_zJOhcLEdEeCT1Zh48D5qPg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeDelegate/delegate1"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_dZzLILEeEeCT1Zh48D5qPg">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample/singleValuedAttributeDelegate"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_gRE6QLEeEeCT1Zh48D5qPg" name="delegate2ForSingleValued" views="_zVvTcLEdEeCT1Zh48D5qPg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeDelegate/delegate2"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_gRE6QbEeEeCT1Zh48D5qPg">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample/singleValuedAttributeDelegate"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_oWrvcLEeEeCT1Zh48D5qPg" name="delegate1ForMultiValued" views="_zdXlcLEdEeCT1Zh48D5qPg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeDelegate/delegate1"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_oWrvcbEeEeCT1Zh48D5qPg">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample/multiValuedAttributeDelegate"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_tmsQgLEeEeCT1Zh48D5qPg" name="delegate2ForMultiValued" views="_zlTZcLEdEeCT1Zh48D5qPg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeDelegate/delegate2"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_tmsQgbEeEeCT1Zh48D5qPg">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample/multiValuedAttributeDelegate"/>
+          </navigation>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample"/>
+      </bindings>
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/navigation"/>
   </eef-components:PropertiesEditionContext>
@@ -985,6 +1015,26 @@
           </elements>
         </elements>
         <elements xsi:type="eef-views:ViewReference" xmi:id="_xGw5wPiqEd-OEO-fmkgPzw" name="namedElementView" view="_WTpckPiqEd-OEO-fmkgPzw"/>
+      </views>
+      <views xmi:id="_sB9j0LEdEeCT1Zh48D5qPg" name="AttributeNavigationSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_tEQHQLEdEeCT1Zh48D5qPg" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_yyMhgLEdEeCT1Zh48D5qPg" name="name">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_zJOhcLEdEeCT1Zh48D5qPg" name="delegate1ForSingleValued">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_zVvTcLEdEeCT1Zh48D5qPg" name="delegate2ForSingleValued">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_zdXlcLEdEeCT1Zh48D5qPg" name="delegate1ForMultiValued">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_zlTZcLEdEeCT1Zh48D5qPg" name="delegate2ForMultiValued">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
       </views>
     </categories>
   </eef-views:ViewsRepository>

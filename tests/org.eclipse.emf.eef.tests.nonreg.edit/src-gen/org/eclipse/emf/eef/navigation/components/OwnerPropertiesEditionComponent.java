@@ -131,6 +131,7 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 */
 	private	EObjectFlatComboSettings singleReferenceForAdvancedEObjectFlatComboViewerSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -440,6 +441,56 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 
 
 
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition) {
+			return (multipleSampleForTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition) {
+			return (multipleSampleForAdvancedTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForAdvancedTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable) {
+			return (multipleSampleForReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable) {
+			return (multipleSampleForAdvancedReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForAdvancedReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable) {
+			return (multipleSampleForFlatReferencesTablesSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForFlatReferencesTablesSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition) {
+			return (singleSampleForTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition) {
+			return (singleSampleForAdvancedTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForAdvancedTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable) {
+			return (singleSampleForReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable) {
+			return (singleSampleForAdvancedReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForAdvancedReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable) {
+			return (singleSampleForFlatReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForFlatReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleContainmentForEObjectFlatComboViewer) {
+			return (singleContainmentForEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleContainmentForEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer) {
+			return (singleReferenceForEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleReferenceForEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleContainmentForAdvancedEObjectFlatComboViewer) {
+			return (singleContainmentForAdvancedEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleContainmentForAdvancedEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer) {
+			return (singleReferenceForAdvancedEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleReferenceForAdvancedEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		return super.shouldProcess(event);
+	}	
 
 	/**
 	 * {@inheritDoc}
@@ -448,48 +499,6 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	protected EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == NavigationViewsRepository.Owner.Properties.name) {
 			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition) {
-			return NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForTableComposition();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition) {
-			return NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForAdvancedTableComposition();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable) {
-			return NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable) {
-			return NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleAdvancedReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable) {
-			return NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForFlatReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForTableComposition();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForAdvancedTableComposition();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleAdvancedReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForFlatReferencesTable();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleContainmentForEObjectFlatComboViewer) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForEObjectFlatComboViewer();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForEObjectFlatComboViewer();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleContainmentForAdvancedEObjectFlatComboViewer) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForAdvancedEObjectFlatComboViewer();
-		}
-		if (editorKey == NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer) {
-			return NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer();
 		}
 		return super.associatedFeature(editorKey);
 	}
@@ -525,6 +534,8 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				multipleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition == event.getAffectedEditor()) {
@@ -548,6 +559,8 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				multipleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForAdvancedTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable == event.getAffectedEditor()) {
@@ -557,6 +570,8 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 					multipleSampleForReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable == event.getAffectedEditor()) {
@@ -565,7 +580,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 					multipleSampleForAdvancedReferencesTableSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					multipleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+				multipleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForAdvancedReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable == event.getAffectedEditor()) {
@@ -592,7 +609,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					singleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+				singleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition == event.getAffectedEditor()) {
@@ -615,7 +634,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					singleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+				singleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForAdvancedTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable == event.getAffectedEditor()) {
@@ -625,6 +646,8 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				singleSampleForReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable == event.getAffectedEditor()) {
@@ -634,6 +657,8 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				singleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForAdvancedReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable == event.getAffectedEditor()) {

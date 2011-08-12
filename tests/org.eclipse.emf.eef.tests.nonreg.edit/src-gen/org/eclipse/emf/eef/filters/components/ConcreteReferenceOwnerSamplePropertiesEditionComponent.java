@@ -71,6 +71,7 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 	 */
 	protected ReferencesTableSettings strictTypingSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -208,7 +209,9 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 					abstractTargetSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					abstractTargetSettings.removeFromReference((EObject) event.getNewValue());
+				abstractTargetSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				abstractTargetSettings.move(event.getNewIndex(), (AbstractReferenceTargetSample) event.getNewValue());
 			}
 		}
 		if (FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping == event.getAffectedEditor()) {
@@ -231,7 +234,9 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					strictTypingSettings.removeFromReference((EObject) event.getNewValue());
+				strictTypingSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				strictTypingSettings.move(event.getNewIndex(), (AbstractReferenceTargetSample) event.getNewValue());
 			}
 		}
 	}

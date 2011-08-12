@@ -56,6 +56,7 @@ public class DeferedFlatReferencesTableSampleEditorPropertiesEditionComponent ex
 	 */
 	private	ReferencesTableSettings flatReferencesTableSampleEditorSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -120,6 +121,17 @@ public class DeferedFlatReferencesTableSampleEditorPropertiesEditionComponent ex
 
 
 
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+		if (event.getAffectedEditor() == NavigationViewsRepository.DeferedFlatReferencesTableSample.Properties.flatReferencesTableSampleEditor) {
+			return (flatReferencesTableSampleEditorSettings.getValue() == null) ? (event.getNewValue() != null) : (!flatReferencesTableSampleEditorSettings.getValue().equals(event.getNewValue()));
+		}
+		return super.shouldProcess(event);
+	}	
 
 	/**
 	 * {@inheritDoc}
@@ -128,9 +140,6 @@ public class DeferedFlatReferencesTableSampleEditorPropertiesEditionComponent ex
 	protected EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == NavigationViewsRepository.DeferedFlatReferencesTableSample.Properties.name) {
 			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
-		}
-		if (editorKey == NavigationViewsRepository.DeferedFlatReferencesTableSample.Properties.flatReferencesTableSampleEditor) {
-			return NavigationPackage.eINSTANCE.getDeferedReference_FlatreferenceEditor();
 		}
 		return super.associatedFeature(editorKey);
 	}

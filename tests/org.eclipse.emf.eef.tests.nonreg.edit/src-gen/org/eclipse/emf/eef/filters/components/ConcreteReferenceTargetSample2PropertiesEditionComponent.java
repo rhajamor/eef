@@ -43,6 +43,7 @@ public class ConcreteReferenceTargetSample2PropertiesEditionComponent extends Si
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

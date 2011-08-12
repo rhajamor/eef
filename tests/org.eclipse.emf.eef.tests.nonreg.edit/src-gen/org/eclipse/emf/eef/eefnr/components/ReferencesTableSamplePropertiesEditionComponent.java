@@ -55,6 +55,7 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 	 */
 	private	ReferencesTableSettings referencestableOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -166,7 +167,9 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 					referencestableRequiredPropertySettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					referencestableRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+				referencestableRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				referencestableRequiredPropertySettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 		if (EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty == event.getAffectedEditor()) {
@@ -175,7 +178,9 @@ public class ReferencesTableSamplePropertiesEditionComponent extends SinglePartP
 					referencestableOptionalPropertySettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					referencestableOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+				referencestableOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				referencestableOptionalPropertySettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 	}

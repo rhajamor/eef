@@ -43,6 +43,7 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 	public static String SECONDFLATREFERENCEEXTENDEDEDITORSAMPLE_PART = "SecondFlatReferenceExtendedEditorSample"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 

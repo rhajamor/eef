@@ -43,6 +43,7 @@ public class TextSamplePropertiesEditionComponent extends SinglePartPropertiesEd
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
