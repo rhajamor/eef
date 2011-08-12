@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationSwitch.java,v 1.4 2010/11/30 08:23:18 glefur Exp $
+ * $Id: NavigationSwitch.java,v 1.4.2.1 2011/08/12 07:51:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.util;
 
@@ -151,6 +151,19 @@ public class NavigationSwitch<T> {
 				T result = caseElement(element);
 				if (result == null) result = caseNamedElement(element);
 				if (result == null) result = caseAbstractSample(element);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NavigationPackage.ATTRIBUTE_NAVIGATION_SAMPLE: {
+				AttributeNavigationSample attributeNavigationSample = (AttributeNavigationSample)theEObject;
+				T result = caseAttributeNavigationSample(attributeNavigationSample);
+				if (result == null) result = caseAbstractSample(attributeNavigationSample);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NavigationPackage.ATTRIBUTE_DELEGATE: {
+				AttributeDelegate attributeDelegate = (AttributeDelegate)theEObject;
+				T result = caseAttributeDelegate(attributeDelegate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -305,6 +318,36 @@ public class NavigationSwitch<T> {
 	 * @generated
 	 */
 	public T caseElement(Element object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Navigation Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Navigation Sample</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeNavigationSample(AttributeNavigationSample object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Delegate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Delegate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeDelegate(AttributeDelegate object) {
 		return null;
 	}
 
