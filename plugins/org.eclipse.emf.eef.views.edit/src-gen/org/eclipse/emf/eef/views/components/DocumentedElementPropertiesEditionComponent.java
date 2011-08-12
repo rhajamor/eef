@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -43,6 +44,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 	public static String DOCUMENTATION_PART = "Documentation"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -68,7 +70,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 			final DocumentedElement documentedElement = (DocumentedElement)elt;
 			final DocumentationPropertiesEditionPart documentationPart = (DocumentationPropertiesEditionPart)editingPart;
 			// init values
-			if (documentedElement.getDocumentation() != null)
+			if (documentedElement.getDocumentation() != null && isAccessible(ViewsViewsRepository.Documentation.Documentation_.documentation__))
 				documentationPart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), documentedElement.getDocumentation()));
 			// init filters
 			
@@ -82,6 +84,17 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ViewsViewsRepository.Documentation.Documentation_.documentation__) {
+			return ViewsPackage.eINSTANCE.getDocumentedElement_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -102,7 +115,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			DocumentationPropertiesEditionPart documentationPart = (DocumentationPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getDocumentedElement_Documentation().equals(msg.getFeature()) && documentationPart != null){
+			if (ViewsPackage.eINSTANCE.getDocumentedElement_Documentation().equals(msg.getFeature()) && documentationPart != null && isAccessible(ViewsViewsRepository.Documentation.Documentation_.documentation__)){
 				if (msg.getNewValue() != null) {
 					documentationPart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

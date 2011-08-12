@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2008 - 2011 Obeo.
+ *  Copyright (c) 2008 - 2010 Obeo.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -58,6 +59,7 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	 */
 	private	EObjectFlatComboSettings representationSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -83,12 +85,14 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 			final Container container = (Container)elt;
 			final ContainerPropertiesEditionPart basePart = (ContainerPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			representationSettings = new EObjectFlatComboSettings(container, ViewsPackage.eINSTANCE.getViewElement_Representation());
-			basePart.initRepresentation(representationSettings);
-			// set the button mode
-			basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
-			if (container.getName() != null)
+			if (isAccessible(ViewsViewsRepository.Container.Properties.representation)) {
+				// init part
+				representationSettings = new EObjectFlatComboSettings(container, ViewsPackage.eINSTANCE.getViewElement_Representation());
+				basePart.initRepresentation(representationSettings);
+				// set the button mode
+				basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (container.getName() != null && isAccessible(ViewsViewsRepository.Container.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), container.getName()));
 			
 			// init filters
@@ -123,15 +127,29 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ViewsViewsRepository.Container.Properties.representation) {
+			return ViewsPackage.eINSTANCE.getViewElement_Representation();
+		}
+		if (editorKey == ViewsViewsRepository.Container.Properties.name) {
+			return ViewsPackage.eINSTANCE.getViewElement_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Container container = (Container)semanticObject;
 		if (ViewsViewsRepository.Container.Properties.representation == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				representationSettings.setToReference((Widget)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Widget eObject = ToolkitsFactory.eINSTANCE.createWidget();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -156,9 +174,9 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ContainerPropertiesEditionPart basePart = (ContainerPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null)
+			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Container.Properties.representation))
 				basePart.setRepresentation((EObject)msg.getNewValue());
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Container.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
