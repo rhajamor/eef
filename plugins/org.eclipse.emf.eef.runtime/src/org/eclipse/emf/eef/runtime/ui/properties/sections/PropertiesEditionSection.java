@@ -125,10 +125,12 @@ public class PropertiesEditionSection extends AbstractPropertySection implements
 
 			@Override
 			protected void updateStatus(String message) {
-				if (message != null)
-					scrolledForm.setMessage(message, IMessageProvider.ERROR);
-				else
-					scrolledForm.setMessage(""); //$NON-NLS-1$
+				if (!scrolledForm.isDisposed()) {
+					if (message != null)
+						scrolledForm.setMessage(message, IMessageProvider.ERROR);
+					else
+						scrolledForm.setMessage(""); //$NON-NLS-1$
+				}
 			}
 		};
 	}
@@ -203,8 +205,8 @@ public class PropertiesEditionSection extends AbstractPropertySection implements
 	private void disposeComponent() {
 		if (propertiesEditionComponent != null) {
 			PropertiesEditingContext editingContext = propertiesEditionComponent.getEditingContext();
-			if (editingContext!=null && editingContext.getParentContext()==null) {
-				editingContext.dispose();	
+			if (editingContext != null && editingContext.getParentContext() == null) {
+				editingContext.dispose();
 			}
 			propertiesEditionComponent.dispose();
 			PropertiesContextService.getInstance().pop();

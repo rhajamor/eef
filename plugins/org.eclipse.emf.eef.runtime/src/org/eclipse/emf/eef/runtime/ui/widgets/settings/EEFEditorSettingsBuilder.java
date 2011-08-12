@@ -18,6 +18,7 @@ import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 
 /**
  * @author glefur
+ * @since 1.0
  *
  */
 public class EEFEditorSettingsBuilder  {

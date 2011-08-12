@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EReference;
 
 /**
  * @author glefur
+ * @since 1.0
  * 
  */
 public class NavigationStepBuilder {

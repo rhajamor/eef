@@ -276,6 +276,7 @@ public abstract class StandardPropertiesEditionComponent implements IPropertiesE
 	/**
 	 * @param event event to process
 	 * @return <code>true</code> if the event should really launch a command.
+	 * @since 0.9
 	 */
 	protected boolean shouldProcess(IPropertiesEditionEvent event) {
 		return true;
@@ -284,6 +285,7 @@ public abstract class StandardPropertiesEditionComponent implements IPropertiesE
 	/**
 	 * @param editorKey key of the editor we searching associated feature.
 	 * @return the associated feature.
+	 * @since 0.9
 	 */
 	protected EStructuralFeature associatedFeature(Object editorKey) {
 		return null;
