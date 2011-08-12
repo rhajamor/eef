@@ -2,15 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EditActionImpl.java,v 1.2 2011/04/08 09:00:15 nlepine Exp $
+ * $Id: EditActionImpl.java,v 1.2.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EEFActions.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;

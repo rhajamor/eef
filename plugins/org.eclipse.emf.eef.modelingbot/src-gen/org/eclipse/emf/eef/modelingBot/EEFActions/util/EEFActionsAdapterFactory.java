@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EEFActionsAdapterFactory.java,v 1.1 2011/04/06 13:07:28 nlepine Exp $
+ * $Id: EEFActionsAdapterFactory.java,v 1.1.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EEFActions.util;
 
@@ -19,7 +19,6 @@ import org.eclipse.emf.eef.modelingBot.DocumentedElement;
 
 import org.eclipse.emf.eef.modelingBot.EEFActions.*;
 import org.eclipse.emf.eef.modelingBot.Processing;
-import org.eclipse.emf.eef.modelingBot.Sequence;
 
 /**
  * <!-- begin-user-doc -->

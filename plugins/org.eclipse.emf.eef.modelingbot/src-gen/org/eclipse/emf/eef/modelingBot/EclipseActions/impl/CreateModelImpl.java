@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CreateModelImpl.java,v 1.2 2011/04/07 15:59:04 nlepine Exp $
+ * $Id: CreateModelImpl.java,v 1.2.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EclipseActions.impl;
 
@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 

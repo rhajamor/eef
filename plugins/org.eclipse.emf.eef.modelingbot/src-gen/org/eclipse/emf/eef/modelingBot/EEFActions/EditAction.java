@@ -2,12 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EditAction.java,v 1.2 2011/04/08 09:00:15 nlepine Exp $
+ * $Id: EditAction.java,v 1.2.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EEFActions;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 

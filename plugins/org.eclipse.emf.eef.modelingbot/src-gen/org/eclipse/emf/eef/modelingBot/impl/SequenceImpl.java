@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceImpl.java,v 1.1 2011/04/06 13:07:28 nlepine Exp $
+ * $Id: SequenceImpl.java,v 1.1.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.impl;
 
@@ -16,15 +16,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.ModelingBotPackage;
 import org.eclipse.emf.eef.modelingBot.Processing;
-import org.eclipse.emf.eef.modelingBot.Scenario;
 import org.eclipse.emf.eef.modelingBot.Sequence;
-import org.eclipse.emf.eef.modelingBot.Wizard;
 
 /**
  * <!-- begin-user-doc -->

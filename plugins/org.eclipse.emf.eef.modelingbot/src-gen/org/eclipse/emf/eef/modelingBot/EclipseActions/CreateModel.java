@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CreateModel.java,v 1.2 2011/04/07 15:59:04 nlepine Exp $
+ * $Id: CreateModel.java,v 1.2.2.1 2011/08/12 09:21:12 sbouchet Exp $
  */
 package org.eclipse.emf.eef.modelingBot.EclipseActions;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 
