@@ -115,9 +115,11 @@ private List<EEFCommandParameter> commandParameters;
 			ViewerFilter[] filters = getModelViewer().getFilters();
 			commandParameters = new ArrayList<EEFCommandParameter>();
 			for(EReference reference : modelRoot.eClass().getEAllReferences()) {
-				
-				//if filters has been added
-				if(filters.length > 0) {
+				if (!reference.isContainment()) {
+					// Create command parameter for containment references only.
+					continue;
+				} else if(filters.length > 0) {
+					//if filters has been added
 					for(ViewerFilter filter : filters) {
 						if(filter.select(modelViewer, modelRoot, EcoreUtil.create(reference.getEReferenceType()))) {
 							commandParameters.add(new EEFCommandParameter(reference, reference.getEReferenceType()));
