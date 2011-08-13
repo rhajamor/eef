@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.EEFGen.components;
 
 // Start of user code for imports
@@ -78,11 +79,13 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 			final EEFGenModelReference eEFGenModelReference = (EEFGenModelReference)elt;
 			final EEFGenModelReferencePropertiesEditionPart basePart = (EEFGenModelReferencePropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			referenceSettings = new EObjectFlatComboSettings(eEFGenModelReference, EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext());
-			basePart.initReferencedEEFGenModel(referenceSettings);
-			// set the button mode
-			basePart.setReferencedEEFGenModelButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel)) {
+				// init part
+				referenceSettings = new EObjectFlatComboSettings(eEFGenModelReference, EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext());
+				basePart.initReferencedEEFGenModel(referenceSettings);
+				// set the button mode
+				basePart.setReferencedEEFGenModelButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			basePart.addFilterToReferencedEEFGenModel(new ViewerFilter() {
 			
@@ -119,9 +122,9 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		EEFGenModelReference eEFGenModelReference = (EEFGenModelReference)semanticObject;
 		if (EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				referenceSettings.setToReference((EEFGenModel)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EEFGenModel eObject = EEFGenFactory.eINSTANCE.createEEFGenModel();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -143,7 +146,7 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			EEFGenModelReferencePropertiesEditionPart basePart = (EEFGenModelReferencePropertiesEditionPart)editingPart;
-			if (EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext().equals(msg.getFeature()) && basePart != null)
+			if (EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel))
 				basePart.setReferencedEEFGenModel((EObject)msg.getNewValue());
 			
 		}

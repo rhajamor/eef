@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.EEFGen.components;
 
 // Start of user code for imports
@@ -82,27 +83,32 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 			final GenEditionContext genEditionContext = (GenEditionContext)elt;
 			final GenEditionContextPropertiesEditionPart basePart = (GenEditionContextPropertiesEditionPart)editingPart;
 			// init values
-			if (genEditionContext.getBasePackage() != null)
+			if (genEditionContext.getBasePackage() != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Parameters.basePackage))
 				basePart.setBasePackage(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), genEditionContext.getBasePackage()));
 			
-			if (genEditionContext.getDescriptorsContributorID() != null)
+			if (genEditionContext.getDescriptorsContributorID() != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Parameters.descriptorsContributorID))
 				basePart.setDescriptorsContributorID(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), genEditionContext.getDescriptorsContributorID()));
 			
-			basePart.setGenericPropertiesViewsDescriptors(genEditionContext.isDescriptorsGenericPropertiesViews());
-			
-			basePart.setGMFSpecificPropertiesViews(genEditionContext.isGmfPropertiesViews());
-			
-			// init part
-			propertiesEditionContextSettings = new EObjectFlatComboSettings(genEditionContext, EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditionContext());
-			basePart.initPropertiesEditionContext(propertiesEditionContextSettings);
-			// set the button mode
-			basePart.setPropertiesEditionContextButtonMode(ButtonsModeEnum.BROWSE);
-			basePart.setJUnitTestCases(genEditionContext.isGenerateJunitTestCases());
-			
-			if (genEditionContext.getLeafComponentsSuperClass() != null)
+			if (isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.genericPropertiesViewsDescriptors)) {
+				basePart.setGenericPropertiesViewsDescriptors(genEditionContext.isDescriptorsGenericPropertiesViews());
+			}
+			if (isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.gMFSpecificPropertiesViews)) {
+				basePart.setGMFSpecificPropertiesViews(genEditionContext.isGmfPropertiesViews());
+			}
+			if (isAccessible(EEFGenViewsRepository.GenEditionContext.Reference.propertiesEditionContext)) {
+				// init part
+				propertiesEditionContextSettings = new EObjectFlatComboSettings(genEditionContext, EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditionContext());
+				basePart.initPropertiesEditionContext(propertiesEditionContextSettings);
+				// set the button mode
+				basePart.setPropertiesEditionContextButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.jUnitTestCases)) {
+				basePart.setJUnitTestCases(genEditionContext.isGenerateJunitTestCases());
+			}
+			if (genEditionContext.getLeafComponentsSuperClass() != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Implementation.leafComponentsSuperClass))
 				basePart.setLeafComponentsSuperClass(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), genEditionContext.getLeafComponentsSuperClass()));
 			
-			if (genEditionContext.getPropertiesEditingProvidersSuperClass() != null)
+			if (genEditionContext.getPropertiesEditingProvidersSuperClass() != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Implementation.propertiesEditingProvidersSuperClass))
 				basePart.setPropertiesEditingProvidersSuperClass(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), genEditionContext.getPropertiesEditingProvidersSuperClass()));
 			
 			// init filters
@@ -167,9 +173,9 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 			genEditionContext.setGmfPropertiesViews((Boolean)event.getNewValue());
 		}
 		if (EEFGenViewsRepository.GenEditionContext.Reference.propertiesEditionContext == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				propertiesEditionContextSettings.setToReference((PropertiesEditionContext)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				PropertiesEditionContext eObject = ComponentsFactory.eINSTANCE.createPropertiesEditionContext();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -200,39 +206,39 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			GenEditionContextPropertiesEditionPart basePart = (GenEditionContextPropertiesEditionPart)editingPart;
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_BasePackage().equals(msg.getFeature()) && basePart != null){
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_BasePackage().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Parameters.basePackage)) {
 				if (msg.getNewValue() != null) {
 					basePart.setBasePackage(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setBasePackage("");
 				}
 			}
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsContributorID().equals(msg.getFeature()) && basePart != null){
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsContributorID().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Parameters.descriptorsContributorID)) {
 				if (msg.getNewValue() != null) {
 					basePart.setDescriptorsContributorID(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setDescriptorsContributorID("");
 				}
 			}
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsGenericPropertiesViews().equals(msg.getFeature()) && basePart != null)
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsGenericPropertiesViews().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.genericPropertiesViewsDescriptors))
 				basePart.setGenericPropertiesViewsDescriptors((Boolean)msg.getNewValue());
 			
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_GmfPropertiesViews().equals(msg.getFeature()) && basePart != null)
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_GmfPropertiesViews().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.gMFSpecificPropertiesViews))
 				basePart.setGMFSpecificPropertiesViews((Boolean)msg.getNewValue());
 			
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditionContext().equals(msg.getFeature()) && basePart != null)
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditionContext().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Reference.propertiesEditionContext))
 				basePart.setPropertiesEditionContext((EObject)msg.getNewValue());
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_GenerateJunitTestCases().equals(msg.getFeature()) && basePart != null)
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_GenerateJunitTestCases().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Activation.jUnitTestCases))
 				basePart.setJUnitTestCases((Boolean)msg.getNewValue());
 			
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_LeafComponentsSuperClass().equals(msg.getFeature()) && basePart != null){
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_LeafComponentsSuperClass().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Implementation.leafComponentsSuperClass)) {
 				if (msg.getNewValue() != null) {
 					basePart.setLeafComponentsSuperClass(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setLeafComponentsSuperClass("");
 				}
 			}
-			if (EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditingProvidersSuperClass().equals(msg.getFeature()) && basePart != null){
+			if (EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditingProvidersSuperClass().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Implementation.propertiesEditingProvidersSuperClass)) {
 				if (msg.getNewValue() != null) {
 					basePart.setPropertiesEditingProvidersSuperClass(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
