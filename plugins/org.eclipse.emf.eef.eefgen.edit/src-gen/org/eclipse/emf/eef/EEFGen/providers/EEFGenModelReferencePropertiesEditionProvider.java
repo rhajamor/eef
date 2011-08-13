@@ -66,7 +66,7 @@ public class EEFGenModelReferencePropertiesEditionProvider extends PropertiesEdi
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof EEFGenModelReference) && (refinement == EEFGenModelReferencePropertiesEditionComponent.class);
 	}
@@ -76,7 +76,7 @@ public class EEFGenModelReferencePropertiesEditionProvider extends PropertiesEdi
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof EEFGenModelReference) && ((EEFGenModelReferencePropertiesEditionComponent.BASE_PART.equals(part) && refinement == EEFGenModelReferencePropertiesEditionComponent.class));
 	}
@@ -110,7 +110,7 @@ public class EEFGenModelReferencePropertiesEditionProvider extends PropertiesEdi
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof EEFGenModelReference) {
 			if (EEFGenModelReferencePropertiesEditionComponent.BASE_PART.equals(part)

@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.EEFGen.EEFGenFactory;
 import org.eclipse.emf.eef.EEFGen.EEFGenModel;
@@ -53,6 +54,7 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	 * Settings for reference EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings referenceSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -113,6 +115,17 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel) {
+			return EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

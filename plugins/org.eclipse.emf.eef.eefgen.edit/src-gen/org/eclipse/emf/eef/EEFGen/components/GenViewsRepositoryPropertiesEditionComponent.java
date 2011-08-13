@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -60,6 +61,7 @@ public class GenViewsRepositoryPropertiesEditionComponent extends SinglePartProp
 	 * Settings for viewsRepository EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings viewsRepositorySettings;
+	
 	
 	/**
 	 * Default constructor
@@ -145,6 +147,32 @@ public class GenViewsRepositoryPropertiesEditionComponent extends SinglePartProp
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Parameters.basePackage) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_BasePackage();
+		}
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Activation.sWTViews) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_SwtViews();
+		}
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Activation.formsViews) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_FormViews();
+		}
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Parameters.helpStrategy) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_HelpStrategy();
+		}
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Reference.viewsRepository) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_ViewsRepository();
+		}
+		if (editorKey == EEFGenViewsRepository.GenViewsRepository.Implementation.partsSuperClass) {
+			return EEFGenPackage.eINSTANCE.getGenViewsRepository_PartsSuperClass();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

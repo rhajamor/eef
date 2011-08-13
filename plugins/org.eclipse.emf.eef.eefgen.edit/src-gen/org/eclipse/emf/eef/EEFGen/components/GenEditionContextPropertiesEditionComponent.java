@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -57,6 +58,7 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 	 * Settings for propertiesEditionContext EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings propertiesEditionContextSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -152,6 +154,38 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Parameters.basePackage) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_BasePackage();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Parameters.descriptorsContributorID) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsContributorID();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Activation.genericPropertiesViewsDescriptors) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_DescriptorsGenericPropertiesViews();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Activation.gMFSpecificPropertiesViews) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_GmfPropertiesViews();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Reference.propertiesEditionContext) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditionContext();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Activation.jUnitTestCases) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_GenerateJunitTestCases();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Implementation.leafComponentsSuperClass) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_LeafComponentsSuperClass();
+		}
+		if (editorKey == EEFGenViewsRepository.GenEditionContext.Implementation.propertiesEditingProvidersSuperClass) {
+			return EEFGenPackage.eINSTANCE.getGenEditionContext_PropertiesEditingProvidersSuperClass();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
