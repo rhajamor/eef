@@ -1,9 +1,9 @@
 [comment encoding = UTF-8 /]
-[module oclquery('http://www.eclipse.org/emf/eef/extended/query/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore')/]
+[module query('http://www.eclipse.org/emf/eef/extended/query/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import org::eclipse::emf::eef::codegen::services::common /]
 
-[template public content(eefUnderstandableQuery : EEFUnderstandableQuery)]
+[template public body(query : EEFUnderstandableQuery)]
 [/template]
 
 [template public queryImports(queryType : EClass) ? (queryType.name = 'OCLQuery')]
@@ -11,8 +11,8 @@ import org.eclipse.emf.eef.runtime.query.QueryResult;
 import org.eclipse.emf.eef.runtime.query.ocl.OCLQuery;
 [/template]
 
-[template public content(oclQuery : OCLQuery)]
-OCLQuery query = new OCLQuery([oclQuery._context.metamodelGetter()/], "[oclQuery._query/]");
+[template public body(oclQuery : OCLQuery)]
+OCLQuery query = new OCLQuery([oclQuery._context.metamodelGetter()/], "[oclQuery.query/]");
 if (EEFExtendedRuntime.INSTANCE.getProcessor().canEvaluate(query)) {
 	QueryResult result = EEFExtendedRuntime.INSTANCE.getProcessor().evaluate(element, query);
 	if (result.evaluationStatus.isOK()) {

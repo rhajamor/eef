@@ -4,7 +4,6 @@
 [template public editorClassName(genPackage : GenPackage)]
 [genPackage.prefix/]Editor
 [/template]
-
 [template public qualifiedEditorClassName(genPackage : GenPackage)]
 [genPackage.presentationPackage()/].[genPackage.editorClassName()/]
 [/template]

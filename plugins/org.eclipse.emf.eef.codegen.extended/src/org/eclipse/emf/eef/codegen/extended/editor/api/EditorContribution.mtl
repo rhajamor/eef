@@ -1,9 +1,10 @@
 [comment encoding = UTF-8 /]
-[module EditorContribution('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel', 'http://www.eclipse.org/emf/eef/extended/query/1.0.0')/]
+[module EditorContribution('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/mapping/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import org::eclipse::emf::eef::codegen::services::common /]
 [import org::eclipse::emf::eef::codegen::services::naming/]
-[import org::eclipse::emf::eef::codegen::extended::query::oclquery /]
+[import org::eclipse::emf::eef::codegen::extended::query::query /]
+
 
 [comment =================== API ===================== /]
 
@@ -39,7 +40,7 @@ if (getEditingDomain().getResourceSet() != null && getEditingDomain().getResourc
 	Resource resource = getEditingDomain().getResourceSet().getResources().get(0);
 	if (resource.getContents() != null && resource.getContents().size() > 0) {
 		EObject element = resource.getContents().get(0);
-		[input.query.content()/]
+		[input.query._body()/]
 	}
 }
 	[/if]

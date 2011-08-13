@@ -1,9 +1,9 @@
 [comment encoding = UTF-8 /]
-[module EEFEditor('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/eef/extended/query/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')/]
+[module EEFEditor('http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/eef/extended/editor/1.0.0', 'http://www.eclipse.org/emf/eef/extended/query/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import org::eclipse::emf::eef::codegen::services::common /]
 [import org::eclipse::emf::eef::codegen::services::naming /]
-[import org::eclipse::emf::eef::codegen::extended::query::oclquery /]
+[import org::eclipse::emf::eef::codegen::extended::query::query /]
 [import org::eclipse::emf::eef::codegen::extended::services::editor-common /]
 [import org::eclipse::emf::eef::codegen::extended::editor::api::EditorContribution /]
 
