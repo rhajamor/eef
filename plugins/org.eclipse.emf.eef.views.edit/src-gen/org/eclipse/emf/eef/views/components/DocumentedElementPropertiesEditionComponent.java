@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 	
 	public static String DOCUMENTATION_PART = "Documentation"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -82,6 +84,17 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ViewsViewsRepository.Documentation.Documentation_.documentation__) {
+			return ViewsPackage.eINSTANCE.getDocumentedElement_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

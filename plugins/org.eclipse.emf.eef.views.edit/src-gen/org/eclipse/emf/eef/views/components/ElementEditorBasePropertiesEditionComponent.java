@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -57,6 +58,7 @@ public class ElementEditorBasePropertiesEditionComponent extends SinglePartPrope
 	 * Settings for representation EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings representationSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -127,6 +129,23 @@ public class ElementEditorBasePropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ViewsViewsRepository.ElementEditor.Properties.representation) {
+			return ViewsPackage.eINSTANCE.getViewElement_Representation();
+		}
+		if (editorKey == ViewsViewsRepository.ElementEditor.Properties.name) {
+			return ViewsPackage.eINSTANCE.getViewElement_Name();
+		}
+		if (editorKey == ViewsViewsRepository.ElementEditor.Properties.readOnly) {
+			return ViewsPackage.eINSTANCE.getElementEditor_ReadOnly();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
