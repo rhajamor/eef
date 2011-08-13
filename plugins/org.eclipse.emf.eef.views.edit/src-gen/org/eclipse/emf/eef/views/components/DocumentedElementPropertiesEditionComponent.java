@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.views.components;
 
 // Start of user code for imports
@@ -67,7 +68,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 			final DocumentedElement documentedElement = (DocumentedElement)elt;
 			final DocumentationPropertiesEditionPart documentationPart = (DocumentationPropertiesEditionPart)editingPart;
 			// init values
-			if (documentedElement.getDocumentation() != null)
+			if (documentedElement.getDocumentation() != null && isAccessible(ViewsViewsRepository.Documentation.Documentation_.documentation__))
 				documentationPart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), documentedElement.getDocumentation()));
 			// init filters
 			
@@ -101,7 +102,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			DocumentationPropertiesEditionPart documentationPart = (DocumentationPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getDocumentedElement_Documentation().equals(msg.getFeature()) && documentationPart != null){
+			if (ViewsPackage.eINSTANCE.getDocumentedElement_Documentation().equals(msg.getFeature()) && documentationPart != null && isAccessible(ViewsViewsRepository.Documentation.Documentation_.documentation__)){
 				if (msg.getNewValue() != null) {
 					documentationPart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

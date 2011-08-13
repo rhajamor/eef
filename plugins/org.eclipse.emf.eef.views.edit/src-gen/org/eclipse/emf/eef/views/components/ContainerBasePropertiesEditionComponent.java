@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.views.components;
 
 // Start of user code for imports
@@ -82,12 +83,14 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 			final Container container = (Container)elt;
 			final ContainerPropertiesEditionPart basePart = (ContainerPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			representationSettings = new EObjectFlatComboSettings(container, ViewsPackage.eINSTANCE.getViewElement_Representation());
-			basePart.initRepresentation(representationSettings);
-			// set the button mode
-			basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
-			if (container.getName() != null)
+			if (isAccessible(ViewsViewsRepository.Container.Properties.representation)) {
+				// init part
+				representationSettings = new EObjectFlatComboSettings(container, ViewsPackage.eINSTANCE.getViewElement_Representation());
+				basePart.initRepresentation(representationSettings);
+				// set the button mode
+				basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (container.getName() != null && isAccessible(ViewsViewsRepository.Container.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), container.getName()));
 			
 			// init filters
@@ -128,9 +131,9 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Container container = (Container)semanticObject;
 		if (ViewsViewsRepository.Container.Properties.representation == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				representationSettings.setToReference((Widget)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Widget eObject = ToolkitsFactory.eINSTANCE.createWidget();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -155,9 +158,9 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ContainerPropertiesEditionPart basePart = (ContainerPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null)
+			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Container.Properties.representation))
 				basePart.setRepresentation((EObject)msg.getNewValue());
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Container.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

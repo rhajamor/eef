@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.views.components;
 
 // Start of user code for imports
@@ -82,16 +83,19 @@ public class CustomElementEditorBasePropertiesEditionComponent extends SinglePar
 			final CustomElementEditor customElementEditor = (CustomElementEditor)elt;
 			final CustomElementEditorPropertiesEditionPart basePart = (CustomElementEditorPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			representationSettings = new EObjectFlatComboSettings(customElementEditor, ViewsPackage.eINSTANCE.getViewElement_Representation());
-			basePart.initRepresentation(representationSettings);
-			// set the button mode
-			basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
-			if (customElementEditor.getName() != null)
+			if (isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.representation)) {
+				// init part
+				representationSettings = new EObjectFlatComboSettings(customElementEditor, ViewsPackage.eINSTANCE.getViewElement_Representation());
+				basePart.initRepresentation(representationSettings);
+				// set the button mode
+				basePart.setRepresentationButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (customElementEditor.getName() != null && isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), customElementEditor.getName()));
 			
-			basePart.setReadOnly(customElementEditor.isReadOnly());
-			
+			if (isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.readOnly)) {
+				basePart.setReadOnly(customElementEditor.isReadOnly());
+			}
 			// init filters
 			basePart.addFilterToRepresentation(new ViewerFilter() {
 			
@@ -132,9 +136,9 @@ public class CustomElementEditorBasePropertiesEditionComponent extends SinglePar
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		CustomElementEditor customElementEditor = (CustomElementEditor)semanticObject;
 		if (ViewsViewsRepository.CustomElementEditor.Properties.representation == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				representationSettings.setToReference((Widget)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Widget eObject = ToolkitsFactory.eINSTANCE.createWidget();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -162,16 +166,16 @@ public class CustomElementEditorBasePropertiesEditionComponent extends SinglePar
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			CustomElementEditorPropertiesEditionPart basePart = (CustomElementEditorPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null)
+			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.representation))
 				basePart.setRepresentation((EObject)msg.getNewValue());
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (ViewsPackage.eINSTANCE.getElementEditor_ReadOnly().equals(msg.getFeature()) && basePart != null)
+			if (ViewsPackage.eINSTANCE.getElementEditor_ReadOnly().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.readOnly))
 				basePart.setReadOnly((Boolean)msg.getNewValue());
 			
 			

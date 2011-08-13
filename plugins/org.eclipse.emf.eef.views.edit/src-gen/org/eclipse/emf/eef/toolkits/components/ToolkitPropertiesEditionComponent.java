@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.toolkits.components;
 
 // Start of user code for imports
@@ -67,7 +68,7 @@ public class ToolkitPropertiesEditionComponent extends SinglePartPropertiesEditi
 			final Toolkit toolkit = (Toolkit)elt;
 			final ToolkitPropertiesEditionPart basePart = (ToolkitPropertiesEditionPart)editingPart;
 			// init values
-			if (toolkit.getName() != null)
+			if (toolkit.getName() != null && isAccessible(ToolkitsViewsRepository.Toolkit.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), toolkit.getName()));
 			
 			// init filters
@@ -102,7 +103,7 @@ public class ToolkitPropertiesEditionComponent extends SinglePartPropertiesEditi
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ToolkitPropertiesEditionPart basePart = (ToolkitPropertiesEditionPart)editingPart;
-			if (ToolkitsPackage.eINSTANCE.getToolkit_Name().equals(msg.getFeature()) && basePart != null){
+			if (ToolkitsPackage.eINSTANCE.getToolkit_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ToolkitsViewsRepository.Toolkit.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

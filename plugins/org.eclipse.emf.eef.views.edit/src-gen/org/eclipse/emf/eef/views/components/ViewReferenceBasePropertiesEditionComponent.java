@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.views.components;
 
 // Start of user code for imports
@@ -82,14 +83,16 @@ public class ViewReferenceBasePropertiesEditionComponent extends SinglePartPrope
 			final ViewReference viewReference = (ViewReference)elt;
 			final ViewReferencePropertiesEditionPart basePart = (ViewReferencePropertiesEditionPart)editingPart;
 			// init values
-			if (viewReference.getName() != null)
+			if (viewReference.getName() != null && isAccessible(ViewsViewsRepository.ViewReference.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), viewReference.getName()));
 			
-			// init part
-			viewSettings = new EObjectFlatComboSettings(viewReference, ViewsPackage.eINSTANCE.getViewReference_View());
-			basePart.initReferencedView(viewSettings);
-			// set the button mode
-			basePart.setReferencedViewButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(ViewsViewsRepository.ViewReference.Properties.referencedView)) {
+				// init part
+				viewSettings = new EObjectFlatComboSettings(viewReference, ViewsPackage.eINSTANCE.getViewReference_View());
+				basePart.initReferencedView(viewSettings);
+				// set the button mode
+				basePart.setReferencedViewButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToReferencedView(new ViewerFilter() {
@@ -131,9 +134,9 @@ public class ViewReferenceBasePropertiesEditionComponent extends SinglePartPrope
 			viewReference.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (ViewsViewsRepository.ViewReference.Properties.referencedView == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				viewSettings.setToReference((ViewElement)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, viewSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -153,14 +156,14 @@ public class ViewReferenceBasePropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ViewReferencePropertiesEditionPart basePart = (ViewReferencePropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.ViewReference.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (ViewsPackage.eINSTANCE.getViewReference_View().equals(msg.getFeature()) && basePart != null)
+			if (ViewsPackage.eINSTANCE.getViewReference_View().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.ViewReference.Properties.referencedView))
 				basePart.setReferencedView((EObject)msg.getNewValue());
 			
 		}
