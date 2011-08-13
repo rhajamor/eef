@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
@@ -58,6 +59,7 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 	 * Settings for topics ReferencesTable
 	 */
 	protected ReferencesTableSettings topicsSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -139,6 +141,20 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.TalksAndTopics.talks) {
+			return ConferencePackage.eINSTANCE.getConference_Talks();
+		}
+		if (editorKey == ConferenceViewsRepository.TalksAndTopics.topics) {
+			return ConferencePackage.eINSTANCE.getConference_Topics();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -164,7 +180,9 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					talksSettings.removeFromReference((EObject) event.getNewValue());
+				talksSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				talksSettings.move(event.getNewIndex(), (Talk) event.getNewValue());
 			}
 		}
 		if (ConferenceViewsRepository.TalksAndTopics.topics == event.getAffectedEditor()) {
@@ -187,7 +205,9 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					topicsSettings.removeFromReference((EObject) event.getNewValue());
+				topicsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				topicsSettings.move(event.getNewIndex(), (Topic) event.getNewValue());
 			}
 		}
 	}

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -56,6 +57,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 	 * Settings for sites ReferencesTable
 	 */
 	protected ReferencesTableSettings sitesSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -121,6 +123,20 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Localisation.place) {
+			return ConferencePackage.eINSTANCE.getConference_Place();
+		}
+		if (editorKey == ConferenceViewsRepository.Localisation.sites) {
+			return ConferencePackage.eINSTANCE.getConference_Sites();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -149,7 +165,9 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					sitesSettings.removeFromReference((EObject) event.getNewValue());
+				sitesSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				sitesSettings.move(event.getNewIndex(), (Site) event.getNewValue());
 			}
 		}
 	}

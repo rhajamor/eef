@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2011/01/02 14:10:48 glefur Exp $
+ $Id: plugin.xml,v 1.5.6.1 2011/08/13 21:32:41 glefur Exp $
 -->
 
 <plugin>
@@ -95,7 +95,7 @@
              </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.eclipse.emf.samples.conference.parts.forms.PersonPropertiesEditionPartForm"
                id="org.eclipse.emf.samples.conference.section.Person"
                tab="Base">
              <input

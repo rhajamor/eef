@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -56,6 +57,7 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * Settings for rooms ReferencesTable
 	 */
 	protected ReferencesTableSettings roomsSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -125,6 +127,23 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Site.Properties.name) {
+			return ConferencePackage.eINSTANCE.getSite_Name();
+		}
+		if (editorKey == ConferenceViewsRepository.Site.Properties.documentation) {
+			return ConferencePackage.eINSTANCE.getSite_Documentation();
+		}
+		if (editorKey == ConferenceViewsRepository.Site.Properties.rooms) {
+			return ConferencePackage.eINSTANCE.getSite_Rooms();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -156,7 +175,9 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					roomsSettings.removeFromReference((EObject) event.getNewValue());
+				roomsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				roomsSettings.move(event.getNewIndex(), (Room) event.getNewValue());
 			}
 		}
 	}

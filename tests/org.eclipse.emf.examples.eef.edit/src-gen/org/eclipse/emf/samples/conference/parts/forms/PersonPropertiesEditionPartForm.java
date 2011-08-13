@@ -567,7 +567,8 @@ public class PersonPropertiesEditionPartForm extends CompositePropertiesEditionP
 	}
 
 	// Start of user code additional methods
-	
+
+
 	// End of user code
 
 

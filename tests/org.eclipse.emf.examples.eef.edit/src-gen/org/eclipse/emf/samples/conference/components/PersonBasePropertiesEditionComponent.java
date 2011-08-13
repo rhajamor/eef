@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -44,6 +45,7 @@ public class PersonBasePropertiesEditionComponent extends SinglePartPropertiesEd
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -111,6 +113,32 @@ public class PersonBasePropertiesEditionComponent extends SinglePartPropertiesEd
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Person.Identity.firstname) {
+			return ConferencePackage.eINSTANCE.getPerson_Firstname();
+		}
+		if (editorKey == ConferenceViewsRepository.Person.Identity.lastname) {
+			return ConferencePackage.eINSTANCE.getPerson_Lastname();
+		}
+		if (editorKey == ConferenceViewsRepository.Person.Identity.age) {
+			return ConferencePackage.eINSTANCE.getPerson_Age();
+		}
+		if (editorKey == ConferenceViewsRepository.Person.EclipseStatus.eclipseCommiter) {
+			return ConferencePackage.eINSTANCE.getPerson_EclipseCommiter();
+		}
+		if (editorKey == ConferenceViewsRepository.Person.Identity.gender) {
+			return ConferencePackage.eINSTANCE.getPerson_Gender();
+		}
+		if (editorKey == ConferenceViewsRepository.Person.EclipseStatus.isRegistered) {
+			return ConferencePackage.eINSTANCE.getPerson_IsRegistered();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

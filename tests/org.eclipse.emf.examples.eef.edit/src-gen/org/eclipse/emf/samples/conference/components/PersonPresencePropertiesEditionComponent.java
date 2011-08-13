@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
@@ -49,6 +50,7 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 	 * Settings for assists ReferencesTable
 	 */
 	private	ReferencesTableSettings assistsSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -112,6 +114,17 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Presence.Talks.assists) {
+			return ConferencePackage.eINSTANCE.getPerson_Assists();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -123,7 +136,9 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 					assistsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					assistsSettings.removeFromReference((EObject) event.getNewValue());
+				assistsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				assistsSettings.move(event.getNewIndex(), (Talk) event.getNewValue());
 			}
 		}
 	}

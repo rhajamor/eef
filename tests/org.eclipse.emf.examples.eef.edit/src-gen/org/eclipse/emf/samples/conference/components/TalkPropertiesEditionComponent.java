@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -70,6 +71,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * Settings for creator EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings creatorSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -192,6 +194,32 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.title_) {
+			return ConferencePackage.eINSTANCE.getTalk_Title();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.topic) {
+			return ConferencePackage.eINSTANCE.getTalk_Topic();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.type) {
+			return ConferencePackage.eINSTANCE.getTalk_Type();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.presenter) {
+			return ConferencePackage.eINSTANCE.getTalk_Presenter();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.creator) {
+			return ConferencePackage.eINSTANCE.getTalk_Creator();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.documentation) {
+			return ConferencePackage.eINSTANCE.getTalk_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
