@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -80,11 +81,13 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 			final OnlyReferenceTypeFilter onlyReferenceTypeFilter = (OnlyReferenceTypeFilter)elt;
 			final OnlyReferenceTypeFilterPropertiesEditionPart basePart = (OnlyReferenceTypeFilterPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			referencedFeatureSettings = new EObjectFlatComboSettings(onlyReferenceTypeFilter, FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference());
-			basePart.initReferencedFeature(referencedFeatureSettings);
-			// set the button mode
-			basePart.setReferencedFeatureButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_)) {
+				// init part
+				referencedFeatureSettings = new EObjectFlatComboSettings(onlyReferenceTypeFilter, FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference());
+				basePart.initReferencedFeature(referencedFeatureSettings);
+				// set the button mode
+				basePart.setReferencedFeatureButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			basePart.addFilterToReferencedFeature(new ViewerFilter() {
 			
@@ -126,9 +129,9 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		OnlyReferenceTypeFilter onlyReferenceTypeFilter = (OnlyReferenceTypeFilter)semanticObject;
 		if (MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_ == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				referencedFeatureSettings.setToReference((EReference)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReference eObject = EcoreFactory.eINSTANCE.createEReference();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -150,7 +153,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			OnlyReferenceTypeFilterPropertiesEditionPart basePart = (OnlyReferenceTypeFilterPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference().equals(msg.getFeature()) && basePart != null)
+			if (FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_))
 				basePart.setReferencedFeature((EObject)msg.getNewValue());
 			
 		}

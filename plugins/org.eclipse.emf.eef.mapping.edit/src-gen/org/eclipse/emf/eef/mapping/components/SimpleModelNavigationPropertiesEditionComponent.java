@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -90,18 +91,24 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 			final SimpleModelNavigation simpleModelNavigation = (SimpleModelNavigation)elt;
 			final SimpleModelNavigationPropertiesEditionPart basePart = (SimpleModelNavigationPropertiesEditionPart)editingPart;
 			// init values
-			basePart.setIndex(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), simpleModelNavigation.getIndex()));
+			if (isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.index)) {
+				basePart.setIndex(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), simpleModelNavigation.getIndex()));
+			}
 			
-			// init part
-			featureSettings = new EObjectFlatComboSettings(simpleModelNavigation, NavigationPackage.eINSTANCE.getSimpleModelNavigation_Feature());
-			basePart.initFeature(featureSettings);
-			// set the button mode
-			basePart.setFeatureButtonMode(ButtonsModeEnum.BROWSE);
-			// init part
-			discriminatorTypeSettings = new EObjectFlatComboSettings(simpleModelNavigation, NavigationPackage.eINSTANCE.getSimpleModelNavigation_DiscriminatorType());
-			basePart.initDiscriminatorType(discriminatorTypeSettings);
-			// set the button mode
-			basePart.setDiscriminatorTypeButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.feature)) {
+				// init part
+				featureSettings = new EObjectFlatComboSettings(simpleModelNavigation, NavigationPackage.eINSTANCE.getSimpleModelNavigation_Feature());
+				basePart.initFeature(featureSettings);
+				// set the button mode
+				basePart.setFeatureButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType)) {
+				// init part
+				discriminatorTypeSettings = new EObjectFlatComboSettings(simpleModelNavigation, NavigationPackage.eINSTANCE.getSimpleModelNavigation_DiscriminatorType());
+				basePart.initDiscriminatorType(discriminatorTypeSettings);
+				// set the button mode
+				basePart.setDiscriminatorTypeButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToFeature(new ViewerFilter() {
@@ -160,9 +167,9 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 			simpleModelNavigation.setIndex((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
 		}
 		if (MappingViewsRepository.SimpleModelNavigation.Properties.feature == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				featureSettings.setToReference((EReference)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReference eObject = EcoreFactory.eINSTANCE.createEReference();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -176,9 +183,9 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 			}
 		}
 		if (MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				discriminatorTypeSettings.setToReference((EClassifier)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, discriminatorTypeSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -198,16 +205,16 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			SimpleModelNavigationPropertiesEditionPart basePart = (SimpleModelNavigationPropertiesEditionPart)editingPart;
-			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().equals(msg.getFeature()) && basePart != null){
+			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.index)) {
 				if (msg.getNewValue() != null) {
 					basePart.setIndex(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
 					basePart.setIndex("");
 				}
 			}
-			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_Feature().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_Feature().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.feature))
 				basePart.setFeature((EObject)msg.getNewValue());
-			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_DiscriminatorType().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_DiscriminatorType().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType))
 				basePart.setDiscriminatorType((EObject)msg.getNewValue());
 			
 		}

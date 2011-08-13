@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -92,16 +93,20 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 			final StandardElementBinding standardElementBinding = (StandardElementBinding)elt;
 			final StandardElementBindingPropertiesEditionPart basePart = (StandardElementBindingPropertiesEditionPart)editingPart;
 			// init values
-			if (standardElementBinding.getName() != null)
+			if (standardElementBinding.getName() != null && isAccessible(MappingViewsRepository.StandardElementBinding.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), standardElementBinding.getName()));
 			
-			viewsSettings = new ReferencesTableSettings(standardElementBinding, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
-			basePart.initViews(viewsSettings);
-			// init part
-			modelSettings = new EObjectFlatComboSettings(standardElementBinding, MappingPackage.eINSTANCE.getStandardElementBinding_Model());
-			basePart.initModel(modelSettings);
-			// set the button mode
-			basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.StandardElementBinding.Binding.views)) {
+				viewsSettings = new ReferencesTableSettings(standardElementBinding, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
+				basePart.initViews(viewsSettings);
+			}
+			if (isAccessible(MappingViewsRepository.StandardElementBinding.Binding.model)) {
+				// init part
+				modelSettings = new EObjectFlatComboSettings(standardElementBinding, MappingPackage.eINSTANCE.getStandardElementBinding_Model());
+				basePart.initModel(modelSettings);
+				// set the button mode
+				basePart.setModelButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToViews(new ViewerFilter() {
@@ -163,7 +168,7 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 			standardElementBinding.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (MappingViewsRepository.StandardElementBinding.Binding.views == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof View) {
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
@@ -172,9 +177,9 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 			}
 		}
 		if (MappingViewsRepository.StandardElementBinding.Binding.model == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				modelSettings.setToReference((ModelElement)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, modelSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -194,16 +199,16 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			StandardElementBindingPropertiesEditionPart basePart = (StandardElementBindingPropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null){
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.StandardElementBinding.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature())  && isAccessible(MappingViewsRepository.StandardElementBinding.Binding.views))
 				basePart.updateViews();
-			if (MappingPackage.eINSTANCE.getStandardElementBinding_Model().equals(msg.getFeature()) && basePart != null)
+			if (MappingPackage.eINSTANCE.getStandardElementBinding_Model().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.StandardElementBinding.Binding.model))
 				basePart.setModel((EObject)msg.getNewValue());
 			
 		}

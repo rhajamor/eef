@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -67,7 +68,7 @@ public class OCLFilterBasePropertiesEditionComponent extends SinglePartPropertie
 			final OCLFilter oCLFilter = (OCLFilter)elt;
 			final OCLFilterPropertiesEditionPart basePart = (OCLFilterPropertiesEditionPart)editingPart;
 			// init values
-			if (oCLFilter.getOCLBody() != null)
+			if (oCLFilter.getOCLBody() != null && isAccessible(MappingViewsRepository.OCLFilter.FilterExpression.oCLExpressionBody))
 				basePart.setOCLExpressionBody(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), oCLFilter.getOCLBody()));
 			// init filters
 			
@@ -106,7 +107,7 @@ public class OCLFilterBasePropertiesEditionComponent extends SinglePartPropertie
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			OCLFilterPropertiesEditionPart basePart = (OCLFilterPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getOCLFilter_OCLBody().equals(msg.getFeature()) && basePart != null){
+			if (FiltersPackage.eINSTANCE.getOCLFilter_OCLBody().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.OCLFilter.FilterExpression.oCLExpressionBody)){
 				if (msg.getNewValue() != null) {
 					basePart.setOCLExpressionBody(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

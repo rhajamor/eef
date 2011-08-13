@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -67,7 +68,7 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 			final JavaDeclarationFilter javaDeclarationFilter = (JavaDeclarationFilter)elt;
 			final JavaDeclarationFilterPropertiesEditionPart basePart = (JavaDeclarationFilterPropertiesEditionPart)editingPart;
 			// init values
-			if (javaDeclarationFilter.getMethodName() != null)
+			if (javaDeclarationFilter.getMethodName() != null && isAccessible(MappingViewsRepository.JavaDeclarationFilter.FilterExpression.methodName))
 				basePart.setMethodName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), javaDeclarationFilter.getMethodName()));
 			
 			// init filters
@@ -107,7 +108,7 @@ public class JavaDeclarationFilterBasePropertiesEditionComponent extends SingleP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			JavaDeclarationFilterPropertiesEditionPart basePart = (JavaDeclarationFilterPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getJavaDeclarationFilter_MethodName().equals(msg.getFeature()) && basePart != null){
+			if (FiltersPackage.eINSTANCE.getJavaDeclarationFilter_MethodName().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.JavaDeclarationFilter.FilterExpression.methodName)) {
 				if (msg.getNewValue() != null) {
 					basePart.setMethodName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

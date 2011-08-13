@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -67,11 +68,12 @@ public class FilterPropertiesPropertiesEditionComponent extends SinglePartProper
 			final BindingFilter bindingFilter = (BindingFilter)elt;
 			final FilterPropertiesPropertiesEditionPart filterPropertiesPart = (FilterPropertiesPropertiesEditionPart)editingPart;
 			// init values
-			if (bindingFilter.getName() != null)
+			if (bindingFilter.getName() != null && isAccessible(MappingViewsRepository.FilterProperties.FilterProperties_.name))
 				filterPropertiesPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), bindingFilter.getName()));
 			
-			filterPropertiesPart.setMandatory(bindingFilter.isMandatory());
-			
+			if (isAccessible(MappingViewsRepository.FilterProperties.FilterProperties_.mandatory)) {
+				filterPropertiesPart.setMandatory(bindingFilter.isMandatory());
+			}
 			// init filters
 			
 			
@@ -109,14 +111,14 @@ public class FilterPropertiesPropertiesEditionComponent extends SinglePartProper
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			FilterPropertiesPropertiesEditionPart filterPropertiesPart = (FilterPropertiesPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getBindingFilter_Name().equals(msg.getFeature()) && filterPropertiesPart != null){
+			if (FiltersPackage.eINSTANCE.getBindingFilter_Name().equals(msg.getFeature()) && filterPropertiesPart != null && isAccessible(MappingViewsRepository.FilterProperties.FilterProperties_.name)) {
 				if (msg.getNewValue() != null) {
 					filterPropertiesPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					filterPropertiesPart.setName("");
 				}
 			}
-			if (FiltersPackage.eINSTANCE.getBindingFilter_Mandatory().equals(msg.getFeature()) && filterPropertiesPart != null)
+			if (FiltersPackage.eINSTANCE.getBindingFilter_Mandatory().equals(msg.getFeature()) && filterPropertiesPart != null && isAccessible(MappingViewsRepository.FilterProperties.FilterProperties_.mandatory))
 				filterPropertiesPart.setMandatory((Boolean)msg.getNewValue());
 			
 			

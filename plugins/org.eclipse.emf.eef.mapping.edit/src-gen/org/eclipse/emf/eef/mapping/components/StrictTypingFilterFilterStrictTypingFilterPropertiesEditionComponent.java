@@ -1,13 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ *  Copyright (c) 2008 - 2010 Obeo.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *      Obeo - initial API and implementation
  *
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.emf.eef.mapping.components;
 
 // Start of user code for imports
@@ -80,11 +81,13 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 			final StrictTypingFilter strictTypingFilter = (StrictTypingFilter)elt;
 			final StrictTypingFilterPropertiesEditionPart strictTypingFilterPart = (StrictTypingFilterPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			typeSettings = new EObjectFlatComboSettings(strictTypingFilter, FiltersPackage.eINSTANCE.getStrictTypingFilter_Type());
-			strictTypingFilterPart.initRestriction(typeSettings);
-			// set the button mode
-			strictTypingFilterPart.setRestrictionButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(MappingViewsRepository.StrictTypingFilter.Type.restriction)) {
+				// init part
+				typeSettings = new EObjectFlatComboSettings(strictTypingFilter, FiltersPackage.eINSTANCE.getStrictTypingFilter_Type());
+				strictTypingFilterPart.initRestriction(typeSettings);
+				// set the button mode
+				strictTypingFilterPart.setRestrictionButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			strictTypingFilterPart.addFilterToRestriction(new ViewerFilter() {
 			
@@ -126,9 +129,9 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		StrictTypingFilter strictTypingFilter = (StrictTypingFilter)semanticObject;
 		if (MappingViewsRepository.StrictTypingFilter.Type.restriction == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				typeSettings.setToReference((EClassifier)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, typeSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -148,7 +151,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			StrictTypingFilterPropertiesEditionPart strictTypingFilterPart = (StrictTypingFilterPropertiesEditionPart)editingPart;
-			if (FiltersPackage.eINSTANCE.getStrictTypingFilter_Type().equals(msg.getFeature()) && strictTypingFilterPart != null)
+			if (FiltersPackage.eINSTANCE.getStrictTypingFilter_Type().equals(msg.getFeature()) && strictTypingFilterPart != null && isAccessible(MappingViewsRepository.StrictTypingFilter.Type.restriction))
 				strictTypingFilterPart.setRestriction((EObject)msg.getNewValue());
 			
 		}
