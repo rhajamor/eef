@@ -37,6 +37,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -170,7 +171,7 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence totalSampleStep = new CompositionSequence();
+		CompositionSequence totalSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = totalSampleStep.addStep(EefnrViewsRepository.TotalSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.textRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.textOptionalProperty);

@@ -27,6 +27,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -107,7 +108,7 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence referencesTableSampleStep = new CompositionSequence();
+		CompositionSequence referencesTableSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = referencesTableSampleStep.addStep(EefnrViewsRepository.ReferencesTableSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.ReferencesTableSample.Properties.referencestableOptionalProperty);

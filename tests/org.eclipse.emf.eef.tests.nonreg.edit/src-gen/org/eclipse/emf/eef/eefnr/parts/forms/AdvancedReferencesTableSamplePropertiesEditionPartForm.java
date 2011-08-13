@@ -28,6 +28,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
@@ -100,7 +101,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionPartForm extends Comp
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence advancedReferencesTableSampleStep = new CompositionSequence();
+		CompositionSequence advancedReferencesTableSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = advancedReferencesTableSampleStep.addStep(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableOptionalProperty);

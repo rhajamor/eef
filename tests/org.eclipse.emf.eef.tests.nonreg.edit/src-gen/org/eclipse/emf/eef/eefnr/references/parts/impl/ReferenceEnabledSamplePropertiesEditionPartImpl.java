@@ -32,6 +32,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderSe
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
@@ -99,7 +100,7 @@ public class ReferenceEnabledSamplePropertiesEditionPartImpl extends CompositePr
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence referenceEnabledSampleStep = new CompositionSequence();
+		CompositionSequence referenceEnabledSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		referenceEnabledSampleStep
 			.addStep(ReferencesViewsRepository.ReferenceEnabledSample.Properties.class)
 			.addStep(ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference);

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 	public static String TEXTSAMPLEFIRSTTAB_PART = "TextSampleFirstTab"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,10 +69,10 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 			final TextSampleWithTwoTabs textSampleWithTwoTabs = (TextSampleWithTwoTabs)elt;
 			final TextSampleFirstTabPropertiesEditionPart textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart)editingPart;
 			// init values
-			if (textSampleWithTwoTabs.getTextOptionalPropertyInFirstTab() != null)
+			if (textSampleWithTwoTabs.getTextOptionalPropertyInFirstTab() != null && isAccessible(EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab))
 				textSampleFirstTabPart.setTextOptionalPropertyInFirstTab(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textSampleWithTwoTabs.getTextOptionalPropertyInFirstTab()));
 			
-			if (textSampleWithTwoTabs.getTextRequiredPropertyInFirstTab() != null)
+			if (textSampleWithTwoTabs.getTextRequiredPropertyInFirstTab() != null && isAccessible(EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab))
 				textSampleFirstTabPart.setTextRequiredPropertyInFirstTab(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), textSampleWithTwoTabs.getTextRequiredPropertyInFirstTab()));
 			
 			// init filters
@@ -87,6 +89,20 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab) {
+			return EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab();
+		}
+		if (editorKey == EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab) {
+			return EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -110,14 +126,14 @@ public class TextSampleWithTwoTabsTextSampleFirstTabPropertiesEditionComponent e
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			TextSampleFirstTabPropertiesEditionPart textSampleFirstTabPart = (TextSampleFirstTabPropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
+			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextOptionalPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null && isAccessible(EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab)) {
 				if (msg.getNewValue() != null) {
 					textSampleFirstTabPart.setTextOptionalPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					textSampleFirstTabPart.setTextOptionalPropertyInFirstTab("");
 				}
 			}
-			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null){
+			if (EefnrPackage.eINSTANCE.getTextSampleWithTwoTabs_TextRequiredPropertyInFirstTab().equals(msg.getFeature()) && textSampleFirstTabPart != null && isAccessible(EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab)) {
 				if (msg.getNewValue() != null) {
 					textSampleFirstTabPart.setTextRequiredPropertyInFirstTab(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

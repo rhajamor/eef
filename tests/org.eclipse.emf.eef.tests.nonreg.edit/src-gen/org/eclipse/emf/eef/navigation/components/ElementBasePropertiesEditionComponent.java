@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -40,6 +41,7 @@ public class ElementBasePropertiesEditionComponent extends SinglePartPropertiesE
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -66,8 +68,9 @@ public class ElementBasePropertiesEditionComponent extends SinglePartPropertiesE
 			final Element element = (Element)elt;
 			final ElementPropertiesEditionPart basePart = (ElementPropertiesEditionPart)editingPart;
 			// init values
-			basePart.setIsVisible(element.isVisible());
-			
+			if (isAccessible(NavigationViewsRepository.Element.Properties.isVisible)) {
+				basePart.setIsVisible(element.isVisible());
+			}
 			// init filters
 			
 			// init values for referenced views
@@ -83,6 +86,17 @@ public class ElementBasePropertiesEditionComponent extends SinglePartPropertiesE
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == NavigationViewsRepository.Element.Properties.isVisible) {
+			return NavigationPackage.eINSTANCE.getElement_Visible();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -103,7 +117,7 @@ public class ElementBasePropertiesEditionComponent extends SinglePartPropertiesE
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ElementPropertiesEditionPart basePart = (ElementPropertiesEditionPart)editingPart;
-			if (NavigationPackage.eINSTANCE.getElement_Visible().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getElement_Visible().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Element.Properties.isVisible))
 				basePart.setIsVisible((Boolean)msg.getNewValue());
 			
 			

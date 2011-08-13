@@ -29,6 +29,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -105,7 +106,7 @@ protected List<ViewerFilter> strictTypingFilters = new ArrayList<ViewerFilter>()
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence concreteReferenceOwnerSampleStep = new CompositionSequence();
+		CompositionSequence concreteReferenceOwnerSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = concreteReferenceOwnerSampleStep.addStep(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.class);
 		propertiesStep.addStep(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name);
 		propertiesStep.addStep(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget);

@@ -131,6 +131,7 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 */
 	private	EObjectFlatComboSettings singleReferenceForAdvancedEObjectFlatComboViewerSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -156,49 +157,65 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 			final Owner owner = (Owner)elt;
 			final OwnerPropertiesEditionPart basePart = (OwnerPropertiesEditionPart)editingPart;
 			// init values
-			if (owner.getName() != null)
+			if (owner.getName() != null && isAccessible(NavigationViewsRepository.Owner.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), owner.getName()));
 			
-			multipleSampleForTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForTableComposition());
-			basePart.initMultipleSampleForTableComposition(multipleSampleForTableCompositionSettings);
-			multipleSampleForAdvancedTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForAdvancedTableComposition());
-			basePart.initMultipleSampleForAdvancedTableComposition(multipleSampleForAdvancedTableCompositionSettings);
-			multipleSampleForReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForReferencesTable());
-			basePart.initMultipleSampleForReferencesTable(multipleSampleForReferencesTableSettings);
-			multipleSampleForAdvancedReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleAdvancedReferencesTable());
-			basePart.initMultipleSampleForAdvancedReferencesTable(multipleSampleForAdvancedReferencesTableSettings);
-			multipleSampleForFlatReferencesTablesSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForFlatReferencesTable());
-			basePart.initMultipleSampleForFlatReferencesTable(multipleSampleForFlatReferencesTablesSettings);
-			singleSampleForTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForTableComposition());
-			basePart.initSingleSampleForTableComposition(singleSampleForTableCompositionSettings);
-			singleSampleForAdvancedTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForAdvancedTableComposition());
-			basePart.initSingleSampleForAdvancedTableComposition(singleSampleForAdvancedTableCompositionSettings);
-			singleSampleForReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForReferencesTable());
-			basePart.initSingleSampleForReferencesTable(singleSampleForReferencesTableSettings);
-			singleSampleForAdvancedReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleAdvancedReferencesTable());
-			basePart.initSingleSampleForAdvancedReferencesTable(singleSampleForAdvancedReferencesTableSettings);
-			singleSampleForFlatReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForFlatReferencesTable());
-			basePart.initSingleSampleForFlatReferencesTable(singleSampleForFlatReferencesTableSettings);
-			// init part
-			singleContainmentForEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForEObjectFlatComboViewer());
-			basePart.initSingleContainmentForEObjectFlatComboViewer(singleContainmentForEObjectFlatComboViewerSettings);
-			// set the button mode
-			basePart.setSingleContainmentForEObjectFlatComboViewerButtonMode(ButtonsModeEnum.CREATE);
-			// init part
-			singleReferenceForEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForEObjectFlatComboViewer());
-			basePart.initSingleReferencesForEObjectFlatComboViewer(singleReferenceForEObjectFlatComboViewerSettings);
-			// set the button mode
-			basePart.setSingleReferencesForEObjectFlatComboViewerButtonMode(ButtonsModeEnum.BROWSE);
-			// init part
-			singleContainmentForAdvancedEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForAdvancedEObjectFlatComboViewer());
-			basePart.initSingleContainmentForAdvancedEObjectFlatComboViewer(singleContainmentForAdvancedEObjectFlatComboViewerSettings);
-			// set the button mode
-			basePart.setSingleContainmentForAdvancedEObjectFlatComboViewerButtonMode(ButtonsModeEnum.CREATE);
-			// init part
-			singleReferenceForAdvancedEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer());
-			basePart.initSingleReferencesForAdvancedEObjectFlatComboViewer(singleReferenceForAdvancedEObjectFlatComboViewerSettings);
-			// set the button mode
-			basePart.setSingleReferencesForAdvancedEObjectFlatComboViewerButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition)) {
+				multipleSampleForTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForTableComposition());
+				basePart.initMultipleSampleForTableComposition(multipleSampleForTableCompositionSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition)) {
+				multipleSampleForAdvancedTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForAdvancedTableComposition());
+				basePart.initMultipleSampleForAdvancedTableComposition(multipleSampleForAdvancedTableCompositionSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable)) {
+				multipleSampleForReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForReferencesTable());
+				basePart.initMultipleSampleForReferencesTable(multipleSampleForReferencesTableSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable)) {
+				multipleSampleForAdvancedReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleAdvancedReferencesTable());
+				basePart.initMultipleSampleForAdvancedReferencesTable(multipleSampleForAdvancedReferencesTableSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable)) {
+				multipleSampleForFlatReferencesTablesSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_MultipleReferencers(), NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleForFlatReferencesTable());
+				basePart.initMultipleSampleForFlatReferencesTable(multipleSampleForFlatReferencesTablesSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition)) {
+				singleSampleForTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForTableComposition());
+				basePart.initSingleSampleForTableComposition(singleSampleForTableCompositionSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition)) {
+				singleSampleForAdvancedTableCompositionSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForAdvancedTableComposition());
+				basePart.initSingleSampleForAdvancedTableComposition(singleSampleForAdvancedTableCompositionSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable)) {
+				singleSampleForReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForReferencesTable());
+				basePart.initSingleSampleForReferencesTable(singleSampleForReferencesTableSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable)) {
+				singleSampleForAdvancedReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleAdvancedReferencesTable());
+				basePart.initSingleSampleForAdvancedReferencesTable(singleSampleForAdvancedReferencesTableSettings);
+			}
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable)) {
+				singleSampleForFlatReferencesTableSettings = new ReferencesTableSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleSampleForFlatReferencesTable());
+				basePart.initSingleSampleForFlatReferencesTable(singleSampleForFlatReferencesTableSettings);
+			}
+			// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : singleContainmentForEObjectFlatComboViewer, Owner, Owner.
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer)) {
+				// init part
+				singleReferenceForEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForEObjectFlatComboViewer());
+				basePart.initSingleReferencesForEObjectFlatComboViewer(singleReferenceForEObjectFlatComboViewerSettings);
+				// set the button mode
+				basePart.setSingleReferencesForEObjectFlatComboViewerButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : singleContainmentForAdvancedEObjectFlatComboViewer, Owner, Owner.
+			if (isAccessible(NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer)) {
+				// init part
+				singleReferenceForAdvancedEObjectFlatComboViewerSettings = new EObjectFlatComboSettings(owner, NavigationPackage.eINSTANCE.getOwner_SingleReferencers(), NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer());
+				basePart.initSingleReferencesForAdvancedEObjectFlatComboViewer(singleReferenceForAdvancedEObjectFlatComboViewerSettings);
+				// set the button mode
+				basePart.setSingleReferencesForAdvancedEObjectFlatComboViewerButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToMultipleSampleForTableComposition(new ViewerFilter() {
@@ -424,6 +441,67 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 
 
 
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
+	 */
+	protected boolean shouldProcess(IPropertiesEditionEvent event) {
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition) {
+			return (multipleSampleForTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition) {
+			return (multipleSampleForAdvancedTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForAdvancedTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable) {
+			return (multipleSampleForReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable) {
+			return (multipleSampleForAdvancedReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForAdvancedReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable) {
+			return (multipleSampleForFlatReferencesTablesSettings.getValue() == null) ? (event.getNewValue() != null) : (!multipleSampleForFlatReferencesTablesSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition) {
+			return (singleSampleForTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition) {
+			return (singleSampleForAdvancedTableCompositionSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForAdvancedTableCompositionSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable) {
+			return (singleSampleForReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable) {
+			return (singleSampleForAdvancedReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForAdvancedReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable) {
+			return (singleSampleForFlatReferencesTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleSampleForFlatReferencesTableSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleContainmentForEObjectFlatComboViewer) {
+			return (singleContainmentForEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleContainmentForEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer) {
+			return (singleReferenceForEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleReferenceForEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleContainmentForAdvancedEObjectFlatComboViewer) {
+			return (singleContainmentForAdvancedEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleContainmentForAdvancedEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		if (event.getAffectedEditor() == NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer) {
+			return (singleReferenceForAdvancedEObjectFlatComboViewerSettings.getValue() == null) ? (event.getNewValue() != null) : (!singleReferenceForAdvancedEObjectFlatComboViewerSettings.getValue().equals(event.getNewValue()));
+		}
+		return super.shouldProcess(event);
+	}	
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == NavigationViewsRepository.Owner.Properties.name) {
+			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -436,7 +514,7 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 			owner.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, multipleSampleForTableCompositionSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -456,10 +534,12 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				multipleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, multipleSampleForAdvancedTableCompositionSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -479,24 +559,30 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				multipleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForAdvancedTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof Owner) {
 					multipleSampleForReferencesTableSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 					multipleSampleForReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof Owner) {
 					multipleSampleForAdvancedReferencesTableSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					multipleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+				multipleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				multipleSampleForAdvancedReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable == event.getAffectedEditor()) {
@@ -504,7 +590,7 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				multipleSampleForFlatReferencesTablesSettings.setToReference((List<EObject>) event.getNewValue());
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, singleSampleForTableCompositionSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -523,11 +609,13 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					singleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+				singleSampleForTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, singleSampleForAdvancedTableCompositionSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -546,25 +634,31 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					singleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+				singleSampleForAdvancedTableCompositionSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForAdvancedTableCompositionSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof Owner) {
 					singleSampleForReferencesTableSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				singleSampleForReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof Owner) {
 					singleSampleForAdvancedReferencesTableSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
 				singleSampleForAdvancedReferencesTableSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				singleSampleForAdvancedReferencesTableSettings.move(event.getNewIndex(), (Owner) event.getNewValue());
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable == event.getAffectedEditor()) {
@@ -572,9 +666,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 				singleSampleForFlatReferencesTableSettings.setToReference((List<EObject>) event.getNewValue());
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleContainmentForEObjectFlatComboViewer == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				singleContainmentForEObjectFlatComboViewerSettings.setToReference((Owner)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Owner eObject = NavigationFactory.eINSTANCE.createOwner();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -588,9 +682,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				singleReferenceForEObjectFlatComboViewerSettings.setToReference((Owner)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Owner eObject = NavigationFactory.eINSTANCE.createOwner();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -604,9 +698,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleContainmentForAdvancedEObjectFlatComboViewer == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				singleContainmentForAdvancedEObjectFlatComboViewerSettings.setToReference((Owner)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Owner eObject = NavigationFactory.eINSTANCE.createOwner();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -620,9 +714,9 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 			}
 		}
 		if (NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				singleReferenceForAdvancedEObjectFlatComboViewerSettings.setToReference((Owner)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Owner eObject = NavigationFactory.eINSTANCE.createOwner();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -644,40 +738,41 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			OwnerPropertiesEditionPart basePart = (OwnerPropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (multipleSampleForTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (multipleSampleForTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForTableComposition))
 				basePart.updateMultipleSampleForTableComposition();
-			if (multipleSampleForAdvancedTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (multipleSampleForAdvancedTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedTableComposition))
 				basePart.updateMultipleSampleForAdvancedTableComposition();
-			if (multipleSampleForReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (multipleSampleForReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForReferencesTable)) {
 				basePart.updateMultipleSampleForReferencesTable();
-			if (NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleAdvancedReferencesTable().equals(msg.getFeature()))
+			}
+			if (NavigationPackage.eINSTANCE.getMultipleReferencer_MultipleSampleAdvancedReferencesTable().equals(msg.getFeature())  && isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForAdvancedReferencesTable))
 				basePart.updateMultipleSampleForAdvancedReferencesTable();
-			if (multipleSampleForFlatReferencesTablesSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (multipleSampleForFlatReferencesTablesSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.multipleSampleForFlatReferencesTable))
 				basePart.updateMultipleSampleForFlatReferencesTable();
-			if (singleSampleForTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (singleSampleForTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForTableComposition))
 				basePart.updateSingleSampleForTableComposition();
-			if (singleSampleForAdvancedTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (singleSampleForAdvancedTableCompositionSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedTableComposition))
 				basePart.updateSingleSampleForAdvancedTableComposition();
-			if (singleSampleForReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (singleSampleForReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForReferencesTable))
 				basePart.updateSingleSampleForReferencesTable();
-			if (singleSampleForAdvancedReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (singleSampleForAdvancedReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForAdvancedReferencesTable))
 				basePart.updateSingleSampleForAdvancedReferencesTable();
-			if (singleSampleForFlatReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()))
+			if (singleSampleForFlatReferencesTableSettings.isAffectingFeature((EStructuralFeature)msg.getFeature()) && isAccessible(NavigationViewsRepository.Owner.Properties.singleSampleForFlatReferencesTable))
 				basePart.updateSingleSampleForFlatReferencesTable();
-			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.singleContainmentForEObjectFlatComboViewer))
 				basePart.setSingleContainmentForEObjectFlatComboViewer((EObject)msg.getNewValue());
-			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.singleReferencesForEObjectFlatComboViewer))
 				basePart.setSingleReferencesForEObjectFlatComboViewer((EObject)msg.getNewValue());
-			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForAdvancedEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleContainmentForAdvancedEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.singleContainmentForAdvancedEObjectFlatComboViewer))
 				basePart.setSingleContainmentForAdvancedEObjectFlatComboViewer((EObject)msg.getNewValue());
-			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null)
+			if (NavigationPackage.eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.singleReferencesForAdvancedEObjectFlatComboViewer))
 				basePart.setSingleReferencesForAdvancedEObjectFlatComboViewer((EObject)msg.getNewValue());
 			
 		}

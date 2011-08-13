@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -83,7 +84,7 @@ public class TextSampleFirstTabPropertiesEditionPartImpl extends CompositeProper
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence textSampleFirstTabStep = new CompositionSequence();
+		CompositionSequence textSampleFirstTabStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = textSampleFirstTabStep.addStep(EefnrViewsRepository.TextSampleFirstTab.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.TextSampleFirstTab.Properties.textRequiredPropertyInFirstTab);
 		propertiesStep.addStep(EefnrViewsRepository.TextSampleFirstTab.Properties.textOptionalPropertyInFirstTab);

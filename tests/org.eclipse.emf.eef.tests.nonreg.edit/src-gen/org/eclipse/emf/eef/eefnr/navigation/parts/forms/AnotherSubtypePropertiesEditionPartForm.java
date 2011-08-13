@@ -26,6 +26,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
@@ -95,7 +96,7 @@ public class AnotherSubtypePropertiesEditionPartForm extends CompositeProperties
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence anotherSubtypeStep = new CompositionSequence();
+		CompositionSequence anotherSubtypeStep = new BindingCompositionSequence(propertiesEditionComponent);
 		anotherSubtypeStep.addStep(NavigationViewsRepository.AnotherSubtype.subtypeView);
 		anotherSubtypeStep
 			.addStep(NavigationViewsRepository.AnotherSubtype.AnotherSpecialisation.class)

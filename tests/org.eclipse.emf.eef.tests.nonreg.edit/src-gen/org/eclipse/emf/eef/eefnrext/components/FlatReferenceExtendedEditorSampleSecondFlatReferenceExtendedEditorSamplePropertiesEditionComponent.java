@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 	public static String SECONDFLATREFERENCEEXTENDEDEDITORSAMPLE_PART = "SecondFlatReferenceExtendedEditorSample"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,10 +69,12 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 			final FlatReferenceExtendedEditorSample flatReferenceExtendedEditorSample = (FlatReferenceExtendedEditorSample)elt;
 			final SecondFlatReferenceExtendedEditorSamplePropertiesEditionPart secondFlatReferenceExtendedEditorSamplePart = (SecondFlatReferenceExtendedEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (flatReferenceExtendedEditorSample.getDemo() != null)
+			if (flatReferenceExtendedEditorSample.getDemo() != null && isAccessible(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.demo))
 				secondFlatReferenceExtendedEditorSamplePart.setDemo(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), flatReferenceExtendedEditorSample.getDemo()));
 			
-			secondFlatReferenceExtendedEditorSamplePart.setSize(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), flatReferenceExtendedEditorSample.getSize()));
+			if (isAccessible(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.size)) {
+				secondFlatReferenceExtendedEditorSamplePart.setSize(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), flatReferenceExtendedEditorSample.getSize()));
+			}
 			
 			// init filters
 			
@@ -86,6 +90,20 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.demo) {
+			return EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo();
+		}
+		if (editorKey == EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.size) {
+			return EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -109,14 +127,14 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			SecondFlatReferenceExtendedEditorSamplePropertiesEditionPart secondFlatReferenceExtendedEditorSamplePart = (SecondFlatReferenceExtendedEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo().equals(msg.getFeature()) && secondFlatReferenceExtendedEditorSamplePart != null){
+			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo().equals(msg.getFeature()) && secondFlatReferenceExtendedEditorSamplePart != null && isAccessible(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.demo)) {
 				if (msg.getNewValue() != null) {
 					secondFlatReferenceExtendedEditorSamplePart.setDemo(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					secondFlatReferenceExtendedEditorSamplePart.setDemo("");
 				}
 			}
-			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size().equals(msg.getFeature()) && secondFlatReferenceExtendedEditorSamplePart != null){
+			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size().equals(msg.getFeature()) && secondFlatReferenceExtendedEditorSamplePart != null && isAccessible(EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.size)) {
 				if (msg.getNewValue() != null) {
 					secondFlatReferenceExtendedEditorSamplePart.setSize(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {

@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -42,6 +43,7 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -68,10 +70,10 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 			final MultiValuedEditorSample multiValuedEditorSample = (MultiValuedEditorSample)elt;
 			final MultiValuedEditorSamplePropertiesEditionPart basePart = (MultiValuedEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (multiValuedEditorSample.getMultivaluededitorRequiredProperty() != null)
+			if (multiValuedEditorSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(multiValuedEditorSample.getMultivaluededitorRequiredProperty());
 			
-			if (multiValuedEditorSample.getMultivaluededitorOptionalProperty() != null)
+			if (multiValuedEditorSample.getMultivaluededitorOptionalProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty))
 				basePart.setMultivaluededitorOptionalProperty(multiValuedEditorSample.getMultivaluededitorOptionalProperty());
 			
 			// init filters
@@ -88,6 +90,20 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -117,18 +133,12 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			MultiValuedEditorSamplePropertiesEditionPart basePart = (MultiValuedEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null) {
-				if (msg.getEventType() == Notification.ADD) 
-					basePart.addToMultivaluededitorRequiredProperty(msg.getNewValue());
-				else if (msg.getEventType() == Notification.REMOVE) 
-					basePart.removeToMultivaluededitorRequiredProperty(msg.getOldValue());
+			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty)) {
+				basePart.setMultivaluededitorRequiredProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorRequiredProperty());
 			}
 			
-			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null) {
-				if (msg.getEventType() == Notification.ADD) 
-					basePart.addToMultivaluededitorOptionalProperty(msg.getNewValue());
-				else if (msg.getEventType() == Notification.REMOVE) 
-					basePart.removeToMultivaluededitorOptionalProperty(msg.getOldValue());
+			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty)) {
+				basePart.setMultivaluededitorOptionalProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorOptionalProperty());
 			}
 			
 			

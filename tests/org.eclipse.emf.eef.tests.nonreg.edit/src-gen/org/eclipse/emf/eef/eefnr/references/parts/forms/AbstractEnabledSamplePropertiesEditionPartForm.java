@@ -24,6 +24,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
@@ -89,7 +90,7 @@ public class AbstractEnabledSamplePropertiesEditionPartForm extends CompositePro
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence abstractEnabledSampleStep = new CompositionSequence();
+		CompositionSequence abstractEnabledSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		abstractEnabledSampleStep
 			.addStep(ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.class)
 			.addStep(ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.enabled);

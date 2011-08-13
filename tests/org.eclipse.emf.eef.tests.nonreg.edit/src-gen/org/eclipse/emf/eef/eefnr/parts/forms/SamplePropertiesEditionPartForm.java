@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -87,7 +88,7 @@ public class SamplePropertiesEditionPartForm extends CompositePropertiesEditionP
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence sampleStep = new CompositionSequence();
+		CompositionSequence sampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = sampleStep.addStep(EefnrViewsRepository.Sample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.Sample.Properties.textRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.Sample.Properties.textOptionalProperty);

@@ -24,6 +24,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.widgets.SingleCompositionViewer;
@@ -92,7 +93,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence singleCompositionViewerSampleStep = new CompositionSequence();
+		CompositionSequence singleCompositionViewerSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = singleCompositionViewerSampleStep.addStep(EefnrViewsRepository.SingleCompositionViewerSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty);
@@ -156,7 +157,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerSingleRequiredProperty()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerSingleRequiredProperty()));
 						singlecompositionviewerSingleRequiredProperty.update(getSinglecompositionviewerSingleRequiredProperty());
 						ScrolledComposite scrolledComposite = (ScrolledComposite)view.getParent().getParent();
 						Composite c = (Composite) view.getParent();
@@ -175,7 +176,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				public void widgetSelected(SelectionEvent e) {
 					if(!singlecompositionviewerSingleRequiredProperty.getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 							singlecompositionviewerSingleRequiredProperty.update(null);
 						}
 					}
@@ -204,7 +205,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerSingleOptionalProperty()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerSingleOptionalProperty()));
 						singlecompositionviewerSingleOptionalProperty.update(getSinglecompositionviewerSingleOptionalProperty());
 						ScrolledComposite scrolledComposite = (ScrolledComposite)view.getParent().getParent();
 						Composite c = (Composite) view.getParent();
@@ -223,7 +224,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				public void widgetSelected(SelectionEvent e) {
 					if(!singlecompositionviewerSingleOptionalProperty.getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerSingleOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 							singlecompositionviewerSingleOptionalProperty.update(null);
 						}
 					}
@@ -252,7 +253,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerMultiRequiredProperty()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerMultiRequiredProperty()));
 						singlecompositionviewerMultiRequiredProperty.update(getSinglecompositionviewerMultiRequiredProperty());
 						ScrolledComposite scrolledComposite = (ScrolledComposite)view.getParent().getParent();
 						Composite c = (Composite) view.getParent();
@@ -271,7 +272,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				public void widgetSelected(SelectionEvent e) {
 					if(!singlecompositionviewerMultiRequiredProperty.getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiRequiredProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 							singlecompositionviewerMultiRequiredProperty.update(null);
 						}
 					}
@@ -300,7 +301,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				 */
 				public void selectionChanged(SelectionChangedEvent event) {
 					if (propertiesEditionComponent != null) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerMultiOptionalProperty()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getSinglecompositionviewerMultiOptionalProperty()));
 						singlecompositionviewerMultiOptionalProperty.update(getSinglecompositionviewerMultiOptionalProperty());
 						ScrolledComposite scrolledComposite = (ScrolledComposite)view.getParent().getParent();
 						Composite c = (Composite) view.getParent();
@@ -319,7 +320,7 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 				public void widgetSelected(SelectionEvent e) {
 					if(!singlecompositionviewerMultiOptionalProperty.getCheckBoxSelection()) {
 						if (propertiesEditionComponent != null) {
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this,  EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SingleCompositionViewerSamplePropertiesEditionPartImpl.this, EefnrViewsRepository.SingleCompositionViewerSample.Properties.singlecompositionviewerMultiOptionalProperty, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, null));
 							singlecompositionviewerMultiOptionalProperty.update(null);
 						}
 					}

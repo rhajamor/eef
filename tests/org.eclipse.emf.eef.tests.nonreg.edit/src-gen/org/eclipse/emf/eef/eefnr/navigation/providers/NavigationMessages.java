@@ -42,6 +42,9 @@ public class NavigationMessages extends NLS {
 	public static String ElementPropertiesEditionPart_PropertiesGroupLabel;
 
 	
+	public static String AttributeNavigationSamplePropertiesEditionPart_PropertiesGroupLabel;
+
+	
 	public static String DeferedFlatReferencesTableSample_ReadOnly;
 
 	
@@ -82,6 +85,12 @@ public class NavigationMessages extends NLS {
 
 	
 	public static String Element_Part_Title;
+
+	
+	public static String AttributeNavigationSample_ReadOnly;
+
+	
+	public static String AttributeNavigationSample_Part_Title;
 
 	
 	public static String DeferedFlatReferencesTableSamplePropertiesEditionPart_NameLabel;
@@ -151,6 +160,21 @@ public class NavigationMessages extends NLS {
 
 	
 	public static String ElementPropertiesEditionPart_IsVisibleLabel;
+
+	
+	public static String AttributeNavigationSamplePropertiesEditionPart_NameLabel;
+
+	
+	public static String AttributeNavigationSamplePropertiesEditionPart_Delegate1ForSingleValuedLabel;
+
+	
+	public static String AttributeNavigationSamplePropertiesEditionPart_Delegate2ForSingleValuedLabel;
+
+	
+	public static String AttributeNavigationSamplePropertiesEditionPart_Delegate1ForMultiValuedLabel;
+
+	
+	public static String AttributeNavigationSamplePropertiesEditionPart_Delegate2ForMultiValuedLabel;
 
 	
 	public static String PropertiesEditionPart_DocumentationLabel;

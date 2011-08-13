@@ -25,6 +25,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
@@ -85,7 +86,7 @@ public class CheckBoxExtendedEditorSamplePropertiesEditionPartImpl extends Compo
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence checkBoxExtendedEditorSampleStep = new CompositionSequence();
+		CompositionSequence checkBoxExtendedEditorSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		checkBoxExtendedEditorSampleStep
 			.addStep(EefnrextViewsRepository.CheckBoxExtendedEditorSample.Properties.class)
 			.addStep(EefnrextViewsRepository.CheckBoxExtendedEditorSample.Properties.checkboxEditorSample);

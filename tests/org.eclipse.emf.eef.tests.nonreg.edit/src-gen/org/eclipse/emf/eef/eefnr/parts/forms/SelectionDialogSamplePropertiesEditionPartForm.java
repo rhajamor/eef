@@ -22,6 +22,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
@@ -92,7 +93,7 @@ public class SelectionDialogSamplePropertiesEditionPartForm extends CompositePro
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence selectionDialogSampleStep = new CompositionSequence();
+		CompositionSequence selectionDialogSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = selectionDialogSampleStep.addStep(EefnrViewsRepository.SelectionDialogSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogOptionalProperty);

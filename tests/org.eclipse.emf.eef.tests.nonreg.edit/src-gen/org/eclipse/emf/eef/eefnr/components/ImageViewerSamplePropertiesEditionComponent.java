@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -39,6 +40,7 @@ public class ImageViewerSamplePropertiesEditionComponent extends SinglePartPrope
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -87,6 +89,20 @@ public class ImageViewerSamplePropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.ImageViewerSample.Properties.imageviewerRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.ImageViewerSample.Properties.imageviewerOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

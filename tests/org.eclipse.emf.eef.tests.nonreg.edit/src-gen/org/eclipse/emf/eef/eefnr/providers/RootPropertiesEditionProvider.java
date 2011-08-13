@@ -65,7 +65,7 @@ public class RootPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof Root) && (refinement == RootPropertiesEditionComponent.class);
 	}
@@ -75,7 +75,7 @@ public class RootPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof Root) && ((RootPropertiesEditionComponent.BASE_PART.equals(part) && refinement == RootPropertiesEditionComponent.class));
 	}
@@ -109,7 +109,7 @@ public class RootPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Root) {
 			if (RootPropertiesEditionComponent.BASE_PART.equals(part)

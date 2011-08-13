@@ -95,5 +95,13 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 		providers.add((PropertiesEditingProvider)createNamedElementAdapter());
 		return new ElementPropertiesEditionProvider(providers);
 	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory#createAttributeNavigationSampleAdapter()
+	 * 
+	 */
+	public Adapter createAttributeNavigationSampleAdapter() {
+		return new AttributeNavigationSamplePropertiesEditionProvider();
+	}
 
 }

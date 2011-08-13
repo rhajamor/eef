@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -51,6 +52,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 	 */
 	private	ReferencesTableSettings referenceSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -76,8 +78,10 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 			final ReferenceEnabledSample referenceEnabledSample = (ReferenceEnabledSample)elt;
 			final ReferenceEnabledSamplePropertiesEditionPart basePart = (ReferenceEnabledSamplePropertiesEditionPart)editingPart;
 			// init values
-			referenceSettings = new ReferencesTableSettings(referenceEnabledSample, ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference());
-			basePart.initReference(referenceSettings);
+			if (isAccessible(ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference)) {
+				referenceSettings = new ReferencesTableSettings(referenceEnabledSample, ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference());
+				basePart.initReference(referenceSettings);
+			}
 			// init filters
 			basePart.addFilterToReference(new ViewerFilter() {
 			
@@ -112,18 +116,31 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference) {
+			return ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ReferenceEnabledSample referenceEnabledSample = (ReferenceEnabledSample)semanticObject;
 		if (ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof TotalSample) {
 					referenceSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					referenceSettings.removeFromReference((EObject) event.getNewValue());
+				referenceSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				referenceSettings.move(event.getNewIndex(), (TotalSample) event.getNewValue());
 			}
 		}
 	}
@@ -135,7 +152,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ReferenceEnabledSamplePropertiesEditionPart basePart = (ReferenceEnabledSamplePropertiesEditionPart)editingPart;
-			if (ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference().equals(msg.getFeature()))
+			if (ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference().equals(msg.getFeature())  && isAccessible(ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference))
 				basePart.updateReference();
 			
 		}

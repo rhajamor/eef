@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -41,6 +42,7 @@ public class RadioSamplePropertiesEditionComponent extends SinglePartPropertiesE
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -67,8 +69,12 @@ public class RadioSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			final RadioSample radioSample = (RadioSample)elt;
 			final RadioSamplePropertiesEditionPart basePart = (RadioSamplePropertiesEditionPart)editingPart;
 			// init values
-			basePart.initRadioRequiredProperty((EEnum) EefnrPackage.eINSTANCE.getRadioSample_RadioRequiredProperty().getEType(), radioSample.getRadioRequiredProperty());
-			basePart.initRadioOptionalProperty((EEnum) EefnrPackage.eINSTANCE.getRadioSample_RadioOptionalProperty().getEType(), radioSample.getRadioOptionalProperty());
+			if (isAccessible(EefnrViewsRepository.RadioSample.Properties.radioRequiredProperty)) {
+				basePart.initRadioRequiredProperty((EEnum) EefnrPackage.eINSTANCE.getRadioSample_RadioRequiredProperty().getEType(), radioSample.getRadioRequiredProperty());
+			}
+			if (isAccessible(EefnrViewsRepository.RadioSample.Properties.radioOptionalProperty)) {
+				basePart.initRadioOptionalProperty((EEnum) EefnrPackage.eINSTANCE.getRadioSample_RadioOptionalProperty().getEType(), radioSample.getRadioOptionalProperty());
+			}
 			// init filters
 			
 			
@@ -83,6 +89,20 @@ public class RadioSamplePropertiesEditionComponent extends SinglePartPropertiesE
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.RadioSample.Properties.radioRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getRadioSample_RadioRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.RadioSample.Properties.radioOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getRadioSample_RadioOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -106,10 +126,10 @@ public class RadioSamplePropertiesEditionComponent extends SinglePartPropertiesE
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			RadioSamplePropertiesEditionPart basePart = (RadioSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getRadioSample_RadioRequiredProperty().equals(msg.getFeature()) && basePart != null)
+			if (EefnrPackage.eINSTANCE.getRadioSample_RadioRequiredProperty().equals(msg.getFeature()) && basePart != null  && isAccessible(EefnrViewsRepository.RadioSample.Properties.radioRequiredProperty))
 				basePart.setRadioRequiredProperty((Object)msg.getNewValue());
 			
-			if (EefnrPackage.eINSTANCE.getRadioSample_RadioOptionalProperty().equals(msg.getFeature()) && basePart != null)
+			if (EefnrPackage.eINSTANCE.getRadioSample_RadioOptionalProperty().equals(msg.getFeature()) && basePart != null  && isAccessible(EefnrViewsRepository.RadioSample.Properties.radioOptionalProperty))
 				basePart.setRadioOptionalProperty((Object)msg.getNewValue());
 			
 			

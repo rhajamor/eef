@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -40,6 +41,7 @@ public class SelectionDialogSamplePropertiesEditionComponent extends SinglePartP
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -66,11 +68,11 @@ public class SelectionDialogSamplePropertiesEditionComponent extends SinglePartP
 			final SelectionDialogSample selectionDialogSample = (SelectionDialogSample)elt;
 			final SelectionDialogSamplePropertiesEditionPart basePart = (SelectionDialogSamplePropertiesEditionPart)editingPart;
 			// init values
-				if (selectionDialogSample.getSelectionDialogRequiredProperty() != null) {
+				if (selectionDialogSample.getSelectionDialogRequiredProperty() != null && isAccessible(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogRequiredProperty)) {
 					basePart.setSelectionDialogRequiredProperty(EEFConverterUtil.convertToString(EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogRequiredProperty().getEAttributeType(), selectionDialogSample.getSelectionDialogRequiredProperty()));
 				}
 			
-				if (selectionDialogSample.getSelectionDialogOptionalProperty() != null) {
+				if (selectionDialogSample.getSelectionDialogOptionalProperty() != null && isAccessible(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogOptionalProperty)) {
 					basePart.setSelectionDialogOptionalProperty(EEFConverterUtil.convertToString(EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogOptionalProperty().getEAttributeType(), selectionDialogSample.getSelectionDialogOptionalProperty()));
 				}
 			
@@ -88,6 +90,20 @@ public class SelectionDialogSamplePropertiesEditionComponent extends SinglePartP
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -111,14 +127,14 @@ public class SelectionDialogSamplePropertiesEditionComponent extends SinglePartP
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			SelectionDialogSamplePropertiesEditionPart basePart = (SelectionDialogSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogRequiredProperty().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogRequiredProperty)) {
 				if (msg.getNewValue() != null) {
 					basePart.setSelectionDialogRequiredProperty(EcoreUtil.convertToString(EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogRequiredProperty().getEAttributeType(), msg.getNewValue()));
 				} else {
 					basePart.setSelectionDialogRequiredProperty("");
 				}
 			}
-			if (EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogOptionalProperty().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.SelectionDialogSample.Properties.selectionDialogOptionalProperty)) {
 				if (msg.getNewValue() != null) {
 					basePart.setSelectionDialogOptionalProperty(EcoreUtil.convertToString(EefnrPackage.eINSTANCE.getSelectionDialogSample_SelectionDialogOptionalProperty().getEAttributeType(), msg.getNewValue()));
 				} else {

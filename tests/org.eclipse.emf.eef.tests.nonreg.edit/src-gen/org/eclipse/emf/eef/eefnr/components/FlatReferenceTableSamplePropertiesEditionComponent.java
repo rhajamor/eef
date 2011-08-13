@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.FlatReferencesTableSample;
@@ -55,6 +56,7 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	 */
 	private	ReferencesTableSettings flatreferencetableOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -80,10 +82,14 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 			final FlatReferencesTableSample flatReferencesTableSample = (FlatReferencesTableSample)elt;
 			final FlatReferenceTableSamplePropertiesEditionPart basePart = (FlatReferenceTableSamplePropertiesEditionPart)editingPart;
 			// init values
-			flatreferencetableRequiredPropertySettings = new ReferencesTableSettings(flatReferencesTableSample, EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty());
-			basePart.initFlatreferencetableRequiredProperty(flatreferencetableRequiredPropertySettings);
-			flatreferencetableOptionalPropertySettings = new ReferencesTableSettings(flatReferencesTableSample, EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableOptionalProperty());
-			basePart.initFlatreferencetableOptionalProperty(flatreferencetableOptionalPropertySettings);
+			if (isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableRequiredProperty)) {
+				flatreferencetableRequiredPropertySettings = new ReferencesTableSettings(flatReferencesTableSample, EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty());
+				basePart.initFlatreferencetableRequiredProperty(flatreferencetableRequiredPropertySettings);
+			}
+			if (isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableOptionalProperty)) {
+				flatreferencetableOptionalPropertySettings = new ReferencesTableSettings(flatReferencesTableSample, EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableOptionalProperty());
+				basePart.initFlatreferencetableOptionalProperty(flatreferencetableOptionalPropertySettings);
+			}
 			// init filters
 			basePart.addFilterToFlatreferencetableRequiredProperty(new ViewerFilter() {
 			
@@ -137,6 +143,20 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -159,9 +179,9 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			FlatReferenceTableSamplePropertiesEditionPart basePart = (FlatReferenceTableSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableRequiredProperty))
 				basePart.updateFlatreferencetableRequiredProperty();
-			if (EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableOptionalProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableOptionalProperty))
 				basePart.updateFlatreferencetableOptionalProperty();
 			
 		}

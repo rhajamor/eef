@@ -12,6 +12,7 @@ package org.eclipse.emf.eef.eefnr.navigation.providers;
 
 import org.eclipse.emf.eef.eefnr.navigation.parts.NavigationViewsRepository;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.AnotherSubtypePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.navigation.parts.forms.AttributeNavigationSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.DeferedFlatReferencesTableSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.DeferedReferencesTableSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.ElementPropertiesEditionPartForm;
@@ -19,6 +20,7 @@ import org.eclipse.emf.eef.eefnr.navigation.parts.forms.NamedElementPropertiesEd
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.OwnerPropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.SubtypePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.AnotherSubtypePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.navigation.parts.impl.AttributeNavigationSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.DeferedFlatReferencesTableSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.DeferedReferencesTableSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.ElementPropertiesEditionPartImpl;
@@ -94,6 +96,12 @@ public class NavigationPropertiesEditionPartProvider implements IPropertiesEditi
 				return new ElementPropertiesEditionPartImpl(component);
 			if (kind == NavigationViewsRepository.FORM_KIND)
 				return new ElementPropertiesEditionPartForm(component);
+		}
+		if (key == NavigationViewsRepository.AttributeNavigationSample.class) {
+			if (kind == NavigationViewsRepository.SWT_KIND)
+				return new AttributeNavigationSamplePropertiesEditionPartImpl(component);
+			if (kind == NavigationViewsRepository.FORM_KIND)
+				return new AttributeNavigationSamplePropertiesEditionPartForm(component);
 		}
 		return null;
 	}

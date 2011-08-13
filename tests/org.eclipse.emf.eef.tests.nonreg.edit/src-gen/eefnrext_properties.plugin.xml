@@ -19,7 +19,7 @@
    <extension
          point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
       <PropertiesEditionPartProvider
-            providerClass="org.eclipse.emf.eef.eefnr.filters.providers.FiltersPropertiesEditionPartProvider">
+            providerClass="org.eclipse.emf.eef.eefnrext.providers.EefnrextPropertiesEditionPartProvider">
       </PropertiesEditionPartProvider>
    </extension>
    <extension
@@ -37,7 +37,13 @@
    <extension
          point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
       <PropertiesEditionPartProvider
-            providerClass="org.eclipse.emf.eef.eefnrext.providers.EefnrextPropertiesEditionPartProvider">
+            providerClass="org.eclipse.emf.eef.eefnr.filters.providers.FiltersPropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="org.eclipse.emf.eef.eefnr.navigation.providers.NamingPropertiesEditionPartProvider">
       </PropertiesEditionPartProvider>
    </extension>
 

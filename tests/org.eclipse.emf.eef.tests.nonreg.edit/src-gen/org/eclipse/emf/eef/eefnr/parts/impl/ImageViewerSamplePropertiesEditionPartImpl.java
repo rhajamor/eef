@@ -20,6 +20,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
@@ -81,7 +82,7 @@ public class ImageViewerSamplePropertiesEditionPartImpl extends CompositePropert
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence imageViewerSampleStep = new CompositionSequence();
+		CompositionSequence imageViewerSampleStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = imageViewerSampleStep.addStep(EefnrViewsRepository.ImageViewerSample.Properties.class);
 		propertiesStep.addStep(EefnrViewsRepository.ImageViewerSample.Properties.imageviewerRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.ImageViewerSample.Properties.imageviewerOptionalProperty);
@@ -210,7 +211,7 @@ public class ImageViewerSamplePropertiesEditionPartImpl extends CompositePropert
 		if (newValue != null) {
 			imageviewerRequiredProperty.initViewer(key, newValue);
 		} else {
-			imageviewerRequiredProperty.initViewer(key, "");  //$NON-NLS-1$
+			imageviewerRequiredProperty.initViewer(key, ""); //$NON-NLS-1$
 		}
 	}
 
@@ -224,7 +225,7 @@ public class ImageViewerSamplePropertiesEditionPartImpl extends CompositePropert
 		if (newValue != null) {
 			imageviewerRequiredProperty.setSelection(new StructuredSelection(newValue));
 		} else {
-			imageviewerRequiredProperty.setSelection(new StructuredSelection(""));  //$NON-NLS-1$
+			imageviewerRequiredProperty.setSelection(new StructuredSelection("")); //$NON-NLS-1$
 		}
 	}
 
@@ -252,7 +253,7 @@ public class ImageViewerSamplePropertiesEditionPartImpl extends CompositePropert
 		if (newValue != null) {
 			imageviewerOptionalProperty.initViewer(key, newValue);
 		} else {
-			imageviewerOptionalProperty.initViewer(key, "");  //$NON-NLS-1$
+			imageviewerOptionalProperty.initViewer(key, ""); //$NON-NLS-1$
 		}
 	}
 
@@ -266,7 +267,7 @@ public class ImageViewerSamplePropertiesEditionPartImpl extends CompositePropert
 		if (newValue != null) {
 			imageviewerOptionalProperty.setSelection(new StructuredSelection(newValue));
 		} else {
-			imageviewerOptionalProperty.setSelection(new StructuredSelection(""));  //$NON-NLS-1$
+			imageviewerOptionalProperty.setSelection(new StructuredSelection("")); //$NON-NLS-1$
 		}
 	}
 

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.eefnr.AdvancedTableCompositionEditorSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -58,6 +59,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 	 */
 	protected ReferencesTableSettings advancedtablecompositionOptionalPropertySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -83,10 +85,14 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 			final AdvancedTableCompositionEditorSample advancedTableCompositionEditorSample = (AdvancedTableCompositionEditorSample)elt;
 			final AdvancedTableCompositionEditorSamplePropertiesEditionPart basePart = (AdvancedTableCompositionEditorSamplePropertiesEditionPart)editingPart;
 			// init values
-			advancedtablecompositionRequiredPropertySettings = new ReferencesTableSettings(advancedTableCompositionEditorSample, EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty());
-			basePart.initAdvancedtablecompositionRequiredProperty(advancedtablecompositionRequiredPropertySettings);
-			advancedtablecompositionOptionalPropertySettings = new ReferencesTableSettings(advancedTableCompositionEditorSample, EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionOptionalProperty());
-			basePart.initAdvancedtablecompositionOptionalProperty(advancedtablecompositionOptionalPropertySettings);
+			if (isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty)) {
+				advancedtablecompositionRequiredPropertySettings = new ReferencesTableSettings(advancedTableCompositionEditorSample, EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty());
+				basePart.initAdvancedtablecompositionRequiredProperty(advancedtablecompositionRequiredPropertySettings);
+			}
+			if (isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty)) {
+				advancedtablecompositionOptionalPropertySettings = new ReferencesTableSettings(advancedTableCompositionEditorSample, EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionOptionalProperty());
+				basePart.initAdvancedtablecompositionOptionalProperty(advancedtablecompositionOptionalPropertySettings);
+			}
 			// init filters
 			basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
 			
@@ -134,13 +140,27 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty) {
+			return EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty();
+		}
+		if (editorKey == EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty) {
+			return EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionOptionalProperty();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		AdvancedTableCompositionEditorSample advancedTableCompositionEditorSample = (AdvancedTableCompositionEditorSample)semanticObject;
 		if (EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, advancedtablecompositionRequiredPropertySettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -159,11 +179,13 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					advancedtablecompositionRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+				advancedtablecompositionRequiredPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				advancedtablecompositionRequiredPropertySettings.move(event.getNewIndex(), (Sample) event.getNewValue());
 			}
 		}
 		if (EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, advancedtablecompositionOptionalPropertySettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -182,7 +204,9 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					advancedtablecompositionOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+				advancedtablecompositionOptionalPropertySettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				advancedtablecompositionOptionalPropertySettings.move(event.getNewIndex(), (Sample) event.getNewValue());
 			}
 		}
 	}
@@ -194,9 +218,9 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			AdvancedTableCompositionEditorSamplePropertiesEditionPart basePart = (AdvancedTableCompositionEditorSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty))
 				basePart.updateAdvancedtablecompositionRequiredProperty();
-			if (EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionOptionalProperty().equals(msg.getFeature()))
+			if (EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty))
 				basePart.updateAdvancedtablecompositionOptionalProperty();
 			
 		}

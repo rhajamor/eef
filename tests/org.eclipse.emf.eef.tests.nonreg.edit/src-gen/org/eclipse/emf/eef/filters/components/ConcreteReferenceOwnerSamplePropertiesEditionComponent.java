@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -70,6 +71,7 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 	 */
 	protected ReferencesTableSettings strictTypingSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -95,13 +97,17 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 			final ConcreteReferenceOwnerSample concreteReferenceOwnerSample = (ConcreteReferenceOwnerSample)elt;
 			final ConcreteReferenceOwnerSamplePropertiesEditionPart basePart = (ConcreteReferenceOwnerSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (concreteReferenceOwnerSample.getName() != null)
+			if (concreteReferenceOwnerSample.getName() != null && isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), concreteReferenceOwnerSample.getName()));
 			
-			abstractTargetSettings = new ReferencesTableSettings(concreteReferenceOwnerSample, FiltersPackage.eINSTANCE.getAbstractReferenceOwnerSample_AbstractTarget());
-			basePart.initAbstractTarget(abstractTargetSettings);
-			strictTypingSettings = new ReferencesTableSettings(concreteReferenceOwnerSample, FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_StrictTyping());
-			basePart.initStrictTyping(strictTypingSettings);
+			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget)) {
+				abstractTargetSettings = new ReferencesTableSettings(concreteReferenceOwnerSample, FiltersPackage.eINSTANCE.getAbstractReferenceOwnerSample_AbstractTarget());
+				basePart.initAbstractTarget(abstractTargetSettings);
+			}
+			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping)) {
+				strictTypingSettings = new ReferencesTableSettings(concreteReferenceOwnerSample, FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_StrictTyping());
+				basePart.initStrictTyping(strictTypingSettings);
+			}
 			// init filters
 			
 			basePart.addFilterToAbstractTarget(new ViewerFilter() {
@@ -172,6 +178,23 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name) {
+			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
+		}
+		if (editorKey == FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget) {
+			return FiltersPackage.eINSTANCE.getAbstractReferenceOwnerSample_AbstractTarget();
+		}
+		if (editorKey == FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping) {
+			return FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_StrictTyping();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -181,16 +204,18 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 			concreteReferenceOwnerSample.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof AbstractReferenceTargetSample) {
 					abstractTargetSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					abstractTargetSettings.removeFromReference((EObject) event.getNewValue());
+				abstractTargetSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				abstractTargetSettings.move(event.getNewIndex(), (AbstractReferenceTargetSample) event.getNewValue());
 			}
 		}
 		if (FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new TypedEReferencePropertiesEditingContext(editingContext, this, strictTypingSettings, FiltersPackage.eINSTANCE.getConcreteReferenceTargetSample2(), editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -209,7 +234,9 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					strictTypingSettings.removeFromReference((EObject) event.getNewValue());
+				strictTypingSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				strictTypingSettings.move(event.getNewIndex(), (AbstractReferenceTargetSample) event.getNewValue());
 			}
 		}
 	}
@@ -221,16 +248,16 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ConcreteReferenceOwnerSamplePropertiesEditionPart basePart = (ConcreteReferenceOwnerSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (FiltersPackage.eINSTANCE.getAbstractReferenceOwnerSample_AbstractTarget().equals(msg.getFeature()))
+			if (FiltersPackage.eINSTANCE.getAbstractReferenceOwnerSample_AbstractTarget().equals(msg.getFeature())  && isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget))
 				basePart.updateAbstractTarget();
-			if (FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_StrictTyping().equals(msg.getFeature()))
+			if (FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_StrictTyping().equals(msg.getFeature()) && isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping))
 				basePart.updateStrictTyping();
 			
 		}

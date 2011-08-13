@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory;
 import org.eclipse.emf.eef.navigation.providers.AnotherSubtypePropertiesEditionProvider;
+import org.eclipse.emf.eef.navigation.providers.AttributeNavigationSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.DeferedFlatReferencesTableSampleEditorPropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.DeferedReferencesTableSampleEditorPropertiesEditionProvider;
 import org.eclipse.emf.eef.navigation.providers.ElementPropertiesEditionProvider;
@@ -101,6 +102,14 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 		List<PropertiesEditingProvider> providers = new ArrayList<PropertiesEditingProvider>(1);
 		providers.add((PropertiesEditingProvider)createNamedElementAdapter());
 		return new ElementPropertiesEditionProvider(providers);
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory#createAttributeNavigationSampleAdapter()
+	 * 
+	 */
+	public Adapter createAttributeNavigationSampleAdapter() {
+		return new AttributeNavigationSamplePropertiesEditionProvider();
 	}
 
 }

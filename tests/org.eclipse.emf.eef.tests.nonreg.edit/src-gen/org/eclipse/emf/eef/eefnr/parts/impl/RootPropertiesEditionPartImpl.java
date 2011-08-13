@@ -25,6 +25,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
@@ -88,7 +89,7 @@ protected List<ViewerFilter> samplesFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence rootStep = new CompositionSequence();
+		CompositionSequence rootStep = new BindingCompositionSequence(propertiesEditionComponent);
 		rootStep
 			.addStep(EefnrViewsRepository.Root.Properties.class)
 			.addStep(EefnrViewsRepository.Root.Properties.samples);

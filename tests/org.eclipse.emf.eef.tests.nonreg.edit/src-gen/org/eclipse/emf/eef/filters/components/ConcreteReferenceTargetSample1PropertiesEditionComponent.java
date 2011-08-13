@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class ConcreteReferenceTargetSample1PropertiesEditionComponent extends Si
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,7 +69,7 @@ public class ConcreteReferenceTargetSample1PropertiesEditionComponent extends Si
 			final ConcreteReferenceTargetSample1 concreteReferenceTargetSample1 = (ConcreteReferenceTargetSample1)elt;
 			final ConcreteReferenceTargetSample1PropertiesEditionPart basePart = (ConcreteReferenceTargetSample1PropertiesEditionPart)editingPart;
 			// init values
-			if (concreteReferenceTargetSample1.getName() != null)
+			if (concreteReferenceTargetSample1.getName() != null && isAccessible(FiltersViewsRepository.ConcreteReferenceTargetSample1.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), concreteReferenceTargetSample1.getName()));
 			
 			// init filters
@@ -82,6 +84,17 @@ public class ConcreteReferenceTargetSample1PropertiesEditionComponent extends Si
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == FiltersViewsRepository.ConcreteReferenceTargetSample1.Properties.name) {
+			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -102,7 +115,7 @@ public class ConcreteReferenceTargetSample1PropertiesEditionComponent extends Si
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ConcreteReferenceTargetSample1PropertiesEditionPart basePart = (ConcreteReferenceTargetSample1PropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(FiltersViewsRepository.ConcreteReferenceTargetSample1.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

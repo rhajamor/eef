@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class AbstractSamplePropertiesEditionComponent extends SinglePartProperti
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,7 +69,7 @@ public class AbstractSamplePropertiesEditionComponent extends SinglePartProperti
 			final AbstractSample abstractSample = (AbstractSample)elt;
 			final AbstractSamplePropertiesEditionPart basePart = (AbstractSamplePropertiesEditionPart)editingPart;
 			// init values
-			if (abstractSample.getName() != null)
+			if (abstractSample.getName() != null && isAccessible(ReferencesViewsRepository.AbstractSample.NameProperties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), abstractSample.getName()));
 			
 			// init filters
@@ -82,6 +84,17 @@ public class AbstractSamplePropertiesEditionComponent extends SinglePartProperti
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ReferencesViewsRepository.AbstractSample.NameProperties.name) {
+			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -102,7 +115,7 @@ public class AbstractSamplePropertiesEditionComponent extends SinglePartProperti
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			AbstractSamplePropertiesEditionPart basePart = (AbstractSamplePropertiesEditionPart)editingPart;
-			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null){
+			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ReferencesViewsRepository.AbstractSample.NameProperties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
