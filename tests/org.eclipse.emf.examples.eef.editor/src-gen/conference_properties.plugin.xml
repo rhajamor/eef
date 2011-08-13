@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+ <plugin>
+
+  <!-- EEF extensions -->
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/samples/eef/1.0.0"
+            class="org.eclipse.emf.samples.conference.providers.ConferenceEEFAdapterFactory"
+            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="org.eclipse.emf.samples.conference.providers.ConferenceEditorPropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
+
+   <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.eclipse.emf.samples.conference.properties">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="org.eclipse.emf.samples.conference.properties">
+         <propertyTab
+               label="Base"
+               category="default"
+               id="Base">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.eclipse.emf.samples.conference.properties">
+      </propertySections>
+   </extension>
+ </plugin>
