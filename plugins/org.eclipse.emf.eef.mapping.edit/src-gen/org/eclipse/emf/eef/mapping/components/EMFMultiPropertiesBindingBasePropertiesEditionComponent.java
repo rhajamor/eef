@@ -62,6 +62,7 @@ public class EMFMultiPropertiesBindingBasePropertiesEditionComponent extends Sin
 	 */
 	private	ReferencesTableSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -153,6 +154,23 @@ public class EMFMultiPropertiesBindingBasePropertiesEditionComponent extends Sin
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.EMFMultiPropertiesBinding.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name();
+		}
+		if (editorKey == MappingViewsRepository.EMFMultiPropertiesBinding.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views();
+		}
+		if (editorKey == MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model) {
+			return MappingPackage.eINSTANCE.getEMFMultiPropertiesBinding_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -167,7 +185,9 @@ public class EMFMultiPropertiesBindingBasePropertiesEditionComponent extends Sin
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (ElementEditor) event.getNewValue());
 			}
 		}
 		if (MappingViewsRepository.EMFMultiPropertiesBinding.Binding.model == event.getAffectedEditor()) {
@@ -176,7 +196,9 @@ public class EMFMultiPropertiesBindingBasePropertiesEditionComponent extends Sin
 					modelSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					modelSettings.removeFromReference((EObject) event.getNewValue());
+				modelSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				modelSettings.move(event.getNewIndex(), (EStructuralFeature) event.getNewValue());
 			}
 		}
 	}

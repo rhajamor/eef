@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class FilterPropertiesPropertiesEditionComponent extends SinglePartProper
 	
 	public static String FILTERPROPERTIES_PART = "Filter properties"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -88,6 +90,20 @@ public class FilterPropertiesPropertiesEditionComponent extends SinglePartProper
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.FilterProperties.FilterProperties_.name) {
+			return FiltersPackage.eINSTANCE.getBindingFilter_Name();
+		}
+		if (editorKey == MappingViewsRepository.FilterProperties.FilterProperties_.mandatory) {
+			return FiltersPackage.eINSTANCE.getBindingFilter_Mandatory();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

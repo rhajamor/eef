@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -55,6 +56,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	 * Settings for referencedFeature EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings referencedFeatureSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -120,6 +122,17 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_) {
+			return FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

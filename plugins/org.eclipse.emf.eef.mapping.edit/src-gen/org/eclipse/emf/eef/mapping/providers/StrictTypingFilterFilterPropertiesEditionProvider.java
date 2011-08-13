@@ -69,7 +69,7 @@ public class StrictTypingFilterFilterPropertiesEditionProvider extends Propertie
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof StrictTypingFilter) && (refinement == StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent.class || refinement == DocumentedElementPropertiesEditionComponent.class || refinement == FilterPropertiesPropertiesEditionComponent.class);
 	}
@@ -79,7 +79,7 @@ public class StrictTypingFilterFilterPropertiesEditionProvider extends Propertie
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof StrictTypingFilter) && ((StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent.STRICTTYPINGFILTER_PART.equals(part) && refinement == StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent.class) || (DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part) && refinement == DocumentedElementPropertiesEditionComponent.class) || (FilterPropertiesPropertiesEditionComponent.FILTERPROPERTIES_PART.equals(part) && refinement == FilterPropertiesPropertiesEditionComponent.class));
 	}
@@ -117,7 +117,7 @@ public class StrictTypingFilterFilterPropertiesEditionProvider extends Propertie
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof StrictTypingFilter) {
 			if (StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponent.STRICTTYPINGFILTER_PART.equals(part)

@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.mapping.AbstractElementBinding;
 import org.eclipse.emf.eef.mapping.ElementBindingReference;
@@ -53,6 +54,7 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 	 * Settings for binding EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings bindingSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -113,6 +115,17 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.ElementBindingReference.Reference.binding) {
+			return MappingPackage.eINSTANCE.getElementBindingReference_Binding();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

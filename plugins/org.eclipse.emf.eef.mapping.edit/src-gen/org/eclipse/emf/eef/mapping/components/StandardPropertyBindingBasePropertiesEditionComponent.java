@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -67,6 +68,7 @@ public class StandardPropertyBindingBasePropertiesEditionComponent extends Singl
 	 * Settings for model EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings modelSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -159,6 +161,23 @@ public class StandardPropertyBindingBasePropertiesEditionComponent extends Singl
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.StandardPropertyBinding.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name();
+		}
+		if (editorKey == MappingViewsRepository.StandardPropertyBinding.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views();
+		}
+		if (editorKey == MappingViewsRepository.StandardPropertyBinding.Binding.model) {
+			return MappingPackage.eINSTANCE.getStandardPropertyBinding_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -173,7 +192,9 @@ public class StandardPropertyBindingBasePropertiesEditionComponent extends Singl
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (ElementEditor) event.getNewValue());
 			}
 		}
 		if (MappingViewsRepository.StandardPropertyBinding.Binding.model == event.getAffectedEditor()) {

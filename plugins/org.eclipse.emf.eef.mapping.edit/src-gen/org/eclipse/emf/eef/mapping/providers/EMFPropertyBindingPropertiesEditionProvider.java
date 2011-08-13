@@ -68,7 +68,7 @@ public class EMFPropertyBindingPropertiesEditionProvider extends PropertiesEditi
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof EMFPropertyBinding) && (refinement == EMFPropertyBindingBasePropertiesEditionComponent.class || refinement == DocumentedElementPropertiesEditionComponent.class);
 	}
@@ -78,7 +78,7 @@ public class EMFPropertyBindingPropertiesEditionProvider extends PropertiesEditi
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof EMFPropertyBinding) && ((EMFPropertyBindingBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == EMFPropertyBindingBasePropertiesEditionComponent.class) || (DocumentedElementPropertiesEditionComponent.DOCUMENTATION_PART.equals(part) && refinement == DocumentedElementPropertiesEditionComponent.class));
 	}
@@ -114,7 +114,7 @@ public class EMFPropertyBindingPropertiesEditionProvider extends PropertiesEditi
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof EMFPropertyBinding) {
 			if (EMFPropertyBindingBasePropertiesEditionComponent.BASE_PART.equals(part)

@@ -68,6 +68,7 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 	 */
 	private	EObjectFlatComboSettings modelSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -159,6 +160,23 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Properties.name) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name();
+		}
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractPropertyBinding_Views();
+		}
+		if (editorKey == MappingViewsRepository.EMFPropertyBinding.Binding.model) {
+			return MappingPackage.eINSTANCE.getEMFPropertyBinding_Model();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -173,7 +191,9 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (ElementEditor) event.getNewValue());
 			}
 		}
 		if (MappingViewsRepository.EMFPropertyBinding.Binding.model == event.getAffectedEditor()) {

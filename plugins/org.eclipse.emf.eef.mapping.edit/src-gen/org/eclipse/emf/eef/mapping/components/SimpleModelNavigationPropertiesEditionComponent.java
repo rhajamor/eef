@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -65,6 +66,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 	 * Settings for discriminatorType EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings discriminatorTypeSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -155,6 +157,23 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.SimpleModelNavigation.Properties.index) {
+			return NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index();
+		}
+		if (editorKey == MappingViewsRepository.SimpleModelNavigation.Properties.feature) {
+			return NavigationPackage.eINSTANCE.getSimpleModelNavigation_Feature();
+		}
+		if (editorKey == MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType) {
+			return NavigationPackage.eINSTANCE.getSimpleModelNavigation_DiscriminatorType();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}

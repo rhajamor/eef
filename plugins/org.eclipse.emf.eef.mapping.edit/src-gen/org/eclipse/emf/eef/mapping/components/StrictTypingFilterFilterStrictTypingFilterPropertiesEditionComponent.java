@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -55,6 +56,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 	 * Settings for type EObjectFlatComboViewer
 	 */
 	private	EObjectFlatComboSettings typeSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -120,6 +122,17 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	protected EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == MappingViewsRepository.StrictTypingFilter.Type.restriction) {
+			return FiltersPackage.eINSTANCE.getStrictTypingFilter_Type();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
