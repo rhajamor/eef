@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactoryImpl.java,v 1.4 2010/11/30 08:23:18 glefur Exp $
+ * $Id: NavigationFactoryImpl.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -77,6 +77,8 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 			case NavigationPackage.SINGLE_REFERENCER: return createSingleReferencer();
 			case NavigationPackage.ANOTHER_SUB_TYPE: return createAnotherSubType();
 			case NavigationPackage.ELEMENT: return createElement();
+			case NavigationPackage.ATTRIBUTE_NAVIGATION_SAMPLE: return createAttributeNavigationSample();
+			case NavigationPackage.ATTRIBUTE_DELEGATE: return createAttributeDelegate();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -170,6 +172,26 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	public Element createElement() {
 		ElementImpl element = new ElementImpl();
 		return element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeNavigationSample createAttributeNavigationSample() {
+		AttributeNavigationSampleImpl attributeNavigationSample = new AttributeNavigationSampleImpl();
+		return attributeNavigationSample;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeDelegate createAttributeDelegate() {
+		AttributeDelegateImpl attributeDelegate = new AttributeDelegateImpl();
+		return attributeDelegate;
 	}
 
 	/**

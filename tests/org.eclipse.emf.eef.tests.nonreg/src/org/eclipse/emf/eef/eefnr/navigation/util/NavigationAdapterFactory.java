@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationAdapterFactory.java,v 1.4 2010/11/30 08:23:18 glefur Exp $
+ * $Id: NavigationAdapterFactory.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.util;
 
@@ -109,6 +109,14 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseElement(Element object) {
 				return createElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeNavigationSample(AttributeNavigationSample object) {
+				return createAttributeNavigationSampleAdapter();
+			}
+			@Override
+			public Adapter caseAttributeDelegate(AttributeDelegate object) {
+				return createAttributeDelegateAdapter();
 			}
 			@Override
 			public Adapter caseAbstractSample(AbstractSample object) {
@@ -275,6 +283,34 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample <em>Attribute Navigation Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample
+	 * @generated
+	 */
+	public Adapter createAttributeNavigationSampleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate <em>Attribute Delegate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate
+	 * @generated
+	 */
+	public Adapter createAttributeDelegateAdapter() {
 		return null;
 	}
 

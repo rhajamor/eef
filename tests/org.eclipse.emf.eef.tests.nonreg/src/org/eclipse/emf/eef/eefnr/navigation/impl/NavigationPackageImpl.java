@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackageImpl.java,v 1.5 2011/02/01 09:54:40 glefur Exp $
+ * $Id: NavigationPackageImpl.java,v 1.5.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -15,7 +15,11 @@ import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
+import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReference;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReferenceTableEditorSample;
@@ -102,6 +106,20 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 	private EClass elementEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeNavigationSampleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeDelegateEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -151,6 +169,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		EefnrPackageImpl theEefnrPackage = (EefnrPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) instanceof EefnrPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) : EefnrPackage.eINSTANCE);
 		ReferencesPackageImpl theReferencesPackage = (ReferencesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) instanceof ReferencesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) : ReferencesPackage.eINSTANCE);
 		FiltersPackageImpl theFiltersPackage = (FiltersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) instanceof FiltersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) : FiltersPackage.eINSTANCE);
+		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) : CustomNamingPackage.eINSTANCE);
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -158,6 +177,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		theEefnrPackage.createPackageContents();
 		theReferencesPackage.createPackageContents();
 		theFiltersPackage.createPackageContents();
+		theCustomNamingPackage.createPackageContents();
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -165,6 +185,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		theEefnrPackage.initializePackageContents();
 		theReferencesPackage.initializePackageContents();
 		theFiltersPackage.initializePackageContents();
+		theCustomNamingPackage.initializePackageContents();
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -460,6 +481,60 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAttributeNavigationSample() {
+		return attributeNavigationSampleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeNavigationSample_SingleValuedAttributeDelegate() {
+		return (EReference)attributeNavigationSampleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeNavigationSample_MultiValuedAttributeDelegate() {
+		return (EReference)attributeNavigationSampleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttributeDelegate() {
+		return attributeDelegateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeDelegate_Delegate1() {
+		return (EAttribute)attributeDelegateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeDelegate_Delegate2() {
+		return (EAttribute)attributeDelegateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NavigationFactory getNavigationFactory() {
 		return (NavigationFactory)getEFactoryInstance();
 	}
@@ -522,6 +597,14 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__VISIBLE);
+
+		attributeNavigationSampleEClass = createEClass(ATTRIBUTE_NAVIGATION_SAMPLE);
+		createEReference(attributeNavigationSampleEClass, ATTRIBUTE_NAVIGATION_SAMPLE__SINGLE_VALUED_ATTRIBUTE_DELEGATE);
+		createEReference(attributeNavigationSampleEClass, ATTRIBUTE_NAVIGATION_SAMPLE__MULTI_VALUED_ATTRIBUTE_DELEGATE);
+
+		attributeDelegateEClass = createEClass(ATTRIBUTE_DELEGATE);
+		createEAttribute(attributeDelegateEClass, ATTRIBUTE_DELEGATE__DELEGATE1);
+		createEAttribute(attributeDelegateEClass, ATTRIBUTE_DELEGATE__DELEGATE2);
 	}
 
 	/**
@@ -561,6 +644,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		subtypeEClass.getESuperTypes().add(this.getOwner());
 		anotherSubTypeEClass.getESuperTypes().add(this.getSubtype());
 		elementEClass.getESuperTypes().add(theEefnrPackage.getNamedElement());
+		attributeNavigationSampleEClass.getESuperTypes().add(theEefnrPackage.getAbstractSample());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(deferedFlatReferenceTableEditorSampleEClass, DeferedFlatReferenceTableEditorSample.class, "DeferedFlatReferenceTableEditorSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -602,6 +686,14 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_Visible(), ecorePackage.getEBoolean(), "visible", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeNavigationSampleEClass, AttributeNavigationSample.class, "AttributeNavigationSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeNavigationSample_SingleValuedAttributeDelegate(), this.getAttributeDelegate(), null, "singleValuedAttributeDelegate", null, 0, 1, AttributeNavigationSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeNavigationSample_MultiValuedAttributeDelegate(), this.getAttributeDelegate(), null, "multiValuedAttributeDelegate", null, 0, -1, AttributeNavigationSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeDelegateEClass, AttributeDelegate.class, "AttributeDelegate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeDelegate_Delegate1(), ecorePackage.getEString(), "delegate1", null, 1, 1, AttributeDelegate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeDelegate_Delegate2(), ecorePackage.getEInt(), "delegate2", null, 0, 1, AttributeDelegate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //NavigationPackageImpl

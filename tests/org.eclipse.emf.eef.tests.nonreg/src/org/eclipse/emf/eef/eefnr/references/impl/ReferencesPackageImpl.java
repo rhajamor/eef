@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferencesPackageImpl.java,v 1.4 2011/02/01 09:54:40 glefur Exp $
+ * $Id: ReferencesPackageImpl.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.references.impl;
 
@@ -19,6 +19,8 @@ import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
 
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
+import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
 import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
 import org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl;
 import org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample;
@@ -109,6 +111,7 @@ public class ReferencesPackageImpl extends EPackageImpl implements ReferencesPac
 		EefnrPackageImpl theEefnrPackage = (EefnrPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) instanceof EefnrPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) : EefnrPackage.eINSTANCE);
 		NavigationPackageImpl theNavigationPackage = (NavigationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) instanceof NavigationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) : NavigationPackage.eINSTANCE);
 		FiltersPackageImpl theFiltersPackage = (FiltersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) instanceof FiltersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) : FiltersPackage.eINSTANCE);
+		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) : CustomNamingPackage.eINSTANCE);
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -116,6 +119,7 @@ public class ReferencesPackageImpl extends EPackageImpl implements ReferencesPac
 		theEefnrPackage.createPackageContents();
 		theNavigationPackage.createPackageContents();
 		theFiltersPackage.createPackageContents();
+		theCustomNamingPackage.createPackageContents();
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -123,6 +127,7 @@ public class ReferencesPackageImpl extends EPackageImpl implements ReferencesPac
 		theEefnrPackage.initializePackageContents();
 		theNavigationPackage.initializePackageContents();
 		theFiltersPackage.initializePackageContents();
+		theCustomNamingPackage.initializePackageContents();
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

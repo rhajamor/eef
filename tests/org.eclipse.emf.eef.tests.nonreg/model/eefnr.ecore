@@ -272,6 +272,17 @@
     <eClassifiers xsi:type="ecore:EClass" name="Element" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="visible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeNavigationSample" eSuperTypes="#//AbstractSample">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="singleValuedAttributeDelegate"
+          eType="#//navigation/AttributeDelegate" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="multiValuedAttributeDelegate"
+          upperBound="-1" eType="#//navigation/AttributeDelegate" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeDelegate">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="delegate1" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="delegate2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="filters" nsURI="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
       nsPrefix="eefnr-fltr">

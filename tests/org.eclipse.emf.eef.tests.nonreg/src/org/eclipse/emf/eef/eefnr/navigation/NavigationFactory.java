@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactory.java,v 1.4 2010/11/30 08:23:18 glefur Exp $
+ * $Id: NavigationFactory.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
@@ -105,6 +105,24 @@ public interface NavigationFactory extends EFactory {
 	 * @generated
 	 */
 	Element createElement();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Navigation Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Navigation Sample</em>'.
+	 * @generated
+	 */
+	AttributeNavigationSample createAttributeNavigationSample();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Delegate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Delegate</em>'.
+	 * @generated
+	 */
+	AttributeDelegate createAttributeDelegate();
 
 	/**
 	 * Returns the package supported by this factory.

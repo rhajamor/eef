@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackage.java,v 1.4 2010/11/30 08:23:18 glefur Exp $
+ * $Id: NavigationPackage.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
@@ -536,6 +536,90 @@ public interface NavigationPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.AttributeNavigationSampleImpl <em>Attribute Navigation Sample</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.AttributeNavigationSampleImpl
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getAttributeNavigationSample()
+	 * @generated
+	 */
+	int ATTRIBUTE_NAVIGATION_SAMPLE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_NAVIGATION_SAMPLE__NAME = EefnrPackage.ABSTRACT_SAMPLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Single Valued Attribute Delegate</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_NAVIGATION_SAMPLE__SINGLE_VALUED_ATTRIBUTE_DELEGATE = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Multi Valued Attribute Delegate</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_NAVIGATION_SAMPLE__MULTI_VALUED_ATTRIBUTE_DELEGATE = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Navigation Sample</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_NAVIGATION_SAMPLE_FEATURE_COUNT = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.AttributeDelegateImpl <em>Attribute Delegate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.AttributeDelegateImpl
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getAttributeDelegate()
+	 * @generated
+	 */
+	int ATTRIBUTE_DELEGATE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Delegate1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DELEGATE__DELEGATE1 = 0;
+
+	/**
+	 * The feature id for the '<em><b>Delegate2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DELEGATE__DELEGATE2 = 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Delegate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DELEGATE_FEATURE_COUNT = 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample <em>Defered Flat Reference Table Editor Sample</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -868,6 +952,70 @@ public interface NavigationPackage extends EPackage {
 	EAttribute getElement_Visible();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample <em>Attribute Navigation Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Navigation Sample</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample
+	 * @generated
+	 */
+	EClass getAttributeNavigationSample();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample#getSingleValuedAttributeDelegate <em>Single Valued Attribute Delegate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Single Valued Attribute Delegate</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample#getSingleValuedAttributeDelegate()
+	 * @see #getAttributeNavigationSample()
+	 * @generated
+	 */
+	EReference getAttributeNavigationSample_SingleValuedAttributeDelegate();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample#getMultiValuedAttributeDelegate <em>Multi Valued Attribute Delegate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Multi Valued Attribute Delegate</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample#getMultiValuedAttributeDelegate()
+	 * @see #getAttributeNavigationSample()
+	 * @generated
+	 */
+	EReference getAttributeNavigationSample_MultiValuedAttributeDelegate();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate <em>Attribute Delegate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Delegate</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate
+	 * @generated
+	 */
+	EClass getAttributeDelegate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate#getDelegate1 <em>Delegate1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Delegate1</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate#getDelegate1()
+	 * @see #getAttributeDelegate()
+	 * @generated
+	 */
+	EAttribute getAttributeDelegate_Delegate1();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate#getDelegate2 <em>Delegate2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Delegate2</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate#getDelegate2()
+	 * @see #getAttributeDelegate()
+	 * @generated
+	 */
+	EAttribute getAttributeDelegate_Delegate2();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1154,6 +1302,58 @@ public interface NavigationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ELEMENT__VISIBLE = eINSTANCE.getElement_Visible();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.AttributeNavigationSampleImpl <em>Attribute Navigation Sample</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.AttributeNavigationSampleImpl
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getAttributeNavigationSample()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_NAVIGATION_SAMPLE = eINSTANCE.getAttributeNavigationSample();
+
+		/**
+		 * The meta object literal for the '<em><b>Single Valued Attribute Delegate</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_NAVIGATION_SAMPLE__SINGLE_VALUED_ATTRIBUTE_DELEGATE = eINSTANCE.getAttributeNavigationSample_SingleValuedAttributeDelegate();
+
+		/**
+		 * The meta object literal for the '<em><b>Multi Valued Attribute Delegate</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_NAVIGATION_SAMPLE__MULTI_VALUED_ATTRIBUTE_DELEGATE = eINSTANCE.getAttributeNavigationSample_MultiValuedAttributeDelegate();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.AttributeDelegateImpl <em>Attribute Delegate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.AttributeDelegateImpl
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getAttributeDelegate()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_DELEGATE = eINSTANCE.getAttributeDelegate();
+
+		/**
+		 * The meta object literal for the '<em><b>Delegate1</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DELEGATE__DELEGATE1 = eINSTANCE.getAttributeDelegate_Delegate1();
+
+		/**
+		 * The meta object literal for the '<em><b>Delegate2</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DELEGATE__DELEGATE2 = eINSTANCE.getAttributeDelegate_Delegate2();
 
 	}
 

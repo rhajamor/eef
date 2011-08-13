@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FiltersPackageImpl.java,v 1.1 2011/02/01 09:54:40 glefur Exp $
+ * $Id: FiltersPackageImpl.java,v 1.1.6.1 2011/08/13 21:33:20 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.filters.impl;
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
 
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
+import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
 import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
 
 import org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl;
@@ -128,6 +130,7 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		EefnrPackageImpl theEefnrPackage = (EefnrPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) instanceof EefnrPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrPackage.eNS_URI) : EefnrPackage.eINSTANCE);
 		ReferencesPackageImpl theReferencesPackage = (ReferencesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) instanceof ReferencesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) : ReferencesPackage.eINSTANCE);
 		NavigationPackageImpl theNavigationPackage = (NavigationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) instanceof NavigationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) : NavigationPackage.eINSTANCE);
+		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) : CustomNamingPackage.eINSTANCE);
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -135,6 +138,7 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		theEefnrPackage.createPackageContents();
 		theReferencesPackage.createPackageContents();
 		theNavigationPackage.createPackageContents();
+		theCustomNamingPackage.createPackageContents();
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -142,6 +146,7 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		theEefnrPackage.initializePackageContents();
 		theReferencesPackage.initializePackageContents();
 		theNavigationPackage.initializePackageContents();
+		theCustomNamingPackage.initializePackageContents();
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
