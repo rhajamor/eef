@@ -90,7 +90,7 @@ public class CategoryBasePropertiesEditionComponent extends SinglePartProperties
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == MappingViewsRepository.Category.Properties.name) {
 			return MappingPackage.eINSTANCE.getCategory_Name();
 		}

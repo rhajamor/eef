@@ -95,7 +95,7 @@ public class FilterPropertiesPropertiesEditionComponent extends SinglePartProper
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == MappingViewsRepository.FilterProperties.FilterProperties_.name) {
 			return FiltersPackage.eINSTANCE.getBindingFilter_Name();
 		}
