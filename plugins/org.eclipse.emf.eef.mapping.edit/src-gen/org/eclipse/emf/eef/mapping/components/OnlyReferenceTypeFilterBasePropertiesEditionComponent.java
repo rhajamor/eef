@@ -127,7 +127,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_) {
 			return FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference();
 		}

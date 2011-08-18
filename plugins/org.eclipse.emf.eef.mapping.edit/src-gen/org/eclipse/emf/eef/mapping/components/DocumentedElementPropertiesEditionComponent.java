@@ -89,7 +89,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == MappingViewsRepository.Documentation.Documentation_.documentation__) {
 			return MappingPackage.eINSTANCE.getDocumentedElement_Documentation();
 		}

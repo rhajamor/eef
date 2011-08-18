@@ -94,7 +94,7 @@ public class JavaExpressionFilterBasePropertiesEditionComponent extends SinglePa
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == MappingViewsRepository.JavaExpressionFilter.FilterExpression.javaExpressionBody) {
 			return FiltersPackage.eINSTANCE.getJavaExpressionFilter_JavaBody();
 		}
