@@ -119,7 +119,7 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel) {
 			return EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext();
 		}
