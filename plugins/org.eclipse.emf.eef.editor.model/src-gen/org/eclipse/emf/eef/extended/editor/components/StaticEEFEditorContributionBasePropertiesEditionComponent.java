@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -56,6 +49,7 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 	 */
 	private	ReferencesTableSettings viewsSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -81,11 +75,13 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 			final StaticEEFEditorContribution staticEEFEditorContribution = (StaticEEFEditorContribution)elt;
 			final StaticEEFEditorContributionPropertiesEditionPart basePart = (StaticEEFEditorContributionPropertiesEditionPart)editingPart;
 			// init values
-			if (staticEEFEditorContribution.getName() != null)
+			if (staticEEFEditorContribution.getName() != null && isAccessible(EditorViewsRepository.StaticEEFEditorContribution.Naming.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), staticEEFEditorContribution.getName()));
 			
-			viewsSettings = new ReferencesTableSettings(staticEEFEditorContribution, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
-			basePart.initViews(viewsSettings);
+			if (isAccessible(EditorViewsRepository.StaticEEFEditorContribution.Binding.views)) {
+				viewsSettings = new ReferencesTableSettings(staticEEFEditorContribution, MappingPackage.eINSTANCE.getAbstractElementBinding_Views());
+				basePart.initViews(viewsSettings);
+			}
 			// init filters
 			
 			basePart.addFilterToViews(new ViewerFilter() {
@@ -120,6 +116,20 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EditorViewsRepository.StaticEEFEditorContribution.Naming.name) {
+			return MappingPackage.eINSTANCE.getAbstractElementBinding_Name();
+		}
+		if (editorKey == EditorViewsRepository.StaticEEFEditorContribution.Binding.views) {
+			return MappingPackage.eINSTANCE.getAbstractElementBinding_Views();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -129,12 +139,14 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 			staticEEFEditorContribution.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (EditorViewsRepository.StaticEEFEditorContribution.Binding.views == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof View) {
 					viewsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					viewsSettings.removeFromReference((EObject) event.getNewValue());
+				viewsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				viewsSettings.move(event.getNewIndex(), (View) event.getNewValue());
 			}
 		}
 	}
@@ -146,14 +158,14 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			StaticEEFEditorContributionPropertiesEditionPart basePart = (StaticEEFEditorContributionPropertiesEditionPart)editingPart;
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null){
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.StaticEEFEditorContribution.Naming.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature()))
+			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Views().equals(msg.getFeature())  && isAccessible(EditorViewsRepository.StaticEEFEditorContribution.Binding.views))
 				basePart.updateViews();
 			
 		}

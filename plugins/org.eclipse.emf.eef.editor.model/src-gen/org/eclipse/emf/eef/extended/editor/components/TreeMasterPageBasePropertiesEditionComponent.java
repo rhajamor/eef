@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -44,6 +37,7 @@ public class TreeMasterPageBasePropertiesEditionComponent extends SinglePartProp
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -69,14 +63,15 @@ public class TreeMasterPageBasePropertiesEditionComponent extends SinglePartProp
 			final TreeMasterPage treeMasterPage = (TreeMasterPage)elt;
 			final TreeMasterPagePropertiesEditionPart basePart = (TreeMasterPagePropertiesEditionPart)editingPart;
 			// init values
-			if (treeMasterPage.getName() != null)
+			if (treeMasterPage.getName() != null && isAccessible(EditorViewsRepository.TreeMasterPage.Naming.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), treeMasterPage.getName()));
 			
-			if (treeMasterPage.getTitle() != null)
+			if (treeMasterPage.getTitle() != null && isAccessible(EditorViewsRepository.TreeMasterPage.Naming.title_))
 				basePart.setTitle_(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), treeMasterPage.getTitle()));
 			
-			basePart.setToolbarVisible(treeMasterPage.isToolbarVisible());
-			
+			if (isAccessible(EditorViewsRepository.TreeMasterPage.Settings.toolbarVisible)) {
+				basePart.setToolbarVisible(treeMasterPage.isToolbarVisible());
+			}
 			// init filters
 			
 			
@@ -93,6 +88,23 @@ public class TreeMasterPageBasePropertiesEditionComponent extends SinglePartProp
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EditorViewsRepository.TreeMasterPage.Naming.name) {
+			return ViewsPackage.eINSTANCE.getViewElement_Name();
+		}
+		if (editorKey == EditorViewsRepository.TreeMasterPage.Naming.title_) {
+			return EditorPackage.eINSTANCE.getEEFPage_Title();
+		}
+		if (editorKey == EditorViewsRepository.TreeMasterPage.Settings.toolbarVisible) {
+			return EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -119,21 +131,21 @@ public class TreeMasterPageBasePropertiesEditionComponent extends SinglePartProp
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			TreeMasterPagePropertiesEditionPart basePart = (TreeMasterPagePropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.TreeMasterPage.Naming.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null){
+			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.TreeMasterPage.Naming.title_)) {
 				if (msg.getNewValue() != null) {
 					basePart.setTitle_(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setTitle_("");
 				}
 			}
-			if (EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible().equals(msg.getFeature()) && basePart != null)
+			if (EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.TreeMasterPage.Settings.toolbarVisible))
 				basePart.setToolbarVisible((Boolean)msg.getNewValue());
 			
 			

@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -44,6 +37,7 @@ public class EEFMasterPageBasePropertiesEditionComponent extends SinglePartPrope
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -69,16 +63,18 @@ public class EEFMasterPageBasePropertiesEditionComponent extends SinglePartPrope
 			final EEFMasterPage eEFMasterPage = (EEFMasterPage)elt;
 			final EEFMasterPagePropertiesEditionPart basePart = (EEFMasterPagePropertiesEditionPart)editingPart;
 			// init values
-			if (eEFMasterPage.getName() != null)
+			if (eEFMasterPage.getName() != null && isAccessible(EditorViewsRepository.EEFMasterPage.Naming.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), eEFMasterPage.getName()));
 			
-			if (eEFMasterPage.getTitle() != null)
+			if (eEFMasterPage.getTitle() != null && isAccessible(EditorViewsRepository.EEFMasterPage.Naming.title_))
 				basePart.setTitle_(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), eEFMasterPage.getTitle()));
 			
-			basePart.setOrientable(eEFMasterPage.isOrientable());
-			
-			basePart.setShowValidatePage(eEFMasterPage.isShowValidatePage());
-			
+			if (isAccessible(EditorViewsRepository.EEFMasterPage.Settings.orientable)) {
+				basePart.setOrientable(eEFMasterPage.isOrientable());
+			}
+			if (isAccessible(EditorViewsRepository.EEFMasterPage.Settings.showValidatePage)) {
+				basePart.setShowValidatePage(eEFMasterPage.isShowValidatePage());
+			}
 			// init filters
 			
 			
@@ -97,6 +93,26 @@ public class EEFMasterPageBasePropertiesEditionComponent extends SinglePartPrope
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EditorViewsRepository.EEFMasterPage.Naming.name) {
+			return ViewsPackage.eINSTANCE.getViewElement_Name();
+		}
+		if (editorKey == EditorViewsRepository.EEFMasterPage.Naming.title_) {
+			return EditorPackage.eINSTANCE.getEEFPage_Title();
+		}
+		if (editorKey == EditorViewsRepository.EEFMasterPage.Settings.orientable) {
+			return EditorPackage.eINSTANCE.getEEFMasterPage_Orientable();
+		}
+		if (editorKey == EditorViewsRepository.EEFMasterPage.Settings.showValidatePage) {
+			return EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -126,24 +142,24 @@ public class EEFMasterPageBasePropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			EEFMasterPagePropertiesEditionPart basePart = (EEFMasterPagePropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFMasterPage.Naming.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null){
+			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFMasterPage.Naming.title_)) {
 				if (msg.getNewValue() != null) {
 					basePart.setTitle_(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setTitle_("");
 				}
 			}
-			if (EditorPackage.eINSTANCE.getEEFMasterPage_Orientable().equals(msg.getFeature()) && basePart != null)
+			if (EditorPackage.eINSTANCE.getEEFMasterPage_Orientable().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFMasterPage.Settings.orientable))
 				basePart.setOrientable((Boolean)msg.getNewValue());
 			
-			if (EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage().equals(msg.getFeature()) && basePart != null)
+			if (EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFMasterPage.Settings.showValidatePage))
 				basePart.setShowValidatePage((Boolean)msg.getNewValue());
 			
 			

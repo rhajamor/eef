@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.parts.forms;
 
@@ -21,6 +13,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -93,7 +86,7 @@ public class EEFMasterPagePropertiesEditionPartForm extends CompositePropertiesE
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence eEFMasterPageStep = new CompositionSequence();
+		CompositionSequence eEFMasterPageStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep namingStep = eEFMasterPageStep.addStep(EditorViewsRepository.EEFMasterPage.Naming.class);
 		namingStep.addStep(EditorViewsRepository.EEFMasterPage.Naming.name);
 		namingStep.addStep(EditorViewsRepository.EEFMasterPage.Naming.title_);

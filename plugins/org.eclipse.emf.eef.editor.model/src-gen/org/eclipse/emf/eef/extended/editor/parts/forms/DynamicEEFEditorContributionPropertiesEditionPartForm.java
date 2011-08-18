@@ -1,13 +1,6 @@
-/*******************************************************************************
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
+/**
+ * Generated with Acceleo
+ */
 package org.eclipse.emf.eef.extended.editor.parts.forms;
 
 // Start of user code for imports
@@ -29,6 +22,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -114,7 +108,7 @@ public class DynamicEEFEditorContributionPropertiesEditionPartForm extends Compo
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence dynamicEEFEditorContributionStep = new CompositionSequence();
+		CompositionSequence dynamicEEFEditorContributionStep = new BindingCompositionSequence(propertiesEditionComponent);
 		dynamicEEFEditorContributionStep
 			.addStep(EditorViewsRepository.DynamicEEFEditorContribution.Naming.class)
 			.addStep(EditorViewsRepository.DynamicEEFEditorContribution.Naming.name);
@@ -230,6 +224,7 @@ public class DynamicEEFEditorContributionPropertiesEditionPartForm extends Compo
 	protected Composite createModelFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, EditorMessages.DynamicEEFEditorContributionPropertiesEditionPart_ModelLabel, propertiesEditionComponent.isRequired(EditorViewsRepository.DynamicEEFEditorContribution.Binding.model, EditorViewsRepository.FORM_KIND));
 		model = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EditorViewsRepository.DynamicEEFEditorContribution.Binding.model, EditorViewsRepository.FORM_KIND));
+		widgetFactory.adapt(model);
 		model.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData modelData = new GridData(GridData.FILL_HORIZONTAL);
 		model.setLayoutData(modelData);

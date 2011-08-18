@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.query.components;
 
@@ -18,6 +10,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -58,6 +51,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 	 */
 	private	EObjectFlatComboSettings contextSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -83,14 +77,16 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 			final OCLQuery oCLQuery = (OCLQuery)elt;
 			final OCLQueryPropertiesEditionPart basePart = (OCLQueryPropertiesEditionPart)editingPart;
 			// init values
-			if (oCLQuery.getQuery() != null)
+			if (oCLQuery.getQuery() != null && isAccessible(QueryViewsRepository.OCLQuery.Properties.query_))
 				basePart.setQuery(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), oCLQuery.getQuery()));
 			
-			// init part
-			contextSettings = new EObjectFlatComboSettings(oCLQuery, QueryPackage.eINSTANCE.getOCLQuery_Context());
-			basePart.initContext(contextSettings);
-			// set the button mode
-			basePart.setContextButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(QueryViewsRepository.OCLQuery.Properties.context)) {
+				// init part
+				contextSettings = new EObjectFlatComboSettings(oCLQuery, QueryPackage.eINSTANCE.getOCLQuery_Context());
+				basePart.initContext(contextSettings);
+				// set the button mode
+				basePart.setContextButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			
 			basePart.addFilterToContext(new ViewerFilter() {
@@ -123,6 +119,20 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == QueryViewsRepository.OCLQuery.Properties.query_) {
+			return QueryPackage.eINSTANCE.getOCLQuery_Query();
+		}
+		if (editorKey == QueryViewsRepository.OCLQuery.Properties.context) {
+			return QueryPackage.eINSTANCE.getOCLQuery_Context();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -132,9 +142,9 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 			oCLQuery.setQuery((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (QueryViewsRepository.OCLQuery.Properties.context == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				contextSettings.setToReference((EClassifier)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, contextSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -154,14 +164,14 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			OCLQueryPropertiesEditionPart basePart = (OCLQueryPropertiesEditionPart)editingPart;
-			if (QueryPackage.eINSTANCE.getOCLQuery_Query().equals(msg.getFeature()) && basePart != null){
+			if (QueryPackage.eINSTANCE.getOCLQuery_Query().equals(msg.getFeature()) && basePart != null && isAccessible(QueryViewsRepository.OCLQuery.Properties.query_)) {
 				if (msg.getNewValue() != null) {
 					basePart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setQuery("");
 				}
 			}
-			if (QueryPackage.eINSTANCE.getOCLQuery_Context().equals(msg.getFeature()) && basePart != null)
+			if (QueryPackage.eINSTANCE.getOCLQuery_Context().equals(msg.getFeature()) && basePart != null && isAccessible(QueryViewsRepository.OCLQuery.Properties.context))
 				basePart.setContext((EObject)msg.getNewValue());
 			
 		}

@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.query.parts.impl;
 
@@ -23,6 +15,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -92,7 +85,7 @@ public class OCLQueryPropertiesEditionPartImpl extends CompositePropertiesEditio
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence oCLQueryStep = new CompositionSequence();
+		CompositionSequence oCLQueryStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = oCLQueryStep.addStep(QueryViewsRepository.OCLQuery.Properties.class);
 		propertiesStep.addStep(QueryViewsRepository.OCLQuery.Properties.context);
 		propertiesStep.addStep(QueryViewsRepository.OCLQuery.Properties.query_);

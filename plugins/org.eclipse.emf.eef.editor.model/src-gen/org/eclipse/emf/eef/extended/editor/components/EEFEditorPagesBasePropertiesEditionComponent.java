@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -43,6 +36,7 @@ public class EEFEditorPagesBasePropertiesEditionComponent extends SinglePartProp
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -68,7 +62,7 @@ public class EEFEditorPagesBasePropertiesEditionComponent extends SinglePartProp
 			final EEFEditorPages eEFEditorPages = (EEFEditorPages)elt;
 			final EEFEditorPagesPropertiesEditionPart basePart = (EEFEditorPagesPropertiesEditionPart)editingPart;
 			// init values
-			if (eEFEditorPages.getName() != null)
+			if (eEFEditorPages.getName() != null && isAccessible(EditorViewsRepository.EEFEditorPages.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), eEFEditorPages.getName()));
 			
 			// init filters
@@ -83,6 +77,17 @@ public class EEFEditorPagesBasePropertiesEditionComponent extends SinglePartProp
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EditorViewsRepository.EEFEditorPages.Properties.name) {
+			return ViewsPackage.eINSTANCE.getCategory_Name();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -103,7 +108,7 @@ public class EEFEditorPagesBasePropertiesEditionComponent extends SinglePartProp
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			EEFEditorPagesPropertiesEditionPart basePart = (EEFEditorPagesPropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getCategory_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getCategory_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFEditorPages.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

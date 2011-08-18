@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.query.parts.forms;
 
@@ -23,6 +15,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
@@ -88,7 +81,7 @@ public class ExplicitPathQueryPropertiesEditionPartForm extends CompositePropert
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence explicitPathQueryStep = new CompositionSequence();
+		CompositionSequence explicitPathQueryStep = new BindingCompositionSequence(propertiesEditionComponent);
 		explicitPathQueryStep
 			.addStep(QueryViewsRepository.ExplicitPathQuery.Properties.class)
 			.addStep(QueryViewsRepository.ExplicitPathQuery.Properties.query_);
@@ -134,6 +127,7 @@ public class ExplicitPathQueryPropertiesEditionPartForm extends CompositePropert
 	protected Composite createQueryFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, QueryMessages.ExplicitPathQueryPropertiesEditionPart_QueryLabel, propertiesEditionComponent.isRequired(QueryViewsRepository.ExplicitPathQuery.Properties.query_, QueryViewsRepository.FORM_KIND));
 		query = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(QueryViewsRepository.ExplicitPathQuery.Properties.query_, QueryViewsRepository.FORM_KIND));
+		widgetFactory.adapt(query);
 		query.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData queryData = new GridData(GridData.FILL_HORIZONTAL);
 		query.setLayoutData(queryData);

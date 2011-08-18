@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.query.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.extended.query.ExplicitPathQuery;
 import org.eclipse.emf.eef.extended.query.QueryPackage;
@@ -54,6 +47,7 @@ public class ExplicitPathQueryPropertiesEditionComponent extends SinglePartPrope
 	 */
 	private	EObjectFlatComboSettings querySettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -79,11 +73,13 @@ public class ExplicitPathQueryPropertiesEditionComponent extends SinglePartPrope
 			final ExplicitPathQuery explicitPathQuery = (ExplicitPathQuery)elt;
 			final ExplicitPathQueryPropertiesEditionPart basePart = (ExplicitPathQueryPropertiesEditionPart)editingPart;
 			// init values
-			// init part
-			querySettings = new EObjectFlatComboSettings(explicitPathQuery, QueryPackage.eINSTANCE.getExplicitPathQuery_Query());
-			basePart.initQuery(querySettings);
-			// set the button mode
-			basePart.setQueryButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(QueryViewsRepository.ExplicitPathQuery.Properties.query_)) {
+				// init part
+				querySettings = new EObjectFlatComboSettings(explicitPathQuery, QueryPackage.eINSTANCE.getExplicitPathQuery_Query());
+				basePart.initQuery(querySettings);
+				// set the button mode
+				basePart.setQueryButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			// init filters
 			basePart.addFilterToQuery(new ViewerFilter() {
 			
@@ -114,15 +110,26 @@ public class ExplicitPathQueryPropertiesEditionComponent extends SinglePartPrope
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == QueryViewsRepository.ExplicitPathQuery.Properties.query_) {
+			return QueryPackage.eINSTANCE.getExplicitPathQuery_Query();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ExplicitPathQuery explicitPathQuery = (ExplicitPathQuery)semanticObject;
 		if (QueryViewsRepository.ExplicitPathQuery.Properties.query_ == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				querySettings.setToReference((ModelNavigation)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, querySettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -142,7 +149,7 @@ public class ExplicitPathQueryPropertiesEditionComponent extends SinglePartPrope
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			ExplicitPathQueryPropertiesEditionPart basePart = (ExplicitPathQueryPropertiesEditionPart)editingPart;
-			if (QueryPackage.eINSTANCE.getExplicitPathQuery_Query().equals(msg.getFeature()) && basePart != null)
+			if (QueryPackage.eINSTANCE.getExplicitPathQuery_Query().equals(msg.getFeature()) && basePart != null && isAccessible(QueryViewsRepository.ExplicitPathQuery.Properties.query_))
 				basePart.setQuery((EObject)msg.getNewValue());
 			
 		}

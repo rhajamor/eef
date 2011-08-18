@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.components;
 
@@ -17,6 +9,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -44,6 +37,7 @@ public class StandardFormPageBasePropertiesEditionComponent extends SinglePartPr
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -69,10 +63,10 @@ public class StandardFormPageBasePropertiesEditionComponent extends SinglePartPr
 			final StandardFormPage standardFormPage = (StandardFormPage)elt;
 			final StandardFormPagePropertiesEditionPart basePart = (StandardFormPagePropertiesEditionPart)editingPart;
 			// init values
-			if (standardFormPage.getName() != null)
+			if (standardFormPage.getName() != null && isAccessible(EditorViewsRepository.StandardFormPage.Naming.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), standardFormPage.getName()));
 			
-			if (standardFormPage.getTitle() != null)
+			if (standardFormPage.getTitle() != null && isAccessible(EditorViewsRepository.StandardFormPage.Naming.title_))
 				basePart.setTitle_(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), standardFormPage.getTitle()));
 			
 			// init filters
@@ -89,6 +83,20 @@ public class StandardFormPageBasePropertiesEditionComponent extends SinglePartPr
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == EditorViewsRepository.StandardFormPage.Naming.name) {
+			return ViewsPackage.eINSTANCE.getViewElement_Name();
+		}
+		if (editorKey == EditorViewsRepository.StandardFormPage.Naming.title_) {
+			return EditorPackage.eINSTANCE.getEEFPage_Title();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -112,14 +120,14 @@ public class StandardFormPageBasePropertiesEditionComponent extends SinglePartPr
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
 			StandardFormPagePropertiesEditionPart basePart = (StandardFormPagePropertiesEditionPart)editingPart;
-			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null){
+			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.StandardFormPage.Naming.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null){
+			if (EditorPackage.eINSTANCE.getEEFPage_Title().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.StandardFormPage.Naming.title_)) {
 				if (msg.getNewValue() != null) {
 					basePart.setTitle_(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.parts.forms;
 
@@ -23,6 +15,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -102,7 +95,7 @@ public class PartFilterPropertiesEditionPartForm extends CompositePropertiesEdit
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence partFilterStep = new CompositionSequence();
+		CompositionSequence partFilterStep = new BindingCompositionSequence(propertiesEditionComponent);
 		partFilterStep
 			.addStep(EditorViewsRepository.PartFilter.Naming.class)
 			.addStep(EditorViewsRepository.PartFilter.Naming.name);
@@ -228,6 +221,7 @@ public class PartFilterPropertiesEditionPartForm extends CompositePropertiesEdit
 	protected Composite createContextualComponentFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, EditorMessages.PartFilterPropertiesEditionPart_ContextualComponentLabel, propertiesEditionComponent.isRequired(EditorViewsRepository.PartFilter.Filter.contextualComponent, EditorViewsRepository.FORM_KIND));
 		contextualComponent = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EditorViewsRepository.PartFilter.Filter.contextualComponent, EditorViewsRepository.FORM_KIND));
+		widgetFactory.adapt(contextualComponent);
 		contextualComponent.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData contextualComponentData = new GridData(GridData.FILL_HORIZONTAL);
 		contextualComponent.setLayoutData(contextualComponentData);
@@ -257,6 +251,7 @@ public class PartFilterPropertiesEditionPartForm extends CompositePropertiesEdit
 	protected Composite createFilteredPartFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, EditorMessages.PartFilterPropertiesEditionPart_FilteredPartLabel, propertiesEditionComponent.isRequired(EditorViewsRepository.PartFilter.Filter.filteredPart, EditorViewsRepository.FORM_KIND));
 		filteredPart = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EditorViewsRepository.PartFilter.Filter.filteredPart, EditorViewsRepository.FORM_KIND));
+		widgetFactory.adapt(filteredPart);
 		filteredPart.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData filteredPartData = new GridData(GridData.FILL_HORIZONTAL);
 		filteredPart.setLayoutData(filteredPartData);

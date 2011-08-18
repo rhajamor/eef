@@ -1,13 +1,5 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- ******************************************************************************
+ * Generated with Acceleo
  */
 package org.eclipse.emf.eef.extended.editor.parts.impl;
 
@@ -29,6 +21,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
@@ -101,7 +94,7 @@ public class StaticEEFEditorContributionPropertiesEditionPartImpl extends Compos
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence staticEEFEditorContributionStep = new CompositionSequence();
+		CompositionSequence staticEEFEditorContributionStep = new BindingCompositionSequence(propertiesEditionComponent);
 		staticEEFEditorContributionStep
 			.addStep(EditorViewsRepository.StaticEEFEditorContribution.Naming.class)
 			.addStep(EditorViewsRepository.StaticEEFEditorContribution.Naming.name);
