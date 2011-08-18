@@ -282,10 +282,10 @@ public abstract class StandardPropertiesEditionComponent implements IPropertiesE
 	}
 	
 	/**
-	 * @param editorKey key of the editor we searching associated feature.
-	 * @return the associated feature.
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		return null;
 	}
 	

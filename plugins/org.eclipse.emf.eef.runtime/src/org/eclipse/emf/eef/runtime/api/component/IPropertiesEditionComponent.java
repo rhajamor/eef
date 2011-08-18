@@ -12,6 +12,7 @@ package org.eclipse.emf.eef.runtime.api.component;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
@@ -201,4 +202,10 @@ public interface IPropertiesEditionComponent extends IPropertiesEditionListener 
 	 * @return the internationalized message
 	 */
 	public String getTabText(String key);
+
+	/**
+	 * @param editorKey key of the editor we searching associated feature.
+	 * @return the associated feature.
+	 */
+	EStructuralFeature associatedFeature(Object editorKey);
 }
