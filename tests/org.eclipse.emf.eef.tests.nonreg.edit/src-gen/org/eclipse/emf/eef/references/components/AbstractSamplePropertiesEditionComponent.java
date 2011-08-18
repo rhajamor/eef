@@ -89,7 +89,7 @@ public class AbstractSamplePropertiesEditionComponent extends SinglePartProperti
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == ReferencesViewsRepository.AbstractSample.NameProperties.name) {
 			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
 		}

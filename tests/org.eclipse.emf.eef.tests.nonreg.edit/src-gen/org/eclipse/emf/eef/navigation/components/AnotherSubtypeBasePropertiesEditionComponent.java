@@ -90,7 +90,7 @@ public class AnotherSubtypeBasePropertiesEditionComponent extends SinglePartProp
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == NavigationViewsRepository.AnotherSubtype.AnotherSpecialisation.anotherSpecialisationElement) {
 			return NavigationPackage.eINSTANCE.getAnotherSubType_AnotherSpecialisation();
 		}
