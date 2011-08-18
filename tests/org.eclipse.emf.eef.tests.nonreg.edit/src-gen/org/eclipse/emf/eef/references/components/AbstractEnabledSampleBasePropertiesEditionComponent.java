@@ -91,7 +91,7 @@ public class AbstractEnabledSampleBasePropertiesEditionComponent extends SingleP
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == ReferencesViewsRepository.AbstractEnabledSample.EnabledProperties.enabled) {
 			return ReferencesPackage.eINSTANCE.getAbstractEnabledSample_Enabled();
 		}

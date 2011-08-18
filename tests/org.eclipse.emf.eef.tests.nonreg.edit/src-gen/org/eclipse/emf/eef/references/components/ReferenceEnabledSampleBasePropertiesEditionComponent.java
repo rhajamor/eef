@@ -118,7 +118,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference) {
 			return ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference();
 		}

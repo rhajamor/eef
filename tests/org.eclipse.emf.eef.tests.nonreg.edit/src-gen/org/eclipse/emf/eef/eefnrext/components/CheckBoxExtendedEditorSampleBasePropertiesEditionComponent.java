@@ -92,7 +92,7 @@ public class CheckBoxExtendedEditorSampleBasePropertiesEditionComponent extends 
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == EefnrextViewsRepository.CheckBoxExtendedEditorSample.Properties.checkboxEditorSample) {
 			return EefnrextPackage.eINSTANCE.getCheckBoxExtendedEditorSample_CheckboxEditorSample();
 		}
