@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
@@ -358,6 +359,19 @@ public class ComposedPropertiesEditionComponent implements IPropertiesEditionCom
 				return part.getTitle();
 		}
 		return key;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		for (IPropertiesEditionComponent component : subComponents) {
+			EStructuralFeature associatedFeature = component.associatedFeature(editorKey);
+			if (associatedFeature != null)
+				return associatedFeature;
+		}
+		return null;
 	}
 
 }
