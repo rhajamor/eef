@@ -206,6 +206,7 @@ public interface IPropertiesEditionComponent extends IPropertiesEditionListener 
 	/**
 	 * @param editorKey key of the editor we searching associated feature.
 	 * @return the associated feature.
+	 * @since 0.9
 	 */
 	EStructuralFeature associatedFeature(Object editorKey);
 }
