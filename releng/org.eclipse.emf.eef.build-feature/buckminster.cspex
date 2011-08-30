@@ -3,7 +3,7 @@
 
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.emf.eef.releng.buckminster" componentType="buckminster" />
-		<cs:dependency name="org.eclipse.emf.eef.tests" componentType="eclipse.feature" />
+		<!--<cs:dependency name="org.eclipse.emf.eef.tests" componentType="eclipse.feature" />-->
 	</cs:dependencies>
 
 	<cs:actions>
