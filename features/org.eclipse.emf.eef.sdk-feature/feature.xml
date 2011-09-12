@@ -12,7 +12,7 @@
 <feature
       id="org.eclipse.emf.eef.sdk"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.emf.eef.runtime">
 
@@ -68,21 +68,5 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.emf.eef.codegen.ecore.source"
          version="0.0.0"/>
-
-   <requires>
-      <import feature="org.eclipse.emf.validation" version="1.1.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.acceleo" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.codegen.ecore" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.edit" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.edit" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.xmi" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.codegen.ecore.ui" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.resources" version="3.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.edit.ui" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.ide" version="3.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui" version="3.4.0" match="greaterOrEqual"/>
-   </requires>
 
 </feature>
