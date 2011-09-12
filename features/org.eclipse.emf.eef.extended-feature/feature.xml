@@ -12,7 +12,7 @@
 <feature
       id="org.eclipse.emf.eef.extended"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.emf.eef.runtime.extended">
 
@@ -36,22 +36,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <update label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
       <discovery label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
    </url>
-
-   <requires>
-      <import feature="org.eclipse.emf.eef.runtime" version="1.0.0.qualifier" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.xmi" version="2.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.edit" version="2.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.runtime" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.resources" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.edit.ui" version="2.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.validation" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jface.databinding" version="1.1.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.epf.common.html.feature" version="1.5.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.epf.richtext.feature" version="1.5.0" match="greaterOrEqual"/>
-   </requires>
 
    <plugin
          id="org.eclipse.emf.eef.runtime.extended"
