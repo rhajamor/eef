@@ -12,7 +12,7 @@
 <feature
       id="org.eclipse.emf.eef.codegen.ecore"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -35,18 +35,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <update label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
       <discovery label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
    </url>
-
-   <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.codegen.ecore"/>
-      <import plugin="org.eclipse.emf.codegen"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.ocl"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui"/>
-   </requires>
 
    <plugin
          id="org.eclipse.emf.eef.codegen.ecore"
