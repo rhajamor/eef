@@ -127,7 +127,8 @@ public class EObjectPropertiesEditionContext implements PropertiesEditingContext
 	 * Dispose the change recorder
 	 */
 	public void dispose() {
-		changeRecorder.dispose();
+		if (changeRecorder != null)
+			changeRecorder.dispose();
 	}
 
 }
