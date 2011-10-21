@@ -191,6 +191,11 @@ public class [view.pepClass()/] extends [view.partSuperclass()/] implements ISWT
 					return [aView.implementation()/]
 				}
 				[/for]
+				[for (custom : ViewElement | view.eAllContents(CustomElementEditor).oclAsType(CustomElementEditor)->select(owningView() = view))]
+				// [protected ('for '.concat(custom.name).concat(' addToPart creation'))]
+		
+				// [/protected]
+				[/for]
 				return parent;
 			}
 		};

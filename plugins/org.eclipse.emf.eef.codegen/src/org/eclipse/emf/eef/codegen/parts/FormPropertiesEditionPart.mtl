@@ -206,6 +206,11 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 					return [aView.implementation()/]
 				}
 				[/for]
+				[for (custom : ViewElement | view.eAllContents(CustomElementEditor).oclAsType(CustomElementEditor)->select(owningView() = view))]
+				// [protected ('for '.concat(custom.name).concat(' addToPart creation'))]
+		
+				// [/protected]
+				[/for]
 				return parent;
 			}
 		};
@@ -285,7 +290,7 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 	endif]
 	[file (fullFilePath(view), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
-package [view.partsFormPackage()/]
+package [view.partsFormPackage()/];
 
 [if (peContext.associatedGenModel().useJMergeForUserCode)]
 [pec.defaultMinimalImports(view, basePackage)/]
