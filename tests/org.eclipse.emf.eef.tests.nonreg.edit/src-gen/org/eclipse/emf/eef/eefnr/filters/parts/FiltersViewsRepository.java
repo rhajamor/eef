@@ -20,7 +20,6 @@ public class FiltersViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
-
 	/**
 	 * ConcreteReferenceOwnerSample view descriptor
 	 * 
@@ -41,7 +40,6 @@ public class FiltersViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * ConcreteReferenceTargetSample1 view descriptor
 	 * 
@@ -56,7 +54,6 @@ public class FiltersViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * ConcreteReferenceTargetSample2 view descriptor
 	 * 

@@ -19,6 +19,7 @@ import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSet
 import org.eclipse.jface.viewers.ViewerFilter;
 
 
+
 // End of user code
 
 /**

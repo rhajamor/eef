@@ -20,7 +20,6 @@ public class EefnrViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
-
 	/**
 	 * Root view descriptor
 	 * 
@@ -35,7 +34,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TotalSample view descriptor
 	 * 
@@ -118,11 +116,14 @@ public class EefnrViewsRepository {
 			
 			public static String name = "eefnr::TotalSample::properties::name";
 			
+			// Start of user code for CustomElementEditor ElementEditor key
+																					public static String customElementEditor = "eefnr::TotalSample::properties::CustomElementEditor";
+																					// End of user code
+			
 	
 		}
 	
 	}
-
 	/**
 	 * TextSample view descriptor
 	 * 
@@ -140,7 +141,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * CheckboxSample view descriptor
 	 * 
@@ -158,7 +158,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TextareaSample view descriptor
 	 * 
@@ -176,7 +175,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * RadioSample view descriptor
 	 * 
@@ -194,7 +192,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * EObjectFlatComboViewerSample view descriptor
 	 * 
@@ -212,7 +209,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * ReferencesTableSample view descriptor
 	 * 
@@ -230,7 +226,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * EMFComboViewerSample view descriptor
 	 * 
@@ -248,7 +243,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * MultiValuedEditorSample view descriptor
 	 * 
@@ -266,7 +260,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TableCompositionEditorSample view descriptor
 	 * 
@@ -284,7 +277,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * AdvancedReferencesTableSample view descriptor
 	 * 
@@ -302,7 +294,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * AdvancedEObjectFlatComboViewerSample view descriptor
 	 * 
@@ -320,7 +311,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * AdvancedTableCompositionEditorSample view descriptor
 	 * 
@@ -338,7 +328,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * FlatReferenceTableSample view descriptor
 	 * 
@@ -356,7 +345,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * Sample view descriptor
 	 * 
@@ -374,7 +362,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TextSampleFirstTab view descriptor
 	 * 
@@ -392,7 +379,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TextSampleSecondTab view descriptor
 	 * 
@@ -410,7 +396,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * TableCompositionExtensionEditorSample view descriptor
 	 * 
@@ -431,7 +416,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * ImageViewerSample view descriptor
 	 * 
@@ -449,7 +433,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * SelectionDialogSample view descriptor
 	 * 
@@ -467,7 +450,6 @@ public class EefnrViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * SingleCompositionViewerSample view descriptor
 	 * 

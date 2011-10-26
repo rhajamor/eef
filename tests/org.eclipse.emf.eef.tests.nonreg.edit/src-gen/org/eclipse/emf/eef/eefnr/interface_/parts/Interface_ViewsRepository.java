@@ -8,48 +8,26 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.eef.eefnr.filters.parts;
-
-// Start of user code for imports
-
-
-
-
-// End of user code
+package org.eclipse.emf.eef.eefnr.interface_.parts;
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public interface AbstractReferenceTargetSamplePropertiesEditionPart {
+public class Interface_ViewsRepository {
+
+	public static final int SWT_KIND = 0;
+
+	public static final int FORM_KIND = 1;
 
 	/**
-	 * @return the name
+	 * SimpleSample view descriptor
 	 * 
 	 */
-	public String getName();
-
-	/**
-	 * Defines a new name
-	 * @param newValue the new name to set
-	 * 
-	 */
-	public void setName(String newValue);
-
-
-
-
-
-	/**
-	 * Returns the internationalized title text.
-	 * 
-	 * @return the internationalized title text.
-	 * 
-	 */
-	public String getTitle();
-
-	// Start of user code for additional methods
-
-// End of user code
+	public static class SimpleSample {
+		// Start of user code for SimpleSample keys
+		
+		// End of user code
+	}
 
 }

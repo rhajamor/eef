@@ -6,8 +6,8 @@
   <!-- EEF extensions -->
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://www.eclipse.org/emf/eef/nonreg/1.0.0"
-            class="org.eclipse.emf.eef.eefnr.providers.EefnrEEFAdapterFactory"
+            uri="http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0"
+            class="org.eclipse.emf.eef.interface_.providers.Interface_EEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension
@@ -57,7 +57,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.eclipse.emf.eef.eefnr.properties">
+            contributorId="org.eclipse.emf.eef.interface_.properties">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -72,34 +72,22 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
-            contributorId="org.eclipse.emf.eef.eefnr.properties">
+            contributorId="org.eclipse.emf.eef.interface_.properties">
          <propertyTab
                label="Base"
                category="default"
                id="Base">
-         </propertyTab>
-         <propertyTab
-               label="TextSampleFirstTab"
-               category="extended"
-               id="TextSampleFirstTab"
-               afterTab="TextSampleFirstTab">
-         </propertyTab>
-         <propertyTab
-               label="TextSampleSecondTab"
-               category="extended"
-               id="TextSampleSecondTab"
-               afterTab="Base">
          </propertyTab>
       </propertyTabs>
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.eclipse.emf.eef.eefnr.properties">
+            contributorId="org.eclipse.emf.eef.interface_.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.eefnr.sections"
+               id="org.eclipse.emf.eef.interface_.sections"
                tab="Base">
          </propertySection>
       </propertySections>

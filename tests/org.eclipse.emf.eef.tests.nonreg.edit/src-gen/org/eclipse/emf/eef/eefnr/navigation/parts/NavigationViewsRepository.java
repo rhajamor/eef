@@ -20,7 +20,6 @@ public class NavigationViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
-
 	/**
 	 * DeferedFlatReferencesTableSample view descriptor
 	 * 
@@ -38,7 +37,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * DeferedReferencesTableSample view descriptor
 	 * 
@@ -56,7 +54,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * Owner view descriptor
 	 * 
@@ -113,7 +110,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * Subtype view descriptor
 	 * 
@@ -131,7 +127,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * AnotherSubtype view descriptor
 	 * 
@@ -149,7 +144,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * NamedElement view descriptor
 	 * 
@@ -164,7 +158,6 @@ public class NavigationViewsRepository {
 		}
 	
 	}
-
 	/**
 	 * Element view descriptor
 	 * 
@@ -182,7 +175,6 @@ public class NavigationViewsRepository {
 	public static String namedElementView = "navigation::Element::namedElementView";
 	
 	}
-
 	/**
 	 * AttributeNavigationSample view descriptor
 	 * 

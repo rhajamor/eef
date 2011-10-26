@@ -20,7 +20,6 @@ public class ReferencesViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
-
 	/**
 	 * ReferenceEnabledSample view descriptor
 	 * 
@@ -38,7 +37,6 @@ public class ReferencesViewsRepository {
 	public static String abstractEnabledSampleReference = "references::ReferenceEnabledSample::abstractEnabledSampleReference";
 	
 	}
-
 	/**
 	 * AbstractEnabledSample view descriptor
 	 * 
@@ -56,7 +54,6 @@ public class ReferencesViewsRepository {
 	public static String abstractReference = "references::AbstractEnabledSample::abstractReference";
 	
 	}
-
 	/**
 	 * AbstractSample view descriptor
 	 * 

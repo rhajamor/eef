@@ -137,6 +137,10 @@ public class TotalSamplePropertiesEditionPartForm extends CompositePropertiesEdi
 	protected List<ViewerFilter> advancedtablecompositionOptionalPropertyBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = new ArrayList<ViewerFilter>();
 	protected Text name;
+		// Start of user code for CustomElementEditor widgets declarations
+		
+		// End of user code
+	
 
 
 
@@ -202,6 +206,7 @@ public class TotalSamplePropertiesEditionPartForm extends CompositePropertiesEdi
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.name);
+		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.customElementEditor);
 		
 		
 		composer = new PartComposer(totalSampleStep) {
@@ -2783,6 +2788,9 @@ public class TotalSamplePropertiesEditionPartForm extends CompositePropertiesEdi
 
 
 
+	// Start of user code for CustomElementEditor specific getters and setters implementation
+	
+	// End of user code
 	/**
 	 * {@inheritDoc}
 	 *

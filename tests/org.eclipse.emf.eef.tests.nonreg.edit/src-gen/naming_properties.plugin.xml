@@ -46,6 +46,12 @@
             providerClass="org.eclipse.emf.eef.eefnr.navigation.providers.NamingPropertiesEditionPartProvider">
       </PropertiesEditionPartProvider>
    </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="org.eclipse.emf.eef.eefnr.interface_.providers.Interface_PropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
 
    <!-- Tabbed properties views extension -->
    <extension
@@ -80,12 +86,11 @@
             contributorId="org.eclipse.emf.eef.naming.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.naming.section.Event"
+               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.naming.sections"
                tab="Base">
-             <input
-                    type="org.eclipse.emf.eef.eefnr.naming.Event">
-             </input>
          </propertySection>
       </propertySections>
    </extension>
+
  </plugin>

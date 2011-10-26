@@ -8,31 +8,31 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.eef.eefnr.navigation.parts;
+package org.eclipse.emf.eef.eefnr.interface_.parts;
+
+// Start of user code for imports
+
+
+
+
+// End of user code
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class NamingViewsRepository {
-
-	public static final int SWT_KIND = 0;
-
-	public static final int FORM_KIND = 1;
+public interface SimpleSamplePropertiesEditionPart {
 
 	/**
-	 * Event view descriptor
+	 * Returns the internationalized title text.
+	 * 
+	 * @return the internationalized title text.
 	 * 
 	 */
-	public static class Event {
-		public static class Properties {
+	public String getTitle();
+
+	// Start of user code for getters and setters declaration
 	
-			
-			public static String name = "naming::Event::properties::name";
-			
-	
-		}
-	
-	}
+	// End of user code
 
 }

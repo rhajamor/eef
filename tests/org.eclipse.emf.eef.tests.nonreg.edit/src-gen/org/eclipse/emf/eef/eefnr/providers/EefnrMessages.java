@@ -297,6 +297,9 @@ public class EefnrMessages extends NLS {
 	public static String TotalSamplePropertiesEditionPart_NameLabel;
 
 	
+	public static String TotalSamplePropertiesEditionPart_CustomElementEditorLabel;
+
+	
 	public static String TextSamplePropertiesEditionPart_TextRequiredPropertyLabel;
 
 	

@@ -114,22 +114,22 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	/**
 	 * Settings for singleContainmentForEObjectFlatComboViewer EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings singleContainmentForEObjectFlatComboViewerSettings;
+	private EObjectFlatComboSettings singleContainmentForEObjectFlatComboViewerSettings;
 	
 	/**
 	 * Settings for singleReferenceForEObjectFlatComboViewer EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings singleReferenceForEObjectFlatComboViewerSettings;
+	private EObjectFlatComboSettings singleReferenceForEObjectFlatComboViewerSettings;
 	
 	/**
 	 * Settings for singleContainmentForAdvancedEObjectFlatComboViewer EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings singleContainmentForAdvancedEObjectFlatComboViewerSettings;
+	private EObjectFlatComboSettings singleContainmentForAdvancedEObjectFlatComboViewerSettings;
 	
 	/**
 	 * Settings for singleReferenceForAdvancedEObjectFlatComboViewer EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings singleReferenceForAdvancedEObjectFlatComboViewerSettings;
+	private EObjectFlatComboSettings singleReferenceForAdvancedEObjectFlatComboViewerSettings;
 	
 	
 	/**
@@ -736,7 +736,7 @@ public class OwnerPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			OwnerPropertiesEditionPart basePart = (OwnerPropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Owner.Properties.name)) {
 				if (msg.getNewValue() != null) {

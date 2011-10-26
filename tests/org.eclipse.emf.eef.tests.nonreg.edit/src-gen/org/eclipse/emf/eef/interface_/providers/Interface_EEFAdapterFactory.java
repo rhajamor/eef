@@ -8,31 +8,16 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.eef.eefnr.navigation.parts;
+package org.eclipse.emf.eef.interface_.providers;
+
+import org.eclipse.emf.eef.eefnr.interface_.util.InterfaceAdapterFactory;
+
 
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  * 
  */
-public class NamingViewsRepository {
+public class Interface_EEFAdapterFactory extends InterfaceAdapterFactory {
 
-	public static final int SWT_KIND = 0;
-
-	public static final int FORM_KIND = 1;
-
-	/**
-	 * Event view descriptor
-	 * 
-	 */
-	public static class Event {
-		public static class Properties {
-	
-			
-			public static String name = "naming::Event::properties::name";
-			
-	
-		}
-	
-	}
 
 }

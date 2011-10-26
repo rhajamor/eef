@@ -334,7 +334,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SubtypePropertiesEditionPart basePart = (SubtypePropertiesEditionPart)editingPart;
 			if (NavigationPackage.eINSTANCE.getSubtype_SpecialisedElement().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Subtype.Specialisation.specialisedElement))
 				basePart.setSpecialisedElement((Boolean)msg.getNewValue());
