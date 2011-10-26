@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AttributeNavigationSampleItemProvider.java,v 1.1.2.1 2011/08/12 07:51:15 glefur Exp $
+ * $Id: AttributeNavigationSampleItemProvider.java,v 1.1.2.2 2011/10/26 16:23:04 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.provider;
 

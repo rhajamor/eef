@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventItemProvider.java,v 1.1.2.1 2011/07/18 08:58:20 glefur Exp $
+ * $Id: EventItemProvider.java,v 1.1.2.2 2011/10/26 16:23:04 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.provider;
 
