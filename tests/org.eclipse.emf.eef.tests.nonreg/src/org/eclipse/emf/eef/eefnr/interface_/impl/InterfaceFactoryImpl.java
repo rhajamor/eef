@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingFactoryImpl.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: InterfaceFactoryImpl.java,v 1.1.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.naming.impl;
+package org.eclipse.emf.eef.eefnr.interface_.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.eef.eefnr.naming.*;
+import org.eclipse.emf.eef.eefnr.interface_.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,24 +22,24 @@ import org.eclipse.emf.eef.eefnr.naming.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamingFactory {
+public class InterfaceFactoryImpl extends EFactoryImpl implements InterfaceFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CustomNamingFactory init() {
+	public static InterfaceFactory init() {
 		try {
-			CustomNamingFactory theCustomNamingFactory = (CustomNamingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"); 
-			if (theCustomNamingFactory != null) {
-				return theCustomNamingFactory;
+			InterfaceFactory theInterfaceFactory = (InterfaceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0"); 
+			if (theInterfaceFactory != null) {
+				return theInterfaceFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new CustomNamingFactoryImpl();
+		return new InterfaceFactoryImpl();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingFactoryImpl() {
+	public InterfaceFactoryImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case CustomNamingPackage.EVENT: return createEvent();
+			case InterfacePackage.SIMPLE_SAMPLE: return createSimpleSample();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -71,9 +71,9 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Event createEvent() {
-		EventImpl event = new EventImpl();
-		return event;
+	public SimpleSample createSimpleSample() {
+		SimpleSampleImpl simpleSample = new SimpleSampleImpl();
+		return simpleSample;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingPackage getCustomNamingPackage() {
-		return (CustomNamingPackage)getEPackage();
+	public InterfacePackage getInterfacePackage() {
+		return (InterfacePackage)getEPackage();
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * @generated
 	 */
 	@Deprecated
-	public static CustomNamingPackage getPackage() {
-		return CustomNamingPackage.eINSTANCE;
+	public static InterfacePackage getPackage() {
+		return InterfacePackage.eINSTANCE;
 	}
 
-} //CustomNamingFactoryImpl
+} //InterfaceFactoryImpl

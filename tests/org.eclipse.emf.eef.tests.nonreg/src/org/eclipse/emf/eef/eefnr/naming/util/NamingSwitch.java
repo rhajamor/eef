@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingSwitch.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NamingSwitch.java,v 1.1.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.util;
 
@@ -25,17 +25,17 @@ import org.eclipse.emf.eef.eefnr.naming.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage
+ * @see org.eclipse.emf.eef.eefnr.naming.NamingPackage
  * @generated
  */
-public class CustomNamingSwitch<T> {
+public class NamingSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static CustomNamingPackage modelPackage;
+	protected static NamingPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -43,9 +43,9 @@ public class CustomNamingSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingSwitch() {
+	public NamingSwitch() {
 		if (modelPackage == null) {
-			modelPackage = CustomNamingPackage.eINSTANCE;
+			modelPackage = NamingPackage.eINSTANCE;
 		}
 	}
 
@@ -89,7 +89,7 @@ public class CustomNamingSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case CustomNamingPackage.EVENT: {
+			case NamingPackage.EVENT: {
 				Event event = (Event)theEObject;
 				T result = caseEvent(event);
 				if (result == null) result = caseAbstractSample(event);
@@ -145,4 +145,4 @@ public class CustomNamingSwitch<T> {
 		return null;
 	}
 
-} //CustomNamingSwitch
+} //NamingSwitch

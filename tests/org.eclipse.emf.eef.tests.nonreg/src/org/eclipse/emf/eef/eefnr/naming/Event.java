@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Event.java,v 1.1.2.1 2011/07/18 08:57:18 glefur Exp $
+ * $Id: Event.java,v 1.1.2.2 2011/10/26 16:16:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SingleReferencerImpl.java,v 1.2 2010/11/30 08:23:18 glefur Exp $
+ * $Id: SingleReferencerImpl.java,v 1.2.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -11,6 +11,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,6 +39,10 @@ import org.eclipse.emf.eef.eefnr.navigation.SingleReferencer;
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getSingleReferenceForEObjectFlatComboViewer <em>Single Reference For EObject Flat Combo Viewer</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getSingleContainmentForAdvancedEObjectFlatComboViewer <em>Single Containment For Advanced EObject Flat Combo Viewer</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getSingleReferenceForAdvancedEObjectFlatComboViewer <em>Single Reference For Advanced EObject Flat Combo Viewer</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#isBooleanAttribute <em>Boolean Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getEenumAttribute <em>Eenum Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getStringAttribute <em>String Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.impl.SingleReferencerImpl#getListAttribute <em>List Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,6 +138,76 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 	 * @ordered
 	 */
 	protected Owner singleReferenceForAdvancedEObjectFlatComboViewer;
+
+	/**
+	 * The default value of the '{@link #isBooleanAttribute() <em>Boolean Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBooleanAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean BOOLEAN_ATTRIBUTE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isBooleanAttribute() <em>Boolean Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBooleanAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean booleanAttribute = BOOLEAN_ATTRIBUTE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEenumAttribute() <em>Eenum Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEenumAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Enumerator EENUM_ATTRIBUTE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEenumAttribute() <em>Eenum Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEenumAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected Enumerator eenumAttribute = EENUM_ATTRIBUTE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStringAttribute() <em>String Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STRING_ATTRIBUTE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStringAttribute() <em>String Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected String stringAttribute = STRING_ATTRIBUTE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getListAttribute() <em>List Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getListAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<?> listAttribute;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -380,6 +455,90 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isBooleanAttribute() {
+		return booleanAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBooleanAttribute(boolean newBooleanAttribute) {
+		boolean oldBooleanAttribute = booleanAttribute;
+		booleanAttribute = newBooleanAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE, oldBooleanAttribute, booleanAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Enumerator getEenumAttribute() {
+		return eenumAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEenumAttribute(Enumerator newEenumAttribute) {
+		Enumerator oldEenumAttribute = eenumAttribute;
+		eenumAttribute = newEenumAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE, oldEenumAttribute, eenumAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getStringAttribute() {
+		return stringAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStringAttribute(String newStringAttribute) {
+		String oldStringAttribute = stringAttribute;
+		stringAttribute = newStringAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE, oldStringAttribute, stringAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<?> getListAttribute() {
+		return listAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setListAttribute(EList<?> newListAttribute) {
+		EList<?> oldListAttribute = listAttribute;
+		listAttribute = newListAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE, oldListAttribute, listAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -423,6 +582,14 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER:
 				if (resolve) return getSingleReferenceForAdvancedEObjectFlatComboViewer();
 				return basicGetSingleReferenceForAdvancedEObjectFlatComboViewer();
+			case NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE:
+				return isBooleanAttribute();
+			case NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE:
+				return getEenumAttribute();
+			case NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE:
+				return getStringAttribute();
+			case NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE:
+				return getListAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -468,6 +635,18 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER:
 				setSingleReferenceForAdvancedEObjectFlatComboViewer((Owner)newValue);
 				return;
+			case NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE:
+				setBooleanAttribute((Boolean)newValue);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE:
+				setEenumAttribute((Enumerator)newValue);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE:
+				setStringAttribute((String)newValue);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE:
+				setListAttribute((EList<?>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -507,6 +686,18 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER:
 				setSingleReferenceForAdvancedEObjectFlatComboViewer((Owner)null);
 				return;
+			case NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE:
+				setBooleanAttribute(BOOLEAN_ATTRIBUTE_EDEFAULT);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE:
+				setEenumAttribute(EENUM_ATTRIBUTE_EDEFAULT);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE:
+				setStringAttribute(STRING_ATTRIBUTE_EDEFAULT);
+				return;
+			case NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE:
+				setListAttribute((EList<?>)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -537,8 +728,38 @@ public class SingleReferencerImpl extends EObjectImpl implements SingleReference
 				return singleContainmentForAdvancedEObjectFlatComboViewer != null;
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER:
 				return singleReferenceForAdvancedEObjectFlatComboViewer != null;
+			case NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE:
+				return booleanAttribute != BOOLEAN_ATTRIBUTE_EDEFAULT;
+			case NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE:
+				return EENUM_ATTRIBUTE_EDEFAULT == null ? eenumAttribute != null : !EENUM_ATTRIBUTE_EDEFAULT.equals(eenumAttribute);
+			case NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE:
+				return STRING_ATTRIBUTE_EDEFAULT == null ? stringAttribute != null : !STRING_ATTRIBUTE_EDEFAULT.equals(stringAttribute);
+			case NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE:
+				return listAttribute != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (booleanAttribute: ");
+		result.append(booleanAttribute);
+		result.append(", eenumAttribute: ");
+		result.append(eenumAttribute);
+		result.append(", stringAttribute: ");
+		result.append(stringAttribute);
+		result.append(", listAttribute: ");
+		result.append(listAttribute);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SingleReferencerImpl

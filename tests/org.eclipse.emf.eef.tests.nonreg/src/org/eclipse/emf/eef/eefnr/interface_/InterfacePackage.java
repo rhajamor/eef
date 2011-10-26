@@ -2,14 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingPackage.java,v 1.1.2.2 2011/10/26 16:16:45 sbouchet Exp $
+ * $Id: InterfacePackage.java,v 1.1.2.1 2011/10/26 16:16:45 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.naming;
+package org.eclipse.emf.eef.eefnr.interface_;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.eef.eefnr.EefnrPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,18 +20,18 @@ import org.eclipse.emf.eef.eefnr.EefnrPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory
+ * @see org.eclipse.emf.eef.eefnr.interface_.InterfaceFactory
  * @model kind="package"
  * @generated
  */
-public interface CustomNamingPackage extends EPackage {
+public interface InterfacePackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "naming";
+	String eNAME = "interface";
 
 	/**
 	 * The package namespace URI.
@@ -41,7 +39,7 @@ public interface CustomNamingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0";
+	String eNS_URI = "http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0";
 
 	/**
 	 * The package namespace name.
@@ -49,7 +47,7 @@ public interface CustomNamingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "eefnr-name";
+	String eNS_PREFIX = "eefnr-int";
 
 	/**
 	 * The singleton instance of the package.
@@ -57,46 +55,37 @@ public interface CustomNamingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomNamingPackage eINSTANCE = org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl.init();
+	InterfacePackage eINSTANCE = org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.naming.impl.EventImpl <em>Event</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.interface_.impl.SimpleSampleImpl <em>Simple Sample</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.eef.eefnr.naming.impl.EventImpl
-	 * @see org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl#getEvent()
+	 * @see org.eclipse.emf.eef.eefnr.interface_.impl.SimpleSampleImpl
+	 * @see org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl#getSimpleSample()
 	 * @generated
 	 */
-	int EVENT = 0;
+	int SIMPLE_SAMPLE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__NAME = EefnrPackage.ABSTRACT_SAMPLE__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Event</em>' class.
+	 * The number of structural features of the '<em>Simple Sample</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FEATURE_COUNT = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 0;
+	int SIMPLE_SAMPLE_FEATURE_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.naming.Event <em>Event</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.interface_.SimpleSample <em>Simple Sample</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event</em>'.
-	 * @see org.eclipse.emf.eef.eefnr.naming.Event
+	 * @return the meta object for class '<em>Simple Sample</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.interface_.SimpleSample
 	 * @generated
 	 */
-	EClass getEvent();
+	EClass getSimpleSample();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -105,7 +94,7 @@ public interface CustomNamingPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	CustomNamingFactory getCustomNamingFactory();
+	InterfaceFactory getInterfaceFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,15 +110,15 @@ public interface CustomNamingPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.naming.impl.EventImpl <em>Event</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.interface_.impl.SimpleSampleImpl <em>Simple Sample</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.eef.eefnr.naming.impl.EventImpl
-		 * @see org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl#getEvent()
+		 * @see org.eclipse.emf.eef.eefnr.interface_.impl.SimpleSampleImpl
+		 * @see org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl#getSimpleSample()
 		 * @generated
 		 */
-		EClass EVENT = eINSTANCE.getEvent();
+		EClass SIMPLE_SAMPLE = eINSTANCE.getSimpleSample();
 
 	}
 
-} //CustomNamingPackage
+} //InterfacePackage

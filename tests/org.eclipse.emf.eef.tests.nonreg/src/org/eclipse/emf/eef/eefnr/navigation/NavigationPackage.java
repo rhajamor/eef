@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackage.java,v 1.4.2.1 2011/08/12 07:51:20 glefur Exp $
+ * $Id: NavigationPackage.java,v 1.4.2.2 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
@@ -423,13 +423,49 @@ public interface NavigationPackage extends EPackage {
 	int SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER = 8;
 
 	/**
+	 * The feature id for the '<em><b>Boolean Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Eenum Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCER__EENUM_ATTRIBUTE = 10;
+
+	/**
+	 * The feature id for the '<em><b>String Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCER__STRING_ATTRIBUTE = 11;
+
+	/**
+	 * The feature id for the '<em><b>List Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCER__LIST_ATTRIBUTE = 12;
+
+	/**
 	 * The number of structural features of the '<em>Single Referencer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCER_FEATURE_COUNT = 9;
+	int SINGLE_REFERENCER_FEATURE_COUNT = 13;
 
 
 	/**
@@ -910,6 +946,50 @@ public interface NavigationPackage extends EPackage {
 	EReference getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#isBooleanAttribute <em>Boolean Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Boolean Attribute</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#isBooleanAttribute()
+	 * @see #getSingleReferencer()
+	 * @generated
+	 */
+	EAttribute getSingleReferencer_BooleanAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getEenumAttribute <em>Eenum Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eenum Attribute</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getEenumAttribute()
+	 * @see #getSingleReferencer()
+	 * @generated
+	 */
+	EAttribute getSingleReferencer_EenumAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getStringAttribute <em>String Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>String Attribute</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getStringAttribute()
+	 * @see #getSingleReferencer()
+	 * @generated
+	 */
+	EAttribute getSingleReferencer_StringAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getListAttribute <em>List Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>List Attribute</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getListAttribute()
+	 * @see #getSingleReferencer()
+	 * @generated
+	 */
+	EAttribute getSingleReferencer_ListAttribute();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.AnotherSubType <em>Another Sub Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1266,6 +1346,38 @@ public interface NavigationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER = eINSTANCE.getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Attribute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE = eINSTANCE.getSingleReferencer_BooleanAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Eenum Attribute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_REFERENCER__EENUM_ATTRIBUTE = eINSTANCE.getSingleReferencer_EenumAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>String Attribute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_REFERENCER__STRING_ATTRIBUTE = eINSTANCE.getSingleReferencer_StringAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>List Attribute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_REFERENCER__LIST_ATTRIBUTE = eINSTANCE.getSingleReferencer_ListAttribute();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.AnotherSubTypeImpl <em>Another Sub Type</em>}' class.

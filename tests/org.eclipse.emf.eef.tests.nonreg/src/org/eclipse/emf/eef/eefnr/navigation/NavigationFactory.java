@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactory.java,v 1.4.2.1 2011/08/12 07:51:20 glefur Exp $
+ * $Id: NavigationFactory.java,v 1.4.2.2 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 

@@ -179,6 +179,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eefnr.ecore#//navigation/SingleReferencer/singleContainmentForAdvancedEObjectFlatComboViewer"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference eefnr.ecore#//navigation/SingleReferencer/singleReferenceForAdvancedEObjectFlatComboViewer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/SingleReferencer/booleanAttribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/SingleReferencer/eenumAttribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/SingleReferencer/stringAttribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/SingleReferencer/listAttribute"/>
       </genClasses>
       <genClasses ecoreClass="eefnr.ecore#//navigation/AnotherSubType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/AnotherSubType/anotherSpecialisation"/>
@@ -209,9 +213,13 @@
       <genClasses ecoreClass="eefnr.ecore#//filters/ConcreteReferenceTargetSample1"/>
       <genClasses ecoreClass="eefnr.ecore#//filters/ConcreteReferenceTargetSample2"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="CustomNaming" basePackage="org.eclipse.emf.eef.eefnr"
-        disposableProviderFactory="true" ecorePackage="eefnr.ecore#//naming">
+    <nestedGenPackages prefix="CustomNaming" basePackage="org.eclipse.emf.eef.eefnr" disposableProviderFactory="true"
+        ecorePackage="eefnr.ecore#//naming">
       <genClasses ecoreClass="eefnr.ecore#//naming/Event"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Interface" basePackage="org.eclipse.emf.eef.eefnr"
+        disposableProviderFactory="true" ecorePackage="eefnr.ecore#//interface">
+      <genClasses ecoreClass="eefnr.ecore#//interface/SimpleSample"/>
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Eefnrext" basePackage="org.eclipse.emf.eef" disposableProviderFactory="true"

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingFactoryImpl.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NamingFactoryImpl.java,v 1.1.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.impl;
 
@@ -22,24 +22,24 @@ import org.eclipse.emf.eef.eefnr.naming.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamingFactory {
+public class NamingFactoryImpl extends EFactoryImpl implements NamingFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CustomNamingFactory init() {
+	public static NamingFactory init() {
 		try {
-			CustomNamingFactory theCustomNamingFactory = (CustomNamingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"); 
-			if (theCustomNamingFactory != null) {
-				return theCustomNamingFactory;
+			NamingFactory theNamingFactory = (NamingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"); 
+			if (theNamingFactory != null) {
+				return theNamingFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new CustomNamingFactoryImpl();
+		return new NamingFactoryImpl();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingFactoryImpl() {
+	public NamingFactoryImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case CustomNamingPackage.EVENT: return createEvent();
+			case NamingPackage.EVENT: return createEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,8 +81,8 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingPackage getCustomNamingPackage() {
-		return (CustomNamingPackage)getEPackage();
+	public NamingPackage getNamingPackage() {
+		return (NamingPackage)getEPackage();
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class CustomNamingFactoryImpl extends EFactoryImpl implements CustomNamin
 	 * @generated
 	 */
 	@Deprecated
-	public static CustomNamingPackage getPackage() {
-		return CustomNamingPackage.eINSTANCE;
+	public static NamingPackage getPackage() {
+		return NamingPackage.eINSTANCE;
 	}
 
-} //CustomNamingFactoryImpl
+} //NamingFactoryImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingPackage.java,v 1.1.2.2 2011/10/26 16:16:45 sbouchet Exp $
+ * $Id: NamingPackage.java,v 1.1.2.1 2011/10/26 16:16:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming;
 
@@ -22,11 +22,11 @@ import org.eclipse.emf.eef.eefnr.EefnrPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory
+ * @see org.eclipse.emf.eef.eefnr.naming.NamingFactory
  * @model kind="package"
  * @generated
  */
-public interface CustomNamingPackage extends EPackage {
+public interface NamingPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -57,14 +57,14 @@ public interface CustomNamingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomNamingPackage eINSTANCE = org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl.init();
+	NamingPackage eINSTANCE = org.eclipse.emf.eef.eefnr.naming.impl.NamingPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.naming.impl.EventImpl <em>Event</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.eef.eefnr.naming.impl.EventImpl
-	 * @see org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl#getEvent()
+	 * @see org.eclipse.emf.eef.eefnr.naming.impl.NamingPackageImpl#getEvent()
 	 * @generated
 	 */
 	int EVENT = 0;
@@ -105,7 +105,7 @@ public interface CustomNamingPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	CustomNamingFactory getCustomNamingFactory();
+	NamingFactory getNamingFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,11 +125,11 @@ public interface CustomNamingPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.emf.eef.eefnr.naming.impl.EventImpl
-		 * @see org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl#getEvent()
+		 * @see org.eclipse.emf.eef.eefnr.naming.impl.NamingPackageImpl#getEvent()
 		 * @generated
 		 */
 		EClass EVENT = eINSTANCE.getEvent();
 
 	}
 
-} //CustomNamingPackage
+} //NamingPackage

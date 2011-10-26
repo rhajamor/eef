@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventImpl.java,v 1.1.2.1 2011/07/18 08:57:17 glefur Exp $
+ * $Id: EventImpl.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.impl;
 

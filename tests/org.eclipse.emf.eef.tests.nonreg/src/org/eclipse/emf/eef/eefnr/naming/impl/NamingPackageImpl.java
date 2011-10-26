@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingPackageImpl.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NamingPackageImpl.java,v 1.1.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.impl;
 
@@ -23,9 +23,9 @@ import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 
 import org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl;
 
-import org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory;
-import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
 import org.eclipse.emf.eef.eefnr.naming.Event;
+import org.eclipse.emf.eef.eefnr.naming.NamingFactory;
+import org.eclipse.emf.eef.eefnr.naming.NamingPackage;
 
 import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
 
@@ -45,7 +45,7 @@ import org.eclipse.emf.eef.eefnrext.impl.EefnrextPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamingPackage {
+public class NamingPackageImpl extends EPackageImpl implements NamingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,12 +64,12 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage#eNS_URI
+	 * @see org.eclipse.emf.eef.eefnr.naming.NamingPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private CustomNamingPackageImpl() {
-		super(eNS_URI, CustomNamingFactory.eINSTANCE);
+	private NamingPackageImpl() {
+		super(eNS_URI, NamingFactory.eINSTANCE);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link CustomNamingPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link NamingPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,11 +91,11 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static CustomNamingPackage init() {
-		if (isInited) return (CustomNamingPackage)EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI);
+	public static NamingPackage init() {
+		if (isInited) return (NamingPackage)EPackage.Registry.INSTANCE.getEPackage(NamingPackage.eNS_URI);
 
 		// Obtain or create and register package
-		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CustomNamingPackageImpl());
+		NamingPackageImpl theNamingPackage = (NamingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NamingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NamingPackageImpl());
 
 		isInited = true;
 
@@ -108,7 +108,7 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theCustomNamingPackage.createPackageContents();
+		theNamingPackage.createPackageContents();
 		theEefnrPackage.createPackageContents();
 		theReferencesPackage.createPackageContents();
 		theNavigationPackage.createPackageContents();
@@ -117,7 +117,7 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theCustomNamingPackage.initializePackageContents();
+		theNamingPackage.initializePackageContents();
 		theEefnrPackage.initializePackageContents();
 		theReferencesPackage.initializePackageContents();
 		theNavigationPackage.initializePackageContents();
@@ -126,12 +126,12 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theCustomNamingPackage.freeze();
+		theNamingPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(CustomNamingPackage.eNS_URI, theCustomNamingPackage);
-		return theCustomNamingPackage;
+		EPackage.Registry.INSTANCE.put(NamingPackage.eNS_URI, theNamingPackage);
+		return theNamingPackage;
 	}
 
 	/**
@@ -148,8 +148,8 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingFactory getCustomNamingFactory() {
-		return (CustomNamingFactory)getEFactoryInstance();
+	public NamingFactory getNamingFactory() {
+		return (NamingFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -211,4 +211,4 @@ public class CustomNamingPackageImpl extends EPackageImpl implements CustomNamin
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
-} //CustomNamingPackageImpl
+} //NamingPackageImpl

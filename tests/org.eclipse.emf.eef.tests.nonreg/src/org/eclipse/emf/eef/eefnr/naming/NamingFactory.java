@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingFactory.java,v 1.1.2.2 2011/10/26 16:16:45 sbouchet Exp $
+ * $Id: NamingFactory.java,v 1.1.2.1 2011/10/26 16:16:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming;
 
@@ -13,17 +13,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage
+ * @see org.eclipse.emf.eef.eefnr.naming.NamingPackage
  * @generated
  */
-public interface CustomNamingFactory extends EFactory {
+public interface NamingFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomNamingFactory eINSTANCE = org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingFactoryImpl.init();
+	NamingFactory eINSTANCE = org.eclipse.emf.eef.eefnr.naming.impl.NamingFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Event</em>'.
@@ -41,6 +41,6 @@ public interface CustomNamingFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	CustomNamingPackage getCustomNamingPackage();
+	NamingPackage getNamingPackage();
 
-} //CustomNamingFactory
+} //NamingFactory

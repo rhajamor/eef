@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingAdapterFactory.java,v 1.1.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NamingAdapterFactory.java,v 1.1.2.1 2011/10/26 16:16:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.util;
 
@@ -22,17 +22,17 @@ import org.eclipse.emf.eef.eefnr.naming.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage
+ * @see org.eclipse.emf.eef.eefnr.naming.NamingPackage
  * @generated
  */
-public class CustomNamingAdapterFactory extends AdapterFactoryImpl {
+public class NamingAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static CustomNamingPackage modelPackage;
+	protected static NamingPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -40,9 +40,9 @@ public class CustomNamingAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingAdapterFactory() {
+	public NamingAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = CustomNamingPackage.eINSTANCE;
+			modelPackage = NamingPackage.eINSTANCE;
 		}
 	}
 
@@ -71,8 +71,8 @@ public class CustomNamingAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CustomNamingSwitch<Adapter> modelSwitch =
-		new CustomNamingSwitch<Adapter>() {
+	protected NamingSwitch<Adapter> modelSwitch =
+		new NamingSwitch<Adapter>() {
 			@Override
 			public Adapter caseEvent(Event object) {
 				return createEventAdapter();
@@ -141,4 +141,4 @@ public class CustomNamingAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //CustomNamingAdapterFactory
+} //NamingAdapterFactory

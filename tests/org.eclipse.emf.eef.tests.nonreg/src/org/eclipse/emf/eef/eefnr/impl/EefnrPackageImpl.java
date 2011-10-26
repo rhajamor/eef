@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrPackageImpl.java,v 1.10.2.1 2011/07/18 08:57:18 glefur Exp $
+ * $Id: EefnrPackageImpl.java,v 1.10.2.2 2011/10/26 16:16:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.impl;
 
@@ -42,6 +42,8 @@ import org.eclipse.emf.eef.eefnr.TextareaSample;
 import org.eclipse.emf.eef.eefnr.TotalSample;
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
+import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
+import org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl;
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
 import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
 import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
@@ -284,6 +286,7 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		NavigationPackageImpl theNavigationPackage = (NavigationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) instanceof NavigationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI) : NavigationPackage.eINSTANCE);
 		FiltersPackageImpl theFiltersPackage = (FiltersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) instanceof FiltersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) : FiltersPackage.eINSTANCE);
 		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) : CustomNamingPackage.eINSTANCE);
+		InterfacePackageImpl theInterfacePackage = (InterfacePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InterfacePackage.eNS_URI) instanceof InterfacePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InterfacePackage.eNS_URI) : InterfacePackage.eINSTANCE);
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -292,6 +295,7 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		theNavigationPackage.createPackageContents();
 		theFiltersPackage.createPackageContents();
 		theCustomNamingPackage.createPackageContents();
+		theInterfacePackage.createPackageContents();
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -300,6 +304,7 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		theNavigationPackage.initializePackageContents();
 		theFiltersPackage.initializePackageContents();
 		theCustomNamingPackage.initializePackageContents();
+		theInterfacePackage.initializePackageContents();
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -1344,12 +1349,14 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		NavigationPackage theNavigationPackage = (NavigationPackage)EPackage.Registry.INSTANCE.getEPackage(NavigationPackage.eNS_URI);
 		FiltersPackage theFiltersPackage = (FiltersPackage)EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI);
 		CustomNamingPackage theCustomNamingPackage = (CustomNamingPackage)EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI);
+		InterfacePackage theInterfacePackage = (InterfacePackage)EPackage.Registry.INSTANCE.getEPackage(InterfacePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theReferencesPackage);
 		getESubpackages().add(theNavigationPackage);
 		getESubpackages().add(theFiltersPackage);
 		getESubpackages().add(theCustomNamingPackage);
+		getESubpackages().add(theInterfacePackage);
 
 		// Create type parameters
 
