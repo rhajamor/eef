@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -57,6 +58,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 	 */
 	protected ReferencesTableSettings sitesSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -82,11 +84,13 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 			final Conference conference = (Conference)elt;
 			final LocalisationPropertiesEditionPart localisationPart = (LocalisationPropertiesEditionPart)editingPart;
 			// init values
-			if (conference.getPlace() != null)
+			if (conference.getPlace() != null && isAccessible(ConferenceViewsRepository.Localisation.place))
 				localisationPart.setPlace(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), conference.getPlace()));
 			
-			sitesSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Sites());
-			localisationPart.initSites(sitesSettings);
+			if (isAccessible(ConferenceViewsRepository.Localisation.sites)) {
+				sitesSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Sites());
+				localisationPart.initSites(sitesSettings);
+			}
 			// init filters
 			
 			localisationPart.addFilterToSites(new ViewerFilter() {
@@ -119,6 +123,20 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Localisation.place) {
+			return ConferencePackage.eINSTANCE.getConference_Place();
+		}
+		if (editorKey == ConferenceViewsRepository.Localisation.sites) {
+			return ConferencePackage.eINSTANCE.getConference_Sites();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -128,7 +146,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 			conference.setPlace((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (ConferenceViewsRepository.Localisation.sites == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, sitesSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -147,7 +165,9 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					sitesSettings.removeFromReference((EObject) event.getNewValue());
+				sitesSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				sitesSettings.move(event.getNewIndex(), (Site) event.getNewValue());
 			}
 		}
 	}
@@ -157,16 +177,16 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			LocalisationPropertiesEditionPart localisationPart = (LocalisationPropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getConference_Place().equals(msg.getFeature()) && localisationPart != null){
+			if (ConferencePackage.eINSTANCE.getConference_Place().equals(msg.getFeature()) && localisationPart != null && isAccessible(ConferenceViewsRepository.Localisation.place)) {
 				if (msg.getNewValue() != null) {
 					localisationPart.setPlace(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					localisationPart.setPlace("");
 				}
 			}
-			if (ConferencePackage.eINSTANCE.getConference_Sites().equals(msg.getFeature()))
+			if (ConferencePackage.eINSTANCE.getConference_Sites().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Localisation.sites))
 				localisationPart.updateSites();
 			
 		}

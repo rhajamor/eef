@@ -11,13 +11,14 @@
 package org.eclipse.emf.samples.conference.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -59,17 +60,18 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	/**
 	 * Settings for topic EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings topicSettings;
+	private EObjectFlatComboSettings topicSettings;
 	
 	/**
 	 * Settings for presenter EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings presenterSettings;
+	private EObjectFlatComboSettings presenterSettings;
 	
 	/**
 	 * Settings for creator EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings creatorSettings;
+	private EObjectFlatComboSettings creatorSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -96,28 +98,34 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			final Talk talk = (Talk)elt;
 			final TalkPropertiesEditionPart basePart = (TalkPropertiesEditionPart)editingPart;
 			// init values
-			if (talk.getTitle() != null)
+			if (talk.getTitle() != null && isAccessible(ConferenceViewsRepository.Talk.Properties.title_))
 				basePart.setTitle_(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), talk.getTitle()));
 			
-			// init part
-			topicSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Topic());
-			basePart.initTopic(topicSettings);
-			// set the button mode
-			basePart.setTopicButtonMode(ButtonsModeEnum.BROWSE);
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.topic)) {
+				// init part
+				topicSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Topic());
+				basePart.initTopic(topicSettings);
+				// set the button mode
+				basePart.setTopicButtonMode(ButtonsModeEnum.BROWSE);
+			}
 			if (isAccessible(ConferenceViewsRepository.Talk.Properties.type)) {
 				basePart.initType((EEnum) ConferencePackage.eINSTANCE.getTalk_Type().getEType(), talk.getType());
 			}
-			// init part
-			presenterSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Presenter());
-			basePart.initPresenter(presenterSettings);
-			// set the button mode
-			basePart.setPresenterButtonMode(ButtonsModeEnum.BROWSE);
-			// init part
-			creatorSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Creator());
-			basePart.initCreator(creatorSettings);
-			// set the button mode
-			basePart.setCreatorButtonMode(ButtonsModeEnum.BROWSE);
-			if (talk.getDocumentation() != null)
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.presenter)) {
+				// init part
+				presenterSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Presenter());
+				basePart.initPresenter(presenterSettings);
+				// set the button mode
+				basePart.setPresenterButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.creator)) {
+				// init part
+				creatorSettings = new EObjectFlatComboSettings(talk, ConferencePackage.eINSTANCE.getTalk_Creator());
+				basePart.initCreator(creatorSettings);
+				// set the button mode
+				basePart.setCreatorButtonMode(ButtonsModeEnum.BROWSE);
+			}
+			if (talk.getDocumentation() != null && isAccessible(ConferenceViewsRepository.Talk.Properties.documentation))
 				basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), talk.getDocumentation()));
 			// init filters
 			
@@ -189,6 +197,32 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.title_) {
+			return ConferencePackage.eINSTANCE.getTalk_Title();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.topic) {
+			return ConferencePackage.eINSTANCE.getTalk_Topic();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.type) {
+			return ConferencePackage.eINSTANCE.getTalk_Type();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.presenter) {
+			return ConferencePackage.eINSTANCE.getTalk_Presenter();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.creator) {
+			return ConferencePackage.eINSTANCE.getTalk_Creator();
+		}
+		if (editorKey == ConferenceViewsRepository.Talk.Properties.documentation) {
+			return ConferencePackage.eINSTANCE.getTalk_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
@@ -198,9 +232,9 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			talk.setTitle((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (ConferenceViewsRepository.Talk.Properties.topic == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				topicSettings.setToReference((Topic)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Topic eObject = ConferenceFactory.eINSTANCE.createTopic();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -217,9 +251,9 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			talk.setType((TALK_TYPE)event.getNewValue());
 		}
 		if (ConferenceViewsRepository.Talk.Properties.presenter == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				presenterSettings.setToReference((Person)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Person eObject = ConferenceFactory.eINSTANCE.createPerson();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -233,9 +267,9 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			}
 		}
 		if (ConferenceViewsRepository.Talk.Properties.creator == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET)  {
+			if (event.getKind() == PropertiesEditionEvent.SET) {
 				creatorSettings.setToReference((Person)event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				Person eObject = ConferenceFactory.eINSTANCE.createPerson();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(eObject, PropertiesEditingProvider.class);
@@ -258,25 +292,25 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TalkPropertiesEditionPart basePart = (TalkPropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getTalk_Title().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getTalk_Title().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.title_)) {
 				if (msg.getNewValue() != null) {
 					basePart.setTitle_(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setTitle_("");
 				}
 			}
-			if (ConferencePackage.eINSTANCE.getTalk_Topic().equals(msg.getFeature()) && basePart != null)
+			if (ConferencePackage.eINSTANCE.getTalk_Topic().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.topic))
 				basePart.setTopic((EObject)msg.getNewValue());
 			if (ConferencePackage.eINSTANCE.getTalk_Type().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Talk.Properties.type))
-				basePart.setType((Enumerator)msg.getNewValue());
+				basePart.setType((TALK_TYPE)msg.getNewValue());
 			
-			if (ConferencePackage.eINSTANCE.getTalk_Presenter().equals(msg.getFeature()) && basePart != null)
+			if (ConferencePackage.eINSTANCE.getTalk_Presenter().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.presenter))
 				basePart.setPresenter((EObject)msg.getNewValue());
-			if (ConferencePackage.eINSTANCE.getTalk_Creator().equals(msg.getFeature()) && basePart != null)
+			if (ConferencePackage.eINSTANCE.getTalk_Creator().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.creator))
 				basePart.setCreator((EObject)msg.getNewValue());
-			if (ConferencePackage.eINSTANCE.getTalk_Documentation().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getTalk_Documentation().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.documentation)){
 				if (msg.getNewValue() != null) {
 					basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -42,6 +43,7 @@ public class ConferenceBasePropertiesEditionComponent extends SinglePartProperti
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,10 +69,10 @@ public class ConferenceBasePropertiesEditionComponent extends SinglePartProperti
 			final Conference conference = (Conference)elt;
 			final ConferencePropertiesEditionPart basePart = (ConferencePropertiesEditionPart)editingPart;
 			// init values
-			if (conference.getName() != null)
+			if (conference.getName() != null && isAccessible(ConferenceViewsRepository.Conference_.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), conference.getName()));
 			
-			if (conference.getOverview() != null)
+			if (conference.getOverview() != null && isAccessible(ConferenceViewsRepository.Conference_.Properties.overview))
 				basePart.setOverview(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), conference.getOverview()));
 			// init filters
 			
@@ -86,6 +88,20 @@ public class ConferenceBasePropertiesEditionComponent extends SinglePartProperti
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Conference_.Properties.name) {
+			return ConferencePackage.eINSTANCE.getConference_Name();
+		}
+		if (editorKey == ConferenceViewsRepository.Conference_.Properties.overview) {
+			return ConferencePackage.eINSTANCE.getConference_Overview();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -107,16 +123,16 @@ public class ConferenceBasePropertiesEditionComponent extends SinglePartProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConferencePropertiesEditionPart basePart = (ConferencePropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getConference_Name().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getConference_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Conference_.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (ConferencePackage.eINSTANCE.getConference_Overview().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getConference_Overview().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Conference_.Properties.overview)){
 				if (msg.getNewValue() != null) {
 					basePart.setOverview(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

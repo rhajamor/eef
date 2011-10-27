@@ -11,11 +11,13 @@
 package org.eclipse.emf.samples.conference.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -29,7 +31,6 @@ import org.eclipse.emf.samples.conference.Site;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.parts.SitePropertiesEditionPart;
 
-
 // End of user code
 
 /**
@@ -41,6 +42,7 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
+	
 	
 	/**
 	 * Default constructor
@@ -67,10 +69,10 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 			final Site site = (Site)elt;
 			final SitePropertiesEditionPart basePart = (SitePropertiesEditionPart)editingPart;
 			// init values
-			if (site.getName() != null)
+			if (site.getName() != null && isAccessible(ConferenceViewsRepository.Site.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), site.getName()));
 			
-			if (site.getDocumentation() != null)
+			if (site.getDocumentation() != null && isAccessible(ConferenceViewsRepository.Site.Properties.documentation))
 				basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), site.getDocumentation()));
 			// init filters
 			
@@ -86,6 +88,20 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Site.Properties.name) {
+			return ConferencePackage.eINSTANCE.getSite_Name();
+		}
+		if (editorKey == ConferenceViewsRepository.Site.Properties.documentation) {
+			return ConferencePackage.eINSTANCE.getSite_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -107,16 +123,16 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SitePropertiesEditionPart basePart = (SitePropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getSite_Name().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getSite_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Site.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setName("");
 				}
 			}
-			if (ConferencePackage.eINSTANCE.getSite_Documentation().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getSite_Documentation().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Site.Properties.documentation)){
 				if (msg.getNewValue() != null) {
 					basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

@@ -23,6 +23,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -107,7 +108,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence talkStep = new CompositionSequence();
+		CompositionSequence talkStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = talkStep.addStep(ConferenceViewsRepository.Talk.Properties.class);
 		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.title_);
 		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.topic);
@@ -212,6 +213,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 	protected Composite createTopicFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.TalkPropertiesEditionPart_TopicLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.topic, ConferenceViewsRepository.FORM_KIND));
 		topic = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.topic, ConferenceViewsRepository.FORM_KIND));
+		widgetFactory.adapt(topic);
 		topic.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData topicData = new GridData(GridData.FILL_HORIZONTAL);
 		topic.setLayoutData(topicData);
@@ -268,6 +270,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 	protected Composite createPresenterFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.TalkPropertiesEditionPart_PresenterLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.presenter, ConferenceViewsRepository.FORM_KIND));
 		presenter = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.presenter, ConferenceViewsRepository.FORM_KIND));
+		widgetFactory.adapt(presenter);
 		presenter.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData presenterData = new GridData(GridData.FILL_HORIZONTAL);
 		presenter.setLayoutData(presenterData);
@@ -297,6 +300,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 	protected Composite createCreatorFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
 		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.TalkPropertiesEditionPart_CreatorLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.creator, ConferenceViewsRepository.FORM_KIND));
 		creator = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.creator, ConferenceViewsRepository.FORM_KIND));
+		widgetFactory.adapt(creator);
 		creator.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData creatorData = new GridData(GridData.FILL_HORIZONTAL);
 		creator.setLayoutData(creatorData);
@@ -654,7 +658,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 		if (newValue != null) {
 			documentation.setText(newValue);
 		} else {
-			documentation.setText("");  //$NON-NLS-1$
+			documentation.setText(""); //$NON-NLS-1$
 		}
 	}
 

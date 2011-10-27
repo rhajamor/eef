@@ -11,12 +11,15 @@
 package org.eclipse.emf.samples.conference.parts.forms;
 
 // Start of user code for imports
+
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -88,7 +91,7 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence conference_Step = new CompositionSequence();
+		CompositionSequence conference_Step = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = conference_Step.addStep(ConferenceViewsRepository.Conference_.Properties.class);
 		propertiesStep.addStep(ConferenceViewsRepository.Conference_.Properties.name);
 		propertiesStep.addStep(ConferenceViewsRepository.Conference_.Properties.overview);
@@ -260,7 +263,7 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 		if (newValue != null) {
 			overview.setText(newValue);
 		} else {
-			overview.setText("");  //$NON-NLS-1$
+			overview.setText(""); //$NON-NLS-1$
 		}
 	}
 

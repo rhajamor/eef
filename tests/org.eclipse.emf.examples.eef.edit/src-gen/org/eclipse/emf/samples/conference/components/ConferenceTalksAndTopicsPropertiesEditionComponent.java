@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
@@ -59,6 +60,7 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 	 */
 	protected ReferencesTableSettings topicsSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -84,10 +86,14 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 			final Conference conference = (Conference)elt;
 			final TalksAndTopicsPropertiesEditionPart talksAndTopicsPart = (TalksAndTopicsPropertiesEditionPart)editingPart;
 			// init values
-			talksSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Talks());
-			talksAndTopicsPart.initTalks(talksSettings);
-			topicsSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Topics());
-			talksAndTopicsPart.initTopics(topicsSettings);
+			if (isAccessible(ConferenceViewsRepository.TalksAndTopics.talks)) {
+				talksSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Talks());
+				talksAndTopicsPart.initTalks(talksSettings);
+			}
+			if (isAccessible(ConferenceViewsRepository.TalksAndTopics.topics)) {
+				topicsSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Topics());
+				talksAndTopicsPart.initTopics(topicsSettings);
+			}
 			// init filters
 			talksAndTopicsPart.addFilterToTalks(new ViewerFilter() {
 			
@@ -135,13 +141,27 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.TalksAndTopics.talks) {
+			return ConferencePackage.eINSTANCE.getConference_Talks();
+		}
+		if (editorKey == ConferenceViewsRepository.TalksAndTopics.topics) {
+			return ConferencePackage.eINSTANCE.getConference_Topics();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Conference conference = (Conference)semanticObject;
 		if (ConferenceViewsRepository.TalksAndTopics.talks == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, talksSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -160,11 +180,13 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					talksSettings.removeFromReference((EObject) event.getNewValue());
+				talksSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				talksSettings.move(event.getNewIndex(), (Talk) event.getNewValue());
 			}
 		}
 		if (ConferenceViewsRepository.TalksAndTopics.topics == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, topicsSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -183,7 +205,9 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					topicsSettings.removeFromReference((EObject) event.getNewValue());
+				topicsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				topicsSettings.move(event.getNewIndex(), (Topic) event.getNewValue());
 			}
 		}
 	}
@@ -193,11 +217,11 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TalksAndTopicsPropertiesEditionPart talksAndTopicsPart = (TalksAndTopicsPropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getConference_Talks().equals(msg.getFeature()))
+			if (ConferencePackage.eINSTANCE.getConference_Talks().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.TalksAndTopics.talks))
 				talksAndTopicsPart.updateTalks();
-			if (ConferencePackage.eINSTANCE.getConference_Topics().equals(msg.getFeature()))
+			if (ConferencePackage.eINSTANCE.getConference_Topics().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.TalksAndTopics.topics))
 				talksAndTopicsPart.updateTopics();
 			
 		}

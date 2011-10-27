@@ -11,11 +11,13 @@
 package org.eclipse.emf.samples.conference.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
@@ -31,7 +33,6 @@ import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.parts.PresencePropertiesEditionPart;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-
 
 // End of user code
 
@@ -49,6 +50,7 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 	 * Settings for assists ReferencesTable
 	 */
 	private	ReferencesTableSettings assistsSettings;
+	
 	
 	/**
 	 * Default constructor
@@ -75,8 +77,10 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 			final Person person = (Person)elt;
 			final PresencePropertiesEditionPart presencePart = (PresencePropertiesEditionPart)editingPart;
 			// init values
-			assistsSettings = new ReferencesTableSettings(person, ConferencePackage.eINSTANCE.getPerson_Assists());
-			presencePart.initAssists(assistsSettings);
+			if (isAccessible(ConferenceViewsRepository.Presence.Talks.assists)) {
+				assistsSettings = new ReferencesTableSettings(person, ConferencePackage.eINSTANCE.getPerson_Assists());
+				presencePart.initAssists(assistsSettings);
+			}
 			// init filters
 			presencePart.addFilterToAssists(new ViewerFilter() {
 			
@@ -110,18 +114,31 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Presence.Talks.assists) {
+			return ConferencePackage.eINSTANCE.getPerson_Assists();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Person person = (Person)semanticObject;
 		if (ConferenceViewsRepository.Presence.Talks.assists == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				if (event.getNewValue() instanceof Talk) {
 					assistsSettings.addToReference((EObject) event.getNewValue());
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					assistsSettings.removeFromReference((EObject) event.getNewValue());
+				assistsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				assistsSettings.move(event.getNewIndex(), (Talk) event.getNewValue());
 			}
 		}
 	}
@@ -131,9 +148,9 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PresencePropertiesEditionPart presencePart = (PresencePropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getPerson_Assists().equals(msg.getFeature()))
+			if (ConferencePackage.eINSTANCE.getPerson_Assists().equals(msg.getFeature())  && isAccessible(ConferenceViewsRepository.Presence.Talks.assists))
 				presencePart.updateAssists();
 			
 		}

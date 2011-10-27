@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -46,6 +47,7 @@ public class TopicPropertiesEditionComponent extends SinglePartPropertiesEditing
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -71,13 +73,13 @@ public class TopicPropertiesEditionComponent extends SinglePartPropertiesEditing
 			final Topic topic = (Topic)elt;
 			final TopicPropertiesEditionPart basePart = (TopicPropertiesEditionPart)editingPart;
 			// init values
-			if (topic.getDescription() != null)
+			if (topic.getDescription() != null && isAccessible(ConferenceViewsRepository.Topic.Properties.description))
 				basePart.setDescription(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), topic.getDescription()));
 			
-			if (topic.getReferences() != null)
+			if (topic.getReferences() != null && isAccessible(ConferenceViewsRepository.Topic.Properties.references))
 				basePart.setReferences(topic.getReferences());
 			
-			if (topic.getDocumentation() != null)
+			if (topic.getDocumentation() != null && isAccessible(ConferenceViewsRepository.Topic.Properties.documentation))
 				basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), topic.getDocumentation()));
 			// init filters
 			
@@ -95,6 +97,23 @@ public class TopicPropertiesEditionComponent extends SinglePartPropertiesEditing
 
 
 
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Topic.Properties.description) {
+			return ConferencePackage.eINSTANCE.getTopic_Description();
+		}
+		if (editorKey == ConferenceViewsRepository.Topic.Properties.references) {
+			return ConferencePackage.eINSTANCE.getTopic_References();
+		}
+		if (editorKey == ConferenceViewsRepository.Topic.Properties.documentation) {
+			return ConferencePackage.eINSTANCE.getTopic_Documentation();
+		}
+		return super.associatedFeature(editorKey);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -122,23 +141,20 @@ public class TopicPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TopicPropertiesEditionPart basePart = (TopicPropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getTopic_Description().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getTopic_Description().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Topic.Properties.description)) {
 				if (msg.getNewValue() != null) {
 					basePart.setDescription(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					basePart.setDescription("");
 				}
 			}
-			if (ConferencePackage.eINSTANCE.getTopic_References().equals(msg.getFeature()) && basePart != null) {
-				if (msg.getEventType() == Notification.ADD) 
-					basePart.addToReferences(msg.getNewValue());
-				else if (msg.getEventType() == Notification.REMOVE) 
-					basePart.removeToReferences(msg.getOldValue());
+			if (ConferencePackage.eINSTANCE.getTopic_References().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Topic.Properties.references)) {
+				basePart.setReferences(((Topic)semanticObject).getReferences());
 			}
 			
-			if (ConferencePackage.eINSTANCE.getTopic_Documentation().equals(msg.getFeature()) && basePart != null){
+			if (ConferencePackage.eINSTANCE.getTopic_Documentation().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Topic.Properties.documentation)){
 				if (msg.getNewValue() != null) {
 					basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {

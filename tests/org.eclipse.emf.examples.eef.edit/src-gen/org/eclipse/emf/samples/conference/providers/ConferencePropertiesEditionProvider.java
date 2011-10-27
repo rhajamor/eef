@@ -69,7 +69,7 @@ public class ConferencePropertiesEditionProvider extends PropertiesEditingProvid
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof Conference) && (refinement == ConferenceBasePropertiesEditionComponent.class || refinement == ConferenceLocalisationPropertiesEditionComponent.class || refinement == ConferenceParticipantsPropertiesEditionComponent.class || refinement == ConferenceTalksAndTopicsPropertiesEditionComponent.class);
 	}
@@ -79,7 +79,7 @@ public class ConferencePropertiesEditionProvider extends PropertiesEditingProvid
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#provides(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.Class)
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
 		return (editingContext.getEObject() instanceof Conference) && ((ConferenceBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == ConferenceBasePropertiesEditionComponent.class) || (ConferenceLocalisationPropertiesEditionComponent.LOCALISATION_PART.equals(part) && refinement == ConferenceLocalisationPropertiesEditionComponent.class) || (ConferenceParticipantsPropertiesEditionComponent.PARTICIPANTS_PART.equals(part) && refinement == ConferenceParticipantsPropertiesEditionComponent.class) || (ConferenceTalksAndTopicsPropertiesEditionComponent.TALKSANDTOPICS_PART.equals(part) && refinement == ConferenceTalksAndTopicsPropertiesEditionComponent.class));
 	}
@@ -119,7 +119,7 @@ public class ConferencePropertiesEditionProvider extends PropertiesEditingProvid
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider#getPropertiesEditingComponent(org.eclipse.emf.eef.runtime.context.PropertiesEditingContext, java.lang.String, java.lang.String, java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Conference) {
 			if (ConferenceBasePropertiesEditionComponent.BASE_PART.equals(part)

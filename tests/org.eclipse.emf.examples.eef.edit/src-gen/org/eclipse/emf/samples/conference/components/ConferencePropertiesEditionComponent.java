@@ -11,6 +11,7 @@
 package org.eclipse.emf.samples.conference.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;

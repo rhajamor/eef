@@ -22,6 +22,7 @@ import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
@@ -90,7 +91,7 @@ public class ParticipantsPropertiesEditionPartForm extends CompositePropertiesEd
 	 * 
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
-		CompositionSequence participantsStep = new CompositionSequence();
+		CompositionSequence participantsStep = new BindingCompositionSequence(propertiesEditionComponent);
 		participantsStep.addStep(ConferenceViewsRepository.Participants.participants_);
 		
 		composer = new PartComposer(participantsStep) {

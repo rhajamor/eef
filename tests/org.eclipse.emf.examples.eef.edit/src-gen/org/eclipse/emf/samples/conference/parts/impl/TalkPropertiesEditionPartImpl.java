@@ -23,6 +23,7 @@ import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
@@ -50,7 +51,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
 
 // End of user code
 
@@ -102,7 +102,7 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 * 
 	 */
 	public void createControls(Composite view) { 
-		CompositionSequence talkStep = new CompositionSequence();
+		CompositionSequence talkStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = talkStep.addStep(ConferenceViewsRepository.Talk.Properties.class);
 		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.title_);
 		propertiesStep.addStep(ConferenceViewsRepository.Talk.Properties.topic);
@@ -636,7 +636,7 @@ public class TalkPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		if (newValue != null) {
 			documentation.setText(newValue);
 		} else {
-			documentation.setText("");  //$NON-NLS-1$
+			documentation.setText(""); //$NON-NLS-1$
 		}
 	}
 

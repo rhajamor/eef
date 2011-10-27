@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
@@ -53,6 +54,7 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 	 */
 	protected ReferencesTableSettings participantsSettings;
 	
+	
 	/**
 	 * Default constructor
 	 * 
@@ -78,8 +80,10 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 			final Conference conference = (Conference)elt;
 			final ParticipantsPropertiesEditionPart participantsPart = (ParticipantsPropertiesEditionPart)editingPart;
 			// init values
-			participantsSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Participants());
-			participantsPart.initParticipants(participantsSettings);
+			if (isAccessible(ConferenceViewsRepository.Participants.participants_)) {
+				participantsSettings = new ReferencesTableSettings(conference, ConferencePackage.eINSTANCE.getConference_Participants());
+				participantsPart.initParticipants(participantsSettings);
+			}
 			// init filters
 			participantsPart.addFilterToParticipants(new ViewerFilter() {
 			
@@ -110,13 +114,24 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
+	 */
+	public EStructuralFeature associatedFeature(Object editorKey) {
+		if (editorKey == ConferenceViewsRepository.Participants.participants_) {
+			return ConferencePackage.eINSTANCE.getConference_Participants();
+		}
+		return super.associatedFeature(editorKey);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 * 
 	 */
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Conference conference = (Conference)semanticObject;
 		if (ConferenceViewsRepository.Participants.participants_ == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD)  {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, participantsSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
 				if (provider != null) {
@@ -135,7 +150,9 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 					}
 				}
 			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-					participantsSettings.removeFromReference((EObject) event.getNewValue());
+				participantsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				participantsSettings.move(event.getNewIndex(), (Person) event.getNewValue());
 			}
 		}
 	}
@@ -145,9 +162,9 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ParticipantsPropertiesEditionPart participantsPart = (ParticipantsPropertiesEditionPart)editingPart;
-			if (ConferencePackage.eINSTANCE.getConference_Participants().equals(msg.getFeature()))
+			if (ConferencePackage.eINSTANCE.getConference_Participants().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Participants.participants_))
 				participantsPart.updateParticipants();
 			
 		}
