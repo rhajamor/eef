@@ -233,7 +233,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 		if (event.getAffectedEditor() == [pee.views->first().editorID()/]) {
 			return ([pee.name.toJavaIdentifier()/]Settings.getValue() == null) ? (event.getNewValue() != null) : (![pee.name.toJavaIdentifier()/]Settings.getValue().equals(event.getNewValue()));
 		}
-			[/for]		
+			[/for]
 		return super.shouldProcess(event);
 	}	
 [/if]
@@ -276,7 +276,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			[if (view.oclIsTypeOf(views::CustomView) and not peContext.associatedGenModel().useJMergeForUserCode)]
 			// [protected ('for updatePart body')]
 			
