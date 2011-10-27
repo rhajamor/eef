@@ -13,10 +13,6 @@
 [module customFormImpl('http://www.eclipse.org/emf/eef/views/1.0.0', 'http://www.eclipse.org/emf/eef/components/1.0.0', 'http://www.eclipse.org/emf/2002/Ecore') extends widgetFormImpl/]
 
 [import common /]
-[import naming /]
-[import viewCommon /]
-[comment I don't see a better way to get specific form services for the moment /]
-[import widgetFormImpl /]
 
 [template public widgetDeclaration(editor : CustomElementEditor) overrides widgetDeclaration]
 	[if (not editor.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
