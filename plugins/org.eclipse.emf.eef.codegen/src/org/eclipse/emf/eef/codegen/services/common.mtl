@@ -451,7 +451,7 @@ is
 [/template]
 
 [template public completePackage(ePackage : EPackage)]
-[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][ePackage.associatedGenPackage().basePackage/].[/if][ePackage.name/]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][ePackage.associatedGenPackage().basePackage/].[/if][ePackage.name.toJavaIdentifier()/]
 [/template]
 
 [template public eefPackage(eClassifier : EClassifier, basePackage : String)]
@@ -459,7 +459,7 @@ is
 [/template]
 
 [template public eefPackage(ePackage : EPackage, basePackage : String)]
-[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][basePackage/].[/if][ePackage.name/]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][basePackage/].[/if][ePackage.name.toJavaIdentifier()/]
 [/template]
 
 [template public qualifiedName(eClassifier : EClassifier)]

@@ -22,7 +22,7 @@
 [/template]
 
 [template public contextCompletePackage(peContext : PropertiesEditionContext)]
-[if ((not peContext.associatedGenContext().basePackage.oclIsUndefined()) and (peContext.associatedGenContext().basePackage.size() > 0))][peContext.associatedGenContext().basePackage/].[/if][peContext.model.ecorePackage.name/]
+[if ((not peContext.associatedGenContext().basePackage.oclIsUndefined()) and (peContext.associatedGenContext().basePackage.size() > 0))][peContext.associatedGenContext().basePackage/].[/if][peContext.model.ecorePackage.name.toJavaIdentifier()/]
 [/template]
 
 [template public vrPackage(repository : ViewsRepository) post (trim())]
