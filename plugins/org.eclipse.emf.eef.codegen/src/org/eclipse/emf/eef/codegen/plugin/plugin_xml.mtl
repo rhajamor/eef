@@ -23,14 +23,12 @@
  <plugin>
 
   <!-- EEF extensions -->
-  [for (ePackage : EPackage | editionContext.model.ecorePackage.eAllContents(EPackage)->including(editionContext.model.ecorePackage))]
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="[ePackage.nsURI/]"
-            class="[editionContext.providersPackage()/].[ePackage.pecPackageProviderClass()/]"
+            uri="[editionContext.model.ecorePackage.nsURI/]"
+            class="[editionContext.providersPackage()/].[editionContext.model.ecorePackage.pecPackageProviderClass()/]"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
-  [/for]
 [for (genViewRepository : GenViewsRepository | editionContext.associatedGenModel().viewsRepositories)]
    <extension
          point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
