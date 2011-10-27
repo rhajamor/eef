@@ -78,7 +78,7 @@ import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import [view.pepQualifiedInterface()/];
-[for (widget : Widget | view.eAllContents(ElementEditor).oclAsType(ElementEditor).representation->asSet()) ]
+[for (widget : Widget | view.eAllContents(ElementEditor).oclAsType(ElementEditor)->select(not representation.oclIsUndefined()).representation->asSet()) ]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
 [for (widget : Widget | view.eAllContents(Container).oclAsType(Container).representation->asSet()) ? (not widget.oclIsUndefined())]
@@ -124,7 +124,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 import [pec.model.qualifiedName(basePackage)/];
-import [pec.model.eefPackage(basePackage)/].parts.[view.pepInterface()/];
+import [view.pepQualifiedInterface()/];
 [/template]
 
 [template public FormPropertiesEdionPart(peContext : PropertiesEditionContext, basePackage : String)]
@@ -285,7 +285,7 @@ public class [view.pepFormClass()/] extends [view.partSuperclass()/] implements 
 	endif]
 	[file (fullFilePath(view), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
-package [view.partsFormPackage()/]
+package [view.partsFormPackage()/];
 
 [if (peContext.associatedGenModel().useJMergeForUserCode)]
 [pec.defaultMinimalImports(view, basePackage)/]
