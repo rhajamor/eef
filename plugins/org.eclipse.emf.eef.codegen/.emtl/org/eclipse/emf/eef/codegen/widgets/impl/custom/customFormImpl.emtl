@@ -13,9 +13,6 @@
     </input>
     <extends href="../../api/widgetFormImpl.emtl#/0"/>
     <imports href="../../../services/common.emtl#/0"/>
-    <imports href="../../../services/naming.emtl#/0"/>
-    <imports href="../../../services/viewCommon.emtl#/0"/>
-    <imports href="../../api/widgetFormImpl.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="widgetDeclaration" visibility="Public">
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;// "/>
@@ -406,18 +403,6 @@
           <references href="../../../services/common.emtl#/0/toMany"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="disambiguation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/disambiguation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="exclude">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
@@ -1830,1158 +1815,6 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
         </eParameters>
       </eOperations>
-      <eOperations name="contextPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contextPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="peContext">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="contextCompletePackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contextCompletePackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="peContext">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="vrPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="componentsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/componentsPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="subPECClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/subPECClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="subPECQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/subPECQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecQualifiedComponentSuperClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecQualifiedComponentSuperClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecComponentSuperClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecComponentSuperClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="providersPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/providersPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="providersPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/providersPackage.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecRootProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecRootProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecRootProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecRootProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecPackageProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="ePack">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecPackageProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderClass.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecPackageProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-        <eParameters name="ePackage">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsPackage.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partsImplPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsImplPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partsFormPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsFormPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepInterface">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepInterface"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepQualifiedInterface">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedInterface"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepQualifiedFormClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedFormClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepFormClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepFormClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepFormQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepFormQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partQualifiedSuperclass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partQualifiedSuperclass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSuperclass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partSuperclass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="vrClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="vrQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partsProviderPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsProviderPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pepQualifiedProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="repository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="messagesProperties">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProperties"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewsRepository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="messagesProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewsRepository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="messagesProviderPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProviderPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewsRepository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="qualifiedMessagesProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/qualifiedMessagesProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewsRepository">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewsRepository"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="groupKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/groupKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="group">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement"/>
-        </eParameters>
-        <eParameters name="containingView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement"/>
-        </eParameters>
-        <eParameters name="containingView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="propertiesPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/propertiesPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="propertySection">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/propertySection"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="qualifiedPropertySection">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/qualifiedPropertySection"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="contributorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contributorID"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editionContext">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionContext"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewClassifier">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewClassifier"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editionElementPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editionElementPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pee">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="metamodelFactory">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/metamodelFactory"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pee">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewPartConstant">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewPartConstant"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewIdentifier">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewIdentifier"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewElement">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.2"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="containerElement">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//Container"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.4"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="reference">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewReference"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="disambiguation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/disambiguation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="input">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="exclude">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclaration">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclaration"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="elementEditor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclarationForSubView">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForSubView"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclarationForReferencedView">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForReferencedView"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclarationForViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclarationForViewReferenceDelegate">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForViewReferenceDelegate"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genDeclarationForSubViews">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForSubViews"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="genImports">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genImports"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionStepName">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionStepName"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//IdentifiedElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="viewElement">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.2"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="containerElement">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//Container"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="reference">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewReference"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.4"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ElementEditor"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="additionalComponentFieldForModelNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/additionalComponentFieldForModelNavigation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editionElement">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="navigation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ModelNavigation"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="navigation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/CustomModelNavigation"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.2"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="navigation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/SimpleModelNavigation"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="navigation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ChainedModelNavigation"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partGetterAddSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterAddSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partGetterRemoveSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterRemoveSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partGetterEditSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterEditSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partGetterTableListSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterTableListSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSetterSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSetterAddSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterAddSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSetterRemoveSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterRemoveSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSetterUpdateSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterUpdateSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partSetter">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetter"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="editor">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="initViewRef">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewReference"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViews">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViews"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViewsDelegate">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViewsDelegate"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="initView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
       <eOperations name="manageImports">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -3431,144 +2264,6 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:SequenceType" href="../../../services/common.emtl#/3/Sequence(View)"/>
       </eOperations>
-      <eOperations name="componentsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/componentsPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="subPECClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/subPECClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="subPECQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/subPECQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="pecQualifiedComponentSuperClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecQualifiedComponentSuperClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecComponentSuperClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecComponentSuperClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="providersPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/providersPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecRootProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecRootProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecRootProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecRootProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="propertySection">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/propertySection"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="qualifiedPropertySection">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/qualifiedPropertySection"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ViewElement_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -3690,57 +2385,6 @@
         <eParameters name="pec">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
         </eParameters>
-      </eOperations>
-      <eOperations name="groupKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/groupKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="containingView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="containingView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genImports">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genImports"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
       <eOperations name="implementation">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -3870,288 +2514,6 @@
         </eAnnotations>
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
       </eOperations>
-      <eOperations name="partsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsPackage.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partsImplPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsImplPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partsFormPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsFormPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepInterface">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepInterface"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepQualifiedInterface">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedInterface"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepQualifiedFormClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedFormClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepFormClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepFormClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepFormQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepFormQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partQualifiedSuperclass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partQualifiedSuperclass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSuperclass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partSuperclass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="viewClassifier">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewClassifier"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="viewPartConstant">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewPartConstant"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewKey">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewKey"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="viewIdentifier">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/viewIdentifier"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclarationForSubView">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForSubView"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclarationForReferencedView">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForReferencedView"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclarationForViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclarationForViewReferenceDelegate">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForViewReferenceDelegate"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclarationForSubViews">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclarationForSubViews"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViewReference">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViewReference"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="initViewRef">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//ViewReference"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViews">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViews"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="elementEditorGetterSettersForSubViewsDelegate">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/elementEditorGetterSettersForSubViewsDelegate"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="initView">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-      </eOperations>
       <eOperations name="widgetDeclarationForViewReference">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4240,33 +2602,6 @@
           <references href="../../../services/common.emtl#/0/involvedPropertiesEditionElement.2"/>
         </eAnnotations>
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionElement"/>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="genDeclaration">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/genDeclaration"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.4"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
       <eOperations name="widgetDeclaration">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4369,120 +2704,6 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
         </eParameters>
       </eOperations>
-      <eOperations name="editionElementPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editionElementPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="metamodelFactory">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/metamodelFactory"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="additionalComponentFieldForModelNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/additionalComponentFieldForModelNavigation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="view">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/views/1.0.0#//View"/>
-        </eParameters>
-        <eParameters name="pec">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/components/1.0.0#//PropertiesEditionComponent"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="partGetterAddSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterAddSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partGetterRemoveSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterRemoveSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partGetterEditSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterEditSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partGetterTableListSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partGetterTableListSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSetterSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSetterAddSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterAddSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSetterRemoveSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterRemoveSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSetterUpdateSignature">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetterUpdateSignature"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partSetter">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/partSetter"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EPackage_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4572,15 +2793,6 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
-      <eOperations name="pecPackageProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertiesEditionContext_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4616,75 +2828,6 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
         </eParameters>
       </eOperations>
-      <eOperations name="contextPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contextPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="contextCompletePackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contextCompletePackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="providersPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/providersPackage.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecPackageProviderClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderClass.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pecPackageProviderQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pecPackageProviderQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="ePackage">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="propertiesPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/propertiesPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="contributorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/contributorID"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="basePackage">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ViewsRepository_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4707,105 +2850,6 @@
           <references href="../../../services/common.emtl#/0/associatedGenModel.1"/>
         </eAnnotations>
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/eef/generation/1.0.0#//EEFGenModel"/>
-      </eOperations>
-      <eOperations name="vrPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partsPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="vrClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="vrQualifiedClass">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/vrQualifiedClass"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="partsProviderPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/partsProviderPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="pepQualifiedProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/pepQualifiedProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="messagesProperties">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProperties"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="messagesProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="messagesProviderPackage">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/messagesProviderPackage"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="qualifiedMessagesProvider">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/qualifiedMessagesProvider"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EClass_Class">
@@ -4837,24 +2881,6 @@
           <references href="../../../services/common.emtl#/0/needBeGenerated"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-      </eOperations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.4"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
       <eOperations name="widgetDeclaration">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -4998,15 +3024,6 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
-      <eOperations name="compositionStepName">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionStepName"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleModelNavigation_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5045,15 +3062,6 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../../../services/common.emtl#/0/simpleModelNavigationMetamodelFactory"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.2"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
@@ -5214,71 +3222,6 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Container_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/emf/eef/views/1.0.0#//Container"/>
-      </eAnnotations>
-      <eOperations name="editorID">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/naming.emtl#/0/editorID.2"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="compositionSequence">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/compositionSequence.2"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelNavigation_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ModelNavigation"/>
-      </eAnnotations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CustomModelNavigation_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/CustomModelNavigation"/>
-      </eAnnotations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.1"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ChainedModelNavigation_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/emf/eef/mapping/1.0.0#//navigation/ChainedModelNavigation"/>
-      </eAnnotations>
-      <eOperations name="generateNavigation">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../../services/viewCommon.emtl#/0/generateNavigation.3"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Widget_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/emf/eef/views/1.0.0#//toolkits/Widget"/>
@@ -5344,184 +3287,184 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/widgetDeclaration">
-      <details key="start" value="875"/>
-      <details key="end" value="1169"/>
-      <details key="line" value="21"/>
+      <details key="start" value="727"/>
+      <details key="end" value="1021"/>
+      <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/widgetDeclaration/@body.0">
-      <details key="start" value="970"/>
-      <details key="end" value="1157"/>
-      <details key="line" value="22"/>
+      <details key="start" value="822"/>
+      <details key="end" value="1009"/>
+      <details key="line" value="18"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/widgetDeclaration/@body.0/@body.0">
-      <details key="start" value="1054"/>
-      <details key="end" value="1058"/>
-      <details key="line" value="23"/>
+      <details key="start" value="906"/>
+      <details key="end" value="910"/>
+      <details key="line" value="19"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/widgetDeclaration/@body.0/@body.1">
-      <details key="start" value="1058"/>
-      <details key="end" value="1150"/>
-      <details key="line" value="23"/>
+      <details key="start" value="910"/>
+      <details key="end" value="1002"/>
+      <details key="line" value="19"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/widgetDeclaration/@body.0/@body.1/@body.0">
-      <details key="start" value="1131"/>
-      <details key="end" value="1138"/>
-      <details key="line" value="24"/>
+      <details key="start" value="983"/>
+      <details key="end" value="990"/>
+      <details key="line" value="20"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/widgetDeclaration/@body.0/@body.1/@marker">
-      <details key="start" value="1070"/>
-      <details key="end" value="1129"/>
+      <details key="start" value="922"/>
+      <details key="end" value="981"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/widgetDeclaration/@body.0/@body.1/@marker/@source">
-      <details key="start" value="1070"/>
-      <details key="end" value="1097"/>
+      <details key="start" value="922"/>
+      <details key="end" value="949"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/widgetDeclaration/@body.0/@body.1/@marker/@source/@source">
-      <details key="start" value="1070"/>
-      <details key="end" value="1077"/>
+      <details key="start" value="922"/>
+      <details key="end" value="929"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/widgetDeclaration/@body.0/@body.1/@marker/@source/@argument.0">
-      <details key="start" value="1085"/>
-      <details key="end" value="1096"/>
+      <details key="start" value="937"/>
+      <details key="end" value="948"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/widgetDeclaration/@body.0/@body.1/@marker/@source/@argument.0/editor">
-      <details key="start" value="1085"/>
-      <details key="end" value="1091"/>
+      <details key="start" value="937"/>
+      <details key="end" value="943"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/widgetDeclaration/@body.0/@body.1/@marker/@argument.0">
-      <details key="start" value="1105"/>
-      <details key="end" value="1128"/>
+      <details key="start" value="957"/>
+      <details key="end" value="980"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/widgetDeclaration/@body.0/@body.2">
-      <details key="start" value="1150"/>
-      <details key="end" value="1151"/>
-      <details key="line" value="26"/>
+      <details key="start" value="1002"/>
+      <details key="end" value="1003"/>
+      <details key="line" value="22"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/widgetDeclaration/@body.0/@ifExpr">
-      <details key="start" value="974"/>
-      <details key="end" value="1052"/>
+      <details key="start" value="826"/>
+      <details key="end" value="904"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/widgetDeclaration/@body.0/@ifExpr/@source">
-      <details key="start" value="979"/>
-      <details key="end" value="1051"/>
+      <details key="start" value="831"/>
+      <details key="end" value="903"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/widgetDeclaration/@body.0/@ifExpr/@source/@source">
-      <details key="start" value="979"/>
-      <details key="end" value="1030"/>
+      <details key="start" value="831"/>
+      <details key="end" value="882"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/widgetDeclaration/@body.0/@ifExpr/@source/@source/@argument.0">
-      <details key="start" value="979"/>
-      <details key="end" value="1009"/>
+      <details key="start" value="831"/>
+      <details key="end" value="861"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/widgetDeclaration/@body.0/@ifExpr/@source/@source/@argument.0/editor">
-      <details key="start" value="979"/>
-      <details key="end" value="985"/>
+      <details key="start" value="831"/>
+      <details key="end" value="837"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/widgetDeclaration/editor">
-      <details key="start" value="910"/>
-      <details key="end" value="938"/>
-      <details key="line" value="21"/>
+      <details key="start" value="762"/>
+      <details key="end" value="790"/>
+      <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/implementation">
-      <details key="start" value="1171"/>
-      <details key="end" value="1461"/>
-      <details key="line" value="29"/>
+      <details key="start" value="1023"/>
+      <details key="end" value="1313"/>
+      <details key="line" value="25"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/implementation/@body.0">
-      <details key="start" value="1259"/>
-      <details key="end" value="1449"/>
-      <details key="line" value="30"/>
+      <details key="start" value="1111"/>
+      <details key="end" value="1301"/>
+      <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/implementation/@body.0/@body.0">
-      <details key="start" value="1343"/>
-      <details key="end" value="1348"/>
-      <details key="line" value="31"/>
+      <details key="start" value="1195"/>
+      <details key="end" value="1200"/>
+      <details key="line" value="27"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/implementation/@body.0/@body.1">
-      <details key="start" value="1348"/>
-      <details key="end" value="1443"/>
-      <details key="line" value="31"/>
+      <details key="start" value="1200"/>
+      <details key="end" value="1295"/>
+      <details key="line" value="27"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/implementation/@body.0/@body.1/@body.0">
-      <details key="start" value="1422"/>
-      <details key="end" value="1431"/>
-      <details key="line" value="32"/>
+      <details key="start" value="1274"/>
+      <details key="end" value="1283"/>
+      <details key="line" value="28"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/implementation/@body.0/@body.1/@marker">
-      <details key="start" value="1360"/>
-      <details key="end" value="1420"/>
+      <details key="start" value="1212"/>
+      <details key="end" value="1272"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/implementation/@body.0/@body.1/@marker/@source">
-      <details key="start" value="1360"/>
-      <details key="end" value="1386"/>
+      <details key="start" value="1212"/>
+      <details key="end" value="1238"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/implementation/@body.0/@body.1/@marker/@source/@source">
-      <details key="start" value="1360"/>
-      <details key="end" value="1366"/>
+      <details key="start" value="1212"/>
+      <details key="end" value="1218"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/implementation/@body.0/@body.1/@marker/@source/@argument.0">
-      <details key="start" value="1374"/>
-      <details key="end" value="1385"/>
+      <details key="start" value="1226"/>
+      <details key="end" value="1237"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/implementation/@body.0/@body.1/@marker/@source/@argument.0/editor">
-      <details key="start" value="1374"/>
-      <details key="end" value="1380"/>
+      <details key="start" value="1226"/>
+      <details key="end" value="1232"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/implementation/@body.0/@body.1/@marker/@argument.0">
-      <details key="start" value="1394"/>
-      <details key="end" value="1419"/>
+      <details key="start" value="1246"/>
+      <details key="end" value="1271"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/implementation/@body.0/@body.2">
-      <details key="start" value="1443"/>
-      <details key="end" value="1444"/>
-      <details key="line" value="34"/>
+      <details key="start" value="1295"/>
+      <details key="end" value="1296"/>
+      <details key="line" value="30"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/implementation/@body.0/@ifExpr">
-      <details key="start" value="1263"/>
-      <details key="end" value="1341"/>
+      <details key="start" value="1115"/>
+      <details key="end" value="1193"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/implementation/@body.0/@ifExpr/@source">
-      <details key="start" value="1268"/>
-      <details key="end" value="1340"/>
+      <details key="start" value="1120"/>
+      <details key="end" value="1192"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/implementation/@body.0/@ifExpr/@source/@source">
-      <details key="start" value="1268"/>
-      <details key="end" value="1319"/>
+      <details key="start" value="1120"/>
+      <details key="end" value="1171"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/implementation/@body.0/@ifExpr/@source/@source/@argument.0">
-      <details key="start" value="1268"/>
-      <details key="end" value="1298"/>
+      <details key="start" value="1120"/>
+      <details key="end" value="1150"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/implementation/@body.0/@ifExpr/@source/@source/@argument.0/editor">
-      <details key="start" value="1268"/>
-      <details key="end" value="1274"/>
+      <details key="start" value="1120"/>
+      <details key="end" value="1126"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/implementation/editor">
-      <details key="start" value="1203"/>
-      <details key="end" value="1231"/>
-      <details key="line" value="29"/>
+      <details key="start" value="1055"/>
+      <details key="end" value="1083"/>
+      <details key="line" value="25"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>
