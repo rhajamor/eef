@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
-import [if ((not peContext.associatedEMFGenModel(ePackage).basePackage.oclIsUndefined()) and (peContext.associatedEMFGenModel(ePackage).basePackage.size() > 0))][peContext.associatedEMFGenModel(ePackage).basePackage/].[/if][ePackage.name/].util.[ePackage.name.toJavaClassifier()/];
+import [if ((not peContext.associatedEMFGenModel(ePackage).basePackage.oclIsUndefined()) and (peContext.associatedEMFGenModel(ePackage).basePackage.size() > 0))][peContext.associatedEMFGenModel(ePackage).basePackage/].[/if][ePackage.name.toJavaIdentifier()/].util.[peContext.associatedEMFGenModel(ePackage).prefix/]AdapterFactory;
 [peContext.additionalImports()/]
 
 /**
