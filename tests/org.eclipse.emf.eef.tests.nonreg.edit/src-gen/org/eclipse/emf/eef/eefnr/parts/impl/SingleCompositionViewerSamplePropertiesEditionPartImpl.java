@@ -11,6 +11,7 @@
 package org.eclipse.emf.eef.eefnr.parts.impl;
 
 // Start of user code for imports
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -343,8 +344,8 @@ public class SingleCompositionViewerSamplePropertiesEditionPartImpl extends Comp
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

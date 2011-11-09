@@ -34,7 +34,7 @@ import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectStrictFilter;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -97,8 +97,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for multipleSampleForTableComposition
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToMultipleSampleForAdvancedTableComposition(new ViewerFilter() {
 			
@@ -113,8 +112,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for multipleSampleForAdvancedTableComposition
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToMultipleSampleForReferencesTable(new ViewerFilter() {
 			
@@ -129,8 +127,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for multipleSampleForReferencesTable
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToMultipleSampleForAdvancedReferencesTable(new ViewerFilter() {
 			
@@ -145,8 +142,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for multipleSampleForAdvancedReferencesTable
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToMultipleSampleForFlatReferencesTable(new ViewerFilter() {
 			
@@ -164,8 +160,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			});
 			basePart.addFilterToMultipleSampleForFlatReferencesTable(new EObjectStrictFilter(NavigationPackage.eINSTANCE.getOwner()));
 			// Start of user code for additional businessfilters for multipleSampleForFlatReferencesTables
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToSingleSampleForTableComposition(new ViewerFilter() {
 			
@@ -184,8 +179,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for singleSampleForTableComposition
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToSingleSampleForAdvancedTableComposition(new ViewerFilter() {
 			
@@ -204,8 +198,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for singleSampleForAdvancedTableComposition
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToSingleSampleForReferencesTable(new ViewerFilter() {
 			
@@ -223,8 +216,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			});
 			basePart.addFilterToSingleSampleForReferencesTable(new EObjectStrictFilter(NavigationPackage.eINSTANCE.getOwner()));
 			// Start of user code for additional businessfilters for singleSampleForReferencesTable
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToSingleSampleForAdvancedReferencesTable(new ViewerFilter() {
 			
@@ -242,8 +234,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			});
 			basePart.addFilterToSingleSampleForAdvancedReferencesTable(new EObjectStrictFilter(NavigationPackage.eINSTANCE.getOwner()));
 			// Start of user code for additional businessfilters for singleSampleForAdvancedReferencesTable
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			basePart.addFilterToSingleSampleForFlatReferencesTable(new ViewerFilter() {
 			
@@ -261,8 +252,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			});
 			basePart.addFilterToSingleSampleForFlatReferencesTable(new EObjectStrictFilter(NavigationPackage.eINSTANCE.getOwner()));
 			// Start of user code for additional businessfilters for singleSampleForFlatReferencesTable
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			
 			basePart.addFilterToSingleReferencesForEObjectFlatComboViewer(new ViewerFilter() {
@@ -278,8 +268,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			});
 			// Start of user code for additional businessfilters for singleReferenceForEObjectFlatComboViewer
-																																																																																																
-																																																																																																// End of user code
+			// End of user code
 			
 			
 			basePart.addFilterToSingleReferencesForAdvancedEObjectFlatComboViewer(new EObjectFilter(NavigationPackage.eINSTANCE.getOwner()));
@@ -334,7 +323,7 @@ public class SubtypeBasePropertiesEditionComponent extends SinglePartPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SubtypePropertiesEditionPart basePart = (SubtypePropertiesEditionPart)editingPart;
 			if (NavigationPackage.eINSTANCE.getSubtype_SpecialisedElement().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.Subtype.Specialisation.specialisedElement))
 				basePart.setSpecialisedElement((Boolean)msg.getNewValue());

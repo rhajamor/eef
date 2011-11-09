@@ -32,7 +32,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -107,8 +107,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 			});
 			basePart.addFilterToAdvancedreferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 			// Start of user code for additional businessfilters for advancedreferencestableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			basePart.addFilterToAdvancedreferencestableOptionalProperty(new ViewerFilter() {
 			
@@ -126,8 +125,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 			});
 			basePart.addFilterToAdvancedreferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 			// Start of user code for additional businessfilters for advancedreferencestableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -191,7 +189,7 @@ public class AdvancedReferencesTableSamplePropertiesEditionComponent extends Sin
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			AdvancedReferencesTableSamplePropertiesEditionPart basePart = (AdvancedReferencesTableSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAdvancedReferencesTableSample_AdvancedreferencestableRequiredProperty().equals(msg.getFeature())  && isAccessible(EefnrViewsRepository.AdvancedReferencesTableSample.Properties.advancedreferencestableRequiredProperty))
 				basePart.updateAdvancedreferencestableRequiredProperty();

@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -107,8 +107,7 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 			
 			});
 			// Start of user code for additional businessfilters for tablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
+			// End of user code
 			
 			basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
 			
@@ -123,8 +122,7 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 			
 			});
 			// Start of user code for additional businessfilters for tablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -216,7 +214,7 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TableCompositionExtensionEditorSamplePropertiesEditionPart basePart = (TableCompositionExtensionEditorSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getTableCompositionExtensionEditorSample_TablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty))
 				basePart.updateTablecompositionRequiredProperty();

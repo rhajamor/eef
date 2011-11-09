@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -107,8 +107,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 			
 			});
 			// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
 			
@@ -123,8 +122,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 			
 			});
 			// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -216,7 +214,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			AdvancedTableCompositionEditorSamplePropertiesEditionPart basePart = (AdvancedTableCompositionEditorSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAdvancedTableCompositionEditorSample_AdvancedtablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty))
 				basePart.updateAdvancedtablecompositionRequiredProperty();

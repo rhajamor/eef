@@ -8,15 +8,23 @@ Bundle-Activator: org.eclipse.emf.eef.eefnr.provider.EefnrEditPlugin$Implementat
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.emf.eef.eefnr.navigation.provider,
+Export-Package: org.eclipse.emf.eef.eefnr.filters.provider,
+ org.eclipse.emf.eef.eefnr.filters.providers,
+ org.eclipse.emf.eef.eefnr.interface_.provider,
+ org.eclipse.emf.eef.eefnr.interface_.providers,
+ org.eclipse.emf.eef.eefnr.naming.provider,
+ org.eclipse.emf.eef.eefnr.navigation.provider,
  org.eclipse.emf.eef.eefnr.navigation.providers,
- org.eclipse.emf.eef.eefnr.parts,
  org.eclipse.emf.eef.eefnr.provider,
  org.eclipse.emf.eef.eefnr.providers,
  org.eclipse.emf.eef.eefnr.references.provider,
  org.eclipse.emf.eef.eefnr.references.providers,
  org.eclipse.emf.eef.eefnrext.provider,
  org.eclipse.emf.eef.eefnrext.providers,
+ org.eclipse.emf.eef.filters.providers,
+ org.eclipse.emf.eef.interface_.providers,
+ org.eclipse.emf.eef.naming.providers,
+ org.eclipse.emf.eef.navigation.providers,
  org.eclipse.emf.eef.references.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.eef.tests.nonreg;visibility:=reexport,

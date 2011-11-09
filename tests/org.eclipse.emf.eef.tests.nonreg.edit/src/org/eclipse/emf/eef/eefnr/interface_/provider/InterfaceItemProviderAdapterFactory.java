@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingItemProviderAdapterFactory.java,v 1.2.2.2 2011/08/18 13:17:46 glefur Exp $
+ * $Id: InterfaceItemProviderAdapterFactory.java,v 1.1.4.2 2011/11/09 10:08:53 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.naming.provider;
+package org.eclipse.emf.eef.eefnr.interface_.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.emf.eef.eefnr.naming.util.CustomNamingAdapterFactory;
+import org.eclipse.emf.eef.eefnr.interface_.util.InterfaceAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -36,7 +36,7 @@ import org.eclipse.emf.eef.eefnr.naming.util.CustomNamingAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CustomNamingItemProviderAdapterFactory extends CustomNamingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class InterfaceItemProviderAdapterFactory extends InterfaceAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class CustomNamingItemProviderAdapterFactory extends CustomNamingAdapterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CustomNamingItemProviderAdapterFactory() {
+	public InterfaceItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -76,26 +76,26 @@ public class CustomNamingItemProviderAdapterFactory extends CustomNamingAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.naming.Event} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.interface_.SimpleSample} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EventItemProvider eventItemProvider;
+	protected SimpleSampleItemProvider simpleSampleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.naming.Event}.
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.interface_.SimpleSample}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createEventAdapter() {
-		if (eventItemProvider == null) {
-			eventItemProvider = new EventItemProvider(this);
+	public Adapter createSimpleSampleAdapter() {
+		if (simpleSampleItemProvider == null) {
+			simpleSampleItemProvider = new SimpleSampleItemProvider(this);
 		}
 
-		return eventItemProvider;
+		return simpleSampleItemProvider;
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class CustomNamingItemProviderAdapterFactory extends CustomNamingAdapterF
 	 * @generated
 	 */
 	public void dispose() {
-		if (eventItemProvider != null) eventItemProvider.dispose();
+		if (simpleSampleItemProvider != null) simpleSampleItemProvider.dispose();
 	}
 
 }

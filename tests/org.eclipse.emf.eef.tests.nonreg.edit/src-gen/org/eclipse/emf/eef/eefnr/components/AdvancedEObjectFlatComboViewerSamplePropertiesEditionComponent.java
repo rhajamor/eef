@@ -33,7 +33,7 @@ import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
-	
+
 
 // End of user code
 
@@ -50,12 +50,12 @@ public class AdvancedEObjectFlatComboViewerSamplePropertiesEditionComponent exte
 	/**
 	 * Settings for advancedeobjectflatcomboviewerRequiredProperty EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings advancedeobjectflatcomboviewerRequiredPropertySettings;
+	private EObjectFlatComboSettings advancedeobjectflatcomboviewerRequiredPropertySettings;
 	
 	/**
 	 * Settings for advancedeobjectflatcomboviewerOptionalProperty EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings advancedeobjectflatcomboviewerOptionalPropertySettings;
+	private EObjectFlatComboSettings advancedeobjectflatcomboviewerOptionalPropertySettings;
 	
 	
 	/**
@@ -172,7 +172,7 @@ public class AdvancedEObjectFlatComboViewerSamplePropertiesEditionComponent exte
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			AdvancedEObjectFlatComboViewerSamplePropertiesEditionPart basePart = (AdvancedEObjectFlatComboViewerSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAdvancedEObjectFlatComboViewerSample_AdvancedeobjectflatcomboviewerRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.AdvancedEObjectFlatComboViewerSample.Properties.advancedeobjectflatcomboviewerRequiredProperty))
 				basePart.setAdvancedeobjectflatcomboviewerRequiredProperty((EObject)msg.getNewValue());

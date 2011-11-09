@@ -124,7 +124,7 @@ public class ImageViewerSamplePropertiesEditionComponent extends SinglePartPrope
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ImageViewerSamplePropertiesEditionPart basePart = (ImageViewerSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.ImageViewerSample.Properties.imageviewerRequiredProperty)){
 				if (msg.getNewValue() != null) {

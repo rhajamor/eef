@@ -32,7 +32,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -107,8 +107,7 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 			});
 			basePart.addFilterToFlatreferencetableRequiredProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 			// Start of user code for additional businessfilters for flatreferencetableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			basePart.addFilterToFlatreferencetableOptionalProperty(new ViewerFilter() {
 			
@@ -126,8 +125,7 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 			});
 			basePart.addFilterToFlatreferencetableOptionalProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 			// Start of user code for additional businessfilters for flatreferencetableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -177,7 +175,7 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			FlatReferenceTableSamplePropertiesEditionPart basePart = (FlatReferenceTableSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getFlatReferencesTableSample_FlatreferencestableRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableRequiredProperty))
 				basePart.updateFlatreferencetableRequiredProperty();

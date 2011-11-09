@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.13 2011/05/10 21:16:35 glefur Exp $
+ $Id: plugin.xml,v 1.13.2.1 2011/11/09 10:08:52 sbouchet Exp $
 -->
 
 <plugin>
@@ -14,18 +14,6 @@
       <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/1.0.0"
             class="org.eclipse.emf.eef.eefnr.provider.EefnrItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
-            class="org.eclipse.emf.eef.eefnr.filters.provider.FiltersItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -60,6 +48,42 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.filters.provider.FiltersItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.naming.provider.CustomNamingItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.interface_.provider.InterfaceItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/extension/1.0.0"
             class="org.eclipse.emf.eef.eefnrext.provider.EefnrextItemProviderAdapterFactory"
             supportedTypes=
@@ -69,30 +93,48 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
-   
+
   <!-- EEF extensions -->
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/references/1.0.0"
-            class="org.eclipse.emf.eef.eefnr.providers.ReferencesEEFAdapterFactory"
+            class="org.eclipse.emf.eef.references.providers.ReferencesEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/navigation/1.0.0"
-            class="org.eclipse.emf.eef.eefnr.providers.NavigationEEFAdapterFactory"
+            class="org.eclipse.emf.eef.navigation.providers.NavigationEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
-            class="org.eclipse.emf.eef.eefnr.providers.FiltersEEFAdapterFactory"
+            class="org.eclipse.emf.eef.filters.providers.FiltersEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/emf/eef/nonreg/1.0.0"
             class="org.eclipse.emf.eef.eefnr.providers.EefnrEEFAdapterFactory"
+            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
+   </extension>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/extension/1.0.0"
+            class="org.eclipse.emf.eef.eefnrext.providers.EefnrextEEFAdapterFactory"
+            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
+   </extension>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0"
+            class="org.eclipse.emf.eef.interface_.providers.Interface_EEFAdapterFactory"
+            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
+   </extension>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"
+            class="org.eclipse.emf.eef.naming.providers.NamingEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension

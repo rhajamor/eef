@@ -113,7 +113,7 @@ public class ConcreteReferenceTargetSample2PropertiesEditionComponent extends Si
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConcreteReferenceTargetSample2PropertiesEditionPart basePart = (ConcreteReferenceTargetSample2PropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(FiltersViewsRepository.ConcreteReferenceTargetSample2.Properties.name)) {
 				if (msg.getNewValue() != null) {

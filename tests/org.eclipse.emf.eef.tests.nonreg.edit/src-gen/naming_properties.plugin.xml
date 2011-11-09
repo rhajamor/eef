@@ -46,6 +46,12 @@
             providerClass="org.eclipse.emf.eef.eefnr.navigation.providers.NamingPropertiesEditionPartProvider">
       </PropertiesEditionPartProvider>
    </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="org.eclipse.emf.eef.eefnr.interface_.providers.Interface_PropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
 
    <!-- Tabbed properties views extension -->
    <extension

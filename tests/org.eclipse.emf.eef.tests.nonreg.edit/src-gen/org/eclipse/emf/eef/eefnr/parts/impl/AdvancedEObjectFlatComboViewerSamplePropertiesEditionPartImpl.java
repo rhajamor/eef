@@ -38,7 +38,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 
-
 // End of user code
 
 /**
@@ -193,8 +192,8 @@ public class AdvancedEObjectFlatComboViewerSamplePropertiesEditionPartImpl exten
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

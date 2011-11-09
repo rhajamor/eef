@@ -10,9 +10,10 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.eefnr.parts;
 
-// Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
+
+// Start of user code for imports
 
 
 
@@ -78,7 +79,7 @@ public interface RadioSamplePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

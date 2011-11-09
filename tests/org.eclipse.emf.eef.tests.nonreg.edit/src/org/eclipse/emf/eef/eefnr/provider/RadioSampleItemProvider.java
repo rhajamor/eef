@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RadioSampleItemProvider.java,v 1.2 2010/02/02 10:03:56 nlepine Exp $
+ * $Id: RadioSampleItemProvider.java,v 1.2.8.1 2011/11/09 10:08:53 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.emf.eef.eefnr.ENUM_SAMPLE;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.RadioSample;
 

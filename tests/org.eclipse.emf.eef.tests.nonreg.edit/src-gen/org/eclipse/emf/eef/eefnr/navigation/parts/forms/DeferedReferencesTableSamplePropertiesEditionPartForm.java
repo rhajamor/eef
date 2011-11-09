@@ -248,7 +248,7 @@ public class DeferedReferencesTableSamplePropertiesEditionPartForm extends Compo
 							}
 							return ""; //$NON-NLS-1$
 						}
-						
+			
 			
 			// End of user code
 
@@ -361,8 +361,8 @@ public class DeferedReferencesTableSamplePropertiesEditionPartForm extends Compo
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

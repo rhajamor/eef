@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -52,12 +52,12 @@ public class EObjectFlatComboViewerSamplePropertiesEditionComponent extends Sing
 	/**
 	 * Settings for eobjectflatcomboviewerRequiredPropery EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings eobjectflatcomboviewerRequiredProperySettings;
+	private EObjectFlatComboSettings eobjectflatcomboviewerRequiredProperySettings;
 	
 	/**
 	 * Settings for eobjectflatcomboviewerOptionalPropery EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings eobjectflatcomboviewerOptionalProperySettings;
+	private EObjectFlatComboSettings eobjectflatcomboviewerOptionalProperySettings;
 	
 	
 	/**
@@ -113,8 +113,7 @@ public class EObjectFlatComboViewerSamplePropertiesEditionComponent extends Sing
 			
 			});
 			// Start of user code for additional businessfilters for eobjectflatcomboviewerRequiredPropery
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
+			// End of user code
 			
 			basePart.addFilterToEobjectflatcomboviewerOptionalPropery(new ViewerFilter() {
 			
@@ -129,8 +128,7 @@ public class EObjectFlatComboViewerSamplePropertiesEditionComponent extends Sing
 			
 			});
 			// Start of user code for additional businessfilters for eobjectflatcomboviewerOptionalPropery
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -204,7 +202,7 @@ public class EObjectFlatComboViewerSamplePropertiesEditionComponent extends Sing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			EObjectFlatComboViewerSamplePropertiesEditionPart basePart = (EObjectFlatComboViewerSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getEObjectFlatComboViewerSample_EobjectflatcomboviewerRequiredPropery().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.EObjectFlatComboViewerSample.Properties.eobjectflatcomboviewerRequiredPropery))
 				basePart.setEobjectflatcomboviewerRequiredPropery((EObject)msg.getNewValue());

@@ -41,7 +41,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 
-
 // End of user code
 
 /**
@@ -222,8 +221,8 @@ public class MultiValuedEditorSamplePropertiesEditionPartImpl extends CompositeP
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

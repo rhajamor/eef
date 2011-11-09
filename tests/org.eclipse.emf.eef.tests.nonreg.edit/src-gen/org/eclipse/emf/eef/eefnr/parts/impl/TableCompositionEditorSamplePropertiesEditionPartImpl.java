@@ -52,7 +52,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TableColumn;
 
 
-
 // End of user code
 
 /**
@@ -175,20 +174,20 @@ public class TableCompositionEditorSamplePropertiesEditionPartImpl extends Compo
 		tablecompositionRequiredProperty.setContentProvider(new ArrayContentProvider());
 		tablecompositionRequiredProperty.setLabelProvider(new ITableLabelProvider() {
 			//Start of user code for label provider definition for TablecompositionRequiredProperty
-			public String getColumnText(Object object, int columnIndex) {
-				AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
-				if (object instanceof EObject) {
-					switch (columnIndex) {
-					case 0:
-						return labelProvider.getText(object);
-					}
-				}
-				return ""; //$NON-NLS-1$
-			}
-
-			public Image getColumnImage(Object element, int columnIndex) {
-				return null;
-			}
+						public String getColumnText(Object object, int columnIndex) {
+							AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+							if (object instanceof EObject) {
+								switch (columnIndex) {
+								case 0:
+									return labelProvider.getText(object);
+								}
+							}
+							return ""; //$NON-NLS-1$
+						}
+			
+						public Image getColumnImage(Object element, int columnIndex) {
+							return null;
+						}
 			
 			//End of user code
 
@@ -495,8 +494,8 @@ public class TableCompositionEditorSamplePropertiesEditionPartImpl extends Compo
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 

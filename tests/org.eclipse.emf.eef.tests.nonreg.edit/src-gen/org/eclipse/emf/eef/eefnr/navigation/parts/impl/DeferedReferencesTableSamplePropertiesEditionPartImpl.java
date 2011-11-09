@@ -58,7 +58,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 
-
 // End of user code
 
 /**
@@ -229,7 +228,7 @@ public class DeferedReferencesTableSamplePropertiesEditionPartImpl extends Compo
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table referencesTableSampleEditor s columns definition		
+		// Start of user code for table referencesTableSampleEditor s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -254,7 +253,7 @@ public class DeferedReferencesTableSamplePropertiesEditionPartImpl extends Compo
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -363,8 +362,8 @@ public class DeferedReferencesTableSamplePropertiesEditionPartImpl extends Compo
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -98,8 +98,7 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 			});
 			// Start of user code for additional businessfilters for samples
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -162,7 +161,7 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			RootPropertiesEditionPart basePart = (RootPropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getRoot_Samples().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.Root.Properties.samples))
 				basePart.updateSamples();

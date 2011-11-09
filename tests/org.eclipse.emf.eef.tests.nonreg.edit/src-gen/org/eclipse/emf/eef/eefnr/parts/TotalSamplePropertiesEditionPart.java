@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 
 
 
+
 // End of user code
 
 /**
@@ -798,6 +799,9 @@ public interface TotalSamplePropertiesEditionPart {
 
 
 
+	// Start of user code for CustomElementEditor specific getters and setters declaration
+	
+	// End of user code
 
 	/**
 	 * Returns the internationalized title text.
@@ -808,7 +812,7 @@ public interface TotalSamplePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

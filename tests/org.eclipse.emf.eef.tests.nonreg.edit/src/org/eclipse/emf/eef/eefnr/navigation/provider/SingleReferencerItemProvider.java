@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SingleReferencerItemProvider.java,v 1.2 2010/11/30 08:24:13 glefur Exp $
+ * $Id: SingleReferencerItemProvider.java,v 1.2.6.1 2011/11/09 10:08:53 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.provider;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -70,6 +71,10 @@ public class SingleReferencerItemProvider
 
 			addSingleReferenceForEObjectFlatComboViewerPropertyDescriptor(object);
 			addSingleReferenceForAdvancedEObjectFlatComboViewerPropertyDescriptor(object);
+			addBooleanAttributePropertyDescriptor(object);
+			addEenumAttributePropertyDescriptor(object);
+			addStringAttributePropertyDescriptor(object);
+			addListAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -114,6 +119,94 @@ public class SingleReferencerItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Boolean Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBooleanAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferencer_booleanAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferencer_booleanAttribute_feature", "_UI_SingleReferencer_type"),
+				 NavigationPackage.Literals.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Eenum Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEenumAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferencer_eenumAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferencer_eenumAttribute_feature", "_UI_SingleReferencer_type"),
+				 NavigationPackage.Literals.SINGLE_REFERENCER__EENUM_ATTRIBUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the String Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStringAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferencer_stringAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferencer_stringAttribute_feature", "_UI_SingleReferencer_type"),
+				 NavigationPackage.Literals.SINGLE_REFERENCER__STRING_ATTRIBUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the List Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addListAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferencer_listAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferencer_listAttribute_feature", "_UI_SingleReferencer_type"),
+				 NavigationPackage.Literals.SINGLE_REFERENCER__LIST_ATTRIBUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -173,7 +266,8 @@ public class SingleReferencerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SingleReferencer_type");
+		SingleReferencer singleReferencer = (SingleReferencer)object;
+		return getString("_UI_SingleReferencer_type") + " " + singleReferencer.isBooleanAttribute();
 	}
 
 	/**
@@ -188,6 +282,12 @@ public class SingleReferencerItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SingleReferencer.class)) {
+			case NavigationPackage.SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE:
+			case NavigationPackage.SINGLE_REFERENCER__EENUM_ATTRIBUTE:
+			case NavigationPackage.SINGLE_REFERENCER__STRING_ATTRIBUTE:
+			case NavigationPackage.SINGLE_REFERENCER__LIST_ATTRIBUTE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_SAMPLE_FOR_TABLE_COMPOSITION:
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_SAMPLE_FOR_ADVANCED_TABLE_COMPOSITION:
 			case NavigationPackage.SINGLE_REFERENCER__SINGLE_SAMPLE_FOR_REFERENCES_TABLE:

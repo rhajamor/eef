@@ -33,7 +33,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -99,8 +99,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 			});
 			basePart.addFilterToReference(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 			// Start of user code for additional businessfilters for reference
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+			// End of user code
 			
 			// init values for referenced views
 					basePart.getAbstractEnabledSampleReferencedView().setContext(elt, allResource);
@@ -150,7 +149,7 @@ public class ReferenceEnabledSampleBasePropertiesEditionComponent extends Single
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ReferenceEnabledSamplePropertiesEditionPart basePart = (ReferenceEnabledSamplePropertiesEditionPart)editingPart;
 			if (ReferencesPackage.eINSTANCE.getReferenceEnabledSample_Reference().equals(msg.getFeature())  && isAccessible(ReferencesViewsRepository.ReferenceEnabledSample.Properties.reference))
 				basePart.updateReference();

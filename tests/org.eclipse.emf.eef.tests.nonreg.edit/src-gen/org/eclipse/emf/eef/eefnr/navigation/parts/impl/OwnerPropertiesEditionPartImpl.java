@@ -77,7 +77,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 
-
 // End of user code
 
 /**
@@ -552,7 +551,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table multipleSampleForReferencesTable s columns definition		
+		// Start of user code for table multipleSampleForReferencesTable s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -577,7 +576,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -1035,7 +1034,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table singleSampleForReferencesTable s columns definition		
+		// Start of user code for table singleSampleForReferencesTable s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -1060,7 +1059,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -1193,7 +1192,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table singleSampleForAdvancedReferencesTable s columns definition		
+		// Start of user code for table singleSampleForAdvancedReferencesTable s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -1218,7 +1217,7 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -1454,8 +1453,8 @@ protected List<ViewerFilter> singleSampleForAdvancedTableCompositionFilters = ne
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**

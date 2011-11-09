@@ -143,7 +143,6 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 							}
 						});
 			// Start of user code for additional businessfilters for abstractTarget
-			
 			// End of user code
 			
 			basePart.addFilterToStrictTyping(new ViewerFilter() {
@@ -160,7 +159,6 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 			});
 			// FIXME default case for filter body generation.
 			// Start of user code for additional businessfilters for strictTyping
-			
 			// End of user code
 			
 			// init values for referenced views
@@ -246,7 +244,7 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConcreteReferenceOwnerSamplePropertiesEditionPart basePart = (ConcreteReferenceOwnerSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name)) {
 				if (msg.getNewValue() != null) {

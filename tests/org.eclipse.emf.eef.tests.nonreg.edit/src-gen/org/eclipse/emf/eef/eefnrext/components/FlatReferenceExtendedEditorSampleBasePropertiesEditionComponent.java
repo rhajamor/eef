@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -101,8 +101,7 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 			});
 			basePart.addFilterToFlatReferenceEditorSample(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getAbstractSample()));
 			// Start of user code for additional businessfilters for flatReferenceEditorSample
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															// End of user code
+			// End of user code
 			
 			// init values for referenced views
 					basePart.getCheckBoxExtendedEditorSampleReferencedView().setContext(elt, allResource);
@@ -147,7 +146,7 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			FlatReferenceExtendedEditorSamplePropertiesEditionPart basePart = (FlatReferenceExtendedEditorSamplePropertiesEditionPart)editingPart;
 			if (EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_FlatReferenceEditorSample().equals(msg.getFeature()) && isAccessible(EefnrextViewsRepository.FlatReferenceExtendedEditorSample.Properties.flatReferenceEditorSample))
 				basePart.updateFlatReferenceEditorSample();

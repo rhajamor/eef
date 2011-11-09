@@ -53,7 +53,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TableColumn;
 
 
-
 // End of user code
 
 /**
@@ -182,7 +181,7 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table referencestableRequiredProperty s columns definition		
+		// Start of user code for table referencestableRequiredProperty s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -207,7 +206,7 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -340,7 +339,7 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 		gd.verticalAlignment = GridData.FILL;
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
-		// Start of user code for table referencestableOptionalProperty s columns definition		
+		// Start of user code for table referencestableOptionalProperty s columns definition
 				TableColumn name = new TableColumn(table, SWT.NONE);
 				name.setWidth(80);
 				name.setText("Label"); //$NON-NLS-1$
@@ -365,7 +364,7 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 						public Image getColumnImage(Object element, int columnIndex) {
 							return null;
 						}
-						
+			
 			// End of user code
 
 			public void addListener(ILabelProviderListener listener) {
@@ -474,8 +473,8 @@ public class ReferencesTableSamplePropertiesEditionPartImpl extends CompositePro
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 

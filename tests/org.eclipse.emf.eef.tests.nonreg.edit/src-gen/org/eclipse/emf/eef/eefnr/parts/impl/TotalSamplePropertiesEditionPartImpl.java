@@ -81,7 +81,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 
-
 // End of user code
 
 /**
@@ -135,6 +134,10 @@ protected ReferencesTable advancedtablecompositionOptionalProperty;
 protected List<ViewerFilter> advancedtablecompositionOptionalPropertyBusinessFilters = new ArrayList<ViewerFilter>();
 protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = new ArrayList<ViewerFilter>();
 	protected Text name;
+	// Start of user code for CustomElementEditor widgets declarations
+	
+	// End of user code
+
 
 
 
@@ -198,6 +201,7 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty);
 		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.name);
+		propertiesStep.addStep(EefnrViewsRepository.TotalSample.Properties.customElementEditor);
 		
 		
 		composer = new PartComposer(totalSampleStep) {
@@ -282,6 +286,9 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 				if (key == EefnrViewsRepository.TotalSample.Properties.name) {
 					return createNameText(parent);
 				}
+				// Start of user code for CustomElementEditor addToPart creation
+		
+				// End of user code
 				return parent;
 			}
 		};
@@ -1639,8 +1646,8 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -2781,6 +2788,10 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 
 
 
+
+	// Start of user code for CustomElementEditor specific getters and setters implementation
+	
+	// End of user code
 
 
 	/**

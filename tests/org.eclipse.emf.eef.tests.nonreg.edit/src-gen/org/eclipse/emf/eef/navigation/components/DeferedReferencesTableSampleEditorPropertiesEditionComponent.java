@@ -35,7 +35,7 @@ import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-	
+
 
 // End of user code
 
@@ -102,8 +102,7 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 			
 			});
 			// Start of user code for additional businessfilters for flatReferencesTableSampleEditor
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -167,7 +166,7 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			DeferedReferencesTableSamplePropertiesEditionPart deferedReferencesTableSamplePart = (DeferedReferencesTableSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && deferedReferencesTableSamplePart != null && isAccessible(NavigationViewsRepository.DeferedReferencesTableSample.Properties.name)) {
 				if (msg.getNewValue() != null) {

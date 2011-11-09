@@ -84,6 +84,9 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_ni-uEBAFEd-ehv9sVb76fA" name="name" views="_rfj4YBAFEd-ehv9sVb76fA">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
         </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_pJjUcP8KEeCz1IgC8TOZNg" name="custom" views="_6FDeMP8IEeCz1IgC8TOZNg">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
+        </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample"/>
       </bindings>
       <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LHQwvEd-uP4lw9e0IMw" name="TextSample" views="_Fx_LYAwvEd-uP4lw9e0IMw">
@@ -550,6 +553,14 @@
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/naming"/>
   </eef-components:PropertiesEditionContext>
+  <eef-components:PropertiesEditionContext xmi:id="_I3xPPf8KEeCz1IgC8TOZNg" documentation="Edition Context for interface GenPackage">
+    <categories xmi:id="_I3xPPv8KEeCz1IgC8TOZNg" name="interface">
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_I3xPP_8KEeCz1IgC8TOZNg" name="SimpleSample" views="_dSRkcP8KEeCz1IgC8TOZNg">
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//interface/SimpleSample"/>
+      </bindings>
+    </categories>
+    <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/interface"/>
+  </eef-components:PropertiesEditionContext>
   <eef-views:ViewsRepository xmi:id="_Fx_LQQwvEd-uP4lw9e0IMw" documentation="Views repository for eefnr GenPackage" name="eefnr">
     <RepositoryKind>SWT</RepositoryKind>
     <RepositoryKind>Form</RepositoryKind>
@@ -640,6 +651,7 @@
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_rfj4YBAFEd-ehv9sVb76fA" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
           </elements>
+          <elements xsi:type="eef-views:CustomElementEditor" xmi:id="_6FDeMP8IEeCz1IgC8TOZNg" name="CustomElementEditor"/>
         </elements>
       </views>
       <views xmi:id="_Fx_LYAwvEd-uP4lw9e0IMw" name="TextSample">
@@ -1129,6 +1141,13 @@
           </elements>
         </elements>
       </views>
+    </categories>
+  </eef-views:ViewsRepository>
+  <eef-views:ViewsRepository xmi:id="_I3xPav8KEeCz1IgC8TOZNg" documentation="Views repository for interface GenPackage" name="interface">
+    <RepositoryKind>SWT</RepositoryKind>
+    <RepositoryKind>Form</RepositoryKind>
+    <categories xmi:id="_I3xPa_8KEeCz1IgC8TOZNg" name="interface">
+      <views xsi:type="eef-views:CustomView" xmi:id="_dSRkcP8KEeCz1IgC8TOZNg" name="SimpleSample"/>
     </categories>
   </eef-views:ViewsRepository>
 </xmi:XMI>
