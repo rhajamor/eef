@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConferenceFactoryImpl.java,v 1.4 2011/04/23 20:13:47 glefur Exp $
+ * $Id: ConferenceFactoryImpl.java,v 1.4.4.1 2011/11/09 10:09:17 sbouchet Exp $
  */
 package org.eclipse.emf.samples.conference.impl;
 
@@ -10,12 +10,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.samples.conference.*;
+import org.eclipse.emf.samples.conference.Conference;
+import org.eclipse.emf.samples.conference.ConferenceFactory;
+import org.eclipse.emf.samples.conference.ConferencePackage;
+import org.eclipse.emf.samples.conference.GENDER;
+import org.eclipse.emf.samples.conference.Person;
+import org.eclipse.emf.samples.conference.Room;
+import org.eclipse.emf.samples.conference.Site;
+import org.eclipse.emf.samples.conference.TALK_TYPE;
+import org.eclipse.emf.samples.conference.Talk;
+import org.eclipse.emf.samples.conference.Topic;
 
 /**
  * <!-- begin-user-doc -->
