@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactoryImpl.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
+ * $Id: NavigationFactoryImpl.java,v 1.4.6.2 2011/11/09 10:11:51 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.eef.eefnr.navigation.*;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReference;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReferenceTableEditorSample;

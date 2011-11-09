@@ -2,21 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferencesSwitch.java,v 1.2.6.1 2011/08/13 21:33:20 glefur Exp $
+ * $Id: ReferencesSwitch.java,v 1.2.6.2 2011/11/09 10:11:48 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.references.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
-
 import org.eclipse.emf.eef.eefnr.NamedElement;
-import org.eclipse.emf.eef.eefnr.references.*;
+import org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample;
+import org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample;
+import org.eclipse.emf.eef.eefnr.references.ReferencesPackage;
+import org.eclipse.emf.eef.eefnr.references.Tests;
 
 /**
  * <!-- begin-user-doc -->

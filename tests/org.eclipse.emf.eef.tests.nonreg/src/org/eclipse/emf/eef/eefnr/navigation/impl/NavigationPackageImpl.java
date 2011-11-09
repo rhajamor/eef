@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackageImpl.java,v 1.5.6.1 2011/08/13 21:33:20 glefur Exp $
+ * $Id: NavigationPackageImpl.java,v 1.5.6.2 2011/11/09 10:11:51 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -15,6 +16,8 @@ import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
+import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
+import org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl;
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
 import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
@@ -170,6 +173,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		ReferencesPackageImpl theReferencesPackage = (ReferencesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) instanceof ReferencesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI) : ReferencesPackage.eINSTANCE);
 		FiltersPackageImpl theFiltersPackage = (FiltersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) instanceof FiltersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI) : FiltersPackage.eINSTANCE);
 		CustomNamingPackageImpl theCustomNamingPackage = (CustomNamingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) instanceof CustomNamingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CustomNamingPackage.eNS_URI) : CustomNamingPackage.eINSTANCE);
+		InterfacePackageImpl theInterfacePackage = (InterfacePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InterfacePackage.eNS_URI) instanceof InterfacePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InterfacePackage.eNS_URI) : InterfacePackage.eINSTANCE);
 		EefnrextPackageImpl theEefnrextPackage = (EefnrextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) instanceof EefnrextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EefnrextPackage.eNS_URI) : EefnrextPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -178,6 +182,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		theReferencesPackage.createPackageContents();
 		theFiltersPackage.createPackageContents();
 		theCustomNamingPackage.createPackageContents();
+		theInterfacePackage.createPackageContents();
 		theEefnrextPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -186,6 +191,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		theReferencesPackage.initializePackageContents();
 		theFiltersPackage.initializePackageContents();
 		theCustomNamingPackage.initializePackageContents();
+		theInterfacePackage.initializePackageContents();
 		theEefnrextPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -445,6 +451,42 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSingleReferencer_BooleanAttribute() {
+		return (EAttribute)singleReferencerEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleReferencer_EenumAttribute() {
+		return (EAttribute)singleReferencerEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleReferencer_StringAttribute() {
+		return (EAttribute)singleReferencerEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleReferencer_ListAttribute() {
+		return (EAttribute)singleReferencerEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAnotherSubType() {
 		return anotherSubTypeEClass;
 	}
@@ -591,6 +633,10 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		createEReference(singleReferencerEClass, SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_EOBJECT_FLAT_COMBO_VIEWER);
 		createEReference(singleReferencerEClass, SINGLE_REFERENCER__SINGLE_CONTAINMENT_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER);
 		createEReference(singleReferencerEClass, SINGLE_REFERENCER__SINGLE_REFERENCE_FOR_ADVANCED_EOBJECT_FLAT_COMBO_VIEWER);
+		createEAttribute(singleReferencerEClass, SINGLE_REFERENCER__BOOLEAN_ATTRIBUTE);
+		createEAttribute(singleReferencerEClass, SINGLE_REFERENCER__EENUM_ATTRIBUTE);
+		createEAttribute(singleReferencerEClass, SINGLE_REFERENCER__STRING_ATTRIBUTE);
+		createEAttribute(singleReferencerEClass, SINGLE_REFERENCER__LIST_ATTRIBUTE);
 
 		anotherSubTypeEClass = createEClass(ANOTHER_SUB_TYPE);
 		createEAttribute(anotherSubTypeEClass, ANOTHER_SUB_TYPE__ANOTHER_SPECIALISATION);
@@ -680,6 +726,13 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		initEReference(getSingleReferencer_SingleReferenceForEObjectFlatComboViewer(), this.getOwner(), null, "singleReferenceForEObjectFlatComboViewer", null, 0, 1, SingleReferencer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferencer_SingleContainmentForAdvancedEObjectFlatComboViewer(), this.getOwner(), null, "singleContainmentForAdvancedEObjectFlatComboViewer", null, 0, 1, SingleReferencer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferencer_SingleReferenceForAdvancedEObjectFlatComboViewer(), this.getOwner(), null, "singleReferenceForAdvancedEObjectFlatComboViewer", null, 0, 1, SingleReferencer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSingleReferencer_BooleanAttribute(), ecorePackage.getEBoolean(), "booleanAttribute", null, 0, 1, SingleReferencer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSingleReferencer_EenumAttribute(), ecorePackage.getEEnumerator(), "eenumAttribute", null, 0, 1, SingleReferencer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSingleReferencer_StringAttribute(), ecorePackage.getEString(), "stringAttribute", null, 0, 1, SingleReferencer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getSingleReferencer_ListAttribute(), g1, "listAttribute", null, 0, 1, SingleReferencer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(anotherSubTypeEClass, AnotherSubType.class, "AnotherSubType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAnotherSubType_AnotherSpecialisation(), ecorePackage.getEBoolean(), "anotherSpecialisation", null, 0, 1, AnotherSubType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

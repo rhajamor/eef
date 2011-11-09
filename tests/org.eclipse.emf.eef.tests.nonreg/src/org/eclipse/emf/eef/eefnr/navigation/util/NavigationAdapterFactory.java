@@ -2,21 +2,28 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationAdapterFactory.java,v 1.4.6.1 2011/08/13 21:33:20 glefur Exp $
+ * $Id: NavigationAdapterFactory.java,v 1.4.6.2 2011/11/09 10:11:54 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.eef.eefnr.AbstractSample;
-
 import org.eclipse.emf.eef.eefnr.NamedElement;
-import org.eclipse.emf.eef.eefnr.navigation.*;
+import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
+import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
+import org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample;
+import org.eclipse.emf.eef.eefnr.navigation.DeferedReference;
+import org.eclipse.emf.eef.eefnr.navigation.DeferedReferenceTableEditorSample;
+import org.eclipse.emf.eef.eefnr.navigation.Element;
+import org.eclipse.emf.eef.eefnr.navigation.MultipleReferencer;
+import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
+import org.eclipse.emf.eef.eefnr.navigation.Owner;
+import org.eclipse.emf.eef.eefnr.navigation.SingleReferencer;
+import org.eclipse.emf.eef.eefnr.navigation.Subtype;
 
 /**
  * <!-- begin-user-doc -->

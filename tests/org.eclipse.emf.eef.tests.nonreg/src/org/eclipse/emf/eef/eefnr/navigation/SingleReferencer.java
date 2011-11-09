@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SingleReferencer.java,v 1.1 2010/11/24 21:50:53 glefur Exp $
+ * $Id: SingleReferencer.java,v 1.1.6.1 2011/11/09 10:11:45 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,6 +28,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getSingleReferenceForEObjectFlatComboViewer <em>Single Reference For EObject Flat Combo Viewer</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getSingleContainmentForAdvancedEObjectFlatComboViewer <em>Single Containment For Advanced EObject Flat Combo Viewer</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getSingleReferenceForAdvancedEObjectFlatComboViewer <em>Single Reference For Advanced EObject Flat Combo Viewer</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#isBooleanAttribute <em>Boolean Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getEenumAttribute <em>Eenum Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getStringAttribute <em>String Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getListAttribute <em>List Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -218,5 +223,109 @@ public interface SingleReferencer extends EObject {
 	 * @generated
 	 */
 	void setSingleReferenceForAdvancedEObjectFlatComboViewer(Owner value);
+
+	/**
+	 * Returns the value of the '<em><b>Boolean Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Boolean Attribute</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Boolean Attribute</em>' attribute.
+	 * @see #setBooleanAttribute(boolean)
+	 * @see org.eclipse.emf.eef.eefnr.navigation.NavigationPackage#getSingleReferencer_BooleanAttribute()
+	 * @model
+	 * @generated
+	 */
+	boolean isBooleanAttribute();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#isBooleanAttribute <em>Boolean Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Boolean Attribute</em>' attribute.
+	 * @see #isBooleanAttribute()
+	 * @generated
+	 */
+	void setBooleanAttribute(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Eenum Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Eenum Attribute</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Eenum Attribute</em>' attribute.
+	 * @see #setEenumAttribute(Enumerator)
+	 * @see org.eclipse.emf.eef.eefnr.navigation.NavigationPackage#getSingleReferencer_EenumAttribute()
+	 * @model transient="true"
+	 * @generated
+	 */
+	Enumerator getEenumAttribute();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getEenumAttribute <em>Eenum Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Eenum Attribute</em>' attribute.
+	 * @see #getEenumAttribute()
+	 * @generated
+	 */
+	void setEenumAttribute(Enumerator value);
+
+	/**
+	 * Returns the value of the '<em><b>String Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>String Attribute</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>String Attribute</em>' attribute.
+	 * @see #setStringAttribute(String)
+	 * @see org.eclipse.emf.eef.eefnr.navigation.NavigationPackage#getSingleReferencer_StringAttribute()
+	 * @model
+	 * @generated
+	 */
+	String getStringAttribute();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getStringAttribute <em>String Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>String Attribute</em>' attribute.
+	 * @see #getStringAttribute()
+	 * @generated
+	 */
+	void setStringAttribute(String value);
+
+	/**
+	 * Returns the value of the '<em><b>List Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>List Attribute</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>List Attribute</em>' attribute.
+	 * @see #setListAttribute(EList)
+	 * @see org.eclipse.emf.eef.eefnr.navigation.NavigationPackage#getSingleReferencer_ListAttribute()
+	 * @model many="false" transient="true"
+	 * @generated
+	 */
+	EList<?> getListAttribute();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.navigation.SingleReferencer#getListAttribute <em>List Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>List Attribute</em>' attribute.
+	 * @see #getListAttribute()
+	 * @generated
+	 */
+	void setListAttribute(EList<?> value);
 
 } // SingleReferencer

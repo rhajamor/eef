@@ -2,19 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingFactoryImpl.java,v 1.2.2.2 2011/08/18 13:17:16 glefur Exp $
+ * $Id: CustomNamingFactoryImpl.java,v 1.2.2.3 2011/11/09 10:11:43 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.eef.eefnr.naming.*;
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingFactory;
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
+import org.eclipse.emf.eef.eefnr.naming.Event;
 
 /**
  * <!-- begin-user-doc -->
