@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.parts.forms;
+package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
@@ -32,14 +32,12 @@ import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.parts.TalksAndTopicsPropertiesEditionPart;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.forms.widgets.Form;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
 
 
 // End of user code
@@ -48,14 +46,14 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class TalksAndTopicsPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, TalksAndTopicsPropertiesEditionPart {
+public class TalksAndTopicsPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TalksAndTopicsPropertiesEditionPart {
 
-	protected ReferencesTable talks;
-	protected List<ViewerFilter> talksBusinessFilters = new ArrayList<ViewerFilter>();
-	protected List<ViewerFilter> talksFilters = new ArrayList<ViewerFilter>();
-	protected ReferencesTable topics;
-	protected List<ViewerFilter> topicsBusinessFilters = new ArrayList<ViewerFilter>();
-	protected List<ViewerFilter> topicsFilters = new ArrayList<ViewerFilter>();
+protected ReferencesTable talks;
+protected List<ViewerFilter> talksBusinessFilters = new ArrayList<ViewerFilter>();
+protected List<ViewerFilter> talksFilters = new ArrayList<ViewerFilter>();
+protected ReferencesTable topics;
+protected List<ViewerFilter> topicsBusinessFilters = new ArrayList<ViewerFilter>();
+protected List<ViewerFilter> topicsFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -64,36 +62,34 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
 	 * 
 	 */
-	public TalksAndTopicsPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public TalksAndTopicsPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
-		Form form = scrolledForm.getForm();
-		view = form.getBody();
+	public Composite createFigure(final Composite parent) {
+		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		createControls(widgetFactory, view);
-		return scrolledForm;
+		createControls(view);
+		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public void createControls(final FormToolkit widgetFactory, Composite view) {
+	public void createControls(Composite view) { 
 		CompositionSequence talksAndTopicsStep = new BindingCompositionSequence(propertiesEditionComponent);
 		talksAndTopicsStep.addStep(ConferenceViewsRepository.TalksAndTopics.talks);
 		talksAndTopicsStep.addStep(ConferenceViewsRepository.TalksAndTopics.topics);
@@ -103,36 +99,37 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
 				if (key == ConferenceViewsRepository.TalksAndTopics.talks) {
-					return createTalksTableComposition(widgetFactory, parent);
+					return createTalksAdvancedTableComposition(parent);
 				}
 				if (key == ConferenceViewsRepository.TalksAndTopics.topics) {
-					return createTopicsTableComposition(widgetFactory, parent);
+					return createTopicsAdvancedTableComposition(parent);
 				}
 				return parent;
 			}
 		};
 		composer.compose(view);
 	}
+
 	/**
 	 * @param container
 	 * 
 	 */
-	protected Composite createTalksTableComposition(FormToolkit widgetFactory, Composite parent) {
+	protected Composite createTalksAdvancedTableComposition(Composite parent) {
 		this.talks = new ReferencesTable(ConferenceMessages.TalksAndTopicsPropertiesEditionPart_TalksLabel, new ReferencesTableListener() {
-			public void handleAdd() {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
+			public void handleAdd() { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				talks.refresh();
 			}
 			public void handleEdit(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
 				talks.refresh();
 			}
-			public void handleMove(EObject element, int oldIndex, int newIndex) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
+			public void handleMove(EObject element, int oldIndex, int newIndex) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
 				talks.refresh();
 			}
-			public void handleRemove(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
+			public void handleRemove(EObject element) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
 				talks.refresh();
 			}
 			public void navigateTo(EObject element) { }
@@ -140,13 +137,13 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 		for (ViewerFilter filter : this.talksFilters) {
 			this.talks.addFilter(filter);
 		}
-		this.talks.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.TalksAndTopics.talks, ConferenceViewsRepository.FORM_KIND));
-		this.talks.createControls(parent, widgetFactory);
+		this.talks.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.TalksAndTopics.talks, ConferenceViewsRepository.SWT_KIND));
+		this.talks.createControls(parent);
 		this.talks.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				if (e.item != null && e.item.getData() instanceof EObject) {
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.talks, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
 				}
 			}
 			
@@ -165,22 +162,22 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 	 * @param container
 	 * 
 	 */
-	protected Composite createTopicsTableComposition(FormToolkit widgetFactory, Composite parent) {
+	protected Composite createTopicsAdvancedTableComposition(Composite parent) {
 		this.topics = new ReferencesTable(ConferenceMessages.TalksAndTopicsPropertiesEditionPart_TopicsLabel, new ReferencesTableListener() {
-			public void handleAdd() {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
+			public void handleAdd() { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				topics.refresh();
 			}
 			public void handleEdit(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
 				topics.refresh();
 			}
-			public void handleMove(EObject element, int oldIndex, int newIndex) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
+			public void handleMove(EObject element, int oldIndex, int newIndex) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
 				topics.refresh();
 			}
-			public void handleRemove(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
+			public void handleRemove(EObject element) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
 				topics.refresh();
 			}
 			public void navigateTo(EObject element) { }
@@ -188,13 +185,13 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 		for (ViewerFilter filter : this.topicsFilters) {
 			this.topics.addFilter(filter);
 		}
-		this.topics.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.TalksAndTopics.topics, ConferenceViewsRepository.FORM_KIND));
-		this.topics.createControls(parent, widgetFactory);
+		this.topics.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.TalksAndTopics.topics, ConferenceViewsRepository.SWT_KIND));
+		this.topics.createControls(parent);
 		this.topics.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				if (e.item != null && e.item.getData() instanceof EObject) {
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartForm.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TalksAndTopicsPropertiesEditionPartImpl.this, ConferenceViewsRepository.TalksAndTopics.topics, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
 				}
 			}
 			
@@ -339,6 +336,9 @@ public class TalksAndTopicsPropertiesEditionPartForm extends CompositeProperties
 	public boolean isContainedInTopicsTable(EObject element) {
 		return ((ReferencesTableSettings)topics.getInput()).contains(element);
 	}
+
+
+
 
 
 

@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.parts.forms;
+package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
 import java.util.ArrayList;
@@ -18,16 +18,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
@@ -45,9 +45,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.Form;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
 
 
 // End of user code
@@ -56,12 +53,12 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, LocalisationPropertiesEditionPart {
+public class LocalisationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, LocalisationPropertiesEditionPart {
 
 	protected Text place;
-	protected ReferencesTable sites;
-	protected List<ViewerFilter> sitesBusinessFilters = new ArrayList<ViewerFilter>();
-	protected List<ViewerFilter> sitesFilters = new ArrayList<ViewerFilter>();
+protected ReferencesTable sites;
+protected List<ViewerFilter> sitesBusinessFilters = new ArrayList<ViewerFilter>();
+protected List<ViewerFilter> sitesFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -70,36 +67,34 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
 	 * 
 	 */
-	public LocalisationPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public LocalisationPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
-		Form form = scrolledForm.getForm();
-		view = form.getBody();
+	public Composite createFigure(final Composite parent) {
+		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		createControls(widgetFactory, view);
-		return scrolledForm;
+		createControls(view);
+		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public void createControls(final FormToolkit widgetFactory, Composite view) {
+	public void createControls(Composite view) { 
 		CompositionSequence localisationStep = new BindingCompositionSequence(propertiesEditionComponent);
 		localisationStep.addStep(ConferenceViewsRepository.Localisation.place);
 		localisationStep.addStep(ConferenceViewsRepository.Localisation.sites);
@@ -109,26 +104,28 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
 				if (key == ConferenceViewsRepository.Localisation.place) {
-					return 		createPlaceText(widgetFactory, parent);
+					return createPlaceText(parent);
 				}
 				if (key == ConferenceViewsRepository.Localisation.sites) {
-					return createSitesTableComposition(widgetFactory, parent);
+					return createSitesAdvancedTableComposition(parent);
 				}
 				return parent;
 			}
 		};
 		composer.compose(view);
 	}
+
 	
-	protected Composite createPlaceText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.LocalisationPropertiesEditionPart_PlaceLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Localisation.place, ConferenceViewsRepository.FORM_KIND));
-		place = widgetFactory.createText(parent, ""); //$NON-NLS-1$
-		place.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-		widgetFactory.paintBordersFor(parent);
+	protected Composite createPlaceText(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.LocalisationPropertiesEditionPart_PlaceLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Localisation.place, ConferenceViewsRepository.SWT_KIND));
+		place = new Text(parent, SWT.BORDER);
 		GridData placeData = new GridData(GridData.FILL_HORIZONTAL);
 		place.setLayoutData(placeData);
 		place.addFocusListener(new FocusAdapter() {
+
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 * 
 			 */
@@ -136,11 +133,15 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.place, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, place.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.place, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, place.getText()));
 			}
+
 		});
 		place.addKeyListener(new KeyAdapter() {
+
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 * 
 			 */
@@ -149,13 +150,14 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.place, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, place.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.place, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, place.getText()));
 				}
 			}
+
 		});
 		EditingUtils.setID(place, ConferenceViewsRepository.Localisation.place);
 		EditingUtils.setEEFtype(place, "eef::Text"); //$NON-NLS-1$
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Localisation.place, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Localisation.place, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -163,22 +165,22 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 	 * @param container
 	 * 
 	 */
-	protected Composite createSitesTableComposition(FormToolkit widgetFactory, Composite parent) {
+	protected Composite createSitesAdvancedTableComposition(Composite parent) {
 		this.sites = new ReferencesTable(ConferenceMessages.LocalisationPropertiesEditionPart_SitesLabel, new ReferencesTableListener() {
-			public void handleAdd() {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
+			public void handleAdd() { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				sites.refresh();
 			}
 			public void handleEdit(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
 				sites.refresh();
 			}
-			public void handleMove(EObject element, int oldIndex, int newIndex) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
+			public void handleMove(EObject element, int oldIndex, int newIndex) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
 				sites.refresh();
 			}
-			public void handleRemove(EObject element) {
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
+			public void handleRemove(EObject element) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
 				sites.refresh();
 			}
 			public void navigateTo(EObject element) { }
@@ -186,13 +188,13 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 		for (ViewerFilter filter : this.sitesFilters) {
 			this.sites.addFilter(filter);
 		}
-		this.sites.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Localisation.sites, ConferenceViewsRepository.FORM_KIND));
-		this.sites.createControls(parent, widgetFactory);
+		this.sites.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Localisation.sites, ConferenceViewsRepository.SWT_KIND));
+		this.sites.createControls(parent);
 		this.sites.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				if (e.item != null && e.item.getData() instanceof EObject) {
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartForm.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LocalisationPropertiesEditionPartImpl.this, ConferenceViewsRepository.Localisation.sites, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
 				}
 			}
 			
@@ -303,6 +305,9 @@ public class LocalisationPropertiesEditionPartForm extends CompositePropertiesEd
 	public boolean isContainedInSitesTable(EObject element) {
 		return ((ReferencesTableSettings)sites.getInput()).contains(element);
 	}
+
+
+
 
 
 

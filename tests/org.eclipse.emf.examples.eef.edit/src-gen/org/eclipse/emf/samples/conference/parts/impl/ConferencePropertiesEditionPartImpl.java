@@ -8,12 +8,12 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.parts.forms;
+package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
@@ -21,7 +21,7 @@ import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.samples.conference.parts.ConferencePropertiesEditionPart;
 import org.eclipse.emf.samples.conference.parts.ConferenceViewsRepository;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
@@ -33,12 +33,9 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.Form;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.eclipse.ui.forms.widgets.Section;
 
 
 // End of user code
@@ -47,7 +44,7 @@ import org.eclipse.ui.forms.widgets.Section;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class ConferencePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ConferencePropertiesEditionPart {
+public class ConferencePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ConferencePropertiesEditionPart {
 
 	protected Text name;
 	protected Text overview;
@@ -59,36 +56,34 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
 	 * 
 	 */
-	public ConferencePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public ConferencePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
-		Form form = scrolledForm.getForm();
-		view = form.getBody();
+	public Composite createFigure(final Composite parent) {
+		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		createControls(widgetFactory, view);
-		return scrolledForm;
+		createControls(view);
+		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public void createControls(final FormToolkit widgetFactory, Composite view) {
+	public void createControls(Composite view) { 
 		CompositionSequence conference_Step = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = conference_Step.addStep(ConferenceViewsRepository.Conference_.Properties.class);
 		propertiesStep.addStep(ConferenceViewsRepository.Conference_.Properties.name);
@@ -100,46 +95,46 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
 				if (key == ConferenceViewsRepository.Conference_.Properties.class) {
-					return createPropertiesGroup(widgetFactory, parent);
+					return createPropertiesGroup(parent);
 				}
 				if (key == ConferenceViewsRepository.Conference_.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(parent);
 				}
 				if (key == ConferenceViewsRepository.Conference_.Properties.overview) {
-					return createOverviewTextarea(widgetFactory, parent);
+					return createOverviewTextarea(parent);
 				}
 				return parent;
 			}
 		};
 		composer.compose(view);
 	}
+
 	/**
 	 * 
 	 */
-	protected Composite createPropertiesGroup(FormToolkit widgetFactory, final Composite parent) {
-		Section propertiesSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		propertiesSection.setText(ConferenceMessages.ConferencePropertiesEditionPart_PropertiesGroupLabel);
-		GridData propertiesSectionData = new GridData(GridData.FILL_HORIZONTAL);
-		propertiesSectionData.horizontalSpan = 3;
-		propertiesSection.setLayoutData(propertiesSectionData);
-		Composite propertiesGroup = widgetFactory.createComposite(propertiesSection);
+	protected Composite createPropertiesGroup(Composite parent) {
+		Group propertiesGroup = new Group(parent, SWT.NONE);
+		propertiesGroup.setText(ConferenceMessages.ConferencePropertiesEditionPart_PropertiesGroupLabel);
+		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
+		propertiesGroupData.horizontalSpan = 3;
+		propertiesGroup.setLayoutData(propertiesGroupData);
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		propertiesSection.setClient(propertiesGroup);
 		return propertiesGroup;
 	}
 
 	
-	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.ConferencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.FORM_KIND));
-		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
-		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-		widgetFactory.paintBordersFor(parent);
+	protected Composite createNameText(Composite parent) {
+		SWTUtils.createPartLabel(parent, ConferenceMessages.ConferencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.SWT_KIND));
+		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
+
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 * 
 			 */
@@ -147,11 +142,15 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartForm.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
+
 		});
 		name.addKeyListener(new KeyAdapter() {
+
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 * 
 			 */
@@ -160,23 +159,24 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartForm.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
+
 		});
 		EditingUtils.setID(name, ConferenceViewsRepository.Conference_.Properties.name);
 		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.name, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
 	
-	protected Composite createOverviewTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label overviewLabel = FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.ConferencePropertiesEditionPart_OverviewLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.FORM_KIND));
+	protected Composite createOverviewTextarea(Composite parent) {
+		Label overviewLabel = SWTUtils.createPartLabel(parent, ConferenceMessages.ConferencePropertiesEditionPart_OverviewLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.SWT_KIND));
 		GridData overviewLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		overviewLabelData.horizontalSpan = 3;
 		overviewLabel.setLayoutData(overviewLabelData);
-		overview = widgetFactory.createText(parent, "", SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL); //$NON-NLS-1$
+		overview = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData overviewData = new GridData(GridData.FILL_HORIZONTAL);
 		overviewData.horizontalSpan = 2;
 		overviewData.heightHint = 80;
@@ -192,13 +192,13 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartForm.this, ConferenceViewsRepository.Conference_.Properties.overview, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, overview.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConferencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Conference_.Properties.overview, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, overview.getText()));
 			}
 
 		});
 		EditingUtils.setID(overview, ConferenceViewsRepository.Conference_.Properties.overview);
 		EditingUtils.setEEFtype(overview, "eef::Textarea"); //$NON-NLS-1$
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Conference_.Properties.overview, ConferenceViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -264,6 +264,9 @@ public class ConferencePropertiesEditionPartForm extends CompositePropertiesEdit
 			overview.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
+
 
 
 

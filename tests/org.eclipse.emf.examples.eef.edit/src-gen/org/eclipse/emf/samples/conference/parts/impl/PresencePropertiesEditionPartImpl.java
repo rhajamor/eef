@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.parts.forms;
+package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
@@ -37,15 +37,13 @@ import org.eclipse.emf.samples.conference.parts.PresencePropertiesEditionPart;
 import org.eclipse.emf.samples.conference.providers.ConferenceMessages;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.forms.widgets.Form;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.swt.widgets.Group;
 
 
 // End of user code
@@ -54,11 +52,11 @@ import org.eclipse.ui.forms.widgets.Section;
  * @author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
  * 
  */
-public class PresencePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, PresencePropertiesEditionPart {
+public class PresencePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, PresencePropertiesEditionPart {
 
-		protected ReferencesTable assists;
-		protected List<ViewerFilter> assistsBusinessFilters = new ArrayList<ViewerFilter>();
-		protected List<ViewerFilter> assistsFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable assists;
+	protected List<ViewerFilter> assistsBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> assistsFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -67,36 +65,34 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
 	 * 
 	 */
-	public PresencePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
+	public PresencePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
-		Form form = scrolledForm.getForm();
-		view = form.getBody();
+	public Composite createFigure(final Composite parent) {
+		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		createControls(widgetFactory, view);
-		return scrolledForm;
+		createControls(view);
+		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 *  createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
 	 * 
 	 */
-	public void createControls(final FormToolkit widgetFactory, Composite view) {
+	public void createControls(Composite view) { 
 		CompositionSequence presenceStep = new BindingCompositionSequence(propertiesEditionComponent);
 		presenceStep
 			.addStep(ConferenceViewsRepository.Presence.Talks.class)
@@ -108,51 +104,50 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			public Composite addToPart(Composite parent, Object key) {
 				if (key == ConferenceViewsRepository.Presence.Talks.class) {
-					return createTalksGroup(widgetFactory, parent);
+					return createTalksGroup(parent);
 				}
 				if (key == ConferenceViewsRepository.Presence.Talks.assists) {
-					return createAssistsReferencesTable(widgetFactory, parent);
+					return createAssistsAdvancedReferencesTable(parent);
 				}
 				return parent;
 			}
 		};
 		composer.compose(view);
 	}
+
 	/**
 	 * 
 	 */
-	protected Composite createTalksGroup(FormToolkit widgetFactory, final Composite parent) {
-		Section talksSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		talksSection.setText(ConferenceMessages.PresencePropertiesEditionPart_TalksGroupLabel);
-		GridData talksSectionData = new GridData(GridData.FILL_HORIZONTAL);
-		talksSectionData.horizontalSpan = 3;
-		talksSection.setLayoutData(talksSectionData);
-		Composite talksGroup = widgetFactory.createComposite(talksSection);
+	protected Composite createTalksGroup(Composite parent) {
+		Group talksGroup = new Group(parent, SWT.NONE);
+		talksGroup.setText(ConferenceMessages.PresencePropertiesEditionPart_TalksGroupLabel);
+		GridData talksGroupData = new GridData(GridData.FILL_HORIZONTAL);
+		talksGroupData.horizontalSpan = 3;
+		talksGroup.setLayoutData(talksGroupData);
 		GridLayout talksGroupLayout = new GridLayout();
 		talksGroupLayout.numColumns = 3;
 		talksGroup.setLayout(talksGroupLayout);
-		talksSection.setClient(talksGroup);
 		return talksGroup;
 	}
 
 	/**
 	 * 
 	 */
-	protected Composite createAssistsReferencesTable(FormToolkit widgetFactory, Composite parent) {
-		this.assists = new ReferencesTable(ConferenceMessages.PresencePropertiesEditionPart_AssistsLabel, new ReferencesTableListener	() {
+	protected Composite createAssistsAdvancedReferencesTable(Composite parent) {
+		this.assists = new ReferencesTable(ConferenceMessages.PresencePropertiesEditionPart_AssistsLabel, new ReferencesTableListener() {
 			public void handleAdd() { addAssists(); }
 			public void handleEdit(EObject element) { editAssists(element); }
 			public void handleMove(EObject element, int oldIndex, int newIndex) { moveAssists(element, oldIndex, newIndex); }
 			public void handleRemove(EObject element) { removeFromAssists(element); }
 			public void navigateTo(EObject element) { }
 		});
-		this.assists.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Presence.Talks.assists, ConferenceViewsRepository.FORM_KIND));
-		this.assists.createControls(parent, widgetFactory);
+		this.assists.setHelpText(propertiesEditionComponent.getHelpContent(ConferenceViewsRepository.Presence.Talks.assists, ConferenceViewsRepository.SWT_KIND));
+		this.assists.createControls(parent);
 		this.assists.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				if (e.item != null && e.item.getData() instanceof EObject) {
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartForm.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
 				}
 			}
 			
@@ -176,7 +171,7 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 			public void process(IStructuredSelection selection) {
 				for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 					EObject elem = (EObject) iter.next();
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartForm.this, ConferenceViewsRepository.Presence.Talks.assists,
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Presence.Talks.assists,
 						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 				}
 				assists.refresh();
@@ -189,7 +184,7 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected void moveAssists(EObject element, int oldIndex, int newIndex) {
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartForm.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
 		assists.refresh();
 	}
 
@@ -197,7 +192,7 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected void removeFromAssists(EObject element) {
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartForm.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PresencePropertiesEditionPartImpl.this, ConferenceViewsRepository.Presence.Talks.assists, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
 		assists.refresh();
 	}
 
@@ -284,6 +279,9 @@ public class PresencePropertiesEditionPartForm extends CompositePropertiesEditio
 	public boolean isContainedInAssistsTable(EObject element) {
 		return ((ReferencesTableSettings)assists.getInput()).contains(element);
 	}
+
+
+
 
 
 

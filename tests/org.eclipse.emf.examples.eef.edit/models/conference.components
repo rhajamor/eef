@@ -239,6 +239,7 @@
           </elements>
         </elements>
       </views>
+      <views xsi:type="eef-views:CustomView" xmi:id="_YSXW8Pu_EeCzE9cv7aiBnw" name="customView"/>
     </categories>
   </eef-views:ViewsRepository>
 </xmi:XMI>
