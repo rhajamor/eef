@@ -2,20 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomNamingAdapterFactory.java,v 1.2.2.2 2011/08/18 13:17:16 glefur Exp $
+ * $Id: CustomNamingAdapterFactory.java,v 1.2.2.3 2011/11/09 10:11:44 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.naming.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.eef.eefnr.AbstractSample;
-
-import org.eclipse.emf.eef.eefnr.naming.*;
+import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
+import org.eclipse.emf.eef.eefnr.naming.Event;
 
 /**
  * <!-- begin-user-doc -->
