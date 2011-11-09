@@ -141,7 +141,7 @@ public class TopicPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TopicPropertiesEditionPart basePart = (TopicPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getTopic_Description().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Topic.Properties.description)) {
 				if (msg.getNewValue() != null) {

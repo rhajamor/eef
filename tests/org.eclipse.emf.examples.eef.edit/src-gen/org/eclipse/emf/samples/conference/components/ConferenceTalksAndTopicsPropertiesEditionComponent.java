@@ -108,8 +108,7 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 			
 			});
 			// Start of user code for additional businessfilters for talks
-																					
-																					// End of user code
+			// End of user code
 			
 			talksAndTopicsPart.addFilterToTopics(new ViewerFilter() {
 			
@@ -124,8 +123,7 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 			
 			});
 			// Start of user code for additional businessfilters for topics
-																					
-																					// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -217,7 +215,7 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TalksAndTopicsPropertiesEditionPart talksAndTopicsPart = (TalksAndTopicsPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getConference_Talks().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.TalksAndTopics.talks))
 				talksAndTopicsPart.updateTalks();

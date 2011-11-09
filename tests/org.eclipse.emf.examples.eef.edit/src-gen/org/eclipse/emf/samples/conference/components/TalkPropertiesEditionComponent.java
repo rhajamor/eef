@@ -14,7 +14,6 @@ package org.eclipse.emf.samples.conference.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -60,17 +59,17 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	/**
 	 * Settings for topic EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings topicSettings;
+	private EObjectFlatComboSettings topicSettings;
 	
 	/**
 	 * Settings for presenter EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings presenterSettings;
+	private EObjectFlatComboSettings presenterSettings;
 	
 	/**
 	 * Settings for creator EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings creatorSettings;
+	private EObjectFlatComboSettings creatorSettings;
 	
 	
 	/**
@@ -142,8 +141,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 			});
 			// Start of user code for additional businessfilters for topic
-																																										
-																																										// End of user code
+			// End of user code
 			
 			
 			basePart.addFilterToPresenter(new ViewerFilter() {
@@ -159,8 +157,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 			});
 			// Start of user code for additional businessfilters for presenter
-																																										
-																																										// End of user code
+			// End of user code
 			
 			basePart.addFilterToCreator(new ViewerFilter() {
 			
@@ -175,8 +172,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 			});
 			// Start of user code for additional businessfilters for creator
-																																										
-																																										// End of user code
+			// End of user code
 			
 			
 			// init values for referenced views
@@ -292,7 +288,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TalkPropertiesEditionPart basePart = (TalkPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getTalk_Title().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.title_)) {
 				if (msg.getNewValue() != null) {
@@ -304,7 +300,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			if (ConferencePackage.eINSTANCE.getTalk_Topic().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.topic))
 				basePart.setTopic((EObject)msg.getNewValue());
 			if (ConferencePackage.eINSTANCE.getTalk_Type().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Talk.Properties.type))
-				basePart.setType((Enumerator)msg.getNewValue());
+				basePart.setType((TALK_TYPE)msg.getNewValue());
 			
 			if (ConferencePackage.eINSTANCE.getTalk_Presenter().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Talk.Properties.presenter))
 				basePart.setPresenter((EObject)msg.getNewValue());

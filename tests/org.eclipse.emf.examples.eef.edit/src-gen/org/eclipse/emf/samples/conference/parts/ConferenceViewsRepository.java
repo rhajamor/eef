@@ -215,4 +215,14 @@ public class ConferenceViewsRepository {
 	
 	}
 
+	/**
+	 * customView view descriptor
+	 * 
+	 */
+	public static class CustomView {
+		// Start of user code for customView keys
+		
+		// End of user code
+	}
+
 }

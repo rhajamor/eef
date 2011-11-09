@@ -98,8 +98,7 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 			
 			});
 			// Start of user code for additional businessfilters for participants
-																					
-																					// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -162,7 +161,7 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ParticipantsPropertiesEditionPart participantsPart = (ParticipantsPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getConference_Participants().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Participants.participants_))
 				participantsPart.updateParticipants();

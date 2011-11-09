@@ -14,7 +14,6 @@ package org.eclipse.emf.samples.conference.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -172,7 +171,7 @@ public class PersonBasePropertiesEditionComponent extends SinglePartPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PersonPropertiesEditionPart basePart = (PersonPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getPerson_Firstname().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Person.Identity.firstname)) {
 				if (msg.getNewValue() != null) {
@@ -199,7 +198,7 @@ public class PersonBasePropertiesEditionComponent extends SinglePartPropertiesEd
 				basePart.setEclipseCommiter((Boolean)msg.getNewValue());
 			
 			if (ConferencePackage.eINSTANCE.getPerson_Gender().equals(msg.getFeature()) && isAccessible(ConferenceViewsRepository.Person.Identity.gender))
-				basePart.setGender((Enumerator)msg.getNewValue());
+				basePart.setGender((GENDER)msg.getNewValue());
 			
 			if (ConferencePackage.eINSTANCE.getPerson_IsRegistered().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Person.EclipseStatus.isRegistered))
 				basePart.setIsRegistered((Boolean)msg.getNewValue());

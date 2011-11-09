@@ -123,7 +123,7 @@ public class ConferenceBasePropertiesEditionComponent extends SinglePartProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConferencePropertiesEditionPart basePart = (ConferencePropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getConference_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Conference_.Properties.name)) {
 				if (msg.getNewValue() != null) {

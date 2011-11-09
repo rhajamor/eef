@@ -393,8 +393,8 @@ public class PersonPropertiesEditionPartForm extends CompositePropertiesEditionP
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -567,8 +567,7 @@ public class PersonPropertiesEditionPartForm extends CompositePropertiesEditionP
 	}
 
 	// Start of user code additional methods
-
-
+	
 	// End of user code
 
 

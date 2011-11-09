@@ -109,7 +109,6 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 			});
 			// Start of user code for additional businessfilters for rooms
-			
 			// End of user code
 			
 			// init values for referenced views
@@ -187,7 +186,7 @@ public class SitePropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SitePropertiesEditionPart basePart = (SitePropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getSite_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ConferenceViewsRepository.Site.Properties.name)) {
 				if (msg.getNewValue() != null) {

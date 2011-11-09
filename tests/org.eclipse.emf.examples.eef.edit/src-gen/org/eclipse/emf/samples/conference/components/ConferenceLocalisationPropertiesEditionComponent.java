@@ -106,8 +106,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 			
 			});
 			// Start of user code for additional businessfilters for sites
-																					
-																					// End of user code
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -177,7 +176,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			LocalisationPropertiesEditionPart localisationPart = (LocalisationPropertiesEditionPart)editingPart;
 			if (ConferencePackage.eINSTANCE.getConference_Place().equals(msg.getFeature()) && localisationPart != null && isAccessible(ConferenceViewsRepository.Localisation.place)) {
 				if (msg.getNewValue() != null) {
