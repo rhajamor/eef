@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.mapping.DocumentedElement;
-import org.eclipse.emf.eef.mapping.filters.*;
 import org.eclipse.emf.eef.mapping.filters.BindingFilter;
 import org.eclipse.emf.eef.mapping.filters.BusinessFilter;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
@@ -24,6 +23,7 @@ import org.eclipse.emf.eef.mapping.filters.JavaExpressionFilter;
 import org.eclipse.emf.eef.mapping.filters.JavaFilter;
 import org.eclipse.emf.eef.mapping.filters.OCLFilter;
 import org.eclipse.emf.eef.mapping.filters.OnlyReferenceTypeFilter;
+import org.eclipse.emf.eef.mapping.filters.StrictTypingFilter;
 
 /**
  * <!-- begin-user-doc -->

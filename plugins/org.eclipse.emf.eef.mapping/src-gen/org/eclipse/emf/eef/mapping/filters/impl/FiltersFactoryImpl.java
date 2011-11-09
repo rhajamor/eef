@@ -15,13 +15,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.eef.mapping.filters.*;
 import org.eclipse.emf.eef.mapping.filters.FiltersFactory;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
 import org.eclipse.emf.eef.mapping.filters.JavaDeclarationFilter;
 import org.eclipse.emf.eef.mapping.filters.JavaExpressionFilter;
 import org.eclipse.emf.eef.mapping.filters.OCLFilter;
 import org.eclipse.emf.eef.mapping.filters.OnlyReferenceTypeFilter;
+import org.eclipse.emf.eef.mapping.filters.StrictTypingFilter;
 
 /**
  * <!-- begin-user-doc -->
