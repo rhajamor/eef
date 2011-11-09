@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrModelWizard.java,v 1.1.8.1 2011/11/09 10:10:28 sbouchet Exp $
+ * $Id: FiltersModelWizard.java,v 1.1.2.1 2011/11/09 10:10:28 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.presentation;
+package org.eclipse.emf.eef.eefnr.filters.presentation;
 
 
 import java.util.ArrayList;
@@ -73,12 +73,14 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import org.eclipse.emf.eef.eefnr.EefnrFactory;
-import org.eclipse.emf.eef.eefnr.EefnrPackage;
+import org.eclipse.emf.eef.eefnr.filters.FiltersFactory;
+import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.provider.EefnrEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
+
+import org.eclipse.emf.eef.eefnr.presentation.EefnrEditorPlugin;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -95,7 +97,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EefnrModelWizard extends Wizard implements INewWizard {
+public class FiltersModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -103,7 +105,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -112,7 +114,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -120,7 +122,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EefnrPackage eefnrPackage = EefnrPackage.eINSTANCE;
+	protected FiltersPackage filtersPackage = FiltersPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -128,7 +130,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EefnrFactory eefnrFactory = eefnrPackage.getEefnrFactory();
+	protected FiltersFactory filtersFactory = filtersPackage.getFiltersFactory();
 
 	/**
 	 * This is the file creation page.
@@ -136,7 +138,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EefnrModelWizardNewFileCreationPage newFileCreationPage;
+	protected FiltersModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -144,7 +146,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EefnrModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected FiltersModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -180,7 +182,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(EefnrEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EefnrEditorPlugin.INSTANCE.getImage("full/wizban/NewEefnr")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EefnrEditorPlugin.INSTANCE.getImage("full/wizban/NewFilters")));
 	}
 
 	/**
@@ -192,7 +194,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : eefnrPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : filtersPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -212,8 +214,8 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)eefnrPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = eefnrFactory.create(eClass);
+		EClass eClass = (EClass)filtersPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = filtersFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -314,14 +316,14 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class EefnrModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class FiltersModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public EefnrModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public FiltersModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -361,7 +363,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class EefnrModelWizardInitialObjectCreationPage extends WizardPage {
+	public class FiltersModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -389,7 +391,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public EefnrModelWizardInitialObjectCreationPage(String pageId) {
+		public FiltersModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -399,7 +401,8 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -573,10 +576,10 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new EefnrModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrModelWizard_label"));
-		newFileCreationPage.setDescription(EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrModelWizard_description"));
-		newFileCreationPage.setFileName(EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new FiltersModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersModelWizard_label"));
+		newFileCreationPage.setDescription(EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersModelWizard_description"));
+		newFileCreationPage.setFileName(EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -602,7 +605,7 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -612,8 +615,8 @@ public class EefnrModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new EefnrModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(EefnrEditorPlugin.INSTANCE.getString("_UI_EefnrModelWizard_label"));
+		initialObjectCreationPage = new FiltersModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(EefnrEditorPlugin.INSTANCE.getString("_UI_FiltersModelWizard_label"));
 		initialObjectCreationPage.setDescription(EefnrEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

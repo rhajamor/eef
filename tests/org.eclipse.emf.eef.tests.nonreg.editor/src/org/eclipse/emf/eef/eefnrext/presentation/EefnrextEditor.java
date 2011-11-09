@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrextEditor.java,v 1.1 2010/04/15 12:48:51 glefur Exp $
+ * $Id: EefnrextEditor.java,v 1.1.8.1 2011/11/09 10:10:27 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnrext.presentation;
 
@@ -159,10 +159,15 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import org.eclipse.emf.eef.eefnrext.provider.EefnrextItemProviderAdapterFactory;
 
+import org.eclipse.emf.eef.eefnr.filters.provider.FiltersItemProviderAdapterFactory;
+import org.eclipse.emf.eef.eefnr.interface_.provider.InterfaceItemProviderAdapterFactory;
+import org.eclipse.emf.eef.eefnr.naming.provider.CustomNamingItemProviderAdapterFactory;
+import org.eclipse.emf.eef.eefnr.navigation.provider.NavigationItemProviderAdapterFactory;
 import org.eclipse.emf.eef.eefnr.presentation.EefnrEditorPlugin;
 
 import org.eclipse.emf.eef.eefnr.provider.EefnrItemProviderAdapterFactory;
 
+import org.eclipse.emf.eef.eefnr.references.provider.ReferencesItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -699,6 +704,11 @@ public class EefnrextEditor
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EefnrItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReferencesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new NavigationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new FiltersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CustomNamingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new InterfaceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EefnrextItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

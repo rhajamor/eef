@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrEditor.java,v 1.5.4.1 2011/11/09 10:10:28 sbouchet Exp $
+ * $Id: FiltersEditor.java,v 1.1.2.1 2011/11/09 10:10:28 sbouchet Exp $
  */
-package org.eclipse.emf.eef.eefnr.presentation;
+package org.eclipse.emf.eef.eefnr.filters.presentation;
 
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
@@ -26,80 +28,57 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.eef.eefnr.provider.EefnrItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnr.filters.provider.FiltersItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnr.interface_.provider.InterfaceItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnr.naming.provider.CustomNamingItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnr.navigation.provider.NavigationItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnr.references.provider.ReferencesItemProviderAdapterFactory;
-import org.eclipse.emf.eef.eefnrext.provider.EefnrextItemProviderAdapterFactory;
-import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
+
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.custom.CTabFolder;
+
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+
 import org.eclipse.swt.graphics.Point;
+
+import org.eclipse.swt.layout.FillLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
+
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -107,31 +86,105 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.SaveAsDialog;
+
 import org.eclipse.ui.ide.IGotoMarker;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
-import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheetPage;
+
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
+import org.eclipse.emf.eef.eefnr.filters.provider.FiltersItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnr.interface_.provider.InterfaceItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnr.naming.provider.CustomNamingItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnr.navigation.provider.NavigationItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnr.presentation.EefnrEditorPlugin;
+
+import org.eclipse.emf.eef.eefnr.provider.EefnrItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnr.references.provider.ReferencesItemProviderAdapterFactory;
+
+import org.eclipse.emf.eef.eefnrext.provider.EefnrextItemProviderAdapterFactory;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Eefnr model editor.
+ * This is an example of a Filters model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EefnrEditor
+public class FiltersEditor
 	extends MultiPageEditorPart
-	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, ITabbedPropertySheetPageContributor {
-	
-	
+	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -176,9 +229,9 @@ public class EefnrEditor
 	 * This is the property sheet page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected TabbedPropertySheetPage propertySheetPage;
+	protected PropertySheetPage propertySheetPage;
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
@@ -188,6 +241,56 @@ public class EefnrEditor
 	 * @generated
 	 */
 	protected TreeViewer selectionViewer;
+
+	/**
+	 * This inverts the roll of parent and child in the content provider and show parents as a tree.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TreeViewer parentViewer;
+
+	/**
+	 * This shows how a tree view works.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TreeViewer treeViewer;
+
+	/**
+	 * This shows how a list view works.
+	 * A list viewer doesn't support icons.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ListViewer listViewer;
+
+	/**
+	 * This shows how a table view works.
+	 * A table can be used as a list with icons.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TableViewer tableViewer;
+
+	/**
+	 * This shows how a tree view with columns works.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TreeViewer treeViewerWithColumns;
+
+	/**
+	 * This keeps track of the active viewer pane, in the book.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ViewerPane currentViewerPane;
 
 	/**
 	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer.
@@ -241,18 +344,18 @@ public class EefnrEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(EefnrEditor.this);
+						getActionBarContributor().setActiveEditor(FiltersEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(EefnrEditor.this);
+						getActionBarContributor().setActiveEditor(FiltersEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == EefnrEditor.this) {
+				else if (p == FiltersEditor.this) {
 					handleActivate();
 				}
 			}
@@ -310,11 +413,6 @@ public class EefnrEditor
 	 */
 	protected boolean updateProblemIndication = true;
 
-	/**
-	 * @generated NOT
-	 */
-	protected boolean isSaving = false;
-	
 	/**
 	 * Adapter used to update the problem indication when resources are demanded loaded.
 	 * <!-- begin-user-doc -->
@@ -420,7 +518,7 @@ public class EefnrEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(EefnrEditor.this, false);
+										 getSite().getPage().closeEditor(FiltersEditor.this, false);
 									 }
 								 }
 							 });
@@ -431,7 +529,7 @@ public class EefnrEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == EefnrEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == FiltersEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -463,7 +561,7 @@ public class EefnrEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(EefnrEditor.this, false);
+				getSite().getPage().closeEditor(FiltersEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -483,10 +581,10 @@ public class EefnrEditor
 	 * Handles what to do with changed resources on activation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || (!isSaving && handleDirtyConflict()))) {
+		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
 			if (isDirty()) {
 				changedResources.addAll(editingDomain.getResourceSet().getResources());
 			}
@@ -593,7 +691,7 @@ public class EefnrEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EefnrEditor() {
+	public FiltersEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -760,6 +858,21 @@ public class EefnrEditor
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCurrentViewerPane(ViewerPane viewerPane) {
+		if (currentViewerPane != viewerPane) {
+			if (currentViewerPane != null) {
+				currentViewerPane.showFocus(false);
+			}
+			currentViewerPane = viewerPane;
+		}
+		setCurrentViewer(currentViewerPane.getViewer());
+	}
+
+	/**
 	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus,
 	 * is the current one.
 	 * <!-- begin-user-doc -->
@@ -900,7 +1013,7 @@ public class EefnrEditor
 	 * This is the method used by the framework to install your own controls.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void createPages() {
@@ -913,21 +1026,204 @@ public class EefnrEditor
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			// Create a page for the selection tree view.
 			//
-			Tree tree = new Tree(getContainer(), SWT.MULTI);
-			selectionViewer = new TreeViewer(tree);
-			setCurrentViewer(selectionViewer);
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							Tree tree = new Tree(composite, SWT.MULTI);
+							TreeViewer newTreeViewer = new TreeViewer(tree);
+							return newTreeViewer;
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
 
-			selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-			selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-			selectionViewer.setInput(editingDomain.getResourceSet());
-			selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
-			selectionViewer.addDoubleClickListener(new OpenWizardOnDoubleClick(editingDomain, adapterFactory));
+				selectionViewer = (TreeViewer)viewerPane.getViewer();
+				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-			new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				selectionViewer.setInput(editingDomain.getResourceSet());
+				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+				viewerPane.setTitle(editingDomain.getResourceSet());
 
-			createContextMenuFor(selectionViewer);
-			int pageIndex = addPage(tree);
-			setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+
+				createContextMenuFor(selectionViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+			}
+
+			// Create a page for the parent tree view.
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							Tree tree = new Tree(composite, SWT.MULTI);
+							TreeViewer newTreeViewer = new TreeViewer(tree);
+							return newTreeViewer;
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+
+				parentViewer = (TreeViewer)viewerPane.getViewer();
+				parentViewer.setAutoExpandLevel(30);
+				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
+				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				createContextMenuFor(parentViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_ParentPage_label"));
+			}
+
+			// This is the page for the list viewer
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new ListViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+				listViewer = (ListViewer)viewerPane.getViewer();
+				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				createContextMenuFor(listViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_ListPage_label"));
+			}
+
+			// This is the page for the tree viewer
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TreeViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+				treeViewer = (TreeViewer)viewerPane.getViewer();
+				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
+
+				createContextMenuFor(treeViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_TreePage_label"));
+			}
+
+			// This is the page for the table viewer.
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TableViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+				tableViewer = (TableViewer)viewerPane.getViewer();
+
+				Table table = tableViewer.getTable();
+				TableLayout layout = new TableLayout();
+				table.setLayout(layout);
+				table.setHeaderVisible(true);
+				table.setLinesVisible(true);
+
+				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
+				layout.addColumnData(new ColumnWeightData(3, 100, true));
+				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setResizable(true);
+
+				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+				layout.addColumnData(new ColumnWeightData(2, 100, true));
+				selfColumn.setText(getString("_UI_SelfColumn_label"));
+				selfColumn.setResizable(true);
+
+				tableViewer.setColumnProperties(new String [] {"a", "b"});
+				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				createContextMenuFor(tableViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_TablePage_label"));
+			}
+
+			// This is the page for the table tree viewer.
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), FiltersEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TreeViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+
+				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
+
+				Tree tree = treeViewerWithColumns.getTree();
+				tree.setLayoutData(new FillLayout());
+				tree.setHeaderVisible(true);
+				tree.setLinesVisible(true);
+
+				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
+				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setResizable(true);
+				objectColumn.setWidth(250);
+
+				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
+				selfColumn.setText(getString("_UI_SelfColumn_label"));
+				selfColumn.setResizable(true);
+				selfColumn.setWidth(200);
+
+				treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"});
+				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				createContextMenuFor(treeViewerWithColumns);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
+			}
 
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {
@@ -1103,12 +1399,27 @@ public class EefnrEditor
 	 * This accesses a cached version of the property sheet.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		if (propertySheetPage == null) {
-			propertySheetPage = new TabbedPropertySheetPage(this);
+			propertySheetPage =
+				new ExtendedPropertySheetPage(editingDomain) {
+					@Override
+					public void setSelectionToViewer(List<?> selection) {
+						FiltersEditor.this.setSelectionToViewer(selection);
+						FiltersEditor.this.setFocus();
+					}
+
+					@Override
+					public void setActionBars(IActionBars actionBars) {
+						super.setActionBars(actionBars);
+						getActionBarContributor().shareGlobalActions(this, actionBars);
+					}
+				};
+			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
 		}
+
 		return propertySheetPage;
 	}
 
@@ -1119,22 +1430,34 @@ public class EefnrEditor
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
-		if (selectionViewer != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
 			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
 
-				ArrayList<Object> selectionList = new ArrayList<Object>();
-				selectionList.add(selectedElement);
-				while (selectedElements.hasNext()) {
-					selectionList.add(selectedElements.next());
-				}
-
-				// Set the selection to the widget.
+				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
-				selectionViewer.setSelection(new StructuredSelection(selectionList));
+				if (currentViewerPane.getViewer() == selectionViewer) {
+					ArrayList<Object> selectionList = new ArrayList<Object>();
+					selectionList.add(selectedElement);
+					while (selectedElements.hasNext()) {
+						selectionList.add(selectedElements.next());
+					}
+
+					// Set the selection to the widget.
+					//
+					selectionViewer.setSelection(new StructuredSelection(selectionList));
+				}
+				else {
+					// Set the input to the widget.
+					//
+					if (currentViewerPane.getViewer().getInput() != selectedElement) {
+						currentViewerPane.getViewer().setInput(selectedElement);
+						currentViewerPane.setTitle(selectedElement);
+					}
+				}
 			}
 		}
 	}
@@ -1154,8 +1477,7 @@ public class EefnrEditor
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 * Setting the isSaving boolean to prevent conflict during test saving.
+	 * @generated
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -1197,9 +1519,7 @@ public class EefnrEditor
 		try {
 			// This runs the options, and shows progress.
 			//
-			isSaving = true;
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
-			isSaving = false;
 
 			// Refresh the necessary state.
 			//
@@ -1329,7 +1649,12 @@ public class EefnrEditor
 	 */
 	@Override
 	public void setFocus() {
-		getControl(getActivePage()).setFocus();
+		if (currentViewerPane != null) {
+			currentViewerPane.setFocus();
+		}
+		else {
+			getControl(getActivePage()).setFocus();
+		}
 	}
 
 	/**
@@ -1506,16 +1831,6 @@ public class EefnrEditor
 	 * @generated
 	 */
 	protected boolean showOutlineView() {
-		return false;
+		return true;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()
-	 */
-	public String getContributorId() {
-		return "org.eclipse.emf.eef.eefnr.properties";
-	}
-	
-	
 }

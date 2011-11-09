@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrextModelWizard.java,v 1.1 2010/04/15 12:48:51 glefur Exp $
+ * $Id: EefnrextModelWizard.java,v 1.1.8.1 2011/11/09 10:10:27 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnrext.presentation;
 
@@ -295,7 +295,7 @@ public class EefnrextModelWizard extends Wizard implements INewWizard {
 			try {
 				page.openEditor
 					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), EefnrEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -401,8 +401,7 @@ public class EefnrextModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
