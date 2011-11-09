@@ -28,13 +28,13 @@
 /**
  * Settings for [editionElement.name/] EObjectFlatComboViewer
  */
-private	EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
+private EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
 
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForSingleReference())]
 if (event.getKind() == PropertiesEditionEvent.SET) {
-	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([editionElement.model.eType.name/])event.getNewValue());
+	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([if editionElement.model.eType.instanceTypeName.oclIsUndefined()][editionElement.model.eType.name/][else][editionElement.model.eType.instanceTypeName/][/if])event.getNewValue());
 } else if (event.getKind() == PropertiesEditionEvent.ADD) {
 	[if (editionElement.model.eType.oclIsTypeOf(EClass))]
 		[if (not editionElement.model.eType.oclAsType(EClass).abstract)]
@@ -86,7 +86,7 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
  * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
  */
 public boolean select(Viewer viewer, Object parentElement, Object element) {
-	return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
+	return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [if editionElement.model.eType.instanceTypeName.oclIsUndefined()][editionElement.model.eType.name/][else][editionElement.model.eType.instanceTypeName/][/if]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
 	}
 
 });
@@ -94,7 +94,8 @@ public boolean select(Viewer viewer, Object parentElement, Object element) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]
 
@@ -112,13 +113,13 @@ public boolean select(Viewer viewer, Object parentElement, Object element) {
 /**
  * Settings for [editionElement.name/] EObjectFlatComboViewer
  */
-private	EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
+private EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
 
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForContainmentNavigation())]
 if (event.getKind() == PropertiesEditionEvent.SET) {
-	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([editionElement.model.eType.name/])event.getNewValue());
+	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([if editionElement.model.eType.instanceTypeName.oclIsUndefined()][editionElement.model.eType.name/][else][editionElement.model.eType.instanceTypeName/][/if])event.getNewValue());
 } else if (event.getKind() == PropertiesEditionEvent.ADD) {
 	[if (editionElement.model.eType.oclIsTypeOf(EClass))]
 		[if (not editionElement.model.eType.oclAsType(EClass).abstract)]
@@ -170,7 +171,7 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
+		return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [if editionElement.model.eType.instanceTypeName.oclIsUndefined()][editionElement.model.eType.name/][else][editionElement.model.eType.instanceTypeName/][/if]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
 	}
 
 });
@@ -178,7 +179,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]
 
@@ -196,13 +198,13 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 /**
  * Settings for [editionElement.name/] EObjectFlatComboViewer
  */
-private	EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
+private EObjectFlatComboSettings [editionElement.name.toJavaIdentifier()/]Settings;
 
 [/template]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForContainment())]
 if (event.getKind() == PropertiesEditionEvent.SET) {
-	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([editionElement.model.eType.name/])event.getNewValue());
+	[editionElement.name.toJavaIdentifier()/]Settings.setToReference(([if editionElement.model.eType.instanceTypeName.oclIsUndefined()][editionElement.model.eType.name/][else][editionElement.model.eType.instanceTypeName/][/if])event.getNewValue());
 } else if (event.getKind() == PropertiesEditionEvent.ADD) {
 	[if (editionElement.model.eType.oclIsTypeOf(EClass))]
 		[if (not editionElement.model.eType.oclAsType(EClass).abstract)]

@@ -76,7 +76,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]
 
@@ -100,7 +101,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]
 
@@ -163,7 +165,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]
 
@@ -224,6 +227,7 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+// [protected ('for additional businessfilters for '.concat(editionElement.name))]
+// [/protected]
 [/if]
 [/template]

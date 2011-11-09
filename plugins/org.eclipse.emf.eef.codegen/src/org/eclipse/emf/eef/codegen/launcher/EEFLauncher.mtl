@@ -26,8 +26,6 @@
 [import org::eclipse::emf::eef::codegen::parts::PropertiesEditionPart /]
 [import org::eclipse::emf::eef::codegen::parts::FormPropertiesEditionPart /]
 [import org::eclipse::emf::eef::codegen::plugin::plugin_xml /]
-[import org::eclipse::emf::eef::codegen::plugin::GMF_Plugin_xml /]
-[import org::eclipse::emf::eef::codegen::properties::PropertySection /]
 
 [template public EEFLauncher(genModel : EEFGenModel)]
 [comment @main /]
@@ -48,13 +46,7 @@
 			[PropertiesEditionPart(peContext, basePackage)/]
 			[FormPropertiesEdionPart(peContext, basePackage)/]
 			
-			[let eObjects : Sequence(EObject) = peContext.model.ecorePackage.eAllContents()->select(oclIsKindOf(EPackage))->including(peContext.model.ecorePackage)]
-				[for (eObject : EObject | eObjects)]
-					[if (eObject.oclIsKindOf(EPackage))]
-						[PackagePropertiesEditionProvider(peContext, eObject.oclAsType(EPackage))/]
-					[/if]
-				[/for]
-			[/let]
+			[PackagePropertiesEditionProvider(peContext, peContext.model.ecorePackage)/]
 			
 			[comment][GMF_Plugin_xml(peContext, basePackage)/][/comment]
 			[comment][PropertySection(peContext, basePackage)/][/comment]

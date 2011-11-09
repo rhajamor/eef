@@ -16,20 +16,19 @@
 [import naming /]
 [import viewCommon /]
 
-
-[comment ====== Widgets implementation ====== /]
+[comment ===== Case DEFAULT = NEED TO BE THE LAST CHOICE ===== /]
 [template public manageImports(widget : Widget, pec : PropertiesEditionComponent, view : View, basePackage : String) /]
 
 [template public widgetDeclaration(editor : ElementEditor)]
-//FIXME INVALID CASE INTO template public widgetDeclaration(editor : ElementEditor) in viewFormUtils.mtl module
+// FIXME INVALID CASE you must override the template 'widgetDeclaration' for the case : [editor.name/].
 [/template]
 
 [template public implementation(editor : ViewElement)]
-//FIXME INVALID CASE INTO template public implementation(editor : ViewElement, pec : PropertiesEditionComponent) in viewUtils.mtl module
+// FIXME INVALID CASE you must override the template 'implementation' for the case : [editor.name/].
 [/template]
 
 [template public additionalImplementation(editor : ViewElement, pec : PropertiesEditionComponent, inputPEC : PropertiesEditionComponent)]
-//FIXME INVALID CASE INTO template public additionalImplementation(editor : ViewElement, pec : PropertiesEditionComponent, inputPEC : PropertiesEditionComponent) in viewUtils.mtl module
+// FIXME INVALID CASE you must override the template 'additionalImplementation' for the case : [editor.name/], [pec.name/], [inputPEC.name/].
 [/template]
 
 [comment ===== ViewReference support ===== /]

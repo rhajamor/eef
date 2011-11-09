@@ -66,7 +66,7 @@ import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import [view.pepQualifiedInterface()/];
-[for (widget : Widget | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor).representation->asSet()) ? (not widget.oclIsUndefined())]
+[for (widget : Widget | view.eAllContents(views::ElementEditor).oclAsType(views::ElementEditor)->select(not representation.oclIsUndefined()).representation->asSet()) ? (not widget.oclIsUndefined())]
 [widget.manageImports(pec, view, basePackage)/]
 [/for]
 [for (widget : Widget | view.eAllContents(views::Container).oclAsType(views::Container).representation->asSet()) ? (not widget.oclIsUndefined())]

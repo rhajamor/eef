@@ -42,10 +42,10 @@ public class [viewRepository.vrClass()/] {
  Template used to call recursively on the viewRepository to get views
  /]
 [template public viewDescriptors(viewRepository : ViewsRepository)]
-[for (view : View | viewRepository.views)]
+[for (view : View | viewRepository.views) separator ('\n')]
 [view.viewDescriptor()/]
 [/for]
-[for (category : Category | viewRepository.eAllContents(views::Category))]
+[for (category : Category | viewRepository.eAllContents(views::Category)) separator ('\n')]
 [for (view : View |category.views )]
 [view.viewDescriptor()/]
 [/for]
@@ -81,7 +81,7 @@ public class [viewRepository.vrClass()/] {
 public static String [viewElement.oclAsType(views::ElementEditor).identifiedElementKey().toJavaIdentifier()/] = "[viewElement.oclAsType(views::ElementEditor).qualifiedIdentifier/]";
 [elseif (viewElement.oclIsTypeOf(views::CustomElementEditor) and not viewElement.owningViewsRepository().associatedGenModel().useJMergeForUserCode)]
 // [protected ('for '.concat(viewElement.name).concat(' ElementEditor key'))]
-
+public static String [viewElement.oclAsType(views::ElementEditor).identifiedElementKey().toJavaIdentifier()/] = "[viewElement.oclAsType(views::ElementEditor).qualifiedIdentifier/]";
 // [/protected]
 [elseif (viewElement.oclIsTypeOf(views::Container))]
 	public static class [viewElement.oclAsType(Container).identifiedElementKey().toJavaClassifier()/] {

@@ -21,8 +21,7 @@
 
 [comment ===== Widget generation API ===== /]
 
-[comment declareEObjectUpdate : templates that override this one must define the method to update an EObject when a view throw an update 
-			event /]
+[comment declareEObjectUpdate : templates that override this one must define the method to update an EObject when a view throw an update event /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
 // FIXME INVALID CASE you must override the template 'declareEObjectUpdater' for the case : [editionElement.name/], [view.name/], [pec.name/].
 [/template]
@@ -30,19 +29,19 @@
 [comment liveupdater : templates that override this one must define the behaviour of the generated widget when the associated
 		 feature of the edited element has changed /]
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
-// FIXME INVALID CASE INTO template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+// FIXME INVALID CASE you must override the template 'liveUpdater' for the case : [editionElement.name/], [view.name/], [pec.name/].
 [/template]
 
 [comment updater : templates that override this one must define the operation to execute at the initialization of the 
 		 component for the given widget /]
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
-// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+// FIXME INVALID CASE you must override the template 'updater' for the case : [editionElement.name/], [view.name/], [pec.name/].
 [/template]
 
 [comment filterUpdater : templates that override this one must define the operation to execute at the initialization of the 
 		 component for the filters of the given widget /]
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent)]
-// FIXME NO VALID CASE INTO template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : [editionElement.name/], [view.name/], [pec.name/].
+// FIXME INVALID CASE you must override the template 'filterUpdater' for the case : [editionElement.name/], [view.name/], [pec.name/].
 [/template]
 
 [comment additionalComponentField : templates that override this one must definethe additional fields to generate in the component 
@@ -93,10 +92,4 @@
 [/for]
 [comment][if (v.referencedViews()->notEmpty())][v.filterUpdaterForReferencedViews(pec.referencedBinding.binding->select(oclIsTypeOf(PropertiesEditionComponent))->first().oclAsType(PropertiesEditionComponent))/][/if][/comment]
 [/for]
-[/template]
-
-[comment Global template used to fix bug #347122 /]
-[template public additionalBusinessFilterProtectedArea(editionElement : PropertiesEditionElement)]
-// [protected ('for additional businessfilters for '.concat(editionElement.name))]
-// [/protected]
 [/template]

@@ -421,8 +421,10 @@ Object
 
 [comment === escape some special keywords (java and EEF) /]
 [template public toJavaIdentifier(s : String)]
-[s.toJavaIdentifierDelegate().toLowerFirst().replaceAll('(?i)^((title)|(parent)|(abstract)|(continue)|(for)|(new)|(switch)|(assert)|(default)|(goto)|(package)|(synchronized)|(boolean)|(do)|(if)|(private)|(this)|(break)|(double)|(implements)|(protected)|(throw)|(byte)|(else)|(import)|(public)|(throws)|(case)|(enum)|(instanceof)|(return)|(transient)|(catch)|(extends)|(int)|(short)|(try)|(char)|(final)|(interface)|(static)|(void)|(class)|(finally)|(long)|(strictfp)|(volatile)|(const)|(float)|(native)|(super)|(while))$','$1_')/]
+[s.toJavaIdentifierDelegate().toLowerFirst().replaceKeywords()/]
 [/template]
+
+[query public replaceKeywords(s : String) : String = s.replaceAll('(?i)^((title)|(parent)|(abstract)|(continue)|(for)|(new)|(switch)|(assert)|(default)|(goto)|(package)|(synchronized)|(boolean)|(do)|(if)|(private)|(this)|(break)|(double)|(implements)|(protected)|(throw)|(byte)|(else)|(import)|(public)|(throws)|(case)|(enum)|(instanceof)|(return)|(transient)|(catch)|(extends)|(int)|(short)|(try)|(char)|(final)|(interface)|(static)|(void)|(class)|(finally)|(long)|(strictfp)|(volatile)|(const)|(float)|(native)|(super)|(while))$','$1_')/]
 
 [template public toJavaClassifier(s : String)]
 [s.toJavaIdentifier().toUpperFirst()/]
@@ -451,7 +453,7 @@ is
 [/template]
 
 [template public completePackage(ePackage : EPackage)]
-[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][ePackage.associatedGenPackage().basePackage/].[/if][ePackage.name/]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][ePackage.associatedGenPackage().basePackage/].[/if][ePackage.name.toJavaIdentifier()/]
 [/template]
 
 [template public eefPackage(eClassifier : EClassifier, basePackage : String)]
@@ -459,7 +461,7 @@ is
 [/template]
 
 [template public eefPackage(ePackage : EPackage, basePackage : String)]
-[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][basePackage/].[/if][ePackage.name/]
+[if ((not ePackage.associatedGenPackage().basePackage.oclIsUndefined()) and (ePackage.associatedGenPackage().basePackage.size() > 0))][basePackage/].[/if][ePackage.name.toJavaIdentifier()/]
 [/template]
 
 [template public qualifiedName(eClassifier : EClassifier)]
