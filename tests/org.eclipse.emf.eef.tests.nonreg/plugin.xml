@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2010/04/15 12:48:58 glefur Exp $
+ $Id: plugin.xml,v 1.2.8.1 2011/11/09 10:11:53 sbouchet Exp $
 -->
 
 <plugin>
@@ -15,16 +15,41 @@
             uri="http://www.eclipse.org/emf/eef/nonreg/1.0.0"
             class="org.eclipse.emf.eef.eefnr.EefnrPackage"
             genModel="model/eefnr.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipse.emf.eef.eefnrext.EefnrextPackage"
-            genModel="model/eefnr.genmodel"
-            uri="http://www.eclipse.org/emf/eef/nonreg/extension/1.0.0">
-      </package>
-      <package
+            uri="http://www.eclipse.org/emf/eef/nonreg/references/1.0.0"
             class="org.eclipse.emf.eef.eefnr.references.ReferencesPackage"
-            genModel="model/eefnr.genmodel"
-            uri="http://www.eclipse.org/emf/eef/nonreg/references/1.0.0">
-      </package>
+            genModel="model/eefnr.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/eef/nonreg/navigation/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.navigation.NavigationPackage"
+            genModel="model/eefnr.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.filters.FiltersPackage"
+            genModel="model/eefnr.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"
+            class="org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage"
+            genModel="model/eefnr.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/eef/nonreg/extension/1.0.0"
+            class="org.eclipse.emf.eef.eefnrext.EefnrextPackage"
+            genModel="model/eefnr.genmodel"/>
    </extension>
 
 </plugin>

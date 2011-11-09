@@ -2,19 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FiltersFactoryImpl.java,v 1.1 2011/02/01 09:54:40 glefur Exp $
+ * $Id: FiltersFactoryImpl.java,v 1.1.6.1 2011/11/09 10:11:46 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.filters.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.eef.eefnr.filters.*;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample1;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample2;
+import org.eclipse.emf.eef.eefnr.filters.FiltersFactory;
+import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 
 /**
  * <!-- begin-user-doc -->

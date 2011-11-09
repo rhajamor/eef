@@ -264,6 +264,15 @@
           eType="#//navigation/Owner" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="singleReferenceForAdvancedEObjectFlatComboViewer"
           eType="#//navigation/Owner"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eenumAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"
+          transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="listAttribute" transient="true">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments/>
+        </eGenericType>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AnotherSubType" eSuperTypes="#//navigation/Subtype">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="anotherSpecialisation"
@@ -306,5 +315,9 @@
   <eSubpackages name="naming" nsURI="http://www.eclipse.org/emf/eef/nonreg/naming/1.0.0"
       nsPrefix="eefnr-name">
     <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//AbstractSample"/>
+  </eSubpackages>
+  <eSubpackages name="interface" nsURI="http://www.eclipse.org/emf/eef/nonreg/interface/1.0.0"
+      nsPrefix="eefnr-int">
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleSample"/>
   </eSubpackages>
 </ecore:EPackage>

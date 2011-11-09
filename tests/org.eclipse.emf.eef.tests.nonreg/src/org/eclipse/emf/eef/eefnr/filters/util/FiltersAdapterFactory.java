@@ -2,20 +2,21 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FiltersAdapterFactory.java,v 1.1 2011/02/01 09:54:40 glefur Exp $
+ * $Id: FiltersAdapterFactory.java,v 1.1.6.1 2011/11/09 10:11:52 sbouchet Exp $
  */
 package org.eclipse.emf.eef.eefnr.filters.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.eef.eefnr.AbstractSample;
-
-import org.eclipse.emf.eef.eefnr.filters.*;
+import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceOwnerSample;
+import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceTargetSample;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample1;
+import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample2;
+import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 
 /**
  * <!-- begin-user-doc -->
