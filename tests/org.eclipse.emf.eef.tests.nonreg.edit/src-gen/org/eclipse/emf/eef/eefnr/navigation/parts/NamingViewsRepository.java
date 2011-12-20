@@ -20,6 +20,7 @@ public class NamingViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
+
 	/**
 	 * Event view descriptor
 	 * 

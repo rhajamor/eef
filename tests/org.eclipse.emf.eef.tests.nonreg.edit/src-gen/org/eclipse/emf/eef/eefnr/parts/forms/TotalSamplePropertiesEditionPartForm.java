@@ -2789,8 +2789,8 @@ public class TotalSamplePropertiesEditionPartForm extends CompositePropertiesEdi
 
 
 	// Start of user code for CustomElementEditor specific getters and setters implementation
-	
-	// End of user code
+
+// End of user code
 	/**
 	 * {@inheritDoc}
 	 *

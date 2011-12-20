@@ -86,11 +86,28 @@
             contributorId="org.eclipse.emf.eef.filters.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.filters.sections"
+               id="org.eclipse.emf.eef.filters.section.ConcreteReferenceOwnerSample"
                tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.filters.section.ConcreteReferenceTargetSample1"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample1">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.filters.section.ConcreteReferenceTargetSample2"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample2">
+             </input>
          </propertySection>
       </propertySections>
    </extension>
-
  </plugin>

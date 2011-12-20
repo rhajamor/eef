@@ -20,6 +20,7 @@ public class Interface_ViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
+
 	/**
 	 * SimpleSample view descriptor
 	 * 

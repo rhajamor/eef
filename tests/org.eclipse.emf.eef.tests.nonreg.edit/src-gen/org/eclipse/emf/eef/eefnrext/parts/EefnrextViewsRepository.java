@@ -20,6 +20,7 @@ public class EefnrextViewsRepository {
 
 	public static final int FORM_KIND = 1;
 
+
 	/**
 	 * TableCompositionTargetExtensionEditorSample view descriptor
 	 * 
@@ -34,6 +35,7 @@ public class EefnrextViewsRepository {
 		}
 	
 	}
+
 	/**
 	 * FlatReferenceExtendedEditorSample view descriptor
 	 * 
@@ -51,6 +53,7 @@ public class EefnrextViewsRepository {
 	public static String checkboxSampleReference = "eefnrext::FlatReferenceExtendedEditorSample::checkboxSampleReference";
 	
 	}
+
 	/**
 	 * SecondFlatReferenceExtendedEditorSample view descriptor
 	 * 
@@ -68,6 +71,7 @@ public class EefnrextViewsRepository {
 		}
 	
 	}
+
 	/**
 	 * CheckBoxExtendedEditorSample view descriptor
 	 * 

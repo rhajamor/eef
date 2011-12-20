@@ -86,11 +86,12 @@
             contributorId="org.eclipse.emf.eef.naming.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.naming.sections"
+               id="org.eclipse.emf.eef.naming.section.Event"
                tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.naming.Event">
+             </input>
          </propertySection>
       </propertySections>
    </extension>
-
  </plugin>

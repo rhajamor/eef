@@ -2788,8 +2788,8 @@ protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = n
 
 
 	// Start of user code for CustomElementEditor specific getters and setters implementation
-	
-	// End of user code
+
+// End of user code
 
 
 	/**

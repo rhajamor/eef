@@ -86,11 +86,12 @@
             contributorId="org.eclipse.emf.eef.interface_.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.interface_.sections"
+               id="org.eclipse.emf.eef.interface_.section.SimpleSample"
                tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.interface_.SimpleSample">
+             </input>
          </propertySection>
       </propertySections>
    </extension>
-
  </plugin>

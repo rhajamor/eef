@@ -104,11 +104,52 @@
             contributorId="org.eclipse.emf.eef.eefnrext.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.eefnrext.sections"
+               id="org.eclipse.emf.eef.eefnrext.section.TableCompositionTargetExtensionEditorSample"
                tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.TableCompositionTargetExtensionEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnrext.section.CheckBoxExtendedEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnrext.section.CheckBoxExtendedEditorSample"
+               tab="AbstractSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnrext.section.FlatReferenceExtendedEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnrext.section.FlatReferenceExtendedEditorSample"
+               tab="SecondFlatReferenceExtendedEditorSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnrext.section.FlatReferenceExtendedEditorSample"
+               tab="CheckBoxExtendedEditorSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample">
+             </input>
          </propertySection>
       </propertySections>
    </extension>
-
  </plugin>

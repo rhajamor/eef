@@ -98,11 +98,44 @@
             contributorId="org.eclipse.emf.eef.references.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.eclipse.emf.eef.references.sections"
+               id="org.eclipse.emf.eef.references.section.ReferenceEnabledSample"
                tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.references.section.ReferenceEnabledSample"
+               tab="AbstractSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.eefnr.section.AbstractSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.AbstractSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.references.section.AbstractEnabledSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.references.section.AbstractEnabledSample"
+               tab="AbstractSample">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample">
+             </input>
          </propertySection>
       </propertySections>
    </extension>
-
  </plugin>
