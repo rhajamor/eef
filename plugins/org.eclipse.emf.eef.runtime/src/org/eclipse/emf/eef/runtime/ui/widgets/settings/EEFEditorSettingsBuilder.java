@@ -88,38 +88,43 @@ public class EEFEditorSettingsBuilder  {
 		 * @see org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettings#getValue()
 		 */
 		public Object getValue() {
-			return getSignificantObject().eGet(feature);
+			return getSignificantObject() == null?null:getSignificantObject().eGet(feature);
 		}
 
 		/**
 		 * Compute and cache the object to edit following the NavigationStep.
 		 * @return object to edit.
 		 */
-		private EObject getSignificantObject() {
+		protected EObject getSignificantObject() {
 			if (significantObject == null) {
 				EObject current = source;
 				for (NavigationStep step : EEFEditorSettingsImpl.this.steps) {
-					if (step.getReference().isMany()) {
-						@SuppressWarnings("unchecked")
-						List<EObject> result = (List<EObject>)source.eGet(step.getReference());
-						List<EObject> result2 = Collections.emptyList();
-						if (step.getDiscriminator() != null) {
-							for (EObject eObject : result) {
-								if (step.getDiscriminator().isInstance(eObject)) {
-									result2.add(eObject);
+					if (current != null) {
+						if (step.getReference().isMany()) {
+							@SuppressWarnings("unchecked")
+							List<EObject> result = (List<EObject>)source.eGet(step.getReference());
+							List<EObject> result2 = Collections.emptyList();
+							if (step.getDiscriminator() != null) {
+								for (EObject eObject : result) {
+									if (step.getDiscriminator().isInstance(eObject)) {
+										result2.add(eObject);
+									}
 								}
+							} else {
+								result2 = result;
 							}
-						} else {
-							result2 = result;
-						}
-						if (step.getIndex() != NavigationStep.NOT_INITIALIZED && step.getIndex() < result2.size()) {
-							current = result2.get(step.getIndex());
-						} else {
-							throw new IllegalStateException();
-						}
+							if (step.getIndex() != NavigationStep.NOT_INITIALIZED && step.getIndex() < result2.size()) {
+								current = result2.get(step.getIndex());
+							} else {
+								throw new IllegalStateException();
+							}
 
+						} else {
+							current = (EObject) current.eGet(step.getReference());
+						}
 					} else {
-						current = (EObject) current.eGet(step.getReference());
+						significantObject = null;
+						return significantObject;
 					}
 				}
 				significantObject = current;
@@ -128,7 +133,9 @@ public class EEFEditorSettingsBuilder  {
 		}
 		
 		public void setValue(Object newValue) {
-			getSignificantObject().eSet(feature, newValue);
+			if (getSignificantObject() != null) {
+				getSignificantObject().eSet(feature, newValue);
+			}
 		}
 
 		/**
