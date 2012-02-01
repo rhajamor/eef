@@ -60,7 +60,7 @@
   </rm:searchPath>
   <rm:searchPath name="ocl">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="">
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/3.1.0">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance/3.1.0">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -79,8 +79,7 @@
   </rm:searchPath>
   <rm:searchPath name="platform">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="">
-      <rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M6-201103101119">
-        <bc:propertyRef key="eclipse.download"/>
+      <rm:uri format="{0}/eclipse/updates/3.7milestones/
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
