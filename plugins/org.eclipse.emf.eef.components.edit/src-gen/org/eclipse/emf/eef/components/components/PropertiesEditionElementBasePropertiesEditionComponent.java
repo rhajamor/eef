@@ -70,7 +70,7 @@ public class PropertiesEditionElementBasePropertiesEditionComponent extends Sing
 	/**
 	 * Settings for model EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings modelSettings;
+	private EObjectFlatComboSettings modelSettings;
 	
 	
 	/**
@@ -161,7 +161,7 @@ public class PropertiesEditionElementBasePropertiesEditionComponent extends Sing
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EStructuralFeature);
+				return (element instanceof org.eclipse.emf.ecore.EStructuralFeature);
 				}
 			
 			});
@@ -227,7 +227,7 @@ public class PropertiesEditionElementBasePropertiesEditionComponent extends Sing
 		}
 		if (ComponentsViewsRepository.PropertiesEditionElement.Binding.model == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				modelSettings.setToReference((EStructuralFeature)event.getNewValue());
+				modelSettings.setToReference((org.eclipse.emf.ecore.EStructuralFeature)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, modelSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
@@ -249,7 +249,7 @@ public class PropertiesEditionElementBasePropertiesEditionComponent extends Sing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PropertiesEditionElementPropertiesEditionPart basePart = (PropertiesEditionElementPropertiesEditionPart)editingPart;
 			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ComponentsViewsRepository.PropertiesEditionElement.Properties.name)) {
 				if (msg.getNewValue() != null) {

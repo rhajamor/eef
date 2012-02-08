@@ -221,7 +221,7 @@ public class PropertiesMultiEditionElementBasePropertiesEditionComponent extends
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PropertiesMultiEditionElementPropertiesEditionPart basePart = (PropertiesMultiEditionElementPropertiesEditionPart)editingPart;
 			if (MappingPackage.eINSTANCE.getAbstractPropertyBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ComponentsViewsRepository.PropertiesMultiEditionElement.Properties.name)) {
 				if (msg.getNewValue() != null) {

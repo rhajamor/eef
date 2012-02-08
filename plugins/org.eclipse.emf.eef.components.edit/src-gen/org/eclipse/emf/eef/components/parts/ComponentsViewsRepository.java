@@ -22,6 +22,7 @@ public class ComponentsViewsRepository {
 	public static final int FORM_KIND = 1;
 
 
+
 	/**
 	 * PropertiesEditionContext view descriptor
 	 * 
