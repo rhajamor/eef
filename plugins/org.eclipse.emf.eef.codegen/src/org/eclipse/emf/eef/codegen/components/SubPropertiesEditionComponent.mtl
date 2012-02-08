@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.ecore.EcorePackage;
 import [pec.model.qualifiedName(basePackage)/];
 import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 [comment add import for external ViewReference (stored in another resource)/]
 [view.manageImportForViewReferences(pec, basePackage)/]
 [comment add import for ViewReference/]
@@ -75,7 +76,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.WrappedException;
 [if (pec.involvedEditionElementsInView(view).oclAsType(PropertiesEditionElement).views->select(representation.name = 'TableComposition' or representation.name = 'AdvancedTableComposition')->notEmpty())]
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -362,7 +362,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 					Object newValue = event.getNewValue();
 					[if (editionElement.model.eType.instanceClassName <> 'String')]
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString([editionElement.metamodelGetter()/].getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString([editionElement.metamodelGetter()/].getEAttributeType(), (String)newValue);
 					}
 					[/if]
 					ret = Diagnostician.INSTANCE.validate([editionElement.metamodelGetter()/].getEAttributeType(), newValue);
@@ -382,7 +382,7 @@ public class [pec.subPECClass(view)/] extends [pec.pecComponentSuperClass()/] {
 				[else]
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString([editionElement.metamodelGetter()/].getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString([editionElement.metamodelGetter()/].getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate([editionElement.metamodelGetter()/].getEAttributeType(), newValue);
 				[/if]
