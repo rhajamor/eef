@@ -152,7 +152,7 @@ public class DocumentedElementPropertiesEditionComponent extends SinglePartPrope
 				if (MappingViewsRepository.Documentation.Documentation_.documentation__ == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(MappingPackage.eINSTANCE.getDocumentedElement_Documentation().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(MappingPackage.eINSTANCE.getDocumentedElement_Documentation().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(MappingPackage.eINSTANCE.getDocumentedElement_Documentation().getEAttributeType(), newValue);
 				}

@@ -262,7 +262,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 				if (MappingViewsRepository.SimpleModelNavigation.Properties.index == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().getEAttributeType(), newValue);
 				}

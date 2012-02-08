@@ -151,7 +151,7 @@ public class CategoryBasePropertiesEditionComponent extends SinglePartProperties
 				if (MappingViewsRepository.Category.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(MappingPackage.eINSTANCE.getCategory_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(MappingPackage.eINSTANCE.getCategory_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(MappingPackage.eINSTANCE.getCategory_Name().getEAttributeType(), newValue);
 				}
