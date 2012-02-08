@@ -202,28 +202,28 @@ public class EEFMasterPageBasePropertiesEditionComponent extends SinglePartPrope
 				if (EditorViewsRepository.EEFMasterPage.Naming.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), newValue);
 				}
 				if (EditorViewsRepository.EEFMasterPage.Naming.title_ == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), newValue);
 				}
 				if (EditorViewsRepository.EEFMasterPage.Settings.orientable == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EditorPackage.eINSTANCE.getEEFMasterPage_Orientable().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EditorPackage.eINSTANCE.getEEFMasterPage_Orientable().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EditorPackage.eINSTANCE.getEEFMasterPage_Orientable().getEAttributeType(), newValue);
 				}
 				if (EditorViewsRepository.EEFMasterPage.Settings.showValidatePage == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EditorPackage.eINSTANCE.getEEFMasterPage_ShowValidatePage().getEAttributeType(), newValue);
 				}

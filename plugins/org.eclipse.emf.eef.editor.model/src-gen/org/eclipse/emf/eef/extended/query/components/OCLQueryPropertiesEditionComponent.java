@@ -200,7 +200,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 				if (QueryViewsRepository.OCLQuery.Properties.query_ == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(QueryPackage.eINSTANCE.getOCLQuery_Query().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(QueryPackage.eINSTANCE.getOCLQuery_Query().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(QueryPackage.eINSTANCE.getOCLQuery_Query().getEAttributeType(), newValue);
 				}

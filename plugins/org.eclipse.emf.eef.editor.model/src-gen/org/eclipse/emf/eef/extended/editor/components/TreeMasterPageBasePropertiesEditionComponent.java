@@ -188,21 +188,21 @@ public class TreeMasterPageBasePropertiesEditionComponent extends SinglePartProp
 				if (EditorViewsRepository.TreeMasterPage.Naming.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(ViewsPackage.eINSTANCE.getViewElement_Name().getEAttributeType(), newValue);
 				}
 				if (EditorViewsRepository.TreeMasterPage.Naming.title_ == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EditorPackage.eINSTANCE.getEEFPage_Title().getEAttributeType(), newValue);
 				}
 				if (EditorViewsRepository.TreeMasterPage.Settings.toolbarVisible == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EditorPackage.eINSTANCE.getTreeMasterPage_ToolbarVisible().getEAttributeType(), newValue);
 				}
