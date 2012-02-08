@@ -94,7 +94,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForSimpleReference())]
-[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
 
 		/**
 		 * {@inheritDoc}
@@ -105,13 +106,14 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 			return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [if (editionElement.strictFilterType().oclIsUndefined())][editionElement.model.eType.name/][else][editionElement.strictFilterType().name/][/if]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
 		}
 
-});
+	});
 [for (filter : BindingFilter | editionElement.bindingFilters)]
-[filter.filterBody(editionElement,view,pec)/]
+	[filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+	[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
+}
 [/template]
 
 [comment ===== Case : model = Containment(*) in Simple Navigation - view = TableComposition or AdvancedTableComposition===== /]
@@ -190,7 +192,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForMultipleModelReference())]
-[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
 
 		/**
 		 * {@inheritDoc}
@@ -206,13 +209,14 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 			return element instanceof Resource;
 		}
 
-});
+	});
 [for (filter : BindingFilter | editionElement.bindingFilters)]
-[filter.filterBody(editionElement,view,pec)/]
+	[filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+	[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
+}
 [/template]
 
 [comment ===== Case : model = Containment(1) - view = TableComposition or AdvancedTableComposition===== /]
@@ -290,7 +294,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.validCaseForSingleModelReference())]
-[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
+if (isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].addFilterTo[editionElement.views->first().viewPackageSignature()/](new ViewerFilter() {
 
 		/**
 		 * {@inheritDoc}
@@ -301,13 +306,14 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 			return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [if (editionElement.strictFilterType().oclIsUndefined())][editionElement.model.eType.name/][else][editionElement.strictFilterType().name/][/if]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
 		}
 
-});
+	});
 [for (filter : BindingFilter | editionElement.bindingFilters)]
-[filter.filterBody(editionElement,view,pec)/]
+	[filter.filterBody(editionElement,view,pec)/]
 [/for]
 [if (not editionElement.element.eContainer(PropertiesEditionContext).oclAsType(PropertiesEditionContext).associatedGenModel().useJMergeForUserCode)]
-[additionalBusinessFilterProtectedArea(editionElement)/]
+	[additionalBusinessFilterProtectedArea(editionElement)/]
 [/if]
+}
 [/template]
 
 [query public strictFilterType(editingElement : PropertiesEditionElement) : EClassifier = 

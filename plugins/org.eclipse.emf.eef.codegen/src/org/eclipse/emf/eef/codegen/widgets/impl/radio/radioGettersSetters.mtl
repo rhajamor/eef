@@ -36,13 +36,13 @@
 [/template]
 
 [template public initSignature(elementEditor : ElementEditor) overrides initSignature ? (elementEditor.representationName('Radio'))]
-	public void init[elementEditor.viewPackageSignature()/](EEnum eenum, Enumerator current)
+	public void init[elementEditor.viewPackageSignature()/](Object input, Enumerator current)
 [/template]
 
 [template public initSignatureDocumentation(elementEditor : ElementEditor) overrides initSignatureDocumentation ? (elementEditor.representationName('Radio'))]
 	/**
 	 * Init the [elementEditor.name/]
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
 [/template]
@@ -77,13 +77,13 @@
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see [fullInterfacePath/]#init[elementEditor.viewPackageSignature()/](EEnum eenum, Enumerator current)
+	 * @see [fullInterfacePath/]#init[elementEditor.viewPackageSignature()/](Object input, Enumerator current)
 	 */
 [/template]
 
 [template public initSignatureImplementation(elementEditor : ElementEditor) overrides initSignatureImplementation ? (elementEditor.representationName('Radio'))]
 [elementEditor.initSignature()/] {
-		[elementEditor.name.toJavaIdentifier()/]RadioViewer.setInput(eenum.getELiterals());
+		[elementEditor.name.toJavaIdentifier()/]RadioViewer.setInput(input);
 		[elementEditor.name.toJavaIdentifier()/]RadioViewer.setSelection(new StructuredSelection(current));
 	}
 [/template]
