@@ -96,22 +96,23 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), container.getName()));
 			
 			// init filters
-			basePart.addFilterToRepresentation(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof Widget); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for representation
-																																																						
-																																																						// End of user code
-			
+			if (isAccessible(ViewsViewsRepository.Container.Properties.representation)) {
+				basePart.addFilterToRepresentation(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Widget); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for representation
+																																																							
+																																																							// End of user code
+			}
 			
 			// init values for referenced views
 			
