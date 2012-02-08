@@ -12,11 +12,9 @@ package org.eclipse.emf.samples.conference.parts.forms;
 
 // Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
@@ -240,7 +238,7 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 		FormUtils.createPartLabel(widgetFactory, parent, ConferenceMessages.TalkPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Talk.Properties.type, ConferenceViewsRepository.FORM_KIND));
 		type = new EMFComboViewer(parent);
 		type.setContentProvider(new ArrayContentProvider());
-		type.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		type.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
 		type.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -471,17 +469,17 @@ public class TalkPropertiesEditionPartForm extends CompositePropertiesEditionPar
 	 * 
 	 */
 	public Enumerator getType() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) type.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) type.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initType(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.emf.samples.conference.parts.TalkPropertiesEditionPart#initType(Object input, Enumerator current)
 	 */
-	public void initType(EEnum eenum, Enumerator current) {
-		type.setInput(eenum.getELiterals());
+	public void initType(Object input, Enumerator current) {
+		type.setInput(input);
 		type.modelUpdating(new StructuredSelection(current));
 	}
 

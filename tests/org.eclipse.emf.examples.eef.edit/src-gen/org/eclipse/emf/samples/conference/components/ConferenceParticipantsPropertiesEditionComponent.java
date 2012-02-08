@@ -85,7 +85,8 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 				participantsPart.initParticipants(participantsSettings);
 			}
 			// init filters
-			participantsPart.addFilterToParticipants(new ViewerFilter() {
+			if (isAccessible(ConferenceViewsRepository.Participants.participants_)) {
+				participantsPart.addFilterToParticipants(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -96,11 +97,11 @@ public class ConferenceParticipantsPropertiesEditionComponent extends SinglePart
 						return (element instanceof String && element.equals("")) || (element instanceof Person); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for participants
-																					
-																					// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for participants
+																						
+																						// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

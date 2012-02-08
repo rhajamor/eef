@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -27,6 +26,7 @@ import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.samples.conference.ConferencePackage;
 import org.eclipse.emf.samples.conference.GENDER;
 import org.eclipse.emf.samples.conference.Person;
@@ -86,7 +86,7 @@ public class PersonBasePropertiesEditionComponent extends SinglePartPropertiesEd
 				basePart.setEclipseCommiter(person.isEclipseCommiter());
 			}
 			if (isAccessible(ConferenceViewsRepository.Person.Identity.gender)) {
-				basePart.initGender((EEnum) ConferencePackage.eINSTANCE.getPerson_Gender().getEType(), person.getGender());
+				basePart.initGender(EEFUtils.choiceOfValues(person, ConferencePackage.eINSTANCE.getPerson_Gender()), person.getGender());
 			}
 			if (isAccessible(ConferenceViewsRepository.Person.EclipseStatus.isRegistered)) {
 				basePart.setIsRegistered(person.isIsRegistered());

@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -29,6 +28,7 @@ import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
@@ -109,7 +109,7 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 				basePart.setTopicButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			if (isAccessible(ConferenceViewsRepository.Talk.Properties.type)) {
-				basePart.initType((EEnum) ConferencePackage.eINSTANCE.getTalk_Type().getEType(), talk.getType());
+				basePart.initType(EEFUtils.choiceOfValues(talk, ConferencePackage.eINSTANCE.getTalk_Type()), talk.getType());
 			}
 			if (isAccessible(ConferenceViewsRepository.Talk.Properties.presenter)) {
 				// init part
@@ -129,55 +129,58 @@ public class TalkPropertiesEditionComponent extends SinglePartPropertiesEditingC
 				basePart.setDocumentation(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), talk.getDocumentation()));
 			// init filters
 			
-			basePart.addFilterToTopic(new ViewerFilter() {
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.topic)) {
+				basePart.addFilterToTopic(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof Topic);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for topic
+																																											
+																																											// End of user code
+			}
 			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof Topic);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for topic
-																																										
-																																										// End of user code
-			
-			
-			basePart.addFilterToPresenter(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof Person);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for presenter
-																																										
-																																										// End of user code
-			
-			basePart.addFilterToCreator(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof Person); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for creator
-																																										
-																																										// End of user code
-			
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.presenter)) {
+				basePart.addFilterToPresenter(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof Person);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for presenter
+																																											
+																																											// End of user code
+			}
+			if (isAccessible(ConferenceViewsRepository.Talk.Properties.creator)) {
+				basePart.addFilterToCreator(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Person); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for creator
+																																											
+																																											// End of user code
+			}
 			
 			// init values for referenced views
 			

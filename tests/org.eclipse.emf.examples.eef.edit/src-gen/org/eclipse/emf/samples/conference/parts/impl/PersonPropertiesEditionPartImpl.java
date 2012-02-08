@@ -12,10 +12,8 @@ package org.eclipse.emf.samples.conference.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
@@ -303,7 +301,7 @@ public class PersonPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		SWTUtils.createPartLabel(parent, ConferenceMessages.PersonPropertiesEditionPart_GenderLabel, propertiesEditionComponent.isRequired(ConferenceViewsRepository.Person.Identity.gender, ConferenceViewsRepository.SWT_KIND));
 		gender = new EMFComboViewer(parent);
 		gender.setContentProvider(new ArrayContentProvider());
-		gender.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		gender.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData genderData = new GridData(GridData.FILL_HORIZONTAL);
 		gender.getCombo().setLayoutData(genderData);
 		gender.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -490,17 +488,17 @@ public class PersonPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	 * 
 	 */
 	public Enumerator getGender() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) gender.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) gender.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.samples.conference.parts.PersonPropertiesEditionPart#initGender(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.emf.samples.conference.parts.PersonPropertiesEditionPart#initGender(Object input, Enumerator current)
 	 */
-	public void initGender(EEnum eenum, Enumerator current) {
-		gender.setInput(eenum.getELiterals());
+	public void initGender(Object input, Enumerator current) {
+		gender.setInput(input);
 		gender.modelUpdating(new StructuredSelection(current));
 	}
 

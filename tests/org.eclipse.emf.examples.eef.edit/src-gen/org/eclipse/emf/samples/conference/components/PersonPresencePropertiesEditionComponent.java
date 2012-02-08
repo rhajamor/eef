@@ -82,25 +82,26 @@ public class PersonPresencePropertiesEditionComponent extends SinglePartProperti
 				presencePart.initAssists(assistsSettings);
 			}
 			// init filters
-			presencePart.addFilterToAssists(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!presencePart.isContainedInAssistsTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			presencePart.addFilterToAssists(new EObjectFilter(ConferencePackage.eINSTANCE.getTalk()));
-			// Start of user code for additional businessfilters for assists
-																																										
-																																										// End of user code
-			
+			if (isAccessible(ConferenceViewsRepository.Presence.Talks.assists)) {
+				presencePart.addFilterToAssists(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!presencePart.isContainedInAssistsTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				presencePart.addFilterToAssists(new EObjectFilter(ConferencePackage.eINSTANCE.getTalk()));
+				// Start of user code for additional businessfilters for assists
+																																											
+																																											// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

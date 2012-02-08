@@ -95,7 +95,8 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 				talksAndTopicsPart.initTopics(topicsSettings);
 			}
 			// init filters
-			talksAndTopicsPart.addFilterToTalks(new ViewerFilter() {
+			if (isAccessible(ConferenceViewsRepository.TalksAndTopics.talks)) {
+				talksAndTopicsPart.addFilterToTalks(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -106,12 +107,13 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 						return (element instanceof String && element.equals("")) || (element instanceof Talk); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for talks
-																					
-																					// End of user code
-			
-			talksAndTopicsPart.addFilterToTopics(new ViewerFilter() {
+				});
+				// Start of user code for additional businessfilters for talks
+																						
+																						// End of user code
+			}
+			if (isAccessible(ConferenceViewsRepository.TalksAndTopics.topics)) {
+				talksAndTopicsPart.addFilterToTopics(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -122,11 +124,11 @@ public class ConferenceTalksAndTopicsPropertiesEditionComponent extends SinglePa
 						return (element instanceof String && element.equals("")) || (element instanceof Topic); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for topics
-																					
-																					// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for topics
+																						
+																						// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

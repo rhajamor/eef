@@ -93,7 +93,8 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 			}
 			// init filters
 			
-			localisationPart.addFilterToSites(new ViewerFilter() {
+			if (isAccessible(ConferenceViewsRepository.Localisation.sites)) {
+				localisationPart.addFilterToSites(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -104,11 +105,11 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 						return (element instanceof String && element.equals("")) || (element instanceof Site); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for sites
-																					
-																					// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for sites
+																						
+																						// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
