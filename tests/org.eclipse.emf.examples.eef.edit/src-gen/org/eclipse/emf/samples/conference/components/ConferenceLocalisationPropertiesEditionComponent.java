@@ -236,7 +236,7 @@ public class ConferenceLocalisationPropertiesEditionComponent extends SinglePart
 				if (ConferenceViewsRepository.Localisation.place == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ConferencePackage.eINSTANCE.getConference_Place().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(ConferencePackage.eINSTANCE.getConference_Place().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(ConferencePackage.eINSTANCE.getConference_Place().getEAttributeType(), newValue);
 				}
