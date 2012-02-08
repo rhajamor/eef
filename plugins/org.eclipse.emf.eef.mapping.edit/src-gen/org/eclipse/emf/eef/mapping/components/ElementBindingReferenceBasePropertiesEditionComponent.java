@@ -53,7 +53,7 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 	/**
 	 * Settings for binding EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings bindingSettings;
+	private EObjectFlatComboSettings bindingSettings;
 	
 	
 	/**
@@ -155,7 +155,7 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ElementBindingReferencePropertiesEditionPart basePart = (ElementBindingReferencePropertiesEditionPart)editingPart;
 			if (MappingPackage.eINSTANCE.getElementBindingReference_Binding().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.ElementBindingReference.Reference.binding))
 				basePart.setBinding((EObject)msg.getNewValue());

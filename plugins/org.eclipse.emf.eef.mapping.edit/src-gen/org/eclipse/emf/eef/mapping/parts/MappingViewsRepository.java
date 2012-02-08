@@ -55,6 +55,7 @@ public class MappingViewsRepository {
 	
 	}
 
+
 	/**
 	 * EMFElementBinding view descriptor
 	 * 
@@ -215,6 +216,7 @@ public class MappingViewsRepository {
 	
 	}
 
+
 	/**
 	 * ModelNavigation view descriptor
 	 * 
@@ -247,6 +249,7 @@ public class MappingViewsRepository {
 		}
 	
 	}
+
 
 	/**
 	 * OnlyReferenceTypeFilter view descriptor

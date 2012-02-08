@@ -6,18 +6,6 @@
   <!-- EEF extensions -->
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0"
-            class="org.eclipse.emf.eef.mapping.providers.NavigationEEFAdapterFactory"
-            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
-   </extension>
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/emf/eef/mapping/filters/1.0.0"
-            class="org.eclipse.emf.eef.mapping.providers.FiltersEEFAdapterFactory"
-            supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
-   </extension>
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
             uri="http://www.eclipse.org/emf/eef/mapping/1.0.0"
             class="org.eclipse.emf.eef.mapping.providers.MappingEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>

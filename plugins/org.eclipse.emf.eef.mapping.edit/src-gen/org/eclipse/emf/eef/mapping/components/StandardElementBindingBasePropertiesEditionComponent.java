@@ -67,7 +67,7 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 	/**
 	 * Settings for model EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings modelSettings;
+	private EObjectFlatComboSettings modelSettings;
 	
 	
 	/**
@@ -218,7 +218,7 @@ public class StandardElementBindingBasePropertiesEditionComponent extends Single
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			StandardElementBindingPropertiesEditionPart basePart = (StandardElementBindingPropertiesEditionPart)editingPart;
 			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.StandardElementBinding.Properties.name)) {
 				if (msg.getNewValue() != null) {

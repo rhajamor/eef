@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -55,7 +54,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 	/**
 	 * Settings for type EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings typeSettings;
+	private EObjectFlatComboSettings typeSettings;
 	
 	
 	/**
@@ -99,7 +98,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EClassifier);
+				return (element instanceof org.eclipse.emf.ecore.EClassifier);
 				}
 			
 			});
@@ -143,7 +142,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 		StrictTypingFilter strictTypingFilter = (StrictTypingFilter)semanticObject;
 		if (MappingViewsRepository.StrictTypingFilter.Type.restriction == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				typeSettings.setToReference((EClassifier)event.getNewValue());
+				typeSettings.setToReference((org.eclipse.emf.ecore.EClassifier)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, typeSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
@@ -162,7 +161,7 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			StrictTypingFilterPropertiesEditionPart strictTypingFilterPart = (StrictTypingFilterPropertiesEditionPart)editingPart;
 			if (FiltersPackage.eINSTANCE.getStrictTypingFilter_Type().equals(msg.getFeature()) && strictTypingFilterPart != null && isAccessible(MappingViewsRepository.StrictTypingFilter.Type.restriction))
 				strictTypingFilterPart.setRestriction((EObject)msg.getNewValue());

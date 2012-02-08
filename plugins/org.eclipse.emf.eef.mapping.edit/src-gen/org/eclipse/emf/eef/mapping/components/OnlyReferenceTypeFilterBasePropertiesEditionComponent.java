@@ -55,7 +55,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	/**
 	 * Settings for referencedFeature EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings referencedFeatureSettings;
+	private EObjectFlatComboSettings referencedFeatureSettings;
 	
 	
 	/**
@@ -99,7 +99,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof EReference); //$NON-NLS-1$ 
+				return (element instanceof String && element.equals("")) || (element instanceof org.eclipse.emf.ecore.EReference); //$NON-NLS-1$ 
 				}
 			
 			});
@@ -143,7 +143,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 		OnlyReferenceTypeFilter onlyReferenceTypeFilter = (OnlyReferenceTypeFilter)semanticObject;
 		if (MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_ == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				referencedFeatureSettings.setToReference((EReference)event.getNewValue());
+				referencedFeatureSettings.setToReference((org.eclipse.emf.ecore.EReference)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReference eObject = EcoreFactory.eINSTANCE.createEReference();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
@@ -164,7 +164,7 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			OnlyReferenceTypeFilterPropertiesEditionPart basePart = (OnlyReferenceTypeFilterPropertiesEditionPart)editingPart;
 			if (FiltersPackage.eINSTANCE.getOnlyReferenceTypeFilter_Reference().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_))
 				basePart.setReferencedFeature((EObject)msg.getNewValue());

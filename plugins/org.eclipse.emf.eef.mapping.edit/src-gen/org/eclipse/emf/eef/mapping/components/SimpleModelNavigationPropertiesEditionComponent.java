@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -60,12 +59,12 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 	/**
 	 * Settings for feature EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings featureSettings;
+	private EObjectFlatComboSettings featureSettings;
 	
 	/**
 	 * Settings for discriminatorType EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings discriminatorTypeSettings;
+	private EObjectFlatComboSettings discriminatorTypeSettings;
 	
 	
 	/**
@@ -121,7 +120,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EReference);
+				return (element instanceof org.eclipse.emf.ecore.EReference);
 				}
 			
 			});
@@ -137,7 +136,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof EClassifier); //$NON-NLS-1$ 
+				return (element instanceof String && element.equals("")) || (element instanceof org.eclipse.emf.ecore.EClassifier); //$NON-NLS-1$ 
 				}
 			
 			});
@@ -187,7 +186,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 		}
 		if (MappingViewsRepository.SimpleModelNavigation.Properties.feature == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				featureSettings.setToReference((EReference)event.getNewValue());
+				featureSettings.setToReference((org.eclipse.emf.ecore.EReference)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReference eObject = EcoreFactory.eINSTANCE.createEReference();
 				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, eObject, editingContext.getAdapterFactory());
@@ -203,7 +202,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 		}
 		if (MappingViewsRepository.SimpleModelNavigation.Properties.discriminatorType == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				discriminatorTypeSettings.setToReference((EClassifier)event.getNewValue());
+				discriminatorTypeSettings.setToReference((org.eclipse.emf.ecore.EClassifier)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, discriminatorTypeSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
@@ -222,7 +221,7 @@ public class SimpleModelNavigationPropertiesEditionComponent extends SinglePartP
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SimpleModelNavigationPropertiesEditionPart basePart = (SimpleModelNavigationPropertiesEditionPart)editingPart;
 			if (NavigationPackage.eINSTANCE.getSimpleModelNavigation_Index().equals(msg.getFeature()) && basePart != null && isAccessible(MappingViewsRepository.SimpleModelNavigation.Properties.index)) {
 				if (msg.getNewValue() != null) {
