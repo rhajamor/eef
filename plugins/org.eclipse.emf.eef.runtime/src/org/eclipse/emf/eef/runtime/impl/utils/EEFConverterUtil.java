@@ -130,4 +130,25 @@ public class EEFConverterUtil extends EcoreUtil {
 		Boolean value = (Boolean)createFromString(eBoolean, literal);
 		return value.booleanValue();
 	}
+
+	/**
+	 * Creates an instance of the datatype.
+	 * 
+	 * @param eDataType
+	 *            the datatype to instantiate.
+	 * @param literal
+	 *            the string value of the datatype.
+	 * @return an instance of the datatype.
+	 * @see #convertToString(EDataType, Object)
+	 */
+	public static Object createFromString(EDataType eDataType, String literal) {
+		// If the string literal is null or empty, the returned value is the
+		// default value of the DataType
+		if (literal == null || literal.trim().length() == 0) {
+			return eDataType.getDefaultValue();
+		} else {
+			return EcoreUtil.createFromString(eDataType, literal);
+		}
+	}
+	
 }
