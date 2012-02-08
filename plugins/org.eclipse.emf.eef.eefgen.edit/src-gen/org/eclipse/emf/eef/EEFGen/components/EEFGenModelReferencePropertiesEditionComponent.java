@@ -52,7 +52,7 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	/**
 	 * Settings for reference EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings referenceSettings;
+	private EObjectFlatComboSettings referenceSettings;
 	
 	
 	/**
@@ -156,7 +156,7 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			EEFGenModelReferencePropertiesEditionPart basePart = (EEFGenModelReferencePropertiesEditionPart)editingPart;
 			if (EEFGenPackage.eINSTANCE.getEEFGenModelReference_ReferencedContext().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel))
 				basePart.setReferencedEEFGenModel((EObject)msg.getNewValue());

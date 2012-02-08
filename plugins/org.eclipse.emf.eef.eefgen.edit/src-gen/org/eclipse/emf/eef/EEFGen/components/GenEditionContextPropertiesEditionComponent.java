@@ -56,7 +56,7 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 	/**
 	 * Settings for propertiesEditionContext EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings propertiesEditionContextSettings;
+	private EObjectFlatComboSettings propertiesEditionContextSettings;
 	
 	
 	/**
@@ -237,7 +237,7 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			GenEditionContextPropertiesEditionPart basePart = (GenEditionContextPropertiesEditionPart)editingPart;
 			if (EEFGenPackage.eINSTANCE.getGenEditionContext_BasePackage().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenEditionContext.Parameters.basePackage)) {
 				if (msg.getNewValue() != null) {

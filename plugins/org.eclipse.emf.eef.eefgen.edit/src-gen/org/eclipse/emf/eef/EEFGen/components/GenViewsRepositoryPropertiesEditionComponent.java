@@ -15,7 +15,6 @@ package org.eclipse.emf.eef.EEFGen.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -59,7 +58,7 @@ public class GenViewsRepositoryPropertiesEditionComponent extends SinglePartProp
 	/**
 	 * Settings for viewsRepository EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings viewsRepositorySettings;
+	private EObjectFlatComboSettings viewsRepositorySettings;
 	
 	
 	/**
@@ -218,7 +217,7 @@ public class GenViewsRepositoryPropertiesEditionComponent extends SinglePartProp
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			GenViewsRepositoryPropertiesEditionPart basePart = (GenViewsRepositoryPropertiesEditionPart)editingPart;
 			if (EEFGenPackage.eINSTANCE.getGenViewsRepository_BasePackage().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenViewsRepository.Parameters.basePackage)) {
 				if (msg.getNewValue() != null) {
@@ -234,7 +233,7 @@ public class GenViewsRepositoryPropertiesEditionComponent extends SinglePartProp
 				basePart.setFormsViews((Boolean)msg.getNewValue());
 			
 			if (EEFGenPackage.eINSTANCE.getGenViewsRepository_HelpStrategy().equals(msg.getFeature()) && isAccessible(EEFGenViewsRepository.GenViewsRepository.Parameters.helpStrategy))
-				basePart.setHelpStrategy((Enumerator)msg.getNewValue());
+				basePart.setHelpStrategy((HELP_STRATEGY)msg.getNewValue());
 			
 			if (EEFGenPackage.eINSTANCE.getGenViewsRepository_ViewsRepository().equals(msg.getFeature()) && basePart != null && isAccessible(EEFGenViewsRepository.GenViewsRepository.Reference.viewsRepository))
 				basePart.setViewsRepository((EObject)msg.getNewValue());
