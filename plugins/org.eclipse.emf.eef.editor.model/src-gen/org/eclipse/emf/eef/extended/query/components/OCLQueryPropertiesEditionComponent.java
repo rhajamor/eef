@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -49,7 +48,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 	/**
 	 * Settings for context EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings contextSettings;
+	private EObjectFlatComboSettings contextSettings;
 	
 	
 	/**
@@ -97,7 +96,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 			 */
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EClassifier);
+				return (element instanceof org.eclipse.emf.ecore.EClassifier);
 				}
 			
 			});
@@ -143,7 +142,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 		}
 		if (QueryViewsRepository.OCLQuery.Properties.context == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
-				contextSettings.setToReference((EClassifier)event.getNewValue());
+				contextSettings.setToReference((org.eclipse.emf.ecore.EClassifier)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
 				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, contextSettings, editingContext.getAdapterFactory());
 				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
@@ -162,7 +161,7 @@ public class OCLQueryPropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			OCLQueryPropertiesEditionPart basePart = (OCLQueryPropertiesEditionPart)editingPart;
 			if (QueryPackage.eINSTANCE.getOCLQuery_Query().equals(msg.getFeature()) && basePart != null && isAccessible(QueryViewsRepository.OCLQuery.Properties.query_)) {
 				if (msg.getNewValue() != null) {

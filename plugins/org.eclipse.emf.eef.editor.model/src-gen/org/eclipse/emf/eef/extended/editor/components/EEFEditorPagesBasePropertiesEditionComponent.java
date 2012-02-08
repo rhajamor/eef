@@ -106,7 +106,7 @@ public class EEFEditorPagesBasePropertiesEditionComponent extends SinglePartProp
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			EEFEditorPagesPropertiesEditionPart basePart = (EEFEditorPagesPropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getCategory_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.EEFEditorPages.Properties.name)) {
 				if (msg.getNewValue() != null) {

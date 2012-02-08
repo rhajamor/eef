@@ -52,12 +52,12 @@ public class PartFilterBasePropertiesEditionComponent extends SinglePartProperti
 	/**
 	 * Settings for filteredPart EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings filteredPartSettings;
+	private EObjectFlatComboSettings filteredPartSettings;
 	
 	/**
 	 * Settings for contextualComponent EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings contextualComponentSettings;
+	private EObjectFlatComboSettings contextualComponentSettings;
 	
 	
 	/**
@@ -226,7 +226,7 @@ public class PartFilterBasePropertiesEditionComponent extends SinglePartProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PartFilterPropertiesEditionPart basePart = (PartFilterPropertiesEditionPart)editingPart;
 			if (FiltersPackage.eINSTANCE.getBindingFilter_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.PartFilter.Naming.name)) {
 				if (msg.getNewValue() != null) {

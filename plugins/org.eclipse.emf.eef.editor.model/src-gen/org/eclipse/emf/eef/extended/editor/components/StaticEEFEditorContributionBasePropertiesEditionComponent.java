@@ -156,7 +156,7 @@ public class StaticEEFEditorContributionBasePropertiesEditionComponent extends S
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			StaticEEFEditorContributionPropertiesEditionPart basePart = (StaticEEFEditorContributionPropertiesEditionPart)editingPart;
 			if (MappingPackage.eINSTANCE.getAbstractElementBinding_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EditorViewsRepository.StaticEEFEditorContribution.Naming.name)) {
 				if (msg.getNewValue() != null) {
