@@ -27,6 +27,7 @@ import org.eclipse.emf.eef.eefnr.parts.ImageViewerSamplePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 
 
 // End of user code
@@ -170,14 +171,14 @@ public class ImageViewerSamplePropertiesEditionComponent extends SinglePartPrope
 				if (EefnrViewsRepository.ImageViewerSample.Properties.imageviewerRequiredProperty == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerRequiredProperty().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerRequiredProperty().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerRequiredProperty().getEAttributeType(), newValue);
 				}
 				if (EefnrViewsRepository.ImageViewerSample.Properties.imageviewerOptionalProperty == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerOptionalProperty().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerOptionalProperty().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getImageViewerSample_ImageviewerOptionalProperty().getEAttributeType(), newValue);
 				}
