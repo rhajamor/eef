@@ -18,8 +18,8 @@
 [import filters /]
 
 [comment ===== Case : model = Reference - view = Combo ===== /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
-[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.name/])event.getNewValue());
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](!"".equals(event.getNewValue()) ? ([editionElement.model.eType.name/]) event.getNewValue() : null);
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
@@ -27,26 +27,13 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/](([editionElement.views->first().toJavaType().trim()/])msg.getNewValue());
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](allResource, [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
 }
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
-[view.viewIdentifier(pec)/].addFilterTo[editionElement.name.toUpperFirst()/](new ViewerFilter() {
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-	 * [view.owningViewsRepository().associatedGenModel().generationComment()/]
-	 */
-	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		return [if (editionElement.model.lowerBound = 0)](element instanceof String && element.equals("")) || [/if](element instanceof [editionElement.model.eType.name/]);[if (editionElement.model.lowerBound = 0)] //$NON-NLS-1$ [/if]
-	}
-
-});
 [for (filter : BindingFilter | editionElement.bindingFilters)]
 [filter.filterBody(editionElement,view,pec)/]
 [/for]
@@ -56,8 +43,20 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/if]
 [/template]
 
-[comment ===== Case : model = Reference - view = Combo ===== /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
+[comment ===== Case : model = Reference - view = Combo - ModelNavigation ===== /]
+
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue(!"".equals(event.getNewValue()) ? ([editionElement.model.eType.name/]) event.getNewValue() : null);
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
+if ([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject() != null && isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), [editionElement.name.toJavaIdentifier()/]Settings.getValue());
+}
+[/template]
+
+[comment ===== Case : model = Attribute - view = Combo ===== /]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
 [pec.model.name.toJavaIdentifier()/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])event.getNewValue());
 [/template]
 
@@ -89,7 +88,7 @@ input[editionElement.name.toJavaClassifier()/].add("three");
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo'))]
 [/template]
 
-[comment ===== Case : model = Reference - view = Combo - ModelNavigation ===== /]
+[comment ===== Case : model = Attrbibute - view = Combo - ModelNavigation ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
 [editionElement.name.toJavaIdentifier()/]Settings.setValue(([editionElement.model.eType.instanceClassName/])event.getNewValue());
 [/template]

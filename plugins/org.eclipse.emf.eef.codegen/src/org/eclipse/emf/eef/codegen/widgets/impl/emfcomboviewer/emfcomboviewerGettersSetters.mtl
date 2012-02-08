@@ -25,21 +25,21 @@
 [/template]
 
 [template public initSignature(elementEditor : ElementEditor) overrides initSignature ? (elementEditor.representationName('EMFComboViewer'))]
-	public void init[elementEditor.viewPackageSignature()/](EEnum eenum, Enumerator current)
+	public void init[elementEditor.viewPackageSignature()/](Object input, Enumerator current)
 [/template]
 
 [template public initSignatureDocumentation(elementEditor : ElementEditor) overrides initSignatureDocumentation ? (elementEditor.representationName('EMFComboViewer'))]
 	/**
 	 * Init the [elementEditor.name/]
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
 [/template]
 
 [template public getterSignatureImplementation(elementEditor : ElementEditor) overrides getterSignatureImplementation ? (elementEditor.representationName('EMFComboViewer'))]
 [elementEditor.getterSignature()/] {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) [elementEditor.name.toJavaIdentifier()/].getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) [elementEditor.name.toJavaIdentifier()/].getSelection()).getFirstElement();
+		return selection;
 	}
 [/template]
 
@@ -54,7 +54,7 @@
 [template public setterImplementationDelegate(elementEditor : ElementEditor, fullInterfacePath : String, referencedView : View) overrides setterImplementationDelegate ? (elementEditor.representationName('EMFComboViewer'))]
 [initSignatureDocumentationImplementation(elementEditor, fullInterfacePath)/]
 [elementEditor.initSignature()/] {
-		[referencedView.name.toJavaIdentifier()/]PropertiesEditionPart.init[elementEditor.viewPackageSignature()/](eenum, current);
+		[referencedView.name.toJavaIdentifier()/]PropertiesEditionPart.init[elementEditor.viewPackageSignature()/](input, current);
 	}
 
 [setterSignatureDocumentationImplementation(elementEditor, fullInterfacePath)/]
@@ -65,7 +65,7 @@
 
 [template public initSignatureImplementation(elementEditor : ElementEditor) overrides initSignatureImplementation ? (elementEditor.representationName('EMFComboViewer'))]
 [elementEditor.initSignature()/] {
-		[elementEditor.name.toJavaIdentifier()/].setInput(eenum.getELiterals());
+		[elementEditor.name.toJavaIdentifier()/].setInput(input);
 		[elementEditor.name.toJavaIdentifier()/].modelUpdating(new StructuredSelection(current));
 	}
 [/template]
@@ -80,7 +80,7 @@
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see [fullInterfacePath/]#init[elementEditor.viewPackageSignature()/](EEnum eenum, Enumerator current)
+	 * @see [fullInterfacePath/]#init[elementEditor.viewPackageSignature()/](Object input, Enumerator current)
 	 */
 [/template]
 

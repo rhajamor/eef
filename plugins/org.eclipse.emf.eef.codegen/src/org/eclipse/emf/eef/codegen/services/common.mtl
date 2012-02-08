@@ -71,8 +71,9 @@
 [query public fullPartInterfacePath(pepCompletePackage : String, pepInterface : String) : String = 
 	pepCompletePackage.concat('.parts.').concat(pepInterface)/]
 
-[query public associatedGenFeature(pee : PropertiesEditionElement) : GenFeature =
-	pee.model.eInverse()->select(oclIsKindOf(GenFeature))->first().oclAsType(GenFeature)/]
+[query public associatedGenFeature(pee : PropertiesEditionElement) : GenFeature = 
+	(let genFeatures : OrderedSet(OclAny) = pee.model.eInverse()->select(oclIsKindOf(GenFeature)) in
+	if (not genFeatures->isEmpty()) then genFeatures->first().oclAsType(GenFeature) else null endif)/]
 
 [query public associatedGenPackage(p : EPackage) : GenPackage = 
 	p.eInverse(GenPackage)->first()/]
@@ -212,7 +213,20 @@
 	not pee.navigation.oclIsUndefined()/]
 
 [query public canGeneratemodelNavigation(pee : PropertiesEditionElement) : Boolean = 
-	pee.hasModelNavigation() and pee.model.oclIsTypeOf(ecore::EAttribute) /]
+	pee.hasModelNavigation() and not pee.handleByOldReferenceSettingsSystem()/]
+
+[query public handleByOldReferenceSettingsSystem(pee : PropertiesEditionElement) : Boolean =  
+	(pee.hasModelNavigation() and 
+	(
+		(pee.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentMany() and pee.model.isReferenceSingle() and (pee.representationName('ReferencesTable') or pee.representationName('AdvancedReferencesTable')))
+	 or (pee.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentSingle() and pee.model.isReferenceMany()	and (pee.representationName('ReferencesTable') or pee.representationName('AdvancedReferencesTable')))
+	 or (pee.representationName('FlatReferencesTable'))
+	 or (pee.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentSingle() and pee.model.isContainmentMany()  and (pee.representationName('TableComposition') or pee.representationName('AdvancedTableComposition')))
+	 or (pee.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentMany() and pee.model.isContainmentSingle()  and (pee.representationName('TableComposition') or pee.representationName('AdvancedTableComposition')))
+	 or (pee.navigation.oclAsType(navigation::SimpleModelNavigation).feature.isContainmentSingle() and pee.model.isReferenceSingle() and (pee.representationName('EObjectFlatComboViewer') or pee.representationName('AdvancedEObjectFlatComboViewer')))
+	)) or (pee.model.isContainmentSingle() 
+	and (pee.representationName('EObjectFlatComboViewer') or pee.representationName('AdvancedEObjectFlatComboViewer')))/]
+
 
 
 [comment --------------- Common templates --------------- /]

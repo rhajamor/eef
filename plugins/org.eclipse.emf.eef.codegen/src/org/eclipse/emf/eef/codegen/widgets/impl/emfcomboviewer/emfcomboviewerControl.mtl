@@ -32,7 +32,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && isAccessible
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('EMFComboViewer') and not editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]((EEnum) [editionElement.metamodelGetter()/].getEType(), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
 }
 [/template]
 
@@ -47,8 +47,8 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('EMFComboViewer') and editionElement.canGeneratemodelNavigation())]
-if (isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]((EEnum) [editionElement.metamodelGetter()/].getEType(), ([editionElement.views->first().toJavaType().trim()/])[editionElement.name.toJavaIdentifier()/]Settings.getValue());
+if ([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject() != null && isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), ([editionElement.views->first().toJavaType().trim()/])[editionElement.name.toJavaIdentifier()/]Settings.getValue());
 }
 [/template]
 

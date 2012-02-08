@@ -19,7 +19,7 @@
 [comment ===== Case : model = Attribute(1) - view = Text ===== /]
 [query public validCaseForDirectAttribute(editionElement : PropertiesEditionElement) : Boolean = editionElement.model.isAttributeSingle() and editionElement.representationName('Text') /]
 
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.validCaseForDirectAttribute() and not editionElement.canGeneratemodelNavigation())]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeSingle() and editionElement.validCaseForDirectAttribute() and not editionElement.canGeneratemodelNavigation())]
 [if (editionElement.model.isPrimitiveType())]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/]((EEFConverterUtil.create[editionElement.model.eType.instanceClassName.toUpperFirst()/]FromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue())));[else]
 [pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](([editionElement.model.eType.instanceClassName/])EEFConverterUtil.createFromString([editionElement.model.eType.metamodelPackage()/].eINSTANCE.get[editionElement.model.eType.name/](), (String)event.getNewValue()));[/if]
