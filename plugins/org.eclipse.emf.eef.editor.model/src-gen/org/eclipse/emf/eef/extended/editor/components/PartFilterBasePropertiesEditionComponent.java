@@ -108,38 +108,40 @@ public class PartFilterBasePropertiesEditionComponent extends SinglePartProperti
 			// init filters
 			
 			
-			basePart.addFilterToFilteredPart(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof View);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for filteredPart
-			
-			// End of user code
-			
-			basePart.addFilterToContextualComponent(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof PropertiesEditionComponent); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for contextualComponent
-			
-			// End of user code
-			
+			if (isAccessible(EditorViewsRepository.PartFilter.Filter.filteredPart)) {
+				basePart.addFilterToFilteredPart(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof View);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for filteredPart
+				
+				// End of user code
+			}
+			if (isAccessible(EditorViewsRepository.PartFilter.Filter.contextualComponent)) {
+				basePart.addFilterToContextualComponent(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof PropertiesEditionComponent); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for contextualComponent
+				
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
