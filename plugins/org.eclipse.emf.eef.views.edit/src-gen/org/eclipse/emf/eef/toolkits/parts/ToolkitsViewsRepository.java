@@ -22,6 +22,7 @@ public class ToolkitsViewsRepository {
 	public static final int FORM_KIND = 1;
 
 
+
 	/**
 	 * Toolkit view descriptor
 	 * 

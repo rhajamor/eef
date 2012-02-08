@@ -57,7 +57,7 @@ public class CustomElementEditorBasePropertiesEditionComponent extends SinglePar
 	/**
 	 * Settings for representation EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings representationSettings;
+	private EObjectFlatComboSettings representationSettings;
 	
 	
 	/**
@@ -183,7 +183,7 @@ public class CustomElementEditorBasePropertiesEditionComponent extends SinglePar
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			CustomElementEditorPropertiesEditionPart basePart = (CustomElementEditorPropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.CustomElementEditor.Properties.representation))
 				basePart.setRepresentation((EObject)msg.getNewValue());

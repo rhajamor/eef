@@ -57,7 +57,7 @@ public class ViewReferenceBasePropertiesEditionComponent extends SinglePartPrope
 	/**
 	 * Settings for view EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings viewSettings;
+	private EObjectFlatComboSettings viewSettings;
 	
 	
 	/**
@@ -170,7 +170,7 @@ public class ViewReferenceBasePropertiesEditionComponent extends SinglePartPrope
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ViewReferencePropertiesEditionPart basePart = (ViewReferencePropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.ViewReference.Properties.name)) {
 				if (msg.getNewValue() != null) {

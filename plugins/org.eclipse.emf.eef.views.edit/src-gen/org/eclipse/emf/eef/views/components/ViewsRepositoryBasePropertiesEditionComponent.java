@@ -126,7 +126,7 @@ public class ViewsRepositoryBasePropertiesEditionComponent extends SinglePartPro
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ViewsRepositoryPropertiesEditionPart basePart = (ViewsRepositoryPropertiesEditionPart)editingPart;
 			// FIXME INVALID CASE INTO template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in widgetControl.mtl module, with the values : RepositoryKind, ViewsRepository, ViewsRepository.
 			if (ViewsPackage.eINSTANCE.getViewsRepository_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.ViewsRepository.Properties.name)) {

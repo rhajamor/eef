@@ -114,7 +114,7 @@ public class CustomViewBasePropertiesEditionComponent extends SinglePartProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			CustomViewPropertiesEditionPart basePart = (CustomViewPropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getViewElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.CustomView.Properties.name)) {
 				if (msg.getNewValue() != null) {

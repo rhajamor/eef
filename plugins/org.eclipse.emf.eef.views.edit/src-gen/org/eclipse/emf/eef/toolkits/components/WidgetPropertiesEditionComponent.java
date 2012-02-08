@@ -114,7 +114,7 @@ public class WidgetPropertiesEditionComponent extends SinglePartPropertiesEditin
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			WidgetPropertiesEditionPart basePart = (WidgetPropertiesEditionPart)editingPart;
 			if (ToolkitsPackage.eINSTANCE.getWidget_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ToolkitsViewsRepository.Widget.Properties.name)) {
 				if (msg.getNewValue() != null) {

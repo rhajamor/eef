@@ -57,7 +57,7 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	/**
 	 * Settings for representation EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings representationSettings;
+	private EObjectFlatComboSettings representationSettings;
 	
 	
 	/**
@@ -172,7 +172,7 @@ public class ContainerBasePropertiesEditionComponent extends SinglePartPropertie
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ContainerPropertiesEditionPart basePart = (ContainerPropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getViewElement_Representation().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Container.Properties.representation))
 				basePart.setRepresentation((EObject)msg.getNewValue());

@@ -114,7 +114,7 @@ public class CategoryBasePropertiesEditionComponent extends SinglePartProperties
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			CategoryPropertiesEditionPart basePart = (CategoryPropertiesEditionPart)editingPart;
 			if (ViewsPackage.eINSTANCE.getCategory_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ViewsViewsRepository.Category.Properties.name)) {
 				if (msg.getNewValue() != null) {

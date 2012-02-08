@@ -114,7 +114,7 @@ public class ToolkitPropertiesEditionComponent extends SinglePartPropertiesEditi
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ToolkitPropertiesEditionPart basePart = (ToolkitPropertiesEditionPart)editingPart;
 			if (ToolkitsPackage.eINSTANCE.getToolkit_Name().equals(msg.getFeature()) && basePart != null && isAccessible(ToolkitsViewsRepository.Toolkit.Properties.name)) {
 				if (msg.getNewValue() != null) {
