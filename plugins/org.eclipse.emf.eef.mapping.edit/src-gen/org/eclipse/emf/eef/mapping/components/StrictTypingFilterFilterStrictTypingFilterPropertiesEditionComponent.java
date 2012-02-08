@@ -90,22 +90,23 @@ public class StrictTypingFilterFilterStrictTypingFilterPropertiesEditionComponen
 				strictTypingFilterPart.setRestrictionButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
-			strictTypingFilterPart.addFilterToRestriction(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof org.eclipse.emf.ecore.EClassifier);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for type
-			
-			// End of user code
-			
+			if (isAccessible(MappingViewsRepository.StrictTypingFilter.Type.restriction)) {
+				strictTypingFilterPart.addFilterToRestriction(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof org.eclipse.emf.ecore.EClassifier);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for type
+				
+				// End of user code
+			}
 			// init values for referenced views
 					strictTypingFilterPart.getFilterPropertiesReferencedView().setContext(elt, allResource);
 			

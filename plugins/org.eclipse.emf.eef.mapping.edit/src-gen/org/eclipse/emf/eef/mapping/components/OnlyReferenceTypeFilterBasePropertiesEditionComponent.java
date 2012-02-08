@@ -91,22 +91,23 @@ public class OnlyReferenceTypeFilterBasePropertiesEditionComponent extends Singl
 				basePart.setReferencedFeatureButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
-			basePart.addFilterToReferencedFeature(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof org.eclipse.emf.ecore.EReference); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for referencedFeature
-																																																																		
-																																																																		// End of user code
-			
+			if (isAccessible(MappingViewsRepository.OnlyReferenceTypeFilter.ReferencedFeature.referencedFeature_)) {
+				basePart.addFilterToReferencedFeature(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof org.eclipse.emf.ecore.EReference); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for referencedFeature
+																																																																			
+																																																																			// End of user code
+			}
 			// init values for referenced views
 					basePart.getFilterPropertiesReferencedView().setContext(elt, allResource);
 			

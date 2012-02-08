@@ -110,41 +110,43 @@ public class EMFPropertyBindingBasePropertiesEditionComponent extends SinglePart
 			}
 			// init filters
 			
-			basePart.addFilterToViews(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInViewsTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToViews(new EObjectFilter(ViewsPackage.eINSTANCE.getElementEditor()));
-			// Start of user code for additional businessfilters for views
-																																																																																																						
-																																																																																																						// End of user code
-			
-			basePart.addFilterToModel(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof org.eclipse.emf.ecore.EStructuralFeature);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for model
-																																																																																																						
-																																																																																																						// End of user code
-			
+			if (isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.views)) {
+				basePart.addFilterToViews(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInViewsTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToViews(new EObjectFilter(ViewsPackage.eINSTANCE.getElementEditor()));
+				// Start of user code for additional businessfilters for views
+																																																																																																							
+																																																																																																							// End of user code
+			}
+			if (isAccessible(MappingViewsRepository.EMFPropertyBinding.Binding.model)) {
+				basePart.addFilterToModel(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof org.eclipse.emf.ecore.EStructuralFeature);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for model
+																																																																																																							
+																																																																																																							// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

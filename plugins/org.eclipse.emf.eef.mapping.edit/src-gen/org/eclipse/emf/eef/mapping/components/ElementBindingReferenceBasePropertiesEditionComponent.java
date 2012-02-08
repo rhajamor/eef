@@ -89,22 +89,23 @@ public class ElementBindingReferenceBasePropertiesEditionComponent extends Singl
 				basePart.setBindingButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
-			basePart.addFilterToBinding(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof AbstractElementBinding);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for binding
-																																																																																																						
-																																																																																																						// End of user code
-			
+			if (isAccessible(MappingViewsRepository.ElementBindingReference.Reference.binding)) {
+				basePart.addFilterToBinding(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof AbstractElementBinding);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for binding
+																																																																																																							
+																																																																																																							// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
