@@ -95,7 +95,7 @@ public class EEFEditorSettingsBuilder  {
 		 * Compute and cache the object to edit following the NavigationStep.
 		 * @return object to edit.
 		 */
-		protected EObject getSignificantObject() {
+		public EObject getSignificantObject() {
 			if (significantObject == null) {
 				EObject current = source;
 				for (NavigationStep step : EEFEditorSettingsImpl.this.steps) {
