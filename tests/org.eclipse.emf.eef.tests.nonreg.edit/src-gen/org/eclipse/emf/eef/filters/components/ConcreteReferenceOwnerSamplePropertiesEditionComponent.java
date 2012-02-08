@@ -110,43 +110,45 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 			}
 			// init filters
 			
-			basePart.addFilterToAbstractTarget(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInAbstractTargetTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToAbstractTarget(new EObjectFilter(FiltersPackage.eINSTANCE.getAbstractReferenceTargetSample()));
-						basePart.addFilterToAbstractTarget(new ViewerFilter() {
-			
-							/**
-							 * {@inheritDoc}
-							 * 
-							 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-							 */
-							public boolean select(Viewer viewer, Object parentElement, Object element) {
-								Object result = EEFUtils.choiceOfValues(ConcreteReferenceOwnerSamplePropertiesEditionComponent.this.semanticObject, FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_Target());
-								if (result instanceof Collection) {
-									return ((Collection)result).contains(element);
-								} else if (result instanceof ResourceSet && element instanceof EObject) {
-									return ((EObject)element).eResource() != null && ((EObject)element).eResource().getResourceSet() != null && ((EObject)element).eResource().getResourceSet().equals(result);
+			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.abstractTarget)) {
+				basePart.addFilterToAbstractTarget(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInAbstractTargetTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToAbstractTarget(new EObjectFilter(FiltersPackage.eINSTANCE.getAbstractReferenceTargetSample()));
+							basePart.addFilterToAbstractTarget(new ViewerFilter() {
+				
+								/**
+								 * {@inheritDoc}
+								 * 
+								 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+								 */
+								public boolean select(Viewer viewer, Object parentElement, Object element) {
+									Object result = EEFUtils.choiceOfValues(ConcreteReferenceOwnerSamplePropertiesEditionComponent.this.semanticObject, FiltersPackage.eINSTANCE.getConcreteReferenceOwnerSample_Target());
+									if (result instanceof Collection) {
+										return ((Collection)result).contains(element);
+									} else if (result instanceof ResourceSet && element instanceof EObject) {
+										return ((EObject)element).eResource() != null && ((EObject)element).eResource().getResourceSet() != null && ((EObject)element).eResource().getResourceSet().equals(result);
+									}
+									return element instanceof Resource;
 								}
-								return element instanceof Resource;
-							}
-						});
-			// Start of user code for additional businessfilters for abstractTarget
-			
-			// End of user code
-			
-			basePart.addFilterToStrictTyping(new ViewerFilter() {
+							});
+				// Start of user code for additional businessfilters for abstractTarget
+					
+					// End of user code
+			}
+			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping)) {
+				basePart.addFilterToStrictTyping(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -157,12 +159,12 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 						return (element instanceof String && element.equals("")) || (element instanceof ConcreteReferenceTargetSample2); //$NON-NLS-1$ 
 					}
 			
-			});
-			// FIXME default case for filter body generation.
-			// Start of user code for additional businessfilters for strictTyping
-			
-			// End of user code
-			
+				});
+				// FIXME default case for filter body generation.
+				// Start of user code for additional businessfilters for strictTyping
+					
+					// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

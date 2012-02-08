@@ -35,6 +35,9 @@ import org.eclipse.emf.eef.runtime.impl.filters.EObjectStrictFilter;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder;
+import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder.EEFEditorSettingsImpl;
+import org.eclipse.emf.eef.runtime.ui.widgets.settings.NavigationStepBuilder;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 	
@@ -56,6 +59,14 @@ public class DeferedFlatReferencesTableSampleEditorPropertiesEditionComponent ex
 	 */
 	private	ReferencesTableSettings flatReferencesTableSampleEditorSettings;
 	
+	
+	/**
+	 * Settings for flatReferencesTableSampleEditor editor
+	 */
+	protected EEFEditorSettingsImpl flatReferencesTableSampleEditorSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, NavigationPackage.eINSTANCE.getDeferedReference_FlatreferenceEditor())
+																														.nextStep(NavigationStepBuilder.create(NavigationPackage.eINSTANCE.getDeferedFlatReferenceTableEditorSample_References())			
+																																	.index(0).build())
+																														.build();
 	
 	/**
 	 * Default constructor
@@ -91,25 +102,26 @@ public class DeferedFlatReferencesTableSampleEditorPropertiesEditionComponent ex
 			}
 			// init filters
 			
-			deferedFlatReferencesTableSamplePart.addFilterToFlatReferencesTableSampleEditor(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!deferedFlatReferencesTableSamplePart.isContainedInFlatReferencesTableSampleEditorTable((EObject)element));
-					return false;
-				}
-			
-			});
-			deferedFlatReferencesTableSamplePart.addFilterToFlatReferencesTableSampleEditor(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for flatReferencesTableSampleEditor
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															// End of user code
-			
+			if (isAccessible(NavigationViewsRepository.DeferedFlatReferencesTableSample.Properties.flatReferencesTableSampleEditor)) {
+				deferedFlatReferencesTableSamplePart.addFilterToFlatReferencesTableSampleEditor(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!deferedFlatReferencesTableSamplePart.isContainedInFlatReferencesTableSampleEditorTable((EObject)element));
+						return false;
+					}
+				
+				});
+				deferedFlatReferencesTableSamplePart.addFilterToFlatReferencesTableSampleEditor(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for flatReferencesTableSampleEditor
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

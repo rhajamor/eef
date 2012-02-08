@@ -119,8 +119,8 @@ public class EefnrViewsRepository {
 			public static String name = "eefnr::TotalSample::properties::name";
 			
 			// Start of user code for CustomElementEditor ElementEditor key
-																														public static String customElementEditor = "eefnr::TotalSample::properties::CustomElementEditor";
-																														// End of user code
+																																				public static String customElementEditor = "eefnr::TotalSample::properties::CustomElementEditor";
+																																				// End of user code
 			
 	
 		}

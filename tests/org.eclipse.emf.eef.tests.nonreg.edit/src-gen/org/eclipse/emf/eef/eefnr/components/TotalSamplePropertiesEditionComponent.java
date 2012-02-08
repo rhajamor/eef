@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -41,6 +40,7 @@ import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingCo
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
@@ -168,10 +168,10 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.setTextareaOptionalProperty(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), totalSample.getTextareaOptionalProperty()));
 			
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty)) {
-				basePart.initRadioRequiredProperty((EEnum) EefnrPackage.eINSTANCE.getTotalSample_RadioRequiredProperty().getEType(), totalSample.getRadioRequiredProperty());
+				basePart.initRadioRequiredProperty(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_RadioRequiredProperty()), totalSample.getRadioRequiredProperty());
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.radioOptionalProperty)) {
-				basePart.initRadioOptionalProperty((EEnum) EefnrPackage.eINSTANCE.getTotalSample_RadioOptionalProperty().getEType(), totalSample.getRadioOptionalProperty());
+				basePart.initRadioOptionalProperty(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_RadioOptionalProperty()), totalSample.getRadioOptionalProperty());
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty)) {
 				// init part
@@ -196,10 +196,10 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.initReferencestableOptionalProperty(referencestableOptionalPropertySettings);
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.emfcomboviewerRequiredProperty)) {
-				basePart.initEmfcomboviewerRequiredProperty((EEnum) EefnrPackage.eINSTANCE.getTotalSample_EmfcomboviewerRequiredProperty().getEType(), totalSample.getEmfcomboviewerRequiredProperty());
+				basePart.initEmfcomboviewerRequiredProperty(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_EmfcomboviewerRequiredProperty()), totalSample.getEmfcomboviewerRequiredProperty());
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.emfcomboviewerOptionalProperty)) {
-				basePart.initEmfcomboviewerOptionalProperty((EEnum) EefnrPackage.eINSTANCE.getTotalSample_EmfcomboviewerOptionalProperty().getEType(), totalSample.getEmfcomboviewerOptionalProperty());
+				basePart.initEmfcomboviewerOptionalProperty(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_EmfcomboviewerOptionalProperty()), totalSample.getEmfcomboviewerOptionalProperty());
 			}
 			if (totalSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(totalSample.getMultivaluededitorRequiredProperty());
@@ -260,81 +260,86 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 			
 			
-			basePart.addFilterToEobjectflatcomboviewerRequiredProperty(new ViewerFilter() {
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty)) {
+				basePart.addFilterToEobjectflatcomboviewerRequiredProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof TotalSample);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for eobjectflatcomboviewerRequiredProperty
+																																																																																																																																																											
+																																																																																																																																																											// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerOptionalProperty)) {
+				basePart.addFilterToEobjectflatcomboviewerOptionalProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof TotalSample); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for eobjectflatcomboviewerOptionalProperty
+																																																																																																																																																											
+																																																																																																																																																											// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.referencestableRequiredProperty)) {
+				basePart.addFilterToReferencestableRequiredProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInReferencestableRequiredPropertyTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToReferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for referencestableRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.referencestableOptionalProperty)) {
+				basePart.addFilterToReferencestableOptionalProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInReferencestableOptionalPropertyTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToReferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for referencestableOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
 			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof TotalSample);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for eobjectflatcomboviewerRequiredProperty
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
-			
-			basePart.addFilterToEobjectflatcomboviewerOptionalProperty(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof TotalSample); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for eobjectflatcomboviewerOptionalProperty
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
-			
-			basePart.addFilterToReferencestableRequiredProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInReferencestableRequiredPropertyTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToReferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for referencestableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToReferencestableOptionalProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInReferencestableOptionalPropertyTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToReferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for referencestableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
 			
 			
 			
-			
-			
-			basePart.addFilterToTablecompositionRequiredProperty(new ViewerFilter() {
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty)) {
+				basePart.addFilterToTablecompositionRequiredProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -345,12 +350,13 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 						return (element instanceof Sample);
 					}
 			
-			});
-			// Start of user code for additional businessfilters for tablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
+				});
+				// Start of user code for additional businessfilters for tablecompositionRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionOptionalProperty)) {
+				basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -361,82 +367,87 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 						return (element instanceof String && element.equals("")) || (element instanceof Sample); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for tablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInAdvancedreferencestableRequiredPropertyTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToAdvancedreferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for advancedreferencestableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToAdvancedreferencestableOptionalProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInAdvancedreferencestableOptionalPropertyTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			basePart.addFilterToAdvancedreferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for advancedreferencestableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToAdvancedeobjectflatcomboviewerRequiredPropery(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof TotalSample);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerRequiredPropery
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
-			
-			basePart.addFilterToAdvancedeobjectflatcomboviewerOptionalPropery(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof TotalSample); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerOptionalPropery
-																																																																																																																																																									
-																																																																																																																																																									// End of user code
-			
-			basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
+				});
+				// Start of user code for additional businessfilters for tablecompositionOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedreferencestableRequiredProperty)) {
+				basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInAdvancedreferencestableRequiredPropertyTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToAdvancedreferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for advancedreferencestableRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedreferencestableOptionalProperty)) {
+				basePart.addFilterToAdvancedreferencestableOptionalProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInAdvancedreferencestableOptionalPropertyTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				basePart.addFilterToAdvancedreferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for advancedreferencestableOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery)) {
+				basePart.addFilterToAdvancedeobjectflatcomboviewerRequiredPropery(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof TotalSample);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerRequiredPropery
+																																																																																																																																																											
+																																																																																																																																																											// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerOptionalPropery)) {
+				basePart.addFilterToAdvancedeobjectflatcomboviewerOptionalPropery(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof TotalSample); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerOptionalPropery
+																																																																																																																																																											
+																																																																																																																																																											// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty)) {
+				basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -447,12 +458,13 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 						return (element instanceof Sample);
 					}
 			
-			});
-			// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
-			basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
+				});
+				// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty)) {
+				basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -463,11 +475,11 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 						return (element instanceof String && element.equals("")) || (element instanceof Sample); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+			}
 			
 			// Start of user code for custom filter update
 			// End of user code

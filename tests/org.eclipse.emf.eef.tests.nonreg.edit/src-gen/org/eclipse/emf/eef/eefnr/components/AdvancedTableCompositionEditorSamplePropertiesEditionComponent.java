@@ -94,7 +94,8 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 				basePart.initAdvancedtablecompositionOptionalProperty(advancedtablecompositionOptionalPropertySettings);
 			}
 			// init filters
-			basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
+			if (isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionRequiredProperty)) {
+				basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -105,12 +106,13 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 						return (element instanceof Sample);
 					}
 			
-			});
-			// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
-			
-			basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
+				});
+				// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+			}
+			if (isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty)) {
+				basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -121,11 +123,11 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 						return (element instanceof String && element.equals("")) || (element instanceof Sample); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

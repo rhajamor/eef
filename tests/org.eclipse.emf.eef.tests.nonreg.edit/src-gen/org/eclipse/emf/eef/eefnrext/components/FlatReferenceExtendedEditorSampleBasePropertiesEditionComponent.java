@@ -85,25 +85,26 @@ public class FlatReferenceExtendedEditorSampleBasePropertiesEditionComponent ext
 				basePart.initFlatReferenceEditorSample(flatReferenceEditorSampleSettings);
 			}
 			// init filters
-			basePart.addFilterToFlatReferenceEditorSample(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInFlatReferenceEditorSampleTable((EObject)element));
-					return element instanceof String && element.equals("");
-				}
-			
-			});
-			basePart.addFilterToFlatReferenceEditorSample(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getAbstractSample()));
-			// Start of user code for additional businessfilters for flatReferenceEditorSample
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															// End of user code
-			
+			if (isAccessible(EefnrextViewsRepository.FlatReferenceExtendedEditorSample.Properties.flatReferenceEditorSample)) {
+				basePart.addFilterToFlatReferenceEditorSample(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInFlatReferenceEditorSampleTable((EObject)element));
+						return element instanceof String && element.equals("");
+					}
+				
+				});
+				basePart.addFilterToFlatReferenceEditorSample(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getAbstractSample()));
+				// Start of user code for additional businessfilters for flatReferenceEditorSample
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	// End of user code
+			}
 			// init values for referenced views
 					basePart.getCheckBoxExtendedEditorSampleReferencedView().setContext(elt, allResource);
 			

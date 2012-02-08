@@ -85,7 +85,8 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 				basePart.initSamples(samplesSettings);
 			}
 			// init filters
-			basePart.addFilterToSamples(new ViewerFilter() {
+			if (isAccessible(EefnrViewsRepository.Root.Properties.samples)) {
+				basePart.addFilterToSamples(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -96,11 +97,11 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 						return (element instanceof String && element.equals("")) || (element instanceof AbstractSample); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for samples
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
-																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for samples
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
