@@ -13,14 +13,12 @@ package org.eclipse.emf.eef.EEFGen.parts.forms;
 // Start of user code for imports
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.EEFGen.parts.EEFGenViewsRepository;
 import org.eclipse.emf.eef.EEFGen.parts.GenViewsRepositoryPropertiesEditionPart;
 import org.eclipse.emf.eef.EEFGen.providers.EEFGenMessages;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
@@ -276,7 +274,7 @@ public class GenViewsRepositoryPropertiesEditionPartForm extends CompositeProper
 		FormUtils.createPartLabel(widgetFactory, parent, EEFGenMessages.GenViewsRepositoryPropertiesEditionPart_HelpStrategyLabel, propertiesEditionComponent.isRequired(EEFGenViewsRepository.GenViewsRepository.Parameters.helpStrategy, EEFGenViewsRepository.FORM_KIND));
 		helpStrategy = new EMFComboViewer(parent);
 		helpStrategy.setContentProvider(new ArrayContentProvider());
-		helpStrategy.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		helpStrategy.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData helpStrategyData = new GridData(GridData.FILL_HORIZONTAL);
 		helpStrategy.getCombo().setLayoutData(helpStrategyData);
 		helpStrategy.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -541,17 +539,17 @@ public class GenViewsRepositoryPropertiesEditionPartForm extends CompositeProper
 	 * 
 	 */
 	public Enumerator getHelpStrategy() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) helpStrategy.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) helpStrategy.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.EEFGen.parts.GenViewsRepositoryPropertiesEditionPart#initHelpStrategy(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.emf.eef.EEFGen.parts.GenViewsRepositoryPropertiesEditionPart#initHelpStrategy(Object input, Enumerator current)
 	 */
-	public void initHelpStrategy(EEnum eenum, Enumerator current) {
-		helpStrategy.setInput(eenum.getELiterals());
+	public void initHelpStrategy(Object input, Enumerator current) {
+		helpStrategy.setInput(input);
 		helpStrategy.modelUpdating(new StructuredSelection(current));
 	}
 

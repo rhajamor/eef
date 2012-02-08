@@ -117,22 +117,23 @@ public class GenEditionContextPropertiesEditionComponent extends SinglePartPrope
 			
 			
 			
-			basePart.addFilterToPropertiesEditionContext(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof PropertiesEditionContext);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for propertiesEditionContext
-																																													
-																																													// End of user code
-			
+			if (isAccessible(EEFGenViewsRepository.GenEditionContext.Reference.propertiesEditionContext)) {
+				basePart.addFilterToPropertiesEditionContext(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof PropertiesEditionContext);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for propertiesEditionContext
+																																														
+																																														// End of user code
+			}
 			
 			
 			

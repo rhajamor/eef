@@ -88,22 +88,23 @@ public class EEFGenModelReferencePropertiesEditionComponent extends SinglePartPr
 				basePart.setReferencedEEFGenModelButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
-			basePart.addFilterToReferencedEEFGenModel(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof EEFGenModel);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for reference
-																																													
-																																													// End of user code
-			
+			if (isAccessible(EEFGenViewsRepository.EEFGenModelReference.Reference.referencedEEFGenModel)) {
+				basePart.addFilterToReferencedEEFGenModel(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof EEFGenModel);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for reference
+																																														
+																																														// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
