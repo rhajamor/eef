@@ -163,7 +163,7 @@ public class WidgetPropertiesEditionComponent extends SinglePartPropertiesEditin
 				if (ToolkitsViewsRepository.Widget.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(ToolkitsPackage.eINSTANCE.getWidget_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(ToolkitsPackage.eINSTANCE.getWidget_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(ToolkitsPackage.eINSTANCE.getWidget_Name().getEAttributeType(), newValue);
 				}
