@@ -829,7 +829,7 @@
             <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
           </argument>
         </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="("/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="((Boolean)"/>
         <body xsi:type="mtl:TemplateInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="../../../services/common.emtl#/0/toJavaIdentifier"/>
@@ -7002,7 +7002,7 @@
     </eAnnotations>
     <eAnnotations source="positions.248" references="/0/updater.1">
       <details key="start" value="4413"/>
-      <details key="end" value="5130"/>
+      <details key="end" value="5139"/>
       <details key="line" value="62"/>
     </eAnnotations>
     <eAnnotations source="positions.249" references="/0/updater.1/@body.0">
@@ -7037,7 +7037,7 @@
     </eAnnotations>
     <eAnnotations source="positions.255" references="/0/updater.1/@body.3">
       <details key="start" value="4756"/>
-      <details key="end" value="5116"/>
+      <details key="end" value="5125"/>
       <details key="line" value="64"/>
     </eAnnotations>
     <eAnnotations source="positions.256" references="/0/updater.1/@body.3/@body.0">
@@ -7087,27 +7087,27 @@
     </eAnnotations>
     <eAnnotations source="positions.265" references="/0/updater.1/@body.3/@body.4">
       <details key="start" value="4925"/>
-      <details key="end" value="4926"/>
+      <details key="end" value="4935"/>
       <details key="line" value="65"/>
     </eAnnotations>
     <eAnnotations source="positions.266" references="/0/updater.1/@body.3/@body.5">
-      <details key="start" value="4927"/>
-      <details key="end" value="4965"/>
+      <details key="start" value="4936"/>
+      <details key="end" value="4974"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.267" references="/0/updater.1/@body.3/@body.5/@argument.0">
-      <details key="start" value="4927"/>
-      <details key="end" value="4946"/>
+      <details key="start" value="4936"/>
+      <details key="end" value="4955"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.268" references="/0/updater.1/@body.3/@body.5/@argument.0/editionElement">
-      <details key="start" value="4927"/>
-      <details key="end" value="4941"/>
+      <details key="start" value="4936"/>
+      <details key="end" value="4950"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.269" references="/0/updater.1/@body.3/@body.6">
-      <details key="start" value="4967"/>
-      <details key="end" value="4989"/>
+      <details key="start" value="4976"/>
+      <details key="end" value="4998"/>
       <details key="line" value="65"/>
     </eAnnotations>
     <eAnnotations source="positions.270" references="/0/updater.1/@body.3/@ifExpr">
@@ -7151,38 +7151,38 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.278" references="/0/updater.1/@body.3/@else">
-      <details key="start" value="4990"/>
-      <details key="end" value="5111"/>
+      <details key="start" value="4999"/>
+      <details key="end" value="5120"/>
       <details key="line" value="66"/>
     </eAnnotations>
     <eAnnotations source="positions.279" references="/0/updater.1/@body.3/@else/@body.0">
-      <details key="start" value="4997"/>
-      <details key="end" value="5063"/>
+      <details key="start" value="5006"/>
+      <details key="end" value="5072"/>
       <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.280" references="/0/updater.1/@body.3/@else/@body.1">
-      <details key="start" value="5064"/>
-      <details key="end" value="5089"/>
+      <details key="start" value="5073"/>
+      <details key="end" value="5098"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.281" references="/0/updater.1/@body.3/@else/@body.1/@source">
-      <details key="start" value="5064"/>
-      <details key="end" value="5084"/>
+      <details key="start" value="5073"/>
+      <details key="end" value="5093"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.282" references="/0/updater.1/@body.3/@else/@body.1/@source/editionElement">
-      <details key="start" value="5064"/>
-      <details key="end" value="5078"/>
+      <details key="start" value="5073"/>
+      <details key="end" value="5087"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.283" references="/0/updater.1/@body.3/@else/@body.2">
-      <details key="start" value="5091"/>
-      <details key="end" value="5110"/>
+      <details key="start" value="5100"/>
+      <details key="end" value="5119"/>
       <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.284" references="/0/updater.1/@body.4">
-      <details key="start" value="5117"/>
-      <details key="end" value="5118"/>
+      <details key="start" value="5126"/>
+      <details key="end" value="5127"/>
       <details key="line" value="69"/>
     </eAnnotations>
     <eAnnotations source="positions.285" references="/0/updater.1/editionElement">
