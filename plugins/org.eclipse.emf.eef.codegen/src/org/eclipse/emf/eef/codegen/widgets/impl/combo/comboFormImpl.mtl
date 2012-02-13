@@ -57,7 +57,7 @@ create[editor.name.toJavaClassifier()/]EMFComboViewer(widgetFactory, parent);
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-			 * 	[editor.owningViewsRepository().associatedGenModel().generationComment()/]
+			 * 	
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
