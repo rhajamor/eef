@@ -103,5 +103,13 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 	public Adapter createAttributeNavigationSampleAdapter() {
 		return new AttributeNavigationSamplePropertiesEditionProvider();
 	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.navigation.util.NavigationAdapterFactory#createDeferedMultivaluedEditorSampleAdapter()
+	 * 
+	 */
+	public Adapter createDeferedMultivaluedEditorSampleAdapter() {
+		return new DeferedMultivaluedEditorPropertiesEditionProvider();
+	}
 
 }

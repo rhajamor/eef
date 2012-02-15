@@ -169,14 +169,14 @@ public class FlatReferenceExtendedEditorSampleSecondFlatReferenceExtendedEditorS
 				if (EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.demo == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Demo().getEAttributeType(), newValue);
 				}
 				if (EefnrextViewsRepository.SecondFlatReferenceExtendedEditorSample.Extended.size == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrextPackage.eINSTANCE.getFlatReferenceExtendedEditorSample_Size().getEAttributeType(), newValue);
 				}

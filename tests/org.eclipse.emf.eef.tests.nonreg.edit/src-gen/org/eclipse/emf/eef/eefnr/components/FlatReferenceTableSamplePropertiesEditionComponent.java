@@ -50,12 +50,10 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	 * Settings for flatreferencetableRequiredProperty ReferencesTable
 	 */
 	private	ReferencesTableSettings flatreferencetableRequiredPropertySettings;
-	
 	/**
 	 * Settings for flatreferencetableOptionalProperty ReferencesTable
 	 */
 	private	ReferencesTableSettings flatreferencetableOptionalPropertySettings;
-	
 	
 	/**
 	 * Default constructor
@@ -91,42 +89,44 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 				basePart.initFlatreferencetableOptionalProperty(flatreferencetableOptionalPropertySettings);
 			}
 			// init filters
-			basePart.addFilterToFlatreferencetableRequiredProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInFlatreferencetableRequiredPropertyTable((EObject)element));
-					return false;
-				}
-			
-			});
-			basePart.addFilterToFlatreferencetableRequiredProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for flatreferencetableRequiredProperty
+			if (isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableRequiredProperty)) {
+				basePart.addFilterToFlatreferencetableRequiredProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInFlatreferencetableRequiredPropertyTable((EObject)element));
+						return false;
+					}
+				
+				});
+				basePart.addFilterToFlatreferencetableRequiredProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for flatreferencetableRequiredProperty
 			// End of user code
-			
-			basePart.addFilterToFlatreferencetableOptionalProperty(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!basePart.isContainedInFlatreferencetableOptionalPropertyTable((EObject)element));
-					return element instanceof String && element.equals("");
-				}
-			
-			});
-			basePart.addFilterToFlatreferencetableOptionalProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
-			// Start of user code for additional businessfilters for flatreferencetableOptionalProperty
+			}
+			if (isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableOptionalProperty)) {
+				basePart.addFilterToFlatreferencetableOptionalProperty(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!basePart.isContainedInFlatreferencetableOptionalPropertyTable((EObject)element));
+						return element instanceof String && element.equals("");
+					}
+				
+				});
+				basePart.addFilterToFlatreferencetableOptionalProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
+				// Start of user code for additional businessfilters for flatreferencetableOptionalProperty
 			// End of user code
-			
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

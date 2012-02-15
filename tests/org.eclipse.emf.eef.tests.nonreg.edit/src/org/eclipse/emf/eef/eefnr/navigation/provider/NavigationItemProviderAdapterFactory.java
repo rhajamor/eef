@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationItemProviderAdapterFactory.java,v 1.4.6.1 2011/08/13 21:32:33 glefur Exp $
+ * $Id: NavigationItemProviderAdapterFactory.java,v 1.4.6.2 2012/02/15 13:37:43 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.provider;
 
@@ -329,6 +329,52 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeferedMultivaluedEditorSampleItemProvider deferedMultivaluedEditorSampleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeferedMultivaluedEditorSampleAdapter() {
+		if (deferedMultivaluedEditorSampleItemProvider == null) {
+			deferedMultivaluedEditorSampleItemProvider = new DeferedMultivaluedEditorSampleItemProvider(this);
+		}
+
+		return deferedMultivaluedEditorSampleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeferedMultivaluedEditorItemProvider deferedMultivaluedEditorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeferedMultivaluedEditorAdapter() {
+		if (deferedMultivaluedEditorItemProvider == null) {
+			deferedMultivaluedEditorItemProvider = new DeferedMultivaluedEditorItemProvider(this);
+		}
+
+		return deferedMultivaluedEditorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -438,6 +484,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 		if (elementItemProvider != null) elementItemProvider.dispose();
 		if (attributeNavigationSampleItemProvider != null) attributeNavigationSampleItemProvider.dispose();
 		if (attributeDelegateItemProvider != null) attributeDelegateItemProvider.dispose();
+		if (deferedMultivaluedEditorSampleItemProvider != null) deferedMultivaluedEditorSampleItemProvider.dispose();
+		if (deferedMultivaluedEditorItemProvider != null) deferedMultivaluedEditorItemProvider.dispose();
 	}
 
 }

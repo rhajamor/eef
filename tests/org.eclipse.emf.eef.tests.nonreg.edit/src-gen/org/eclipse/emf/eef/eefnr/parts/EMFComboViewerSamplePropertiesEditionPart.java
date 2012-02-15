@@ -12,7 +12,6 @@ package org.eclipse.emf.eef.eefnr.parts;
 
 // Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
 
 
 
@@ -32,10 +31,10 @@ public interface EMFComboViewerSamplePropertiesEditionPart {
 
 	/**
 	 * Init the emfcomboviewerRequiredProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initEmfcomboviewerRequiredProperty(EEnum eenum, Enumerator current);
+	public void initEmfcomboviewerRequiredProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new emfcomboviewerRequiredProperty
@@ -53,10 +52,10 @@ public interface EMFComboViewerSamplePropertiesEditionPart {
 
 	/**
 	 * Init the emfcomboviewerOptionalProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initEmfcomboviewerOptionalProperty(EEnum eenum, Enumerator current);
+	public void initEmfcomboviewerOptionalProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new emfcomboviewerOptionalProperty

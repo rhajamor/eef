@@ -268,35 +268,35 @@ public class AttributeNavigationSamplePropertiesEditionComponent extends SingleP
 				if (NavigationViewsRepository.AttributeNavigationSample.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), newValue);
 				}
 				if (NavigationViewsRepository.AttributeNavigationSample.Properties.delegate1ForSingleValued == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), newValue);
 				}
 				if (NavigationViewsRepository.AttributeNavigationSample.Properties.delegate2ForSingleValued == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), newValue);
 				}
 				if (NavigationViewsRepository.AttributeNavigationSample.Properties.delegate1ForMultiValued == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate1().getEAttributeType(), newValue);
 				}
 				if (NavigationViewsRepository.AttributeNavigationSample.Properties.delegate2ForMultiValued == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(NavigationPackage.eINSTANCE.getAttributeDelegate_Delegate2().getEAttributeType(), newValue);
 				}

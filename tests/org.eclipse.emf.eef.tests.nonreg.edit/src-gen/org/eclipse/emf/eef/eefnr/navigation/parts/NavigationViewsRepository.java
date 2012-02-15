@@ -210,4 +210,19 @@ public class NavigationViewsRepository {
 	
 	}
 
+	/**
+	 * DeferedMultivaluedEditor view descriptor
+	 * 
+	 */
+	public static class DeferedMultivaluedEditor {
+		public static class Properties {
+	
+			
+			public static String multivaluedEditor = "navigation::DeferedMultivaluedEditor::properties::multivaluedEditor";
+			
+	
+		}
+	
+	}
+
 }

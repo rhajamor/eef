@@ -145,7 +145,8 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 			// Start of user code for additional businessfilters for abstractTarget
 			// End of user code
 			
-			basePart.addFilterToStrictTyping(new ViewerFilter() {
+			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping)) {
+				basePart.addFilterToStrictTyping(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -156,11 +157,11 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 						return (element instanceof String && element.equals("")) || (element instanceof ConcreteReferenceTargetSample2); //$NON-NLS-1$ 
 					}
 			
-			});
-			// FIXME default case for filter body generation.
-			// Start of user code for additional businessfilters for strictTyping
+				});
+				// FIXME default case for filter body generation.
+				// Start of user code for additional businessfilters for strictTyping
 			// End of user code
-			
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -275,7 +276,7 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 				if (FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EefnrPackage.eINSTANCE.getAbstractSample_Name().getEAttributeType(), newValue);
 				}

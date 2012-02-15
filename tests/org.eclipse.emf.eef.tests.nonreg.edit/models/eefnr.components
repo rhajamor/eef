@@ -473,6 +473,15 @@
         </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/AttributeNavigationSample"/>
       </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Nxih8FfUEeGjbYWuiudkvA" name="DeferedMultivaluedEditor" views="_HNipcVfUEeGjbYWuiudkvA" helpID="">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_USJvQFfUEeGjbYWuiudkvA" name="multivaluedEditor" views="_LHR7IFfUEeGjbYWuiudkvA" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedMultivaluedEditor/multiValuedEditor"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_WMQEcFfUEeGjbYWuiudkvA">
+            <feature href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedMultivaluedEditorSample/deferedEditor"/>
+          </navigation>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//navigation/DeferedMultivaluedEditorSample"/>
+      </bindings>
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.genmodel#//eefnr/navigation"/>
   </eef-components:PropertiesEditionContext>
@@ -1045,6 +1054,14 @@
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_zlTZcLEdEeCT1Zh48D5qPg" name="delegate2ForMultiValued">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_HNipcVfUEeGjbYWuiudkvA" name="DeferedMultivaluedEditor">
+        <elements xsi:type="eef-views:Container" xmi:id="_JnfjYFfUEeGjbYWuiudkvA" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_LHR7IFfUEeGjbYWuiudkvA" name="multivaluedEditor">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
           </elements>
         </elements>
       </views>

@@ -11,7 +11,6 @@
 package org.eclipse.emf.eef.eefnr.parts;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
 
 // Start of user code for imports
 
@@ -33,10 +32,10 @@ public interface RadioSamplePropertiesEditionPart {
 
 	/**
 	 * Init the radioRequiredProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initRadioRequiredProperty(EEnum eenum, Enumerator current);
+	public void initRadioRequiredProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new radioRequiredProperty
@@ -54,10 +53,10 @@ public interface RadioSamplePropertiesEditionPart {
 
 	/**
 	 * Init the radioOptionalProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initRadioOptionalProperty(EEnum eenum, Enumerator current);
+	public void initRadioOptionalProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new radioOptionalProperty

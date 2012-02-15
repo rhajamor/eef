@@ -94,7 +94,8 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 				basePart.initTablecompositionOptionalProperty(tablecompositionOptionalPropertySettings);
 			}
 			// init filters
-			basePart.addFilterToTablecompositionRequiredProperty(new ViewerFilter() {
+			if (isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionRequiredProperty)) {
+				basePart.addFilterToTablecompositionRequiredProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -105,11 +106,12 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 						return (element instanceof AbstractTableCompositionTargetExtensionEditorSample);
 					}
 			
-			});
-			// Start of user code for additional businessfilters for tablecompositionRequiredProperty
+				});
+				// Start of user code for additional businessfilters for tablecompositionRequiredProperty
 			// End of user code
-			
-			basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
+			}
+			if (isAccessible(EefnrViewsRepository.TableCompositionExtensionEditorSample.Properties.tablecompositionOptionalProperty)) {
+				basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
 			
 					/**
 					 * {@inheritDoc}
@@ -120,10 +122,10 @@ public class TableCompositionExtensionEditorSamplePropertiesEditionComponent ext
 						return (element instanceof String && element.equals("")) || (element instanceof AbstractTableCompositionTargetExtensionEditorSample); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for tablecompositionOptionalProperty
+				});
+				// Start of user code for additional businessfilters for tablecompositionOptionalProperty
 			// End of user code
-			
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views

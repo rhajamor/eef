@@ -14,6 +14,7 @@ import org.eclipse.emf.eef.eefnr.navigation.parts.NavigationViewsRepository;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.AnotherSubtypePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.AttributeNavigationSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.DeferedFlatReferencesTableSamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.navigation.parts.forms.DeferedMultivaluedEditorPropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.DeferedReferencesTableSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.ElementPropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.navigation.parts.forms.NamedElementPropertiesEditionPartForm;
@@ -22,6 +23,7 @@ import org.eclipse.emf.eef.eefnr.navigation.parts.forms.SubtypePropertiesEdition
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.AnotherSubtypePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.AttributeNavigationSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.DeferedFlatReferencesTableSamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.navigation.parts.impl.DeferedMultivaluedEditorPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.DeferedReferencesTableSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.ElementPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.navigation.parts.impl.NamedElementPropertiesEditionPartImpl;
@@ -102,6 +104,12 @@ public class NavigationPropertiesEditionPartProvider implements IPropertiesEditi
 				return new AttributeNavigationSamplePropertiesEditionPartImpl(component);
 			if (kind == NavigationViewsRepository.FORM_KIND)
 				return new AttributeNavigationSamplePropertiesEditionPartForm(component);
+		}
+		if (key == NavigationViewsRepository.DeferedMultivaluedEditor.class) {
+			if (kind == NavigationViewsRepository.SWT_KIND)
+				return new DeferedMultivaluedEditorPropertiesEditionPartImpl(component);
+			if (kind == NavigationViewsRepository.FORM_KIND)
+				return new DeferedMultivaluedEditorPropertiesEditionPartForm(component);
 		}
 		return null;
 	}

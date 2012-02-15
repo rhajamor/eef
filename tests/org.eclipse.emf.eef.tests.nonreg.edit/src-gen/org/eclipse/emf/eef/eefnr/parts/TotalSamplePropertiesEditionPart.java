@@ -13,7 +13,6 @@ package org.eclipse.emf.eef.eefnr.parts;
 // Start of user code for imports
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
@@ -123,10 +122,10 @@ public interface TotalSamplePropertiesEditionPart {
 
 	/**
 	 * Init the radioRequiredProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initRadioRequiredProperty(EEnum eenum, Enumerator current);
+	public void initRadioRequiredProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new radioRequiredProperty
@@ -144,10 +143,10 @@ public interface TotalSamplePropertiesEditionPart {
 
 	/**
 	 * Init the radioOptionalProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initRadioOptionalProperty(EEnum eenum, Enumerator current);
+	public void initRadioOptionalProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new radioOptionalProperty
@@ -343,10 +342,10 @@ public interface TotalSamplePropertiesEditionPart {
 
 	/**
 	 * Init the emfcomboviewerRequiredProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initEmfcomboviewerRequiredProperty(EEnum eenum, Enumerator current);
+	public void initEmfcomboviewerRequiredProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new emfcomboviewerRequiredProperty
@@ -364,10 +363,10 @@ public interface TotalSamplePropertiesEditionPart {
 
 	/**
 	 * Init the emfcomboviewerOptionalProperty
-	 * @param eenum the enum to manage
+	 * @param input the viewer input
 	 * @param current the current value
 	 */
-	public void initEmfcomboviewerOptionalProperty(EEnum eenum, Enumerator current);
+	public void initEmfcomboviewerOptionalProperty(Object input, Enumerator current);
 
 	/**
 	 * Defines a new emfcomboviewerOptionalProperty
