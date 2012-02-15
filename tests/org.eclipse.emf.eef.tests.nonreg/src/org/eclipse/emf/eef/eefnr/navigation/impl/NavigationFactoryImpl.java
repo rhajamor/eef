@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactoryImpl.java,v 1.4.6.2 2011/11/09 10:11:51 sbouchet Exp $
+ * $Id: NavigationFactoryImpl.java,v 1.4.6.3 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.eefnr.navigation.*;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
@@ -80,6 +81,8 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 			case NavigationPackage.ELEMENT: return createElement();
 			case NavigationPackage.ATTRIBUTE_NAVIGATION_SAMPLE: return createAttributeNavigationSample();
 			case NavigationPackage.ATTRIBUTE_DELEGATE: return createAttributeDelegate();
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR_SAMPLE: return createDeferedMultivaluedEditorSample();
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR: return createDeferedMultivaluedEditor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -193,6 +196,26 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	public AttributeDelegate createAttributeDelegate() {
 		AttributeDelegateImpl attributeDelegate = new AttributeDelegateImpl();
 		return attributeDelegate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeferedMultivaluedEditorSample createDeferedMultivaluedEditorSample() {
+		DeferedMultivaluedEditorSampleImpl deferedMultivaluedEditorSample = new DeferedMultivaluedEditorSampleImpl();
+		return deferedMultivaluedEditorSample;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeferedMultivaluedEditor createDeferedMultivaluedEditor() {
+		DeferedMultivaluedEditorImpl deferedMultivaluedEditor = new DeferedMultivaluedEditorImpl();
+		return deferedMultivaluedEditor;
 	}
 
 	/**

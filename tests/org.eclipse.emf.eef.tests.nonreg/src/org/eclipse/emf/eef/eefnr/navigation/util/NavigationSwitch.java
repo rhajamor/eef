@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationSwitch.java,v 1.4.6.2 2011/11/09 10:11:54 sbouchet Exp $
+ * $Id: NavigationSwitch.java,v 1.4.6.3 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.util;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.NamedElement;
+import org.eclipse.emf.eef.eefnr.navigation.*;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
@@ -155,6 +156,19 @@ public class NavigationSwitch<T> extends Switch<T> {
 			case NavigationPackage.ATTRIBUTE_DELEGATE: {
 				AttributeDelegate attributeDelegate = (AttributeDelegate)theEObject;
 				T result = caseAttributeDelegate(attributeDelegate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR_SAMPLE: {
+				DeferedMultivaluedEditorSample deferedMultivaluedEditorSample = (DeferedMultivaluedEditorSample)theEObject;
+				T result = caseDeferedMultivaluedEditorSample(deferedMultivaluedEditorSample);
+				if (result == null) result = caseAbstractSample(deferedMultivaluedEditorSample);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR: {
+				DeferedMultivaluedEditor deferedMultivaluedEditor = (DeferedMultivaluedEditor)theEObject;
+				T result = caseDeferedMultivaluedEditor(deferedMultivaluedEditor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -339,6 +353,36 @@ public class NavigationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeDelegate(AttributeDelegate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Defered Multivalued Editor Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Defered Multivalued Editor Sample</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeferedMultivaluedEditorSample(DeferedMultivaluedEditorSample object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Defered Multivalued Editor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Defered Multivalued Editor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeferedMultivaluedEditor(DeferedMultivaluedEditor object) {
 		return null;
 	}
 

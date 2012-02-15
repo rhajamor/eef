@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrextAdapterFactory.java,v 1.1.8.1 2011/11/09 10:11:50 sbouchet Exp $
+ * $Id: EefnrextAdapterFactory.java,v 1.1.8.2 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnrext.util;
 
@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
+import org.eclipse.emf.eef.eefnrext.*;
 import org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample;
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
 import org.eclipse.emf.eef.eefnrext.FlatReferenceExtendedEditorSample;

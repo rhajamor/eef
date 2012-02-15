@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrextFactoryImpl.java,v 1.1.8.1 2011/11/09 10:11:51 sbouchet Exp $
+ * $Id: EefnrextFactoryImpl.java,v 1.1.8.2 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnrext.impl;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.eefnrext.*;
 import org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample;
 import org.eclipse.emf.eef.eefnrext.EefnrextFactory;
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;

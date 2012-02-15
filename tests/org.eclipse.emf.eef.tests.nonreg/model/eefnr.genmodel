@@ -198,6 +198,12 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/AttributeDelegate/delegate1"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/AttributeDelegate/delegate2"/>
       </genClasses>
+      <genClasses ecoreClass="eefnr.ecore#//navigation/DeferedMultivaluedEditorSample">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eefnr.ecore#//navigation/DeferedMultivaluedEditorSample/deferedEditor"/>
+      </genClasses>
+      <genClasses ecoreClass="eefnr.ecore#//navigation/DeferedMultivaluedEditor">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eefnr.ecore#//navigation/DeferedMultivaluedEditor/multiValuedEditor"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Filters" basePackage="org.eclipse.emf.eef.eefnr" disposableProviderFactory="true"
         ecorePackage="eefnr.ecore#//filters">

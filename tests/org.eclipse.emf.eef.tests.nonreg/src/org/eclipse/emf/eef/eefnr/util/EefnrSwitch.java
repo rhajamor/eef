@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrSwitch.java,v 1.7.6.2 2011/11/09 10:11:49 sbouchet Exp $
+ * $Id: EefnrSwitch.java,v 1.7.6.3 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.eef.eefnr.*;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.AdvancedEObjectFlatComboViewerSample;

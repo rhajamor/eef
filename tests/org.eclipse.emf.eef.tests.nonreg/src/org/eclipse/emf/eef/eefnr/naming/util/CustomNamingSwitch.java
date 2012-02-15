@@ -2,16 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InterfaceSwitch.java,v 1.1.4.3 2012/02/15 13:37:46 glefur Exp $
+ * $Id: CustomNamingSwitch.java,v 1.2.2.5 2012/02/15 13:37:46 glefur Exp $
  */
-package org.eclipse.emf.eef.eefnr.interface_.util;
+package org.eclipse.emf.eef.eefnr.naming.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.emf.eef.eefnr.interface_.*;
-import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
-import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
+
+import org.eclipse.emf.eef.eefnr.AbstractSample;
+
+import org.eclipse.emf.eef.eefnr.naming.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,17 +25,17 @@ import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.interface_.InterfacePackage
+ * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage
  * @generated
  */
-public class InterfaceSwitch<T> extends Switch<T> {
+public class CustomNamingSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static InterfacePackage modelPackage;
+	protected static CustomNamingPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -41,9 +43,9 @@ public class InterfaceSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterfaceSwitch() {
+	public CustomNamingSwitch() {
 		if (modelPackage == null) {
-			modelPackage = InterfacePackage.eINSTANCE;
+			modelPackage = CustomNamingPackage.eINSTANCE;
 		}
 	}
 
@@ -70,9 +72,10 @@ public class InterfaceSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case InterfacePackage.SIMPLE_SAMPLE: {
-				SimpleSample simpleSample = (SimpleSample)theEObject;
-				T result = caseSimpleSample(simpleSample);
+			case CustomNamingPackage.EVENT: {
+				Event event = (Event)theEObject;
+				T result = caseEvent(event);
+				if (result == null) result = caseAbstractSample(event);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -81,17 +84,32 @@ public class InterfaceSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Sample</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Sample</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleSample(SimpleSample object) {
+	public T caseEvent(Event object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Sample</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractSample(AbstractSample object) {
 		return null;
 	}
 
@@ -111,4 +129,4 @@ public class InterfaceSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //InterfaceSwitch
+} //CustomNamingSwitch

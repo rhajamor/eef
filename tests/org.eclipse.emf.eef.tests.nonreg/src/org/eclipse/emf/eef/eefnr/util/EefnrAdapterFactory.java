@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EefnrAdapterFactory.java,v 1.7.6.1 2011/11/09 10:11:49 sbouchet Exp $
+ * $Id: EefnrAdapterFactory.java,v 1.7.6.2 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.util;
 
@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.eefnr.*;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.AdvancedEObjectFlatComboViewerSample;

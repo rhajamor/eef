@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationAdapterFactory.java,v 1.4.6.2 2011/11/09 10:11:54 sbouchet Exp $
+ * $Id: NavigationAdapterFactory.java,v 1.4.6.3 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.util;
 
@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.NamedElement;
+import org.eclipse.emf.eef.eefnr.navigation.*;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
@@ -124,6 +125,14 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAttributeDelegate(AttributeDelegate object) {
 				return createAttributeDelegateAdapter();
+			}
+			@Override
+			public Adapter caseDeferedMultivaluedEditorSample(DeferedMultivaluedEditorSample object) {
+				return createDeferedMultivaluedEditorSampleAdapter();
+			}
+			@Override
+			public Adapter caseDeferedMultivaluedEditor(DeferedMultivaluedEditor object) {
+				return createDeferedMultivaluedEditorAdapter();
 			}
 			@Override
 			public Adapter caseAbstractSample(AbstractSample object) {
@@ -318,6 +327,34 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeDelegateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample <em>Defered Multivalued Editor Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample
+	 * @generated
+	 */
+	public Adapter createDeferedMultivaluedEditorSampleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor <em>Defered Multivalued Editor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor
+	 * @generated
+	 */
+	public Adapter createDeferedMultivaluedEditorAdapter() {
 		return null;
 	}
 

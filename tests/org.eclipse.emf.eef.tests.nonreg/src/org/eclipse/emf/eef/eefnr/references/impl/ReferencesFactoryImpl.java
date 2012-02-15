@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferencesFactoryImpl.java,v 1.2.6.1 2011/11/09 10:11:47 sbouchet Exp $
+ * $Id: ReferencesFactoryImpl.java,v 1.2.6.2 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.references.impl;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.eefnr.references.*;
 import org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample;
 import org.eclipse.emf.eef.eefnr.references.ReferencesFactory;
 import org.eclipse.emf.eef.eefnr.references.ReferencesPackage;

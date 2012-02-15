@@ -2,34 +2,37 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InterfaceAdapterFactory.java,v 1.1.4.3 2012/02/15 13:37:46 glefur Exp $
+ * $Id: CustomNamingAdapterFactory.java,v 1.2.2.5 2012/02/15 13:37:46 glefur Exp $
  */
-package org.eclipse.emf.eef.eefnr.interface_.util;
+package org.eclipse.emf.eef.eefnr.naming.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.eefnr.interface_.*;
-import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
-import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
+
+import org.eclipse.emf.eef.eefnr.AbstractSample;
+
+import org.eclipse.emf.eef.eefnr.naming.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.eef.eefnr.interface_.InterfacePackage
+ * @see org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage
  * @generated
  */
-public class InterfaceAdapterFactory extends AdapterFactoryImpl {
+public class CustomNamingAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static InterfacePackage modelPackage;
+	protected static CustomNamingPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -37,9 +40,9 @@ public class InterfaceAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterfaceAdapterFactory() {
+	public CustomNamingAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = InterfacePackage.eINSTANCE;
+			modelPackage = CustomNamingPackage.eINSTANCE;
 		}
 	}
 
@@ -68,11 +71,15 @@ public class InterfaceAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InterfaceSwitch<Adapter> modelSwitch =
-		new InterfaceSwitch<Adapter>() {
+	protected CustomNamingSwitch<Adapter> modelSwitch =
+		new CustomNamingSwitch<Adapter>() {
 			@Override
-			public Adapter caseSimpleSample(SimpleSample object) {
-				return createSimpleSampleAdapter();
+			public Adapter caseEvent(Event object) {
+				return createEventAdapter();
+			}
+			@Override
+			public Adapter caseAbstractSample(AbstractSample object) {
+				return createAbstractSampleAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -95,16 +102,30 @@ public class InterfaceAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.interface_.SimpleSample <em>Simple Sample</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.naming.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.eef.eefnr.interface_.SimpleSample
+	 * @see org.eclipse.emf.eef.eefnr.naming.Event
 	 * @generated
 	 */
-	public Adapter createSimpleSampleAdapter() {
+	public Adapter createEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.AbstractSample <em>Abstract Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.AbstractSample
+	 * @generated
+	 */
+	public Adapter createAbstractSampleAdapter() {
 		return null;
 	}
 
@@ -120,4 +141,4 @@ public class InterfaceAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //InterfaceAdapterFactory
+} //CustomNamingAdapterFactory

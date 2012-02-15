@@ -292,6 +292,14 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="delegate2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DeferedMultivaluedEditorSample" eSuperTypes="#//AbstractSample">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deferedEditor" lowerBound="1"
+          eType="#//navigation/DeferedMultivaluedEditor" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DeferedMultivaluedEditor">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiValuedEditor" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="filters" nsURI="http://www.eclipse.org/emf/eef/nonreg/filters/1.0.0"
       nsPrefix="eefnr-fltr">

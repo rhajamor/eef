@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FiltersAdapterFactory.java,v 1.1.6.1 2011/11/09 10:11:52 sbouchet Exp $
+ * $Id: FiltersAdapterFactory.java,v 1.1.6.2 2012/02/15 13:37:46 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.filters.util;
 
@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
+import org.eclipse.emf.eef.eefnr.filters.*;
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceOwnerSample;
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceTargetSample;
 import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample;
