@@ -62,7 +62,7 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('Checkbox') and editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
 	[if (editionElement.model.oclAsType("EAttribute").eType.instanceClassName = 'boolean')]
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([editionElement.name.toJavaIdentifier()/]Settings.getValue());
+	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]((Boolean)[editionElement.name.toJavaIdentifier()/]Settings.getValue());
 	[else]
 	//FIXME invalid case in updater(), Case : model = Attribute(1) : [editionElement.model.name/] - view = Checkbox
 	[/if]

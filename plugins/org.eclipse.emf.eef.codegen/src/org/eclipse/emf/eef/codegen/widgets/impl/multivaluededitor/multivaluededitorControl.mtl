@@ -47,3 +47,14 @@ if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFi
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
 [comment no filters for multiValuedEditor /]
 [/template]
+
+[comment ===== Case : model = Attribute(*) - view = MultiValuedEditor - ModelNavigation ===== /]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and editionElement.canGeneratemodelNavigation())]
+[editionElement.name.toJavaIdentifier()/]Settings.setValue((List)event.getNewValue());
+[/template]
+
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and editionElement.canGeneratemodelNavigation())]
+if ([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject() != null && isAccessible([editionElement.views->first().editorID()/])) {
+	[view.viewIdentifier(pec)/].set[editionElement.views->first().viewPackageSignature()/]((EList)[editionElement.name.toJavaIdentifier()/]Settings.getValue());
+}
+[/template]
