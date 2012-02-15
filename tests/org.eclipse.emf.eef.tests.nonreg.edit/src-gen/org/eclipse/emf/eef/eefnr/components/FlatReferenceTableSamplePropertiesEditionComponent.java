@@ -50,12 +50,10 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 	 * Settings for flatreferencetableRequiredProperty ReferencesTable
 	 */
 	private	ReferencesTableSettings flatreferencetableRequiredPropertySettings;
-	
 	/**
 	 * Settings for flatreferencetableOptionalProperty ReferencesTable
 	 */
 	private	ReferencesTableSettings flatreferencetableOptionalPropertySettings;
-	
 	
 	/**
 	 * Default constructor
@@ -108,8 +106,8 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 				});
 				basePart.addFilterToFlatreferencetableRequiredProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for flatreferencetableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.FlatReferenceTableSample.Properties.flatreferencetableOptionalProperty)) {
 				basePart.addFilterToFlatreferencetableOptionalProperty(new ViewerFilter() {
@@ -128,8 +126,8 @@ public class FlatReferenceTableSamplePropertiesEditionComponent extends SinglePa
 				});
 				basePart.addFilterToFlatreferencetableOptionalProperty(new EObjectStrictFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for flatreferencetableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																												// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																					// End of user code
 			}
 			// init values for referenced views
 			

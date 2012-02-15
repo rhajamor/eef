@@ -202,6 +202,14 @@
                     type="org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample">
              </input>
          </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.eclipse.emf.eef.navigation.section.DeferedMultivaluedEditorSample"
+               tab="Base">
+             <input
+                    type="org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample">
+             </input>
+         </propertySection>
       </propertySections>
    </extension>
  </plugin>

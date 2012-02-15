@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -72,10 +73,8 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 			// init values
 			if (multiValuedEditorSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(multiValuedEditorSample.getMultivaluededitorRequiredProperty());
-			
 			if (multiValuedEditorSample.getMultivaluededitorOptionalProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty))
 				basePart.setMultivaluededitorOptionalProperty(multiValuedEditorSample.getMultivaluededitorOptionalProperty());
-			
 			// init filters
 			
 			
@@ -134,11 +133,11 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 		if (editingPart.isVisible()) {
 			MultiValuedEditorSamplePropertiesEditionPart basePart = (MultiValuedEditorSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty)) {
-				basePart.setMultivaluededitorRequiredProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorRequiredProperty());
+				basePart.setMultivaluededitorRequiredProperty((EList)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty)) {
-				basePart.setMultivaluededitorOptionalProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorOptionalProperty());
+				basePart.setMultivaluededitorOptionalProperty((EList)msg.getNewValue());
 			}
 			
 			

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SingleCompositionViewerSampleItemProvider.java,v 1.1.2.3 2011/10/26 16:23:04 sbouchet Exp $
+ * $Id: SingleCompositionViewerSampleItemProvider.java,v 1.1.2.4 2012/02/15 13:25:36 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.provider;
 
@@ -324,6 +324,11 @@ public class SingleCompositionViewerSampleItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_REQUIRED_PROPERTY,
+				 NavigationFactory.eINSTANCE.createDeferedMultivaluedEditorSample()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_REQUIRED_PROPERTY,
 				 FiltersFactory.eINSTANCE.createConcreteReferenceOwnerSample()));
 
 		newChildDescriptors.add
@@ -500,6 +505,11 @@ public class SingleCompositionViewerSampleItemProvider
 			(createChildParameter
 				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_OPTIONAL_PROPERTY,
 				 NavigationFactory.eINSTANCE.createAttributeNavigationSample()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EefnrPackage.Literals.SINGLE_COMPOSITION_VIEWER_SAMPLE__SINGLECOMPOSITIONVIEW_MULTI_OPTIONAL_PROPERTY,
+				 NavigationFactory.eINSTANCE.createDeferedMultivaluedEditorSample()));
 
 		newChildDescriptors.add
 			(createChildParameter

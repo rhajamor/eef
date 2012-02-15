@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -203,10 +204,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			}
 			if (totalSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(totalSample.getMultivaluededitorRequiredProperty());
-			
 			if (totalSample.getMultivaluededitorOptionalProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty))
 				basePart.setMultivaluededitorOptionalProperty(totalSample.getMultivaluededitorOptionalProperty());
-			
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty)) {
 				tablecompositionRequiredPropertySettings = new ReferencesTableSettings(totalSample, EefnrPackage.eINSTANCE.getTotalSample_TablecompositionRequiredProperty());
 				basePart.initTablecompositionRequiredProperty(tablecompositionRequiredPropertySettings);
@@ -274,8 +273,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					
 				});
 				// Start of user code for additional businessfilters for eobjectflatcomboviewerRequiredProperty
-																																																																																																																																																											
-																																																																																																																																																											// End of user code
+																																																																																																																																																																																				
+																																																																																																																																																																																				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerOptionalProperty)) {
 				basePart.addFilterToEobjectflatcomboviewerOptionalProperty(new ViewerFilter() {
@@ -291,8 +290,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					
 				});
 				// Start of user code for additional businessfilters for eobjectflatcomboviewerOptionalProperty
-																																																																																																																																																											
-																																																																																																																																																											// End of user code
+																																																																																																																																																																																				
+																																																																																																																																																																																				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.referencestableRequiredProperty)) {
 				basePart.addFilterToReferencestableRequiredProperty(new ViewerFilter() {
@@ -311,8 +310,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				});
 				basePart.addFilterToReferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for referencestableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.referencestableOptionalProperty)) {
 				basePart.addFilterToReferencestableOptionalProperty(new ViewerFilter() {
@@ -331,8 +330,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				});
 				basePart.addFilterToReferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for referencestableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			
 			
@@ -352,8 +351,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for tablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionOptionalProperty)) {
 				basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
@@ -369,8 +368,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for tablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedreferencestableRequiredProperty)) {
 				basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
@@ -389,8 +388,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				});
 				basePart.addFilterToAdvancedreferencestableRequiredProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for advancedreferencestableRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedreferencestableOptionalProperty)) {
 				basePart.addFilterToAdvancedreferencestableOptionalProperty(new ViewerFilter() {
@@ -409,8 +408,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				});
 				basePart.addFilterToAdvancedreferencestableOptionalProperty(new EObjectFilter(EefnrPackage.eINSTANCE.getTotalSample()));
 				// Start of user code for additional businessfilters for advancedreferencestableOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery)) {
 				basePart.addFilterToAdvancedeobjectflatcomboviewerRequiredPropery(new ViewerFilter() {
@@ -426,8 +425,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					
 				});
 				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerRequiredPropery
-																																																																																																																																																											
-																																																																																																																																																											// End of user code
+																																																																																																																																																																																				
+																																																																																																																																																																																				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerOptionalPropery)) {
 				basePart.addFilterToAdvancedeobjectflatcomboviewerOptionalPropery(new ViewerFilter() {
@@ -443,8 +442,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					
 				});
 				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerOptionalPropery
-																																																																																																																																																											
-																																																																																																																																																											// End of user code
+																																																																																																																																																																																				
+																																																																																																																																																																																				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty)) {
 				basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
@@ -460,8 +459,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty)) {
 				basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
@@ -477,8 +476,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																// End of user code
 			}
 			
 			// Start of user code for custom filter update
@@ -935,11 +934,11 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.setEmfcomboviewerOptionalProperty((ENUM_SAMPLE)msg.getNewValue());
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty)) {
-				basePart.setMultivaluededitorRequiredProperty(((TotalSample)semanticObject).getMultivaluededitorRequiredProperty());
+				basePart.setMultivaluededitorRequiredProperty((EList)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty)) {
-				basePart.setMultivaluededitorOptionalProperty(((TotalSample)semanticObject).getMultivaluededitorOptionalProperty());
+				basePart.setMultivaluededitorOptionalProperty((EList)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_TablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty))

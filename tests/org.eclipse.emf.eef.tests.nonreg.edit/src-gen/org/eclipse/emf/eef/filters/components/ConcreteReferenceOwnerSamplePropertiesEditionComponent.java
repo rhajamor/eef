@@ -144,8 +144,8 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 								}
 							});
 				// Start of user code for additional businessfilters for abstractTarget
-					
-					// End of user code
+																														
+																														// End of user code
 			}
 			if (isAccessible(FiltersViewsRepository.ConcreteReferenceOwnerSample.Properties.strictTyping)) {
 				basePart.addFilterToStrictTyping(new ViewerFilter() {
@@ -162,8 +162,8 @@ public class ConcreteReferenceOwnerSamplePropertiesEditionComponent extends Sing
 				});
 				// FIXME default case for filter body generation.
 				// Start of user code for additional businessfilters for strictTyping
-					
-					// End of user code
+																														
+																														// End of user code
 			}
 			// init values for referenced views
 			

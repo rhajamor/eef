@@ -33,9 +33,6 @@ import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingCo
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder;
-import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder.EEFEditorSettingsImpl;
-import org.eclipse.emf.eef.runtime.ui.widgets.settings.NavigationStepBuilder;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 	
@@ -57,14 +54,6 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 	 */
 	private	ReferencesTableSettings flatReferencesTableSampleEditorSettings;
 	
-	
-	/**
-	 * Settings for flatReferencesTableSampleEditor editor
-	 */
-	protected EEFEditorSettingsImpl flatReferencesTableSampleEditorSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, NavigationPackage.eINSTANCE.getDeferedReference_FlatreferenceEditor())
-																														.nextStep(NavigationStepBuilder.create(NavigationPackage.eINSTANCE.getDeferedReferenceTableEditorSample_References())			
-																																	.index(0).build())
-																														.build();
 	
 	/**
 	 * Default constructor
@@ -114,8 +103,8 @@ public class DeferedReferencesTableSampleEditorPropertiesEditionComponent extend
 				
 				});
 				// Start of user code for additional businessfilters for flatReferencesTableSampleEditor
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	// End of user code
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										// End of user code
 			}
 			// init values for referenced views
 			
