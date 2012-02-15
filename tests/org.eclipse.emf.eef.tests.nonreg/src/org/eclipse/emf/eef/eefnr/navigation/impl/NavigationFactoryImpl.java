@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactoryImpl.java,v 1.4.2.4 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NavigationFactoryImpl.java,v 1.4.2.5 2012/02/15 13:25:39 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -79,6 +79,8 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 			case NavigationPackage.ELEMENT: return createElement();
 			case NavigationPackage.ATTRIBUTE_NAVIGATION_SAMPLE: return createAttributeNavigationSample();
 			case NavigationPackage.ATTRIBUTE_DELEGATE: return createAttributeDelegate();
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR_SAMPLE: return createDeferedMultivaluedEditorSample();
+			case NavigationPackage.DEFERED_MULTIVALUED_EDITOR: return createDeferedMultivaluedEditor();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -192,6 +194,26 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	public AttributeDelegate createAttributeDelegate() {
 		AttributeDelegateImpl attributeDelegate = new AttributeDelegateImpl();
 		return attributeDelegate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeferedMultivaluedEditorSample createDeferedMultivaluedEditorSample() {
+		DeferedMultivaluedEditorSampleImpl deferedMultivaluedEditorSample = new DeferedMultivaluedEditorSampleImpl();
+		return deferedMultivaluedEditorSample;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeferedMultivaluedEditor createDeferedMultivaluedEditor() {
+		DeferedMultivaluedEditorImpl deferedMultivaluedEditor = new DeferedMultivaluedEditorImpl();
+		return deferedMultivaluedEditor;
 	}
 
 	/**

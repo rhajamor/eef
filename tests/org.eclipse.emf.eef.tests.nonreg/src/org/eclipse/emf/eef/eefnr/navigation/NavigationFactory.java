@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationFactory.java,v 1.4.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NavigationFactory.java,v 1.4.2.3 2012/02/15 13:25:39 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
@@ -123,6 +123,24 @@ public interface NavigationFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeDelegate createAttributeDelegate();
+
+	/**
+	 * Returns a new object of class '<em>Defered Multivalued Editor Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Defered Multivalued Editor Sample</em>'.
+	 * @generated
+	 */
+	DeferedMultivaluedEditorSample createDeferedMultivaluedEditorSample();
+
+	/**
+	 * Returns a new object of class '<em>Defered Multivalued Editor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Defered Multivalued Editor</em>'.
+	 * @generated
+	 */
+	DeferedMultivaluedEditor createDeferedMultivaluedEditor();
 
 	/**
 	 * Returns the package supported by this factory.

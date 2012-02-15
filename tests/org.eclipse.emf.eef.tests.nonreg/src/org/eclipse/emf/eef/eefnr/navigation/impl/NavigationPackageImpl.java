@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackageImpl.java,v 1.5.2.3 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NavigationPackageImpl.java,v 1.5.2.4 2012/02/15 13:25:39 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation.impl;
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample;
+import org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor;
+import org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReference;
 import org.eclipse.emf.eef.eefnr.navigation.DeferedReferenceTableEditorSample;
 import org.eclipse.emf.eef.eefnr.navigation.Element;
@@ -121,6 +123,20 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 	 * @generated
 	 */
 	private EClass attributeDelegateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deferedMultivaluedEditorSampleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deferedMultivaluedEditorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -577,6 +593,42 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDeferedMultivaluedEditorSample() {
+		return deferedMultivaluedEditorSampleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeferedMultivaluedEditorSample_DeferedEditor() {
+		return (EReference)deferedMultivaluedEditorSampleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeferedMultivaluedEditor() {
+		return deferedMultivaluedEditorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeferedMultivaluedEditor_MultiValuedEditor() {
+		return (EAttribute)deferedMultivaluedEditorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NavigationFactory getNavigationFactory() {
 		return (NavigationFactory)getEFactoryInstance();
 	}
@@ -651,6 +703,12 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		attributeDelegateEClass = createEClass(ATTRIBUTE_DELEGATE);
 		createEAttribute(attributeDelegateEClass, ATTRIBUTE_DELEGATE__DELEGATE1);
 		createEAttribute(attributeDelegateEClass, ATTRIBUTE_DELEGATE__DELEGATE2);
+
+		deferedMultivaluedEditorSampleEClass = createEClass(DEFERED_MULTIVALUED_EDITOR_SAMPLE);
+		createEReference(deferedMultivaluedEditorSampleEClass, DEFERED_MULTIVALUED_EDITOR_SAMPLE__DEFERED_EDITOR);
+
+		deferedMultivaluedEditorEClass = createEClass(DEFERED_MULTIVALUED_EDITOR);
+		createEAttribute(deferedMultivaluedEditorEClass, DEFERED_MULTIVALUED_EDITOR__MULTI_VALUED_EDITOR);
 	}
 
 	/**
@@ -691,6 +749,7 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		anotherSubTypeEClass.getESuperTypes().add(this.getSubtype());
 		elementEClass.getESuperTypes().add(theEefnrPackage.getNamedElement());
 		attributeNavigationSampleEClass.getESuperTypes().add(theEefnrPackage.getAbstractSample());
+		deferedMultivaluedEditorSampleEClass.getESuperTypes().add(theEefnrPackage.getAbstractSample());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(deferedFlatReferenceTableEditorSampleEClass, DeferedFlatReferenceTableEditorSample.class, "DeferedFlatReferenceTableEditorSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -747,6 +806,12 @@ public class NavigationPackageImpl extends EPackageImpl implements NavigationPac
 		initEClass(attributeDelegateEClass, AttributeDelegate.class, "AttributeDelegate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAttributeDelegate_Delegate1(), ecorePackage.getEString(), "delegate1", null, 1, 1, AttributeDelegate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeDelegate_Delegate2(), ecorePackage.getEInt(), "delegate2", null, 0, 1, AttributeDelegate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(deferedMultivaluedEditorSampleEClass, DeferedMultivaluedEditorSample.class, "DeferedMultivaluedEditorSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeferedMultivaluedEditorSample_DeferedEditor(), this.getDeferedMultivaluedEditor(), null, "deferedEditor", null, 1, 1, DeferedMultivaluedEditorSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(deferedMultivaluedEditorEClass, DeferedMultivaluedEditor.class, "DeferedMultivaluedEditor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDeferedMultivaluedEditor_MultiValuedEditor(), ecorePackage.getEString(), "multiValuedEditor", null, 0, -1, DeferedMultivaluedEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //NavigationPackageImpl

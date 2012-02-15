@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NavigationPackage.java,v 1.4.2.2 2011/10/26 16:16:44 sbouchet Exp $
+ * $Id: NavigationPackage.java,v 1.4.2.3 2012/02/15 13:25:39 glefur Exp $
  */
 package org.eclipse.emf.eef.eefnr.navigation;
 
@@ -656,6 +656,72 @@ public interface NavigationPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorSampleImpl <em>Defered Multivalued Editor Sample</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorSampleImpl
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getDeferedMultivaluedEditorSample()
+	 * @generated
+	 */
+	int DEFERED_MULTIVALUED_EDITOR_SAMPLE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFERED_MULTIVALUED_EDITOR_SAMPLE__NAME = EefnrPackage.ABSTRACT_SAMPLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Defered Editor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFERED_MULTIVALUED_EDITOR_SAMPLE__DEFERED_EDITOR = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Defered Multivalued Editor Sample</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFERED_MULTIVALUED_EDITOR_SAMPLE_FEATURE_COUNT = EefnrPackage.ABSTRACT_SAMPLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorImpl <em>Defered Multivalued Editor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorImpl
+	 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getDeferedMultivaluedEditor()
+	 * @generated
+	 */
+	int DEFERED_MULTIVALUED_EDITOR = 12;
+
+	/**
+	 * The feature id for the '<em><b>Multi Valued Editor</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFERED_MULTIVALUED_EDITOR__MULTI_VALUED_EDITOR = 0;
+
+	/**
+	 * The number of structural features of the '<em>Defered Multivalued Editor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFERED_MULTIVALUED_EDITOR_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedFlatReferenceTableEditorSample <em>Defered Flat Reference Table Editor Sample</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1096,6 +1162,48 @@ public interface NavigationPackage extends EPackage {
 	EAttribute getAttributeDelegate_Delegate2();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample <em>Defered Multivalued Editor Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Defered Multivalued Editor Sample</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample
+	 * @generated
+	 */
+	EClass getDeferedMultivaluedEditorSample();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample#getDeferedEditor <em>Defered Editor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Defered Editor</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditorSample#getDeferedEditor()
+	 * @see #getDeferedMultivaluedEditorSample()
+	 * @generated
+	 */
+	EReference getDeferedMultivaluedEditorSample_DeferedEditor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor <em>Defered Multivalued Editor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Defered Multivalued Editor</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor
+	 * @generated
+	 */
+	EClass getDeferedMultivaluedEditor();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor#getMultiValuedEditor <em>Multi Valued Editor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Multi Valued Editor</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.navigation.DeferedMultivaluedEditor#getMultiValuedEditor()
+	 * @see #getDeferedMultivaluedEditor()
+	 * @generated
+	 */
+	EAttribute getDeferedMultivaluedEditor_MultiValuedEditor();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1466,6 +1574,42 @@ public interface NavigationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE_DELEGATE__DELEGATE2 = eINSTANCE.getAttributeDelegate_Delegate2();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorSampleImpl <em>Defered Multivalued Editor Sample</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorSampleImpl
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getDeferedMultivaluedEditorSample()
+		 * @generated
+		 */
+		EClass DEFERED_MULTIVALUED_EDITOR_SAMPLE = eINSTANCE.getDeferedMultivaluedEditorSample();
+
+		/**
+		 * The meta object literal for the '<em><b>Defered Editor</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEFERED_MULTIVALUED_EDITOR_SAMPLE__DEFERED_EDITOR = eINSTANCE.getDeferedMultivaluedEditorSample_DeferedEditor();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorImpl <em>Defered Multivalued Editor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.DeferedMultivaluedEditorImpl
+		 * @see org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl#getDeferedMultivaluedEditor()
+		 * @generated
+		 */
+		EClass DEFERED_MULTIVALUED_EDITOR = eINSTANCE.getDeferedMultivaluedEditor();
+
+		/**
+		 * The meta object literal for the '<em><b>Multi Valued Editor</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEFERED_MULTIVALUED_EDITOR__MULTI_VALUED_EDITOR = eINSTANCE.getDeferedMultivaluedEditor_MultiValuedEditor();
 
 	}
 
