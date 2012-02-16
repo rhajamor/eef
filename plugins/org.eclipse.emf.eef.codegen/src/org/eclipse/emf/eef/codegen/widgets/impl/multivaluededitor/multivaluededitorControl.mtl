@@ -17,7 +17,7 @@
 [import typeUtils /]
 
 [comment ===== Case : model = Attribute(*) - view = MultiValuedEditor ===== /]
-[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
+[template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and not editionElement.canGeneratemodelNavigation())]
 if (event.getKind() == PropertiesEditionEvent.SET) {
 	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toMany().toUpperFirst()/]().clear();
 	[pec.model.name.toJavaIdentifier().disambiguation('event')/].get[editionElement.model.name.toMany().toUpperFirst()/]().addAll(((List) event.getNewValue()));
@@ -34,14 +34,9 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 [/if]
 [/template]
 
-[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
-[if (editionElement.model.many)]
+[template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor') and not editionElement.canGeneratemodelNavigation())]
 if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]() != null && isAccessible([editionElement.views->first().editorID()/]))
 	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toMany().toUpperFirst()/]());
-[else]
-if ([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]() != null && isAccessible([editionElement.views->first().editorID()/]))
-	[view.viewIdentifier(pec)/].[editionElement.views->first().viewPackageSetter()/]([pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
-[/if]
 [/template]
 
 [template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides filterUpdater ? (editionElement.model.isAttributeMany() and editionElement.representationName('MultiValuedEditor'))]
