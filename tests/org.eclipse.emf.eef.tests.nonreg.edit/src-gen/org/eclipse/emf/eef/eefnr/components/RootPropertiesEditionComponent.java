@@ -99,7 +99,7 @@ public class RootPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			
 				});
 				// Start of user code for additional businessfilters for samples
-			// End of user code
+				// End of user code
 			}
 			// init values for referenced views
 			

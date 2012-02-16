@@ -72,10 +72,8 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 			// init values
 			if (multiValuedEditorSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(multiValuedEditorSample.getMultivaluededitorRequiredProperty());
-			
 			if (multiValuedEditorSample.getMultivaluededitorOptionalProperty() != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty))
 				basePart.setMultivaluededitorOptionalProperty(multiValuedEditorSample.getMultivaluededitorOptionalProperty());
-			
 			// init filters
 			
 			
@@ -136,11 +134,9 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty)) {
 				basePart.setMultivaluededitorRequiredProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorRequiredProperty());
 			}
-			
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty)) {
 				basePart.setMultivaluededitorOptionalProperty(((MultiValuedEditorSample)semanticObject).getMultivaluededitorOptionalProperty());
 			}
-			
 			
 		}
 	}

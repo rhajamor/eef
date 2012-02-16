@@ -108,7 +108,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-			// End of user code
+				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.AdvancedTableCompositionEditorSample.Properties.advancedtablecompositionOptionalProperty)) {
 				basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
@@ -124,7 +124,7 @@ public class AdvancedTableCompositionEditorSamplePropertiesEditionComponent exte
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-			// End of user code
+				// End of user code
 			}
 			// init values for referenced views
 			

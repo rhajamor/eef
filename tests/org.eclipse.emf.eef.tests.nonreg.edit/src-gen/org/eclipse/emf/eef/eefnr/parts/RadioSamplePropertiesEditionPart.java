@@ -10,9 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.eefnr.parts;
 
-import org.eclipse.emf.common.util.Enumerator;
-
 // Start of user code for imports
+import org.eclipse.emf.common.util.Enumerator;
 
 
 

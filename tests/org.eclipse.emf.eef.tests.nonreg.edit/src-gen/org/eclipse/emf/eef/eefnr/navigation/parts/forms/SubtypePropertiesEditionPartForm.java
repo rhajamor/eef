@@ -48,13 +48,6 @@ import org.eclipse.ui.forms.widgets.Section;
 
 
 
-
-
-
-
-
-
-
 // End of user code
 
 /**

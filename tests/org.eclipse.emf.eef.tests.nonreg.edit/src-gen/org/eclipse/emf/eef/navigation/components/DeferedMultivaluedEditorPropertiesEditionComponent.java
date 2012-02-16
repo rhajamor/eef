@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -29,7 +30,6 @@ import org.eclipse.emf.eef.eefnr.navigation.parts.NavigationViewsRepository;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder.EEFEditorSettingsImpl;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.NavigationStepBuilder;
@@ -81,9 +81,8 @@ public class DeferedMultivaluedEditorPropertiesEditionComponent extends SinglePa
 			final DeferedMultivaluedEditorSample deferedMultivaluedEditorSample = (DeferedMultivaluedEditorSample)elt;
 			final DeferedMultivaluedEditorPropertiesEditionPart basePart = (DeferedMultivaluedEditorPropertiesEditionPart)editingPart;
 			// init values
-			if (deferedMultivaluedEditorSample.getMultiValuedEditor() != null && isAccessible(NavigationViewsRepository.DeferedMultivaluedEditor.Properties.multivaluedEditor))
-				basePart.setMultivaluedEditor(deferedMultivaluedEditorSample.getMultiValuedEditor());
-			
+			if (multivaluedEditorSettings.getSignificantObject() != null && isAccessible(NavigationViewsRepository.DeferedMultivaluedEditor.Properties.multivaluedEditor)) 
+				basePart.setMultivaluedEditor((EList)multivaluedEditorSettings.getValue());
 			// init filters
 			
 			// init values for referenced views
@@ -124,10 +123,7 @@ public class DeferedMultivaluedEditorPropertiesEditionComponent extends SinglePa
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		DeferedMultivaluedEditorSample deferedMultivaluedEditorSample = (DeferedMultivaluedEditorSample)semanticObject;
 		if (NavigationViewsRepository.DeferedMultivaluedEditor.Properties.multivaluedEditor == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.SET) {
-				deferedMultivaluedEditorSample.getMultiValuedEditor().clear();
-				deferedMultivaluedEditorSample.getMultiValuedEditor().addAll(((List) event.getNewValue()));
-			}
+			multivaluedEditorSettings.setValue((List)event.getNewValue());
 		}
 	}
 
@@ -138,10 +134,8 @@ public class DeferedMultivaluedEditorPropertiesEditionComponent extends SinglePa
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {
 			DeferedMultivaluedEditorPropertiesEditionPart basePart = (DeferedMultivaluedEditorPropertiesEditionPart)editingPart;
-			if (NavigationPackage.eINSTANCE.getDeferedMultivaluedEditor_MultiValuedEditor().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.DeferedMultivaluedEditor.Properties.multivaluedEditor)) {
-				basePart.setMultivaluedEditor(((DeferedMultivaluedEditorSample)semanticObject).getMultivaluedEditor());
-			}
-			
+			if (NavigationPackage.eINSTANCE.getDeferedMultivaluedEditor_MultiValuedEditor().equals(msg.getFeature()) && basePart != null && isAccessible(NavigationViewsRepository.DeferedMultivaluedEditor.Properties.multivaluedEditor)) 
+				basePart.setMultivaluedEditor((EList)multivaluedEditorSettings.getValue());
 			
 		}
 	}

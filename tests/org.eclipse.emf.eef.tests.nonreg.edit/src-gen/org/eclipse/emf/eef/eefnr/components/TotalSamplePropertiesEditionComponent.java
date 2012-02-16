@@ -203,10 +203,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			}
 			if (totalSample.getMultivaluededitorRequiredProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty))
 				basePart.setMultivaluededitorRequiredProperty(totalSample.getMultivaluededitorRequiredProperty());
-			
 			if (totalSample.getMultivaluededitorOptionalProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty))
 				basePart.setMultivaluededitorOptionalProperty(totalSample.getMultivaluededitorOptionalProperty());
-			
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty)) {
 				tablecompositionRequiredPropertySettings = new ReferencesTableSettings(totalSample, EefnrPackage.eINSTANCE.getTotalSample_TablecompositionRequiredProperty());
 				basePart.initTablecompositionRequiredProperty(tablecompositionRequiredPropertySettings);
@@ -248,8 +246,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			if (totalSample.getName() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), totalSample.getName()));
 			
-			// Start of user code for custom command update
-			// End of user code
+			// Start of user code for custom command updateACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION			// End of user code
 			
 			// init filters
 			
@@ -344,7 +341,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for tablecompositionRequiredProperty
-			// End of user code
+				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionOptionalProperty)) {
 				basePart.addFilterToTablecompositionOptionalProperty(new ViewerFilter() {
@@ -360,7 +357,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for tablecompositionOptionalProperty
-			// End of user code
+				// End of user code
 			}
 			basePart.addFilterToAdvancedreferencestableRequiredProperty(new ViewerFilter() {
 			
@@ -442,7 +439,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionRequiredProperty
-			// End of user code
+				// End of user code
 			}
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty)) {
 				basePart.addFilterToAdvancedtablecompositionOptionalProperty(new ViewerFilter() {
@@ -458,7 +455,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			
 				});
 				// Start of user code for additional businessfilters for advancedtablecompositionOptionalProperty
-			// End of user code
+				// End of user code
 			}
 			
 			// Start of user code for custom filter update
@@ -847,8 +844,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			totalSample.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
 		if (EefnrViewsRepository.TotalSample.Properties.customElementEditor == event.getAffectedEditor()) {
-			// Start of user code for updateCustom method body
-			// End of user code
+			// Start of user code for updateCustom method bodyACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION			// End of user code
 			
 		}
 	}
@@ -917,11 +913,9 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty)) {
 				basePart.setMultivaluededitorRequiredProperty(((TotalSample)semanticObject).getMultivaluededitorRequiredProperty());
 			}
-			
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty)) {
 				basePart.setMultivaluededitorOptionalProperty(((TotalSample)semanticObject).getMultivaluededitorOptionalProperty());
 			}
-			
 			if (EefnrPackage.eINSTANCE.getTotalSample_TablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty))
 				basePart.updateTablecompositionRequiredProperty();
 			if (EefnrPackage.eINSTANCE.getTotalSample_TablecompositionOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionOptionalProperty))
@@ -945,9 +939,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					basePart.setName("");
 				}
 			}
-					// Start of user code for custom live update
-					
-					// End of user code
+					// Start of user code for custom live updateACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION					ACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION					// End of user code
 			
 			
 		}

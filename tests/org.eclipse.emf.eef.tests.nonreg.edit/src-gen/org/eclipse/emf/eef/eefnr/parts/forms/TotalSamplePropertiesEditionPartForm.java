@@ -135,9 +135,7 @@ public class TotalSamplePropertiesEditionPartForm extends CompositePropertiesEdi
 	protected List<ViewerFilter> advancedtablecompositionOptionalPropertyBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> advancedtablecompositionOptionalPropertyFilters = new ArrayList<ViewerFilter>();
 	protected Text name;
-		// Start of user code for CustomElementEditor widgets declarations
-		
-		// End of user code
+		// Start of user code for CustomElementEditor widgets declarationsACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION		ACCELEO_PROTECTED_AREA_MARKER_FIT_INDENTATION		// End of user code
 	
 
 
