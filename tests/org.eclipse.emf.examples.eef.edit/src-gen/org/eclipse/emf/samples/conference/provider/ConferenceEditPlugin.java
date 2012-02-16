@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConferenceEditPlugin.java,v 1.3.6.2 2011/11/09 10:13:26 sbouchet Exp $
+ * $Id: ConferenceEditPlugin.java,v 1.3.6.3 2012/02/16 14:34:01 glefur Exp $
  */
 package org.eclipse.emf.samples.conference.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
