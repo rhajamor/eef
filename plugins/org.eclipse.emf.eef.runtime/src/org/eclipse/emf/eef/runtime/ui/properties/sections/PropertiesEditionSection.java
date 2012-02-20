@@ -290,19 +290,30 @@ public class PropertiesEditionSection extends AbstractPropertySection implements
 	}
 
 	/**
-	 * @param object
-	 * @return
+	 * This method analyze an input to exact the EObject to edit.
+	 * First we try to adapt this object in {@link SemanticAdapter}. If this can't be done, 
+	 * we check if this object is an {@link EObject}. Finally, if this object isn't an
+	 * {@link EObject}, we try to adapt it in EObject.
+	 * @param object element to test
+	 * @return the EObject to edit with EEF.
 	 */
 	protected EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject)object;
-		} else if (object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable)object;
+		IAdaptable adaptable = null;
+		if (object instanceof IAdaptable) {
+			adaptable = (IAdaptable)object;
+		}
+		if (adaptable != null) {
 			if (adaptable.getAdapter(SemanticAdapter.class) != null) {
 				SemanticAdapter semanticAdapter = (SemanticAdapter)adaptable
 						.getAdapter(SemanticAdapter.class);
 				return semanticAdapter.getEObject();
-			} else if (adaptable.getAdapter(EObject.class) != null) {
+			} 
+		}
+		if (object instanceof EObject) {
+			return (EObject)object;
+		} 
+		if (adaptable != null) {
+			if (adaptable.getAdapter(EObject.class) != null) {
 				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}
