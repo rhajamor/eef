@@ -13,6 +13,7 @@ Export-Package: org.eclipse.emf.eef.toolkits.parts,
  org.eclipse.emf.eef.toolkits.providers,
  org.eclipse.emf.eef.views.components,
  org.eclipse.emf.eef.views.parts,
+ org.eclipse.emf.eef.views.parts.forms,
  org.eclipse.emf.eef.views.provider,
  org.eclipse.emf.eef.views.providers,
  org.eclipse.emf.eef.views.resources
