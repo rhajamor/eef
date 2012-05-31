@@ -39,7 +39,7 @@
 [/template]
 
 [template private ViewPropertiesEditionPartForm(peContext : PropertiesEditionContext, pec : PropertiesEditionComponent, view : View, basePackage : String, inputPEC : PropertiesEditionComponent) ]
-[peContext.initializeImportManager(basePackage, view.pepFormClass())/]
+[peContext.initializeImportManager(view.partsFormPackage(), view.pepFormClass())/]
 
 [comment]Widget Imports[/comment]
 [for (widget : Widget | view.eAllContents(ElementEditor).representation->select(not oclIsUndefined())->asSet())]
@@ -231,7 +231,7 @@ public class [view.pepFormClass()/] extends SectionPropertiesEditingPart impleme
 [/template]
 
 [template private CustomViewPropertiesEditionPartForm(peContext : PropertiesEditionContext, pec : PropertiesEditionComponent, view : View, basePackage : String, inputPEC : PropertiesEditionComponent) ]
-[peContext.initializeImportManager(basePackage, view.pepFormClass())/]
+[peContext.initializeImportManager(view.partsFormPackage(), view.pepFormClass())/]
 [file (view.fullFilePath(), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [view.partsFormPackage()/];[addImports(Sequence{

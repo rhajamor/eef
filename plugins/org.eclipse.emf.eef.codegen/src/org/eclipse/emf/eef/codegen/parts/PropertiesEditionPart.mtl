@@ -39,7 +39,7 @@
 [/template]
 
 [template private ViewPropertiesEditionPart(peContext : PropertiesEditionContext, pec : PropertiesEditionComponent, view : View, basePackage : String, inputPEC : PropertiesEditionComponent) ]
-[peContext.initializeImportManager(basePackage, view.pepClass())/]
+[peContext.initializeImportManager(view.partsImplPackage(), view.pepClass())/]
 
 [comment]Widget Imports[/comment]
 [for (widget : Widget | view.eAllContents(ElementEditor).representation->select(not oclIsUndefined())->asSet())]
@@ -222,7 +222,7 @@ public class [view.pepClass()/] extends [include(view.partQualifiedSuperclass())
 [/template]
 
 [template private CustomViewPropertiesEditionPart(peContext : PropertiesEditionContext, pec : PropertiesEditionComponent, view : View, basePackage : String, inputPEC : PropertiesEditionComponent) ]
-[peContext.initializeImportManager(basePackage, view.pepClass())/]
+[peContext.initializeImportManager(view.partsImplPackage(), view.pepClass())/]
 [file (view.fullFilePath(), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [view.partsImplPackage()/];[addImports(Sequence{

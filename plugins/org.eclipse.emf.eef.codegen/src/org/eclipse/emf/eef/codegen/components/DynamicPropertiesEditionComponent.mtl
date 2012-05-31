@@ -22,7 +22,7 @@
 [for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 	[for (topLevelView : View | pec.views) ? (topLevelView.explicit)]
 [if (pec.mustDynamicPecBeGenerated(topLevelView))]
-[peContext.initializeImportManager(basePackage, pec.subPECClass(topLevelView))/]
+[peContext.initializeImportManager(pec.componentsPackage(), pec.subPECClass(topLevelView))/]
 [file (pec.fullFilePath(topLevelView), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [pec.componentsPackage()/];[addImports(Sequence{

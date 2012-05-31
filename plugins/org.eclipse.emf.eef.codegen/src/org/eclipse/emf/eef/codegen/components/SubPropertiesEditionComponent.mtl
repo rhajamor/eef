@@ -24,7 +24,7 @@
 [for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 [if (pec.mustBeGenerated())]
 	[for (view : View | pec.views) ? (not view.isDynamicView())]
-[peContext.initializeImportManager(basePackage, pec.subPECClass(view))/]
+[peContext.initializeImportManager(pec.componentsPackage(), pec.subPECClass(view))/]
 [file (pec.fullFilePath(view, basePackage), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [pec.componentsPackage()/];[addImports(Sequence{

@@ -19,7 +19,7 @@
 [template public PropertiesEditionProvider(peContext : PropertiesEditionContext, basePackage : String)]
 [for (pec : PropertiesEditionComponent | peContext.eAllContents(PropertiesEditionComponent))]
 [if (pec.mustBeGenerated())]
-	[peContext.initializeImportManager(basePackage, pec.pecProviderClass())/]
+	[peContext.initializeImportManager(pec.providersPackage(), pec.pecProviderClass())/]
 	[file (pec.fullFilePath(), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [pec.providersPackage()/];[addImports(Sequence{

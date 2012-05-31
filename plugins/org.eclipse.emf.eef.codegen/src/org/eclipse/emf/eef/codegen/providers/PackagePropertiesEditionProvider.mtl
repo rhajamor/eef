@@ -18,7 +18,7 @@
 [import org::eclipse::emf::eef::codegen::services::emfCodeGen /]
 
 [template public PackagePropertiesEditionProvider(peContext : PropertiesEditionContext, ePackage : EPackage)]
-[peContext.initializeImportManager(ePackage.completePackage(), ePackage.pecPackageProviderClass())/]
+[peContext.initializeImportManager(peContext.providersPackage(), ePackage.pecPackageProviderClass())/]
 	[file (peContext.fullFilePath(ePackage), false)]
 [peContext.associatedGenModel().licenceText().trim()/]
 package [peContext.providersPackage()/];

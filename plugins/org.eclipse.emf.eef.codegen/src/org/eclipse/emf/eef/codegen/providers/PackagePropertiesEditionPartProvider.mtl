@@ -17,7 +17,7 @@
 [import org::eclipse::emf::eef::codegen::services::imports /]
 
 [template public PackagePropertiesEditionPartProvider(v : ViewsRepository)]
-[v.initializeImportManager(v.vrPackage() + 'providers', v.pepProvider())/]
+[v.initializeImportManager(v.partsProviderPackage(), v.pepProvider())/]
 [file (v.fullFilePath(), false)]
 [v.associatedGenModel().licenceText().trim()/]
 package [v.vrPackage()/]providers;[addImports(Sequence{

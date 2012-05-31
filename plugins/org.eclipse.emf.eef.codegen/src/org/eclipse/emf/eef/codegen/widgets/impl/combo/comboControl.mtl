@@ -20,7 +20,7 @@
 
 [comment ===== Case : model = Reference - view = Combo ===== /]
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
-[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](!"".equals(event.getNewValue()) ? ([editionElement.model.eType.name/]) event.getNewValue() : null);
+[pec.model.name.toJavaIdentifier().disambiguation('event')/].set[editionElement.model.name.toUpperFirst()/](!"".equals(event.getNewValue()) ? ([include(editionElement.model.eType.name)/]) event.getNewValue() : null);
 [/template]
 
 [template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides liveUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo'))]
@@ -30,7 +30,7 @@ if ([editionElement.metamodelGetter()/].equals(msg.getFeature()) && [view.viewId
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and not editionElement.canGeneratemodelNavigation())]
 if (isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([include('org.eclipse.emf.eef.runtime.impl.utils.EEFUtils')/].choiceOfValues([pec.model.name.toJavaIdentifier()/], [editionElement.metamodelGetter()/]), [pec.model.name.toJavaIdentifier()/].get[editionElement.model.name.toUpperFirst()/]());
 }
 [/template]
 
@@ -46,12 +46,12 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 [comment ===== Case : model = Reference - view = Combo - ModelNavigation ===== /]
 
 [template public declareEObjectUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides declareEObjectUpdater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
-[editionElement.name.toJavaIdentifier()/]Settings.setValue(!"".equals(event.getNewValue()) ? ([editionElement.model.eType.name/]) event.getNewValue() : null);
+[editionElement.name.toJavaIdentifier()/]Settings.setValue(!"".equals(event.getNewValue()) ? ([include(editionElement.model.eType.name)/]) event.getNewValue() : null);
 [/template]
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isReferenceSingle() and editionElement.representationName('Combo') and editionElement.canGeneratemodelNavigation())]
 if ([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject() != null && isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), [editionElement.name.toJavaIdentifier()/]Settings.getValue());
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([include('org.eclipse.emf.eef.runtime.impl.utils.EEFUtils')/].choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), [editionElement.name.toJavaIdentifier()/]Settings.getValue());
 }
 [/template]
 

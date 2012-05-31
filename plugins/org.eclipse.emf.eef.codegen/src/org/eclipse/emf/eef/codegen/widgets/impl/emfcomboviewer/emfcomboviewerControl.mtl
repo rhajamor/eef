@@ -49,6 +49,6 @@ if (isAccessible([editionElement.views->first().editorID()/])) {
 
 [template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) overrides updater ? (editionElement.model.isAttributeSingle() and editionElement.representationName('EMFComboViewer') and editionElement.canGeneratemodelNavigation())]
 if ([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject() != null && isAccessible([editionElement.views->first().editorID()/])) {
-	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/](EEFUtils.choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), ([editionElement.views->first().toJavaType().trim()/])[editionElement.name.toJavaIdentifier()/]Settings.getValue());}
+	[view.viewIdentifier(pec)/].init[editionElement.views->first().viewPackageSignature()/]([include('org.eclipse.emf.eef.runtime.impl.utils.EEFUtils')/].choiceOfValues([editionElement.name.toJavaIdentifier()/]Settings.getSignificantObject(), [editionElement.metamodelGetter()/]), ([editionElement.views->first().toJavaType().trim()/])[editionElement.name.toJavaIdentifier()/]Settings.getValue());
 }
 [/template]
