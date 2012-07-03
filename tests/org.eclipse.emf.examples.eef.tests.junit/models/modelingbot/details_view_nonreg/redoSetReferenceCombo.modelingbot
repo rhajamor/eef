@@ -16,7 +16,7 @@
         <type href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root/samples"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetReference" name="optional property" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="//@sequences.0/@processings.3/@processings.1">
+      <processings xsi:type="eef-test_1:SetReference" name="optional property" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.3/@processings.1">
         <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_dOjWULrsEeGvOag3yGMAOg"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ComboSample/comboOptionalReferenceProperty"/>
       </processings>

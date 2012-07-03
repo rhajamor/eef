@@ -145,7 +145,7 @@ public class PropertiesEditionHelper {
 	 */
 	public void updateFeature(SWTBotTreeItem selectNode,
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject referenceableObject, ReferenceableObject value,
+			ReferenceableObject referenceableObject, Collection<EObject> values,
 			SequenceType sequenceType) {
 		assertFalse(propertiesEditionElement.getViews().isEmpty());
 		final ElementEditor elementEditor = propertiesEditionElement.getViews()
@@ -153,16 +153,16 @@ public class PropertiesEditionHelper {
 		final String representationName = elementEditor.getRepresentation()
 				.getName();
 		if ("ReferencesTable".equals(representationName)) {
-			updateReferencesTable(propertiesEditionElement, value);
+			updateReferencesTable(propertiesEditionElement, values);
 		} else if ("AdvancedReferencesTable".equals(representationName)) {
-			updateAdvancedReferencesTable(propertiesEditionElement, value);
+			updateAdvancedReferencesTable(propertiesEditionElement, values);
 		} else if ("FlatReferencesTable".equals(representationName)) {
-			updateFlatReferencesTable(propertiesEditionElement, value);
+			updateFlatReferencesTable(propertiesEditionElement, values);
 		} else if ("EObjectFlatComboViewer".equals(representationName)) {
-			updateEObjectFlatComboViewer(propertiesEditionElement, value);
+			updateEObjectFlatComboViewer(propertiesEditionElement, values);
 		} else if ("AdvancedEObjectFlatComboViewer".equals(representationName)) {
 			updateAdvancedEObjectFlatComboViewer(propertiesEditionElement,
-					value);
+					values);
 		} else if ("Combo".equals(representationName)) {
 			final EObject container = bot
 					.getEObjectFromReferenceableEObject((ReferenceableObject) referenceableObject);
@@ -206,12 +206,12 @@ public class PropertiesEditionHelper {
 	 */
 	private void updateReferencesTable(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject value) {
+			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.addButtonReferencesTable(label).click();
-		bot.selectInActiveTable(bot.getEObjectFromReferenceableEObject(value));
+		bot.selectInActiveTable(values);
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
 	}
@@ -224,12 +224,12 @@ public class PropertiesEditionHelper {
 	 */
 	private void updateAdvancedReferencesTable(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject value) {
+			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.addButtonAdvancedReferencesTable(label).click();
-		bot.selectInActiveTree(bot.getEObjectFromReferenceableEObject(value));
+		bot.selectInActiveTree(values);
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
 	}
@@ -242,12 +242,12 @@ public class PropertiesEditionHelper {
 	 */
 	private void updateFlatReferencesTable(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject value) {
+			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.browseButtonFlatReferencesTable(label).click();
-		bot.selectInActiveTable(bot.getEObjectFromReferenceableEObject(value));
+		bot.selectInActiveTable(values);
 		SWTBotButton buttonAdd = bot.button(0);
 		buttonAdd.click();
 		clickOkOrCancel(propertiesEditionElement);
@@ -285,12 +285,12 @@ public class PropertiesEditionHelper {
 	 */
 	private void updateEObjectFlatComboViewer(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject value) {
+			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.editButtonEObjectFlatComboViewer(label).click();
-		bot.selectInActiveTable(bot.getEObjectFromReferenceableEObject(value));
+		bot.selectInActiveTable(values);
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
 	}
@@ -303,12 +303,12 @@ public class PropertiesEditionHelper {
 	 */
 	private void updateAdvancedEObjectFlatComboViewer(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject value) {
+			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.browseButtonAdvancedEObjectFlatComboViewer(label).click();
-		bot.selectInActiveTree(bot.getEObjectFromReferenceableEObject(value));
+		bot.selectInActiveTree(values);
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
 

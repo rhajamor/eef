@@ -11,6 +11,7 @@
 package org.eclipse.emf.eef.modelingBot;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
@@ -135,7 +136,7 @@ public interface IModelingBot {
 	 * @param eContainingFeature
 	 */
 	void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, ReferenceableObject value);
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values);
 
 	/**
 	 * Unset an attribute.

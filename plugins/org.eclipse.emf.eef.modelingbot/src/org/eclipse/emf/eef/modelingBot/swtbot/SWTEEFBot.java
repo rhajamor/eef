@@ -52,9 +52,12 @@ import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.views.ElementEditor;
 import org.eclipse.emf.eef.views.View;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotEditor;
 import org.eclipse.swtbot.swt.finder.keyboard.KeyboardFactory;
+import org.eclipse.swtbot.swt.finder.results.IntResult;
 import org.eclipse.swtbot.swt.finder.results.Result;
 import org.eclipse.swtbot.swt.finder.waits.Conditions;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotButton;
@@ -454,7 +457,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
 	 */
 	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, ReferenceableObject value) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
 		assertNotNull("The editor is not opened.", editor);
@@ -465,11 +468,14 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 			assertNotNull("No container is found to launch set ref action.", container);
 			final SWTBotTreeItem selectNode = selectNode(editor, container);
 			assertNotNull("No element is selected in the editor", selectNode);
+			final Collection<EObject> objectsToSet = new ArrayList<EObject>();
+			for (ReferenceableObject value : values) {
+				objectsToSet.add(getEObjectFromReferenceableEObject(value));
+			}
 			initTab(propertiesEditionElement);
-			propertiesEdition.updateFeature(selectNode, propertiesEditionElement, referenceableObject, value, sequenceType);
+			propertiesEdition.updateFeature(selectNode, propertiesEditionElement, referenceableObject, objectsToSet, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
-			initTab(propertiesEditionElement);
-			propertiesEdition.updateFeature(null, propertiesEditionElement, referenceableObject, value, sequenceType);
+			//TODO wizard
 		}
 
 	}
@@ -921,7 +927,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	}
 	
 	/**
-	 * Select the object in the advanced references table.
+	 * Select the object in the tree.
 	 * 
 	 * @param selected
 	 *            object to select
@@ -934,7 +940,27 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	}
 	
 	/**
-	 * Select the object in the advanced references table.
+	 * Select the objects in the tree.
+	 * 
+	 * @param selected
+	 *            objects to select
+	 */
+	public void selectInActiveTree(Collection<EObject> selected) {
+		final SWTBotTree tree = tree(0);
+//		final SWTBotTreeItem treeItem = getTreeItem(tree, selected);
+//		assertNotNull("No tree item is found.", treeItem);
+//		treeItem.select();
+		final Collection<SWTBotTreeItem> treeItems = new ArrayList<SWTBotTreeItem>();
+		for (EObject eObject : selected) {
+			final SWTBotTreeItem treeItem = getTreeItem(tree, eObject);
+			assertNotNull("No tree item is found.", treeItem);
+			treeItem.select();
+			treeItems.add(treeItem);
+		}
+	}
+	
+	/**
+	 * Select the object in the table.
 	 * 
 	 * @param selected
 	 *            object to select
@@ -944,6 +970,25 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		final SWTBotTableItem tableItem = getTableItem(table, selected);
 		assertNotNull("No table item is found.", tableItem);
 		tableItem.select();
+	}
+	
+	/**
+	 * Select the objects in the table.
+	 * 
+	 * @param selected
+	 *            objects to select
+	 */
+	public void selectInActiveTable(Collection<EObject> selected) {
+		final SWTBotTable table = table(0);
+		int[] indices = new int[selected.size()];
+		Iterator<EObject> it = selected.iterator();
+		for (int i = 0; i < selected.size(); i++) {
+			EObject eObject = it.next();
+			final SWTBotTableItem tableItem = getTableItem(table, eObject);
+			assertNotNull("No table item is found.", tableItem);
+			indices[i] = indexOf(table, tableItem);
+		}
+		table.select(indices);
 	}
 	
 	/**
@@ -959,6 +1004,21 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		tableItem.select();
 	}
 
+	/**
+	 * @param table
+	 * @param object
+	 * @return the table item corresponding to the object
+	 */
+	private int indexOf(final SWTBotTable table, final SWTBotTableItem tableItem) {
+		return syncExec(new IntResult() {
+			public Integer run() {
+				Table widgetTable = table.widget;
+				TableItem widgetItem = tableItem.widget;
+				return widgetTable.indexOf(widgetItem);
+			}
+		});
+	}
+	
 	/**
 	 * @param table
 	 * @param object

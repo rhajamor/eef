@@ -201,7 +201,7 @@ public class ComposedEEFBot implements IModelingBot {
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
 	 */
 	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, ReferenceableObject value) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		// do nothing
 	}
 

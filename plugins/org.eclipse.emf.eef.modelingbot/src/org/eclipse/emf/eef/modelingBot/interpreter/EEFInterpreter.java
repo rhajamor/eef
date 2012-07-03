@@ -309,7 +309,7 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 				bot.set(((SetReference) action).getPropertiesEditionElement(),
 						((SetReference) action).getReferenceableObject(),
 						((SetReference) action).getEContainingFeature(),
-						((SetReference) action).getValue());
+						((SetReference) action).getValues());
 			} else if (action instanceof Save) {
 				bot.save();
 			} else if (action instanceof CloseEditor) {

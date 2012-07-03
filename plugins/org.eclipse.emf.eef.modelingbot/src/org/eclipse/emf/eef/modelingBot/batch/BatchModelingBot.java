@@ -241,13 +241,14 @@ public class BatchModelingBot implements IModelingBot {
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
 	 */
 	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, ReferenceableObject value) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
 		if (eContainingFeature instanceof EReference) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
-			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature,
-					interpreter.getEObjectFromReferenceableEObject(value));
-			editingDomain.getCommandStack().execute(command);
+			//TODO
+			//final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature,
+			//		interpreter.getEObjectFromReferenceableEObject(value));
+			//editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot set without a eContainingFeature reference");
 		}
