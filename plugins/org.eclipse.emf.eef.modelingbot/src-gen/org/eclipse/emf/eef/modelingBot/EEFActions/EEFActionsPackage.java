@@ -590,13 +590,13 @@ public interface EEFActionsPackage extends EPackage {
 	int SET_REFERENCE__REFERENCEABLE_OBJECT = EDIT_ACTION__REFERENCEABLE_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * The feature id for the '<em><b>Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_REFERENCE__VALUE = EDIT_ACTION_FEATURE_COUNT + 0;
+	int SET_REFERENCE__VALUES = EDIT_ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>EContaining Feature</b></em>' reference.
@@ -880,15 +880,15 @@ public interface EEFActionsPackage extends EPackage {
 	EClass getSetReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValue <em>Value</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValue()
+	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValues()
 	 * @see #getSetReference()
 	 * @generated
 	 */
-	EReference getSetReference_Value();
+	EReference getSetReference_Values();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getEContainingFeature <em>EContaining Feature</em>}'.
@@ -1120,12 +1120,12 @@ public interface EEFActionsPackage extends EPackage {
 		EClass SET_REFERENCE = eINSTANCE.getSetReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SET_REFERENCE__VALUE = eINSTANCE.getSetReference_Value();
+		EReference SET_REFERENCE__VALUES = eINSTANCE.getSetReference_Values();
 
 		/**
 		 * The meta object literal for the '<em><b>EContaining Feature</b></em>' reference feature.

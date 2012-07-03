@@ -10,14 +10,17 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.EEFActions.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 
 import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage;
@@ -30,7 +33,7 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.SetReference;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetReferenceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetReferenceImpl#getValues <em>Values</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetReferenceImpl#getEContainingFeature <em>EContaining Feature</em>}</li>
  * </ul>
  * </p>
@@ -39,14 +42,14 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.SetReference;
  */
 public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getValues()
 	 * @generated
 	 * @ordered
 	 */
-	protected ReferenceableObject value;
+	protected EList<ReferenceableObject> values;
 
 	/**
 	 * The cached value of the '{@link #getEContainingFeature() <em>EContaining Feature</em>}' reference.
@@ -82,37 +85,11 @@ public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceableObject getValue() {
-		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject)value;
-			value = (ReferenceableObject)eResolveProxy(oldValue);
-			if (value != oldValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EEFActionsPackage.SET_REFERENCE__VALUE, oldValue, value));
-			}
+	public EList<ReferenceableObject> getValues() {
+		if (values == null) {
+			values = new EObjectResolvingEList<ReferenceableObject>(ReferenceableObject.class, this, EEFActionsPackage.SET_REFERENCE__VALUES);
 		}
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceableObject basicGetValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(ReferenceableObject newValue) {
-		ReferenceableObject oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EEFActionsPackage.SET_REFERENCE__VALUE, oldValue, value));
+		return values;
 	}
 
 	/**
@@ -161,9 +138,8 @@ public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_REFERENCE__VALUE:
-				if (resolve) return getValue();
-				return basicGetValue();
+			case EEFActionsPackage.SET_REFERENCE__VALUES:
+				return getValues();
 			case EEFActionsPackage.SET_REFERENCE__ECONTAINING_FEATURE:
 				if (resolve) return getEContainingFeature();
 				return basicGetEContainingFeature();
@@ -176,11 +152,13 @@ public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_REFERENCE__VALUE:
-				setValue((ReferenceableObject)newValue);
+			case EEFActionsPackage.SET_REFERENCE__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends ReferenceableObject>)newValue);
 				return;
 			case EEFActionsPackage.SET_REFERENCE__ECONTAINING_FEATURE:
 				setEContainingFeature((EStructuralFeature)newValue);
@@ -197,8 +175,8 @@ public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_REFERENCE__VALUE:
-				setValue((ReferenceableObject)null);
+			case EEFActionsPackage.SET_REFERENCE__VALUES:
+				getValues().clear();
 				return;
 			case EEFActionsPackage.SET_REFERENCE__ECONTAINING_FEATURE:
 				setEContainingFeature((EStructuralFeature)null);
@@ -215,8 +193,8 @@ public class SetReferenceImpl extends EditActionImpl implements SetReference {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_REFERENCE__VALUE:
-				return value != null;
+			case EEFActionsPackage.SET_REFERENCE__VALUES:
+				return values != null && !values.isEmpty();
 			case EEFActionsPackage.SET_REFERENCE__ECONTAINING_FEATURE:
 				return eContainingFeature != null;
 		}

@@ -63,26 +63,26 @@ public class SetReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
+			addValuesPropertyDescriptor(object);
 			addEContainingFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature.
+	 * This adds a property descriptor for the Values feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
+	protected void addValuesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SetReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SetReference_value_feature", "_UI_SetReference_type"),
-				 EEFActionsPackage.Literals.SET_REFERENCE__VALUE,
+				 getString("_UI_SetReference_values_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetReference_values_feature", "_UI_SetReference_type"),
+				 EEFActionsPackage.Literals.SET_REFERENCE__VALUES,
 				 true,
 				 false,
 				 true,

@@ -370,7 +370,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSetReference_Value() {
+	public EReference getSetReference_Values() {
 		return (EReference)setReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -465,7 +465,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		createEAttribute(openEEFEditorEClass, OPEN_EEF_EDITOR__EDITOR_NAME);
 
 		setReferenceEClass = createEClass(SET_REFERENCE);
-		createEReference(setReferenceEClass, SET_REFERENCE__VALUE);
+		createEReference(setReferenceEClass, SET_REFERENCE__VALUES);
 		createEReference(setReferenceEClass, SET_REFERENCE__ECONTAINING_FEATURE);
 
 		unsetReferenceEClass = createEClass(UNSET_REFERENCE);
@@ -548,7 +548,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		initEAttribute(getOpenEEFEditor_EditorName(), theEcorePackage.getEString(), "editorName", null, 0, 1, OpenEEFEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(setReferenceEClass, SetReference.class, "SetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSetReference_Value(), theEditorPackage.getReferenceableObject(), null, "value", null, 0, 1, SetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSetReference_Values(), theEditorPackage.getReferenceableObject(), null, "values", null, 0, -1, SetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSetReference_EContainingFeature(), theEcorePackage.getEStructuralFeature(), null, "eContainingFeature", null, 0, 1, SetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unsetReferenceEClass, UnsetReference.class, "UnsetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

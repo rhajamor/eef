@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.EEFActions;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 
@@ -21,7 +22,7 @@ import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValues <em>Values</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getEContainingFeature <em>EContaining Feature</em>}</li>
  * </ul>
  * </p>
@@ -32,30 +33,20 @@ import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
  */
 public interface SetReference extends EditAction {
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Values</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.eef.extended.editor.ReferenceableObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' reference isn't clear,
+	 * If the meaning of the '<em>Values</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' reference.
-	 * @see #setValue(ReferenceableObject)
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getSetReference_Value()
+	 * @return the value of the '<em>Values</em>' reference list.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getSetReference_Values()
 	 * @model
 	 * @generated
 	 */
-	ReferenceableObject getValue();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetReference#getValue <em>Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' reference.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(ReferenceableObject value);
+	EList<ReferenceableObject> getValues();
 
 	/**
 	 * Returns the value of the '<em><b>EContaining Feature</b></em>' reference.

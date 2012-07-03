@@ -63,7 +63,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SetReference" eSuperTypes="#//EEFActions/EditAction">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/plugin/org.eclipse.emf.eef.editor.model/model/extended.ecore#//editor/ReferenceableObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.eef.editor.model/model/extended.ecore#//editor/ReferenceableObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eContainingFeature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnsetReference" eSuperTypes="#//EEFActions/EditAction">
