@@ -8,35 +8,21 @@ package org.eclipse.emf.eef.eefnr.interface_.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
-
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
-
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.interface_.InterfaceFactory;
 import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
-
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
-
 import org.eclipse.emf.eef.eefnr.naming.impl.CustomNamingPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.navigation.NavigationPackage;
-
 import org.eclipse.emf.eef.eefnr.navigation.impl.NavigationPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.references.ReferencesPackage;
-
 import org.eclipse.emf.eef.eefnr.references.impl.ReferencesPackageImpl;
-
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
-
 import org.eclipse.emf.eef.eefnrext.impl.EefnrextPackageImpl;
 
 /**

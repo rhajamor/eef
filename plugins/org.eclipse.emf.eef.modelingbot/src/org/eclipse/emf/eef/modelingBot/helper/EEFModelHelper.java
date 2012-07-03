@@ -34,7 +34,12 @@ public class EEFModelHelper {
 	public static Object eGet(EObject container, EStructuralFeature eContainingFeature) {
 		final Object eGet = container.eGet(container.eClass().getEStructuralFeature(eContainingFeature.getName()));
 		if (eGet instanceof EList) {
-			return (EObject) ((EList) eGet).get(((EList) eGet).size() - 1);
+			if (!((EList) eGet).isEmpty()) {
+				return (EObject) ((EList) eGet).get(((EList) eGet).size() - 1);
+			} else {
+				return null;
+			}
+			
 		}
 		return (EObject) eGet;
 	}

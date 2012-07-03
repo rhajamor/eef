@@ -9,15 +9,11 @@ package org.eclipse.emf.eef.eefnr.filters.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceOwnerSample;
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceTargetSample;
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
-
 import org.eclipse.emf.eef.eefnr.impl.AbstractSampleImpl;
 
 /**

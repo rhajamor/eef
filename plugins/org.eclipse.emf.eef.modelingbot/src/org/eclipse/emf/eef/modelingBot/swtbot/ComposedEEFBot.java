@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
@@ -321,6 +322,31 @@ public class ComposedEEFBot implements IModelingBot {
 	 */
 	public IModelingBotInterpreter getModelingBotInterpreter() {
 		return interpreter;
+	}
+
+	public EObject add(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObjectContainer,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, EClass type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void redo() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

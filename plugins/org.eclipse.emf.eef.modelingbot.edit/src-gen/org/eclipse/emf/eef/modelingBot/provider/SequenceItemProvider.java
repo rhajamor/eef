@@ -235,6 +235,11 @@ public class SequenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelingBotPackage.Literals.SEQUENCE__PROCESSINGS,
+				 EEFActionsFactory.eINSTANCE.createUnsetReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelingBotPackage.Literals.SEQUENCE__PROCESSINGS,
 				 EclipseActionsFactory.eINSTANCE.createCreateProject()));
 
 		newChildDescriptors.add

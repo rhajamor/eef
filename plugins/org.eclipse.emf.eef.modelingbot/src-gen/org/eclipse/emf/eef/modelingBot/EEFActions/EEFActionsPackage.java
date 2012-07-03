@@ -618,6 +618,80 @@ public interface EEFActionsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetReferenceImpl <em>Unset Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetReferenceImpl
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnsetReference()
+	 * @generated
+	 */
+	int UNSET_REFERENCE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__NAME = EDIT_ACTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__DOCUMENTATION = EDIT_ACTION__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Properties Edition Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__PROPERTIES_EDITION_ELEMENT = EDIT_ACTION__PROPERTIES_EDITION_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Referenceable Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__REFERENCEABLE_OBJECT = EDIT_ACTION__REFERENCEABLE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__FEATURE = EDIT_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE__VALUES = EDIT_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Unset Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_REFERENCE_FEATURE_COUNT = EDIT_ACTION_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.EEFAction <em>EEF Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -828,6 +902,38 @@ public interface EEFActionsPackage extends EPackage {
 	EReference getSetReference_EContainingFeature();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference <em>Unset Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unset Reference</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference
+	 * @generated
+	 */
+	EClass getUnsetReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference#getFeature()
+	 * @see #getUnsetReference()
+	 * @generated
+	 */
+	EReference getUnsetReference_Feature();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference#getValues()
+	 * @see #getUnsetReference()
+	 * @generated
+	 */
+	EReference getUnsetReference_Values();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1028,6 +1134,32 @@ public interface EEFActionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SET_REFERENCE__ECONTAINING_FEATURE = eINSTANCE.getSetReference_EContainingFeature();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetReferenceImpl <em>Unset Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetReferenceImpl
+		 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnsetReference()
+		 * @generated
+		 */
+		EClass UNSET_REFERENCE = eINSTANCE.getUnsetReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNSET_REFERENCE__FEATURE = eINSTANCE.getUnsetReference_Feature();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNSET_REFERENCE__VALUES = eINSTANCE.getUnsetReference_Values();
 
 	}
 

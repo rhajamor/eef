@@ -16,6 +16,7 @@ import org.eclipse.emf.eef.eefnr.parts.forms.AdvancedEObjectFlatComboViewerSampl
 import org.eclipse.emf.eef.eefnr.parts.forms.AdvancedReferencesTableSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.AdvancedTableCompositionEditorSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.CheckboxSamplePropertiesEditionPartForm;
+import org.eclipse.emf.eef.eefnr.parts.forms.ComboSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.EMFComboViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.EObjectFlatComboViewerSamplePropertiesEditionPartForm;
 import org.eclipse.emf.eef.eefnr.parts.forms.FlatReferenceTableSamplePropertiesEditionPartForm;
@@ -39,6 +40,7 @@ import org.eclipse.emf.eef.eefnr.parts.impl.AdvancedEObjectFlatComboViewerSample
 import org.eclipse.emf.eef.eefnr.parts.impl.AdvancedReferencesTableSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.AdvancedTableCompositionEditorSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.CheckboxSamplePropertiesEditionPartImpl;
+import org.eclipse.emf.eef.eefnr.parts.impl.ComboSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.EMFComboViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.EObjectFlatComboViewerSamplePropertiesEditionPartImpl;
 import org.eclipse.emf.eef.eefnr.parts.impl.FlatReferenceTableSamplePropertiesEditionPartImpl;
@@ -126,6 +128,12 @@ public class EefnrPropertiesEditionPartProvider implements IPropertiesEditionPar
 				return new EObjectFlatComboViewerSamplePropertiesEditionPartImpl(component);
 			if (kind == EefnrViewsRepository.FORM_KIND)
 				return new EObjectFlatComboViewerSamplePropertiesEditionPartForm(component);
+		}
+		if (key == EefnrViewsRepository.ComboSample.class) {
+			if (kind == EefnrViewsRepository.SWT_KIND)
+				return new ComboSamplePropertiesEditionPartImpl(component);
+			if (kind == EefnrViewsRepository.FORM_KIND)
+				return new ComboSamplePropertiesEditionPartForm(component);
 		}
 		if (key == EefnrViewsRepository.ReferencesTableSample.class) {
 			if (kind == EefnrViewsRepository.SWT_KIND)

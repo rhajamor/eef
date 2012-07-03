@@ -16,11 +16,13 @@ import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withId
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withMnemonic;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withStyle;
 
+import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.runtime.ui.UIConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.swtbot.swt.finder.SWTBot;
+import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotButton;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotRadio;
 import org.hamcrest.Matcher;
@@ -48,6 +50,24 @@ public class SWTEEFBotHelper {
 	public SWTBotButton browseButtonAdvancedEObjectFlatComboViewer(String viewID) {
 		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::AdvancedEObjectFlatComboViewer::browsebutton"))));
 	}
+	
+	/**
+	 * @param viewID
+	 *            the edited EOFCV
+	 * @return the edit button of the given EOFCV
+	 */
+	public SWTBotButton editButtonEObjectFlatComboViewer(String viewID) {
+		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::EObjectFlatComboViewer::editbutton"))));
+	}
+	
+	/**
+	 * @param viewID
+	 *            the edited FlatReferencesTable
+	 * @return the browse button of the given FlatReferencesTable
+	 */
+	public SWTBotButton browseButtonFlatReferencesTable(String viewID) {
+		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::FlatReferencesTable::browsebutton"))));
+	}
 
 	/**
 	 * @param viewID
@@ -60,8 +80,8 @@ public class SWTEEFBotHelper {
 
 	/**
 	 * @param viewID
-	 *            the edited advReferencesTable
-	 * @return the add button of the given advReferencesTable
+	 *            the edited AdvancedReferencesTable
+	 * @return the add button of the given AdvancedReferencesTable
 	 */
 	public SWTBotButton addButtonAdvancedReferencesTable(String viewID) {
 		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::AdvancedReferencesTable::addbutton"))));
@@ -69,8 +89,8 @@ public class SWTEEFBotHelper {
 
 	/**
 	 * @param viewID
-	 *            the edited advReferencesTable
-	 * @return the remove button of the given advReferencesTable
+	 *            the edited AdvancedReferencesTable
+	 * @return the remove button of the given AdvancedReferencesTable
 	 */
 	public SWTBotButton removeButtonAdvancedReferencesTable(String viewID) {
 		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::AdvancedReferencesTable::removebutton"))));
@@ -78,8 +98,8 @@ public class SWTEEFBotHelper {
 
 	/**
 	 * @param viewID
-	 *            the edited advTableComposition
-	 * @return the add button of the given advTableComposition
+	 *            the edited AdvancedTableComposition
+	 * @return the add button of the given AdvancedTableComposition
 	 */
 	public SWTBotButton addButtonAdvancedTableComposition(String viewID) {
 		Matcher<Widget> allOf = allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::AdvancedTableComposition::addbutton"));
@@ -93,6 +113,16 @@ public class SWTEEFBotHelper {
 	 */
 	public SWTBotButton removeButtonAdvancedTableComposition(String viewID) {
 		return new SWTBotButton((Button) bot.widget(allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::AdvancedTableComposition::removebutton"))));
+	}
+	
+	/**
+	 * @param viewID
+	 *            the edited MultiValuedEditor
+	 * @return the browse button of the given MultiValuedEditor
+	 */
+	public SWTBotButton browseButtonMultiValuedEditor(String viewID) {
+		Matcher<Widget> allOf = allOf(widgetOfType(Button.class), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY, viewID), withId(org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_TYPE_KEY, "eef::MultiValuedEditor::browsebutton"));
+		return new SWTBotButton((Button) bot.widget(allOf));
 	}
 
 	/**

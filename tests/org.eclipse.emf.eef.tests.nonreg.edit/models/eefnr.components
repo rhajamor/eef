@@ -81,6 +81,12 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LHAwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty" views="_Fx_LXwwvEd-uP4lw9e0IMw">
           <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/advancedtablecompositionOptionalProperty"/>
         </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_eqpEYrrtEeGvOag3yGMAOg" name="comboRequiredReferencePropertyTS" views="__otdYrrsEeGvOag3yGMAOg">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/comboRequiredReferencePropertyTS"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_eqprcLrtEeGvOag3yGMAOg" name="comboOptionalReferencePropertyTS" views="__ouEcLrsEeGvOag3yGMAOg">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample/comboOptionalReferencePropertyTS"/>
+        </properties>
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_ni-uEBAFEd-ehv9sVb76fA" name="name" views="_rfj4YBAFEd-ehv9sVb76fA">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AbstractSample/name"/>
         </properties>
@@ -133,6 +139,15 @@
           <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample/eobjectflatcomboviewerOptionalPropery"/>
         </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_MMyecLrsEeGvOag3yGMAOg" name="ComboSample" views="_nIQmYLrsEeGvOag3yGMAOg">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_dIACYLrsEeGvOag3yGMAOg" name="comboRequiredReferenceProperty" views="_3LBfYLrsEeGvOag3yGMAOg">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ComboSample/comboRequiredReferenceProperty"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_dOjWULrsEeGvOag3yGMAOg" name="comboOptionalReferenceProperty" views="_3caxYLrsEeGvOag3yGMAOg">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ComboSample/comboOptionalReferenceProperty"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//ComboSample"/>
       </bindings>
       <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_Fx_LLAwvEd-uP4lw9e0IMw" name="ReferencesTableSample" views="_Fx_yGQwvEd-uP4lw9e0IMw">
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Fx_LLQwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty" views="_Fx_yGwwvEd-uP4lw9e0IMw">
@@ -589,16 +604,16 @@
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTAwvEd-uP4lw9e0IMw" name="textareaRequiredProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTQwvEd-uP4lw9e0IMw" name="textareaOptionalProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTgwvEd-uP4lw9e0IMw" name="radioRequiredProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.5"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LTwwvEd-uP4lw9e0IMw" name="radioOptionalProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.5"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUAwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerRequiredProperty">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
@@ -607,10 +622,10 @@
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUgwvEd-uP4lw9e0IMw" name="referencestableRequiredProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.1"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LUwwvEd-uP4lw9e0IMw" name="referencestableOptionalProperty">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.1"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LVAwvEd-uP4lw9e0IMw" name="emfcomboviewerRequiredProperty">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
@@ -637,16 +652,28 @@
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.8"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXAwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerRequiredPropery">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.9"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXQwvEd-uP4lw9e0IMw" name="advancedeobjectflatcomboviewerOptionalPropery">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.9"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXgwvEd-uP4lw9e0IMw" name="advancedtablecompositionRequiredProperty">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_LXwwvEd-uP4lw9e0IMw" name="advancedtablecompositionOptionalProperty">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="__otdYLrsEeGvOag3yGMAOg" name="comboRequiredPropertyTS">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="__otdYbrsEeGvOag3yGMAOg" name="comboOptionalPropertyTS">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="__otdYrrsEeGvOag3yGMAOg" name="comboRequiredReferencePropertyTS">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="__ouEcLrsEeGvOag3yGMAOg" name="comboOptionalReferencePropertyTS">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_rfj4YBAFEd-ehv9sVb76fA" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
@@ -706,6 +733,17 @@
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_Fx_yGAwvEd-uP4lw9e0IMw" name="eobjectflatcomboviewerOptionalPropery">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_nIQmYLrsEeGvOag3yGMAOg" name="ComboSample">
+        <elements xsi:type="eef-views:Container" xmi:id="_yaAAYLrsEeGvOag3yGMAOg" name="properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3LBfYLrsEeGvOag3yGMAOg" name="comboRequiredReferenceProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3caxYLrsEeGvOag3yGMAOg" name="comboOptionalReferenceProperty">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
           </elements>
         </elements>
       </views>

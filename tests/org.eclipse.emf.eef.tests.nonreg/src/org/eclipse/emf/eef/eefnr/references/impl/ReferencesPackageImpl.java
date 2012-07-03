@@ -10,15 +10,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
-
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 import org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl;
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
@@ -29,10 +25,8 @@ import org.eclipse.emf.eef.eefnr.references.AbstractEnabledSample;
 import org.eclipse.emf.eef.eefnr.references.ReferenceEnabledSample;
 import org.eclipse.emf.eef.eefnr.references.ReferencesFactory;
 import org.eclipse.emf.eef.eefnr.references.ReferencesPackage;
-
 import org.eclipse.emf.eef.eefnr.references.Tests;
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
-
 import org.eclipse.emf.eef.eefnrext.impl.EefnrextPackageImpl;
 
 /**

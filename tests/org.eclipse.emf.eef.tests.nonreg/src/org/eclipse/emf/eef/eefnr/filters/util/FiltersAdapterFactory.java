@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
+import org.eclipse.emf.eef.eefnr.filters.*;
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceOwnerSample;
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceTargetSample;
 import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample;

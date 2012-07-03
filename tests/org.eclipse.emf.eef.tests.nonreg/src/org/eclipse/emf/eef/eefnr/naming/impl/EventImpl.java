@@ -7,9 +7,7 @@
 package org.eclipse.emf.eef.eefnr.naming.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.eef.eefnr.impl.AbstractSampleImpl;
-
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
 import org.eclipse.emf.eef.eefnr.naming.Event;
 

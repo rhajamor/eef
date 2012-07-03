@@ -7,9 +7,7 @@
 package org.eclipse.emf.eef.eefnrext.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.eef.eefnr.impl.AbstractTableCompositionTargetExtensionEditorSampleImpl;
-
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
 import org.eclipse.emf.eef.eefnrext.TableCompositionTargetExtensionEditorSample;
 

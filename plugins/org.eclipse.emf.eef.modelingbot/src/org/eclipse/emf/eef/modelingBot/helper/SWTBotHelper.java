@@ -54,7 +54,7 @@ public class SWTBotHelper {
 			}
 		});
 	}
-
+	
 	public static void sendFocusLost(final Widget widget) {
 		UIThreadRunnable.asyncExec(new VoidResult() {
 			public void run() {
@@ -92,10 +92,10 @@ public class SWTBotHelper {
 	}
 
 	/**
-	 * @param c
-	 *            the character.
 	 * @param modificationKey
 	 *            the modification key.
+	 * @param c
+	 *            the character.
 	 * @param keyCode
 	 *            the keycode.
 	 * @return a key event with the specified keys.
@@ -257,4 +257,6 @@ public class SWTBotHelper {
 		});
 	}
 
+	
+	
 }

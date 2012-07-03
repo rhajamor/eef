@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.NamedElement;
+import org.eclipse.emf.eef.eefnr.navigation.*;
 import org.eclipse.emf.eef.eefnr.navigation.AnotherSubType;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeDelegate;
 import org.eclipse.emf.eef.eefnr.navigation.AttributeNavigationSample;

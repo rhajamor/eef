@@ -37,6 +37,7 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetReference;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Unset;
 
+import org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.EclipseActionsPackage;
 
 import org.eclipse.emf.eef.modelingBot.EclipseActions.impl.EclipseActionsPackageImpl;
@@ -121,6 +122,13 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 	 * @generated
 	 */
 	private EClass setReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unsetReferenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -380,6 +388,33 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUnsetReference() {
+		return unsetReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnsetReference_Feature() {
+		return (EReference)unsetReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnsetReference_Values() {
+		return (EReference)unsetReferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEFActionsFactory getEEFActionsFactory() {
 		return (EEFActionsFactory)getEFactoryInstance();
 	}
@@ -432,6 +467,10 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		setReferenceEClass = createEClass(SET_REFERENCE);
 		createEReference(setReferenceEClass, SET_REFERENCE__VALUE);
 		createEReference(setReferenceEClass, SET_REFERENCE__ECONTAINING_FEATURE);
+
+		unsetReferenceEClass = createEClass(UNSET_REFERENCE);
+		createEReference(unsetReferenceEClass, UNSET_REFERENCE__FEATURE);
+		createEReference(unsetReferenceEClass, UNSET_REFERENCE__VALUES);
 	}
 
 	/**
@@ -479,6 +518,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		checkEClass.getESuperTypes().add(this.getEEFAction());
 		openEEFEditorEClass.getESuperTypes().add(this.getEEFAction());
 		setReferenceEClass.getESuperTypes().add(this.getEditAction());
+		unsetReferenceEClass.getESuperTypes().add(this.getEditAction());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eefActionEClass, EEFAction.class, "EEFAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -510,6 +550,10 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		initEClass(setReferenceEClass, SetReference.class, "SetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSetReference_Value(), theEditorPackage.getReferenceableObject(), null, "value", null, 0, 1, SetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSetReference_EContainingFeature(), theEcorePackage.getEStructuralFeature(), null, "eContainingFeature", null, 0, 1, SetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(unsetReferenceEClass, UnsetReference.class, "UnsetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnsetReference_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, UnsetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnsetReference_Values(), theEditorPackage.getReferenceableObject(), null, "values", null, 0, -1, UnsetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //EEFActionsPackageImpl

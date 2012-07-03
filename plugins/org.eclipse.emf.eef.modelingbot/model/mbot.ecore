@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelingBot" nsURI="http://www.eclipse.org/emf/eef/mbot/1.0.0"
-    nsPrefix="eef-mbot">
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelingBot"
+    nsURI="http://www.eclipse.org/emf/eef/mbot/1.0.0" nsPrefix="eef-mbot">
   <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//Sequence"/>
   <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" eSuperTypes="#//DocumentedElement #//Processing"/>
   <eClassifiers xsi:type="ecore:EClass" name="Sequence" abstract="true" eSuperTypes="#//DocumentedElement #//Processing">
@@ -12,7 +13,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="processings" upperBound="-1"
         eType="#//Processing" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Wizard" eSuperTypes="#//Sequence"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Wizard" eSuperTypes="#//Sequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceableObject" eType="ecore:EClass platform:/plugin/org.eclipse.emf.eef.editor.model/model/extended.ecore#//editor/ReferenceableObject"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -62,6 +65,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="SetReference" eSuperTypes="#//EEFActions/EditAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/plugin/org.eclipse.emf.eef.editor.model/model/extended.ecore#//editor/ReferenceableObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eContainingFeature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UnsetReference" eSuperTypes="#//EEFActions/EditAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.eef.editor.model/model/extended.ecore#//editor/ReferenceableObject"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="EclipseActions" nsURI="http://www.eclipse.org/emf/eef/test/EclipseActions/1.0.0"

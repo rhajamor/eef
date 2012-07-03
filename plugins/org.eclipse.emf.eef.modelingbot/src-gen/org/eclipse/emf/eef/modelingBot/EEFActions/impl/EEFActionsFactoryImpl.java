@@ -72,6 +72,7 @@ public class EEFActionsFactoryImpl extends EFactoryImpl implements EEFActionsFac
 			case EEFActionsPackage.CHECK: return createCheck();
 			case EEFActionsPackage.OPEN_EEF_EDITOR: return createOpenEEFEditor();
 			case EEFActionsPackage.SET_REFERENCE: return createSetReference();
+			case EEFActionsPackage.UNSET_REFERENCE: return createUnsetReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -155,6 +156,16 @@ public class EEFActionsFactoryImpl extends EFactoryImpl implements EEFActionsFac
 	public SetReference createSetReference() {
 		SetReferenceImpl setReference = new SetReferenceImpl();
 		return setReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnsetReference createUnsetReference() {
+		UnsetReferenceImpl unsetReference = new UnsetReferenceImpl();
+		return unsetReference;
 	}
 
 	/**

@@ -118,7 +118,7 @@ public interface TotalSamplePropertiesEditionPart {
 	 * @return the radioRequiredProperty
 	 * 
 	 */
-	public Enumerator getRadioRequiredProperty();
+	public Object getRadioRequiredProperty();
 
 	/**
 	 * Init the radioRequiredProperty
@@ -132,14 +132,14 @@ public interface TotalSamplePropertiesEditionPart {
 	 * @param newValue the new radioRequiredProperty to set
 	 * 
 	 */
-	public void setRadioRequiredProperty(Enumerator newValue);
+	public void setRadioRequiredProperty(Object newValue);
 
 
 	/**
 	 * @return the radioOptionalProperty
 	 * 
 	 */
-	public Enumerator getRadioOptionalProperty();
+	public Object getRadioOptionalProperty();
 
 	/**
 	 * Init the radioOptionalProperty
@@ -153,7 +153,7 @@ public interface TotalSamplePropertiesEditionPart {
 	 * @param newValue the new radioOptionalProperty to set
 	 * 
 	 */
-	public void setRadioOptionalProperty(Enumerator newValue);
+	public void setRadioOptionalProperty(Object newValue);
 
 
 	/**
@@ -780,6 +780,130 @@ public interface TotalSamplePropertiesEditionPart {
 	 * 
 	 */
 	public boolean isContainedInAdvancedtablecompositionOptionalPropertyTable(EObject element);
+
+
+	/**
+	 * @return the comboRequiredPropertyTS
+	 * 
+	 */
+	public Object getComboRequiredPropertyTS();
+
+	/**
+	 * Init the comboRequiredPropertyTS
+	 * @param input choice of values
+	 * @param currentValue the current value
+	 */
+	public void initComboRequiredPropertyTS(Object input, Object currentValue);
+
+	/**
+	 * Defines a new comboRequiredPropertyTS
+	 * @param newValue the new comboRequiredPropertyTS to set
+	 * 
+	 */
+	public void setComboRequiredPropertyTS(Object newValue);
+
+	/**
+	 * Adds the given filter to the comboRequiredPropertyTS edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToComboRequiredPropertyTS(ViewerFilter filter);
+
+
+	/**
+	 * @return the comboOptionalPropertyTS
+	 * 
+	 */
+	public Object getComboOptionalPropertyTS();
+
+	/**
+	 * Init the comboOptionalPropertyTS
+	 * @param input choice of values
+	 * @param currentValue the current value
+	 */
+	public void initComboOptionalPropertyTS(Object input, Object currentValue);
+
+	/**
+	 * Defines a new comboOptionalPropertyTS
+	 * @param newValue the new comboOptionalPropertyTS to set
+	 * 
+	 */
+	public void setComboOptionalPropertyTS(Object newValue);
+
+	/**
+	 * Adds the given filter to the comboOptionalPropertyTS edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToComboOptionalPropertyTS(ViewerFilter filter);
+
+
+	/**
+	 * @return the comboRequiredReferencePropertyTS
+	 * 
+	 */
+	public Object getComboRequiredReferencePropertyTS();
+
+	/**
+	 * Init the comboRequiredReferencePropertyTS
+	 * @param input choice of values
+	 * @param currentValue the current value
+	 */
+	public void initComboRequiredReferencePropertyTS(Object input, Object currentValue);
+
+	/**
+	 * Defines a new comboRequiredReferencePropertyTS
+	 * @param newValue the new comboRequiredReferencePropertyTS to set
+	 * 
+	 */
+	public void setComboRequiredReferencePropertyTS(Object newValue);
+
+	/**
+	 * Adds the given filter to the comboRequiredReferencePropertyTS edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToComboRequiredReferencePropertyTS(ViewerFilter filter);
+
+
+	/**
+	 * @return the comboOptionalReferencePropertyTS
+	 * 
+	 */
+	public Object getComboOptionalReferencePropertyTS();
+
+	/**
+	 * Init the comboOptionalReferencePropertyTS
+	 * @param input choice of values
+	 * @param currentValue the current value
+	 */
+	public void initComboOptionalReferencePropertyTS(Object input, Object currentValue);
+
+	/**
+	 * Defines a new comboOptionalReferencePropertyTS
+	 * @param newValue the new comboOptionalReferencePropertyTS to set
+	 * 
+	 */
+	public void setComboOptionalReferencePropertyTS(Object newValue);
+
+	/**
+	 * Adds the given filter to the comboOptionalReferencePropertyTS edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToComboOptionalReferencePropertyTS(ViewerFilter filter);
 
 
 	/**

@@ -84,6 +84,8 @@ public class TotalSampleItemProvider
 			addAdvancedreferencestableOptionalPropertyPropertyDescriptor(object);
 			addAdvancedeobjectflatcomboviewerRequiredProperyPropertyDescriptor(object);
 			addAdvancedeobjectflatcomboviewerOptionalProperyPropertyDescriptor(object);
+			addComboRequiredReferencePropertyTSPropertyDescriptor(object);
+			addComboOptionalReferencePropertyTSPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -520,6 +522,50 @@ public class TotalSampleItemProvider
 				 getString("_UI_TotalSample_advancedeobjectflatcomboviewerOptionalPropery_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TotalSample_advancedeobjectflatcomboviewerOptionalPropery_feature", "_UI_TotalSample_type"),
 				 EefnrPackage.Literals.TOTAL_SAMPLE__ADVANCEDEOBJECTFLATCOMBOVIEWER_OPTIONAL_PROPERY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Combo Required Reference Property TS feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addComboRequiredReferencePropertyTSPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TotalSample_comboRequiredReferencePropertyTS_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TotalSample_comboRequiredReferencePropertyTS_feature", "_UI_TotalSample_type"),
+				 EefnrPackage.Literals.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Combo Optional Reference Property TS feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addComboOptionalReferencePropertyTSPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TotalSample_comboOptionalReferencePropertyTS_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TotalSample_comboOptionalReferencePropertyTS_feature", "_UI_TotalSample_type"),
+				 EefnrPackage.Literals.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS,
 				 true,
 				 false,
 				 true,

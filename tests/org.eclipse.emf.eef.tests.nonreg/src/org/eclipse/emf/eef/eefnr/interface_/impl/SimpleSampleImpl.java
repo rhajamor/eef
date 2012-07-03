@@ -7,9 +7,7 @@
 package org.eclipse.emf.eef.eefnr.interface_.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
 

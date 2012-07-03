@@ -9,6 +9,7 @@ package org.eclipse.emf.eef.eefnr.interface_.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.eef.eefnr.interface_.*;
 import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 import org.eclipse.emf.eef.eefnr.interface_.SimpleSample;
 

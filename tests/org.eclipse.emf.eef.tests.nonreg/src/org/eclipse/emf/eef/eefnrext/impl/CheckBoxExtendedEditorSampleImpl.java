@@ -8,10 +8,8 @@ package org.eclipse.emf.eef.eefnrext.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.eef.eefnr.impl.AbstractSampleImpl;
-
 import org.eclipse.emf.eef.eefnrext.CheckBoxExtendedEditorSample;
 import org.eclipse.emf.eef.eefnrext.EefnrextPackage;
 

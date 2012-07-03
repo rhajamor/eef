@@ -107,6 +107,15 @@ public interface EefnrFactory extends EFactory {
 	EMFComboViewerSample createEMFComboViewerSample();
 
 	/**
+	 * Returns a new object of class '<em>Combo Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Combo Sample</em>'.
+	 * @generated
+	 */
+	ComboSample createComboSample();
+
+	/**
 	 * Returns a new object of class '<em>Multi Valued Editor Sample</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

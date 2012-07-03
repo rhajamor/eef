@@ -13,6 +13,7 @@ package org.eclipse.emf.eef.modelingBot;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -103,8 +104,9 @@ public interface IModelingBot {
 	 * @return
 	 */
 	EObject add(org.eclipse.emf.eef.components.PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject referenceableObject, EStructuralFeature eContainingFeature, EClass type);
-
+			ReferenceableObject referenceableObjectContainer, ReferenceableObject referenceableObject, 
+			EStructuralFeature eContainingFeature, EClass type);
+	
 	/**
 	 * Remove an element.
 	 * 
@@ -136,7 +138,7 @@ public interface IModelingBot {
 			EStructuralFeature eContainingFeature, ReferenceableObject value);
 
 	/**
-	 * Unset an element.
+	 * Unset an attribute.
 	 * 
 	 * @param propertiesEditionElement
 	 * @param referenceableObject
@@ -145,6 +147,16 @@ public interface IModelingBot {
 	void unset(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature);
 
+	/**
+	 * Unset a reference.
+	 * 
+	 * @param propertiesEditionElement
+	 * @param referenceableObject
+	 * @param eContainingFeature
+	 */
+	void unsetReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values);
+	
 	/**
 	 * Create a new resource.
 	 * 
@@ -175,6 +187,16 @@ public interface IModelingBot {
 	 */
 	void check();
 
+	/**
+	 * Undo.
+	 */
+	void undo();
+	
+	/**
+	 * Redo.
+	 */
+	void redo();
+	
 	/**
 	 * @return the test model resource.
 	 */

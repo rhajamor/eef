@@ -116,6 +116,18 @@ public class EefnrViewsRepository {
 			public static String advancedtablecompositionOptionalProperty = "eefnr::TotalSample::properties::advancedtablecompositionOptionalProperty";
 			
 			
+			public static String comboRequiredPropertyTS = "eefnr::TotalSample::properties::comboRequiredPropertyTS";
+			
+			
+			public static String comboOptionalPropertyTS = "eefnr::TotalSample::properties::comboOptionalPropertyTS";
+			
+			
+			public static String comboRequiredReferencePropertyTS = "eefnr::TotalSample::properties::comboRequiredReferencePropertyTS";
+			
+			
+			public static String comboOptionalReferencePropertyTS = "eefnr::TotalSample::properties::comboOptionalReferencePropertyTS";
+			
+			
 			public static String name = "eefnr::TotalSample::properties::name";
 			
 			// Start of user code for CustomElementEditor ElementEditor key
@@ -211,6 +223,24 @@ public class EefnrViewsRepository {
 			
 			
 			public static String eobjectflatcomboviewerOptionalPropery = "eefnr::EObjectFlatComboViewerSample::properties::eobjectflatcomboviewerOptionalPropery";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * ComboSample view descriptor
+	 * 
+	 */
+	public static class ComboSample {
+		public static class Properties {
+	
+			
+			public static String comboRequiredReferenceProperty = "eefnr::ComboSample::properties::comboRequiredReferenceProperty";
+			
+			
+			public static String comboOptionalReferenceProperty = "eefnr::ComboSample::properties::comboOptionalReferenceProperty";
 			
 	
 		}

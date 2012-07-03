@@ -264,6 +264,29 @@ public class EEFActionsItemProviderAdapterFactory extends EEFActionsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnsetReferenceItemProvider unsetReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUnsetReferenceAdapter() {
+		if (unsetReferenceItemProvider == null) {
+			unsetReferenceItemProvider = new UnsetReferenceItemProvider(this);
+		}
+
+		return unsetReferenceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +393,7 @@ public class EEFActionsItemProviderAdapterFactory extends EEFActionsAdapterFacto
 		if (checkItemProvider != null) checkItemProvider.dispose();
 		if (openEEFEditorItemProvider != null) openEEFEditorItemProvider.dispose();
 		if (setReferenceItemProvider != null) setReferenceItemProvider.dispose();
+		if (unsetReferenceItemProvider != null) unsetReferenceItemProvider.dispose();
 	}
 
 }

@@ -7,7 +7,6 @@
 package org.eclipse.emf.eef.eefnr.references;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.eef.eefnr.TotalSample;
 
 /**

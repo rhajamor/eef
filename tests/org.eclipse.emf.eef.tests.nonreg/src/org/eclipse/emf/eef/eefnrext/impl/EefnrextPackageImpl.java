@@ -9,16 +9,12 @@ package org.eclipse.emf.eef.eefnrext.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
-
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
 import org.eclipse.emf.eef.eefnr.filters.impl.FiltersPackageImpl;
 import org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.interface_.InterfacePackage;
 import org.eclipse.emf.eef.eefnr.interface_.impl.InterfacePackageImpl;
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;

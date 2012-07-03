@@ -10,19 +10,14 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.eef.eefnr.ENUM_SAMPLE;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.Sample;
@@ -61,6 +56,8 @@ import org.eclipse.emf.eef.eefnr.TotalSample;
  *   <li>{@link org.eclipse.emf.eef.eefnr.impl.TotalSampleImpl#getAdvancedtablecompositionOptionalProperty <em>Advancedtablecomposition Optional Property</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.impl.TotalSampleImpl#getTablecompositionRequiredProperty <em>Tablecomposition Required Property</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.impl.TotalSampleImpl#getTablecompositionOptionalProperty <em>Tablecomposition Optional Property</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.impl.TotalSampleImpl#getComboRequiredReferencePropertyTS <em>Combo Required Reference Property TS</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.impl.TotalSampleImpl#getComboOptionalReferencePropertyTS <em>Combo Optional Reference Property TS</em>}</li>
  * </ul>
  * </p>
  *
@@ -426,6 +423,26 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 	 * @ordered
 	 */
 	protected EList<Sample> tablecompositionOptionalProperty;
+
+	/**
+	 * The cached value of the '{@link #getComboRequiredReferencePropertyTS() <em>Combo Required Reference Property TS</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComboRequiredReferencePropertyTS()
+	 * @generated
+	 * @ordered
+	 */
+	protected TotalSample comboRequiredReferencePropertyTS;
+
+	/**
+	 * The cached value of the '{@link #getComboOptionalReferencePropertyTS() <em>Combo Optional Reference Property TS</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComboOptionalReferencePropertyTS()
+	 * @generated
+	 * @ordered
+	 */
+	protected TotalSample comboOptionalReferencePropertyTS;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -821,6 +838,82 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TotalSample getComboRequiredReferencePropertyTS() {
+		if (comboRequiredReferencePropertyTS != null && comboRequiredReferencePropertyTS.eIsProxy()) {
+			InternalEObject oldComboRequiredReferencePropertyTS = (InternalEObject)comboRequiredReferencePropertyTS;
+			comboRequiredReferencePropertyTS = (TotalSample)eResolveProxy(oldComboRequiredReferencePropertyTS);
+			if (comboRequiredReferencePropertyTS != oldComboRequiredReferencePropertyTS) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS, oldComboRequiredReferencePropertyTS, comboRequiredReferencePropertyTS));
+			}
+		}
+		return comboRequiredReferencePropertyTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TotalSample basicGetComboRequiredReferencePropertyTS() {
+		return comboRequiredReferencePropertyTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setComboRequiredReferencePropertyTS(TotalSample newComboRequiredReferencePropertyTS) {
+		TotalSample oldComboRequiredReferencePropertyTS = comboRequiredReferencePropertyTS;
+		comboRequiredReferencePropertyTS = newComboRequiredReferencePropertyTS;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS, oldComboRequiredReferencePropertyTS, comboRequiredReferencePropertyTS));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TotalSample getComboOptionalReferencePropertyTS() {
+		if (comboOptionalReferencePropertyTS != null && comboOptionalReferencePropertyTS.eIsProxy()) {
+			InternalEObject oldComboOptionalReferencePropertyTS = (InternalEObject)comboOptionalReferencePropertyTS;
+			comboOptionalReferencePropertyTS = (TotalSample)eResolveProxy(oldComboOptionalReferencePropertyTS);
+			if (comboOptionalReferencePropertyTS != oldComboOptionalReferencePropertyTS) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS, oldComboOptionalReferencePropertyTS, comboOptionalReferencePropertyTS));
+			}
+		}
+		return comboOptionalReferencePropertyTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TotalSample basicGetComboOptionalReferencePropertyTS() {
+		return comboOptionalReferencePropertyTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setComboOptionalReferencePropertyTS(TotalSample newComboOptionalReferencePropertyTS) {
+		TotalSample oldComboOptionalReferencePropertyTS = comboOptionalReferencePropertyTS;
+		comboOptionalReferencePropertyTS = newComboOptionalReferencePropertyTS;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS, oldComboOptionalReferencePropertyTS, comboOptionalReferencePropertyTS));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<TotalSample> getAdvancedreferencestableRequiredProperty() {
 		if (advancedreferencestableRequiredProperty == null) {
 			advancedreferencestableRequiredProperty = new EObjectResolvingEList<TotalSample>(TotalSample.class, this, EefnrPackage.TOTAL_SAMPLE__ADVANCEDREFERENCESTABLE_REQUIRED_PROPERTY);
@@ -1040,6 +1133,12 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 				return getTablecompositionRequiredProperty();
 			case EefnrPackage.TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY:
 				return getTablecompositionOptionalProperty();
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS:
+				if (resolve) return getComboRequiredReferencePropertyTS();
+				return basicGetComboRequiredReferencePropertyTS();
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS:
+				if (resolve) return getComboOptionalReferencePropertyTS();
+				return basicGetComboOptionalReferencePropertyTS();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1143,6 +1242,12 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 				getTablecompositionOptionalProperty().clear();
 				getTablecompositionOptionalProperty().addAll((Collection<? extends Sample>)newValue);
 				return;
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS:
+				setComboRequiredReferencePropertyTS((TotalSample)newValue);
+				return;
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS:
+				setComboOptionalReferencePropertyTS((TotalSample)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1233,6 +1338,12 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 			case EefnrPackage.TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY:
 				getTablecompositionOptionalProperty().clear();
 				return;
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS:
+				setComboRequiredReferencePropertyTS((TotalSample)null);
+				return;
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS:
+				setComboOptionalReferencePropertyTS((TotalSample)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1297,6 +1408,10 @@ public class TotalSampleImpl extends AbstractSampleImpl implements TotalSample {
 				return tablecompositionRequiredProperty != null && !tablecompositionRequiredProperty.isEmpty();
 			case EefnrPackage.TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY:
 				return tablecompositionOptionalProperty != null && !tablecompositionOptionalProperty.isEmpty();
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS:
+				return comboRequiredReferencePropertyTS != null;
+			case EefnrPackage.TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS:
+				return comboOptionalReferencePropertyTS != null;
 		}
 		return super.eIsSet(featureID);
 	}

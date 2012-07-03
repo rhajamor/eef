@@ -62,6 +62,10 @@
         lowerBound="1" upperBound="-1" eType="#//Sample" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tablecompositionOptionalProperty"
         upperBound="-1" eType="#//Sample" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comboRequiredReferencePropertyTS"
+        lowerBound="1" eType="#//TotalSample"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comboOptionalReferencePropertyTS"
+        eType="#//TotalSample"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TextSample" eSuperTypes="#//AbstractSample">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="textRequiredProperty" lowerBound="1"
@@ -103,6 +107,12 @@
         lowerBound="1" eType="#//ENUM_SAMPLE"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfcomboviewerOptionalProperty"
         eType="#//ENUM_SAMPLE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComboSample" eSuperTypes="#//AbstractSample">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comboRequiredReferenceProperty"
+        lowerBound="1" eType="#//TotalSample"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comboOptionalReferenceProperty"
+        eType="#//TotalSample"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiValuedEditorSample" eSuperTypes="#//AbstractSample">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multivaluededitorRequiredProperty"

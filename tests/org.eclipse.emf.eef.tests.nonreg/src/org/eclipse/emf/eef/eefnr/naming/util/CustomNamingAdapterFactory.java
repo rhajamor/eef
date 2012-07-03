@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
+import org.eclipse.emf.eef.eefnr.naming.*;
 import org.eclipse.emf.eef.eefnr.naming.CustomNamingPackage;
 import org.eclipse.emf.eef.eefnr.naming.Event;
 

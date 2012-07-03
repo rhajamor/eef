@@ -7,7 +7,6 @@
 package org.eclipse.emf.eef.eefnr.navigation;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.eef.eefnr.TotalSample;
 
 /**

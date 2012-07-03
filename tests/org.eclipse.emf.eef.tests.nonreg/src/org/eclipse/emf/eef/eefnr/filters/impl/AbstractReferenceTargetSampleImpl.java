@@ -7,10 +7,8 @@
 package org.eclipse.emf.eef.eefnr.filters.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.eef.eefnr.filters.AbstractReferenceTargetSample;
 import org.eclipse.emf.eef.eefnr.filters.FiltersPackage;
-
 import org.eclipse.emf.eef.eefnr.impl.AbstractSampleImpl;
 
 /**

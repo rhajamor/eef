@@ -42,7 +42,7 @@ public interface Wizard extends Sequence {
 	 * @return the value of the '<em>Referenceable Object</em>' reference.
 	 * @see #setReferenceableObject(ReferenceableObject)
 	 * @see org.eclipse.emf.eef.modelingBot.ModelingBotPackage#getWizard_ReferenceableObject()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ReferenceableObject getReferenceableObject();

@@ -121,6 +121,10 @@ public class EEFActionsAdapterFactory extends AdapterFactoryImpl {
 				return createSetReferenceAdapter();
 			}
 			@Override
+			public Adapter caseUnsetReference(UnsetReference object) {
+				return createUnsetReferenceAdapter();
+			}
+			@Override
 			public Adapter caseDocumentedElement(DocumentedElement object) {
 				return createDocumentedElementAdapter();
 			}
@@ -293,6 +297,20 @@ public class EEFActionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSetReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference <em>Unset Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference
+	 * @generated
+	 */
+	public Adapter createUnsetReferenceAdapter() {
 		return null;
 	}
 

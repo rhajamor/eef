@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.eefnr.filters.*;
 import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceOwnerSample;
 import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample1;
 import org.eclipse.emf.eef.eefnr.filters.ConcreteReferenceTargetSample2;

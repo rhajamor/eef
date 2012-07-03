@@ -9,12 +9,14 @@ package org.eclipse.emf.eef.eefnr.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.eef.eefnr.*;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.AdvancedEObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.AdvancedReferencesTableSample;
 import org.eclipse.emf.eef.eefnr.AdvancedTableCompositionEditorSample;
 import org.eclipse.emf.eef.eefnr.CheckboxSample;
+import org.eclipse.emf.eef.eefnr.ComboSample;
 import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -157,6 +159,13 @@ public class EefnrSwitch<T> extends Switch<T> {
 				EMFComboViewerSample emfComboViewerSample = (EMFComboViewerSample)theEObject;
 				T result = caseEMFComboViewerSample(emfComboViewerSample);
 				if (result == null) result = caseAbstractSample(emfComboViewerSample);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EefnrPackage.COMBO_SAMPLE: {
+				ComboSample comboSample = (ComboSample)theEObject;
+				T result = caseComboSample(comboSample);
+				if (result == null) result = caseAbstractSample(comboSample);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -409,6 +418,21 @@ public class EefnrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEMFComboViewerSample(EMFComboViewerSample object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Combo Sample</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Combo Sample</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComboSample(ComboSample object) {
 		return null;
 	}
 

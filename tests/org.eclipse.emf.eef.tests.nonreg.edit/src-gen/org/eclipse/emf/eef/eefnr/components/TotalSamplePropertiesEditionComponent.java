@@ -39,6 +39,7 @@ import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectStrictFilter;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
@@ -163,11 +164,9 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.setCheckboxOptionalProperty(totalSample.isCheckboxOptionalProperty());
 			}
 			if (totalSample.getTextareaRequiredProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty))
-				basePart.setTextareaRequiredProperty(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, totalSample.getTextareaRequiredProperty()));
-			
+				basePart.setTextareaRequiredProperty(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, totalSample.getTextareaRequiredProperty()));
 			if (totalSample.getTextareaOptionalProperty() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaOptionalProperty))
-				basePart.setTextareaOptionalProperty(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, totalSample.getTextareaOptionalProperty()));
-			
+				basePart.setTextareaOptionalProperty(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, totalSample.getTextareaOptionalProperty()));
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty)) {
 				basePart.initRadioRequiredProperty(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_RadioRequiredProperty()), totalSample.getRadioRequiredProperty());
 			}
@@ -246,6 +245,12 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				advancedtablecompositionOptionalPropertySettings = new ReferencesTableSettings(totalSample, EefnrPackage.eINSTANCE.getTotalSample_AdvancedtablecompositionOptionalProperty());
 				basePart.initAdvancedtablecompositionOptionalProperty(advancedtablecompositionOptionalPropertySettings);
 			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS)) {
+				basePart.initComboRequiredReferencePropertyTS(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_ComboRequiredReferencePropertyTS()), totalSample.getComboRequiredReferencePropertyTS());
+			}
+			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.comboOptionalReferencePropertyTS)) {
+				basePart.initComboOptionalReferencePropertyTS(EEFUtils.choiceOfValues(totalSample, EefnrPackage.eINSTANCE.getTotalSample_ComboOptionalReferencePropertyTS()), totalSample.getComboOptionalReferencePropertyTS());
+			}
 			if (totalSample.getName() != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, totalSample.getName()));
 			
@@ -306,11 +311,11 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
 							return (!basePart.isContainedInReferencestableRequiredPropertyTable((EObject)element));
-						return element instanceof Resource;
+						return false;
 					}
 				
 				});
-				basePart.addFilterToReferencestableRequiredProperty(new EObjectFilter(EefnrPackage.Literals.TOTAL_SAMPLE));
+				basePart.addFilterToReferencestableRequiredProperty(new EObjectStrictFilter(EefnrPackage.Literals.TOTAL_SAMPLE));
 				// Start of user code for additional businessfilters for referencestableRequiredProperty
 				
 				// End of user code
@@ -326,11 +331,11 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
 							return (!basePart.isContainedInReferencestableOptionalPropertyTable((EObject)element));
-						return element instanceof Resource;
+						return element instanceof String && element.equals("");
 					}
 				
 				});
-				basePart.addFilterToReferencestableOptionalProperty(new EObjectFilter(EefnrPackage.Literals.TOTAL_SAMPLE));
+				basePart.addFilterToReferencestableOptionalProperty(new EObjectStrictFilter(EefnrPackage.Literals.TOTAL_SAMPLE));
 				// Start of user code for additional businessfilters for referencestableOptionalProperty
 				
 				// End of user code
@@ -411,40 +416,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				
 				// End of user code
 			}
-			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery)) {
-				basePart.addFilterToAdvancedeobjectflatcomboviewerRequiredPropery(new ViewerFilter() {
-				
-					/**
-					 * {@inheritDoc}
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof TotalSample);
-					}
-					
-				});
-				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerRequiredPropery
-				
-				// End of user code
-			}
-			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerOptionalPropery)) {
-				basePart.addFilterToAdvancedeobjectflatcomboviewerOptionalPropery(new ViewerFilter() {
-				
-					/**
-					 * {@inheritDoc}
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof TotalSample); //$NON-NLS-1$ 
-					}
-					
-				});
-				// Start of user code for additional businessfilters for advancedeobjectflatcomboviewerOptionalPropery
-				
-				// End of user code
-			}
+			
+			
 			if (isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty)) {
 				basePart.addFilterToAdvancedtablecompositionRequiredProperty(new ViewerFilter() {
 					/**
@@ -477,6 +450,12 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				
 				// End of user code
 			}
+			// Start of user code for additional businessfilters for comboRequiredReferencePropertyTS
+			// End of user code
+			
+			// Start of user code for additional businessfilters for comboOptionalReferencePropertyTS
+			// End of user code
+			
 			
 			// Start of user code for custom filter update
 			// End of user code
@@ -488,6 +467,8 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 		}
 		setInitializing(false);
 	}
+
+
 
 
 
@@ -594,6 +575,12 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 		if (editorKey == EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty) {
 			return EefnrPackage.eINSTANCE.getTotalSample_AdvancedtablecompositionOptionalProperty();
 		}
+		if (editorKey == EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS) {
+			return EefnrPackage.eINSTANCE.getTotalSample_ComboRequiredReferencePropertyTS();
+		}
+		if (editorKey == EefnrViewsRepository.TotalSample.Properties.comboOptionalReferencePropertyTS) {
+			return EefnrPackage.eINSTANCE.getTotalSample_ComboOptionalReferencePropertyTS();
+		}
 		if (editorKey == EefnrViewsRepository.TotalSample.Properties.name) {
 			return EefnrPackage.eINSTANCE.getAbstractSample_Name();
 		}
@@ -697,13 +684,13 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 		if (EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				totalSample.getMultivaluededitorRequiredProperty().clear();
-				totalSample.getMultivaluededitorRequiredProperty().addAll(((List) event.getNewValue()));
+				totalSample.getMultivaluededitorRequiredProperty().addAll(((EList) event.getNewValue()));
 			}
 		}
 		if (EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				totalSample.getMultivaluededitorOptionalProperty().clear();
-				totalSample.getMultivaluededitorOptionalProperty().addAll(((List) event.getNewValue()));
+				totalSample.getMultivaluededitorOptionalProperty().addAll(((EList) event.getNewValue()));
 			}
 		}
 		if (EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty == event.getAffectedEditor()) {
@@ -860,6 +847,12 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				advancedtablecompositionOptionalPropertySettings.move(event.getNewIndex(), (Sample) event.getNewValue());
 			}
 		}
+		if (EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS == event.getAffectedEditor()) {
+			totalSample.setComboRequiredReferencePropertyTS(!"".equals(event.getNewValue()) ? (TotalSample) event.getNewValue() : null);
+		}
+		if (EefnrViewsRepository.TotalSample.Properties.comboOptionalReferencePropertyTS == event.getAffectedEditor()) {
+			totalSample.setComboOptionalReferencePropertyTS(!"".equals(event.getNewValue()) ? (TotalSample) event.getNewValue() : null);
+		}
 		if (EefnrViewsRepository.TotalSample.Properties.name == event.getAffectedEditor()) {
 			totalSample.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
@@ -897,25 +890,25 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 			if (EefnrPackage.eINSTANCE.getTotalSample_CheckboxOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.checkboxOptionalProperty))
 				basePart.setCheckboxOptionalProperty((Boolean)msg.getNewValue());
 			
-			if (EefnrPackage.eINSTANCE.getTotalSample_TextareaRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty)) {
+			if (EefnrPackage.eINSTANCE.getTotalSample_TextareaRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty)){
 				if (msg.getNewValue() != null) {
 					basePart.setTextareaRequiredProperty(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					basePart.setTextareaRequiredProperty("");
 				}
 			}
-			if (EefnrPackage.eINSTANCE.getTotalSample_TextareaOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaOptionalProperty)) {
+			if (EefnrPackage.eINSTANCE.getTotalSample_TextareaOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.textareaOptionalProperty)){
 				if (msg.getNewValue() != null) {
 					basePart.setTextareaOptionalProperty(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					basePart.setTextareaOptionalProperty("");
 				}
 			}
-			if (EefnrPackage.eINSTANCE.getTotalSample_RadioRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty))
-				basePart.setRadioRequiredProperty((ENUM_SAMPLE)msg.getNewValue());
+			if (EefnrPackage.eINSTANCE.getTotalSample_RadioRequiredProperty().equals(msg.getFeature()) && basePart != null  && isAccessible(EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty))
+				basePart.setRadioRequiredProperty((Object)msg.getNewValue());
 			
-			if (EefnrPackage.eINSTANCE.getTotalSample_RadioOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.radioOptionalProperty))
-				basePart.setRadioOptionalProperty((ENUM_SAMPLE)msg.getNewValue());
+			if (EefnrPackage.eINSTANCE.getTotalSample_RadioOptionalProperty().equals(msg.getFeature()) && basePart != null  && isAccessible(EefnrViewsRepository.TotalSample.Properties.radioOptionalProperty))
+				basePart.setRadioOptionalProperty((Object)msg.getNewValue());
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_EobjectflatcomboviewerRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty))
 				basePart.setEobjectflatcomboviewerRequiredProperty((EObject)msg.getNewValue());
@@ -932,11 +925,11 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.setEmfcomboviewerOptionalProperty((ENUM_SAMPLE)msg.getNewValue());
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty)) {
-				basePart.setMultivaluededitorRequiredProperty((EList)msg.getNewValue());
+				basePart.setMultivaluededitorRequiredProperty((EList<?>)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty)) {
-				basePart.setMultivaluededitorOptionalProperty((EList)msg.getNewValue());
+				basePart.setMultivaluededitorOptionalProperty((EList<?>)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getTotalSample_TablecompositionRequiredProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty))
@@ -955,6 +948,10 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 				basePart.updateAdvancedtablecompositionRequiredProperty();
 			if (EefnrPackage.eINSTANCE.getTotalSample_AdvancedtablecompositionOptionalProperty().equals(msg.getFeature()) && isAccessible(EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty))
 				basePart.updateAdvancedtablecompositionOptionalProperty();
+			if (EefnrPackage.eINSTANCE.getTotalSample_ComboRequiredReferencePropertyTS().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS))
+				basePart.setComboRequiredReferencePropertyTS((Object)msg.getNewValue());
+			if (EefnrPackage.eINSTANCE.getTotalSample_ComboOptionalReferencePropertyTS().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.comboOptionalReferencePropertyTS))
+				basePart.setComboOptionalReferencePropertyTS((Object)msg.getNewValue());
 			if (EefnrPackage.eINSTANCE.getAbstractSample_Name().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.TotalSample.Properties.name)) {
 				if (msg.getNewValue() != null) {
 					basePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
@@ -970,6 +967,13 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#mustBeComposed(java.lang.Object, int)
+	 */
+	public boolean mustBeComposed(Object key, int kind) {
+		return key == EefnrViewsRepository.TotalSample.Properties.textRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.textOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.checkboxRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.checkboxOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.textareaOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.radioOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.referencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.referencestableOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.emfcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.emfcomboviewerOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.multivaluededitorOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.tablecompositionOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedreferencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedreferencestableOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery || key == EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerOptionalPropery || key == EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionOptionalProperty || key == EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS || key == EefnrViewsRepository.TotalSample.Properties.comboOptionalReferencePropertyTS || key == EefnrViewsRepository.TotalSample.Properties.name || key == EefnrViewsRepository.TotalSample.Properties.customElementEditor || key == EefnrViewsRepository.TotalSample.Properties.class;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -978,7 +982,7 @@ public class TotalSamplePropertiesEditionComponent extends SinglePartPropertiesE
 	 * 
 	 */
 	public boolean isRequired(Object key, int kind) {
-		return key == EefnrViewsRepository.TotalSample.Properties.textRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.checkboxRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.referencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.emfcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedreferencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery || key == EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty;
+		return key == EefnrViewsRepository.TotalSample.Properties.textRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.checkboxRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.textareaRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.radioRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.eobjectflatcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.referencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.emfcomboviewerRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.multivaluededitorRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.tablecompositionRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedreferencestableRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.advancedeobjectflatcomboviewerRequiredPropery || key == EefnrViewsRepository.TotalSample.Properties.advancedtablecompositionRequiredProperty || key == EefnrViewsRepository.TotalSample.Properties.comboRequiredReferencePropertyTS;
 	}
 
 	/**

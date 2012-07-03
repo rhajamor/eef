@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.eef.modelingBot.helper;
 
+
 /**
  * Utility class for Styring Manipulations.
  * 
@@ -40,5 +41,5 @@ public final class StringHelper {
 		}
 		return ""; //$NON-NLS-1$
 	}
-
+	
 }

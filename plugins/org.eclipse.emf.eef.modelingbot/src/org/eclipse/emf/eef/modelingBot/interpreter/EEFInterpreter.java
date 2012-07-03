@@ -10,14 +10,16 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.interpreter;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.components.PropertiesEditionContext;
+import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.DetailsPage;
@@ -41,17 +44,22 @@ import org.eclipse.emf.eef.modelingBot.SequenceType;
 import org.eclipse.emf.eef.modelingBot.Wizard;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Add;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Cancel;
+import org.eclipse.emf.eef.modelingBot.EEFActions.EditAction;
 import org.eclipse.emf.eef.modelingBot.EEFActions.OpenEEFEditor;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Remove;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetReference;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Unset;
+import org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CloseEditor;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CloseProject;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CreateModel;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CreateProject;
+import org.eclipse.emf.eef.modelingBot.EclipseActions.Redo;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.RemoveProject;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.Save;
+import org.eclipse.emf.eef.modelingBot.EclipseActions.Undo;
+import org.eclipse.emf.eef.modelingBot.helper.EEFModelingBotHelper;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 
 /**
@@ -72,9 +80,14 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	private Map<ReferenceableObject, EObject> refObjectToEObjectMap = new HashMap<ReferenceableObject, EObject>();
 
 	/**
-	 * Map Sequence -> boolean to know of the sequence has been canceled.
+	 * Map Sequence -> boolean to know if the sequence has been canceled.
 	 */
 	private Map<Sequence, Boolean> mapSequenceToCancel = new HashMap<Sequence, Boolean>();
+
+	/**
+	 * Set Action to know if the action has to be canceled.
+	 */
+	private Set<PropertiesEditionElement> actionsToCancel = new HashSet<PropertiesEditionElement>();
 
 	/**
 	 * Modeling bot.
@@ -85,6 +98,11 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 * PropertiesEditionContext.
 	 */
 	private PropertiesEditionContext propertiesEditionContext;
+
+	/**
+	 * Collection of Actions already processed.
+	 */
+	private Collection<Action> processedActions = new HashSet<Action>();
 
 	/**
 	 * Create the interpreter.
@@ -113,7 +131,8 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 * @param refObjectToEObject
 	 *            ReferenceableObject
 	 */
-	public void setRefObjectToEObject(Map<ReferenceableObject, EObject> refObjectToEObject) {
+	public void setRefObjectToEObject(
+			Map<ReferenceableObject, EObject> refObjectToEObject) {
 		this.refObjectToEObjectMap = refObjectToEObject;
 	}
 
@@ -126,6 +145,14 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 */
 	public EObject getEObjectFromReferenceableEObject(ReferenceableObject ref) {
 		return refObjectToEObjectMap.get(ref);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<PropertiesEditionElement> getActionsToCancel() {
+		return actionsToCancel;
 	}
 
 	/**
@@ -147,7 +174,8 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 */
 	public Resource loadModel(String path) {
 		final URI fileURI = URI.createPlatformPluginURI(path, true);
-		final Resource resource = editingDomain.getResourceSet().getResource(fileURI, true);
+		final Resource resource = editingDomain.getResourceSet().getResource(
+				fileURI, true);
 		assertNotNull("The modeling bot resource can not be loaded.", resource);
 		return resource;
 	}
@@ -161,16 +189,22 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	public void runModelingBot(String path) throws CoreException, IOException {
 		final Resource modelingBotResource = loadModel(path);
 		EcoreUtil.resolveAll(modelingBotResource.getResourceSet());
-		assertFalse("The modeling bot resource is empty.", modelingBotResource.getContents().isEmpty());
-		assertTrue("The modeling bot model contains errors, correct them first", modelingBotResource.getErrors().isEmpty());
-		final ModelingBot mbot = (ModelingBot)modelingBotResource.getContents().get(0);
+		assertFalse("The modeling bot resource is empty.", modelingBotResource
+				.getContents().isEmpty());
+		assertTrue(
+				"The modeling bot model contains errors, correct them first",
+				modelingBotResource.getErrors().isEmpty());
+		final ModelingBot mbot = (ModelingBot) modelingBotResource
+				.getContents().get(0);
 		final Diagnostic diag = Diagnostician.INSTANCE.validate(mbot);
-		assertTrue("The modeling bot model contains errors, correct them first", diag.getSeverity() == Diagnostic.OK);
+		assertTrue(
+				"The modeling bot model contains errors, correct them first",
+				diag.getSeverity() == Diagnostic.OK);
 		assertNotNull("The modeling bot resource is empty.", mbot);
 		propertiesEditionContext = mbot.getPropertiesEditionContext();
 		for (Sequence sequence : mbot.getSequences()) {
 			if (sequence instanceof Scenario) {
-				final Scenario scenario = (Scenario)sequence;
+				final Scenario scenario = (Scenario) sequence;
 				runSequence(scenario);
 			}
 		}
@@ -184,18 +218,19 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	public void runSequence(Sequence sequence) {
 		for (Processing processing : sequence.getProcessings()) {
 			if (processing instanceof Action) {
-				runAction((Action)processing);
+				runAction((Action) processing);
 			} else if (processing instanceof DetailsPage) {
 				bot.setSequenceType(SequenceType.DETAILS_PAGE);
-				runSequence((DetailsPage)processing);
+				runSequence((DetailsPage) processing);
 			} else if (processing instanceof PropertiesView) {
 				bot.setSequenceType(SequenceType.PROPERTIES_VIEW);
-				runSequence((PropertiesView)processing);
+				runSequence((PropertiesView) processing);
 			} else if (processing instanceof Wizard) {
 				bot.setSequenceType(SequenceType.WIZARD);
-				runSequence((Wizard)processing);
+				runSequence((Wizard) processing);
 				finishBatchEditing(processing);
 			}
+
 		}
 	}
 
@@ -222,44 +257,91 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 * @see org.eclipse.emf.eef.modelingBot.interpreter.IModelingBotInterpreter#runAction(org.eclipse.emf.eef.modelingBot.Action)
 	 */
 	public void runAction(Action action) {
-		if (action instanceof CreateProject) {
-			bot.createProject(((CreateProject)action).getProjectName());
-		} else if (action instanceof OpenEEFEditor) {
-			bot.openEEFEditor(((OpenEEFEditor)action).getEditorName());
-		} else if (action instanceof CreateModel) {
-			final EObject addedObject = bot.createModel(((CreateModel)action).getPath(),
-					((CreateModel)action).getModelName(), ((CreateModel)action).getRoot());
-			addModelMap((CreateModel)action, addedObject);
-		} else if (action instanceof Add) {
-			final EObject addedObject = bot.add(((Add)action).getPropertiesEditionElement(),
-					((Add)action).getReferenceableObject(), ((Add)action).getEContainingFeature(),
-					((Add)action).getType());
-			addActionMap((Add)action, addedObject);
-		} else if (action instanceof SetAttribute) {
-			bot.set(((SetAttribute)action).getPropertiesEditionElement(),
-					((SetAttribute)action).getReferenceableObject(), ((SetAttribute)action).getEContainingFeature(),
-					((SetAttribute)action).getValue());
-		} else if (action instanceof SetReference) {
-			bot.set(((SetReference)action).getPropertiesEditionElement(),
-					((SetReference)action).getReferenceableObject(), ((SetReference)action).getEContainingFeature(),
-					((SetReference)action).getValue());
-		} else if (action instanceof Save) {
-			bot.save();
-		} else if (action instanceof CloseEditor) {
-			bot.closeEditor(((CloseEditor)action).getPath());
-		} else if (action instanceof CloseProject) {
-			bot.closeProject(((CloseProject)action).getProjectName());
-		} else if (action instanceof RemoveProject) {
-			bot.removeProject(((RemoveProject)action).getProjectName());
-		} else if (action instanceof Cancel) {
-			mapSequenceToCancel.put((Sequence)action.eContainer(), true);
-			bot.cancel();
-		} else if (action instanceof Unset) {
-			bot.unset(((Unset)action).getPropertiesEditionElement(), ((Unset)action).getReferenceableObject(),
-					((Unset)action).getFeature());
-		} else if (action instanceof Remove) {
-			bot.remove(((Remove)action).getPropertiesEditionElement(), ((Remove)action).getReferenceableObject());
-			refObjectToEObjectMap.remove(((Remove)action).getReferenceableObject());
+		if (!processedActions.contains(action)) {
+
+			if (action instanceof EditAction
+					&& EEFModelingBotHelper.isFollowingByCancel(action)) {
+				actionsToCancel.add(((EditAction) action)
+						.getPropertiesEditionElement());
+				processedActions.add(EEFModelingBotHelper
+						.getFollowingCancelAction(action));
+			}
+
+			if (action instanceof CreateProject) {
+				bot.createProject(((CreateProject) action).getProjectName());
+			} else if (action instanceof OpenEEFEditor) {
+				bot.openEEFEditor(((OpenEEFEditor) action).getEditorName());
+			} else if (action instanceof CreateModel) {
+				final EObject addedObject = bot.createModel(
+						((CreateModel) action).getPath(),
+						((CreateModel) action).getModelName(),
+						((CreateModel) action).getRoot());
+				addModelMap((CreateModel) action, addedObject);
+			} else if (action instanceof Add) {
+				PropertiesEditionElement propertiesEditionElement = ((Add) action)
+						.getPropertiesEditionElement();
+				if (propertiesEditionElement != null) {
+					final EObject addedObject = bot.add(
+							propertiesEditionElement,
+							((Add) action).getReferenceableObject(),
+							(ReferenceableObject) action,
+							((Add) action).getEContainingFeature(),
+							((Add) action).getType());
+					if (addedObject != null) {
+						addActionMap((Add) action, addedObject);
+					}
+				} else {
+					final EObject addedObject = bot.add(
+							propertiesEditionElement, null,
+							((Add) action).getReferenceableObject(),
+							((Add) action).getEContainingFeature(),
+							((Add) action).getType());
+					if (addedObject != null) {
+						addActionMap((Add) action, addedObject);
+					}
+				}
+			} else if (action instanceof SetAttribute) {
+				bot.set(((SetAttribute) action).getPropertiesEditionElement(),
+						((SetAttribute) action).getReferenceableObject(),
+						((SetAttribute) action).getEContainingFeature(),
+						((SetAttribute) action).getValue());
+			} else if (action instanceof SetReference) {
+				bot.set(((SetReference) action).getPropertiesEditionElement(),
+						((SetReference) action).getReferenceableObject(),
+						((SetReference) action).getEContainingFeature(),
+						((SetReference) action).getValue());
+			} else if (action instanceof Save) {
+				bot.save();
+			} else if (action instanceof CloseEditor) {
+				bot.closeEditor(((CloseEditor) action).getPath());
+			} else if (action instanceof CloseProject) {
+				bot.closeProject(((CloseProject) action).getProjectName());
+			} else if (action instanceof RemoveProject) {
+				bot.removeProject(((RemoveProject) action).getProjectName());
+			} else if (action instanceof Cancel) {
+				mapSequenceToCancel.put((Sequence) action.eContainer(), true);
+				bot.cancel();
+			} else if (action instanceof Unset) {
+				bot.unset(((Unset) action).getPropertiesEditionElement(),
+						((Unset) action).getReferenceableObject(),
+						((Unset) action).getFeature());
+			} else if (action instanceof UnsetReference) {
+				bot.unsetReference(
+						((UnsetReference) action).getPropertiesEditionElement(),
+						((UnsetReference) action).getReferenceableObject(),
+						((UnsetReference) action).getFeature(),
+						((UnsetReference) action).getValues());
+			} else if (action instanceof Remove) {
+				bot.remove(((Remove) action).getPropertiesEditionElement(),
+						((Remove) action).getReferenceableObject());
+				refObjectToEObjectMap.remove(((Remove) action)
+						.getReferenceableObject());
+			} else if (action instanceof Undo) {
+				bot.undo();
+			} else if (action instanceof Redo) {
+				bot.redo();
+			}
+			processedActions.add(action);
 		}
 	}
 

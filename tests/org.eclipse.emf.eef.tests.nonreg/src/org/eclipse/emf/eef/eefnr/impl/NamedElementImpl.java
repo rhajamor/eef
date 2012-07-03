@@ -7,7 +7,6 @@
 package org.eclipse.emf.eef.eefnr.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.NamedElement;
 

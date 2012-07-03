@@ -10,12 +10,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.eefnr.*;
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.AdvancedEObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.AdvancedReferencesTableSample;
 import org.eclipse.emf.eef.eefnr.AdvancedTableCompositionEditorSample;
 import org.eclipse.emf.eef.eefnr.CheckboxSample;
+import org.eclipse.emf.eef.eefnr.ComboSample;
 import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
@@ -132,6 +134,10 @@ public class EefnrAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEMFComboViewerSample(EMFComboViewerSample object) {
 				return createEMFComboViewerSampleAdapter();
+			}
+			@Override
+			public Adapter caseComboSample(ComboSample object) {
+				return createComboSampleAdapter();
 			}
 			@Override
 			public Adapter caseMultiValuedEditorSample(MultiValuedEditorSample object) {
@@ -346,6 +352,20 @@ public class EefnrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEMFComboViewerSampleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.eefnr.ComboSample <em>Combo Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.eefnr.ComboSample
+	 * @generated
+	 */
+	public Adapter createComboSampleAdapter() {
 		return null;
 	}
 

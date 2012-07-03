@@ -16,6 +16,7 @@ import org.eclipse.emf.eef.eefnr.providers.AdvancedEObjectFlatComboViewerSampleP
 import org.eclipse.emf.eef.eefnr.providers.AdvancedReferencesTableSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.eefnr.providers.AdvancedTableCompositionEditorSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.eefnr.providers.CheckboxSamplePropertiesEditionProvider;
+import org.eclipse.emf.eef.eefnr.providers.ComboSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.eefnr.providers.EMFComboViewerSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.eefnr.providers.EObjectFlatComboViewerSamplePropertiesEditionProvider;
 import org.eclipse.emf.eef.eefnr.providers.FlatReferenceTableSamplePropertiesEditionProvider;
@@ -125,6 +126,14 @@ public class EefnrEEFAdapterFactory extends EefnrAdapterFactory {
 	 */
 	public Adapter createEMFComboViewerSampleAdapter() {
 		return new EMFComboViewerSamplePropertiesEditionProvider();
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.eefnr.util.EefnrAdapterFactory#createComboSampleAdapter()
+	 * 
+	 */
+	public Adapter createComboSampleAdapter() {
+		return new ComboSamplePropertiesEditionProvider();
 	}
 	/**
 	 * {@inheritDoc}

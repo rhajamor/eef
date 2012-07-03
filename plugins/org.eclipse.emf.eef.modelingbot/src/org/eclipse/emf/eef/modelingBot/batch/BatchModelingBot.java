@@ -13,6 +13,7 @@ package org.eclipse.emf.eef.modelingBot.batch;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -20,6 +21,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -310,6 +312,31 @@ public class BatchModelingBot implements IModelingBot {
 
 	public IModelingBotInterpreter getModelingBotInterpreter() {
 		return interpreter;
+	}
+
+	public EObject add(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObjectContainer,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, EClass type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void redo() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

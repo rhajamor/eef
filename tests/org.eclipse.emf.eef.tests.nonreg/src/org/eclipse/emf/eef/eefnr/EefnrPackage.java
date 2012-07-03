@@ -370,13 +370,31 @@ public interface EefnrPackage extends EPackage {
 	int TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY = ABSTRACT_SAMPLE_FEATURE_COUNT + 25;
 
 	/**
+	 * The feature id for the '<em><b>Combo Required Reference Property TS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS = ABSTRACT_SAMPLE_FEATURE_COUNT + 26;
+
+	/**
+	 * The feature id for the '<em><b>Combo Optional Reference Property TS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS = ABSTRACT_SAMPLE_FEATURE_COUNT + 27;
+
+	/**
 	 * The number of structural features of the '<em>Total Sample</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_SAMPLE_FEATURE_COUNT = ABSTRACT_SAMPLE_FEATURE_COUNT + 26;
+	int TOTAL_SAMPLE_FEATURE_COUNT = ABSTRACT_SAMPLE_FEATURE_COUNT + 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.impl.TextSampleImpl <em>Text Sample</em>}' class.
@@ -701,6 +719,52 @@ public interface EefnrPackage extends EPackage {
 	int EMF_COMBO_VIEWER_SAMPLE_FEATURE_COUNT = ABSTRACT_SAMPLE_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.impl.ComboSampleImpl <em>Combo Sample</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.eefnr.impl.ComboSampleImpl
+	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getComboSample()
+	 * @generated
+	 */
+	int COMBO_SAMPLE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBO_SAMPLE__NAME = ABSTRACT_SAMPLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Combo Required Reference Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBO_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY = ABSTRACT_SAMPLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Combo Optional Reference Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBO_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY = ABSTRACT_SAMPLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Combo Sample</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBO_SAMPLE_FEATURE_COUNT = ABSTRACT_SAMPLE_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.eefnr.impl.MultiValuedEditorSampleImpl <em>Multi Valued Editor Sample</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -708,7 +772,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getMultiValuedEditorSample()
 	 * @generated
 	 */
-	int MULTI_VALUED_EDITOR_SAMPLE = 10;
+	int MULTI_VALUED_EDITOR_SAMPLE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -754,7 +818,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getTableCompositionEditorSample()
 	 * @generated
 	 */
-	int TABLE_COMPOSITION_EDITOR_SAMPLE = 11;
+	int TABLE_COMPOSITION_EDITOR_SAMPLE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -800,7 +864,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getAdvancedReferencesTableSample()
 	 * @generated
 	 */
-	int ADVANCED_REFERENCES_TABLE_SAMPLE = 12;
+	int ADVANCED_REFERENCES_TABLE_SAMPLE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -846,7 +910,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getAdvancedEObjectFlatComboViewerSample()
 	 * @generated
 	 */
-	int ADVANCED_EOBJECT_FLAT_COMBO_VIEWER_SAMPLE = 13;
+	int ADVANCED_EOBJECT_FLAT_COMBO_VIEWER_SAMPLE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -892,7 +956,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getAdvancedTableCompositionEditorSample()
 	 * @generated
 	 */
-	int ADVANCED_TABLE_COMPOSITION_EDITOR_SAMPLE = 14;
+	int ADVANCED_TABLE_COMPOSITION_EDITOR_SAMPLE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -938,7 +1002,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getFlatReferencesTableSample()
 	 * @generated
 	 */
-	int FLAT_REFERENCES_TABLE_SAMPLE = 15;
+	int FLAT_REFERENCES_TABLE_SAMPLE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -984,7 +1048,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getSample()
 	 * @generated
 	 */
-	int SAMPLE = 16;
+	int SAMPLE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1030,7 +1094,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getTextSampleWithTwoTabs()
 	 * @generated
 	 */
-	int TEXT_SAMPLE_WITH_TWO_TABS = 17;
+	int TEXT_SAMPLE_WITH_TWO_TABS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1094,7 +1158,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getTableCompositionExtensionEditorSample()
 	 * @generated
 	 */
-	int TABLE_COMPOSITION_EXTENSION_EDITOR_SAMPLE = 18;
+	int TABLE_COMPOSITION_EXTENSION_EDITOR_SAMPLE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1140,7 +1204,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getAbstractTableCompositionTargetExtensionEditorSample()
 	 * @generated
 	 */
-	int ABSTRACT_TABLE_COMPOSITION_TARGET_EXTENSION_EDITOR_SAMPLE = 19;
+	int ABSTRACT_TABLE_COMPOSITION_TARGET_EXTENSION_EDITOR_SAMPLE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1168,7 +1232,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 20;
+	int NAMED_ELEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1196,7 +1260,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getImageViewerSample()
 	 * @generated
 	 */
-	int IMAGE_VIEWER_SAMPLE = 21;
+	int IMAGE_VIEWER_SAMPLE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1242,7 +1306,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getSelectionDialogSample()
 	 * @generated
 	 */
-	int SELECTION_DIALOG_SAMPLE = 22;
+	int SELECTION_DIALOG_SAMPLE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1288,7 +1352,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getSingleCompositionViewerSample()
 	 * @generated
 	 */
-	int SINGLE_COMPOSITION_VIEWER_SAMPLE = 23;
+	int SINGLE_COMPOSITION_VIEWER_SAMPLE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1352,7 +1416,7 @@ public interface EefnrPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getENUM_SAMPLE()
 	 * @generated
 	 */
-	int ENUM_SAMPLE = 24;
+	int ENUM_SAMPLE = 25;
 
 
 	/**
@@ -1615,6 +1679,28 @@ public interface EefnrPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTotalSample_TablecompositionOptionalProperty();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboRequiredReferencePropertyTS <em>Combo Required Reference Property TS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Combo Required Reference Property TS</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.TotalSample#getComboRequiredReferencePropertyTS()
+	 * @see #getTotalSample()
+	 * @generated
+	 */
+	EReference getTotalSample_ComboRequiredReferencePropertyTS();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboOptionalReferencePropertyTS <em>Combo Optional Reference Property TS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Combo Optional Reference Property TS</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.TotalSample#getComboOptionalReferencePropertyTS()
+	 * @see #getTotalSample()
+	 * @generated
+	 */
+	EReference getTotalSample_ComboOptionalReferencePropertyTS();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.emf.eef.eefnr.TotalSample#getAdvancedreferencestableRequiredProperty <em>Advancedreferencestable Required Property</em>}'.
@@ -1916,6 +2002,38 @@ public interface EefnrPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEMFComboViewerSample_EmfcomboviewerOptionalProperty();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.ComboSample <em>Combo Sample</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Combo Sample</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.ComboSample
+	 * @generated
+	 */
+	EClass getComboSample();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.eefnr.ComboSample#getComboRequiredReferenceProperty <em>Combo Required Reference Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Combo Required Reference Property</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.ComboSample#getComboRequiredReferenceProperty()
+	 * @see #getComboSample()
+	 * @generated
+	 */
+	EReference getComboSample_ComboRequiredReferenceProperty();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.eefnr.ComboSample#getComboOptionalReferenceProperty <em>Combo Optional Reference Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Combo Optional Reference Property</em>'.
+	 * @see org.eclipse.emf.eef.eefnr.ComboSample#getComboOptionalReferenceProperty()
+	 * @see #getComboSample()
+	 * @generated
+	 */
+	EReference getComboSample_ComboOptionalReferenceProperty();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.eefnr.MultiValuedEditorSample <em>Multi Valued Editor Sample</em>}'.
@@ -2596,6 +2714,22 @@ public interface EefnrPackage extends EPackage {
 		EReference TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY = eINSTANCE.getTotalSample_TablecompositionOptionalProperty();
 
 		/**
+		 * The meta object literal for the '<em><b>Combo Required Reference Property TS</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS = eINSTANCE.getTotalSample_ComboRequiredReferencePropertyTS();
+
+		/**
+		 * The meta object literal for the '<em><b>Combo Optional Reference Property TS</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS = eINSTANCE.getTotalSample_ComboOptionalReferencePropertyTS();
+
+		/**
 		 * The meta object literal for the '<em><b>Advancedreferencestable Required Property</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2832,6 +2966,32 @@ public interface EefnrPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY = eINSTANCE.getEMFComboViewerSample_EmfcomboviewerOptionalProperty();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.impl.ComboSampleImpl <em>Combo Sample</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.eefnr.impl.ComboSampleImpl
+		 * @see org.eclipse.emf.eef.eefnr.impl.EefnrPackageImpl#getComboSample()
+		 * @generated
+		 */
+		EClass COMBO_SAMPLE = eINSTANCE.getComboSample();
+
+		/**
+		 * The meta object literal for the '<em><b>Combo Required Reference Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMBO_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY = eINSTANCE.getComboSample_ComboRequiredReferenceProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Combo Optional Reference Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMBO_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY = eINSTANCE.getComboSample_ComboOptionalReferenceProperty();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.eefnr.impl.MultiValuedEditorSampleImpl <em>Multi Valued Editor Sample</em>}' class.

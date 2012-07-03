@@ -11,15 +11,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.eef.eefnr.AbstractSample;
 import org.eclipse.emf.eef.eefnr.AbstractTableCompositionTargetExtensionEditorSample;
 import org.eclipse.emf.eef.eefnr.AdvancedEObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.AdvancedReferencesTableSample;
 import org.eclipse.emf.eef.eefnr.AdvancedTableCompositionEditorSample;
 import org.eclipse.emf.eef.eefnr.CheckboxSample;
+import org.eclipse.emf.eef.eefnr.ComboSample;
 import org.eclipse.emf.eef.eefnr.EMFComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EObjectFlatComboViewerSample;
 import org.eclipse.emf.eef.eefnr.EefnrFactory;
@@ -129,6 +128,13 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 	 * @generated
 	 */
 	private EClass emfComboViewerSampleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass comboSampleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -537,6 +543,24 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTotalSample_ComboRequiredReferencePropertyTS() {
+		return (EReference)totalSampleEClass.getEStructuralFeatures().get(26);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTotalSample_ComboOptionalReferencePropertyTS() {
+		return (EReference)totalSampleEClass.getEStructuralFeatures().get(27);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getTotalSample_AdvancedreferencestableRequiredProperty() {
 		return (EReference)totalSampleEClass.getEStructuralFeatures().get(17);
 	}
@@ -782,6 +806,33 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 	 */
 	public EAttribute getEMFComboViewerSample_EmfcomboviewerOptionalProperty() {
 		return (EAttribute)emfComboViewerSampleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getComboSample() {
+		return comboSampleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComboSample_ComboRequiredReferenceProperty() {
+		return (EReference)comboSampleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComboSample_ComboOptionalReferenceProperty() {
+		return (EReference)comboSampleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1232,6 +1283,8 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		createEReference(totalSampleEClass, TOTAL_SAMPLE__ADVANCEDTABLECOMPOSITION_OPTIONAL_PROPERTY);
 		createEReference(totalSampleEClass, TOTAL_SAMPLE__TABLECOMPOSITION_REQUIRED_PROPERTY);
 		createEReference(totalSampleEClass, TOTAL_SAMPLE__TABLECOMPOSITION_OPTIONAL_PROPERTY);
+		createEReference(totalSampleEClass, TOTAL_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY_TS);
+		createEReference(totalSampleEClass, TOTAL_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY_TS);
 
 		textSampleEClass = createEClass(TEXT_SAMPLE);
 		createEAttribute(textSampleEClass, TEXT_SAMPLE__TEXT_REQUIRED_PROPERTY);
@@ -1260,6 +1313,10 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		emfComboViewerSampleEClass = createEClass(EMF_COMBO_VIEWER_SAMPLE);
 		createEAttribute(emfComboViewerSampleEClass, EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_REQUIRED_PROPERTY);
 		createEAttribute(emfComboViewerSampleEClass, EMF_COMBO_VIEWER_SAMPLE__EMFCOMBOVIEWER_OPTIONAL_PROPERTY);
+
+		comboSampleEClass = createEClass(COMBO_SAMPLE);
+		createEReference(comboSampleEClass, COMBO_SAMPLE__COMBO_REQUIRED_REFERENCE_PROPERTY);
+		createEReference(comboSampleEClass, COMBO_SAMPLE__COMBO_OPTIONAL_REFERENCE_PROPERTY);
 
 		multiValuedEditorSampleEClass = createEClass(MULTI_VALUED_EDITOR_SAMPLE);
 		createEAttribute(multiValuedEditorSampleEClass, MULTI_VALUED_EDITOR_SAMPLE__MULTIVALUEDEDITOR_REQUIRED_PROPERTY);
@@ -1371,6 +1428,7 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		eObjectFlatComboViewerSampleEClass.getESuperTypes().add(this.getAbstractSample());
 		referencesTableSampleEClass.getESuperTypes().add(this.getAbstractSample());
 		emfComboViewerSampleEClass.getESuperTypes().add(this.getAbstractSample());
+		comboSampleEClass.getESuperTypes().add(this.getAbstractSample());
 		multiValuedEditorSampleEClass.getESuperTypes().add(this.getAbstractSample());
 		tableCompositionEditorSampleEClass.getESuperTypes().add(this.getAbstractSample());
 		advancedReferencesTableSampleEClass.getESuperTypes().add(this.getAbstractSample());
@@ -1420,6 +1478,8 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		initEReference(getTotalSample_AdvancedtablecompositionOptionalProperty(), this.getSample(), null, "advancedtablecompositionOptionalProperty", null, 0, -1, TotalSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTotalSample_TablecompositionRequiredProperty(), this.getSample(), null, "tablecompositionRequiredProperty", null, 1, -1, TotalSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTotalSample_TablecompositionOptionalProperty(), this.getSample(), null, "tablecompositionOptionalProperty", null, 0, -1, TotalSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTotalSample_ComboRequiredReferencePropertyTS(), this.getTotalSample(), null, "comboRequiredReferencePropertyTS", null, 1, 1, TotalSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTotalSample_ComboOptionalReferencePropertyTS(), this.getTotalSample(), null, "comboOptionalReferencePropertyTS", null, 0, 1, TotalSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textSampleEClass, TextSample.class, "TextSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTextSample_TextRequiredProperty(), ecorePackage.getEString(), "textRequiredProperty", null, 1, 1, TextSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1448,6 +1508,10 @@ public class EefnrPackageImpl extends EPackageImpl implements EefnrPackage {
 		initEClass(emfComboViewerSampleEClass, EMFComboViewerSample.class, "EMFComboViewerSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEMFComboViewerSample_EmfcomboviewerRequiredProperty(), this.getENUM_SAMPLE(), "emfcomboviewerRequiredProperty", null, 1, 1, EMFComboViewerSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEMFComboViewerSample_EmfcomboviewerOptionalProperty(), this.getENUM_SAMPLE(), "emfcomboviewerOptionalProperty", null, 0, 1, EMFComboViewerSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(comboSampleEClass, ComboSample.class, "ComboSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComboSample_ComboRequiredReferenceProperty(), this.getTotalSample(), null, "comboRequiredReferenceProperty", null, 1, 1, ComboSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComboSample_ComboOptionalReferenceProperty(), this.getTotalSample(), null, "comboOptionalReferenceProperty", null, 0, 1, ComboSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiValuedEditorSampleEClass, MultiValuedEditorSample.class, "MultiValuedEditorSample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMultiValuedEditorSample_MultivaluededitorRequiredProperty(), ecorePackage.getEString(), "multivaluededitorRequiredProperty", null, 1, -1, MultiValuedEditorSample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

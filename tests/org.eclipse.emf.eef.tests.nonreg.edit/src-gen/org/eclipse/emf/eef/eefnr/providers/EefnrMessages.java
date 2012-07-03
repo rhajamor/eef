@@ -42,6 +42,9 @@ public class EefnrMessages extends NLS {
 	public static String EObjectFlatComboViewerSamplePropertiesEditionPart_PropertiesGroupLabel;
 
 	
+	public static String ComboSamplePropertiesEditionPart_PropertiesGroupLabel;
+
+	
 	public static String ReferencesTableSamplePropertiesEditionPart_PropertiesGroupLabel;
 
 	
@@ -128,6 +131,12 @@ public class EefnrMessages extends NLS {
 
 	
 	public static String EObjectFlatComboViewerSample_Part_Title;
+
+	
+	public static String ComboSample_ReadOnly;
+
+	
+	public static String ComboSample_Part_Title;
 
 	
 	public static String ReferencesTableSample_ReadOnly;
@@ -296,6 +305,18 @@ public class EefnrMessages extends NLS {
 	public static String TotalSamplePropertiesEditionPart_AdvancedtablecompositionOptionalPropertyLabel;
 
 	
+	public static String TotalSamplePropertiesEditionPart_ComboRequiredPropertyTSLabel;
+
+	
+	public static String TotalSamplePropertiesEditionPart_ComboOptionalPropertyTSLabel;
+
+	
+	public static String TotalSamplePropertiesEditionPart_ComboRequiredReferencePropertyTSLabel;
+
+	
+	public static String TotalSamplePropertiesEditionPart_ComboOptionalReferencePropertyTSLabel;
+
+	
 	public static String TotalSamplePropertiesEditionPart_NameLabel;
 
 	
@@ -330,6 +351,12 @@ public class EefnrMessages extends NLS {
 
 	
 	public static String EObjectFlatComboViewerSamplePropertiesEditionPart_EobjectflatcomboviewerOptionalProperyLabel;
+
+	
+	public static String ComboSamplePropertiesEditionPart_ComboRequiredReferencePropertyLabel;
+
+	
+	public static String ComboSamplePropertiesEditionPart_ComboOptionalReferencePropertyLabel;
 
 	
 	public static String ReferencesTableSamplePropertiesEditionPart_ReferencestableRequiredPropertyLabel;

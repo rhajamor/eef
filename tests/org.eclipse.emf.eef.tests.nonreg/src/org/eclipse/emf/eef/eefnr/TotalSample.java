@@ -42,6 +42,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.emf.eef.eefnr.TotalSample#getAdvancedtablecompositionOptionalProperty <em>Advancedtablecomposition Optional Property</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.TotalSample#getTablecompositionRequiredProperty <em>Tablecomposition Required Property</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.eefnr.TotalSample#getTablecompositionOptionalProperty <em>Tablecomposition Optional Property</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboRequiredReferencePropertyTS <em>Combo Required Reference Property TS</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboOptionalReferencePropertyTS <em>Combo Optional Reference Property TS</em>}</li>
  * </ul>
  * </p>
  *
@@ -485,6 +487,58 @@ public interface TotalSample extends AbstractSample {
 	 * @generated
 	 */
 	EList<Sample> getTablecompositionOptionalProperty();
+
+	/**
+	 * Returns the value of the '<em><b>Combo Required Reference Property TS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Combo Required Reference Property TS</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Combo Required Reference Property TS</em>' reference.
+	 * @see #setComboRequiredReferencePropertyTS(TotalSample)
+	 * @see org.eclipse.emf.eef.eefnr.EefnrPackage#getTotalSample_ComboRequiredReferencePropertyTS()
+	 * @model required="true"
+	 * @generated
+	 */
+	TotalSample getComboRequiredReferencePropertyTS();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboRequiredReferencePropertyTS <em>Combo Required Reference Property TS</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Combo Required Reference Property TS</em>' reference.
+	 * @see #getComboRequiredReferencePropertyTS()
+	 * @generated
+	 */
+	void setComboRequiredReferencePropertyTS(TotalSample value);
+
+	/**
+	 * Returns the value of the '<em><b>Combo Optional Reference Property TS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Combo Optional Reference Property TS</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Combo Optional Reference Property TS</em>' reference.
+	 * @see #setComboOptionalReferencePropertyTS(TotalSample)
+	 * @see org.eclipse.emf.eef.eefnr.EefnrPackage#getTotalSample_ComboOptionalReferencePropertyTS()
+	 * @model
+	 * @generated
+	 */
+	TotalSample getComboOptionalReferencePropertyTS();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.eef.eefnr.TotalSample#getComboOptionalReferencePropertyTS <em>Combo Optional Reference Property TS</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Combo Optional Reference Property TS</em>' reference.
+	 * @see #getComboOptionalReferencePropertyTS()
+	 * @generated
+	 */
+	void setComboOptionalReferencePropertyTS(TotalSample value);
 
 	/**
 	 * Returns the value of the '<em><b>Advancedreferencestable Required Property</b></em>' reference list.

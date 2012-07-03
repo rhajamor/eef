@@ -116,13 +116,13 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 		if (EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				multiValuedEditorSample.getMultivaluededitorRequiredProperty().clear();
-				multiValuedEditorSample.getMultivaluededitorRequiredProperty().addAll(((List) event.getNewValue()));
+				multiValuedEditorSample.getMultivaluededitorRequiredProperty().addAll(((EList) event.getNewValue()));
 			}
 		}
 		if (EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				multiValuedEditorSample.getMultivaluededitorOptionalProperty().clear();
-				multiValuedEditorSample.getMultivaluededitorOptionalProperty().addAll(((List) event.getNewValue()));
+				multiValuedEditorSample.getMultivaluededitorOptionalProperty().addAll(((EList) event.getNewValue()));
 			}
 		}
 	}
@@ -135,11 +135,11 @@ public class MultiValuedEditorSamplePropertiesEditionComponent extends SinglePar
 		if (editingPart.isVisible()) {
 			MultiValuedEditorSamplePropertiesEditionPart basePart = (MultiValuedEditorSamplePropertiesEditionPart)editingPart;
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorRequiredProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorRequiredProperty)) {
-				basePart.setMultivaluededitorRequiredProperty((EList)msg.getNewValue());
+				basePart.setMultivaluededitorRequiredProperty((EList<?>)msg.getNewValue());
 			}
 			
 			if (EefnrPackage.eINSTANCE.getMultiValuedEditorSample_MultivaluededitorOptionalProperty().equals(msg.getFeature()) && basePart != null && isAccessible(EefnrViewsRepository.MultiValuedEditorSample.Properties.multivaluededitorOptionalProperty)) {
-				basePart.setMultivaluededitorOptionalProperty((EList)msg.getNewValue());
+				basePart.setMultivaluededitorOptionalProperty((EList<?>)msg.getNewValue());
 			}
 			
 			

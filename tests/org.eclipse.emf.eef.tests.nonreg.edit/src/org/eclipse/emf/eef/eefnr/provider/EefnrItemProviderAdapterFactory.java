@@ -283,6 +283,29 @@ public class EefnrItemProviderAdapterFactory extends EefnrAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.ComboSample} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComboSampleItemProvider comboSampleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.eefnr.ComboSample}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComboSampleAdapter() {
+		if (comboSampleItemProvider == null) {
+			comboSampleItemProvider = new ComboSampleItemProvider(this);
+		}
+
+		return comboSampleItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.eefnr.MultiValuedEditorSample} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -666,6 +689,7 @@ public class EefnrItemProviderAdapterFactory extends EefnrAdapterFactory impleme
 		if (eObjectFlatComboViewerSampleItemProvider != null) eObjectFlatComboViewerSampleItemProvider.dispose();
 		if (referencesTableSampleItemProvider != null) referencesTableSampleItemProvider.dispose();
 		if (emfComboViewerSampleItemProvider != null) emfComboViewerSampleItemProvider.dispose();
+		if (comboSampleItemProvider != null) comboSampleItemProvider.dispose();
 		if (multiValuedEditorSampleItemProvider != null) multiValuedEditorSampleItemProvider.dispose();
 		if (tableCompositionEditorSampleItemProvider != null) tableCompositionEditorSampleItemProvider.dispose();
 		if (advancedReferencesTableSampleItemProvider != null) advancedReferencesTableSampleItemProvider.dispose();

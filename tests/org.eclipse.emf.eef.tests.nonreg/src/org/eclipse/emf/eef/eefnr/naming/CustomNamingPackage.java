@@ -8,7 +8,6 @@ package org.eclipse.emf.eef.eefnr.naming;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 
 /**

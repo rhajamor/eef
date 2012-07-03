@@ -9,11 +9,8 @@ package org.eclipse.emf.eef.eefnr.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.eef.eefnr.EefnrPackage;
 import org.eclipse.emf.eef.eefnr.ReferencesTableSample;
 import org.eclipse.emf.eef.eefnr.TotalSample;

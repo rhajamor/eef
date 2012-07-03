@@ -206,6 +206,18 @@ public class EEFActionsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EEFActionsPackage.UNSET_REFERENCE: {
+				UnsetReference unsetReference = (UnsetReference)theEObject;
+				T result = caseUnsetReference(unsetReference);
+				if (result == null) result = caseEditAction(unsetReference);
+				if (result == null) result = caseEEFAction(unsetReference);
+				if (result == null) result = caseReferenceableObject(unsetReference);
+				if (result == null) result = caseAction(unsetReference);
+				if (result == null) result = caseDocumentedElement(unsetReference);
+				if (result == null) result = caseProcessing(unsetReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -357,6 +369,21 @@ public class EEFActionsSwitch<T> {
 	 * @generated
 	 */
 	public T caseSetReference(SetReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unset Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unset Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnsetReference(UnsetReference object) {
 		return null;
 	}
 

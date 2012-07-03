@@ -7,9 +7,7 @@
 package org.eclipse.emf.eef.eefnr.references.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.eef.eefnr.impl.NamedElementImpl;
-
 import org.eclipse.emf.eef.eefnr.references.ReferencesPackage;
 import org.eclipse.emf.eef.eefnr.references.Tests;
 
