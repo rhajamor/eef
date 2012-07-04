@@ -946,17 +946,11 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 *            objects to select
 	 */
 	public void selectInActiveTree(Collection<EObject> selected) {
+		//TODO manage this case when EEF will allowed to select multiple elements in a tree
 		final SWTBotTree tree = tree(0);
-//		final SWTBotTreeItem treeItem = getTreeItem(tree, selected);
-//		assertNotNull("No tree item is found.", treeItem);
-//		treeItem.select();
-		final Collection<SWTBotTreeItem> treeItems = new ArrayList<SWTBotTreeItem>();
-		for (EObject eObject : selected) {
-			final SWTBotTreeItem treeItem = getTreeItem(tree, eObject);
-			assertNotNull("No tree item is found.", treeItem);
-			treeItem.select();
-			treeItems.add(treeItem);
-		}
+		final SWTBotTreeItem treeItem = getTreeItem(tree, selected.iterator().next());
+		assertNotNull("No tree item is found.", treeItem);
+		treeItem.select();
 	}
 	
 	/**

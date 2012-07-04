@@ -19,7 +19,6 @@ import org.eclipse.emf.eef.modelingBot.helper.SWTBotHelper;
 import org.eclipse.emf.eef.modelingBot.swtbot.ComposedEEFBot;
 import org.eclipse.emf.eef.modelingBot.swtbot.SWTEEFBot;
 import org.eclipse.swtbot.eclipse.finder.SWTBotEclipseTestCase;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -27,7 +26,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  */
-public abstract class AbstractEEFBotModelingTestCase extends SWTBotEclipseTestCase {
+public abstract class AbstractComposedModelingBotTestCase extends SWTBotEclipseTestCase {
 
 	/**
 	 * An instance of composed bot.
@@ -35,7 +34,7 @@ public abstract class AbstractEEFBotModelingTestCase extends SWTBotEclipseTestCa
 	protected ComposedEEFBot composedBot;
 
 	/**
-	 * An instance of swt eef not.
+	 * An instance of swt eef bot.
 	 */
 	private SWTEEFBot swtEEFBot;
 

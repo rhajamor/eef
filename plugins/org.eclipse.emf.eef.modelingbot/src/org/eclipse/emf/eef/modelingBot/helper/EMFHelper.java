@@ -27,7 +27,21 @@ import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 
 public class EMFHelper {
 
-
+	public static EPackage findInRegistry(EPackage ePackage) {
+		return EPackage.Registry.INSTANCE.getEPackage(ePackage.getNsURI());
+	}
+	
+	public static EClass map(EPackage ePackage, EClass clazz) {
+		TreeIterator<EObject> eAllContents = ePackage.eAllContents();
+		while (eAllContents.hasNext()) {
+			EObject next = eAllContents.next();
+			if (next instanceof EClass && uniqueId(clazz).equals(uniqueId((EClass) next))) {
+				return (EClass) next;
+			}
+		}
+		return null;
+	}
+	
 	public static EStructuralFeature map(EPackage ePackage, EStructuralFeature feature) {
 		TreeIterator<EObject> eAllContents = ePackage.eAllContents();
 		while (eAllContents.hasNext()) {
@@ -39,6 +53,9 @@ public class EMFHelper {
 		return null;
 	}
 	
+	private static String uniqueId(EClass clazz) {
+		return clazz.getName() + clazz.getEPackage().getName(); 
+	}
 	
 	private static String uniqueId(EStructuralFeature feature) {
 		return feature.getName() + ((EClass)feature.eContainer()).getName() + ((EClass)feature.eContainer()).getEPackage().getName(); 

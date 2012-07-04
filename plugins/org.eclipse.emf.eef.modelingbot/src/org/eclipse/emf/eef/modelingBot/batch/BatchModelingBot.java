@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -39,6 +37,7 @@ import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
+import org.eclipse.emf.eef.modelingBot.helper.EMFHelper;
 import org.eclipse.emf.eef.modelingBot.interpreter.EEFInterpreter;
 import org.eclipse.emf.eef.modelingBot.interpreter.IModelingBotInterpreter;
 
@@ -193,7 +192,8 @@ public class BatchModelingBot implements IModelingBot {
 			EStructuralFeature eContainingFeature, EClass type) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
 		activeResource = eObjectFromReferenceableEObject.eResource();
-		final EObject value = EcoreUtil.create(type);
+		EClass mappedType = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), type);
+		final EObject value = EcoreUtil.create(mappedType);
 		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature, value);
 		editingDomain.getCommandStack().execute(command);
 		return value;
@@ -221,11 +221,12 @@ public class BatchModelingBot implements IModelingBot {
 	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, String value) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
-		if (eContainingFeature instanceof EAttribute) {
+		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
+		if (mappedFeature instanceof EAttribute) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
-			final Object createFromString = EcoreUtil.createFromString(((EAttribute)eContainingFeature).getEAttributeType(),
-					value);
-			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature,
+			final Object createFromString = EcoreUtil.createFromString(((EAttribute)mappedFeature).getEAttributeType(),
+					value +" wouhouh");
+			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature,
 					createFromString);
 			editingDomain.getCommandStack().execute(command);
 		} else {
@@ -276,7 +277,8 @@ public class BatchModelingBot implements IModelingBot {
 		// try {
 		final URI uri = URI.createPlatformResourceURI(path + "/" + modelName, true);
 		final Resource activeResource = editingDomain.getResourceSet().createResource(uri);
-		final EObject create = EcoreUtil.create(eClass);
+		EClass mappedType = EMFHelper.map(EMFHelper.findInRegistry(eClass.getEPackage()), eClass);
+		final EObject create = EcoreUtil.create(mappedType);
 		activeResource.getContents().add(create);
 		// activeResource.save(Collections.EMPTY_MAP);
 		this.activeResource = activeResource;
@@ -319,8 +321,14 @@ public class BatchModelingBot implements IModelingBot {
 			ReferenceableObject referenceableObjectContainer,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, EClass type) {
-		// TODO Auto-generated method stub
-		return null;
+		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
+		activeResource = eObjectFromReferenceableEObject.eResource();
+		EClass mappedType = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), type);
+		EStructuralFeature mappedContainingFeature = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), eContainingFeature);
+		final EObject value = EcoreUtil.create(mappedType);
+		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedContainingFeature, value);
+		editingDomain.getCommandStack().execute(command);
+		return value;
 	}
 
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,

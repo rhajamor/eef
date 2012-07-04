@@ -17,8 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -278,10 +280,11 @@ public class ComposedEEFBot implements IModelingBot {
 	public void assertExpectedModelReached(Resource expectedModel, Resource batchModel) throws InterruptedException {
 		final Map<String, Object> options = new HashMap<String, Object>();
 		options.put(org.eclipse.emf.compare.match.MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+		options.put(org.eclipse.emf.compare.match.MatchOptions.OPTION_DISTINCT_METAMODELS, Boolean.TRUE);
 		final MatchModel match = MatchService.doResourceMatch(batchModel, expectedModel, options);
 		final DiffModel diff = DiffService.doDiff(match);
 		final List<EObject> diffList = EEFUtils.asEObjectList(diff.eAllContents());
-		final List<EObject> result = filterAbnormalDiffElement(diffList);
+		final Collection<EObject> result = filterAbnormalDiffElement(diffList);
 		if (!result.isEmpty()) {
 			System.out.println(result);
 		}
@@ -295,8 +298,8 @@ public class ComposedEEFBot implements IModelingBot {
 	 *            the list to filter
 	 * @return the list of "good" diff
 	 */
-	private List<EObject> filterAbnormalDiffElement(List<EObject> diffList) {
-		final List<EObject> result = new ArrayList<EObject>();
+	private Collection<EObject> filterAbnormalDiffElement(List<EObject> diffList) {
+		final Set<EObject> result = new HashSet<EObject>();
 		for (EObject object : diffList) {
 			if (!(object instanceof DiffGroup))
 				result.add(object);

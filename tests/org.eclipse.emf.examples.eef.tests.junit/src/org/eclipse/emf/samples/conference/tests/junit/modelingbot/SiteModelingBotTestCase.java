@@ -10,17 +10,17 @@
  *******************************************************************************/
 package org.eclipse.emf.samples.conference.tests.junit.modelingbot;
 
-import org.eclipse.emf.eef.modelingBot.testcase.AbstractEEFBotModelingTestCase;
+import org.eclipse.emf.eef.modelingBot.testcase.AbstractComposedModelingBotTestCase;
 
 /**
  * @author <a href="goulwen.lefur@obeo.fr">Goulwen Le Fur</a>
  */
-public class SiteModelingBotTestCase extends AbstractEEFBotModelingTestCase {
+public class SiteModelingBotTestCase extends AbstractComposedModelingBotTestCase {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.testcase.AbstractEEFBotModelingTestCase#testModelingBot()
+	 * @see org.eclipse.emf.eef.modelingBot.testcase.AbstractComposedModelingBotTestCase#testModelingBot()
 	 */
 	public void testModelingBot() throws Exception {
 		composedBot

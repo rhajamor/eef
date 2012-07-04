@@ -298,7 +298,7 @@ public class PropertiesEditionHelper {
 	/**
 	 * Update widget AdvancedEObjectFlatComboViewer.
 	 * 
-	 * @param elementEditor
+	 * @param propertiesEditionElement
 	 * @param value
 	 */
 	private void updateAdvancedEObjectFlatComboViewer(
