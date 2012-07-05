@@ -65,26 +65,26 @@ public class SetAttributeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
+			addValuesPropertyDescriptor(object);
 			addEContainingFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature.
+	 * This adds a property descriptor for the Values feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
+	protected void addValuesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SetAttribute_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SetAttribute_value_feature", "_UI_SetAttribute_type"),
-				 EEFActionsPackage.Literals.SET_ATTRIBUTE__VALUE,
+				 getString("_UI_SetAttribute_values_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetAttribute_values_feature", "_UI_SetAttribute_type"),
+				 EEFActionsPackage.Literals.SET_ATTRIBUTE__VALUES,
 				 true,
 				 false,
 				 false,
@@ -152,7 +152,7 @@ public class SetAttributeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SetAttribute.class)) {
-			case EEFActionsPackage.SET_ATTRIBUTE__VALUE:
+			case EEFActionsPackage.SET_ATTRIBUTE__VALUES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

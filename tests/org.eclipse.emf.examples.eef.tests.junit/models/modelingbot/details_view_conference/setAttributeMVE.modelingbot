@@ -12,8 +12,10 @@
         <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Topic"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/topics"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="references" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="myRef1/sep/myRef2">
+      <processings xsi:type="eef-test_1:SetAttribute" name="references" referenceableObject="//@sequences.0/@processings.3/@processings.0">
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBOJkmEd6sxtwdpecy3w"/>
+        <values>myRef1</values>
+        <values>myREf2</values>
         <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Topic/references"/>
       </processings>
       <processings xsi:type="eef-test:Save"/>

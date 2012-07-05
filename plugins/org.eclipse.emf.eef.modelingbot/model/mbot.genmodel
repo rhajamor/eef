@@ -55,9 +55,14 @@
       </genClasses>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/Remove"/>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/SetAttribute">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbot.ecore#//EEFActions/SetAttribute/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbot.ecore#//EEFActions/SetAttribute/values"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/SetAttribute/eContainingFeature"/>
+      </genClasses>
+      <genClasses ecoreClass="mbot.ecore#//EEFActions/UnsetAttribute">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbot.ecore#//EEFActions/UnsetAttribute/values"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/UnsetAttribute/eContainingFeature"/>
       </genClasses>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/Unset">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

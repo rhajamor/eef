@@ -18,13 +18,13 @@ import static org.junit.Assert.assertNotNull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -76,8 +76,6 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  */
 public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
-
-	private static final String MVE_VALUES_SEPARATOR = "/sep/";
 	
 	/**
 	 * The ResourceSet where to operate.
@@ -406,12 +404,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#set(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#setAttribute(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
-	 *      java.lang.String)
+	 *      java.util.Collection)
 	 */
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, String value) {
+	public void setAttribute(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
 		SWTBotHelper.waitAllUiEvents();
 		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
 		assertNotNull("The editor is not opened.", editor);
@@ -423,11 +421,11 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 			final SWTBotTreeItem selectNode = selectNode(editor, container);
 			assertNotNull("No element is selected in the editor", selectNode);
 			initTab(propertiesEditionElement);
-			propertiesEdition.updateAttribute(selectNode, propertiesEditionElement, referenceableObject, container, value, sequenceType);
+			propertiesEdition.updateAttribute(selectNode, propertiesEditionElement, referenceableObject, container, values, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
 			final EObject containerOfcontainer = getEObjectFromReferenceableEObject(((EditAction)referenceableObject).getReferenceableObject());
 			assertNotNull("No container is found to launch add action.", containerOfcontainer);
-			propertiesEdition.updateAttribute(null, propertiesEditionElement, referenceableObject, containerOfcontainer, value, sequenceType);
+			propertiesEdition.updateAttribute(null, propertiesEditionElement, referenceableObject, containerOfcontainer, values, sequenceType);
 		}
 	}
 
@@ -452,11 +450,11 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#set(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#setReference(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
-	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
+	 *      java.util.Collection)
 	 */
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+	public void setReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
@@ -495,12 +493,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		final ElementEditor elementEditor = propertiesEditionElement.getViews().get(0);
 		final String representationName = elementEditor.getRepresentation().getName();
 		if ("Text".equals(representationName) || "Textarea".equals(representationName)) {
-			set(propertiesEditionElement, referenceableObject, eContainingFeature, "");
+			setAttribute(propertiesEditionElement, referenceableObject, eContainingFeature, Collections.singletonList(""));
 		} else if ("EObjectFlatComboViewer".equals(representationName)) {
 			//TODO How to unset an EOFCV ?
 			//set(propertiesEditionElement, referenceableObject, eContainingFeature, (ReferenceableObject)null);
 		} else if ("MultiValuedEditor".equals(representationName)) {
-			set(propertiesEditionElement, referenceableObject, eContainingFeature, (String)null);
+			propertiesEdition.unsetMultiValuedEditor(propertiesEditionElement, null, sequenceType);
 		} else {
 			System.out.println("Case not managed in unset : " + representationName);
 		}
@@ -510,13 +508,37 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#unset(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#unsetAttribute(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature, 
-	 *      org.eclipse.emf.common.util.EList<org.eclipse.emf.eef.extended.editor.ReferenceableObject>)
+	 *      java.util.Collection)
+	 */
+	public void unsetAttribute(
+			PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
+		SWTBotHelper.waitAllUiEvents();
+		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
+		assertNotNull("The editor is not opened.", editor);
+		assertFalse(propertiesEditionElement.getViews().isEmpty());
+		if (sequenceType.equals(SequenceType.DETAILS_PAGE)) {
+			propertiesEdition.unsetAttribute(propertiesEditionElement, referenceableObject, values, sequenceType);
+		} else if (sequenceType.equals(SequenceType.WIZARD)) {
+			//TODO
+		}
+		SWTBotHelper.waitAllUiEvents();
+		
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#unsetReference(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature, 
+	 *      java.util.Collection)
 	 */
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
 		assertNotNull("The editor is not opened.", editor);
@@ -991,7 +1013,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 * @param selected
 	 *            object to select
 	 */
-	public void selectInRightTableOfEditor(Object selected) {
+	public void selectInRightTableOfActiveEditor(Object selected) {
 		final SWTBotTable table = table(1);
 		final SWTBotTableItem tableItem = getTableItem(table, selected);
 		assertNotNull("No table item is found.", tableItem);
@@ -1093,29 +1115,40 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	}
 
 	/**
-	 * Add the given value to the text field of the MVE and click on Add button.
-	 * If the given value contains one or several MVE_VALUES_SEPARATOR, 
-	 * it will separate the value and add each fragment.
+	 * Add the given values to the text field of the MVE and click on Add button.
 	 * 
 	 * @param value the given String value to add in the MVE.
 	 */
-	public void addValueInMultiValuedEditor(String value) {
+	public void addValuesInMultiValuedEditor(Collection<String> values) {
 		SWTBotText text = text(0);
-		String[] splits = value.split(MVE_VALUES_SEPARATOR);
-		for (String val : splits) {
+		for (String val : values) {
 			text.setText(val);
 			SWTBotButton buttonAdd = button(0);
 			buttonAdd.click();
 		}
 	}
-
+	
+	/**
+	 * Add the given values to the text field of the MVE and click on Add button.
+	 * 
+	 * @param value the given String value to add in the MVE.
+	 */
+	public void removeValuesInMultiValuedEditor(Collection<String> values) {
+		for (String val : values) {
+			selectInRightTableOfActiveEditor(val);
+			SWTBotButton buttonRemove = button(1);
+			buttonRemove.click();
+		}
+	}
+	
 	/**
 	 * Remove all values of the MVE by clicking on Remove button each time necessary.
 	 * @param size 
 	 * 
 	 */
-	public void removeAllValuesInMultiValuedEditor(int size) {
-		for (int i = 0; i < size; i++) {
+	public void removeAllValuesInMultiValuedEditor() {
+		final SWTBotTable table = table(1);
+		for (int i = 0; i < table.rowCount(); i++) {
 			SWTBotButton buttonRemove = button(1);
 			buttonRemove.click();
 		}

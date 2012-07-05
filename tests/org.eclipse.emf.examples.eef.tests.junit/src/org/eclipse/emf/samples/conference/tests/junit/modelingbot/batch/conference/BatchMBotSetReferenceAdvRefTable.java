@@ -8,15 +8,15 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.conference;
+package org.eclipse.emf.samples.conference.tests.junit.modelingbot.batch.conference;
 
 /**
  * @author arichard
  */
-public class MBotRedoEditAttributeCheckbox extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class BatchMBotSetReferenceAdvRefTable extends org.eclipse.emf.eef.modelingBot.testcase.AbstractBatchModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/redoEditAttributeCheckbox.modelingbot");
+		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/setReferenceAdvRefTable.modelingbot");
 	}
 
 }

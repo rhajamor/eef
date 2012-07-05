@@ -149,6 +149,29 @@ public class EEFActionsItemProviderAdapterFactory extends EEFActionsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnsetAttributeItemProvider unsetAttributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUnsetAttributeAdapter() {
+		if (unsetAttributeItemProvider == null) {
+			unsetAttributeItemProvider = new UnsetAttributeItemProvider(this);
+		}
+
+		return unsetAttributeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.modelingBot.EEFActions.Unset} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,6 +411,7 @@ public class EEFActionsItemProviderAdapterFactory extends EEFActionsAdapterFacto
 		if (addItemProvider != null) addItemProvider.dispose();
 		if (removeItemProvider != null) removeItemProvider.dispose();
 		if (setAttributeItemProvider != null) setAttributeItemProvider.dispose();
+		if (unsetAttributeItemProvider != null) unsetAttributeItemProvider.dispose();
 		if (unsetItemProvider != null) unsetItemProvider.dispose();
 		if (cancelItemProvider != null) cancelItemProvider.dispose();
 		if (checkItemProvider != null) checkItemProvider.dispose();

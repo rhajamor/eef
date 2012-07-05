@@ -12,7 +12,7 @@
         <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/participants"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="isRegistered" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="true">
+      <processings xsi:type="eef-test_1:SetAttribute" name="isRegistered" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="true">
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLpkmEd6sxtwdpecy3w"/>
         <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/isRegistered"/>
       </processings>

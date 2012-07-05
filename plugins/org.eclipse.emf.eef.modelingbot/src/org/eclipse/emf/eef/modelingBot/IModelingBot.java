@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -118,28 +117,28 @@ public interface IModelingBot {
 	void remove(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject);
 
 	/**
-	 * Set an element.
+	 * Set an attribute.
 	 * 
 	 * @param propertiesEditionElement
 	 * @param referenceableObject
 	 * @param eContainingFeature
-	 * @return
+	 * @param values
 	 */
-	void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, String value);
+	void setAttribute(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values);
 
 	/**
-	 * Set an element.
+	 * Set a reference.
 	 * 
 	 * @param propertiesEditionElement
 	 * @param referenceableObject
 	 * @param eContainingFeature
 	 */
-	void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+	void setReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values);
 
 	/**
-	 * Unset an attribute.
+	 * Unset all the values of an attribute or a reference.
 	 * 
 	 * @param propertiesEditionElement
 	 * @param referenceableObject
@@ -155,8 +154,18 @@ public interface IModelingBot {
 	 * @param referenceableObject
 	 * @param eContainingFeature
 	 */
+	void unsetAttribute(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values);
+	
+	/**
+	 * Unset a reference.
+	 * 
+	 * @param propertiesEditionElement
+	 * @param referenceableObject
+	 * @param eContainingFeature
+	 */
 	void unsetReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values);
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values);
 	
 	/**
 	 * Create a new resource.

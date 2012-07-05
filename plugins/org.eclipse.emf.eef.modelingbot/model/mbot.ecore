@@ -51,7 +51,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Remove" eSuperTypes="#//EEFActions/EditAction"/>
     <eClassifiers xsi:type="ecore:EClass" name="SetAttribute" eSuperTypes="#//EEFActions/EditAction">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eContainingFeature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UnsetAttribute" eSuperTypes="#//EEFActions/EditAction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eContainingFeature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Unset" eSuperTypes="#//EEFActions/EditAction">

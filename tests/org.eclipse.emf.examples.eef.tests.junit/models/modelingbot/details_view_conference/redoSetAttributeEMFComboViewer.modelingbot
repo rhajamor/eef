@@ -8,18 +8,18 @@
     </processings>
     <processings xsi:type="eef-test_1:Check"/>
     <processings xsi:type="eef-mbot:DetailsPage">
-      <processings xsi:type="eef-test_1:Add" name="topic1" referenceableObject="//@sequences.0/@processings.1">
-        <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Topic"/>
-        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/topics"/>
+      <processings xsi:type="eef-test_1:Add" name="participant1" documentation="" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/participants"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="documentation" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="this is the topic number 1">
-        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBOZkmEd6sxtwdpecy3w"/>
-        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Topic/documentation"/>
+      <processings xsi:type="eef-test_1:SetAttribute" name="gender" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="female">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLZkmEd6sxtwdpecy3w"/>
+        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/gender"/>
       </processings>
-      <processings xsi:type="eef-test:Undo" name="documentation"/>
+      <processings xsi:type="eef-test:Undo" name="gender"/>
       <processings xsi:type="eef-test:Save"/>
       <processings xsi:type="eef-test_1:Check"/>
-      <processings xsi:type="eef-test:Redo" name="documentation"/>
+      <processings xsi:type="eef-test:Redo" name="gender"/>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>

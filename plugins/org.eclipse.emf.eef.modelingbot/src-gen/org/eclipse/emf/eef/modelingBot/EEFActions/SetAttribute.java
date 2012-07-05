@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.EEFActions;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
@@ -21,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValues <em>Values</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getEContainingFeature <em>EContaining Feature</em>}</li>
  * </ul>
  * </p>
@@ -32,30 +33,20 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface SetAttribute extends EditAction {
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Values</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Values</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getSetAttribute_Value()
+	 * @return the value of the '<em>Values</em>' attribute list.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getSetAttribute_Values()
 	 * @model
 	 * @generated
 	 */
-	String getValue();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(String value);
+	EList<String> getValues();
 
 	/**
 	 * Returns the value of the '<em><b>EContaining Feature</b></em>' reference.

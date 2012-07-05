@@ -12,18 +12,14 @@
         <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/participants"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="first name" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="my details page first name">
-        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBKJkmEd6sxtwdpecy3w"/>
-        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/firstname"/>
+      <processings xsi:type="eef-test_1:SetAttribute" name="isRegistered" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="true">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLpkmEd6sxtwdpecy3w"/>
+        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/isRegistered"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="first name" referenceableObject="//@sequences.0/@processings.3/@processings.0" value="my details page first name (this part will reappear)">
-        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBKJkmEd6sxtwdpecy3w"/>
-        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/firstname"/>
-      </processings>
-      <processings xsi:type="eef-test:Undo" name="set first name"/>
+      <processings xsi:type="eef-test:Undo" name="isRegistered"/>
       <processings xsi:type="eef-test:Save"/>
       <processings xsi:type="eef-test_1:Check"/>
-      <processings xsi:type="eef-test:Redo" name="set first name"/>
+      <processings xsi:type="eef-test:Redo" name="isRegistered"/>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>

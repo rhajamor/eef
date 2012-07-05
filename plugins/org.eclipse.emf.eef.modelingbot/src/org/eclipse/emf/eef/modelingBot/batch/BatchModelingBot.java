@@ -13,17 +13,13 @@ package org.eclipse.emf.eef.modelingBot.batch;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.print.attribute.HashAttributeSet;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -218,18 +214,27 @@ public class BatchModelingBot implements IModelingBot {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#set(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#setAttribute(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
 	 *      java.lang.String)
 	 */
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, String value) {
+	@SuppressWarnings("unchecked")
+	public void setAttribute(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
 		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
 		if (mappedFeature instanceof EAttribute) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
-			final Object createFromString = EcoreUtil.createFromString(((EAttribute)mappedFeature).getEAttributeType(),
-					value);
+			Object createFromString = null;
+			if (eContainingFeature.isMany()) {
+				createFromString = new ArrayList<Object>();
+				for (String value : values) {
+					((ArrayList<Object>) createFromString).add(EcoreUtil.createFromString(((EAttribute)mappedFeature).getEAttributeType(), value));
+				}
+			} else {
+				createFromString = EcoreUtil.createFromString(((EAttribute)mappedFeature).getEAttributeType(),
+						values.iterator().next());
+			}
 			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature,
 					createFromString);
 			editingDomain.getCommandStack().execute(command);
@@ -246,7 +251,7 @@ public class BatchModelingBot implements IModelingBot {
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
 	 */
 	@SuppressWarnings("unchecked")
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+	public void setReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
 		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
@@ -254,9 +259,9 @@ public class BatchModelingBot implements IModelingBot {
 			activeResource = eObjectFromReferenceableEObject.eResource();
 			Object refValue = null;
 			if (eContainingFeature.isMany()) {
-				refValue = new HashSet<EObject>();
+				refValue = new ArrayList<EObject>();
 				for (ReferenceableObject ref: values) {
-					((HashSet<EObject>) refValue).add(interpreter.getEObjectFromReferenceableEObject(ref));
+					((ArrayList<EObject>) refValue).add(interpreter.getEObjectFromReferenceableEObject(ref));
 				}
 			} else {
 				refValue = interpreter.getEObjectFromReferenceableEObject(values.iterator().next());
@@ -344,9 +349,16 @@ public class BatchModelingBot implements IModelingBot {
 		return value;
 	}
 
+	public void unsetAttribute(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -10,14 +10,17 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.EEFActions.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
 
@@ -28,7 +31,7 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetAttributeImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetAttributeImpl#getValues <em>Values</em>}</li>
  *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.SetAttributeImpl#getEContainingFeature <em>EContaining Feature</em>}</li>
  * </ul>
  * </p>
@@ -37,24 +40,14 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
  */
 public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getValues()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
+	protected EList<String> values;
 
 	/**
 	 * The cached value of the '{@link #getEContainingFeature() <em>EContaining Feature</em>}' reference.
@@ -90,20 +83,11 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EEFActionsPackage.SET_ATTRIBUTE__VALUE, oldValue, value));
+	public EList<String> getValues() {
+		if (values == null) {
+			values = new EDataTypeUniqueEList<String>(String.class, this, EEFActionsPackage.SET_ATTRIBUTE__VALUES);
+		}
+		return values;
 	}
 
 	/**
@@ -152,8 +136,8 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_ATTRIBUTE__VALUE:
-				return getValue();
+			case EEFActionsPackage.SET_ATTRIBUTE__VALUES:
+				return getValues();
 			case EEFActionsPackage.SET_ATTRIBUTE__ECONTAINING_FEATURE:
 				if (resolve) return getEContainingFeature();
 				return basicGetEContainingFeature();
@@ -166,11 +150,13 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_ATTRIBUTE__VALUE:
-				setValue((String)newValue);
+			case EEFActionsPackage.SET_ATTRIBUTE__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends String>)newValue);
 				return;
 			case EEFActionsPackage.SET_ATTRIBUTE__ECONTAINING_FEATURE:
 				setEContainingFeature((EStructuralFeature)newValue);
@@ -187,8 +173,8 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_ATTRIBUTE__VALUE:
-				setValue(VALUE_EDEFAULT);
+			case EEFActionsPackage.SET_ATTRIBUTE__VALUES:
+				getValues().clear();
 				return;
 			case EEFActionsPackage.SET_ATTRIBUTE__ECONTAINING_FEATURE:
 				setEContainingFeature((EStructuralFeature)null);
@@ -205,8 +191,8 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.SET_ATTRIBUTE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case EEFActionsPackage.SET_ATTRIBUTE__VALUES:
+				return values != null && !values.isEmpty();
 			case EEFActionsPackage.SET_ATTRIBUTE__ECONTAINING_FEATURE:
 				return eContainingFeature != null;
 		}
@@ -223,8 +209,8 @@ public class SetAttributeImpl extends EditActionImpl implements SetAttribute {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
+		result.append(" (values: ");
+		result.append(values);
 		result.append(')');
 		return result.toString();
 	}

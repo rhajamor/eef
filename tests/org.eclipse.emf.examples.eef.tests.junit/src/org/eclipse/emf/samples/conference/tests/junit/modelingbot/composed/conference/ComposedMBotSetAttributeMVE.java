@@ -8,15 +8,15 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.conference;
+package org.eclipse.emf.samples.conference.tests.junit.modelingbot.composed.conference;
 
 /**
  * @author arichard
  */
-public class MBotRedoEditAttributeText extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class ComposedMBotSetAttributeMVE extends org.eclipse.emf.eef.modelingBot.testcase.AbstractComposedModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/redoEditAttributeText.modelingbot");
+		composedBot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/setAttributeMVE.modelingbot");
 	}
 
 }

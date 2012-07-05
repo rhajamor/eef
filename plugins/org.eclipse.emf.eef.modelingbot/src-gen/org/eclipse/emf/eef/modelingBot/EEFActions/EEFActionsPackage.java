@@ -332,13 +332,13 @@ public interface EEFActionsPackage extends EPackage {
 	int SET_ATTRIBUTE__REFERENCEABLE_OBJECT = EDIT_ACTION__REFERENCEABLE_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Values</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_ATTRIBUTE__VALUE = EDIT_ACTION_FEATURE_COUNT + 0;
+	int SET_ATTRIBUTE__VALUES = EDIT_ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>EContaining Feature</b></em>' reference.
@@ -359,6 +359,79 @@ public interface EEFActionsPackage extends EPackage {
 	int SET_ATTRIBUTE_FEATURE_COUNT = EDIT_ACTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetAttributeImpl <em>Unset Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetAttributeImpl
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnsetAttribute()
+	 * @generated
+	 */
+	int UNSET_ATTRIBUTE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__NAME = EDIT_ACTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__DOCUMENTATION = EDIT_ACTION__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Properties Edition Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__PROPERTIES_EDITION_ELEMENT = EDIT_ACTION__PROPERTIES_EDITION_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Referenceable Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__REFERENCEABLE_OBJECT = EDIT_ACTION__REFERENCEABLE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__VALUES = EDIT_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EContaining Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE__ECONTAINING_FEATURE = EDIT_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Unset Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSET_ATTRIBUTE_FEATURE_COUNT = EDIT_ACTION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetImpl <em>Unset</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,7 +439,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnset()
 	 * @generated
 	 */
-	int UNSET = 5;
+	int UNSET = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -430,7 +503,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getCancel()
 	 * @generated
 	 */
-	int CANCEL = 6;
+	int CANCEL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -467,7 +540,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getCheck()
 	 * @generated
 	 */
-	int CHECK = 7;
+	int CHECK = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -504,7 +577,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getOpenEEFEditor()
 	 * @generated
 	 */
-	int OPEN_EEF_EDITOR = 8;
+	int OPEN_EEF_EDITOR = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -551,7 +624,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getSetReference()
 	 * @generated
 	 */
-	int SET_REFERENCE = 9;
+	int SET_REFERENCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -625,7 +698,7 @@ public interface EEFActionsPackage extends EPackage {
 	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnsetReference()
 	 * @generated
 	 */
-	int UNSET_REFERENCE = 10;
+	int UNSET_REFERENCE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -786,15 +859,15 @@ public interface EEFActionsPackage extends EPackage {
 	EClass getSetAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValue()
+	 * @return the meta object for the attribute list '<em>Values</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getValues()
 	 * @see #getSetAttribute()
 	 * @generated
 	 */
-	EAttribute getSetAttribute_Value();
+	EAttribute getSetAttribute_Values();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute#getEContainingFeature <em>EContaining Feature</em>}'.
@@ -806,6 +879,38 @@ public interface EEFActionsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSetAttribute_EContainingFeature();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute <em>Unset Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unset Attribute</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute
+	 * @generated
+	 */
+	EClass getUnsetAttribute();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Values</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute#getValues()
+	 * @see #getUnsetAttribute()
+	 * @generated
+	 */
+	EAttribute getUnsetAttribute_Values();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute#getEContainingFeature <em>EContaining Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>EContaining Feature</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute#getEContainingFeature()
+	 * @see #getUnsetAttribute()
+	 * @generated
+	 */
+	EReference getUnsetAttribute_EContainingFeature();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Unset <em>Unset</em>}'.
@@ -1038,12 +1143,12 @@ public interface EEFActionsPackage extends EPackage {
 		EClass SET_ATTRIBUTE = eINSTANCE.getSetAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SET_ATTRIBUTE__VALUE = eINSTANCE.getSetAttribute_Value();
+		EAttribute SET_ATTRIBUTE__VALUES = eINSTANCE.getSetAttribute_Values();
 
 		/**
 		 * The meta object literal for the '<em><b>EContaining Feature</b></em>' reference feature.
@@ -1052,6 +1157,32 @@ public interface EEFActionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SET_ATTRIBUTE__ECONTAINING_FEATURE = eINSTANCE.getSetAttribute_EContainingFeature();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetAttributeImpl <em>Unset Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetAttributeImpl
+		 * @see org.eclipse.emf.eef.modelingBot.EEFActions.impl.EEFActionsPackageImpl#getUnsetAttribute()
+		 * @generated
+		 */
+		EClass UNSET_ATTRIBUTE = eINSTANCE.getUnsetAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNSET_ATTRIBUTE__VALUES = eINSTANCE.getUnsetAttribute_Values();
+
+		/**
+		 * The meta object literal for the '<em><b>EContaining Feature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNSET_ATTRIBUTE__ECONTAINING_FEATURE = eINSTANCE.getUnsetAttribute_EContainingFeature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.UnsetImpl <em>Unset</em>}' class.

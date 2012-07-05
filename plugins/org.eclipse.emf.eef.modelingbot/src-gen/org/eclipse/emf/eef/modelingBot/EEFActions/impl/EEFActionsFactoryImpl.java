@@ -67,6 +67,7 @@ public class EEFActionsFactoryImpl extends EFactoryImpl implements EEFActionsFac
 			case EEFActionsPackage.ADD: return createAdd();
 			case EEFActionsPackage.REMOVE: return createRemove();
 			case EEFActionsPackage.SET_ATTRIBUTE: return createSetAttribute();
+			case EEFActionsPackage.UNSET_ATTRIBUTE: return createUnsetAttribute();
 			case EEFActionsPackage.UNSET: return createUnset();
 			case EEFActionsPackage.CANCEL: return createCancel();
 			case EEFActionsPackage.CHECK: return createCheck();
@@ -106,6 +107,16 @@ public class EEFActionsFactoryImpl extends EFactoryImpl implements EEFActionsFac
 	public SetAttribute createSetAttribute() {
 		SetAttributeImpl setAttribute = new SetAttributeImpl();
 		return setAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnsetAttribute createUnsetAttribute() {
+		UnsetAttributeImpl unsetAttribute = new UnsetAttributeImpl();
+		return unsetAttribute;
 	}
 
 	/**

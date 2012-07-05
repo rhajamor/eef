@@ -24,7 +24,6 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
@@ -186,23 +185,23 @@ public class ComposedEEFBot implements IModelingBot {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#set(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#setAttribute(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
-	 *      java.lang.String)
+	 *      java.util.Collection)
 	 */
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, String value) {
+	public void setAttribute(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
 		// do nothing
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#set(org.eclipse.emf.eef.components.PropertiesEditionElement,
+	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#setReference(org.eclipse.emf.eef.components.PropertiesEditionElement,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
-	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
+	 *      java.util.Collection)
 	 */
-	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
+	public void setReference(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		// do nothing
 	}
@@ -335,9 +334,16 @@ public class ComposedEEFBot implements IModelingBot {
 		return null;
 	}
 
+	public void unsetAttribute(PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject,
+			EStructuralFeature eContainingFeature, Collection<String> values) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
-			EStructuralFeature eContainingFeature, EList<ReferenceableObject> values) {
+			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		// TODO Auto-generated method stub
 		
 	}

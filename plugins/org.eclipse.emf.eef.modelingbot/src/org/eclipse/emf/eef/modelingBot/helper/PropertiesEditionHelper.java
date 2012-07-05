@@ -37,6 +37,7 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotRadio;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 
+
 /**
  * @author <a href="mailto:nathalie.lepine@obeo.fr">Nathalie Lepine</a>
  */
@@ -69,9 +70,12 @@ public class PropertiesEditionHelper {
 	 */
 	public void updateAttribute(SWTBotTreeItem selectNode,
 			PropertiesEditionElement propertiesEditionElement,
-			EObject referenceableObject, EObject container, String value,
+			EObject referenceableObject, EObject container, Collection<String> values,
 			SequenceType sequenceType) {
 		assertFalse(propertiesEditionElement.getViews().isEmpty());
+		assertFalse(values == null);
+		assertFalse(values.isEmpty());
+		
 		final ElementEditor elementEditor = propertiesEditionElement.getViews()
 				.get(0);
 		final String representationName = elementEditor.getRepresentation()
@@ -79,12 +83,12 @@ public class PropertiesEditionHelper {
 		if ("Text".equals(representationName)
 				|| "Textarea".equals(representationName)) {
 			updateText(propertiesEditionElement, referenceableObject,
-					container, value, sequenceType);
+					container, values.iterator().next(), sequenceType);
 		} else if ("EMFComboViewer".equals(representationName)) {
 			updateEMFComboViewer(propertiesEditionElement, referenceableObject,
-					container, value, sequenceType);
+					container, values.iterator().next(), sequenceType);
 		} else if ("Radio".equals(representationName)) {
-			updateRadio(elementEditor, value, sequenceType);
+			updateRadio(elementEditor, values.iterator().next(), sequenceType);
 		} else if ("Checkbox".equals(representationName)) {
 			AdapterFactory adapterFactory = EEFRuntimePlugin.getDefault()
 					.getAdapterFactory();
@@ -92,23 +96,14 @@ public class PropertiesEditionHelper {
 					.getEPackage(), propertiesEditionElement.getModel());
 			IItemPropertySource adapt = (IItemPropertySource) adapterFactory
 					.adapt(container, IItemPropertySource.class);
+			String value = null;
 			if (adapt != null) {
 				value = adapt.getPropertyDescriptor(container, model)
 						.getDisplayName(container);
 			}
 			updateCheckbox(elementEditor, value, sequenceType);
 		} else if ("MultiValuedEditor".equals(representationName)) {
-			EStructuralFeature model = EMFHelper.map(container.eClass()
-					.getEPackage(), propertiesEditionElement.getModel());
-			Object featureValue = container.eGet(model);
-			int size = 0;
-			if (featureValue instanceof Collection) {
-				@SuppressWarnings("unchecked")
-				Collection<EObject> reference = (Collection<EObject>) featureValue;
-				size = reference.size();
-			}
-			updateMultiValuedEditor(propertiesEditionElement, value, size,
-					sequenceType);
+			updateMultiValuedEditor(propertiesEditionElement, values, sequenceType);
 		} else {
 			System.out.println("Case not managed in updateAttribute : "
 					+ representationName);
@@ -228,9 +223,12 @@ public class PropertiesEditionHelper {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
-		bot.addButtonAdvancedReferencesTable(label).click();
-		bot.selectInActiveTree(values);
-		clickOkOrCancel(propertiesEditionElement);
+		//TODO manage this case with selectInActiveTree(Collection<EObject>) when EEF will allowed to select multiple elements in a tree
+		for (EObject value : values) {
+			bot.addButtonAdvancedReferencesTable(label).click();
+			bot.selectInActiveTree(value);
+			clickOkOrCancel(propertiesEditionElement);
+		}
 		SWTBotHelper.waitAllUiEvents();
 	}
 
@@ -268,7 +266,7 @@ public class PropertiesEditionHelper {
 				.get(0)).getQualifiedIdentifier();
 		bot.browseButtonFlatReferencesTable(label).click();
 		for (EObject value : values) {
-			bot.selectInRightTableOfEditor(value);
+			bot.selectInRightTableOfActiveEditor(value);
 			SWTBotButton buttonRemove = bot.button(1);
 			buttonRemove.click();
 			SWTBotHelper.waitAllUiEvents();
@@ -289,9 +287,12 @@ public class PropertiesEditionHelper {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
-		bot.editButtonEObjectFlatComboViewer(label).click();
-		bot.selectInActiveTable(values);
-		clickOkOrCancel(propertiesEditionElement);
+		//TODO manage this case with selectInActiveTree(Collection<EObject>) when EEF will allowed to select multiple elements in a tree
+		for (EObject value : values) {
+			bot.editButtonEObjectFlatComboViewer(label).click();
+			bot.selectInActiveTree(value);
+			clickOkOrCancel(propertiesEditionElement);
+		}
 		SWTBotHelper.waitAllUiEvents();
 	}
 
@@ -378,23 +379,37 @@ public class PropertiesEditionHelper {
 	 * Update widget MultiValuedEditor.
 	 * 
 	 * @param propertiesEditionElement
-	 * @param value
-	 *            the value(s) separated with the separator "/sep/"
-	 * @param size
-	 *            the number of values to removes
+	 * @param values
 	 * @param sequenceType
 	 */
 	private void updateMultiValuedEditor(
-			PropertiesEditionElement propertiesEditionElement, String value,
-			int size, SequenceType sequenceType) {
+			PropertiesEditionElement propertiesEditionElement, Collection<String> values, SequenceType sequenceType) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.browseButtonMultiValuedEditor(label).click();
-		if (value != null) {
-			bot.addValueInMultiValuedEditor(value);
+		bot.addValuesInMultiValuedEditor(values);
+		clickOkOrCancel(propertiesEditionElement);
+		SWTBotHelper.waitAllUiEvents();
+	}
+	
+	/**
+	 * Unset values for widget MultiValuedEditor.
+	 * 
+	 * @param propertiesEditionElement
+	 * @param values
+	 * @param sequenceType
+	 */
+	public void unsetMultiValuedEditor(
+			PropertiesEditionElement propertiesEditionElement, Collection<String> values, SequenceType sequenceType) {
+		SWTBotHelper.waitAllUiEvents();
+		String label = ((ElementEditor) propertiesEditionElement.getViews()
+				.get(0)).getQualifiedIdentifier();
+		bot.browseButtonMultiValuedEditor(label).click();
+		if (values == null || values.isEmpty()) {
+			bot.removeAllValuesInMultiValuedEditor();
 		} else {
-			bot.removeAllValuesInMultiValuedEditor(size);
+			bot.removeValuesInMultiValuedEditor(values);
 		}
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
@@ -467,6 +482,7 @@ public class PropertiesEditionHelper {
 		}
 	}
 
+	
 	public void unsetReference(
 			PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
@@ -598,5 +614,13 @@ public class PropertiesEditionHelper {
 			((EEFInterpreter) bot.getModelingBotInterpreter())
 					.getActionsToCancel().remove(propertiesEditionElement);
 		}
+	}
+
+	public void unsetAttribute(
+			PropertiesEditionElement propertiesEditionElement,
+			ReferenceableObject referenceableObject, Collection<String> values,
+			SequenceType sequenceType) {
+		System.out.println("Case not managed in unsetAttribute of PropertiesEditionHelper");
+		
 	}
 }

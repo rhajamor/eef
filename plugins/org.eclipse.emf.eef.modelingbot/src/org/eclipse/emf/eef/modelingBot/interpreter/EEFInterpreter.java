@@ -301,12 +301,12 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 					}
 				}
 			} else if (action instanceof SetAttribute) {
-				bot.set(((SetAttribute) action).getPropertiesEditionElement(),
+				bot.setAttribute(((SetAttribute) action).getPropertiesEditionElement(),
 						((SetAttribute) action).getReferenceableObject(),
 						((SetAttribute) action).getEContainingFeature(),
-						((SetAttribute) action).getValue());
+						((SetAttribute) action).getValues());
 			} else if (action instanceof SetReference) {
-				bot.set(((SetReference) action).getPropertiesEditionElement(),
+				bot.setReference(((SetReference) action).getPropertiesEditionElement(),
 						((SetReference) action).getReferenceableObject(),
 						((SetReference) action).getEContainingFeature(),
 						((SetReference) action).getValues());
