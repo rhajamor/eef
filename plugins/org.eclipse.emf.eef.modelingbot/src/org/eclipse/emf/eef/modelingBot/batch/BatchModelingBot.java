@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -284,7 +285,18 @@ public class BatchModelingBot implements IModelingBot {
 	 */
 	public void unset(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature) {
-		// TODO Auto-generated method stub
+		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
+		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
+		activeResource = eObjectFromReferenceableEObject.eResource();
+		if (mappedFeature instanceof EAttribute) {
+			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, null);
+			editingDomain.getCommandStack().execute(command);
+		} else if (mappedFeature instanceof EReference) {
+			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, eObjectFromReferenceableEObject.eGet(mappedFeature));
+			editingDomain.getCommandStack().execute(command);
+		} else {
+			fail("Cannot unset without a eContainingFeature attribute/reference");
+		}
 
 	}
 
