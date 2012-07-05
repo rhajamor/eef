@@ -13,10 +13,10 @@ package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.c
 /**
  * @author arichard
  */
-public class MBotUnsetAttributeText extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class MBotUnsetMVE extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/unsetAttributeText.modelingbot");
+		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/unsetMVE.modelingbot");
 	}
 
 }

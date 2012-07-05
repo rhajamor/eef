@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.batch;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -191,10 +192,12 @@ public class BatchModelingBot implements IModelingBot {
 	public EObject add(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, EClass type) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
+		assertNotNull("the eObjectFromReferenceableEObject is null", eObjectFromReferenceableEObject);
 		activeResource = eObjectFromReferenceableEObject.eResource();
 		EClass mappedType = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), type);
+		EStructuralFeature mappedContainingFeature = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), eContainingFeature);
 		final EObject value = EcoreUtil.create(mappedType);
-		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature, value);
+		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedContainingFeature, value);
 		editingDomain.getCommandStack().execute(command);
 		return value;
 	}
@@ -339,12 +342,16 @@ public class BatchModelingBot implements IModelingBot {
 			ReferenceableObject referenceableObjectContainer,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, EClass type) {
-		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
-		activeResource = eObjectFromReferenceableEObject.eResource();
+		if (referenceableObjectContainer == null) {
+			return add(propertiesEditionElement, referenceableObject, eContainingFeature, type);
+		}
+		final EObject container = interpreter.getEObjectFromReferenceableEObject(referenceableObjectContainer);
+		assertNotNull("No container is found.", container);
+		activeResource = container.eResource();
 		EClass mappedType = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), type);
 		EStructuralFeature mappedContainingFeature = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), eContainingFeature);
 		final EObject value = EcoreUtil.create(mappedType);
-		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedContainingFeature, value);
+		final Command command = AddCommand.create(editingDomain, container, mappedContainingFeature, value);
 		editingDomain.getCommandStack().execute(command);
 		return value;
 	}
