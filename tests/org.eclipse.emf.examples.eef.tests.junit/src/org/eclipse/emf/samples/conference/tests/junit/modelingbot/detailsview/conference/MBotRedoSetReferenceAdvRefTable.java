@@ -13,10 +13,10 @@ package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.c
 /**
  * @author arichard
  */
-public class MBotUndoEditAttributeCheckbox extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class MBotRedoSetReferenceAdvRefTable extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/undoEditAttributeCheckbox.modelingbot");
+		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/redoSetReferenceAdvRefTable.modelingbot");
 	}
 
 }

@@ -14,6 +14,10 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.print.attribute.HashAttributeSet;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -225,7 +229,7 @@ public class BatchModelingBot implements IModelingBot {
 		if (mappedFeature instanceof EAttribute) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
 			final Object createFromString = EcoreUtil.createFromString(((EAttribute)mappedFeature).getEAttributeType(),
-					value +" wouhouh");
+					value);
 			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature,
 					createFromString);
 			editingDomain.getCommandStack().execute(command);
@@ -241,15 +245,24 @@ public class BatchModelingBot implements IModelingBot {
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject, org.eclipse.emf.ecore.EStructuralFeature,
 	 *      org.eclipse.emf.eef.extended.editor.ReferenceableObject)
 	 */
+	@SuppressWarnings("unchecked")
 	public void set(PropertiesEditionElement propertiesEditionElement, ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
 		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
-		if (eContainingFeature instanceof EReference) {
+		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
+		if (mappedFeature instanceof EReference) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
-			//TODO
-			//final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, eContainingFeature,
-			//		interpreter.getEObjectFromReferenceableEObject(value));
-			//editingDomain.getCommandStack().execute(command);
+			Object refValue = null;
+			if (eContainingFeature.isMany()) {
+				refValue = new HashSet<EObject>();
+				for (ReferenceableObject ref: values) {
+					((HashSet<EObject>) refValue).add(interpreter.getEObjectFromReferenceableEObject(ref));
+				}
+			} else {
+				refValue = interpreter.getEObjectFromReferenceableEObject(values.iterator().next());
+			}
+			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, refValue);
+			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot set without a eContainingFeature reference");
 		}

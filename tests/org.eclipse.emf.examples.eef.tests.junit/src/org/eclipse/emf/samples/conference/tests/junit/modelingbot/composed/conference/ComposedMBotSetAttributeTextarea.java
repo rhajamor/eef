@@ -8,15 +8,15 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.conference;
+package org.eclipse.emf.samples.conference.tests.junit.modelingbot.composed.conference;
 
 /**
  * @author arichard
  */
-public class MBotUndoEditAttributeText extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class ComposedMBotSetAttributeTextarea extends org.eclipse.emf.eef.modelingBot.testcase.AbstractComposedModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/undoEditAttributeText.modelingbot");
+		composedBot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/setAttributeTextarea.modelingbot");
 	}
 
 }

@@ -13,10 +13,10 @@ package org.eclipse.emf.samples.conference.tests.junit.modelingbot.detailsview.c
 /**
  * @author arichard
  */
-public class MBotUndoSetFeatureAdvRefTable extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
+public class MBotUndoSetReferenceEOFCV extends org.eclipse.emf.eef.modelingBot.testcase.AbstractSWTBotModelingBotTestCase {
 
 	public void testModelingBot() throws Exception {
-		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/undoSetFeatureAdvRefTable.modelingbot");
+		bot.runModelingBot("org.eclipse.emf.examples.eef.tests.junit/models/modelingbot/details_view_conference/undoSetReferenceEOFCV.modelingbot");
 	}
 
 }
