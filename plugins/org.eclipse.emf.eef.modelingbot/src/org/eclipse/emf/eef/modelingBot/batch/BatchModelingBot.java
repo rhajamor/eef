@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -37,8 +38,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
+import org.eclipse.emf.eef.modelingBot.Action;
+import org.eclipse.emf.eef.modelingBot.DetailsPage;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
+import org.eclipse.emf.eef.modelingBot.Sequence;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
+import org.eclipse.emf.eef.modelingBot.Wizard;
+import org.eclipse.emf.eef.modelingBot.EEFActions.Cancel;
 import org.eclipse.emf.eef.modelingBot.helper.EMFHelper;
 import org.eclipse.emf.eef.modelingBot.interpreter.EEFInterpreter;
 import org.eclipse.emf.eef.modelingBot.interpreter.IModelingBotInterpreter;
@@ -329,8 +335,22 @@ public class BatchModelingBot implements IModelingBot {
 	}
 
 	public void cancel() {
-		System.out.println("cancel");
-
+		Sequence sequenceToCancel = interpreter.getSequenceToCancel();
+		if (sequenceToCancel instanceof DetailsPage) {
+			undo();
+		} else if (sequenceToCancel instanceof Wizard) {
+			EList<EObject> eContents = sequenceToCancel.eContents();
+			Collection<EObject> eContentsAction = new ArrayList<EObject>();
+			for (EObject eObject : eContents) {
+				if (eObject instanceof Action && !(eObject instanceof Cancel)) {
+					eContentsAction.add(eObject);
+				}
+			}
+			int numberOfActionsToCancel = eContentsAction.size();
+			for (int i = 0; i < numberOfActionsToCancel; i++) {
+				undo();
+			}
+		}
 	}
 
 	public void setSequenceType(SequenceType detailsPage) {

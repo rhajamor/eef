@@ -13,7 +13,11 @@ package org.eclipse.emf.samples.tests.junit;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotAddAdvTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotRedoSetAttributeTextArea;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotRemoveAdvTableCompo;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeCheckbox;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeEMFComboViewer;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeMVE;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeText;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeTextArea;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceAdvRefTable2;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceEOFCV;
@@ -32,7 +36,11 @@ public class AllBatchMBotTests {
 		// $JUnit-BEGIN$
 		
 		//Set Attribute
+		suite.addTestSuite(BatchMBotSetAttributeCheckbox.class);
+		suite.addTestSuite(BatchMBotSetAttributeEMFComboViewer.class);
+		suite.addTestSuite(BatchMBotSetAttributeMVE.class);
 		suite.addTestSuite(BatchMBotSetAttributeText.class);
+		suite.addTestSuite(BatchMBotSetAttributeTextArea.class);
 		
 		//Set Reference
 		suite.addTestSuite(BatchMBotSetReferenceAdvRefTable.class);

@@ -60,6 +60,7 @@ import org.eclipse.emf.eef.modelingBot.EclipseActions.RemoveProject;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.Save;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.Undo;
 import org.eclipse.emf.eef.modelingBot.helper.EEFModelingBotHelper;
+import org.eclipse.emf.eef.modelingBot.swtbot.SWTEEFBot;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 
 /**
@@ -83,6 +84,8 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 * Map Sequence -> boolean to know if the sequence has been canceled.
 	 */
 	private Map<Sequence, Boolean> mapSequenceToCancel = new HashMap<Sequence, Boolean>();
+
+	private Sequence sequenceToCancel = null;
 
 	/**
 	 * Set Action to know if the action has to be canceled.
@@ -155,6 +158,14 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 		return actionsToCancel;
 	}
 
+	public Map<Sequence, Boolean> getMapSequenceToCancel() {
+		return mapSequenceToCancel;
+	}
+	
+	public Sequence getSequenceToCancel() {
+		return sequenceToCancel;
+	}
+	
 	/**
 	 * Dispose the maps of the interpreter.
 	 */
@@ -263,8 +274,9 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 					&& EEFModelingBotHelper.isFollowingByCancel(action)) {
 				actionsToCancel.add(((EditAction) action)
 						.getPropertiesEditionElement());
-				processedActions.add(EEFModelingBotHelper
-						.getFollowingCancelAction(action));
+				if (bot instanceof SWTEEFBot) {
+					processedActions.add(EEFModelingBotHelper.getFollowingCancelAction(action));
+				}	
 			}
 
 			if (action instanceof CreateProject) {
@@ -319,8 +331,11 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 			} else if (action instanceof RemoveProject) {
 				bot.removeProject(((RemoveProject) action).getProjectName());
 			} else if (action instanceof Cancel) {
-				mapSequenceToCancel.put((Sequence) action.eContainer(), true);
+				Sequence eContainerSequence = (Sequence) action.eContainer();
+				mapSequenceToCancel.put(eContainerSequence, true);
+				sequenceToCancel = eContainerSequence;
 				bot.cancel();
+				sequenceToCancel = null;
 			} else if (action instanceof Unset) {
 				bot.unset(((Unset) action).getPropertiesEditionElement(),
 						((Unset) action).getReferenceableObject(),
