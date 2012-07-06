@@ -2,8 +2,8 @@
 <eef-mbot:ModelingBot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eef-mbot="http://www.eclipse.org/emf/eef/mbot/1.0.0" xmlns:eef-test="http://www.eclipse.org/emf/eef/test/EclipseActions/1.0.0" xmlns:eef-test_1="http://www.eclipse.org/emf/eef/test/EEFActions/1.0.0">
   <propertiesEditionContext href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LAAwvEd-uP4lw9e0IMw"/>
   <sequences xsi:type="eef-mbot:Scenario">
-    <processings xsi:type="eef-test:CreateProject" name="simple" projectName="simple"/>
-    <processings xsi:type="eef-test:CreateModel" name="eefnr" documentation="" modelName="simple.eefnr" path="simple">
+    <processings xsi:type="eef-test:CreateProject" name="setAttributeRadio" projectName="setAttributeRadio"/>
+    <processings xsi:type="eef-test:CreateModel" name="eefnr" documentation="" modelName="setAttributeRadio.eefnr" path="setAttributeRadio">
       <root href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>
@@ -12,13 +12,14 @@
         <type href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//RadioSample"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root/samples"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="radio literal2" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="literal2">
+      <processings xsi:type="eef-test_1:SetAttribute" name="radio literal2" referenceableObject="//@sequences.0/@processings.3/@processings.0">
         <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LKAwvEd-uP4lw9e0IMw"/>
+        <values>literal2</values>
         <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//RadioSample/radioOptionalProperty"/>
       </processings>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>
-    <processings xsi:type="eef-test:RemoveProject" projectName="simple"/>
+    <processings xsi:type="eef-test:RemoveProject" projectName="setAttributeRadio"/>
   </sequences>
 </eef-mbot:ModelingBot>

@@ -2,8 +2,8 @@
 <eef-mbot:ModelingBot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eef-mbot="http://www.eclipse.org/emf/eef/mbot/1.0.0" xmlns:eef-test="http://www.eclipse.org/emf/eef/test/EclipseActions/1.0.0" xmlns:eef-test_1="http://www.eclipse.org/emf/eef/test/EEFActions/1.0.0">
   <propertiesEditionContext href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LAAwvEd-uP4lw9e0IMw"/>
   <sequences xsi:type="eef-mbot:Scenario">
-    <processings xsi:type="eef-test:CreateProject" name="simple" projectName="simple"/>
-    <processings xsi:type="eef-test:CreateModel" name="eefnr" documentation="" modelName="simple.eefnr" path="simple">
+    <processings xsi:type="eef-test:CreateProject" name="setReferenceAEOFCV" projectName="setReferenceAEOFCV"/>
+    <processings xsi:type="eef-test:CreateModel" name="eefnr" documentation="" modelName="setReferenceAEOFCV.eefnr" path="setReferenceAEOFCV">
       <root href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>
@@ -23,6 +23,6 @@
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>
-    <processings xsi:type="eef-test:RemoveProject" projectName="simple"/>
+    <processings xsi:type="eef-test:RemoveProject" name="setReferenceAEOFCV" projectName="setReferenceAEOFCV"/>
   </sequences>
 </eef-mbot:ModelingBot>
