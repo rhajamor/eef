@@ -476,7 +476,7 @@ public class PropertiesEditionHelper {
 		if ("TableComposition".equals(representationName)) {
 			bot.removeButtonTableComposition(
 					elementEditor.getQualifiedIdentifier()).click();
-		} else if ("ReferencesTable".equals(representationName)) {
+		} else if ("AdvancedTableComposition".equals(representationName)) {
 			bot.removeButtonAdvancedTableComposition(
 					elementEditor.getQualifiedIdentifier()).click();
 		}
