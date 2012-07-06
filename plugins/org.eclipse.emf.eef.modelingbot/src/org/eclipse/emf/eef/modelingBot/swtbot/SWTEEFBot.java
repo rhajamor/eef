@@ -1143,12 +1143,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	
 	/**
 	 * Remove all values of the MVE by clicking on Remove button each time necessary.
-	 * @param size 
 	 * 
 	 */
 	public void removeAllValuesInMultiValuedEditor() {
-		final SWTBotTable table = table(1);
-		for (int i = 0; i < table.rowCount(); i++) {
+		final SWTBotTable table = table(0);
+		int rowCount = table.rowCount();
+		for (int i = 0; i < rowCount; i++) {
 			SWTBotButton buttonRemove = button(1);
 			buttonRemove.click();
 		}

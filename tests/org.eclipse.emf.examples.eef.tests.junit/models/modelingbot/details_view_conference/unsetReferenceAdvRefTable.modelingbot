@@ -29,25 +29,21 @@
         <values>talk1</values>
         <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk/title"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetReference" name="assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.0">
-        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
-        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
-      </processings>
       <processings xsi:type="eef-test_1:Add" name="talk2" referenceableObject="//@sequences.0/@processings.1">
         <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/talks"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetAttribute" name="title" referenceableObject="//@sequences.0/@processings.4/@processings.3">
+      <processings xsi:type="eef-test_1:SetAttribute" name="title" referenceableObject="//@sequences.0/@processings.4/@processings.2">
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBMJkmEd6sxtwdpecy3w"/>
         <values>talk2</values>
         <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk/title"/>
       </processings>
-      <processings xsi:type="eef-test_1:SetReference" name="assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.3">
+      <processings xsi:type="eef-test_1:SetReference" name="assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.0 //@sequences.0/@processings.4/@processings.2">
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
       </processings>
       <processings xsi:type="eef-test_1:Check"/>
-      <processings xsi:type="eef-test_1:UnsetReference" name="talk1 on assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.0 //@sequences.0/@processings.4/@processings.3">
+      <processings xsi:type="eef-test_1:UnsetReference" name="talk1 and talk2 on assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.0 //@sequences.0/@processings.4/@processings.2">
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
         <feature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
       </processings>

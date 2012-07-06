@@ -289,8 +289,14 @@ public class BatchModelingBot implements IModelingBot {
 		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
 		activeResource = eObjectFromReferenceableEObject.eResource();
 		if (mappedFeature instanceof EAttribute) {
-			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, null);
-			editingDomain.getCommandStack().execute(command);
+			if (mappedFeature.isMany()) {
+				Collection<Object> valuesToRemove = RemoveCommand.getOwnerList(eObjectFromReferenceableEObject, mappedFeature);
+				final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, valuesToRemove);
+				editingDomain.getCommandStack().execute(command);
+			} else {
+				final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, null);
+				editingDomain.getCommandStack().execute(command);
+			}
 		} else if (mappedFeature instanceof EReference) {
 			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, eObjectFromReferenceableEObject.eGet(mappedFeature));
 			editingDomain.getCommandStack().execute(command);
@@ -371,24 +377,44 @@ public class BatchModelingBot implements IModelingBot {
 	public void unsetAttribute(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<String> values) {
-		// TODO Auto-generated method stub
+		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
+		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
+		if (mappedFeature instanceof EAttribute) {
+			activeResource = eObjectFromReferenceableEObject.eResource();
+			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, values);
+			editingDomain.getCommandStack().execute(command);
+		} else {
+			fail("Cannot unset without a eContainingFeature attribute");
+		}
 		
 	}
 	
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
-		// TODO Auto-generated method stub
+		final EObject eObjectFromReferenceableEObject = interpreter.getEObjectFromReferenceableEObject(referenceableObject);
+		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
+		if (mappedFeature instanceof EReference) {
+			activeResource = eObjectFromReferenceableEObject.eResource();
+			Collection<EObject> valuesToUnset = new ArrayList<EObject>();
+			for (ReferenceableObject value : values) {
+				valuesToUnset.add(interpreter.getEObjectFromReferenceableEObject(value));
+			}
+			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, valuesToUnset);
+			editingDomain.getCommandStack().execute(command);
+		} else {
+			fail("Cannot unset without a eContainingFeature reference");
+		}
 		
 	}
 
 	public void undo() {
-		// TODO Auto-generated method stub
+		editingDomain.getCommandStack().undo();
 		
 	}
 
 	public void redo() {
-		// TODO Auto-generated method stub
+		editingDomain.getCommandStack().redo();
 		
 	}
 
