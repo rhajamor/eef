@@ -287,12 +287,9 @@ public class PropertiesEditionHelper {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
-		//TODO manage this case with selectInActiveTree(Collection<EObject>) when EEF will allowed to select multiple elements in a tree
-		for (EObject value : values) {
-			bot.editButtonEObjectFlatComboViewer(label).click();
-			bot.selectInActiveTree(value);
-			clickOkOrCancel(propertiesEditionElement);
-		}
+		bot.editButtonEObjectFlatComboViewer(label).click();
+		bot.selectInActiveTable(values);
+		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
 	}
 

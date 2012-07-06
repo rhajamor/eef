@@ -329,22 +329,19 @@ public class BatchModelingBot implements IModelingBot {
 	}
 
 	public void cancel() {
-		// TODO Auto-generated method stub
+		System.out.println("cancel");
 
 	}
 
 	public void setSequenceType(SequenceType detailsPage) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public void validateBatchEditing() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public void check() {
-		// TODO Auto-generated method stub
 
 	}
 
