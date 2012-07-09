@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
+import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
 import org.eclipse.emf.eef.modelingBot.interpreter.ComposedEEFInterpreter;
@@ -233,7 +234,7 @@ public class ComposedEEFBot implements IModelingBot {
 	 * 
 	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#cancel()
 	 */
-	public void cancel() {
+	public void cancel(Action action) {
 		// do nothing
 	}
 

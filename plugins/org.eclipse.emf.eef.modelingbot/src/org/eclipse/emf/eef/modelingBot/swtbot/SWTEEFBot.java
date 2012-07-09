@@ -35,6 +35,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
+import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
 import org.eclipse.emf.eef.modelingBot.EEFActions.EditAction;
@@ -836,7 +837,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 * 
 	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#cancel()
 	 */
-	public void cancel() {
+	public void cancel(Action action) {
 		button(UIConstants.CANCEL_BUTTON).click();
 	}
 

@@ -178,7 +178,7 @@ public interface IModelingBot {
 	/**
 	 * Cancel.
 	 */
-	void cancel();
+	void cancel(Action action);
 
 	/**
 	 * Set the sequence type : wizard, details page, properties view...

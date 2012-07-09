@@ -68,7 +68,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/Unset/feature"/>
       </genClasses>
-      <genClasses ecoreClass="mbot.ecore#//EEFActions/Cancel"/>
+      <genClasses ecoreClass="mbot.ecore#//EEFActions/Cancel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/Cancel/action"/>
+      </genClasses>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/Check"/>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/OpenEEFEditor">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbot.ecore#//EEFActions/OpenEEFEditor/editorName"/>

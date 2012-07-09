@@ -594,7 +594,7 @@ public class PropertiesEditionHelper {
 		bot.sleep(1000);
 		if (((EEFInterpreter) bot.getModelingBotInterpreter())
 				.getActionsToCancel().contains(propertiesEditionElement)) {
-			bot.cancel();
+			bot.cancel(null);
 			((EEFInterpreter) bot.getModelingBotInterpreter())
 					.getActionsToCancel().remove(propertiesEditionElement);
 		} else {
@@ -607,7 +607,7 @@ public class PropertiesEditionHelper {
 		bot.sleep(1000);
 		if (((EEFInterpreter) bot.getModelingBotInterpreter())
 				.getActionsToCancel().contains(propertiesEditionElement)) {
-			bot.cancel();
+			bot.cancel(null);
 			((EEFInterpreter) bot.getModelingBotInterpreter())
 					.getActionsToCancel().remove(propertiesEditionElement);
 		}

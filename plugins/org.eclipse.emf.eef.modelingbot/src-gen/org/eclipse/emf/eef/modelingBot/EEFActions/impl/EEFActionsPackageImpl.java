@@ -369,6 +369,15 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCancel_Action() {
+		return (EReference)cancelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCheck() {
 		return checkEClass;
 	}
@@ -497,6 +506,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		createEReference(unsetEClass, UNSET__FEATURE);
 
 		cancelEClass = createEClass(CANCEL);
+		createEReference(cancelEClass, CANCEL__ACTION);
 
 		checkEClass = createEClass(CHECK);
 
@@ -585,6 +595,7 @@ public class EEFActionsPackageImpl extends EPackageImpl implements EEFActionsPac
 		initEReference(getUnset_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, Unset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cancelEClass, Cancel.class, "Cancel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCancel_Action(), theModelingBotPackage.getAction(), null, "action", null, 0, 1, Cancel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(checkEClass, Check.class, "Check", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

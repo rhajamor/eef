@@ -85,8 +85,6 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 	 */
 	private Map<Sequence, Boolean> mapSequenceToCancel = new HashMap<Sequence, Boolean>();
 
-	private Sequence sequenceToCancel = null;
-
 	/**
 	 * Set Action to know if the action has to be canceled.
 	 */
@@ -160,10 +158,6 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 
 	public Map<Sequence, Boolean> getMapSequenceToCancel() {
 		return mapSequenceToCancel;
-	}
-	
-	public Sequence getSequenceToCancel() {
-		return sequenceToCancel;
 	}
 	
 	/**
@@ -333,9 +327,7 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 			} else if (action instanceof Cancel) {
 				Sequence eContainerSequence = (Sequence) action.eContainer();
 				mapSequenceToCancel.put(eContainerSequence, true);
-				sequenceToCancel = eContainerSequence;
-				bot.cancel();
-				sequenceToCancel = null;
+				bot.cancel(((Cancel) action).getAction());
 			} else if (action instanceof Unset) {
 				bot.unset(((Unset) action).getPropertiesEditionElement(),
 						((Unset) action).getReferenceableObject(),

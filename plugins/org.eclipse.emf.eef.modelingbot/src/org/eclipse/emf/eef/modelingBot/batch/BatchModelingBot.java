@@ -334,12 +334,9 @@ public class BatchModelingBot implements IModelingBot {
 		// return null;
 	}
 
-	public void cancel() {
-		Sequence sequenceToCancel = interpreter.getSequenceToCancel();
-		if (sequenceToCancel instanceof DetailsPage) {
-			undo();
-		} else if (sequenceToCancel instanceof Wizard) {
-			EList<EObject> eContents = sequenceToCancel.eContents();
+	public void cancel(Action action) {
+		if (action instanceof Wizard) {
+			EList<EObject> eContents = action.eContents();
 			Collection<EObject> eContentsAction = new ArrayList<EObject>();
 			for (EObject eObject : eContents) {
 				if (eObject instanceof Action && !(eObject instanceof Cancel)) {
@@ -350,6 +347,8 @@ public class BatchModelingBot implements IModelingBot {
 			for (int i = 0; i < numberOfActionsToCancel; i++) {
 				undo();
 			}
+		} else {
+			undo();
 		}
 	}
 

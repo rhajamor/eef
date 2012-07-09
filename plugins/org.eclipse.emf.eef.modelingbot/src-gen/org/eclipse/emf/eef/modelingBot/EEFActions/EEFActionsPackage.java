@@ -524,13 +524,22 @@ public interface EEFActionsPackage extends EPackage {
 	int CANCEL__DOCUMENTATION = EEF_ACTION__DOCUMENTATION;
 
 	/**
+	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CANCEL__ACTION = EEF_ACTION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Cancel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CANCEL_FEATURE_COUNT = EEF_ACTION_FEATURE_COUNT + 0;
+	int CANCEL_FEATURE_COUNT = EEF_ACTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.CheckImpl <em>Check</em>}' class.
@@ -944,6 +953,17 @@ public interface EEFActionsPackage extends EPackage {
 	EClass getCancel();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Action</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction()
+	 * @see #getCancel()
+	 * @generated
+	 */
+	EReference getCancel_Action();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Check <em>Check</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1211,6 +1231,14 @@ public interface EEFActionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CANCEL = eINSTANCE.getCancel();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CANCEL__ACTION = eINSTANCE.getCancel_Action();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.CheckImpl <em>Check</em>}' class.
