@@ -20,7 +20,7 @@
         <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LPQwvEd-uP4lw9e0IMw"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//AdvancedEObjectFlatComboViewerSample/advancedeobjectflatcomboviewerOptionalProperty"/>
       </processings>
-      <processings xsi:type="eef-test_1:Cancel" name="set optional property"/>
+      <processings xsi:type="eef-test_1:Cancel" name="set optional property" processing="//@sequences.0/@processings.3/@processings.2"/>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>

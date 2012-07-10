@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Cancel;
 import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage;
+import org.eclipse.emf.eef.modelingBot.Processing;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.CancelImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.CancelImpl#getProcessing <em>Processing</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,15 +35,14 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage;
  */
 public class CancelImpl extends EEFActionImpl implements Cancel {
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
+	 * The cached value of the '{@link #getProcessing() <em>Processing</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
+	 * @see #getProcessing()
 	 * @generated
 	 * @ordered
 	 */
-	protected Action action;
-
+	protected Processing processing;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,16 +67,16 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Action getAction() {
-		if (action != null && action.eIsProxy()) {
-			InternalEObject oldAction = (InternalEObject)action;
-			action = (Action)eResolveProxy(oldAction);
-			if (action != oldAction) {
+	public Processing getProcessing() {
+		if (processing != null && processing.eIsProxy()) {
+			InternalEObject oldProcessing = (InternalEObject)processing;
+			processing = (Processing)eResolveProxy(oldProcessing);
+			if (processing != oldProcessing) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EEFActionsPackage.CANCEL__ACTION, oldAction, action));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EEFActionsPackage.CANCEL__PROCESSING, oldProcessing, processing));
 			}
 		}
-		return action;
+		return processing;
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Action basicGetAction() {
-		return action;
+	public Processing basicGetProcessing() {
+		return processing;
 	}
 
 	/**
@@ -93,11 +93,11 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAction(Action newAction) {
-		Action oldAction = action;
-		action = newAction;
+	public void setProcessing(Processing newProcessing) {
+		Processing oldProcessing = processing;
+		processing = newProcessing;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EEFActionsPackage.CANCEL__ACTION, oldAction, action));
+			eNotify(new ENotificationImpl(this, Notification.SET, EEFActionsPackage.CANCEL__PROCESSING, oldProcessing, processing));
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EEFActionsPackage.CANCEL__ACTION:
-				if (resolve) return getAction();
-				return basicGetAction();
+			case EEFActionsPackage.CANCEL__PROCESSING:
+				if (resolve) return getProcessing();
+				return basicGetProcessing();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,8 +123,8 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EEFActionsPackage.CANCEL__ACTION:
-				setAction((Action)newValue);
+			case EEFActionsPackage.CANCEL__PROCESSING:
+				setProcessing((Processing)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,8 +138,8 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.CANCEL__ACTION:
-				setAction((Action)null);
+			case EEFActionsPackage.CANCEL__PROCESSING:
+				setProcessing((Processing)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -153,8 +153,8 @@ public class CancelImpl extends EEFActionImpl implements Cancel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EEFActionsPackage.CANCEL__ACTION:
-				return action != null;
+			case EEFActionsPackage.CANCEL__PROCESSING:
+				return processing != null;
 		}
 		return super.eIsSet(featureID);
 	}

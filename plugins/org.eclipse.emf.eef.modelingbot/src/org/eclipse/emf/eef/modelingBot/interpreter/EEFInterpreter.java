@@ -327,7 +327,7 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 			} else if (action instanceof Cancel) {
 				Sequence eContainerSequence = (Sequence) action.eContainer();
 				mapSequenceToCancel.put(eContainerSequence, true);
-				bot.cancel(((Cancel) action).getAction());
+				bot.cancel(((Cancel) action).getProcessing());
 			} else if (action instanceof Unset) {
 				bot.unset(((Unset) action).getPropertiesEditionElement(),
 						((Unset) action).getReferenceableObject(),

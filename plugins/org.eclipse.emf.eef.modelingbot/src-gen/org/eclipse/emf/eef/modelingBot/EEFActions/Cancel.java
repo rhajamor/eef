@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.EEFActions;
 
+import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.Action;
 
 
@@ -21,7 +22,7 @@ import org.eclipse.emf.eef.modelingBot.Action;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction <em>Action</em>}</li>
+ *   <li>{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getProcessing <em>Processing</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,28 +33,28 @@ import org.eclipse.emf.eef.modelingBot.Action;
 public interface Cancel extends EEFAction {
 
 	/**
-	 * Returns the value of the '<em><b>Action</b></em>' reference.
+	 * Returns the value of the '<em><b>Processing</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Action</em>' reference isn't clear,
+	 * If the meaning of the '<em>Processing</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Action</em>' reference.
-	 * @see #setAction(Action)
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getCancel_Action()
+	 * @return the value of the '<em>Processing</em>' reference.
+	 * @see #setProcessing(Processing)
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.EEFActionsPackage#getCancel_Processing()
 	 * @model
 	 * @generated
 	 */
-	Action getAction();
+	Processing getProcessing();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction <em>Action</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getProcessing <em>Processing</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Action</em>' reference.
-	 * @see #getAction()
+	 * @param value the new value of the '<em>Processing</em>' reference.
+	 * @see #getProcessing()
 	 * @generated
 	 */
-	void setAction(Action value);
+	void setProcessing(Processing value);
 } // Cancel

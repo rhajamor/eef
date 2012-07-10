@@ -33,7 +33,7 @@
         <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
       </processings>
-      <processings xsi:type="eef-test_1:Cancel" name="set assists"/>
+      <processings xsi:type="eef-test_1:Cancel" name="set assists" processing="//@sequences.0/@processings.4/@processings.2"/>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>

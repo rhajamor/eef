@@ -28,7 +28,7 @@
           <values>35</values>
           <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Room/capacity"/>
         </processings>
-        <processings xsi:type="eef-test_1:Cancel" name="set properties"/>
+        <processings xsi:type="eef-test_1:Cancel" name="set properties" processing="//@sequences.0/@processings.3/@processings.1"/>
       </processings>
       <processings xsi:type="eef-test:Save"/>
     </processings>

@@ -20,7 +20,7 @@
         <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_xkhXcg80Ed-d58aiOCdYlA"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//FlatReferencesTableSample/flatreferencestableOptionalProperty"/>
       </processings>
-      <processings xsi:type="eef-test_1:Cancel" name="set ref"/>
+      <processings xsi:type="eef-test_1:Cancel" name="set ref" processing="//@sequences.0/@processings.3/@processings.2"/>
       <processings xsi:type="eef-test:Save"/>
     </processings>
     <processings xsi:type="eef-test_1:Check"/>

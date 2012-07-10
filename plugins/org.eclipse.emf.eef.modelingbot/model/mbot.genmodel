@@ -70,7 +70,7 @@
       </genClasses>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/Cancel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/Cancel/action"/>
+            ecoreFeature="ecore:EReference mbot.ecore#//EEFActions/Cancel/processing"/>
       </genClasses>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/Check"/>
       <genClasses ecoreClass="mbot.ecore#//EEFActions/OpenEEFEditor">

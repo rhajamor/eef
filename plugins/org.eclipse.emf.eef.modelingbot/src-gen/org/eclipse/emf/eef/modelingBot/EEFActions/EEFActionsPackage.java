@@ -524,13 +524,13 @@ public interface EEFActionsPackage extends EPackage {
 	int CANCEL__DOCUMENTATION = EEF_ACTION__DOCUMENTATION;
 
 	/**
-	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * The feature id for the '<em><b>Processing</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CANCEL__ACTION = EEF_ACTION_FEATURE_COUNT + 0;
+	int CANCEL__PROCESSING = EEF_ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Cancel</em>' class.
@@ -953,15 +953,15 @@ public interface EEFActionsPackage extends EPackage {
 	EClass getCancel();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction <em>Action</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getProcessing <em>Processing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Action</em>'.
-	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getAction()
+	 * @return the meta object for the reference '<em>Processing</em>'.
+	 * @see org.eclipse.emf.eef.modelingBot.EEFActions.Cancel#getProcessing()
 	 * @see #getCancel()
 	 * @generated
 	 */
-	EReference getCancel_Action();
+	EReference getCancel_Processing();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.modelingBot.EEFActions.Check <em>Check</em>}'.
@@ -1233,12 +1233,12 @@ public interface EEFActionsPackage extends EPackage {
 		EClass CANCEL = eINSTANCE.getCancel();
 
 		/**
-		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Processing</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CANCEL__ACTION = eINSTANCE.getCancel_Action();
+		EReference CANCEL__PROCESSING = eINSTANCE.getCancel_Processing();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.modelingBot.EEFActions.impl.CheckImpl <em>Check</em>}' class.

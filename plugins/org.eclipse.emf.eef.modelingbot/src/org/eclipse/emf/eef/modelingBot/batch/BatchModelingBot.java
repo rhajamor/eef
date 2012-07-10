@@ -39,9 +39,8 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 import org.eclipse.emf.eef.modelingBot.Action;
-import org.eclipse.emf.eef.modelingBot.DetailsPage;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
-import org.eclipse.emf.eef.modelingBot.Sequence;
+import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
 import org.eclipse.emf.eef.modelingBot.Wizard;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Cancel;
@@ -334,9 +333,9 @@ public class BatchModelingBot implements IModelingBot {
 		// return null;
 	}
 
-	public void cancel(Action action) {
-		if (action instanceof Wizard) {
-			EList<EObject> eContents = action.eContents();
+	public void cancel(Processing processing) {
+		if (processing instanceof Wizard) {
+			EList<EObject> eContents = processing.eContents();
 			Collection<EObject> eContentsAction = new ArrayList<EObject>();
 			for (EObject eObject : eContents) {
 				if (eObject instanceof Action && !(eObject instanceof Cancel)) {

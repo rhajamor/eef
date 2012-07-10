@@ -23,7 +23,7 @@
           <values>sample1</values>
           <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Sample/textRequiredProperty"/>
         </processings>
-        <processings xsi:type="eef-test_1:Cancel" name="set required property"/>
+        <processings xsi:type="eef-test_1:Cancel" name="set required property" processing="//@sequences.0/@processings.3/@processings.1"/>
       </processings>
       <processings xsi:type="eef-test:Save"/>
     </processings>
