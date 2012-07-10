@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.batch;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -204,6 +205,7 @@ public class BatchModelingBot implements IModelingBot {
 		EStructuralFeature mappedContainingFeature = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), eContainingFeature);
 		final EObject value = EcoreUtil.create(mappedType);
 		final Command command = AddCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedContainingFeature, value);
+		assertNotNull("The command is null", command);
 		editingDomain.getCommandStack().execute(command);
 		return value;
 	}
@@ -246,6 +248,7 @@ public class BatchModelingBot implements IModelingBot {
 			}
 			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature,
 					createFromString);
+			assertNotNull("The command is null", command);
 			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot set without a eContainingFeature attribute");
@@ -276,6 +279,7 @@ public class BatchModelingBot implements IModelingBot {
 				refValue = interpreter.getEObjectFromReferenceableEObject(values.iterator().next());
 			}
 			final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, refValue);
+			assertNotNull("The command is null", command);
 			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot set without a eContainingFeature reference");
@@ -297,13 +301,16 @@ public class BatchModelingBot implements IModelingBot {
 			if (mappedFeature.isMany()) {
 				Collection<Object> valuesToRemove = RemoveCommand.getOwnerList(eObjectFromReferenceableEObject, mappedFeature);
 				final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, valuesToRemove);
+				assertNotNull("The command is null", command);
 				editingDomain.getCommandStack().execute(command);
 			} else {
 				final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, null);
+				assertNotNull("The command is null", command);
 				editingDomain.getCommandStack().execute(command);
 			}
 		} else if (mappedFeature instanceof EReference) {
 			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, eObjectFromReferenceableEObject.eGet(mappedFeature));
+			assertNotNull("The command is null", command);
 			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot unset without a eContainingFeature attribute/reference");
@@ -385,6 +392,7 @@ public class BatchModelingBot implements IModelingBot {
 		EStructuralFeature mappedContainingFeature = EMFHelper.map(EMFHelper.findInRegistry(type.getEPackage()), eContainingFeature);
 		final EObject value = EcoreUtil.create(mappedType);
 		final Command command = AddCommand.create(editingDomain, container, mappedContainingFeature, value);
+		assertNotNull("The command is null", command);
 		editingDomain.getCommandStack().execute(command);
 		return value;
 	}
@@ -397,6 +405,7 @@ public class BatchModelingBot implements IModelingBot {
 		if (mappedFeature instanceof EAttribute) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
 			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, values);
+			assertNotNull("The command is null", command);
 			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot unset without a eContainingFeature attribute");
@@ -411,12 +420,19 @@ public class BatchModelingBot implements IModelingBot {
 		EStructuralFeature mappedFeature = EMFHelper.map(EMFHelper.findInRegistry(((EClass)eContainingFeature.eContainer()).getEPackage()), eContainingFeature);
 		if (mappedFeature instanceof EReference) {
 			activeResource = eObjectFromReferenceableEObject.eResource();
-			Collection<EObject> valuesToUnset = new ArrayList<EObject>();
-			for (ReferenceableObject value : values) {
-				valuesToUnset.add(interpreter.getEObjectFromReferenceableEObject(value));
+			if (mappedFeature.isMany()) {
+				Collection<EObject> valuesToUnset = new ArrayList<EObject>();
+				for (ReferenceableObject value : values) {
+					valuesToUnset.add(interpreter.getEObjectFromReferenceableEObject(value));
+				}
+				final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, valuesToUnset);
+				assertNotNull("The command is null", command);
+				editingDomain.getCommandStack().execute(command);
+			} else {
+				final Command command = SetCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, null);
+				assertNotNull("The command is null", command);
+				editingDomain.getCommandStack().execute(command);
 			}
-			final Command command = RemoveCommand.create(editingDomain, eObjectFromReferenceableEObject, mappedFeature, valuesToUnset);
-			editingDomain.getCommandStack().execute(command);
 		} else {
 			fail("Cannot unset without a eContainingFeature reference");
 		}

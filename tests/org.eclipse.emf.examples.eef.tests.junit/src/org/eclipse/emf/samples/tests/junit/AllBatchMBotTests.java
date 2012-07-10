@@ -10,24 +10,25 @@
  *******************************************************************************/
 package org.eclipse.emf.samples.tests.junit;
 
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotAddAdvTableCompo;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotRedoSetAttributeTextArea;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotRemoveAdvTableCompo;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeCheckbox;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeEMFComboViewer;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeMVE;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeText;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetAttributeTextArea;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceAdvRefTable;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceAdvRefTable2;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotSetReferenceEOFCV;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotUndoSetAttributeTextArea;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotUnsetMVE;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotUnsetReferenceAdvRefTable;
-import org.eclipse.emf.samples.tests.junit.modelingbot.batch.conference.BatchMBotUnsetText;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotAddAdvTableCompo;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotRedoSetAttributeTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotRemoveAdvTableCompo;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetAttributeCheckbox;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetAttributeEMFComboViewer;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetAttributeMVE;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetAttributeText;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetAttributeTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetReferenceAdvRefTable;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetReferenceAdvRefTable2;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotSetReferenceEOFCV;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUndoSetAttributeTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetMVE;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetReferenceAdvRefTable;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetText;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.nonreg.BatchMBotSetAttributeRadio;
 
 public class AllBatchMBotTests {
 
@@ -41,6 +42,8 @@ public class AllBatchMBotTests {
 		suite.addTestSuite(BatchMBotSetAttributeMVE.class);
 		suite.addTestSuite(BatchMBotSetAttributeText.class);
 		suite.addTestSuite(BatchMBotSetAttributeTextArea.class);
+		
+		suite.addTestSuite(BatchMBotSetAttributeRadio.class);
 		
 		//Set Reference
 		suite.addTestSuite(BatchMBotSetReferenceAdvRefTable.class);
