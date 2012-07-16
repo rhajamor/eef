@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
+import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
@@ -331,31 +332,31 @@ public class ComposedEEFBot implements IModelingBot {
 			ReferenceableObject referenceableObjectContainer,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, EClass type) {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	public void unsetAttribute(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<String> values) {
-		// TODO Auto-generated method stub
+		// do nothing
 		
 	}
 
 	public void unsetReference(PropertiesEditionElement propertiesEditionElement,
 			ReferenceableObject referenceableObject,
 			EStructuralFeature eContainingFeature, Collection<ReferenceableObject> values) {
-		// TODO Auto-generated method stub
+		// do nothing
 		
 	}
 
-	public void undo() {
-		// TODO Auto-generated method stub
+	public void undo(Action action) {
+		// do nothing
 		
 	}
 
-	public void redo() {
-		// TODO Auto-generated method stub
+	public void redo(Action action) {
+		// do nothing
 		
 	}
 

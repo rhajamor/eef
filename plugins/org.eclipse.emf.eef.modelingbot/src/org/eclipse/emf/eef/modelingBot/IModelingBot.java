@@ -200,12 +200,12 @@ public interface IModelingBot {
 	/**
 	 * Undo.
 	 */
-	void undo();
+	void undo(Action action);
 	
 	/**
 	 * Redo.
 	 */
-	void redo();
+	void redo(Action action);
 	
 	/**
 	 * @return the test model resource.

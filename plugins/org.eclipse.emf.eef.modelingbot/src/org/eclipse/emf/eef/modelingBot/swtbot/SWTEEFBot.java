@@ -35,6 +35,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
 import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
+import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
@@ -224,7 +225,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		checkBox().select();
 		button(UIConstants.OK_BUTTON).click();
 		SWTBotHelper.waitAllUiEvents();
-		sleep(1000);
+		//sleep(1000);
 	}
 
 	/**
@@ -283,7 +284,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 */
 	public void save() {
 		SWTBotHelper.waitAllUiEvents();
-		sleep(1000);
+		//sleep(1000);
 		menu(UIConstants.FILE_MENU).menu(UIConstants.SAVE_MENU).click();
 	}
 	
@@ -415,7 +416,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		assertNotNull("The properties edition element is not set.", propertiesEditionElement);
 		assertNotNull("The editor is not opened.", editor);
 		SWTBotHelper.waitAllUiEvents();
-		assertFalse("The set action must be define in a sequence.", sequenceType == null);
+		assertNotNull("The set action must be define in a sequence.", sequenceType);
 		if (sequenceType.equals(SequenceType.DETAILS_PAGE)) {
 			final EObject container = getEObjectFromReferenceableEObject(referenceableObject);
 			assertNotNull("No container is found to launch add action.", container);
@@ -496,14 +497,27 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		if ("Text".equals(representationName) || "Textarea".equals(representationName)) {
 			setAttribute(propertiesEditionElement, referenceableObject, eContainingFeature, Collections.singletonList(""));
 		} else if ("EObjectFlatComboViewer".equals(representationName)) {
-			//TODO How to unset an EOFCV ?
-			//set(propertiesEditionElement, referenceableObject, eContainingFeature, (ReferenceableObject)null);
+			propertiesEdition.unsetEObjectFlatComboViewer(elementEditor);
 		} else if ("MultiValuedEditor".equals(representationName)) {
 			propertiesEdition.unsetMultiValuedEditor(propertiesEditionElement, null, sequenceType);
+		} else if ("AdvancedEObjectFlatComboViewer".equals(representationName)) {
+			propertiesEdition.unsetAdvancedEObjectFlatComboViewer(elementEditor);
+		} else if ("ReferencesTable".equals(representationName)) {
+			propertiesEdition.unsetReferencesTable(elementEditor, null);
+		} else if ("AdvancedReferencesTable".equals(representationName)) {
+			propertiesEdition.unsetAdvancedReferencesTable(elementEditor, null);
+		} else if ("FlatReferencesTable".equals(representationName)) {
+			propertiesEdition.unsetFlatReferencesTable(propertiesEditionElement, null);
+		} else if ("Combo".equals(representationName)) {
+			final EObject container = getEObjectFromReferenceableEObject((ReferenceableObject) referenceableObject);
+			assertNotNull("No container is found to launch add action.", container);
+			propertiesEdition.unsetCombo(propertiesEditionElement, referenceableObject,
+					container, sequenceType);
 		} else {
 			System.out.println("Case not managed in unset : " + representationName);
 		}
 		SWTBotHelper.waitAllUiEvents();
+		
 	}
 
 	/**
@@ -522,7 +536,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		assertNotNull("The editor is not opened.", editor);
 		assertFalse(propertiesEditionElement.getViews().isEmpty());
 		if (sequenceType.equals(SequenceType.DETAILS_PAGE)) {
-			propertiesEdition.unsetAttribute(propertiesEditionElement, referenceableObject, values, sequenceType);
+			final EObject container = getEObjectFromReferenceableEObject(referenceableObject);
+			assertNotNull("No container is found to launch add action.", container);
+			final SWTBotTreeItem selectNode = selectNode(editor, container);
+			assertNotNull("No element is selected in the editor", selectNode);
+			initTab(propertiesEditionElement);
+			propertiesEdition.unsetAttribute(propertiesEditionElement, referenceableObject, container, values, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
 			//TODO
 		}
@@ -680,6 +699,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		Object next = null;
 		SWTBotTreeItem node2 = editor.bot().tree().getTreeItem(testModelResource.getURI().toString());
 		while (iterator.hasNext()) {
+			SWTBotHelper.waitAllUiEvents();
 			sleep(1000);
 			node2.expand();
 			next = iterator.next();
@@ -929,22 +949,31 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	}
 	
 	/**
-	 * Select the objects in the advanced references table.
+	 * Select the objects in the (advanced) references table.
 	 * 
 	 * @param eefWidgetIdKey
 	 *            widget key
 	 * @param qualifiedIdentifier
 	 *            identifier of the PEE
 	 * @param selected
-	 *            objects to select
+	 *            objects to select or null if you want to select all objects in the table
 	 */
 	public void selectInTableWithId(String eefWidgetIdKey, String qualifiedIdentifier, Collection<EObject> selected) {
 		final SWTBotTable table = tableWithId(eefWidgetIdKey, qualifiedIdentifier);
 		Collection<String> items = new ArrayList<String>();
-		for (EObject eObject : selected) {
-			final SWTBotTableItem tableItem = getTableItem(table, eObject);
-			assertNotNull("No table item is found.", tableItem);
-			items.add(tableItem.getText());
+		if (selected == null || selected.isEmpty()) {
+			int rowCount = table.rowCount();
+			for (int i = 0; i < rowCount; i++) {
+				final SWTBotTableItem tableItem = table.getTableItem(i);
+				assertNotNull("No table item is found.", tableItem);
+				items.add(tableItem.getText());
+			}
+		} else {
+			for (EObject eObject : selected) {
+				final SWTBotTableItem tableItem = getTableItem(table, eObject);
+				assertNotNull("No table item is found.", tableItem);
+				items.add(tableItem.getText());
+			}
 		}
 		table.select(items.toArray(new String[0]));
 	}
@@ -1020,7 +1049,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		assertNotNull("No table item is found.", tableItem);
 		tableItem.select();
 	}
-
+	
 	/**
 	 * @param table
 	 * @param object
@@ -1135,10 +1164,14 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 * @param value the given String value to add in the MVE.
 	 */
 	public void removeValuesInMultiValuedEditor(Collection<String> values) {
+		final SWTBotTable table = table(0);
 		for (String val : values) {
-			selectInRightTableOfActiveEditor(val);
+			final SWTBotTableItem tableItem = getTableItem(table, val);
+			assertNotNull("No table item is found.", tableItem);
+			tableItem.select();
 			SWTBotButton buttonRemove = button(1);
 			buttonRemove.click();
+			SWTBotHelper.waitAllUiEvents();
 		}
 	}
 	
@@ -1152,6 +1185,7 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		for (int i = 0; i < rowCount; i++) {
 			SWTBotButton buttonRemove = button(1);
 			buttonRemove.click();
+			SWTBotHelper.waitAllUiEvents();
 		}
 	}
 
@@ -1160,11 +1194,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 * 
 	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#undo()
 	 */
-	public void undo() {
+	public void undo(Action action) {
 		SWTBotHelper.waitAllUiEvents();
-		sleep(1000);
+		//sleep(1000);
 		KeyboardFactory.getSWTKeyboard().pressShortcut(SWT.CTRL,'z');
-		sleep(1000);
+		SWTBotHelper.waitAllUiEvents();
+		//sleep(1000);
 	}
 
 	/**
@@ -1172,11 +1207,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	 * 
 	 * @see org.eclipse.emf.eef.modelingBot.IModelingBot#redo()
 	 */
-	public void redo() {
+	public void redo(Action action) {
 		SWTBotHelper.waitAllUiEvents();
-		sleep(1000);
+		//sleep(1000);
 		KeyboardFactory.getSWTKeyboard().pressShortcut(SWT.CTRL,'y');
-		sleep(1000);
+		SWTBotHelper.waitAllUiEvents();
+		//sleep(1000);
 	}
 
 }

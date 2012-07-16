@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eef-mbot:ModelingBot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eef-mbot="http://www.eclipse.org/emf/eef/mbot/1.0.0" xmlns:eef-test="http://www.eclipse.org/emf/eef/test/EclipseActions/1.0.0" xmlns:eef-test_1="http://www.eclipse.org/emf/eef/test/EEFActions/1.0.0">
+  <propertiesEditionContext href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LAAwvEd-uP4lw9e0IMw"/>
+  <sequences xsi:type="eef-mbot:Scenario">
+    <processings xsi:type="eef-test:CreateProject" name="unsetEOFCV" projectName="unsetEOFCV"/>
+    <processings xsi:type="eef-test:CreateModel" name="eefnr" documentation="" modelName="unsetEOFCV.eefnr" path="unsetEOFCV">
+      <root href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root"/>
+    </processings>
+    <processings xsi:type="eef-test_1:Check"/>
+    <processings xsi:type="eef-mbot:DetailsPage">
+      <processings xsi:type="eef-test_1:Add" name="eofcv sample" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root/samples"/>
+      </processings>
+      <processings xsi:type="eef-test_1:Add" name="total sample" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//TotalSample"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//Root/samples"/>
+      </processings>
+      <processings xsi:type="eef-test_1:SetReference" name="optional property" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.3/@processings.1">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LKwwvEd-uP4lw9e0IMw"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample/eobjectflatcomboviewerOptionalPropery"/>
+      </processings>
+      <processings xsi:type="eef-test:Save"/>
+      <processings xsi:type="eef-test_1:Check"/>
+      <processings xsi:type="eef-test_1:Unset" name="optional property" referenceableObject="//@sequences.0/@processings.3/@processings.0">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.eef.tests.nonreg.edit/models/eefnr.components#_Fx_LKwwvEd-uP4lw9e0IMw"/>
+        <feature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.eef.tests.nonreg/model/eefnr.ecore#//EObjectFlatComboViewerSample/eobjectflatcomboviewerOptionalPropery"/>
+      </processings>
+      <processings xsi:type="eef-test:Save"/>
+    </processings>
+    <processings xsi:type="eef-test_1:Check"/>
+    <processings xsi:type="eef-test:RemoveProject" name="unsetEOFCV" projectName="unsetEOFCV"/>
+  </sequences>
+</eef-mbot:ModelingBot>

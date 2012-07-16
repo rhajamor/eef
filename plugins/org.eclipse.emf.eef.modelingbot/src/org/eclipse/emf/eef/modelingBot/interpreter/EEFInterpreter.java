@@ -50,6 +50,7 @@ import org.eclipse.emf.eef.modelingBot.EEFActions.Remove;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetAttribute;
 import org.eclipse.emf.eef.modelingBot.EEFActions.SetReference;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Unset;
+import org.eclipse.emf.eef.modelingBot.EEFActions.UnsetAttribute;
 import org.eclipse.emf.eef.modelingBot.EEFActions.UnsetReference;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CloseEditor;
 import org.eclipse.emf.eef.modelingBot.EclipseActions.CloseProject;
@@ -332,6 +333,12 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 				bot.unset(((Unset) action).getPropertiesEditionElement(),
 						((Unset) action).getReferenceableObject(),
 						((Unset) action).getFeature());
+			} else if (action instanceof UnsetAttribute) {
+				bot.unsetAttribute(
+						((UnsetAttribute) action).getPropertiesEditionElement(),
+						((UnsetAttribute) action).getReferenceableObject(),
+						((UnsetAttribute) action).getEContainingFeature(),
+						((UnsetAttribute) action).getValues());
 			} else if (action instanceof UnsetReference) {
 				bot.unsetReference(
 						((UnsetReference) action).getPropertiesEditionElement(),
@@ -344,9 +351,9 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 				refObjectToEObjectMap.remove(((Remove) action)
 						.getReferenceableObject());
 			} else if (action instanceof Undo) {
-				bot.undo();
+				bot.undo(action);
 			} else if (action instanceof Redo) {
-				bot.redo();
+				bot.redo(action);
 			}
 			processedActions.add(action);
 		}

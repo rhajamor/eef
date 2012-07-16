@@ -34,6 +34,7 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotButton;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotCheckBox;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotCombo;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotRadio;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTable;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 
@@ -256,20 +257,30 @@ public class PropertiesEditionHelper {
 	 * Unset widget FlatReferencesTable.
 	 * 
 	 * @param propertiesEditionElement
-	 * @param value
+	 * @param values
 	 */
-	private void unsetFlatReferencesTable(
+	public void unsetFlatReferencesTable(
 			PropertiesEditionElement propertiesEditionElement,
 			Collection<EObject> values) {
 		SWTBotHelper.waitAllUiEvents();
 		String label = ((ElementEditor) propertiesEditionElement.getViews()
 				.get(0)).getQualifiedIdentifier();
 		bot.browseButtonFlatReferencesTable(label).click();
-		for (EObject value : values) {
-			bot.selectInRightTableOfActiveEditor(value);
-			SWTBotButton buttonRemove = bot.button(1);
-			buttonRemove.click();
-			SWTBotHelper.waitAllUiEvents();
+		if (values == null || values.isEmpty()) {
+			final SWTBotTable table = bot.table(1);
+			int rowCount = table.rowCount();
+			for (int i = 0; i < rowCount; i++) {
+				SWTBotButton buttonRemove = bot.button(1);
+				buttonRemove.click();
+				SWTBotHelper.waitAllUiEvents();
+			}
+		} else {
+			for (EObject value : values) {
+				bot.selectInRightTableOfActiveEditor(value);
+				SWTBotButton buttonRemove = bot.button(1);
+				buttonRemove.click();
+				SWTBotHelper.waitAllUiEvents();
+			}
 		}
 		clickOkOrCancel(propertiesEditionElement);
 		SWTBotHelper.waitAllUiEvents();
@@ -478,7 +489,6 @@ public class PropertiesEditionHelper {
 					elementEditor.getQualifiedIdentifier()).click();
 		}
 	}
-
 	
 	public void unsetReference(
 			PropertiesEditionElement propertiesEditionElement,
@@ -516,7 +526,7 @@ public class PropertiesEditionHelper {
 	 * 
 	 * @param elementEditor
 	 */
-	private void unsetEObjectFlatComboViewer(ElementEditor elementEditor) {
+	public void unsetEObjectFlatComboViewer(ElementEditor elementEditor) {
 		bot.editButtonEObjectFlatComboViewer(
 				elementEditor.getQualifiedIdentifier()).click();
 		bot.selectInActiveTable("");
@@ -532,7 +542,7 @@ public class PropertiesEditionHelper {
 	 * @param container
 	 * @param sequenceType
 	 */
-	private void unsetCombo(PropertiesEditionElement propertiesEditionElement,
+	public void unsetCombo(PropertiesEditionElement propertiesEditionElement,
 			EObject referenceableObject, EObject container,
 			SequenceType sequenceType) {
 		SWTBotHelper.waitAllUiEvents();
@@ -550,7 +560,7 @@ public class PropertiesEditionHelper {
 	 * 
 	 * @param elementEditor
 	 */
-	private void unsetAdvancedEObjectFlatComboViewer(ElementEditor elementEditor) {
+	public void unsetAdvancedEObjectFlatComboViewer(ElementEditor elementEditor) {
 		bot.removeButtonAdvancedEObjectFlatComboViewer(
 				elementEditor.getQualifiedIdentifier()).click();
 		SWTBotHelper.waitAllUiEvents();
@@ -562,7 +572,7 @@ public class PropertiesEditionHelper {
 	 * @param elementEditor
 	 * @param objectsToUnset
 	 */
-	private void unsetReferencesTable(ElementEditor elementEditor,
+	public void unsetReferencesTable(ElementEditor elementEditor,
 			Collection<EObject> objectsToUnset) {
 		bot.selectInTableWithId(
 				org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY,
@@ -578,7 +588,7 @@ public class PropertiesEditionHelper {
 	 * @param elementEditor
 	 * @param objectsToUnset
 	 */
-	private void unsetAdvancedReferencesTable(ElementEditor elementEditor,
+	public void unsetAdvancedReferencesTable(ElementEditor elementEditor,
 			Collection<EObject> objectsToUnset) {
 		bot.selectInTableWithId(
 				org.eclipse.emf.eef.runtime.ui.UIConstants.EEF_WIDGET_ID_KEY,
@@ -591,7 +601,7 @@ public class PropertiesEditionHelper {
 	private void clickOkOrCancel(
 			PropertiesEditionElement propertiesEditionElement) {
 		SWTBotHelper.waitAllUiEvents();
-		bot.sleep(1000);
+		//bot.sleep(1000);
 		if (((EEFInterpreter) bot.getModelingBotInterpreter())
 				.getActionsToCancel().contains(propertiesEditionElement)) {
 			bot.cancel(null);
@@ -604,7 +614,7 @@ public class PropertiesEditionHelper {
 
 	private void clickCancel(PropertiesEditionElement propertiesEditionElement) {
 		SWTBotHelper.waitAllUiEvents();
-		bot.sleep(1000);
+		//bot.sleep(1000);
 		if (((EEFInterpreter) bot.getModelingBotInterpreter())
 				.getActionsToCancel().contains(propertiesEditionElement)) {
 			bot.cancel(null);
@@ -615,9 +625,20 @@ public class PropertiesEditionHelper {
 
 	public void unsetAttribute(
 			PropertiesEditionElement propertiesEditionElement,
-			ReferenceableObject referenceableObject, Collection<String> values,
+			ReferenceableObject referenceableObject, EObject container, Collection<String> values,
 			SequenceType sequenceType) {
-		System.out.println("Case not managed in unsetAttribute of PropertiesEditionHelper");
+		final ElementEditor elementEditor = propertiesEditionElement.getViews()
+				.get(0);
+		final String representationName = elementEditor.getRepresentation()
+				.getName();
+		if ("Text".equals(representationName) || "Textarea".equals(representationName)) {
+			updateText(propertiesEditionElement, referenceableObject, container, "", sequenceType);
+		} else if ("MultiValuedEditor".equals(representationName)) {
+			unsetMultiValuedEditor(propertiesEditionElement, values, sequenceType);
+		} else {
+			System.out.println("Case not managed in unset : "
+					+ representationName);
+		}
 		
 	}
 }

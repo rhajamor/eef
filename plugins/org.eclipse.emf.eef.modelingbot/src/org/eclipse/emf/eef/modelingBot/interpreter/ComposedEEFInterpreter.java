@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.eef.modelingBot.interpreter;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

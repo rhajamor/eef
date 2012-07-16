@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eef-mbot:ModelingBot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eef-mbot="http://www.eclipse.org/emf/eef/mbot/1.0.0" xmlns:eef-test="http://www.eclipse.org/emf/eef/test/EclipseActions/1.0.0" xmlns:eef-test_1="http://www.eclipse.org/emf/eef/test/EEFActions/1.0.0">
+  <propertiesEditionContext href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvIaEJkmEd6sxtwdpecy3w"/>
+  <sequences xsi:type="eef-mbot:Scenario">
+    <processings xsi:type="eef-test:CreateProject" name="unsetAdvRefTable" projectName="unsetAdvRefTable"/>
+    <processings xsi:type="eef-test:CreateModel" name="conference" documentation="" modelName="unsetAdvRefTable.conference" path="unsetAdvRefTable">
+      <root href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference"/>
+    </processings>
+    <processings xsi:type="eef-test_1:Check"/>
+    <processings xsi:type="eef-mbot:DetailsPage">
+      <processings xsi:type="eef-test_1:Add" name="participant1" documentation="" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/participants"/>
+      </processings>
+      <processings xsi:type="eef-test_1:SetAttribute" name="name" referenceableObject="//@sequences.0/@processings.3/@processings.0">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBKJkmEd6sxtwdpecy3w"/>
+        <values>my first name</values>
+        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/firstname"/>
+      </processings>
+      <processings xsi:type="eef-test:Save" name="save 1"/>
+    </processings>
+    <processings xsi:type="eef-mbot:DetailsPage">
+      <processings xsi:type="eef-test_1:Add" name="talk1" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/talks"/>
+      </processings>
+      <processings xsi:type="eef-test_1:SetAttribute" name="title" referenceableObject="//@sequences.0/@processings.4/@processings.0">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBMJkmEd6sxtwdpecy3w"/>
+        <values>talk1</values>
+        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk/title"/>
+      </processings>
+      <processings xsi:type="eef-test_1:Add" name="talk2" referenceableObject="//@sequences.0/@processings.1">
+        <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/talks"/>
+      </processings>
+      <processings xsi:type="eef-test_1:SetAttribute" name="title" referenceableObject="//@sequences.0/@processings.4/@processings.2">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBMJkmEd6sxtwdpecy3w"/>
+        <values>talk2</values>
+        <eContainingFeature xsi:type="ecore:EAttribute" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Talk/title"/>
+      </processings>
+      <processings xsi:type="eef-test_1:SetReference" name="assists" referenceableObject="//@sequences.0/@processings.3/@processings.0" values="//@sequences.0/@processings.4/@processings.0 //@sequences.0/@processings.4/@processings.2">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
+        <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
+      </processings>
+      <processings xsi:type="eef-test:Save" name="save 2"/>
+      <processings xsi:type="eef-test_1:Check"/>
+      <processings xsi:type="eef-test_1:Unset" name="talks on assists" referenceableObject="//@sequences.0/@processings.3/@processings.0">
+        <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_KvJBLJkmEd6sxtwdpecy3w"/>
+        <feature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Person/assists"/>
+      </processings>
+      <processings xsi:type="eef-test:Save" name="save 3"/>
+    </processings>
+    <processings xsi:type="eef-test_1:Check"/>
+    <processings xsi:type="eef-test:RemoveProject" name="unsetAdvRefTable" projectName="unsetAdvRefTable"/>
+  </sequences>
+</eef-mbot:ModelingBot>
