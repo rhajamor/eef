@@ -51,6 +51,7 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.conference.MB
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.conference.MBotUnsetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.conference.MBotUnsetText;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.conference.MBotUnsetTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotAddAdvTableCompoOnAbstractRef;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotCancelAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotCancelSetReferenceAEOFCV;
@@ -85,7 +86,7 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotUn
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotUnsetReferenceFlatRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.detailsview.nonreg.MBotUnsetReferenceRefTable;
 
-public class AllSWTMBotTests {
+public class AllDetailsViewMBotTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite(
@@ -140,6 +141,7 @@ public class AllSWTMBotTests {
 		// Add
 		suite.addTestSuite(MBotAddAdvTableCompo.class);
 
+		suite.addTestSuite(MBotAddAdvTableCompoOnAbstractRef.class);
 		suite.addTestSuite(MBotAddTableCompo.class);
 
 		// Remove

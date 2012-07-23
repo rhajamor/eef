@@ -18,9 +18,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
@@ -456,8 +454,7 @@ public class PropertiesEditionHelper {
 				if (type != null && type instanceof EClass && ((EClass) type).isAbstract()) {
 					SWTBotRadio radio = bot.radio(((Add)referenceableObject).getType().getName());
 					radio.setFocus();
-					SWTBotButton buttonNext = bot.button("Next >");
-					buttonNext.click();
+					bot.button(UIConstants.NEXT_BUTTON).click();
 				}
 				Collection<EObject> settings = EMFHelper
 						.followingSiblings(referenceableObject);

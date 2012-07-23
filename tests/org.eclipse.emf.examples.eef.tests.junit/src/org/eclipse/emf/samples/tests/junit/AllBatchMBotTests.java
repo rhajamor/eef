@@ -51,6 +51,7 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.confere
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetText;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.conference.BatchMBotUnsetTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.nonreg.BatchMBotAddAdvTableCompoOnAbstractRef;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.nonreg.BatchMBotAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.nonreg.BatchMBotCancelAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.batch.detailsview.nonreg.BatchMBotCancelSetReferenceAEOFCV;
@@ -140,6 +141,7 @@ public class AllBatchMBotTests {
 		// Add
 		suite.addTestSuite(BatchMBotAddAdvTableCompo.class);
 
+		suite.addTestSuite(BatchMBotAddAdvTableCompoOnAbstractRef.class);
 		suite.addTestSuite(BatchMBotAddTableCompo.class);
 
 		// Remove

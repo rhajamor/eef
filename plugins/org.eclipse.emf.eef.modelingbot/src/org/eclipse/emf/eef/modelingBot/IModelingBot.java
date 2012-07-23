@@ -217,4 +217,8 @@ public interface IModelingBot {
 	 */
 	IModelingBotInterpreter getModelingBotInterpreter();
 
+	void initWizard(Wizard wizard);
+
+	void closeWizard(Wizard wizard);
+
 }

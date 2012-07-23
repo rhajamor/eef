@@ -118,7 +118,12 @@ public class EMFHelper {
 		if (SequenceType.DETAILS_PAGE == sequenceType) {
 			target = container;
 		} else if (SequenceType.WIZARD == sequenceType) {
-			target = (EObject)EEFModelHelper.eGet(container, ((EditAction)referenceableObject).getPropertiesEditionElement().getModel());
+			if (((EditAction)referenceableObject).getPropertiesEditionElement() != null) {
+				target = (EObject)EEFModelHelper.eGet(container, ((EditAction)referenceableObject).getPropertiesEditionElement().getModel());
+			} else {
+				target = container;
+				
+			}
 		}
 		assertFalse(target == null);
 		EStructuralFeature model = EMFHelper.map(target.eClass().getEPackage(), propertiesEditionElement.getModel());

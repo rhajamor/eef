@@ -12,7 +12,7 @@
         <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Site"/>
         <eContainingFeature xsi:type="ecore:EReference" href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Conference/sites"/>
       </processings>
-      <processings xsi:type="eef-mbot:Wizard" referenceableObject="//@sequences.0/@processings.3/@processings.0">
+      <processings xsi:type="eef-mbot:Wizard">
         <processings xsi:type="eef-test_1:Add" name="room1" referenceableObject="//@sequences.0/@processings.3/@processings.0">
           <propertiesEditionElement href="../../../../org.eclipse.emf.examples.eef.edit/models/conference.components#_r1ZxAG3eEeC0ELVFaUipLQ"/>
           <type href="../../../../org.eclipse.emf.examples.eef/model/conference.ecore#//Room"/>

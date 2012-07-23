@@ -41,6 +41,7 @@ import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
+import org.eclipse.emf.eef.modelingBot.Wizard;
 import org.eclipse.emf.eef.modelingBot.interpreter.ComposedEEFInterpreter;
 import org.eclipse.emf.eef.modelingBot.interpreter.IModelingBotInterpreter;
 import org.eclipse.emf.eef.modelingBot.uri.EEFURIConverter;
@@ -356,6 +357,16 @@ public class ComposedEEFBot implements IModelingBot {
 	}
 
 	public void redo(Action action) {
+		// do nothing
+		
+	}
+
+	public void initWizard(Wizard wizard) {
+		// do nothing
+		
+	}
+
+	public void closeWizard(Wizard wizard) {
 		// do nothing
 		
 	}

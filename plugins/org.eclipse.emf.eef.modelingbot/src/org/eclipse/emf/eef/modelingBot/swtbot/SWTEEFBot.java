@@ -39,6 +39,7 @@ import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.IModelingBot;
 import org.eclipse.emf.eef.modelingBot.Processing;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
+import org.eclipse.emf.eef.modelingBot.Wizard;
 import org.eclipse.emf.eef.modelingBot.EEFActions.EditAction;
 import org.eclipse.emf.eef.modelingBot.helper.EEFModelHelper;
 import org.eclipse.emf.eef.modelingBot.helper.EMFHelper;
@@ -427,8 +428,14 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 			initTab(propertiesEditionElement);
 			propertiesEdition.updateAttribute(selectNode, propertiesEditionElement, referenceableObject, container, values, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
-			final EObject containerOfcontainer = getEObjectFromReferenceableEObject(((EditAction)referenceableObject).getReferenceableObject());
+			EObject containerOfcontainer = null;
+			if (((EditAction)referenceableObject).getPropertiesEditionElement() != null) {
+				containerOfcontainer = getEObjectFromReferenceableEObject(((EditAction)referenceableObject).getReferenceableObject());
+			} else {
+				containerOfcontainer = getEObjectFromReferenceableEObject(referenceableObject);
+			}
 			assertNotNull("No container is found to launch add action.", containerOfcontainer);
+			initTab(propertiesEditionElement);
 			propertiesEdition.updateAttribute(null, propertiesEditionElement, referenceableObject, containerOfcontainer, values, sequenceType);
 		}
 	}
@@ -1215,6 +1222,24 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 		KeyboardFactory.getSWTKeyboard().pressShortcut(SWT.CTRL,'y');
 		SWTBotHelper.waitAllUiEvents();
 		//sleep(1000);
+	}
+
+	public void initWizard(Wizard wizard) {
+		if (wizard.getReferenceableObject() != null) {
+			assertNotNull("The editeur is not opened.", editor);
+			final EObject container = getEObjectFromReferenceableEObject(wizard.getReferenceableObject());
+			assertNotNull("No container is found to launch add action.", container);
+			final SWTBotTreeItem selectNode = selectNode(editor, container);
+			assertNotNull("No element is selected in the editor", selectNode);
+			SWTBotHelper.doubleClickContextMenu(selectNode, selectNode.getText());
+		}
+		
+	}
+
+	public void closeWizard(Wizard wizard) {
+		if (wizard.getReferenceableObject() != null) {
+			button(UIConstants.FINISH_BUTTON).click();
+		}
 	}
 
 }

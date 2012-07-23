@@ -233,7 +233,9 @@ public class EEFInterpreter implements IModelingBotInterpreter {
 				runSequence((PropertiesView) processing);
 			} else if (processing instanceof Wizard) {
 				bot.setSequenceType(SequenceType.WIZARD);
+				bot.initWizard((Wizard) processing);
 				runSequence((Wizard) processing);
+				bot.closeWizard((Wizard) processing);
 				finishBatchEditing(processing);
 			}
 

@@ -458,4 +458,12 @@ public class BatchModelingBot implements IModelingBot {
 		
 	}
 
+	public void initWizard(Wizard wizard) {
+		// do nothing
+	}
+
+	public void closeWizard(Wizard wizard) {
+		// do nothing
+	}
+
 }

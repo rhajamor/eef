@@ -19,12 +19,8 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conf
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotCancelSetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotCancelSetReferenceEOFCV;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoAddAdvTableCompo;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetAttributeCheckbox;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetAttributeEMFComboViewer;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetAttributeMVE;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetAttributeText;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetAttributeTextArea;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRedoSetReferenceEOFCV;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotRemoveAdvTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotSetAttributeCheckbox;
@@ -36,12 +32,8 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conf
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotSetReferenceAdvRefTable2;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotSetReferenceEOFCV;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoAddAdvTableCompo;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetAttributeCheckbox;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetAttributeEMFComboViewer;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetAttributeMVE;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetAttributeText;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetAttributeTextArea;
-import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUndoSetReferenceEOFCV;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUnsetAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUnsetAttributeMVE;
@@ -51,6 +43,7 @@ import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conf
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUnsetReferenceAdvRefTable;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUnsetText;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.conference.ComposedMBotUnsetTextArea;
+import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.nonreg.ComposedMBotAddAdvTableCompoOnAbstractRef;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.nonreg.ComposedMBotAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.nonreg.ComposedMBotCancelAddTableCompo;
 import org.eclipse.emf.samples.tests.junit.modelingbot.composed.detailsview.nonreg.ComposedMBotCancelSetReferenceAEOFCV;
@@ -140,6 +133,7 @@ public class AllComposedMBotTests {
 		// Add
 		suite.addTestSuite(ComposedMBotAddAdvTableCompo.class);
 
+		suite.addTestSuite(ComposedMBotAddAdvTableCompoOnAbstractRef.class);
 		suite.addTestSuite(ComposedMBotAddTableCompo.class);
 
 		// Remove
