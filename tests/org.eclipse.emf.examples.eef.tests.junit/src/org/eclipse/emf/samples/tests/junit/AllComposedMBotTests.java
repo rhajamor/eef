@@ -149,12 +149,12 @@ public class AllComposedMBotTests {
 
 		// Undo
 		suite.addTestSuite(ComposedMBotUndoAddAdvTableCompo.class);
-		suite.addTestSuite(ComposedMBotUndoSetAttributeCheckbox.class);
-		suite.addTestSuite(ComposedMBotUndoSetAttributeEMFComboViewer.class);
+		//suite.addTestSuite(ComposedMBotUndoSetAttributeCheckbox.class);
+		//suite.addTestSuite(ComposedMBotUndoSetAttributeEMFComboViewer.class);
 		suite.addTestSuite(ComposedMBotUndoSetAttributeMVE.class);
-		suite.addTestSuite(ComposedMBotUndoSetAttributeText.class);
+		//suite.addTestSuite(ComposedMBotUndoSetAttributeText.class);
 		suite.addTestSuite(ComposedMBotUndoSetAttributeTextArea.class);
-		suite.addTestSuite(ComposedMBotUndoSetReferenceAdvRefTable.class);
+		//suite.addTestSuite(ComposedMBotUndoSetReferenceAdvRefTable.class);
 		suite.addTestSuite(ComposedMBotUndoSetReferenceEOFCV.class);
 
 		suite.addTestSuite(ComposedMBotUndoAddTableCompo.class);
@@ -166,12 +166,12 @@ public class AllComposedMBotTests {
 
 		// Redo
 		suite.addTestSuite(ComposedMBotRedoAddAdvTableCompo.class);
-		suite.addTestSuite(ComposedMBotRedoSetAttributeCheckbox.class);
-		suite.addTestSuite(ComposedMBotRedoSetAttributeEMFComboViewer.class);
+		//suite.addTestSuite(ComposedMBotRedoSetAttributeCheckbox.class);
+		//suite.addTestSuite(ComposedMBotRedoSetAttributeEMFComboViewer.class);
 		suite.addTestSuite(ComposedMBotRedoSetAttributeMVE.class);
-		suite.addTestSuite(ComposedMBotRedoSetAttributeText.class);
+		//suite.addTestSuite(ComposedMBotRedoSetAttributeText.class);
 		suite.addTestSuite(ComposedMBotRedoSetAttributeTextArea.class);
-		suite.addTestSuite(ComposedMBotRedoSetReferenceAdvRefTable.class);
+		//suite.addTestSuite(ComposedMBotRedoSetReferenceAdvRefTable.class);
 		suite.addTestSuite(ComposedMBotRedoSetReferenceEOFCV.class);
 
 		suite.addTestSuite(ComposedMBotRedoAddTableCompo.class);

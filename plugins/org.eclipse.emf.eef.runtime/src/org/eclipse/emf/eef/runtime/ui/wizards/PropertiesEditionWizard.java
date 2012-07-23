@@ -27,6 +27,7 @@ import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.context.impl.DomainPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
@@ -322,7 +323,8 @@ public class PropertiesEditionWizard extends Wizard {
 			this.setDescription(EEFRuntimeUIMessages.PropertiesEditionWizard_main_page_description
 					+ eObject.eClass().getName());
 			editingContext.seteObject(eObject);
-			viewer.setInput(editingContext);
+			EObjectPropertiesEditionContext subContext = new EObjectPropertiesEditionContext(editingContext, null, eObject, editingContext.getAdapterFactory());
+			viewer.setInput(subContext);
 			viewer.addPropertiesListener(this);
 		}
 

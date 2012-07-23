@@ -285,7 +285,9 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 	public void save() {
 		SWTBotHelper.waitAllUiEvents();
 		//sleep(1000);
-		menu(UIConstants.FILE_MENU).menu(UIConstants.SAVE_MENU).click();
+		//(UIConstants.FILE_MENU).menu(UIConstants.SAVE_MENU).click();
+		KeyboardFactory.getSWTKeyboard().pressShortcut(SWT.CTRL,'s');
+		SWTBotHelper.waitAllUiEvents();
 	}
 	
 	/**

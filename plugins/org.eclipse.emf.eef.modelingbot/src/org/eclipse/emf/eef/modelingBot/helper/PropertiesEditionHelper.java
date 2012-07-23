@@ -16,7 +16,11 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.eef.components.PropertiesEditionElement;
@@ -24,6 +28,7 @@ import org.eclipse.emf.eef.extended.editor.ReferenceableObject;
 import org.eclipse.emf.eef.modelingBot.Action;
 import org.eclipse.emf.eef.modelingBot.SequenceType;
 import org.eclipse.emf.eef.modelingBot.Wizard;
+import org.eclipse.emf.eef.modelingBot.EEFActions.Add;
 import org.eclipse.emf.eef.modelingBot.EEFActions.Cancel;
 import org.eclipse.emf.eef.modelingBot.EEFActions.EditAction;
 import org.eclipse.emf.eef.modelingBot.interpreter.EEFInterpreter;
@@ -445,7 +450,15 @@ public class PropertiesEditionHelper {
 		// Execute the Action of each following siblings of the Add Action in
 		// the Wizard of ModelingBot model
 		if (referenceableObject != null) {
-			if (referenceableObject.eContainer() instanceof Wizard) {
+			if (referenceableObject instanceof Add && referenceableObject.eContainer() instanceof Wizard) {
+				EStructuralFeature feature = ((Add)referenceableObject).getEContainingFeature();
+				EClassifier type = feature.getEType();
+				if (type != null && type instanceof EClass && ((EClass) type).isAbstract()) {
+					SWTBotRadio radio = bot.radio(((Add)referenceableObject).getType().getName());
+					radio.setFocus();
+					SWTBotButton buttonNext = bot.button("Next >");
+					buttonNext.click();
+				}
 				Collection<EObject> settings = EMFHelper
 						.followingSiblings(referenceableObject);
 				for (EObject setting : settings) {
