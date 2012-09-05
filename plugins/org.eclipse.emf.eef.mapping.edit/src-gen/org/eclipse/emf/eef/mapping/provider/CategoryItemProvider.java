@@ -35,7 +35,9 @@ import org.eclipse.emf.eef.mapping.MappingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CategoryItemProvider extends DocumentedElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CategoryItemProvider extends DocumentedElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,11 +72,13 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_Category_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Category_name_feature",
-						"_UI_Category_type"), MappingPackage.Literals.CATEGORY__NAME, true, false, false,
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Category_name_feature", "_UI_Category_type"),
+				MappingPackage.Literals.CATEGORY__NAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -87,7 +91,8 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.CATEGORY__BINDINGS);
@@ -117,7 +122,8 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Category"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Category"));
 	}
 
 	/**
@@ -128,7 +134,7 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Category)object).getName();
+		String label = ((Category) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Category_type")
 				: getString("_UI_Category_type") + " " + label;
 	}
@@ -145,15 +151,15 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Category.class)) {
-			case MappingPackage.CATEGORY__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-						true));
-				return;
-			case MappingPackage.CATEGORY__BINDINGS:
-			case MappingPackage.CATEGORY__CATEGORIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-						false));
-				return;
+		case MappingPackage.CATEGORY__NAME:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.CATEGORY__BINDINGS:
+		case MappingPackage.CATEGORY__CATEGORIES:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -166,16 +172,20 @@ public class CategoryItemProvider extends DocumentedElementItemProvider implemen
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(MappingPackage.Literals.CATEGORY__BINDINGS,
+		newChildDescriptors.add(createChildParameter(
+				MappingPackage.Literals.CATEGORY__BINDINGS,
 				MappingFactory.eINSTANCE.createEMFElementBinding()));
 
-		newChildDescriptors.add(createChildParameter(MappingPackage.Literals.CATEGORY__BINDINGS,
+		newChildDescriptors.add(createChildParameter(
+				MappingPackage.Literals.CATEGORY__BINDINGS,
 				MappingFactory.eINSTANCE.createStandardElementBinding()));
 
-		newChildDescriptors.add(createChildParameter(MappingPackage.Literals.CATEGORY__CATEGORIES,
+		newChildDescriptors.add(createChildParameter(
+				MappingPackage.Literals.CATEGORY__CATEGORIES,
 				MappingFactory.eINSTANCE.createCategory()));
 	}
 

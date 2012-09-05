@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.mapping.navigation.*;
 import org.eclipse.emf.eef.mapping.navigation.ChainedModelNavigation;
 import org.eclipse.emf.eef.mapping.navigation.CustomModelNavigation;
 import org.eclipse.emf.eef.mapping.navigation.ModelNavigation;
@@ -64,7 +65,7 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -92,13 +93,63 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseStructuredModelNavigation(StructuredModelNavigation object) {
+		public Adapter caseStructuredModelNavigation(
+				StructuredModelNavigation object) {
 			return createStructuredModelNavigationAdapter();
 		}
 
 		@Override
 		public Adapter caseCustomModelNavigation(CustomModelNavigation object) {
 			return createCustomModelNavigationAdapter();
+		}
+
+		@Override
+		public Adapter caseSmartModelNavigation(SmartModelNavigation object) {
+			return createSmartModelNavigationAdapter();
+		}
+
+		@Override
+		public Adapter caseNavigationStep(NavigationStep object) {
+			return createNavigationStepAdapter();
+		}
+
+		@Override
+		public Adapter caseDeclarativeNavigationStep(
+				DeclarativeNavigationStep object) {
+			return createDeclarativeNavigationStepAdapter();
+		}
+
+		@Override
+		public Adapter caseStepInitializer(StepInitializer object) {
+			return createStepInitializerAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaStepInitializer(JavaStepInitializer object) {
+			return createJavaStepInitializerAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaDeclarationExpression(
+				JavaDeclarationExpression object) {
+			return createJavaDeclarationExpressionAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaBodyExpression(JavaBodyExpression object) {
+			return createJavaBodyExpressionAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaDeclarationStepInitializer(
+				JavaDeclarationStepInitializer object) {
+			return createJavaDeclarationStepInitializerAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaBodyStepInitializer(
+				JavaBodyStepInitializer object) {
+			return createJavaBodyStepInitializerAdapter();
 		}
 
 		@Override
@@ -117,7 +168,7 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
@@ -187,6 +238,132 @@ public class NavigationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCustomModelNavigationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.SmartModelNavigation <em>Smart Model Navigation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.SmartModelNavigation
+	 * @generated
+	 */
+	public Adapter createSmartModelNavigationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.NavigationStep <em>Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.NavigationStep
+	 * @generated
+	 */
+	public Adapter createNavigationStepAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.DeclarativeNavigationStep <em>Declarative Navigation Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.DeclarativeNavigationStep
+	 * @generated
+	 */
+	public Adapter createDeclarativeNavigationStepAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.StepInitializer <em>Step Initializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.StepInitializer
+	 * @generated
+	 */
+	public Adapter createStepInitializerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaStepInitializer <em>Java Step Initializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaStepInitializer
+	 * @generated
+	 */
+	public Adapter createJavaStepInitializerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression <em>Java Declaration Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression
+	 * @generated
+	 */
+	public Adapter createJavaDeclarationExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression <em>Java Body Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression
+	 * @generated
+	 */
+	public Adapter createJavaBodyExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaDeclarationStepInitializer <em>Java Declaration Step Initializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaDeclarationStepInitializer
+	 * @generated
+	 */
+	public Adapter createJavaDeclarationStepInitializerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaBodyStepInitializer <em>Java Body Step Initializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaBodyStepInitializer
+	 * @generated
+	 */
+	public Adapter createJavaBodyStepInitializerAdapter() {
 		return null;
 	}
 

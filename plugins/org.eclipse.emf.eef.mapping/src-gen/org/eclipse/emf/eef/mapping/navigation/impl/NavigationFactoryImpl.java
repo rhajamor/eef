@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.mapping.navigation.*;
 import org.eclipse.emf.eef.mapping.navigation.ChainedModelNavigation;
 import org.eclipse.emf.eef.mapping.navigation.CustomModelNavigation;
 import org.eclipse.emf.eef.mapping.navigation.NavigationFactory;
@@ -27,7 +28,8 @@ import org.eclipse.emf.eef.mapping.navigation.SimpleModelNavigation;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFactory {
+public class NavigationFactoryImpl extends EFactoryImpl implements
+		NavigationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -36,7 +38,7 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	 */
 	public static NavigationFactory init() {
 		try {
-			NavigationFactory theNavigationFactory = (NavigationFactory)EPackage.Registry.INSTANCE
+			NavigationFactory theNavigationFactory = (NavigationFactory) EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0");
 			if (theNavigationFactory != null) {
 				return theNavigationFactory;
@@ -65,15 +67,25 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NavigationPackage.SIMPLE_MODEL_NAVIGATION:
-				return createSimpleModelNavigation();
-			case NavigationPackage.CHAINED_MODEL_NAVIGATION:
-				return createChainedModelNavigation();
-			case NavigationPackage.CUSTOM_MODEL_NAVIGATION:
-				return createCustomModelNavigation();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName()
-						+ "' is not a valid classifier");
+		case NavigationPackage.SIMPLE_MODEL_NAVIGATION:
+			return createSimpleModelNavigation();
+		case NavigationPackage.CHAINED_MODEL_NAVIGATION:
+			return createChainedModelNavigation();
+		case NavigationPackage.CUSTOM_MODEL_NAVIGATION:
+			return createCustomModelNavigation();
+		case NavigationPackage.SMART_MODEL_NAVIGATION:
+			return createSmartModelNavigation();
+		case NavigationPackage.DECLARATIVE_NAVIGATION_STEP:
+			return createDeclarativeNavigationStep();
+		case NavigationPackage.JAVA_BODY_EXPRESSION:
+			return createJavaBodyExpression();
+		case NavigationPackage.JAVA_DECLARATION_STEP_INITIALIZER:
+			return createJavaDeclarationStepInitializer();
+		case NavigationPackage.JAVA_BODY_STEP_INITIALIZER:
+			return createJavaBodyStepInitializer();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -112,8 +124,58 @@ public class NavigationFactoryImpl extends EFactoryImpl implements NavigationFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SmartModelNavigation createSmartModelNavigation() {
+		SmartModelNavigationImpl smartModelNavigation = new SmartModelNavigationImpl();
+		return smartModelNavigation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclarativeNavigationStep createDeclarativeNavigationStep() {
+		DeclarativeNavigationStepImpl declarativeNavigationStep = new DeclarativeNavigationStepImpl();
+		return declarativeNavigationStep;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaBodyExpression createJavaBodyExpression() {
+		JavaBodyExpressionImpl javaBodyExpression = new JavaBodyExpressionImpl();
+		return javaBodyExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaDeclarationStepInitializer createJavaDeclarationStepInitializer() {
+		JavaDeclarationStepInitializerImpl javaDeclarationStepInitializer = new JavaDeclarationStepInitializerImpl();
+		return javaDeclarationStepInitializer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaBodyStepInitializer createJavaBodyStepInitializer() {
+		JavaBodyStepInitializerImpl javaBodyStepInitializer = new JavaBodyStepInitializerImpl();
+		return javaBodyStepInitializer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NavigationPackage getNavigationPackage() {
-		return (NavigationPackage)getEPackage();
+		return (NavigationPackage) getEPackage();
 	}
 
 	/**

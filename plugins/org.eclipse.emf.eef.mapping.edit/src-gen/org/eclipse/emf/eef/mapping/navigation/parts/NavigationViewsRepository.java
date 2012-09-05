@@ -54,4 +54,64 @@ public class NavigationViewsRepository {
 	
 	}
 
+	/**
+	 * DeclarativeNavigationStep view descriptor
+	 * 
+	 */
+	public static class DeclarativeNavigationStep {
+		public static class Properties {
+	
+			
+			public static String createsIfNotExists = "navigation::DeclarativeNavigationStep::Properties::createsIfNotExists";
+			
+			
+			public static String index = "navigation::DeclarativeNavigationStep::Properties::index";
+			
+			
+			public static String feature = "navigation::DeclarativeNavigationStep::Properties::feature";
+			
+			
+			public static String discriminatorType = "navigation::DeclarativeNavigationStep::Properties::discriminatorType";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * JavaDeclarationStepInitializer view descriptor
+	 * 
+	 */
+	public static class JavaDeclarationStepInitializer {
+		public static class Properties {
+	
+			
+			public static String qualifiedClass = "navigation::JavaDeclarationStepInitializer::Properties::qualifiedClass";
+			
+			
+			public static String methodFilter = "navigation::JavaDeclarationStepInitializer::Properties::methodFilter";
+			
+			
+			public static String staticMethod = "navigation::JavaDeclarationStepInitializer::Properties::staticMethod";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * JavaBodyStepInitializer view descriptor
+	 * 
+	 */
+	public static class JavaBodyStepInitializer {
+		public static class Properties {
+	
+			
+			public static String body = "navigation::JavaBodyStepInitializer::Properties::body";
+			
+	
+		}
+	
+	}
+
 }

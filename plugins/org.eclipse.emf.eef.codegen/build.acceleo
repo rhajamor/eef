@@ -18,9 +18,8 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.emf.eef.eefgen;${target.folder}/../../org.eclipse.emf.eef.components;${target.folder}/../../org.eclipse.emf.eef.mapping;${target.folder}/../../org.eclipse.emf.eef.views;${target.folder}/../../org.eclipse.emf.eef.views.edit;${target.folder}/../../org.eclipse.emf.eef.runtime;${target.folder}/../../org.eclipse.emf.eef.components.edit;${target.folder}/../../org.eclipse.emf.eef.mapping.edit;${target.folder}/../../org.eclipse.emf.eef.codegen.launcher;${target.folder}/../../org.eclipse.emf.eef.codegen.ecore;"
-            binaryResource="false"
-            packagesToRegister="">
+            dependencies="${target.folder}/../../org.eclipse.emf.eef.codegen.launcher;${target.folder}/../../org.eclipse.emf.eef.codegen.ecore;"
+            binaryResource="false">
         </acceleoCompiler>
     </target>    
 </project>

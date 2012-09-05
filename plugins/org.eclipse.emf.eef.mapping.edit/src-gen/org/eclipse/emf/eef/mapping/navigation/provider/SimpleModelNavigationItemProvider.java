@@ -40,7 +40,10 @@ import org.eclipse.emf.eef.mapping.navigation.SimpleModelNavigation;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SimpleModelNavigationItemProvider extends StructuredModelNavigationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SimpleModelNavigationItemProvider extends
+		StructuredModelNavigationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -85,12 +88,15 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 */
 	private ItemPropertyDescriptor initFeatureItemDescriptor() {
 		return new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SimpleModelNavigation_feature_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_SimpleModelNavigation_feature_feature",
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SimpleModelNavigation_feature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SimpleModelNavigation_feature_feature",
 						"_UI_SimpleModelNavigation_type"),
-				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__FEATURE, true, false, true, null, null,
-				null) {
+				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__FEATURE,
+				true, false, true, null, null, null) {
 
 			/**
 			 * {@inheritDoc}
@@ -98,18 +104,22 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 			 */
 			@Override
 			protected Collection<?> getComboBoxObjects(Object object) {
-				Collection<?> comboBoxObjects = super.getComboBoxObjects(object);
+				Collection<?> comboBoxObjects = super
+						.getComboBoxObjects(object);
 				if (object instanceof SimpleModelNavigation) {
-					SimpleModelNavigation smn = (SimpleModelNavigation)object;
+					SimpleModelNavigation smn = (SimpleModelNavigation) object;
 					EClass currentClass = null;
 					if (smn.eContainer() instanceof EMFPropertyBinding
 							|| (smn.eContainer() instanceof ChainedModelNavigation && NavigationPackage.eINSTANCE
-									.getChainedModelNavigation_Current() == smn.eContainingFeature()))
+									.getChainedModelNavigation_Current() == smn
+									.eContainingFeature()))
 						currentClass = smn.owningEClass();
 					else if (smn.eContainer() instanceof ChainedModelNavigation
-							&& NavigationPackage.eINSTANCE.getChainedModelNavigation_Next() == smn
+							&& NavigationPackage.eINSTANCE
+									.getChainedModelNavigation_Next() == smn
 									.eContainingFeature())
-						currentClass = ((ChainedModelNavigation)smn.eContainer()).currentEClass();
+						currentClass = ((ChainedModelNavigation) smn
+								.eContainer()).currentEClass();
 					if (currentClass != null) {
 						EList<EStructuralFeature> allStructuralFeatures = currentClass
 								.getEAllStructuralFeatures();
@@ -117,7 +127,7 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 						for (Object object2 : comboBoxObjects) {
 							if (object2 instanceof EStructuralFeature
 									&& allStructuralFeatures.contains(object2))
-								result.add((EStructuralFeature)object2);
+								result.add((EStructuralFeature) object2);
 						}
 						return result;
 					}
@@ -136,12 +146,15 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_SimpleModelNavigation_index_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SimpleModelNavigation_index_feature",
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SimpleModelNavigation_index_feature",
 						"_UI_SimpleModelNavigation_type"),
-				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__INDEX, true, false, false,
+				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__INDEX,
+				true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -152,7 +165,8 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 * @generated NOT
 	 */
 	protected void addDiscriminatorTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(initializeDiscriminatorTypePropertyDescriptor());
+		itemPropertyDescriptors
+				.add(initializeDiscriminatorTypePropertyDescriptor());
 	}
 
 	/**
@@ -161,13 +175,15 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 */
 	private ItemPropertyDescriptor initializeDiscriminatorTypePropertyDescriptor() {
 		return new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_SimpleModelNavigation_discriminatorType_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SimpleModelNavigation_discriminatorType_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_SimpleModelNavigation_discriminatorType_feature",
 						"_UI_SimpleModelNavigation_type"),
-				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__DISCRIMINATOR_TYPE, true, false, true,
-				null, null, null) {
+				NavigationPackage.Literals.SIMPLE_MODEL_NAVIGATION__DISCRIMINATOR_TYPE,
+				true, false, true, null, null, null) {
 
 			/**
 			 * {@inheritDoc}
@@ -175,17 +191,20 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 			 */
 			@Override
 			protected Collection<?> getComboBoxObjects(Object object) {
-				Collection<?> comboBoxObjects = super.getComboBoxObjects(object);
+				Collection<?> comboBoxObjects = super
+						.getComboBoxObjects(object);
 				if (object instanceof SimpleModelNavigation) {
-					SimpleModelNavigation smn = (SimpleModelNavigation)object;
+					SimpleModelNavigation smn = (SimpleModelNavigation) object;
 					if (smn.getFeature() != null) {
 						EClassifier type = smn.getFeature().getEType();
 						if (type instanceof EClass) {
-							EClass targetType = (EClass)type;
+							EClass targetType = (EClass) type;
 							List<EClassifier> result = new ArrayList<EClassifier>();
 							for (Object object2 : comboBoxObjects) {
-								if (object2 instanceof EClass && targetType.isSuperTypeOf((EClass)object2))
-									result.add((EClassifier)object2);
+								if (object2 instanceof EClass
+										&& targetType
+												.isSuperTypeOf((EClass) object2))
+									result.add((EClassifier) object2);
 							}
 							return result;
 						}
@@ -205,7 +224,10 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SimpleModelNavigation"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/SimpleModelNavigation"));
 	}
 
 	/**
@@ -216,8 +238,9 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 */
 	@Override
 	public String getText(Object object) {
-		SimpleModelNavigation simpleModelNavigation = (SimpleModelNavigation)object;
-		return getString("_UI_SimpleModelNavigation_type") + " " + simpleModelNavigation.getIndex();
+		SimpleModelNavigation simpleModelNavigation = (SimpleModelNavigation) object;
+		return getString("_UI_SimpleModelNavigation_type") + " "
+				+ simpleModelNavigation.getIndex();
 	}
 
 	/**
@@ -232,10 +255,10 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SimpleModelNavigation.class)) {
-			case NavigationPackage.SIMPLE_MODEL_NAVIGATION__INDEX:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-						true));
-				return;
+		case NavigationPackage.SIMPLE_MODEL_NAVIGATION__INDEX:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -248,7 +271,8 @@ public class SimpleModelNavigationItemProvider extends StructuredModelNavigation
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -148,7 +148,7 @@ public class MappingViewsRepository {
 		public static class Reference {
 	
 			
-			public static String binding = "mapping::ElementBindingReference::RÃ©ference::binding";
+			public static String binding = "mapping::ElementBindingReference::Réference::binding";
 			
 	
 		}

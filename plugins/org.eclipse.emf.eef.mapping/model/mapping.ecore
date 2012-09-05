@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mapping" nsURI="http://www.eclipse.org/emf/eef/mapping/1.0.0"
-    nsPrefix="eef-mapping">
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mapping"
+    nsURI="http://www.eclipse.org/emf/eef/mapping/1.0.0" nsPrefix="eef-mapping">
   <eClassifiers xsi:type="ecore:EClass" name="Databinding" eSuperTypes="#//DocumentedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//AbstractElementBinding" containment="true" eOpposite="#//AbstractElementBinding/databinding"/>
@@ -112,6 +113,43 @@
       <eOperations name="evaluate" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CustomModelNavigation" eSuperTypes="#//navigation/ModelNavigation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SmartModelNavigation" eSuperTypes="#//navigation/ModelNavigation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1"
+          eType="#//navigation/NavigationStep" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NavigationStep" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createsIfNotExists" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subStep" eType="#//navigation/NavigationStep"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//navigation/StepInitializer"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="filters" upperBound="-1"
+          eType="#//filters/StepFilter" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DeclarativeNavigationStep" eSuperTypes="#//navigation/NavigationStep">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="discriminatorType" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StepInitializer" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaStepInitializer" abstract="true"
+        interface="true" eSuperTypes="#//navigation/StepInitializer"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaDeclarationExpression" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedClass" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodFilter" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="staticMethod" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaBodyExpression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaDeclarationStepInitializer" eSuperTypes="#//navigation/JavaDeclarationExpression #//navigation/JavaStepInitializer"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaBodyStepInitializer" eSuperTypes="#//navigation/JavaBodyExpression #//navigation/JavaStepInitializer"/>
   </eSubpackages>
   <eSubpackages name="filters" nsURI="http://www.eclipse.org/emf/eef/mapping/filters/1.0.0"
       nsPrefix="eef-mapping-filters">
@@ -138,5 +176,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StepFilter" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaStepFilter" abstract="true" interface="true"
+        eSuperTypes="#//filters/StepFilter"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaBodyStepFilter" eSuperTypes="#//navigation/JavaBodyExpression #//filters/JavaStepFilter"/>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaDeclarationStepFilter" eSuperTypes="#//navigation/JavaDeclarationExpression #//filters/JavaStepFilter"/>
   </eSubpackages>
 </ecore:EPackage>

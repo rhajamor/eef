@@ -172,6 +172,18 @@
                id="org.eclipse.emf.eef.filters.section.StrictTypingFilter"
                tab="Filter properties">
          </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.mapping.filters.parts.forms.JavaDeclarationStepFilterPropertiesEditionPartForm"
+               filter="org.eclipse.emf.eef.filters.providers.JavaDeclarationStepFilterPropertiesEditionProvider$EditionFilter"
+               id="org.eclipse.emf.eef.filters.section.JavaDeclarationStepFilter"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.mapping.filters.parts.forms.JavaBodyStepFilterPropertiesEditionPartForm"
+               filter="org.eclipse.emf.eef.filters.providers.JavaBodyStepFilterPropertiesEditionProvider$EditionFilter"
+               id="org.eclipse.emf.eef.filters.section.JavaBodyStepFilter"
+               tab="Base">
+         </propertySection>
       </propertySections>
    </extension>
  </plugin>

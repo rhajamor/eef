@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.eef.mapping.MappingPackage;
+import org.eclipse.emf.eef.mapping.navigation.NavigationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +63,8 @@ public interface FiltersPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FiltersPackage eINSTANCE = org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl.init();
+	FiltersPackage eINSTANCE = org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.eef.mapping.filters.impl.BindingFilterImpl <em>Binding Filter</em>}' class.
@@ -478,6 +480,118 @@ public interface FiltersPackage extends EPackage {
 	int STRICT_TYPING_FILTER_FEATURE_COUNT = BUSINESS_FILTER_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.mapping.filters.impl.StepFilterImpl <em>Step Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.StepFilterImpl
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getStepFilter()
+	 * @generated
+	 */
+	int STEP_FILTER = 8;
+
+	/**
+	 * The number of structural features of the '<em>Step Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_FILTER_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.mapping.filters.JavaStepFilter <em>Java Step Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaStepFilter
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaStepFilter()
+	 * @generated
+	 */
+	int JAVA_STEP_FILTER = 9;
+
+	/**
+	 * The number of structural features of the '<em>Java Step Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STEP_FILTER_FEATURE_COUNT = STEP_FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.mapping.filters.impl.JavaBodyStepFilterImpl <em>Java Body Step Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.JavaBodyStepFilterImpl
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaBodyStepFilter()
+	 * @generated
+	 */
+	int JAVA_BODY_STEP_FILTER = 10;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_BODY_STEP_FILTER__BODY = NavigationPackage.JAVA_BODY_EXPRESSION__BODY;
+
+	/**
+	 * The number of structural features of the '<em>Java Body Step Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_BODY_STEP_FILTER_FEATURE_COUNT = NavigationPackage.JAVA_BODY_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.eef.mapping.filters.impl.JavaDeclarationStepFilterImpl <em>Java Declaration Step Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.JavaDeclarationStepFilterImpl
+	 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaDeclarationStepFilter()
+	 * @generated
+	 */
+	int JAVA_DECLARATION_STEP_FILTER = 11;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_DECLARATION_STEP_FILTER__QUALIFIED_CLASS = NavigationPackage.JAVA_DECLARATION_EXPRESSION__QUALIFIED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Method Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_DECLARATION_STEP_FILTER__METHOD_FILTER = NavigationPackage.JAVA_DECLARATION_EXPRESSION__METHOD_FILTER;
+
+	/**
+	 * The feature id for the '<em><b>Static Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_DECLARATION_STEP_FILTER__STATIC_METHOD = NavigationPackage.JAVA_DECLARATION_EXPRESSION__STATIC_METHOD;
+
+	/**
+	 * The number of structural features of the '<em>Java Declaration Step Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_DECLARATION_STEP_FILTER_FEATURE_COUNT = NavigationPackage.JAVA_DECLARATION_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.eef.mapping.filters.BindingFilter <em>Binding Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,6 +749,46 @@ public interface FiltersPackage extends EPackage {
 	EReference getStrictTypingFilter_Type();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.mapping.filters.StepFilter <em>Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Step Filter</em>'.
+	 * @see org.eclipse.emf.eef.mapping.filters.StepFilter
+	 * @generated
+	 */
+	EClass getStepFilter();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.mapping.filters.JavaStepFilter <em>Java Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Step Filter</em>'.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaStepFilter
+	 * @generated
+	 */
+	EClass getJavaStepFilter();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.mapping.filters.JavaBodyStepFilter <em>Java Body Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Body Step Filter</em>'.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaBodyStepFilter
+	 * @generated
+	 */
+	EClass getJavaBodyStepFilter();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.eef.mapping.filters.JavaDeclarationStepFilter <em>Java Declaration Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Declaration Step Filter</em>'.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaDeclarationStepFilter
+	 * @generated
+	 */
+	EClass getJavaDeclarationStepFilter();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -680,7 +834,8 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BINDING_FILTER__MANDATORY = eINSTANCE.getBindingFilter_Mandatory();
+		EAttribute BINDING_FILTER__MANDATORY = eINSTANCE
+				.getBindingFilter_Mandatory();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.OCLFilterImpl <em>OCL Filter</em>}' class.
@@ -726,7 +881,8 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute JAVA_DECLARATION_FILTER__METHOD_NAME = eINSTANCE.getJavaDeclarationFilter_MethodName();
+		EAttribute JAVA_DECLARATION_FILTER__METHOD_NAME = eINSTANCE
+				.getJavaDeclarationFilter_MethodName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.JavaExpressionFilterImpl <em>Java Expression Filter</em>}' class.
@@ -744,7 +900,8 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute JAVA_EXPRESSION_FILTER__JAVA_BODY = eINSTANCE.getJavaExpressionFilter_JavaBody();
+		EAttribute JAVA_EXPRESSION_FILTER__JAVA_BODY = eINSTANCE
+				.getJavaExpressionFilter_JavaBody();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.BusinessFilterImpl <em>Business Filter</em>}' class.
@@ -764,7 +921,8 @@ public interface FiltersPackage extends EPackage {
 		 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getOnlyReferenceTypeFilter()
 		 * @generated
 		 */
-		EClass ONLY_REFERENCE_TYPE_FILTER = eINSTANCE.getOnlyReferenceTypeFilter();
+		EClass ONLY_REFERENCE_TYPE_FILTER = eINSTANCE
+				.getOnlyReferenceTypeFilter();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference</b></em>' reference feature.
@@ -772,7 +930,8 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ONLY_REFERENCE_TYPE_FILTER__REFERENCE = eINSTANCE.getOnlyReferenceTypeFilter_Reference();
+		EReference ONLY_REFERENCE_TYPE_FILTER__REFERENCE = eINSTANCE
+				.getOnlyReferenceTypeFilter_Reference();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.StrictTypingFilterImpl <em>Strict Typing Filter</em>}' class.
@@ -790,7 +949,49 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRICT_TYPING_FILTER__TYPE = eINSTANCE.getStrictTypingFilter_Type();
+		EReference STRICT_TYPING_FILTER__TYPE = eINSTANCE
+				.getStrictTypingFilter_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.StepFilterImpl <em>Step Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.StepFilterImpl
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getStepFilter()
+		 * @generated
+		 */
+		EClass STEP_FILTER = eINSTANCE.getStepFilter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.JavaStepFilter <em>Java Step Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.mapping.filters.JavaStepFilter
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaStepFilter()
+		 * @generated
+		 */
+		EClass JAVA_STEP_FILTER = eINSTANCE.getJavaStepFilter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.JavaBodyStepFilterImpl <em>Java Body Step Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.JavaBodyStepFilterImpl
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaBodyStepFilter()
+		 * @generated
+		 */
+		EClass JAVA_BODY_STEP_FILTER = eINSTANCE.getJavaBodyStepFilter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.eef.mapping.filters.impl.JavaDeclarationStepFilterImpl <em>Java Declaration Step Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.JavaDeclarationStepFilterImpl
+		 * @see org.eclipse.emf.eef.mapping.filters.impl.FiltersPackageImpl#getJavaDeclarationStepFilter()
+		 * @generated
+		 */
+		EClass JAVA_DECLARATION_STEP_FILTER = eINSTANCE
+				.getJavaDeclarationStepFilter();
 
 	}
 

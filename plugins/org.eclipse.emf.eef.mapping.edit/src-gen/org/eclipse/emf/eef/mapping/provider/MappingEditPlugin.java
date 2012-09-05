@@ -12,6 +12,7 @@ package org.eclipse.emf.eef.mapping.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.eef.views.provider.ViewsEditPlugin;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.eef.mapping.MappingPackage;
@@ -47,7 +48,8 @@ public final class MappingEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public MappingEditPlugin() {
-		super(new ResourceLocator[] {ViewsEditPlugin.INSTANCE,});
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				ViewsEditPlugin.INSTANCE, });
 	}
 
 	/**
@@ -92,7 +94,8 @@ public final class MappingEditPlugin extends EMFPlugin {
 			// Remember the static instance.
 			//
 			plugin = this;
-			EValidator.Registry.INSTANCE.put(MappingPackage.eINSTANCE, new EEFValidator());
+			EValidator.Registry.INSTANCE.put(MappingPackage.eINSTANCE,
+					new EEFValidator());
 		}
 	}
 

@@ -24,7 +24,8 @@ import org.eclipse.emf.eef.mapping.navigation.NavigationPackage;
  *
  * @generated
  */
-public abstract class ModelNavigationImpl extends EObjectImpl implements ModelNavigation {
+public abstract class ModelNavigationImpl extends EObjectImpl implements
+		ModelNavigation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

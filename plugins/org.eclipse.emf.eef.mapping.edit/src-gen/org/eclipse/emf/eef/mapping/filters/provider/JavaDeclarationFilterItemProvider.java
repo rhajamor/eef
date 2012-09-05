@@ -33,7 +33,9 @@ import org.eclipse.emf.eef.mapping.filters.JavaDeclarationFilter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,13 +70,16 @@ public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider im
 	 */
 	protected void addMethodNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_JavaDeclarationFilter_methodName_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_JavaDeclarationFilter_methodName_feature", "_UI_JavaDeclarationFilter_type"),
-				FiltersPackage.Literals.JAVA_DECLARATION_FILTER__METHOD_NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+						"_UI_JavaDeclarationFilter_methodName_feature",
+						"_UI_JavaDeclarationFilter_type"),
+				FiltersPackage.Literals.JAVA_DECLARATION_FILTER__METHOD_NAME,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -85,7 +90,10 @@ public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider im
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaDeclarationFilter"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/JavaDeclarationFilter"));
 	}
 
 	/**
@@ -96,7 +104,7 @@ public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider im
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((JavaDeclarationFilter)object).getName();
+		String label = ((JavaDeclarationFilter) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_JavaDeclarationFilter_type")
 				: getString("_UI_JavaDeclarationFilter_type") + " " + label;
 	}
@@ -113,10 +121,10 @@ public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider im
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(JavaDeclarationFilter.class)) {
-			case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-						true));
-				return;
+		case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -129,7 +137,8 @@ public class JavaDeclarationFilterItemProvider extends JavaFilterItemProvider im
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

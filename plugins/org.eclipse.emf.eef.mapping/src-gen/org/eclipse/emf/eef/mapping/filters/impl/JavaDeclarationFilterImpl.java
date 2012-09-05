@@ -29,7 +29,8 @@ import org.eclipse.emf.eef.mapping.filters.JavaDeclarationFilter;
  *
  * @generated
  */
-public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDeclarationFilter {
+public class JavaDeclarationFilterImpl extends JavaFilterImpl implements
+		JavaDeclarationFilter {
 	/**
 	 * The default value of the '{@link #getMethodName() <em>Method Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,7 +89,8 @@ public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDec
 		methodName = newMethodName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME, oldMethodName, methodName));
+					FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME,
+					oldMethodName, methodName));
 	}
 
 	/**
@@ -99,8 +101,8 @@ public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
-				return getMethodName();
+		case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
+			return getMethodName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,9 +115,9 @@ public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
-				setMethodName((String)newValue);
-				return;
+		case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
+			setMethodName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -128,9 +130,9 @@ public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
-				setMethodName(METHOD_NAME_EDEFAULT);
-				return;
+		case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
+			setMethodName(METHOD_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,9 +145,9 @@ public class JavaDeclarationFilterImpl extends JavaFilterImpl implements JavaDec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
-				return METHOD_NAME_EDEFAULT == null ? methodName != null : !METHOD_NAME_EDEFAULT
-						.equals(methodName);
+		case FiltersPackage.JAVA_DECLARATION_FILTER__METHOD_NAME:
+			return METHOD_NAME_EDEFAULT == null ? methodName != null
+					: !METHOD_NAME_EDEFAULT.equals(methodName);
 		}
 		return super.eIsSet(featureID);
 	}

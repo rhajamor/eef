@@ -15,6 +15,9 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.mapping.DocumentedElement;
+import org.eclipse.emf.eef.mapping.filters.*;
+import org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression;
+import org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression;
 import org.eclipse.emf.eef.mapping.filters.BindingFilter;
 import org.eclipse.emf.eef.mapping.filters.BusinessFilter;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
@@ -68,7 +71,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -111,7 +114,8 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseOnlyReferenceTypeFilter(OnlyReferenceTypeFilter object) {
+		public Adapter caseOnlyReferenceTypeFilter(
+				OnlyReferenceTypeFilter object) {
 			return createOnlyReferenceTypeFilterAdapter();
 		}
 
@@ -121,8 +125,40 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseStepFilter(StepFilter object) {
+			return createStepFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaStepFilter(JavaStepFilter object) {
+			return createJavaStepFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaBodyStepFilter(JavaBodyStepFilter object) {
+			return createJavaBodyStepFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaDeclarationStepFilter(
+				JavaDeclarationStepFilter object) {
+			return createJavaDeclarationStepFilterAdapter();
+		}
+
+		@Override
 		public Adapter caseDocumentedElement(DocumentedElement object) {
 			return createDocumentedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaBodyExpression(JavaBodyExpression object) {
+			return createJavaBodyExpressionAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaDeclarationExpression(
+				JavaDeclarationExpression object) {
+			return createJavaDeclarationExpressionAdapter();
 		}
 
 		@Override
@@ -141,7 +177,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
@@ -257,6 +293,62 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.filters.StepFilter <em>Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.filters.StepFilter
+	 * @generated
+	 */
+	public Adapter createStepFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.filters.JavaStepFilter <em>Java Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaStepFilter
+	 * @generated
+	 */
+	public Adapter createJavaStepFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.filters.JavaBodyStepFilter <em>Java Body Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaBodyStepFilter
+	 * @generated
+	 */
+	public Adapter createJavaBodyStepFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.filters.JavaDeclarationStepFilter <em>Java Declaration Step Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.filters.JavaDeclarationStepFilter
+	 * @generated
+	 */
+	public Adapter createJavaDeclarationStepFilterAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.DocumentedElement <em>Documented Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -267,6 +359,34 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression <em>Java Body Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression
+	 * @generated
+	 */
+	public Adapter createJavaBodyExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression <em>Java Declaration Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression
+	 * @generated
+	 */
+	public Adapter createJavaDeclarationExpressionAdapter() {
 		return null;
 	}
 

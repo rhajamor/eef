@@ -99,5 +99,21 @@ public class FiltersEEFAdapterFactory extends FiltersAdapterFactory {
 		providers.add((PropertiesEditingProvider)createBindingFilterAdapter());
 		return new StrictTypingFilterFilterPropertiesEditionProvider(providers);
 	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.mapping.filters.util.FiltersAdapterFactory#createJavaBodyStepFilterAdapter()
+	 * 
+	 */
+	public Adapter createJavaBodyStepFilterAdapter() {
+		return new JavaBodyStepFilterPropertiesEditionProvider();
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.mapping.filters.util.FiltersAdapterFactory#createJavaDeclarationStepFilterAdapter()
+	 * 
+	 */
+	public Adapter createJavaDeclarationStepFilterAdapter() {
+		return new JavaDeclarationStepFilterPropertiesEditionProvider();
+	}
 
 }

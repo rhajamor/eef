@@ -23,7 +23,8 @@ import org.eclipse.emf.eef.mapping.filters.JavaFilter;
  *
  * @generated
  */
-public abstract class JavaFilterImpl extends BindingFilterImpl implements JavaFilter {
+public abstract class JavaFilterImpl extends BindingFilterImpl implements
+		JavaFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.emf.eef.mapping/src-gen"
-    editDirectory="/org.eclipse.emf.eef.mapping.edit/src-gen" editorDirectory="/org.eclipse.emf.eef.mapping.editor/src-gen"
-    modelPluginID="org.eclipse.emf.eef.mapping" modelName="Mapping" codeFormatting="true"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    runtimeVersion="2.5" usedGenPackages="platform:/plugin/org.eclipse.emf.eef.views/model/views.genmodel#//views">
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=""
+    modelDirectory="/org.eclipse.emf.eef.mapping/src-gen" editDirectory="/org.eclipse.emf.eef.mapping.edit/src-gen"
+    editorDirectory="/org.eclipse.emf.eef.mapping.editor/src-gen" modelPluginID="org.eclipse.emf.eef.mapping"
+    modelName="Mapping" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.5" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.eef.views/model/views.genmodel#//views">
   <foreignModel>mapping.ecore</foreignModel>
   <genPackages prefix="Mapping" basePackage="org.eclipse.emf.eef" disposableProviderFactory="true"
       extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="mapping.ecore#/">
@@ -118,6 +119,34 @@
         <genOperations ecoreOperation="mapping.ecore#//navigation/StructuredModelNavigation/evaluate"/>
       </genClasses>
       <genClasses ecoreClass="mapping.ecore#//navigation/CustomModelNavigation"/>
+      <genClasses ecoreClass="mapping.ecore#//navigation/SmartModelNavigation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//navigation/SmartModelNavigation/step"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mapping.ecore#//navigation/NavigationStep">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/NavigationStep/createsIfNotExists"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//navigation/NavigationStep/subStep"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//navigation/NavigationStep/initializer"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//navigation/NavigationStep/filters"/>
+      </genClasses>
+      <genClasses ecoreClass="mapping.ecore#//navigation/DeclarativeNavigationStep">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/DeclarativeNavigationStep/index"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mapping.ecore#//navigation/DeclarativeNavigationStep/feature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mapping.ecore#//navigation/DeclarativeNavigationStep/discriminatorType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mapping.ecore#//navigation/StepInitializer"/>
+      <genClasses image="false" ecoreClass="mapping.ecore#//navigation/JavaStepInitializer"/>
+      <genClasses image="false" ecoreClass="mapping.ecore#//navigation/JavaDeclarationExpression">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/JavaDeclarationExpression/qualifiedClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/JavaDeclarationExpression/methodFilter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/JavaDeclarationExpression/staticMethod"/>
+      </genClasses>
+      <genClasses ecoreClass="mapping.ecore#//navigation/JavaBodyExpression">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//navigation/JavaBodyExpression/body"/>
+      </genClasses>
+      <genClasses ecoreClass="mapping.ecore#//navigation/JavaDeclarationStepInitializer"/>
+      <genClasses ecoreClass="mapping.ecore#//navigation/JavaBodyStepInitializer"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Filters" basePackage="org.eclipse.emf.eef.mapping"
         disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -145,6 +174,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mapping.ecore#//filters/StrictTypingFilter/type"/>
       </genClasses>
+      <genClasses image="false" ecoreClass="mapping.ecore#//filters/StepFilter"/>
+      <genClasses image="false" ecoreClass="mapping.ecore#//filters/JavaStepFilter"/>
+      <genClasses ecoreClass="mapping.ecore#//filters/JavaBodyStepFilter"/>
+      <genClasses ecoreClass="mapping.ecore#//filters/JavaDeclarationStepFilter"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

@@ -23,7 +23,8 @@ import org.eclipse.emf.eef.mapping.navigation.StructuredModelNavigation;
  *
  * @generated
  */
-public abstract class StructuredModelNavigationImpl extends ModelNavigationImpl implements StructuredModelNavigation {
+public abstract class StructuredModelNavigationImpl extends ModelNavigationImpl
+		implements StructuredModelNavigation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

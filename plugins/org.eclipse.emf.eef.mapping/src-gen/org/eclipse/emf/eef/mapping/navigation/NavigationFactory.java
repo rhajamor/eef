@@ -27,7 +27,8 @@ public interface NavigationFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	NavigationFactory eINSTANCE = org.eclipse.emf.eef.mapping.navigation.impl.NavigationFactoryImpl.init();
+	NavigationFactory eINSTANCE = org.eclipse.emf.eef.mapping.navigation.impl.NavigationFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Simple Model Navigation</em>'.
@@ -55,6 +56,51 @@ public interface NavigationFactory extends EFactory {
 	 * @generated
 	 */
 	CustomModelNavigation createCustomModelNavigation();
+
+	/**
+	 * Returns a new object of class '<em>Smart Model Navigation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Smart Model Navigation</em>'.
+	 * @generated
+	 */
+	SmartModelNavigation createSmartModelNavigation();
+
+	/**
+	 * Returns a new object of class '<em>Declarative Navigation Step</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declarative Navigation Step</em>'.
+	 * @generated
+	 */
+	DeclarativeNavigationStep createDeclarativeNavigationStep();
+
+	/**
+	 * Returns a new object of class '<em>Java Body Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Body Expression</em>'.
+	 * @generated
+	 */
+	JavaBodyExpression createJavaBodyExpression();
+
+	/**
+	 * Returns a new object of class '<em>Java Declaration Step Initializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Declaration Step Initializer</em>'.
+	 * @generated
+	 */
+	JavaDeclarationStepInitializer createJavaDeclarationStepInitializer();
+
+	/**
+	 * Returns a new object of class '<em>Java Body Step Initializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Body Step Initializer</em>'.
+	 * @generated
+	 */
+	JavaBodyStepInitializer createJavaBodyStepInitializer();
 
 	/**
 	 * Returns the package supported by this factory.

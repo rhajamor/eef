@@ -16,6 +16,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.eef.mapping.DocumentedElement;
+import org.eclipse.emf.eef.mapping.filters.*;
+import org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression;
+import org.eclipse.emf.eef.mapping.navigation.JavaDeclarationExpression;
 import org.eclipse.emf.eef.mapping.filters.BindingFilter;
 import org.eclipse.emf.eef.mapping.filters.BusinessFilter;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
@@ -83,7 +86,8 @@ public class FiltersSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -96,102 +100,144 @@ public class FiltersSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case FiltersPackage.BINDING_FILTER: {
-				BindingFilter bindingFilter = (BindingFilter)theEObject;
-				T result = caseBindingFilter(bindingFilter);
-				if (result == null)
-					result = caseDocumentedElement(bindingFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.OCL_FILTER: {
-				OCLFilter oclFilter = (OCLFilter)theEObject;
-				T result = caseOCLFilter(oclFilter);
-				if (result == null)
-					result = caseBindingFilter(oclFilter);
-				if (result == null)
-					result = caseDocumentedElement(oclFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.JAVA_FILTER: {
-				JavaFilter javaFilter = (JavaFilter)theEObject;
-				T result = caseJavaFilter(javaFilter);
-				if (result == null)
-					result = caseBindingFilter(javaFilter);
-				if (result == null)
-					result = caseDocumentedElement(javaFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.JAVA_DECLARATION_FILTER: {
-				JavaDeclarationFilter javaDeclarationFilter = (JavaDeclarationFilter)theEObject;
-				T result = caseJavaDeclarationFilter(javaDeclarationFilter);
-				if (result == null)
-					result = caseJavaFilter(javaDeclarationFilter);
-				if (result == null)
-					result = caseBindingFilter(javaDeclarationFilter);
-				if (result == null)
-					result = caseDocumentedElement(javaDeclarationFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.JAVA_EXPRESSION_FILTER: {
-				JavaExpressionFilter javaExpressionFilter = (JavaExpressionFilter)theEObject;
-				T result = caseJavaExpressionFilter(javaExpressionFilter);
-				if (result == null)
-					result = caseJavaFilter(javaExpressionFilter);
-				if (result == null)
-					result = caseBindingFilter(javaExpressionFilter);
-				if (result == null)
-					result = caseDocumentedElement(javaExpressionFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.BUSINESS_FILTER: {
-				BusinessFilter businessFilter = (BusinessFilter)theEObject;
-				T result = caseBusinessFilter(businessFilter);
-				if (result == null)
-					result = caseBindingFilter(businessFilter);
-				if (result == null)
-					result = caseDocumentedElement(businessFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER: {
-				OnlyReferenceTypeFilter onlyReferenceTypeFilter = (OnlyReferenceTypeFilter)theEObject;
-				T result = caseOnlyReferenceTypeFilter(onlyReferenceTypeFilter);
-				if (result == null)
-					result = caseBusinessFilter(onlyReferenceTypeFilter);
-				if (result == null)
-					result = caseBindingFilter(onlyReferenceTypeFilter);
-				if (result == null)
-					result = caseDocumentedElement(onlyReferenceTypeFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case FiltersPackage.STRICT_TYPING_FILTER: {
-				StrictTypingFilter strictTypingFilter = (StrictTypingFilter)theEObject;
-				T result = caseStrictTypingFilter(strictTypingFilter);
-				if (result == null)
-					result = caseBusinessFilter(strictTypingFilter);
-				if (result == null)
-					result = caseBindingFilter(strictTypingFilter);
-				if (result == null)
-					result = caseDocumentedElement(strictTypingFilter);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default:
-				return defaultCase(theEObject);
+		case FiltersPackage.BINDING_FILTER: {
+			BindingFilter bindingFilter = (BindingFilter) theEObject;
+			T result = caseBindingFilter(bindingFilter);
+			if (result == null)
+				result = caseDocumentedElement(bindingFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.OCL_FILTER: {
+			OCLFilter oclFilter = (OCLFilter) theEObject;
+			T result = caseOCLFilter(oclFilter);
+			if (result == null)
+				result = caseBindingFilter(oclFilter);
+			if (result == null)
+				result = caseDocumentedElement(oclFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_FILTER: {
+			JavaFilter javaFilter = (JavaFilter) theEObject;
+			T result = caseJavaFilter(javaFilter);
+			if (result == null)
+				result = caseBindingFilter(javaFilter);
+			if (result == null)
+				result = caseDocumentedElement(javaFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_DECLARATION_FILTER: {
+			JavaDeclarationFilter javaDeclarationFilter = (JavaDeclarationFilter) theEObject;
+			T result = caseJavaDeclarationFilter(javaDeclarationFilter);
+			if (result == null)
+				result = caseJavaFilter(javaDeclarationFilter);
+			if (result == null)
+				result = caseBindingFilter(javaDeclarationFilter);
+			if (result == null)
+				result = caseDocumentedElement(javaDeclarationFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_EXPRESSION_FILTER: {
+			JavaExpressionFilter javaExpressionFilter = (JavaExpressionFilter) theEObject;
+			T result = caseJavaExpressionFilter(javaExpressionFilter);
+			if (result == null)
+				result = caseJavaFilter(javaExpressionFilter);
+			if (result == null)
+				result = caseBindingFilter(javaExpressionFilter);
+			if (result == null)
+				result = caseDocumentedElement(javaExpressionFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.BUSINESS_FILTER: {
+			BusinessFilter businessFilter = (BusinessFilter) theEObject;
+			T result = caseBusinessFilter(businessFilter);
+			if (result == null)
+				result = caseBindingFilter(businessFilter);
+			if (result == null)
+				result = caseDocumentedElement(businessFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER: {
+			OnlyReferenceTypeFilter onlyReferenceTypeFilter = (OnlyReferenceTypeFilter) theEObject;
+			T result = caseOnlyReferenceTypeFilter(onlyReferenceTypeFilter);
+			if (result == null)
+				result = caseBusinessFilter(onlyReferenceTypeFilter);
+			if (result == null)
+				result = caseBindingFilter(onlyReferenceTypeFilter);
+			if (result == null)
+				result = caseDocumentedElement(onlyReferenceTypeFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.STRICT_TYPING_FILTER: {
+			StrictTypingFilter strictTypingFilter = (StrictTypingFilter) theEObject;
+			T result = caseStrictTypingFilter(strictTypingFilter);
+			if (result == null)
+				result = caseBusinessFilter(strictTypingFilter);
+			if (result == null)
+				result = caseBindingFilter(strictTypingFilter);
+			if (result == null)
+				result = caseDocumentedElement(strictTypingFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.STEP_FILTER: {
+			StepFilter stepFilter = (StepFilter) theEObject;
+			T result = caseStepFilter(stepFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_STEP_FILTER: {
+			JavaStepFilter javaStepFilter = (JavaStepFilter) theEObject;
+			T result = caseJavaStepFilter(javaStepFilter);
+			if (result == null)
+				result = caseStepFilter(javaStepFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_BODY_STEP_FILTER: {
+			JavaBodyStepFilter javaBodyStepFilter = (JavaBodyStepFilter) theEObject;
+			T result = caseJavaBodyStepFilter(javaBodyStepFilter);
+			if (result == null)
+				result = caseJavaBodyExpression(javaBodyStepFilter);
+			if (result == null)
+				result = caseJavaStepFilter(javaBodyStepFilter);
+			if (result == null)
+				result = caseStepFilter(javaBodyStepFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FiltersPackage.JAVA_DECLARATION_STEP_FILTER: {
+			JavaDeclarationStepFilter javaDeclarationStepFilter = (JavaDeclarationStepFilter) theEObject;
+			T result = caseJavaDeclarationStepFilter(javaDeclarationStepFilter);
+			if (result == null)
+				result = caseJavaDeclarationExpression(javaDeclarationStepFilter);
+			if (result == null)
+				result = caseJavaStepFilter(javaDeclarationStepFilter);
+			if (result == null)
+				result = caseStepFilter(javaDeclarationStepFilter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -316,6 +362,66 @@ public class FiltersSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Step Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStepFilter(StepFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Step Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaStepFilter(JavaStepFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Body Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Body Step Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaBodyStepFilter(JavaBodyStepFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Declaration Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Declaration Step Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaDeclarationStepFilter(JavaDeclarationStepFilter object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Documented Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -327,6 +433,36 @@ public class FiltersSwitch<T> {
 	 * @generated
 	 */
 	public T caseDocumentedElement(DocumentedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Body Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Body Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaBodyExpression(JavaBodyExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Declaration Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Declaration Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaDeclarationExpression(JavaDeclarationExpression object) {
 		return null;
 	}
 

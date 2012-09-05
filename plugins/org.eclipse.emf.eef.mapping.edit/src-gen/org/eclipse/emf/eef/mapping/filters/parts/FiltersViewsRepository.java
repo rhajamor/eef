@@ -111,4 +111,40 @@ public class FiltersViewsRepository {
 	
 	}
 
+	/**
+	 * JavaDeclarationStepFilter view descriptor
+	 * 
+	 */
+	public static class JavaDeclarationStepFilter {
+		public static class Properties {
+	
+			
+			public static String qualifiedClass = "filters::JavaDeclarationStepFilter::Properties::qualifiedClass";
+			
+			
+			public static String methodFilter = "filters::JavaDeclarationStepFilter::Properties::methodFilter";
+			
+			
+			public static String staticMethod = "filters::JavaDeclarationStepFilter::Properties::staticMethod";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * JavaBodyStepFilter view descriptor
+	 * 
+	 */
+	public static class JavaBodyStepFilter {
+		public static class Properties {
+	
+			
+			public static String body = "filters::JavaBodyStepFilter::Properties::body";
+			
+	
+		}
+	
+	}
+
 }

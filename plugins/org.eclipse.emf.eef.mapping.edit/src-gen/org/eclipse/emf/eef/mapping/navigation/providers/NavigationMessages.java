@@ -26,6 +26,15 @@ public class NavigationMessages extends NLS {
 	
 	public static String SimpleModelNavigationPropertiesEditionPart_PropertiesGroupLabel;
 
+	
+	public static String DeclarativeNavigationStepPropertiesEditionPart_PropertiesGroupLabel;
+
+	
+	public static String JavaDeclarationStepInitializerPropertiesEditionPart_PropertiesGroupLabel;
+
+	
+	public static String JavaBodyStepInitializerPropertiesEditionPart_PropertiesGroupLabel;
+
 
 	
 	public static String ModelNavigation_ReadOnly;
@@ -39,6 +48,24 @@ public class NavigationMessages extends NLS {
 	
 	public static String SimpleModelNavigation_Part_Title;
 
+	
+	public static String DeclarativeNavigationStep_ReadOnly;
+
+	
+	public static String DeclarativeNavigationStep_Part_Title;
+
+	
+	public static String JavaDeclarationStepInitializer_ReadOnly;
+
+	
+	public static String JavaDeclarationStepInitializer_Part_Title;
+
+	
+	public static String JavaBodyStepInitializer_ReadOnly;
+
+	
+	public static String JavaBodyStepInitializer_Part_Title;
+
 
 	
 	public static String SimpleModelNavigationPropertiesEditionPart_IndexLabel;
@@ -48,6 +75,30 @@ public class NavigationMessages extends NLS {
 
 	
 	public static String SimpleModelNavigationPropertiesEditionPart_DiscriminatorTypeLabel;
+
+	
+	public static String DeclarativeNavigationStepPropertiesEditionPart_CreatesIfNotExistsLabel;
+
+	
+	public static String DeclarativeNavigationStepPropertiesEditionPart_IndexLabel;
+
+	
+	public static String DeclarativeNavigationStepPropertiesEditionPart_FeatureLabel;
+
+	
+	public static String DeclarativeNavigationStepPropertiesEditionPart_DiscriminatorTypeLabel;
+
+	
+	public static String JavaDeclarationStepInitializerPropertiesEditionPart_QualifiedClassLabel;
+
+	
+	public static String JavaDeclarationStepInitializerPropertiesEditionPart_MethodFilterLabel;
+
+	
+	public static String JavaDeclarationStepInitializerPropertiesEditionPart_StaticMethodLabel;
+
+	
+	public static String JavaBodyStepInitializerPropertiesEditionPart_BodyLabel;
 
 
 	

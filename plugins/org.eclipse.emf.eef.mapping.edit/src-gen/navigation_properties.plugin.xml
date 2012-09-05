@@ -68,6 +68,24 @@
                id="org.eclipse.emf.eef.navigation.section.SimpleModelNavigation"
                tab="Base">
          </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.mapping.navigation.parts.forms.DeclarativeNavigationStepPropertiesEditionPartForm"
+               filter="org.eclipse.emf.eef.navigation.providers.DeclarativeNavigationStepPropertiesEditionProvider$EditionFilter"
+               id="org.eclipse.emf.eef.navigation.section.DeclarativeNavigationStep"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.mapping.navigation.parts.forms.JavaDeclarationStepInitializerPropertiesEditionPartForm"
+               filter="org.eclipse.emf.eef.navigation.providers.JavaDeclarationStepInitializerPropertiesEditionProvider$EditionFilter"
+               id="org.eclipse.emf.eef.navigation.section.JavaDeclarationStepInitializer"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.mapping.navigation.parts.forms.JavaBodyStepInitializerPropertiesEditionPartForm"
+               filter="org.eclipse.emf.eef.navigation.providers.JavaBodyStepInitializerPropertiesEditionProvider$EditionFilter"
+               id="org.eclipse.emf.eef.navigation.section.JavaBodyStepInitializer"
+               tab="Base">
+         </propertySection>
       </propertySections>
    </extension>
  </plugin>

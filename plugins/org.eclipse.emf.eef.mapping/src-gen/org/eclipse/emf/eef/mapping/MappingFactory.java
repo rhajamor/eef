@@ -27,7 +27,8 @@ public interface MappingFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MappingFactory eINSTANCE = org.eclipse.emf.eef.mapping.impl.MappingFactoryImpl.init();
+	MappingFactory eINSTANCE = org.eclipse.emf.eef.mapping.impl.MappingFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Databinding</em>'.

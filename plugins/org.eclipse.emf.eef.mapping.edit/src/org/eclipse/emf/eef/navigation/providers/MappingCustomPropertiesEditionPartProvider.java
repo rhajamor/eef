@@ -13,7 +13,9 @@ package org.eclipse.emf.eef.navigation.providers;
 import org.eclipse.emf.eef.mapping.navigation.parts.NavigationViewsRepository;
 import org.eclipse.emf.eef.mapping.parts.MappingViewsRepository;
 import org.eclipse.emf.eef.mapping.providers.MappingPropertiesEditionPartProvider;
+import org.eclipse.emf.eef.navigation.parts.forms.DeclarativeNavigationStepCustomPropertiesEditionPartForm;
 import org.eclipse.emf.eef.navigation.parts.forms.SimpleModelNavigationCustomPropertiesEditionPartForm;
+import org.eclipse.emf.eef.navigation.parts.impl.DeclarativeNavigationStepCustomPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.navigation.parts.impl.SimpleModelNavigationCustomPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -31,6 +33,11 @@ public class MappingCustomPropertiesEditionPartProvider extends MappingPropertie
 				return new SimpleModelNavigationCustomPropertiesEditionPartImpl(component);
 			if (kind == MappingViewsRepository.FORM_KIND)
 				return new SimpleModelNavigationCustomPropertiesEditionPartForm(component);
+		} else if (key == NavigationViewsRepository.DeclarativeNavigationStep.class) {
+			if (kind == MappingViewsRepository.SWT_KIND)
+				return new DeclarativeNavigationStepCustomPropertiesEditionPartImpl(component);
+			if (kind == MappingViewsRepository.FORM_KIND)
+				return new DeclarativeNavigationStepCustomPropertiesEditionPartForm(component);
 		}
 		return super.getPropertiesEditionPart(key, kind, component);
 	}

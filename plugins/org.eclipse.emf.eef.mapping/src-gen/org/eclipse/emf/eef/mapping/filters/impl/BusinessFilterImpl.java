@@ -23,7 +23,8 @@ import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
  *
  * @generated
  */
-public abstract class BusinessFilterImpl extends BindingFilterImpl implements BusinessFilter {
+public abstract class BusinessFilterImpl extends BindingFilterImpl implements
+		BusinessFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

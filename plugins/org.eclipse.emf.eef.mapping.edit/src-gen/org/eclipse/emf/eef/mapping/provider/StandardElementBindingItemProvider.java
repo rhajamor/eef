@@ -31,7 +31,10 @@ import org.eclipse.emf.eef.mapping.StandardElementBinding;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StandardElementBindingItemProvider extends AbstractElementBindingItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class StandardElementBindingItemProvider extends
+		AbstractElementBindingItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -65,13 +68,13 @@ public class StandardElementBindingItemProvider extends AbstractElementBindingIt
 	 * @generated
 	 */
 	protected void addModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_StandardElementBinding_model_feature"),
-						getString("_UI_StandardElementBinding_model_description"),
-						MappingPackage.Literals.STANDARD_ELEMENT_BINDING__MODEL, true, false, true, null,
-						null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_StandardElementBinding_model_feature"),
+				getString("_UI_StandardElementBinding_model_description"),
+				MappingPackage.Literals.STANDARD_ELEMENT_BINDING__MODEL, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -82,7 +85,10 @@ public class StandardElementBindingItemProvider extends AbstractElementBindingIt
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardElementBinding"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/StandardElementBinding"));
 	}
 
 	/**
@@ -93,7 +99,7 @@ public class StandardElementBindingItemProvider extends AbstractElementBindingIt
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StandardElementBinding)object).getName();
+		String label = ((StandardElementBinding) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_StandardElementBinding_type")
 				: getString("_UI_StandardElementBinding_type") + " " + label;
 	}
@@ -119,7 +125,8 @@ public class StandardElementBindingItemProvider extends AbstractElementBindingIt
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

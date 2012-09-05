@@ -31,7 +31,10 @@ import org.eclipse.emf.eef.mapping.MappingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFElementBindingItemProvider extends AbstractElementBindingItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EMFElementBindingItemProvider extends
+		AbstractElementBindingItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -66,10 +69,12 @@ public class EMFElementBindingItemProvider extends AbstractElementBindingItemPro
 	 */
 	protected void addModelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_EMFElementBinding_model_feature"),
 				getString("_UI_EMFElementBinding_model_description"),
-				MappingPackage.Literals.EMF_ELEMENT_BINDING__MODEL, true, false, true, null, null, null));
+				MappingPackage.Literals.EMF_ELEMENT_BINDING__MODEL, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -80,7 +85,8 @@ public class EMFElementBindingItemProvider extends AbstractElementBindingItemPro
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFElementBinding"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/EMFElementBinding"));
 	}
 
 	/**
@@ -91,7 +97,7 @@ public class EMFElementBindingItemProvider extends AbstractElementBindingItemPro
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFElementBinding)object).getName();
+		String label = ((EMFElementBinding) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_EMFElementBinding_type")
 				: getString("_UI_EMFElementBinding_type") + " " + label;
 	}
@@ -117,7 +123,8 @@ public class EMFElementBindingItemProvider extends AbstractElementBindingItemPro
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

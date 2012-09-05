@@ -87,8 +87,8 @@ public class OCLFilterImpl extends BindingFilterImpl implements OCLFilter {
 		String oldOCLBody = oclBody;
 		oclBody = newOCLBody;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FiltersPackage.OCL_FILTER__OCL_BODY,
-					oldOCLBody, oclBody));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					FiltersPackage.OCL_FILTER__OCL_BODY, oldOCLBody, oclBody));
 	}
 
 	/**
@@ -99,8 +99,8 @@ public class OCLFilterImpl extends BindingFilterImpl implements OCLFilter {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FiltersPackage.OCL_FILTER__OCL_BODY:
-				return getOCLBody();
+		case FiltersPackage.OCL_FILTER__OCL_BODY:
+			return getOCLBody();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,9 +113,9 @@ public class OCLFilterImpl extends BindingFilterImpl implements OCLFilter {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FiltersPackage.OCL_FILTER__OCL_BODY:
-				setOCLBody((String)newValue);
-				return;
+		case FiltersPackage.OCL_FILTER__OCL_BODY:
+			setOCLBody((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -128,9 +128,9 @@ public class OCLFilterImpl extends BindingFilterImpl implements OCLFilter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.OCL_FILTER__OCL_BODY:
-				setOCLBody(OCL_BODY_EDEFAULT);
-				return;
+		case FiltersPackage.OCL_FILTER__OCL_BODY:
+			setOCLBody(OCL_BODY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,8 +143,9 @@ public class OCLFilterImpl extends BindingFilterImpl implements OCLFilter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.OCL_FILTER__OCL_BODY:
-				return OCL_BODY_EDEFAULT == null ? oclBody != null : !OCL_BODY_EDEFAULT.equals(oclBody);
+		case FiltersPackage.OCL_FILTER__OCL_BODY:
+			return OCL_BODY_EDEFAULT == null ? oclBody != null
+					: !OCL_BODY_EDEFAULT.equals(oclBody);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.mapping.*;
 import org.eclipse.emf.eef.mapping.AbstractElementBinding;
 import org.eclipse.emf.eef.mapping.AbstractPropertyBinding;
 import org.eclipse.emf.eef.mapping.Category;
@@ -86,7 +87,8 @@ public class MappingSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -99,133 +101,133 @@ public class MappingSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case MappingPackage.DATABINDING: {
-				Databinding databinding = (Databinding)theEObject;
-				T result = caseDatabinding(databinding);
-				if (result == null)
-					result = caseDocumentedElement(databinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MODEL_ELEMENT: {
-				ModelElement modelElement = (ModelElement)theEObject;
-				T result = caseModelElement(modelElement);
-				if (result == null)
-					result = caseDocumentedElement(modelElement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ABSTRACT_ELEMENT_BINDING: {
-				AbstractElementBinding abstractElementBinding = (AbstractElementBinding)theEObject;
-				T result = caseAbstractElementBinding(abstractElementBinding);
-				if (result == null)
-					result = caseDocumentedElement(abstractElementBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MODEL_PROPERTY: {
-				ModelProperty modelProperty = (ModelProperty)theEObject;
-				T result = caseModelProperty(modelProperty);
-				if (result == null)
-					result = caseDocumentedElement(modelProperty);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ABSTRACT_PROPERTY_BINDING: {
-				AbstractPropertyBinding abstractPropertyBinding = (AbstractPropertyBinding)theEObject;
-				T result = caseAbstractPropertyBinding(abstractPropertyBinding);
-				if (result == null)
-					result = caseDocumentedElement(abstractPropertyBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EMF_ELEMENT_BINDING: {
-				EMFElementBinding emfElementBinding = (EMFElementBinding)theEObject;
-				T result = caseEMFElementBinding(emfElementBinding);
-				if (result == null)
-					result = caseAbstractElementBinding(emfElementBinding);
-				if (result == null)
-					result = caseDocumentedElement(emfElementBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EMF_PROPERTY_BINDING: {
-				EMFPropertyBinding emfPropertyBinding = (EMFPropertyBinding)theEObject;
-				T result = caseEMFPropertyBinding(emfPropertyBinding);
-				if (result == null)
-					result = caseAbstractPropertyBinding(emfPropertyBinding);
-				if (result == null)
-					result = caseDocumentedElement(emfPropertyBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STANDARD_ELEMENT_BINDING: {
-				StandardElementBinding standardElementBinding = (StandardElementBinding)theEObject;
-				T result = caseStandardElementBinding(standardElementBinding);
-				if (result == null)
-					result = caseAbstractElementBinding(standardElementBinding);
-				if (result == null)
-					result = caseDocumentedElement(standardElementBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STANDARD_PROPERTY_BINDING: {
-				StandardPropertyBinding standardPropertyBinding = (StandardPropertyBinding)theEObject;
-				T result = caseStandardPropertyBinding(standardPropertyBinding);
-				if (result == null)
-					result = caseAbstractPropertyBinding(standardPropertyBinding);
-				if (result == null)
-					result = caseDocumentedElement(standardPropertyBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CATEGORY: {
-				Category category = (Category)theEObject;
-				T result = caseCategory(category);
-				if (result == null)
-					result = caseDocumentedElement(category);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ELEMENT_BINDING_REFERENCE: {
-				ElementBindingReference elementBindingReference = (ElementBindingReference)theEObject;
-				T result = caseElementBindingReference(elementBindingReference);
-				if (result == null)
-					result = caseDocumentedElement(elementBindingReference);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.DOCUMENTED_ELEMENT: {
-				DocumentedElement documentedElement = (DocumentedElement)theEObject;
-				T result = caseDocumentedElement(documentedElement);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EMF_MULTI_PROPERTIES_BINDING: {
-				EMFMultiPropertiesBinding emfMultiPropertiesBinding = (EMFMultiPropertiesBinding)theEObject;
-				T result = caseEMFMultiPropertiesBinding(emfMultiPropertiesBinding);
-				if (result == null)
-					result = caseAbstractPropertyBinding(emfMultiPropertiesBinding);
-				if (result == null)
-					result = caseDocumentedElement(emfMultiPropertiesBinding);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default:
-				return defaultCase(theEObject);
+		case MappingPackage.DATABINDING: {
+			Databinding databinding = (Databinding) theEObject;
+			T result = caseDatabinding(databinding);
+			if (result == null)
+				result = caseDocumentedElement(databinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.MODEL_ELEMENT: {
+			ModelElement modelElement = (ModelElement) theEObject;
+			T result = caseModelElement(modelElement);
+			if (result == null)
+				result = caseDocumentedElement(modelElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.ABSTRACT_ELEMENT_BINDING: {
+			AbstractElementBinding abstractElementBinding = (AbstractElementBinding) theEObject;
+			T result = caseAbstractElementBinding(abstractElementBinding);
+			if (result == null)
+				result = caseDocumentedElement(abstractElementBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.MODEL_PROPERTY: {
+			ModelProperty modelProperty = (ModelProperty) theEObject;
+			T result = caseModelProperty(modelProperty);
+			if (result == null)
+				result = caseDocumentedElement(modelProperty);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.ABSTRACT_PROPERTY_BINDING: {
+			AbstractPropertyBinding abstractPropertyBinding = (AbstractPropertyBinding) theEObject;
+			T result = caseAbstractPropertyBinding(abstractPropertyBinding);
+			if (result == null)
+				result = caseDocumentedElement(abstractPropertyBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.EMF_ELEMENT_BINDING: {
+			EMFElementBinding emfElementBinding = (EMFElementBinding) theEObject;
+			T result = caseEMFElementBinding(emfElementBinding);
+			if (result == null)
+				result = caseAbstractElementBinding(emfElementBinding);
+			if (result == null)
+				result = caseDocumentedElement(emfElementBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.EMF_PROPERTY_BINDING: {
+			EMFPropertyBinding emfPropertyBinding = (EMFPropertyBinding) theEObject;
+			T result = caseEMFPropertyBinding(emfPropertyBinding);
+			if (result == null)
+				result = caseAbstractPropertyBinding(emfPropertyBinding);
+			if (result == null)
+				result = caseDocumentedElement(emfPropertyBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.STANDARD_ELEMENT_BINDING: {
+			StandardElementBinding standardElementBinding = (StandardElementBinding) theEObject;
+			T result = caseStandardElementBinding(standardElementBinding);
+			if (result == null)
+				result = caseAbstractElementBinding(standardElementBinding);
+			if (result == null)
+				result = caseDocumentedElement(standardElementBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.STANDARD_PROPERTY_BINDING: {
+			StandardPropertyBinding standardPropertyBinding = (StandardPropertyBinding) theEObject;
+			T result = caseStandardPropertyBinding(standardPropertyBinding);
+			if (result == null)
+				result = caseAbstractPropertyBinding(standardPropertyBinding);
+			if (result == null)
+				result = caseDocumentedElement(standardPropertyBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.CATEGORY: {
+			Category category = (Category) theEObject;
+			T result = caseCategory(category);
+			if (result == null)
+				result = caseDocumentedElement(category);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.ELEMENT_BINDING_REFERENCE: {
+			ElementBindingReference elementBindingReference = (ElementBindingReference) theEObject;
+			T result = caseElementBindingReference(elementBindingReference);
+			if (result == null)
+				result = caseDocumentedElement(elementBindingReference);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.DOCUMENTED_ELEMENT: {
+			DocumentedElement documentedElement = (DocumentedElement) theEObject;
+			T result = caseDocumentedElement(documentedElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MappingPackage.EMF_MULTI_PROPERTIES_BINDING: {
+			EMFMultiPropertiesBinding emfMultiPropertiesBinding = (EMFMultiPropertiesBinding) theEObject;
+			T result = caseEMFMultiPropertiesBinding(emfMultiPropertiesBinding);
+			if (result == null)
+				result = caseAbstractPropertyBinding(emfMultiPropertiesBinding);
+			if (result == null)
+				result = caseDocumentedElement(emfMultiPropertiesBinding);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

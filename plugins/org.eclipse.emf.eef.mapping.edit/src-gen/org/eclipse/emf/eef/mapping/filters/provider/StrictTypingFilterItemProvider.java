@@ -31,7 +31,9 @@ import org.eclipse.emf.eef.mapping.filters.StrictTypingFilter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -66,12 +68,15 @@ public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider i
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_StrictTypingFilter_type_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_StrictTypingFilter_type_feature",
-						"_UI_StrictTypingFilter_type"), FiltersPackage.Literals.STRICT_TYPING_FILTER__TYPE,
-				true, false, true, null, null, null));
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_StrictTypingFilter_type_feature",
+						"_UI_StrictTypingFilter_type"),
+				FiltersPackage.Literals.STRICT_TYPING_FILTER__TYPE, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -82,7 +87,8 @@ public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider i
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StrictTypingFilter"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/StrictTypingFilter"));
 	}
 
 	/**
@@ -93,7 +99,7 @@ public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider i
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StrictTypingFilter)object).getName();
+		String label = ((StrictTypingFilter) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_StrictTypingFilter_type")
 				: getString("_UI_StrictTypingFilter_type") + " " + label;
 	}
@@ -119,7 +125,8 @@ public class StrictTypingFilterItemProvider extends BusinessFilterItemProvider i
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

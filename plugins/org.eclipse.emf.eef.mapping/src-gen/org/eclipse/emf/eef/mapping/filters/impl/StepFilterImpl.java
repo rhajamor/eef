@@ -1,0 +1,45 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.eclipse.emf.eef.mapping.filters.impl;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
+import org.eclipse.emf.eef.mapping.filters.StepFilter;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Step Filter</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
+ * @generated
+ */
+public abstract class StepFilterImpl extends EObjectImpl implements StepFilter {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StepFilterImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FiltersPackage.Literals.STEP_FILTER;
+	}
+
+} //StepFilterImpl

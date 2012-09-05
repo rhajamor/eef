@@ -33,7 +33,9 @@ import org.eclipse.emf.eef.mapping.ModelElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelElementItemProvider extends DocumentedElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ModelElementItemProvider extends DocumentedElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,10 +70,12 @@ public class ModelElementItemProvider extends DocumentedElementItemProvider impl
 	 */
 	protected void addBindingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ModelElement_binding_feature"),
 				getString("_UI_ModelElement_binding_description"),
-				MappingPackage.Literals.MODEL_ELEMENT__BINDING, true, false, true, null, null, null));
+				MappingPackage.Literals.MODEL_ELEMENT__BINDING, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -83,11 +87,14 @@ public class ModelElementItemProvider extends DocumentedElementItemProvider impl
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_ELEMENT__PROPERTIES);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_ELEMENT__SUB_ELEMENTS);
+			childrenFeatures
+					.add(MappingPackage.Literals.MODEL_ELEMENT__PROPERTIES);
+			childrenFeatures
+					.add(MappingPackage.Literals.MODEL_ELEMENT__SUB_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -113,7 +120,7 @@ public class ModelElementItemProvider extends DocumentedElementItemProvider impl
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElement)object).getDocumentation();
+		String label = ((ModelElement) object).getDocumentation();
 		return label == null || label.length() == 0 ? getString("_UI_ModelElement_type")
 				: getString("_UI_ModelElement_type") + " " + label;
 	}
@@ -130,11 +137,11 @@ public class ModelElementItemProvider extends DocumentedElementItemProvider impl
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElement.class)) {
-			case MappingPackage.MODEL_ELEMENT__PROPERTIES:
-			case MappingPackage.MODEL_ELEMENT__SUB_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-						false));
-				return;
+		case MappingPackage.MODEL_ELEMENT__PROPERTIES:
+		case MappingPackage.MODEL_ELEMENT__SUB_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -147,7 +154,8 @@ public class ModelElementItemProvider extends DocumentedElementItemProvider impl
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

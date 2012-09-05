@@ -31,7 +31,8 @@ import org.eclipse.emf.eef.mapping.filters.OnlyReferenceTypeFilter;
  *
  * @generated
  */
-public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements OnlyReferenceTypeFilter {
+public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements
+		OnlyReferenceTypeFilter {
 	/**
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -68,12 +69,15 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 	 */
 	public EReference getReference() {
 		if (reference != null && reference.eIsProxy()) {
-			InternalEObject oldReference = (InternalEObject)reference;
-			reference = (EReference)eResolveProxy(oldReference);
+			InternalEObject oldReference = (InternalEObject) reference;
+			reference = (EReference) eResolveProxy(oldReference);
 			if (reference != oldReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE, oldReference, reference));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE,
+							oldReference, reference));
 			}
 		}
 		return reference;
@@ -98,7 +102,8 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 		reference = newReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE, oldReference, reference));
+					FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE,
+					oldReference, reference));
 	}
 
 	/**
@@ -109,10 +114,10 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
-				if (resolve)
-					return getReference();
-				return basicGetReference();
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
+			if (resolve)
+				return getReference();
+			return basicGetReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,9 +130,9 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
-				setReference((EReference)newValue);
-				return;
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
+			setReference((EReference) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -140,9 +145,9 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
-				setReference((EReference)null);
-				return;
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
+			setReference((EReference) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -155,8 +160,8 @@ public class OnlyReferenceTypeFilterImpl extends BusinessFilterImpl implements O
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
-				return reference != null;
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER__REFERENCE:
+			return reference != null;
 		}
 		return super.eIsSet(featureID);
 	}

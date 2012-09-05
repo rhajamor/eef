@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.eef.mapping.filters.*;
 import org.eclipse.emf.eef.mapping.filters.FiltersFactory;
 import org.eclipse.emf.eef.mapping.filters.FiltersPackage;
 import org.eclipse.emf.eef.mapping.filters.JavaDeclarationFilter;
@@ -38,7 +39,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	 */
 	public static FiltersFactory init() {
 		try {
-			FiltersFactory theFiltersFactory = (FiltersFactory)EPackage.Registry.INSTANCE
+			FiltersFactory theFiltersFactory = (FiltersFactory) EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/emf/eef/mapping/filters/1.0.0");
 			if (theFiltersFactory != null) {
 				return theFiltersFactory;
@@ -67,19 +68,23 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FiltersPackage.OCL_FILTER:
-				return createOCLFilter();
-			case FiltersPackage.JAVA_DECLARATION_FILTER:
-				return createJavaDeclarationFilter();
-			case FiltersPackage.JAVA_EXPRESSION_FILTER:
-				return createJavaExpressionFilter();
-			case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER:
-				return createOnlyReferenceTypeFilter();
-			case FiltersPackage.STRICT_TYPING_FILTER:
-				return createStrictTypingFilter();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName()
-						+ "' is not a valid classifier");
+		case FiltersPackage.OCL_FILTER:
+			return createOCLFilter();
+		case FiltersPackage.JAVA_DECLARATION_FILTER:
+			return createJavaDeclarationFilter();
+		case FiltersPackage.JAVA_EXPRESSION_FILTER:
+			return createJavaExpressionFilter();
+		case FiltersPackage.ONLY_REFERENCE_TYPE_FILTER:
+			return createOnlyReferenceTypeFilter();
+		case FiltersPackage.STRICT_TYPING_FILTER:
+			return createStrictTypingFilter();
+		case FiltersPackage.JAVA_BODY_STEP_FILTER:
+			return createJavaBodyStepFilter();
+		case FiltersPackage.JAVA_DECLARATION_STEP_FILTER:
+			return createJavaDeclarationStepFilter();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -138,8 +143,28 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public JavaBodyStepFilter createJavaBodyStepFilter() {
+		JavaBodyStepFilterImpl javaBodyStepFilter = new JavaBodyStepFilterImpl();
+		return javaBodyStepFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaDeclarationStepFilter createJavaDeclarationStepFilter() {
+		JavaDeclarationStepFilterImpl javaDeclarationStepFilter = new JavaDeclarationStepFilterImpl();
+		return javaDeclarationStepFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FiltersPackage getFiltersPackage() {
-		return (FiltersPackage)getEPackage();
+		return (FiltersPackage) getEPackage();
 	}
 
 	/**

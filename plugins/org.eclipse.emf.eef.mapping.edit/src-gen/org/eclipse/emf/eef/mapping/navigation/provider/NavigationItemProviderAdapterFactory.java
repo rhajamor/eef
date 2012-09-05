@@ -45,7 +45,9 @@ import org.eclipse.emf.eef.mapping.provider.MappingEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NavigationItemProviderAdapterFactory extends NavigationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
+public class NavigationItemProviderAdapterFactory extends
+		NavigationAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable, IChildCreationExtender {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -110,7 +112,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	@Override
 	public Adapter createSimpleModelNavigationAdapter() {
 		if (simpleModelNavigationItemProvider == null) {
-			simpleModelNavigationItemProvider = new SimpleModelNavigationItemProvider(this);
+			simpleModelNavigationItemProvider = new SimpleModelNavigationItemProvider(
+					this);
 		}
 
 		return simpleModelNavigationItemProvider;
@@ -133,7 +136,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	@Override
 	public Adapter createChainedModelNavigationAdapter() {
 		if (chainedModelNavigationItemProvider == null) {
-			chainedModelNavigationItemProvider = new ChainedModelNavigationItemProvider(this);
+			chainedModelNavigationItemProvider = new ChainedModelNavigationItemProvider(
+					this);
 		}
 
 		return chainedModelNavigationItemProvider;
@@ -156,10 +160,131 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	@Override
 	public Adapter createCustomModelNavigationAdapter() {
 		if (customModelNavigationItemProvider == null) {
-			customModelNavigationItemProvider = new CustomModelNavigationItemProvider(this);
+			customModelNavigationItemProvider = new CustomModelNavigationItemProvider(
+					this);
 		}
 
 		return customModelNavigationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.mapping.navigation.SmartModelNavigation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SmartModelNavigationItemProvider smartModelNavigationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.mapping.navigation.SmartModelNavigation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSmartModelNavigationAdapter() {
+		if (smartModelNavigationItemProvider == null) {
+			smartModelNavigationItemProvider = new SmartModelNavigationItemProvider(
+					this);
+		}
+
+		return smartModelNavigationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.mapping.navigation.DeclarativeNavigationStep} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeclarativeNavigationStepItemProvider declarativeNavigationStepItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.mapping.navigation.DeclarativeNavigationStep}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeclarativeNavigationStepAdapter() {
+		if (declarativeNavigationStepItemProvider == null) {
+			declarativeNavigationStepItemProvider = new DeclarativeNavigationStepItemProvider(
+					this);
+		}
+
+		return declarativeNavigationStepItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JavaBodyExpressionItemProvider javaBodyExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.mapping.navigation.JavaBodyExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJavaBodyExpressionAdapter() {
+		if (javaBodyExpressionItemProvider == null) {
+			javaBodyExpressionItemProvider = new JavaBodyExpressionItemProvider(
+					this);
+		}
+
+		return javaBodyExpressionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.mapping.navigation.JavaDeclarationStepInitializer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JavaDeclarationStepInitializerItemProvider javaDeclarationStepInitializerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.mapping.navigation.JavaDeclarationStepInitializer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJavaDeclarationStepInitializerAdapter() {
+		if (javaDeclarationStepInitializerItemProvider == null) {
+			javaDeclarationStepInitializerItemProvider = new JavaDeclarationStepInitializerItemProvider(
+					this);
+		}
+
+		return javaDeclarationStepInitializerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.eef.mapping.navigation.JavaBodyStepInitializer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JavaBodyStepInitializerItemProvider javaBodyStepInitializerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.eef.mapping.navigation.JavaBodyStepInitializer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJavaBodyStepInitializerAdapter() {
+		if (javaBodyStepInitializerItemProvider == null) {
+			javaBodyStepInitializerItemProvider = new JavaBodyStepInitializerItemProvider(
+					this);
+		}
+
+		return javaBodyStepInitializerItemProvider;
 	}
 
 	/**
@@ -169,7 +294,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -178,7 +304,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -212,7 +339,8 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -234,8 +362,10 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	public Collection<?> getNewChildDescriptors(Object object,
+			EditingDomain editingDomain) {
+		return childCreationExtenderManager.getNewChildDescriptors(object,
+				editingDomain);
 	}
 
 	/**
@@ -294,6 +424,16 @@ public class NavigationItemProviderAdapterFactory extends NavigationAdapterFacto
 			chainedModelNavigationItemProvider.dispose();
 		if (customModelNavigationItemProvider != null)
 			customModelNavigationItemProvider.dispose();
+		if (smartModelNavigationItemProvider != null)
+			smartModelNavigationItemProvider.dispose();
+		if (declarativeNavigationStepItemProvider != null)
+			declarativeNavigationStepItemProvider.dispose();
+		if (javaBodyExpressionItemProvider != null)
+			javaBodyExpressionItemProvider.dispose();
+		if (javaDeclarationStepInitializerItemProvider != null)
+			javaDeclarationStepInitializerItemProvider.dispose();
+		if (javaBodyStepInitializerItemProvider != null)
+			javaBodyStepInitializerItemProvider.dispose();
 	}
 
 }

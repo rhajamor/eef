@@ -118,6 +118,39 @@
         </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/SimpleModelNavigation"/>
       </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_HjuB8PDsEeGwi5CNeA0hsQ" name="DeclarativeNavigationStep" views="_NFQ-8PDsEeGwi5CNeA0hsQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_LKAlofN9EeGGm4aMmfGb4w" name="createsIfNotExists" views="_y7xqkPN9EeGGm4aMmfGb4w">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/NavigationStep/createsIfNotExists"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_A5TGcPDuEeGwi5CNeA0hsQ" name="index" views="_WAtP8PDsEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/DeclarativeNavigationStep/index"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_IBxlAPDuEeGwi5CNeA0hsQ" name="feature" views="_ZPT58PDsEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/DeclarativeNavigationStep/feature"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_JqcL8PDuEeGwi5CNeA0hsQ" name="discriminatorType" views="_cgRUYPDsEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/DeclarativeNavigationStep/discriminatorType"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/DeclarativeNavigationStep"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_ftMRcPDuEeGwi5CNeA0hsQ" name="JavaDeclarationStepInitializer" views="_oZTF8PDuEeGwi5CNeA0hsQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_3S0e8PDuEeGwi5CNeA0hsQ" name="qualifiedClass" views="_vV5rsPDuEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/qualifiedClass"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_6PuU8PDuEeGwi5CNeA0hsQ" name="methodFilter" views="_y2Pl8PDuEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/methodFilter"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_8r-U8PDuEeGwi5CNeA0hsQ" name="staticMethod" views="_0uL_APDuEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/staticMethod"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationStepInitializer"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_AwcP8PDvEeGwi5CNeA0hsQ" name="JavaBodyStepInitializer" views="_D9SmcPDvEeGwi5CNeA0hsQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_LuR2gPDvEeGwi5CNeA0hsQ" name="body" views="_JRaygPDvEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaBodyExpression/body"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaBodyStepInitializer"/>
+      </bindings>
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.genmodel#//mapping/navigation"/>
   </eef-components:PropertiesEditionContext>
@@ -162,6 +195,24 @@
         <referencedBinding xmi:id="_usjesyedEeCxV-UsXGE_0Q" binding="_s6Yv0AtHEd6GjLeaWWGqlg"/>
         <referencedBinding xmi:id="_usjetCedEeCxV-UsXGE_0Q" binding="_NsYfwEnREd60zu6mQdwT9g"/>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//filters/StrictTypingFilter"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_kGLOcPDvEeGwi5CNeA0hsQ" name="JavaDeclarationStepFilter" views="_PZBp8PDvEeGwi5CNeA0hsQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_pYT2cPDvEeGwi5CNeA0hsQ" name="qualifiedClass" views="_Vm0B4PDvEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/qualifiedClass"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_r-7TYPDvEeGwi5CNeA0hsQ" name="methodFilter" views="_elxg8PDvEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/methodFilter"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_uH4j8PDvEeGwi5CNeA0hsQ" name="staticMethod" views="_gaqmAPDvEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaDeclarationExpression/staticMethod"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//filters/JavaDeclarationStepFilter"/>
+      </bindings>
+      <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_wiFVgPDvEeGwi5CNeA0hsQ" name="JavaBodyStepFilter" views="_z0L_cPDvEeGwi5CNeA0hsQ">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_6ODEgPDvEeGwi5CNeA0hsQ" name="body" views="_3mqLgPDvEeGwi5CNeA0hsQ">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//navigation/JavaBodyExpression/body"/>
+        </properties>
+        <model xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.ecore#//filters/JavaBodyStepFilter"/>
       </bindings>
     </categories>
     <model href="platform:/resource/org.eclipse.emf.eef.mapping/model/mapping.genmodel#//mapping/filters"/>
@@ -321,6 +372,45 @@
           </elements>
         </elements>
       </views>
+      <views xmi:id="_NFQ-8PDsEeGwi5CNeA0hsQ" name="DeclarativeNavigationStep">
+        <elements xsi:type="eef-views:Container" xmi:id="_TYDLoPDsEeGwi5CNeA0hsQ" name="Properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_y7xqkPN9EeGGm4aMmfGb4w" name="createsIfNotExists">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_WAtP8PDsEeGwi5CNeA0hsQ" name="index">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_ZPT58PDsEeGwi5CNeA0hsQ" name="feature">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_cgRUYPDsEeGwi5CNeA0hsQ" name="discriminatorType">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_oZTF8PDuEeGwi5CNeA0hsQ" name="JavaDeclarationStepInitializer">
+        <elements xsi:type="eef-views:Container" xmi:id="_sleygPDuEeGwi5CNeA0hsQ" name="Properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_vV5rsPDuEeGwi5CNeA0hsQ" name="qualifiedClass">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_y2Pl8PDuEeGwi5CNeA0hsQ" name="methodFilter">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_0uL_APDuEeGwi5CNeA0hsQ" name="staticMethod">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_D9SmcPDvEeGwi5CNeA0hsQ" name="JavaBodyStepInitializer">
+        <elements xsi:type="eef-views:Container" xmi:id="_H4AIgPDvEeGwi5CNeA0hsQ" name="Properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_JRaygPDvEeGwi5CNeA0hsQ" name="body">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
+          </elements>
+        </elements>
+      </views>
     </categories>
   </eef-views:ViewsRepository>
   <eef-views:ViewsRepository xmi:id="_s_oE_A92EeG64oJE_RBOAA" documentation="Views repository for filters GenPackage" name="filters">
@@ -371,6 +461,28 @@
           </elements>
         </elements>
         <elements xsi:type="eef-views:ViewReference" xmi:id="_ydJbcyedEeCxV-UsXGE_0Q" name="filter properties" view="_AuaNcEnREd60zu6mQdwT9g"/>
+      </views>
+      <views xmi:id="_PZBp8PDvEeGwi5CNeA0hsQ" name="JavaDeclarationStepFilter">
+        <elements xsi:type="eef-views:Container" xmi:id="_T_jJIPDvEeGwi5CNeA0hsQ" name="Properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_Vm0B4PDvEeGwi5CNeA0hsQ" name="qualifiedClass">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_elxg8PDvEeGwi5CNeA0hsQ" name="methodFilter">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_gaqmAPDvEeGwi5CNeA0hsQ" name="staticMethod">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
+          </elements>
+        </elements>
+      </views>
+      <views xmi:id="_z0L_cPDvEeGwi5CNeA0hsQ" name="JavaBodyStepFilter">
+        <elements xsi:type="eef-views:Container" xmi:id="_2EYgcPDvEeGwi5CNeA0hsQ" name="Properties">
+          <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_3mqLgPDvEeGwi5CNeA0hsQ" name="body">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>
+          </elements>
+        </elements>
       </views>
     </categories>
   </eef-views:ViewsRepository>

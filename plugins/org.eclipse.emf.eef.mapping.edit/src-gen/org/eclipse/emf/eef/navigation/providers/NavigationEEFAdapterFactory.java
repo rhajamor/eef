@@ -28,5 +28,29 @@ public class NavigationEEFAdapterFactory extends NavigationAdapterFactory {
 	public Adapter createSimpleModelNavigationAdapter() {
 		return new SimpleModelNavigationPropertiesEditionProvider();
 	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.mapping.navigation.util.NavigationAdapterFactory#createDeclarativeNavigationStepAdapter()
+	 * 
+	 */
+	public Adapter createDeclarativeNavigationStepAdapter() {
+		return new DeclarativeNavigationStepPropertiesEditionProvider();
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.mapping.navigation.util.NavigationAdapterFactory#createJavaDeclarationStepInitializerAdapter()
+	 * 
+	 */
+	public Adapter createJavaDeclarationStepInitializerAdapter() {
+		return new JavaDeclarationStepInitializerPropertiesEditionProvider();
+	}
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.mapping.navigation.util.NavigationAdapterFactory#createJavaBodyStepInitializerAdapter()
+	 * 
+	 */
+	public Adapter createJavaBodyStepInitializerAdapter() {
+		return new JavaBodyStepInitializerPropertiesEditionProvider();
+	}
 
 }

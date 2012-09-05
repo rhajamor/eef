@@ -35,6 +35,12 @@ public class FiltersMessages extends NLS {
 	
 	public static String StrictTypingFilterPropertiesEditionPart_TypeGroupLabel;
 
+	
+	public static String JavaDeclarationStepFilterPropertiesEditionPart_PropertiesGroupLabel;
+
+	
+	public static String JavaBodyStepFilterPropertiesEditionPart_PropertiesGroupLabel;
+
 
 	
 	public static String OnlyReferenceTypeFilter_ReadOnly;
@@ -66,6 +72,18 @@ public class FiltersMessages extends NLS {
 	
 	public static String StrictTypingFilter_Part_Title;
 
+	
+	public static String JavaDeclarationStepFilter_ReadOnly;
+
+	
+	public static String JavaDeclarationStepFilter_Part_Title;
+
+	
+	public static String JavaBodyStepFilter_ReadOnly;
+
+	
+	public static String JavaBodyStepFilter_Part_Title;
+
 
 	
 	public static String OnlyReferenceTypeFilterPropertiesEditionPart_ReferencedFeatureLabel;
@@ -81,6 +99,18 @@ public class FiltersMessages extends NLS {
 
 	
 	public static String StrictTypingFilterPropertiesEditionPart_RestrictionLabel;
+
+	
+	public static String JavaDeclarationStepFilterPropertiesEditionPart_QualifiedClassLabel;
+
+	
+	public static String JavaDeclarationStepFilterPropertiesEditionPart_MethodFilterLabel;
+
+	
+	public static String JavaDeclarationStepFilterPropertiesEditionPart_StaticMethodLabel;
+
+	
+	public static String JavaBodyStepFilterPropertiesEditionPart_BodyLabel;
 
 
 	

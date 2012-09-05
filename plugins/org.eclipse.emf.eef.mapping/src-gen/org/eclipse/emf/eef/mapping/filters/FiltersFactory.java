@@ -27,7 +27,8 @@ public interface FiltersFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FiltersFactory eINSTANCE = org.eclipse.emf.eef.mapping.filters.impl.FiltersFactoryImpl.init();
+	FiltersFactory eINSTANCE = org.eclipse.emf.eef.mapping.filters.impl.FiltersFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>OCL Filter</em>'.
@@ -73,6 +74,24 @@ public interface FiltersFactory extends EFactory {
 	 * @generated
 	 */
 	StrictTypingFilter createStrictTypingFilter();
+
+	/**
+	 * Returns a new object of class '<em>Java Body Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Body Step Filter</em>'.
+	 * @generated
+	 */
+	JavaBodyStepFilter createJavaBodyStepFilter();
+
+	/**
+	 * Returns a new object of class '<em>Java Declaration Step Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Declaration Step Filter</em>'.
+	 * @generated
+	 */
+	JavaDeclarationStepFilter createJavaDeclarationStepFilter();
 
 	/**
 	 * Returns the package supported by this factory.

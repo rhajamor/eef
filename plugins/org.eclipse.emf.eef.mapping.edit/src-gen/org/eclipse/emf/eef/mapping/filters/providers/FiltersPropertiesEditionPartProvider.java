@@ -12,13 +12,17 @@ package org.eclipse.emf.eef.mapping.filters.providers;
 
 import org.eclipse.emf.eef.mapping.filters.parts.FiltersViewsRepository;
 
+import org.eclipse.emf.eef.mapping.filters.parts.forms.JavaBodyStepFilterPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.filters.parts.forms.JavaDeclarationFilterPropertiesEditionPartForm;
+import org.eclipse.emf.eef.mapping.filters.parts.forms.JavaDeclarationStepFilterPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.filters.parts.forms.JavaExpressionFilterPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.filters.parts.forms.OCLFilterPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.filters.parts.forms.OnlyReferenceTypeFilterPropertiesEditionPartForm;
 import org.eclipse.emf.eef.mapping.filters.parts.forms.StrictTypingFilterPropertiesEditionPartForm;
 
+import org.eclipse.emf.eef.mapping.filters.parts.impl.JavaBodyStepFilterPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.mapping.filters.parts.impl.JavaDeclarationFilterPropertiesEditionPartImpl;
+import org.eclipse.emf.eef.mapping.filters.parts.impl.JavaDeclarationStepFilterPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.mapping.filters.parts.impl.JavaExpressionFilterPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.mapping.filters.parts.impl.OCLFilterPropertiesEditionPartImpl;
 import org.eclipse.emf.eef.mapping.filters.parts.impl.OnlyReferenceTypeFilterPropertiesEditionPartImpl;
@@ -80,6 +84,18 @@ public class FiltersPropertiesEditionPartProvider implements IPropertiesEditionP
 				return new StrictTypingFilterPropertiesEditionPartImpl(component);
 			if (kind == FiltersViewsRepository.FORM_KIND)
 				return new StrictTypingFilterPropertiesEditionPartForm(component);
+		}
+		if (key == FiltersViewsRepository.JavaDeclarationStepFilter.class) {
+			if (kind == FiltersViewsRepository.SWT_KIND)
+				return new JavaDeclarationStepFilterPropertiesEditionPartImpl(component);
+			if (kind == FiltersViewsRepository.FORM_KIND)
+				return new JavaDeclarationStepFilterPropertiesEditionPartForm(component);
+		}
+		if (key == FiltersViewsRepository.JavaBodyStepFilter.class) {
+			if (kind == FiltersViewsRepository.SWT_KIND)
+				return new JavaBodyStepFilterPropertiesEditionPartImpl(component);
+			if (kind == FiltersViewsRepository.FORM_KIND)
+				return new JavaBodyStepFilterPropertiesEditionPartForm(component);
 		}
 		return null;
 	}
