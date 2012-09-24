@@ -484,7 +484,12 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 			initTab(propertiesEditionElement);
 			propertiesEdition.updateFeature(selectNode, propertiesEditionElement, referenceableObject, objectsToSet, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
-			//TODO wizard
+			final Collection<EObject> objectsToSet = new ArrayList<EObject>();
+			for (ReferenceableObject value : values) {
+				objectsToSet.add(getEObjectFromReferenceableEObject(value));
+			}
+			initTab(propertiesEditionElement);
+			propertiesEdition.updateFeature(null, propertiesEditionElement, referenceableObject, objectsToSet, sequenceType);
 		}
 
 	}
@@ -552,7 +557,15 @@ public class SWTEEFBot extends SWTWorkbenchBot implements IModelingBot {
 			initTab(propertiesEditionElement);
 			propertiesEdition.unsetAttribute(propertiesEditionElement, referenceableObject, container, values, sequenceType);
 		} else if (sequenceType.equals(SequenceType.WIZARD)) {
-			//TODO
+			EObject containerOfcontainer = null;
+			if (((EditAction)referenceableObject).getPropertiesEditionElement() != null) {
+				containerOfcontainer = getEObjectFromReferenceableEObject(((EditAction)referenceableObject).getReferenceableObject());
+			} else {
+				containerOfcontainer = getEObjectFromReferenceableEObject(referenceableObject);
+			}
+			assertNotNull("No container is found to launch unset attribute action.", containerOfcontainer);
+			initTab(propertiesEditionElement);
+			propertiesEdition.unsetAttribute(propertiesEditionElement, referenceableObject, containerOfcontainer, values, sequenceType);
 		}
 		SWTBotHelper.waitAllUiEvents();
 		
